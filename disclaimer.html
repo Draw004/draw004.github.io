@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Disclaimer | Carrowmont</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Disclaimer | Carrowmont
+  </title>
 
   <meta name="description"
         content="Important information about the use of Carrowmont financial planning tools, calculators, projections and educational content.">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -22,6 +33,9 @@
       background: #ffffff;
       line-height: 1.7;
     }
+
+
+    /* HEADER */
 
     header {
       border-bottom: 1px solid #e7e7e7;
@@ -32,6 +46,7 @@
       max-width: 1150px;
       margin: auto;
       padding: 20px 24px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,6 +56,7 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 1px;
+
       color: #17202a;
       text-decoration: none;
     }
@@ -48,9 +64,18 @@
     .nav-links a {
       color: #333;
       text-decoration: none;
+
       margin-left: 28px;
+
       font-size: 15px;
     }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* HERO */
 
     .hero {
       background: #f7f8f9;
@@ -65,44 +90,62 @@
     .eyebrow {
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
       letter-spacing: 1.5px;
+
       margin-bottom: 15px;
     }
 
     h1 {
       font-size: 48px;
       line-height: 1.15;
+
       margin-bottom: 20px;
     }
 
     .hero p {
       max-width: 760px;
+
       font-size: 20px;
+
       color: #59646e;
     }
+
+
+    /* CONTENT */
 
     .content {
       max-width: 900px;
       margin: auto;
+
       padding: 70px 24px;
     }
 
     h2 {
       font-size: 30px;
-      margin-top: 46px;
+
+      margin-top: 48px;
       margin-bottom: 15px;
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
     }
 
     p {
       margin-bottom: 18px;
+
       font-size: 17px;
+
       color: #454f58;
     }
 
     ul {
       margin: 10px 0 25px 24px;
+
       color: #454f58;
+
       font-size: 17px;
     }
 
@@ -110,33 +153,133 @@
       margin-bottom: 10px;
     }
 
+
+    /* IMPORTANT NOTICE */
+
     .warning {
       background: #f7f8f9;
+
       border-left: 4px solid #17202a;
-      padding: 26px;
-      margin: 30px 0;
+
+      padding: 28px;
+
+      margin-bottom: 45px;
+
       color: #454f58;
     }
 
+    .warning strong {
+      color: #17202a;
+    }
+
+
+    /* CONTACT BOX */
+
+    .contact-box {
+      margin-top: 35px;
+
+      padding: 28px;
+
+      border: 1px solid #e1e5e8;
+
+      border-radius: 10px;
+    }
+
+    .contact-box h3 {
+      font-size: 21px;
+
+      margin-bottom: 10px;
+    }
+
+    .contact-box a {
+      color: #17202a;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* UPDATED */
+
     .updated {
       margin-top: 45px;
+
       font-size: 14px;
+
       color: #747e86;
     }
 
+
+    /* FOOTER */
+
     footer {
       border-top: 1px solid #e7e7e7;
-      padding: 35px 24px;
+
+      padding: 45px 24px;
+
       color: #68737c;
+
       font-size: 14px;
     }
 
     .footer-inner {
       max-width: 1150px;
+
       margin: auto;
     }
 
+    .footer-brand strong {
+      color: #17202a;
+
+      font-size: 18px;
+
+      letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+      margin: 5px 0 20px;
+
+      font-size: 14px;
+
+      color: #68737c;
+    }
+
+    .footer-links {
+      margin-bottom: 22px;
+    }
+
+    .footer-links a {
+      color: #454f58;
+
+      text-decoration: none;
+
+      margin-right: 22px;
+
+      display: inline-block;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+
+      border-top: 1px solid #e7e7e7;
+    }
+
+
+    /* MOBILE */
+
     @media (max-width: 800px) {
+
       h1 {
         font-size: 38px;
       }
@@ -144,34 +287,71 @@
       .nav-links {
         display: none;
       }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .content {
+        padding: 55px 20px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="nav">
 
     <div class="brand">
-      <a href="/">CARROWMONT</a>
+
+      <a href="/">
+        CARROWMONT
+      </a>
+
     </div>
 
+
     <nav class="nav-links">
-      <a href="/#plan">Plan</a>
-      <a href="/#tools">Tools</a>
-      <a href="/#learn">Learn</a>
-      <a href="/about.html">About</a>
+
+      <a href="/#plan">
+        Plan
+      </a>
+
+      <a href="/#tools">
+        Tools
+      </a>
+
+      <a href="/#learn">
+        Learn
+      </a>
+
+      <a href="/about.html">
+        About
+      </a>
+
     </nav>
 
   </div>
+
 </header>
 
 
+
 <section class="hero">
+
   <div class="hero-inner">
 
-    <div class="eyebrow">Important Information</div>
+    <div class="eyebrow">
+      Important Information
+    </div>
 
     <h1>
       Financial information should be understood in context.
@@ -184,82 +364,111 @@
     </p>
 
   </div>
+
 </section>
+
 
 
 <main class="content">
 
+
   <div class="warning">
 
-    <strong>Important:</strong>
+    <p>
+      <strong>Important:</strong>
+      Carrowmont does not provide individualized investment,
+      financial, legal, accounting or tax advice.
+    </p>
 
-    Carrowmont does not provide individualized investment,
-    financial, legal, accounting or tax advice.
+    <p>
+      Information and calculations provided on this website are
+      educational and illustrative in nature.
+    </p>
 
-    Information and calculations provided on this website are
-    educational and illustrative in nature.
+    <p>
+      They should not be treated as guarantees, predictions or
+      personalized recommendations.
+    </p>
 
   </div>
 
 
-  <h2>Educational purpose</h2>
+
+  <h2>
+    Educational purpose
+  </h2>
 
   <p>
-    The information available on Carrowmont is provided for general
-    educational and informational purposes.
+    Information available through Carrowmont is provided for
+    general educational and informational purposes.
   </p>
 
   <p>
-    Our calculators and planning tools are designed to help users
+    Our calculators and planning tools are intended to help users
     explore financial scenarios and understand how different
-    assumptions may influence potential outcomes.
+    assumptions may influence possible outcomes.
   </p>
 
   <p>
     Nothing on Carrowmont should be interpreted as personalized
-    financial advice or as a recommendation to take a particular
+    financial advice or as a recommendation to take a specific
     financial action.
   </p>
 
 
-  <h2>No investment recommendation</h2>
+
+  <h2>
+    No investment recommendation
+  </h2>
 
   <p>
     Carrowmont does not recommend that users purchase, sell or hold
-    any particular security, investment product, insurance product,
-    financial product or financial service unless clearly stated
-    otherwise under an appropriately authorized arrangement.
+    any particular security, investment, insurance policy or
+    financial product.
   </p>
 
   <p>
-    References to investments, returns, financial products or asset
-    classes may be used for educational or illustrative purposes.
+    References to investments, asset classes, financial products,
+    returns or financial strategies may be used for educational or
+    illustrative purposes.
   </p>
 
 
-  <h2>Financial projections are uncertain</h2>
+
+  <h2>
+    Financial projections involve uncertainty
+  </h2>
 
   <p>
-    Financial projections depend on assumptions about future events,
-    including inflation, investment returns, interest rates, income,
-    expenses, taxation and other economic conditions.
+    Financial projections depend on assumptions about future events
+    and conditions.
   </p>
 
   <p>
-    These variables cannot be predicted with certainty.
+    These may include inflation, investment returns, interest rates,
+    income, expenses, taxation, longevity and broader economic
+    conditions.
   </p>
 
   <p>
-    Actual financial outcomes may differ substantially from the
-    results generated by a Carrowmont calculator or planning tool.
+    These factors cannot be predicted with certainty.
+  </p>
+
+  <p>
+    Actual financial outcomes may therefore differ materially from
+    the results generated by a Carrowmont calculator or planning
+    tool.
   </p>
 
 
-  <h2>Calculator results</h2>
+
+  <h2>
+    Calculator results
+  </h2>
 
   <p>
-    Calculator outputs should be treated as estimates and illustrative
-    scenarios rather than guarantees.
+    Calculator outputs should be treated as estimates and
+    illustrative scenarios rather than guarantees.
   </p>
 
   <p>
@@ -267,14 +476,47 @@
   </p>
 
   <ul>
-    <li>assumptions entered by the user</li>
-    <li>default assumptions used by the tool</li>
-    <li>rounding</li>
-    <li>changes in laws or regulations</li>
-    <li>changes in tax rules</li>
-    <li>changes in financial markets</li>
-    <li>changes in interest rates</li>
-    <li>future economic conditions</li>
+
+    <li>
+      assumptions entered by the user
+    </li>
+
+    <li>
+      default assumptions used by the tool
+    </li>
+
+    <li>
+      rounding
+    </li>
+
+    <li>
+      future inflation
+    </li>
+
+    <li>
+      investment performance
+    </li>
+
+    <li>
+      changes in interest rates
+    </li>
+
+    <li>
+      changes in financial markets
+    </li>
+
+    <li>
+      changes in laws or regulations
+    </li>
+
+    <li>
+      changes in tax rules
+    </li>
+
+    <li>
+      future economic conditions
+    </li>
+
   </ul>
 
   <p>
@@ -283,22 +525,33 @@
   </p>
 
 
-  <h2>No guarantee of accuracy</h2>
+
+  <h2>
+    No guarantee of accuracy
+  </h2>
 
   <p>
-    Carrowmont aims to provide useful and understandable information,
-    but we cannot guarantee that every calculation, article,
-    assumption or data point will always be complete, current or
-    error-free.
+    Carrowmont aims to provide useful, understandable and reasonably
+    accurate information.
   </p>
 
   <p>
-    Financial laws, tax rules, interest rates, government schemes
-    and market conditions may change over time.
+    However, we cannot guarantee that every calculation, article,
+    assumption, formula or data point will always be complete,
+    current or error-free.
+  </p>
+
+  <p>
+    Financial laws, tax provisions, government schemes, interest
+    rates, market conditions and other information may change over
+    time.
   </p>
 
 
-  <h2>Professional advice</h2>
+
+  <h2>
+    Professional advice
+  </h2>
 
   <p>
     Important financial decisions may require advice based on a
@@ -307,73 +560,110 @@
 
   <p>
     Users should consider consulting an appropriately qualified
-    financial adviser, tax professional, accountant, legal
-    professional or other specialist where appropriate.
+    financial adviser, tax professional, accountant, lawyer,
+    insurance professional or other specialist where appropriate.
   </p>
 
 
-  <h2>No client relationship</h2>
+
+  <h2>
+    No adviser-client relationship
+  </h2>
 
   <p>
-    Using Carrowmont, reading its content or using its calculators
-    does not by itself create an adviser-client, fiduciary,
-    professional or contractual relationship between the user and
-    Carrowmont.
+    Using Carrowmont, reading its content, contacting Carrowmont or
+    using its calculators does not by itself create an
+    adviser-client, fiduciary, professional or similar relationship
+    between the user and Carrowmont.
   </p>
 
 
-  <h2>Third-party websites and services</h2>
+
+  <h2>
+    Information submitted by users
+  </h2>
 
   <p>
-    Carrowmont may in the future contain links to third-party
-    websites, financial services, products or other resources.
-  </p>
-
-  <p>
-    A link to an external website does not necessarily represent an
-    endorsement of that website, company, product or service.
-  </p>
-
-  <p>
-    Users should independently evaluate third-party services before
-    making financial decisions.
-  </p>
-
-
-  <h2>Commercial relationships</h2>
-
-  <p>
-    Carrowmont may in the future earn revenue through advertising,
-    sponsorships, affiliate relationships, referrals, subscriptions
-    or other commercial arrangements.
+    Users are responsible for the accuracy of information they enter
+    into Carrowmont calculators or planning tools.
   </p>
 
   <p>
-    Where a commercial relationship is relevant to content,
-    recommendations or links presented to users, we intend to provide
-    appropriate disclosure.
+    Incorrect or incomplete inputs may produce inaccurate or
+    misleading results.
   </p>
 
 
-  <h2>User responsibility</h2>
+
+  <h2>
+    Third-party websites and services
+  </h2>
+
+  <p>
+    Carrowmont may contain links to websites, products or services
+    operated by third parties.
+  </p>
+
+  <p>
+    External websites operate independently and may have their own
+    terms, privacy policies, fees, risks and conditions.
+  </p>
+
+  <p>
+    A link to an external service does not necessarily represent an
+    endorsement of that company, website, product or service.
+  </p>
+
+
+
+  <h2>
+    Advertising, affiliates and commercial relationships
+  </h2>
+
+  <p>
+    Carrowmont may in the future generate revenue through
+    advertising, sponsorships, affiliate relationships, referrals,
+    subscriptions or other commercial arrangements.
+  </p>
+
+  <p>
+    Where a commercial relationship is relevant to information,
+    links or services presented to users, our intention is to
+    provide appropriate disclosure.
+  </p>
+
+
+
+  <h2>
+    User responsibility
+  </h2>
 
   <p>
     Users remain responsible for evaluating their own financial
-    situation and determining whether information or calculations
-    provided by Carrowmont are appropriate for their circumstances.
+    circumstances and determining whether information or
+    calculations provided by Carrowmont are appropriate for them.
   </p>
 
   <p>
-    Users should not rely solely on Carrowmont when making significant
-    financial, investment, tax, insurance or legal decisions.
+    Users should not rely solely on Carrowmont when making
+    significant financial, investment, tax, insurance or legal
+    decisions.
   </p>
 
 
-  <h2>Changes to this disclaimer</h2>
+
+  <h2>
+    Changes to this disclaimer
+  </h2>
 
   <p>
-    Carrowmont may update this disclaimer as the platform develops,
-    new tools are introduced or applicable requirements change.
+    Carrowmont is an evolving platform.
+  </p>
+
+  <p>
+    This disclaimer may be updated as new tools, services or
+    commercial relationships are introduced or as applicable
+    requirements change.
   </p>
 
   <p>
@@ -382,18 +672,98 @@
   </p>
 
 
-  <div class="updated">
-    Last updated: September 2026
+
+  <div class="contact-box">
+
+    <h3>
+      Questions?
+    </h3>
+
+    <p>
+      General questions about Carrowmont may be sent to:
+    </p>
+
+    <a href="mailto:contact@carrowmont.com">
+      contact@carrowmont.com
+    </a>
+
   </div>
+
+
+
+  <div class="updated">
+
+    Last updated: September 2026
+
+  </div>
+
 
 </main>
 
 
+
 <footer>
+
   <div class="footer-inner">
-    © 2026 Carrowmont. Financial planning tools and educational information.
+
+
+    <div class="footer-brand">
+
+      <strong>
+        CARROWMONT
+      </strong>
+
+      <p>
+        Financial Planning, Tools & Learning
+      </p>
+
+    </div>
+
+
+
+    <div class="footer-links">
+
+      <a href="/about.html">
+        About
+      </a>
+
+      <a href="/methodology.html">
+        Methodology
+      </a>
+
+      <a href="/disclaimer.html">
+        Disclaimer
+      </a>
+
+      <a href="/privacy.html">
+        Privacy
+      </a>
+
+      <a href="/terms.html">
+        Terms
+      </a>
+
+      <a href="/contact.html">
+        Contact
+      </a>
+
+    </div>
+
+
+
+    <div class="footer-copy">
+
+      © 2026 Carrowmont.
+      Financial planning tools and educational information.
+
+    </div>
+
+
   </div>
+
 </footer>
 
+
 </body>
+
 </html>
