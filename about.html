@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About Carrowmont | Financial Planning Tools & Education</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    About Carrowmont | Financial Planning, Tools & Education
+  </title>
 
   <meta name="description"
-        content="Learn about Carrowmont, an independent financial education and planning platform built to make financial decisions easier to understand.">
+        content="Learn about Carrowmont, an independent financial education and planning platform built around practical tools, transparent calculations and understandable financial information.">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -22,6 +33,9 @@
       background: #ffffff;
       line-height: 1.7;
     }
+
+
+    /* HEADER */
 
     header {
       border-bottom: 1px solid #e7e7e7;
@@ -32,6 +46,7 @@
       max-width: 1150px;
       margin: auto;
       padding: 20px 24px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,6 +56,7 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 1px;
+
       color: #17202a;
       text-decoration: none;
     }
@@ -48,9 +64,18 @@
     .nav-links a {
       color: #333;
       text-decoration: none;
+
       margin-left: 28px;
+
       font-size: 15px;
     }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* HERO */
 
     .hero {
       background: #f7f8f9;
@@ -65,78 +90,234 @@
     .eyebrow {
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
       letter-spacing: 1.5px;
+
       margin-bottom: 15px;
     }
 
     h1 {
       font-size: 48px;
       line-height: 1.15;
+
       margin-bottom: 20px;
     }
 
     .hero p {
-      max-width: 750px;
+      max-width: 760px;
+
       font-size: 20px;
+
       color: #59646e;
     }
+
+
+    /* CONTENT */
 
     .content {
       max-width: 900px;
       margin: auto;
+
       padding: 70px 24px;
     }
 
     h2 {
       font-size: 30px;
-      margin-top: 45px;
+
+      margin-top: 48px;
       margin-bottom: 15px;
+    }
+
+    h2:first-child {
+      margin-top: 0;
     }
 
     p {
       margin-bottom: 18px;
+
       font-size: 17px;
+
       color: #454f58;
     }
 
+
+    /* PRINCIPLES */
+
     .principles {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 20px;
-      margin-top: 30px;
+
+      margin: 32px 0 10px;
     }
 
     .principle {
       border: 1px solid #e1e5e8;
-      padding: 25px;
-      border-radius: 8px;
+
+      padding: 26px;
+
+      border-radius: 10px;
+
+      background: #ffffff;
     }
 
     .principle h3 {
+      font-size: 21px;
+
       margin-bottom: 10px;
     }
 
-    .notice {
-      background: #f7f8f9;
-      border-left: 4px solid #17202a;
-      padding: 24px;
-      margin-top: 40px;
+    .principle p {
+      font-size: 16px;
+
+      margin-bottom: 0;
     }
+
+
+    /* APPROACH BOX */
+
+    .approach-box {
+      margin-top: 30px;
+
+      padding: 28px;
+
+      background: #f7f8f9;
+
+      border-radius: 10px;
+    }
+
+    .approach-box h3 {
+      margin-bottom: 14px;
+      font-size: 21px;
+    }
+
+    .approach-box ul {
+      margin-left: 22px;
+
+      color: #454f58;
+
+      font-size: 17px;
+    }
+
+    .approach-box li {
+      margin-bottom: 10px;
+    }
+
+
+    /* NOTICE */
+
+    .notice {
+      margin-top: 40px;
+
+      padding: 25px;
+
+      background: #f7f8f9;
+
+      border-left: 4px solid #17202a;
+
+      color: #454f58;
+    }
+
+
+    /* CTA */
+
+    .cta {
+      margin-top: 48px;
+
+      padding: 32px;
+
+      border: 1px solid #e1e5e8;
+
+      border-radius: 10px;
+    }
+
+    .cta h3 {
+      font-size: 24px;
+
+      margin-bottom: 10px;
+    }
+
+    .cta a {
+      color: #17202a;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    .cta a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* FOOTER */
 
     footer {
       border-top: 1px solid #e7e7e7;
-      padding: 35px 24px;
+
+      padding: 45px 24px;
+
       color: #68737c;
+
       font-size: 14px;
     }
 
     .footer-inner {
       max-width: 1150px;
+
       margin: auto;
     }
 
+    .footer-brand strong {
+      color: #17202a;
+
+      font-size: 18px;
+
+      letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+      margin: 5px 0 20px;
+
+      font-size: 14px;
+
+      color: #68737c;
+    }
+
+    .footer-links {
+      margin-bottom: 22px;
+    }
+
+    .footer-links a {
+      color: #454f58;
+
+      text-decoration: none;
+
+      margin-right: 22px;
+
+      display: inline-block;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+
+      border-top: 1px solid #e7e7e7;
+    }
+
+
+    /* MOBILE */
+
     @media (max-width: 800px) {
+
       h1 {
         font-size: 38px;
       }
@@ -148,55 +329,104 @@
       .nav-links {
         display: none;
       }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .content {
+        padding: 55px 20px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="nav">
+
     <div class="brand">
-      <a href="/">CARROWMONT</a>
+
+      <a href="/">
+        CARROWMONT
+      </a>
+
     </div>
 
+
     <nav class="nav-links">
-      <a href="/#plan">Plan</a>
-      <a href="/#tools">Tools</a>
-      <a href="/#learn">Learn</a>
-      <a href="/about.html">About</a>
+
+      <a href="/#plan">
+        Plan
+      </a>
+
+      <a href="/#tools">
+        Tools
+      </a>
+
+      <a href="/#learn">
+        Learn
+      </a>
+
+      <a href="/about.html">
+        About
+      </a>
+
     </nav>
+
   </div>
+
 </header>
 
+
+
 <section class="hero">
+
   <div class="hero-inner">
 
-    <div class="eyebrow">About Carrowmont</div>
+    <div class="eyebrow">
+      About Carrowmont
+    </div>
 
     <h1>
       Better financial decisions start with understanding the numbers.
     </h1>
 
     <p>
-      Carrowmont is being built to make financial planning easier to
-      understand through practical tools, transparent calculations and
-      clear financial education.
+      Carrowmont is being built to make financial planning easier
+      to understand through practical tools, transparent calculations
+      and clear financial education.
     </p>
 
   </div>
+
 </section>
+
 
 
 <main class="content">
 
-  <h2>Why Carrowmont exists</h2>
+
+  <h2>
+    Why Carrowmont exists
+  </h2>
 
   <p>
     Financial decisions often involve complicated calculations,
-    assumptions and terminology. Questions about retirement,
-    inflation, savings, loans and long-term financial goals can
-    quickly become difficult to understand.
+    assumptions and terminology.
+  </p>
+
+  <p>
+    Questions about retirement, inflation, savings, debt,
+    financial independence and long-term goals can quickly become
+    difficult to understand.
   </p>
 
   <p>
@@ -204,85 +434,189 @@
   </p>
 
   <p>
-    Instead of simply presenting numbers, our goal is to help users
-    understand how different assumptions and decisions may affect
-    their financial future.
+    Instead of simply presenting a number, our goal is to help
+    people understand how different assumptions and decisions may
+    affect their financial future.
   </p>
 
 
-  <h2>What we're building</h2>
+
+  <h2>
+    What we're building
+  </h2>
 
   <p>
     Carrowmont is being developed as a financial planning and
-    education platform combining interactive planning tools,
-    calculators, scenario analysis and educational content.
+    education platform that combines interactive tools,
+    scenario analysis and understandable educational content.
   </p>
 
   <p>
-    Areas we plan to cover include retirement planning, inflation,
-    savings goals, financial independence, debt, major life goals
-    and other everyday financial decisions.
+    The platform is intended to grow around real financial questions,
+    including:
   </p>
 
 
-  <div class="principles">
+  <div class="approach-box">
 
-    <div class="principle">
-      <h3>Clarity</h3>
-      <p>
-        Financial concepts should be explained in language people
-        can understand.
-      </p>
-    </div>
+    <h3>
+      Areas Carrowmont aims to explore
+    </h3>
 
-    <div class="principle">
-      <h3>Transparency</h3>
-      <p>
-        Important assumptions behind calculations should be visible
-        and understandable.
-      </p>
-    </div>
+    <ul>
 
-    <div class="principle">
-      <h3>Practicality</h3>
-      <p>
-        Tools should help answer real financial questions rather than
-        simply display formulas.
-      </p>
-    </div>
+      <li>
+        Retirement planning
+      </li>
+
+      <li>
+        Inflation and future purchasing power
+      </li>
+
+      <li>
+        Savings and financial goals
+      </li>
+
+      <li>
+        Financial independence
+      </li>
+
+      <li>
+        Loans and debt decisions
+      </li>
+
+      <li>
+        Education and major life goals
+      </li>
+
+      <li>
+        Everyday financial decision-making
+      </li>
+
+    </ul>
 
   </div>
 
 
-  <h2>Independent by design</h2>
+
+  <h2>
+    Our principles
+  </h2>
+
+
+  <div class="principles">
+
+
+    <div class="principle">
+
+      <h3>
+        Clarity
+      </h3>
+
+      <p>
+        Financial ideas should be explained in understandable
+        language rather than hidden behind unnecessary jargon.
+      </p>
+
+    </div>
+
+
+
+    <div class="principle">
+
+      <h3>
+        Transparency
+      </h3>
+
+      <p>
+        Important assumptions behind calculations should be visible
+        so users can understand what is driving the result.
+      </p>
+
+    </div>
+
+
+
+    <div class="principle">
+
+      <h3>
+        Practicality
+      </h3>
+
+      <p>
+        Tools should help people explore real financial questions
+        rather than simply display mathematical formulas.
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+
+  <h2>
+    Scenario thinking instead of prediction
+  </h2>
 
   <p>
-    Carrowmont is being developed as an independent platform.
-    Our objective is to create useful tools and educational resources
-    that help people explore financial decisions more clearly.
+    Financial planning involves uncertainty.
   </p>
 
   <p>
-    As the platform develops, we may introduce advertising,
-    partnerships or other forms of monetization. Where commercial
-    relationships could influence how something is presented,
-    appropriate disclosures should be provided.
-  </p>
-
-
-  <h2>Our approach to financial tools</h2>
-
-  <p>
-    Financial projections depend on assumptions about factors such as
-    inflation, investment returns, interest rates, taxes and time
-    horizons.
+    Inflation, investment returns, interest rates, income,
+    expenses and many other variables can change over time.
   </p>
 
   <p>
-    Carrowmont tools are intended to make these assumptions visible
-    wherever practical so users can explore different scenarios
-    rather than rely on a single prediction.
+    Carrowmont therefore aims to help users explore different
+    scenarios rather than present a single future outcome as certain.
   </p>
+
+  <p>
+    Where practical, users should be able to change important
+    assumptions and see how those changes affect the result.
+  </p>
+
+
+
+  <h2>
+    Independent by design
+  </h2>
+
+  <p>
+    Carrowmont is being developed as an independent platform focused
+    on useful financial tools and educational information.
+  </p>
+
+  <p>
+    As the platform grows, Carrowmont may introduce advertising,
+    partnerships, affiliate relationships, subscriptions or other
+    methods of generating revenue.
+  </p>
+
+  <p>
+    Where a commercial relationship is relevant to something shown
+    to users, our intention is to provide appropriate disclosure.
+  </p>
+
+
+
+  <h2>
+    Building responsibly
+  </h2>
+
+  <p>
+    Financial information can influence important decisions.
+    For that reason, Carrowmont aims to distinguish clearly between
+    educational scenario analysis and personalized financial advice.
+  </p>
+
+  <p>
+    Individual calculators may also include methodology information
+    explaining important assumptions, formulas and limitations.
+  </p>
+
 
 
   <div class="notice">
@@ -290,21 +624,99 @@
     <strong>Important:</strong>
 
     Carrowmont provides educational information, planning tools and
-    illustrative calculations. It does not provide individualized
-    investment, tax, legal or financial advice. Financial outcomes
-    are uncertain and actual results may differ materially from
-    projections.
+    illustrative calculations.
+
+    It does not provide individualized investment, financial,
+    legal, accounting or tax advice.
 
   </div>
+
+
+
+  <div class="cta">
+
+    <h3>
+      Questions or feedback?
+    </h3>
+
+    <p>
+      If you notice an issue, have an idea for a useful tool or want
+      to share feedback about Carrowmont, we'd like to hear from you.
+    </p>
+
+    <a href="/contact.html">
+      Contact Carrowmont →
+    </a>
+
+  </div>
+
 
 </main>
 
 
+
 <footer>
+
   <div class="footer-inner">
-    © 2026 Carrowmont. Financial planning tools and educational information.
+
+
+    <div class="footer-brand">
+
+      <strong>
+        CARROWMONT
+      </strong>
+
+      <p>
+        Financial Planning, Tools & Learning
+      </p>
+
+    </div>
+
+
+
+    <div class="footer-links">
+
+      <a href="/about.html">
+        About
+      </a>
+
+      <a href="/methodology.html">
+        Methodology
+      </a>
+
+      <a href="/disclaimer.html">
+        Disclaimer
+      </a>
+
+      <a href="/privacy.html">
+        Privacy
+      </a>
+
+      <a href="/terms.html">
+        Terms
+      </a>
+
+      <a href="/contact.html">
+        Contact
+      </a>
+
+    </div>
+
+
+
+    <div class="footer-copy">
+
+      © 2026 Carrowmont.
+      Financial planning tools and educational information.
+
+    </div>
+
+
   </div>
+
 </footer>
 
+
 </body>
+
 </html>
