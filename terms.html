@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Terms of Use | Carrowmont</title>
 
   <meta name="description"
-        content="Terms governing the use of Carrowmont financial planning tools, calculators and educational content.">
+        content="Terms governing the use of Carrowmont financial planning tools, calculators, educational content and other website resources.">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -22,6 +31,9 @@
       background: #ffffff;
       line-height: 1.7;
     }
+
+
+    /* HEADER */
 
     header {
       border-bottom: 1px solid #e7e7e7;
@@ -32,6 +44,7 @@
       max-width: 1150px;
       margin: auto;
       padding: 20px 24px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,6 +54,7 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 1px;
+
       color: #17202a;
       text-decoration: none;
     }
@@ -48,9 +62,18 @@
     .nav-links a {
       color: #333;
       text-decoration: none;
+
       margin-left: 28px;
+
       font-size: 15px;
     }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* HERO */
 
     .hero {
       background: #f7f8f9;
@@ -65,44 +88,62 @@
     .eyebrow {
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
       letter-spacing: 1.5px;
+
       margin-bottom: 15px;
     }
 
     h1 {
       font-size: 48px;
       line-height: 1.15;
+
       margin-bottom: 20px;
     }
 
     .hero p {
       max-width: 760px;
+
       font-size: 20px;
+
       color: #59646e;
     }
+
+
+    /* CONTENT */
 
     .content {
       max-width: 900px;
       margin: auto;
+
       padding: 70px 24px;
     }
 
     h2 {
       font-size: 30px;
-      margin-top: 46px;
+
+      margin-top: 48px;
       margin-bottom: 15px;
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
     }
 
     p {
       margin-bottom: 18px;
+
       font-size: 17px;
+
       color: #454f58;
     }
 
     ul {
       margin: 10px 0 25px 24px;
+
       color: #454f58;
+
       font-size: 17px;
     }
 
@@ -110,33 +151,129 @@
       margin-bottom: 10px;
     }
 
+
+    /* NOTICE */
+
     .notice {
       background: #f7f8f9;
+
       border-left: 4px solid #17202a;
-      padding: 25px;
-      margin: 30px 0;
+
+      padding: 28px;
+
+      margin-bottom: 45px;
+
       color: #454f58;
     }
 
+
+    /* CONTACT BOX */
+
+    .contact-box {
+      margin-top: 35px;
+
+      padding: 28px;
+
+      border: 1px solid #e1e5e8;
+
+      border-radius: 10px;
+    }
+
+    .contact-box h3 {
+      font-size: 21px;
+
+      margin-bottom: 10px;
+    }
+
+    .contact-box a {
+      color: #17202a;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* UPDATED */
+
     .updated {
       margin-top: 45px;
+
       font-size: 14px;
+
       color: #747e86;
     }
 
+
+    /* FOOTER */
+
     footer {
       border-top: 1px solid #e7e7e7;
-      padding: 35px 24px;
+
+      padding: 45px 24px;
+
       color: #68737c;
+
       font-size: 14px;
     }
 
     .footer-inner {
       max-width: 1150px;
+
       margin: auto;
     }
 
+    .footer-brand strong {
+      color: #17202a;
+
+      font-size: 18px;
+
+      letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+      margin: 5px 0 20px;
+
+      font-size: 14px;
+
+      color: #68737c;
+    }
+
+    .footer-links {
+      margin-bottom: 22px;
+    }
+
+    .footer-links a {
+      color: #454f58;
+
+      text-decoration: none;
+
+      margin-right: 22px;
+
+      display: inline-block;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+
+      border-top: 1px solid #e7e7e7;
+    }
+
+
+    /* MOBILE */
+
     @media (max-width: 800px) {
+
       h1 {
         font-size: 38px;
       }
@@ -144,34 +281,71 @@
       .nav-links {
         display: none;
       }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .content {
+        padding: 55px 20px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="nav">
 
     <div class="brand">
-      <a href="/">CARROWMONT</a>
+
+      <a href="/">
+        CARROWMONT
+      </a>
+
     </div>
 
+
     <nav class="nav-links">
-      <a href="/#plan">Plan</a>
-      <a href="/#tools">Tools</a>
-      <a href="/#learn">Learn</a>
-      <a href="/about.html">About</a>
+
+      <a href="/#plan">
+        Plan
+      </a>
+
+      <a href="/#tools">
+        Tools
+      </a>
+
+      <a href="/#learn">
+        Learn
+      </a>
+
+      <a href="/about.html">
+        About
+      </a>
+
     </nav>
 
   </div>
+
 </header>
 
 
+
 <section class="hero">
+
   <div class="hero-inner">
 
-    <div class="eyebrow">Terms of Use</div>
+    <div class="eyebrow">
+      Terms of Use
+    </div>
 
     <h1>
       Terms for using Carrowmont.
@@ -179,24 +353,33 @@
 
     <p>
       These Terms of Use explain the conditions that apply when
-      accessing Carrowmont, its financial tools, calculators,
-      articles and other educational resources.
+      accessing Carrowmont, its financial planning tools,
+      calculators, educational content and other resources.
     </p>
 
   </div>
+
 </section>
+
 
 
 <main class="content">
 
+
   <div class="notice">
+
     By using Carrowmont, you agree to use the website responsibly
-    and understand that its financial tools and information are
-    educational and illustrative in nature.
+    and understand that its financial tools, calculations and
+    educational information are provided primarily for informational
+    and illustrative purposes.
+
   </div>
 
 
-  <h2>Use of Carrowmont</h2>
+
+  <h2>
+    Use of Carrowmont
+  </h2>
 
   <p>
     Carrowmont provides financial education, planning tools,
@@ -209,21 +392,31 @@
   </p>
 
 
-  <h2>No personalized financial advice</h2>
+
+  <h2>
+    No personalized financial advice
+  </h2>
 
   <p>
     Carrowmont does not provide individualized investment,
-    financial, legal, tax or accounting advice.
+    financial, legal, accounting or tax advice.
   </p>
 
   <p>
     Calculator results and financial projections are intended to
-    help users explore possible scenarios and should not be treated
-    as guarantees, recommendations or predictions.
+    help users explore possible scenarios.
+  </p>
+
+  <p>
+    They should not be treated as guarantees, predictions or
+    personalized recommendations.
   </p>
 
 
-  <h2>Your responsibility</h2>
+
+  <h2>
+    Your responsibility
+  </h2>
 
   <p>
     You are responsible for evaluating whether information provided
@@ -232,116 +425,228 @@
 
   <p>
     Important financial decisions should be independently verified
-    and, where appropriate, discussed with a qualified professional.
+    and, where appropriate, discussed with an appropriately qualified
+    professional.
   </p>
 
 
-  <h2>Calculator inputs and outputs</h2>
+
+  <h2>
+    Calculator inputs and outputs
+  </h2>
 
   <p>
-    Many Carrowmont tools depend on assumptions entered by the user
-    or default assumptions provided by the tool.
+    Many Carrowmont tools depend on information entered by users and
+    assumptions selected within the tool.
   </p>
 
   <p>
-    The accuracy and usefulness of the resulting calculations may
-    therefore depend on:
-  </p>
-
-  <ul>
-    <li>the accuracy of information entered</li>
-    <li>the assumptions selected</li>
-    <li>future financial and economic conditions</li>
-    <li>changes in laws, regulations or tax rules</li>
-    <li>technical or calculation limitations</li>
-  </ul>
-
-
-  <h2>Accuracy and availability</h2>
-
-  <p>
-    Carrowmont aims to provide useful and understandable information,
-    but we do not guarantee that the website will always be
-    uninterrupted, error-free, complete or current.
-  </p>
-
-  <p>
-    Tools, calculations, assumptions and content may be changed,
-    corrected, updated or removed at any time.
-  </p>
-
-
-  <h2>Prohibited use</h2>
-
-  <p>
-    You should not use Carrowmont in a way that:
+    The usefulness of a calculation may therefore depend on:
   </p>
 
   <ul>
-    <li>violates applicable law</li>
-    <li>attempts to compromise the security of the website</li>
-    <li>interferes with normal operation of the website</li>
-    <li>attempts unauthorized access to systems or data</li>
-    <li>uses automated methods in a manner that materially harms the service</li>
-    <li>misrepresents Carrowmont content as professional financial advice</li>
+
+    <li>
+      the accuracy of information entered
+    </li>
+
+    <li>
+      assumptions selected by the user
+    </li>
+
+    <li>
+      default assumptions used by the tool
+    </li>
+
+    <li>
+      future inflation
+    </li>
+
+    <li>
+      investment performance
+    </li>
+
+    <li>
+      future interest rates
+    </li>
+
+    <li>
+      economic conditions
+    </li>
+
+    <li>
+      changes in laws or regulations
+    </li>
+
+    <li>
+      changes in tax rules
+    </li>
+
   </ul>
 
+  <p>
+    Users should independently verify important calculations before
+    making significant financial decisions.
+  </p>
 
-  <h2>Intellectual property</h2>
+
+
+  <h2>
+    Accuracy and availability
+  </h2>
 
   <p>
-    Unless otherwise stated, the Carrowmont name, website design,
-    original content, calculators and related materials are intended
-    to remain the property of Carrowmont or their respective rights
-    holders.
+    Carrowmont aims to provide useful, understandable and reasonably
+    accurate information.
   </p>
 
   <p>
-    Users may access Carrowmont for normal personal use, but
-    substantial reproduction, republication or commercial
-    redistribution of original Carrowmont material may require
+    However, the website may contain errors, omissions or information
+    that becomes outdated.
+  </p>
+
+  <p>
+    We do not guarantee that Carrowmont will always be uninterrupted,
+    complete, current or error-free.
+  </p>
+
+  <p>
+    Tools, calculations, assumptions and content may be corrected,
+    modified, updated or removed as the platform develops.
+  </p>
+
+
+
+  <h2>
+    Prohibited use
+  </h2>
+
+  <p>
+    You should not use Carrowmont in a manner that:
+  </p>
+
+  <ul>
+
+    <li>
+      violates applicable law
+    </li>
+
+    <li>
+      attempts unauthorized access to systems or data
+    </li>
+
+    <li>
+      attempts to compromise website security
+    </li>
+
+    <li>
+      interferes materially with the normal operation of the service
+    </li>
+
+    <li>
+      introduces malware, malicious code or harmful automated activity
+    </li>
+
+    <li>
+      misrepresents Carrowmont content as personalized professional advice
+    </li>
+
+    <li>
+      uses Carrowmont content in a misleading or fraudulent manner
+    </li>
+
+  </ul>
+
+
+
+  <h2>
+    Intellectual property
+  </h2>
+
+  <p>
+    Unless otherwise stated, original Carrowmont website content,
+    written material, branding, design elements and original
+    calculator implementations are intended to remain the property
+    of Carrowmont or their respective rights holders.
+  </p>
+
+  <p>
+    Users may access Carrowmont for normal personal use.
+  </p>
+
+  <p>
+    Substantial copying, republication, resale or commercial
+    redistribution of original Carrowmont content may require
     permission.
   </p>
 
 
-  <h2>Third-party services</h2>
+
+  <h2>
+    Third-party websites and services
+  </h2>
 
   <p>
-    Carrowmont may contain links to websites, products or services
-    operated by third parties.
+    Carrowmont may contain links to websites, products, financial
+    services or other resources operated by third parties.
   </p>
 
   <p>
-    Those services operate independently and may have their own
-    terms, privacy policies and conditions.
+    Third-party services operate independently and may have their
+    own terms, fees, risks, privacy policies and conditions.
   </p>
 
   <p>
-    Carrowmont is not responsible for the operation, accuracy,
-    availability or practices of third-party services.
+    Carrowmont is not responsible for the operation, availability,
+    accuracy or practices of independent third-party services.
   </p>
 
 
-  <h2>Commercial relationships</h2>
+
+  <h2>
+    Advertising and commercial relationships
+  </h2>
 
   <p>
-    Carrowmont may in the future generate revenue through
-    advertising, partnerships, subscriptions, affiliate links,
-    referrals or other commercial arrangements.
+    Carrowmont may in the future generate revenue through advertising,
+    partnerships, sponsorships, affiliate relationships, referrals,
+    subscriptions or other commercial arrangements.
   </p>
 
   <p>
-    Relevant relationships should be disclosed where appropriate.
+    Where a commercial relationship is relevant to information,
+    links or services presented to users, our intention is to provide
+    appropriate disclosure.
   </p>
 
 
-  <h2>Limitation of responsibility</h2>
+
+  <h2>
+    No guarantee of financial outcomes
+  </h2>
+
+  <p>
+    Financial outcomes depend on many factors that may be outside
+    the user's or Carrowmont's control.
+  </p>
+
+  <p>
+    Carrowmont does not guarantee that any particular savings target,
+    investment return, retirement outcome, financial goal or other
+    projected result will occur.
+  </p>
+
+
+
+  <h2>
+    Limitation of responsibility
+  </h2>
 
   <p>
     To the extent permitted by applicable law, Carrowmont should not
-    be treated as responsible for financial losses or decisions made
-    solely in reliance on educational content, calculator outputs or
-    illustrative projections available on the website.
+    be treated as responsible for financial decisions or losses based
+    solely on educational content, calculator outputs or illustrative
+    projections available on the website.
   </p>
 
   <p>
@@ -349,54 +654,151 @@
   </p>
 
 
-  <h2>Changes to Carrowmont</h2>
+
+  <h2>
+    Privacy
+  </h2>
+
+  <p>
+    Use of Carrowmont may also be subject to our Privacy Policy,
+    which explains our current approach to personal information,
+    calculator inputs, analytics and related data practices.
+  </p>
+
+  <p>
+    You can review it here:
+  </p>
+
+  <p>
+    <a href="/privacy.html">
+      Carrowmont Privacy Policy
+    </a>
+  </p>
+
+
+
+  <h2>
+    Changes to Carrowmont
+  </h2>
 
   <p>
     Carrowmont is an evolving platform.
   </p>
 
   <p>
-    We may modify, add or discontinue tools, content and website
-    features as the platform develops.
+    Tools, content, services and website features may be introduced,
+    modified or discontinued as the platform develops.
   </p>
 
 
-  <h2>Changes to these terms</h2>
+
+  <h2>
+    Changes to these Terms
+  </h2>
 
   <p>
-    These Terms of Use may be updated as Carrowmont develops or as
-    applicable requirements change.
+    These Terms of Use may be updated periodically as Carrowmont
+    develops or as applicable requirements change.
   </p>
 
   <p>
-    The most recent version will be published on this page.
+    The most recent version will be published on this page together
+    with its revision date.
   </p>
 
 
-<h2>Contact</h2>
 
-<p>
-  Questions about these Terms of Use may be sent to:
-</p>
+  <div class="contact-box">
 
-<p>
-  <strong>Email:</strong>
-  <a href="mailto:contact@carrowmont.com">contact@carrowmont.com</a>
-</p>
+    <h3>
+      Questions about these Terms?
+    </h3>
+
+    <p>
+      General questions concerning these Terms of Use may be sent to:
+    </p>
+
+    <a href="mailto:contact@carrowmont.com">
+      contact@carrowmont.com
+    </a>
+
+  </div>
+
 
 
   <div class="updated">
+
     Last updated: September 2026
+
   </div>
+
 
 </main>
 
 
+
 <footer>
+
   <div class="footer-inner">
-    © 2026 Carrowmont. Financial planning tools and educational information.
+
+
+    <div class="footer-brand">
+
+      <strong>
+        CARROWMONT
+      </strong>
+
+      <p>
+        Financial Planning, Tools & Learning
+      </p>
+
+    </div>
+
+
+
+    <div class="footer-links">
+
+      <a href="/about.html">
+        About
+      </a>
+
+      <a href="/methodology.html">
+        Methodology
+      </a>
+
+      <a href="/disclaimer.html">
+        Disclaimer
+      </a>
+
+      <a href="/privacy.html">
+        Privacy
+      </a>
+
+      <a href="/terms.html">
+        Terms
+      </a>
+
+      <a href="/contact.html">
+        Contact
+      </a>
+
+    </div>
+
+
+
+    <div class="footer-copy">
+
+      © 2026 Carrowmont.
+      Financial planning tools and educational information.
+
+    </div>
+
+
   </div>
+
 </footer>
 
+
 </body>
+
 </html>
