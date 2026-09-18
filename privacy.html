@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Privacy Policy | Carrowmont</title>
 
   <meta name="description"
-        content="Learn how Carrowmont approaches privacy, personal information, cookies, analytics and third-party services.">
+        content="Learn how Carrowmont approaches privacy, calculator inputs, personal information, cookies, analytics and third-party services.">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -22,6 +31,9 @@
       background: #ffffff;
       line-height: 1.7;
     }
+
+
+    /* HEADER */
 
     header {
       border-bottom: 1px solid #e7e7e7;
@@ -32,6 +44,7 @@
       max-width: 1150px;
       margin: auto;
       padding: 20px 24px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,6 +54,7 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 1px;
+
       color: #17202a;
       text-decoration: none;
     }
@@ -48,9 +62,18 @@
     .nav-links a {
       color: #333;
       text-decoration: none;
+
       margin-left: 28px;
+
       font-size: 15px;
     }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* HERO */
 
     .hero {
       background: #f7f8f9;
@@ -65,44 +88,62 @@
     .eyebrow {
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
       letter-spacing: 1.5px;
+
       margin-bottom: 15px;
     }
 
     h1 {
       font-size: 48px;
       line-height: 1.15;
+
       margin-bottom: 20px;
     }
 
     .hero p {
       max-width: 760px;
+
       font-size: 20px;
+
       color: #59646e;
     }
+
+
+    /* CONTENT */
 
     .content {
       max-width: 900px;
       margin: auto;
+
       padding: 70px 24px;
     }
 
     h2 {
       font-size: 30px;
-      margin-top: 46px;
+
+      margin-top: 48px;
       margin-bottom: 15px;
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
     }
 
     p {
       margin-bottom: 18px;
+
       font-size: 17px;
+
       color: #454f58;
     }
 
     ul {
       margin: 10px 0 25px 24px;
+
       color: #454f58;
+
       font-size: 17px;
     }
 
@@ -110,33 +151,133 @@
       margin-bottom: 10px;
     }
 
+    a {
+      color: #17202a;
+    }
+
+
+    /* NOTICE */
+
     .notice {
       background: #f7f8f9;
+
       border-left: 4px solid #17202a;
-      padding: 25px;
-      margin: 30px 0;
+
+      padding: 28px;
+
+      margin-bottom: 45px;
+
       color: #454f58;
     }
 
+
+    /* CONTACT BOX */
+
+    .contact-box {
+      margin-top: 35px;
+
+      padding: 28px;
+
+      border: 1px solid #e1e5e8;
+
+      border-radius: 10px;
+    }
+
+    .contact-box h3 {
+      font-size: 21px;
+
+      margin-bottom: 10px;
+    }
+
+    .contact-box a {
+      color: #17202a;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* UPDATED */
+
     .updated {
       margin-top: 45px;
+
       font-size: 14px;
+
       color: #747e86;
     }
 
+
+    /* FOOTER */
+
     footer {
       border-top: 1px solid #e7e7e7;
-      padding: 35px 24px;
+
+      padding: 45px 24px;
+
       color: #68737c;
+
       font-size: 14px;
     }
 
     .footer-inner {
       max-width: 1150px;
+
       margin: auto;
     }
 
+    .footer-brand strong {
+      color: #17202a;
+
+      font-size: 18px;
+
+      letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+      margin: 5px 0 20px;
+
+      font-size: 14px;
+
+      color: #68737c;
+    }
+
+    .footer-links {
+      margin-bottom: 22px;
+    }
+
+    .footer-links a {
+      color: #454f58;
+
+      text-decoration: none;
+
+      margin-right: 22px;
+
+      display: inline-block;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+
+      border-top: 1px solid #e7e7e7;
+    }
+
+
+    /* MOBILE */
+
     @media (max-width: 800px) {
+
       h1 {
         font-size: 38px;
       }
@@ -144,218 +285,417 @@
       .nav-links {
         display: none;
       }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .content {
+        padding: 55px 20px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="nav">
 
     <div class="brand">
-      <a href="/">CARROWMONT</a>
+
+      <a href="/">
+        CARROWMONT
+      </a>
+
     </div>
 
+
     <nav class="nav-links">
-      <a href="/#plan">Plan</a>
-      <a href="/#tools">Tools</a>
-      <a href="/#learn">Learn</a>
-      <a href="/about.html">About</a>
+
+      <a href="/#plan">
+        Plan
+      </a>
+
+      <a href="/#tools">
+        Tools
+      </a>
+
+      <a href="/#learn">
+        Learn
+      </a>
+
+      <a href="/about.html">
+        About
+      </a>
+
     </nav>
 
   </div>
+
 </header>
 
 
+
 <section class="hero">
+
   <div class="hero-inner">
 
-    <div class="eyebrow">Privacy Policy</div>
+    <div class="eyebrow">
+      Privacy Policy
+    </div>
 
     <h1>
       Your privacy matters.
     </h1>
 
     <p>
-      This Privacy Policy explains the types of information that may
-      be processed when you visit or use Carrowmont and how we intend
-      to approach privacy as the platform develops.
+      This Privacy Policy explains how Carrowmont approaches personal
+      information, calculator inputs, website usage information and
+      other data associated with use of the platform.
     </p>
 
   </div>
+
 </section>
+
 
 
 <main class="content">
 
+
   <div class="notice">
 
     Carrowmont is currently an early-stage financial education and
-    planning website. Some features described in this policy may be
-    introduced as the platform develops.
+    planning website.
+
+    The platform will continue to evolve, and this Privacy Policy
+    will be updated when new features involving personal information,
+    analytics, accounts or other services are introduced.
 
   </div>
 
 
-  <h2>Information you provide</h2>
+
+  <h2>
+    Information you provide
+  </h2>
 
   <p>
-    At present, most Carrowmont tools are designed to operate without
+    At present, most Carrowmont tools are intended to operate without
     requiring users to create an account.
   </p>
 
   <p>
-    If you voluntarily provide information to Carrowmont in the future,
-    for example through a contact form, newsletter subscription,
-    account registration or other interactive feature, we may process
-    the information necessary to provide that service.
+    If you voluntarily communicate with Carrowmont, we may receive
+    information that you choose to provide.
   </p>
 
   <p>
-    Depending on the feature, this information could include:
-  </p>
-
-  <ul>
-    <li>your name</li>
-    <li>your email address</li>
-    <li>messages or enquiries you send</li>
-    <li>account information</li>
-    <li>preferences you choose to save</li>
-  </ul>
-
-
-  <h2>Information entered into calculators</h2>
-
-  <p>
-    Carrowmont financial calculators may ask users to enter financial
-    information in order to generate calculations or projections.
-  </p>
-
-  <p>
-    Examples may include income, expenses, savings, investment amounts,
-    retirement age or other financial assumptions.
-  </p>
-
-  <p>
-    Where a calculator operates entirely within your browser and does
-    not transmit or store those inputs on a Carrowmont server, the
-    information remains part of the local calculation.
-  </p>
-
-  <p>
-    If Carrowmont later introduces accounts, saved plans or cloud-based
-    calculations, this Privacy Policy will be updated to explain how
-    that information is stored and used.
-  </p>
-
-
-  <h2>Technical information</h2>
-
-  <p>
-    When you visit a website, certain technical information may be
-    processed automatically by hosting providers, internet
-    infrastructure providers or security services.
-  </p>
-
-  <p>
-    This can include information such as:
+    This may include:
   </p>
 
   <ul>
-    <li>IP address</li>
-    <li>browser type</li>
-    <li>device type</li>
-    <li>operating system</li>
-    <li>date and time of requests</li>
-    <li>pages requested</li>
-    <li>referring website or page</li>
+
+    <li>
+      your name
+    </li>
+
+    <li>
+      your email address
+    </li>
+
+    <li>
+      the contents of messages you send
+    </li>
+
+    <li>
+      feedback or questions
+    </li>
+
+    <li>
+      information you voluntarily provide in connection with an enquiry
+    </li>
+
+  </ul>
+
+
+
+  <h2>
+    Information entered into calculators
+  </h2>
+
+  <p>
+    Carrowmont financial tools may ask users to enter information
+    needed to perform calculations or financial scenario analysis.
+  </p>
+
+  <p>
+    Depending on the tool, this might include information such as:
+  </p>
+
+  <ul>
+
+    <li>
+      income
+    </li>
+
+    <li>
+      expenses
+    </li>
+
+    <li>
+      savings or investments
+    </li>
+
+    <li>
+      financial goals
+    </li>
+
+    <li>
+      ages and time horizons
+    </li>
+
+    <li>
+      retirement assumptions
+    </li>
+
+    <li>
+      inflation assumptions
+    </li>
+
+    <li>
+      expected financial returns
+    </li>
+
   </ul>
 
   <p>
-    Carrowmont is currently hosted using third-party internet
-    infrastructure, and those providers may process standard technical
-    information as part of operating and securing their services.
-  </p>
-
-
-  <h2>Cookies</h2>
-
-  <p>
-    Carrowmont may use cookies or similar technologies where necessary
-    for website functionality, security, analytics or user preferences.
+    Where a calculator operates entirely inside your browser and
+    does not transmit or store those inputs on a Carrowmont server,
+    the information remains part of the local calculation.
   </p>
 
   <p>
-    At the current stage of the website, Carrowmont does not rely on
-    advertising cookies or personalized advertising technologies.
-  </p>
-
-  <p>
-    If analytics, advertising or other cookie-based technologies are
-    introduced, this policy and any appropriate cookie notices will be
-    updated.
+    If Carrowmont later introduces saved plans, user accounts,
+    server-based calculations or cloud storage, this Privacy Policy
+    will be updated to explain how relevant information is collected,
+    stored and used.
   </p>
 
 
-  <h2>Analytics</h2>
+
+  <h2>
+    Sensitive information
+  </h2>
 
   <p>
-    Carrowmont may introduce website analytics tools to understand how
-    visitors use the site and which tools or pages are most useful.
+    Users should avoid sending passwords, bank account credentials,
+    card details, authentication codes or other highly sensitive
+    information through ordinary email or website communications.
+  </p>
+
+
+
+  <h2>
+    Technical information
+  </h2>
+
+  <p>
+    When a person visits a website, certain technical information may
+    be processed automatically by hosting providers, internet
+    infrastructure providers, security services or the user's browser.
   </p>
 
   <p>
-    Analytics may collect information such as page views, approximate
-    location, device type, referral source and interactions with the
+    Depending on the service involved, this information can include:
+  </p>
+
+  <ul>
+
+    <li>
+      IP address
+    </li>
+
+    <li>
+      browser type
+    </li>
+
+    <li>
+      device type
+    </li>
+
+    <li>
+      operating system
+    </li>
+
+    <li>
+      date and time of requests
+    </li>
+
+    <li>
+      pages requested
+    </li>
+
+    <li>
+      referring website or page
+    </li>
+
+  </ul>
+
+  <p>
+    Carrowmont currently uses third-party internet infrastructure to
+    provide the website and domain services.
+  </p>
+
+
+
+  <h2>
+    Cookies
+  </h2>
+
+  <p>
+    Carrowmont may use cookies or similar technologies where required
+    for website functionality, security, analytics or user
+    preferences.
+  </p>
+
+  <p>
+    At the current stage of the platform, Carrowmont does not
+    intentionally use personalized advertising cookies on the
     website.
   </p>
 
   <p>
-    When analytics services are implemented, this Privacy Policy will
-    be updated where appropriate to identify relevant providers and
-    explain how the information is used.
+    If analytics, advertising or other technologies using cookies
+    are introduced, this policy and any relevant notices will be
+    updated where appropriate.
   </p>
 
 
-  <h2>Advertising and affiliate relationships</h2>
+
+  <h2>
+    Analytics
+  </h2>
+
+  <p>
+    Carrowmont may introduce analytics services to understand how
+    visitors use the website and which tools or educational resources
+    are most useful.
+  </p>
+
+  <p>
+    Analytics services may process information such as:
+  </p>
+
+  <ul>
+
+    <li>
+      pages viewed
+    </li>
+
+    <li>
+      approximate geographic region
+    </li>
+
+    <li>
+      device and browser information
+    </li>
+
+    <li>
+      referral source
+    </li>
+
+    <li>
+      interactions with website features
+    </li>
+
+  </ul>
+
+  <p>
+    When analytics services are implemented, this Privacy Policy will
+    be updated where appropriate to identify relevant services and
+    explain their use.
+  </p>
+
+
+
+  <h2>
+    Email communications
+  </h2>
+
+  <p>
+    Carrowmont operates the business email address
+    contact@carrowmont.com for general enquiries, feedback and
+    communication.
+  </p>
+
+  <p>
+    If you email Carrowmont, your email address, message and related
+    technical information may be processed by the email provider
+    used to operate the mailbox.
+  </p>
+
+  <p>
+    Email correspondence may be retained where reasonably necessary
+    to respond to enquiries, maintain business records, protect
+    Carrowmont or comply with applicable requirements.
+  </p>
+
+
+
+  <h2>
+    Advertising and affiliate relationships
+  </h2>
 
   <p>
     Carrowmont may in the future generate revenue through advertising,
-    sponsorships, affiliate relationships, referrals or partnerships.
+    sponsorships, affiliate relationships, referrals, partnerships
+    or subscriptions.
   </p>
 
   <p>
-    Some of these services may use cookies or similar technologies to
-    measure referrals or advertising activity.
+    Some of these services may use cookies or other technologies to
+    measure advertising performance, referrals or website activity.
   </p>
 
   <p>
-    Where such services are introduced, appropriate privacy and
-    commercial disclosures will be added.
+    Appropriate privacy and commercial disclosures will be introduced
+    when such services are implemented.
   </p>
 
 
-  <h2>Third-party links</h2>
+
+  <h2>
+    Third-party websites
+  </h2>
 
   <p>
-    Carrowmont may link to websites or services operated by third
-    parties.
-  </p>
-
-  <p>
-    Those websites have their own privacy practices and policies.
-    Carrowmont is not responsible for how third-party websites collect
-    or process information.
+    Carrowmont may contain links to websites and services operated
+    by third parties.
   </p>
 
   <p>
-    Users should review the privacy policy of any external service they
-    choose to use.
+    Those services operate independently and have their own privacy
+    practices and policies.
+  </p>
+
+  <p>
+    Users should review the privacy practices of third-party services
+    before providing them with personal information.
   </p>
 
 
-  <h2>How information may be used</h2>
+
+  <h2>
+    How information may be used
+  </h2>
 
   <p>
     Information processed by Carrowmont may be used where appropriate
@@ -363,17 +703,46 @@
   </p>
 
   <ul>
-    <li>operate and maintain the website</li>
-    <li>provide requested features or services</li>
-    <li>respond to enquiries</li>
-    <li>improve tools and educational content</li>
-    <li>understand website usage</li>
-    <li>protect the website from abuse or security threats</li>
-    <li>comply with applicable legal requirements</li>
+
+    <li>
+      operate and maintain the website
+    </li>
+
+    <li>
+      provide requested features or services
+    </li>
+
+    <li>
+      respond to questions and feedback
+    </li>
+
+    <li>
+      investigate technical problems
+    </li>
+
+    <li>
+      improve financial tools and educational content
+    </li>
+
+    <li>
+      understand website usage
+    </li>
+
+    <li>
+      protect the platform from fraud, abuse or security threats
+    </li>
+
+    <li>
+      comply with applicable legal requirements
+    </li>
+
   </ul>
 
 
-  <h2>Sale of personal information</h2>
+
+  <h2>
+    Sale of personal information
+  </h2>
 
   <p>
     Carrowmont does not currently operate a business model based on
@@ -381,50 +750,76 @@
   </p>
 
 
-  <h2>Data security</h2>
+
+  <h2>
+    Data security
+  </h2>
 
   <p>
-    Reasonable efforts should be made to protect information processed
-    by Carrowmont.
+    Reasonable measures should be used to protect information
+    processed in connection with Carrowmont.
   </p>
 
   <p>
-    However, no internet service or method of electronic storage can
-    guarantee absolute security.
+    However, no internet service, email system or electronic storage
+    method can guarantee absolute security.
   </p>
 
 
-  <h2>Children's privacy</h2>
+
+  <h2>
+    Data retention
+  </h2>
 
   <p>
-    Carrowmont is intended primarily for adults interested in financial
-    planning and education.
+    Information may be retained for as long as reasonably necessary
+    for the purpose for which it was collected, including responding
+    to enquiries, maintaining business records, resolving disputes,
+    protecting the platform or complying with applicable requirements.
+  </p>
+
+
+
+  <h2>
+    Children's privacy
+  </h2>
+
+  <p>
+    Carrowmont is intended primarily for adults interested in
+    financial planning and education.
   </p>
 
   <p>
-    The website is not currently designed to knowingly collect personal
+    The platform is not designed to knowingly collect personal
     information from children.
   </p>
 
 
-  <h2>Your privacy choices</h2>
+
+  <h2>
+    Your privacy choices
+  </h2>
 
   <p>
-    As Carrowmont introduces features that involve personal
-    information, users may have rights or choices relating to their
-    information depending on applicable law and their location.
+    Depending on applicable law and a user's location, individuals
+    may have rights regarding personal information associated with
+    them.
   </p>
 
   <p>
-    Relevant procedures for exercising those rights will be added as
-    necessary when those features are introduced.
+    As Carrowmont introduces features involving greater collection
+    or storage of personal information, procedures for relevant
+    privacy requests will be developed where required.
   </p>
 
 
-  <h2>Changes to this policy</h2>
+
+  <h2>
+    Changes to this Privacy Policy
+  </h2>
 
   <p>
-    Carrowmont will continue to evolve, and our privacy practices may
+    Carrowmont will continue to evolve and its privacy practices may
     change as new tools and services are introduced.
   </p>
 
@@ -433,36 +828,104 @@
   </p>
 
   <p>
-    The latest version will be published on this page together with an
-    updated revision date.
+    The latest version will be published on this page together with
+    its revision date.
   </p>
 
 
-<h2>Contact</h2>
 
-<p>
-  For privacy-related questions or other enquiries concerning this
-  Privacy Policy, please contact:
-</p>
+  <div class="contact-box">
 
-<p>
-  <strong>Email:</strong>
-  <a href="mailto:contact@carrowmont.com">contact@carrowmont.com</a>
-</p>
+    <h3>
+      Privacy questions
+    </h3>
+
+    <p>
+      Questions concerning this Privacy Policy or Carrowmont's
+      handling of information may be sent to:
+    </p>
+
+    <a href="mailto:contact@carrowmont.com">
+      contact@carrowmont.com
+    </a>
+
+  </div>
+
 
 
   <div class="updated">
+
     Last updated: September 2026
+
   </div>
+
 
 </main>
 
 
+
 <footer>
+
   <div class="footer-inner">
-    © 2026 Carrowmont. Financial planning tools and educational information.
+
+
+    <div class="footer-brand">
+
+      <strong>
+        CARROWMONT
+      </strong>
+
+      <p>
+        Financial Planning, Tools & Learning
+      </p>
+
+    </div>
+
+
+
+    <div class="footer-links">
+
+      <a href="/about.html">
+        About
+      </a>
+
+      <a href="/methodology.html">
+        Methodology
+      </a>
+
+      <a href="/disclaimer.html">
+        Disclaimer
+      </a>
+
+      <a href="/privacy.html">
+        Privacy
+      </a>
+
+      <a href="/terms.html">
+        Terms
+      </a>
+
+      <a href="/contact.html">
+        Contact
+      </a>
+
+    </div>
+
+
+
+    <div class="footer-copy">
+
+      © 2026 Carrowmont.
+      Financial planning tools and educational information.
+
+    </div>
+
+
   </div>
+
 </footer>
 
+
 </body>
+
 </html>
