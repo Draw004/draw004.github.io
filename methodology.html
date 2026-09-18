@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Methodology | Carrowmont</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Methodology | Carrowmont
+  </title>
 
   <meta name="description"
         content="Learn how Carrowmont approaches financial calculations, assumptions, projections and scenario analysis.">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -22,6 +33,9 @@
       background: #ffffff;
       line-height: 1.7;
     }
+
+
+    /* HEADER */
 
     header {
       border-bottom: 1px solid #e7e7e7;
@@ -32,6 +46,7 @@
       max-width: 1150px;
       margin: auto;
       padding: 20px 24px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,6 +56,7 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 1px;
+
       color: #17202a;
       text-decoration: none;
     }
@@ -48,9 +64,18 @@
     .nav-links a {
       color: #333;
       text-decoration: none;
+
       margin-left: 28px;
+
       font-size: 15px;
     }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* HERO */
 
     .hero {
       background: #f7f8f9;
@@ -65,50 +90,68 @@
     .eyebrow {
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
       letter-spacing: 1.5px;
+
       margin-bottom: 15px;
     }
 
     h1 {
       font-size: 48px;
       line-height: 1.15;
+
       margin-bottom: 20px;
     }
 
     .hero p {
       max-width: 760px;
+
       font-size: 20px;
+
       color: #59646e;
     }
+
+
+    /* CONTENT */
 
     .content {
       max-width: 900px;
       margin: auto;
+
       padding: 70px 24px;
     }
 
     h2 {
       font-size: 30px;
-      margin-top: 46px;
+
+      margin-top: 48px;
       margin-bottom: 15px;
+    }
+
+    h2:first-child {
+      margin-top: 0;
     }
 
     h3 {
       font-size: 21px;
-      margin-top: 28px;
-      margin-bottom: 8px;
+
+      margin-bottom: 10px;
     }
 
     p {
       margin-bottom: 18px;
+
       font-size: 17px;
+
       color: #454f58;
     }
 
     ul {
       margin: 10px 0 25px 24px;
+
       color: #454f58;
+
       font-size: 17px;
     }
 
@@ -116,57 +159,152 @@
       margin-bottom: 10px;
     }
 
+
+    /* PRINCIPLES */
+
     .principles {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 20px;
-      margin: 30px 0;
+
+      margin: 32px 0 10px;
     }
 
     .principle {
       border: 1px solid #e1e5e8;
-      padding: 25px;
-      border-radius: 8px;
+
+      padding: 26px;
+
+      border-radius: 10px;
+
+      background: #ffffff;
     }
 
-    .principle h3 {
-      margin-top: 0;
+    .principle p {
+      font-size: 16px;
+
+      margin-bottom: 0;
     }
+
+
+    /* EXAMPLE */
 
     .example {
       background: #f7f8f9;
-      padding: 25px;
-      margin: 25px 0;
-      border-radius: 8px;
+
+      padding: 28px;
+
+      margin: 28px 0;
+
+      border-radius: 10px;
     }
 
+    .example strong {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: #17202a;
+    }
+
+    .example p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* NOTICE */
+
     .notice {
-      background: #f7f8f9;
-      border-left: 4px solid #17202a;
-      padding: 24px;
       margin-top: 40px;
+
+      padding: 25px;
+
+      background: #f7f8f9;
+
+      border-left: 4px solid #17202a;
+
       color: #454f58;
     }
 
+
+    /* UPDATED */
+
     .updated {
       margin-top: 45px;
+
       font-size: 14px;
+
       color: #747e86;
     }
 
+
+    /* FOOTER */
+
     footer {
       border-top: 1px solid #e7e7e7;
-      padding: 35px 24px;
+
+      padding: 45px 24px;
+
       color: #68737c;
+
       font-size: 14px;
     }
 
     .footer-inner {
       max-width: 1150px;
+
       margin: auto;
     }
 
+    .footer-brand strong {
+      color: #17202a;
+
+      font-size: 18px;
+
+      letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+      margin: 5px 0 20px;
+
+      font-size: 14px;
+
+      color: #68737c;
+    }
+
+    .footer-links {
+      margin-bottom: 22px;
+    }
+
+    .footer-links a {
+      color: #454f58;
+
+      text-decoration: none;
+
+      margin-right: 22px;
+
+      display: inline-block;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+
+      border-top: 1px solid #e7e7e7;
+    }
+
+
+    /* MOBILE */
+
     @media (max-width: 800px) {
+
       h1 {
         font-size: 38px;
       }
@@ -178,34 +316,71 @@
       .nav-links {
         display: none;
       }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .content {
+        padding: 55px 20px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="nav">
 
     <div class="brand">
-      <a href="/">CARROWMONT</a>
+
+      <a href="/">
+        CARROWMONT
+      </a>
+
     </div>
 
+
     <nav class="nav-links">
-      <a href="/#plan">Plan</a>
-      <a href="/#tools">Tools</a>
-      <a href="/#learn">Learn</a>
-      <a href="/about.html">About</a>
+
+      <a href="/#plan">
+        Plan
+      </a>
+
+      <a href="/#tools">
+        Tools
+      </a>
+
+      <a href="/#learn">
+        Learn
+      </a>
+
+      <a href="/about.html">
+        About
+      </a>
+
     </nav>
 
   </div>
+
 </header>
 
 
+
 <section class="hero">
+
   <div class="hero-inner">
 
-    <div class="eyebrow">Our Methodology</div>
+    <div class="eyebrow">
+      Our Methodology
+    </div>
 
     <h1>
       Transparent assumptions.<br>
@@ -214,18 +389,22 @@
 
     <p>
       Financial projections are only as useful as the assumptions
-      behind them. Carrowmont aims to make those assumptions clear
-      and allow users to explore how different scenarios may affect
-      the outcome.
+      behind them. Carrowmont aims to make those assumptions visible,
+      understandable and easy to explore.
     </p>
 
   </div>
+
 </section>
+
 
 
 <main class="content">
 
-  <h2>Our approach</h2>
+
+  <h2>
+    Our approach
+  </h2>
 
   <p>
     Carrowmont tools are designed primarily for financial education,
@@ -233,113 +412,180 @@
   </p>
 
   <p>
-    Rather than treating a financial projection as a prediction,
-    we aim to show what may happen under a particular set of
-    assumptions.
+    A financial projection is not a prediction of exactly what will
+    happen. It shows what may happen when a particular set of
+    assumptions is applied.
   </p>
+
+  <p>
+    Our aim is therefore to help users understand the relationship
+    between their inputs, the assumptions used and the resulting
+    financial projection.
+  </p>
+
 
 
   <div class="principles">
 
-    <div class="principle">
-      <h3>Visible assumptions</h3>
-      <p>
-        Important inputs such as inflation, growth rates and time
-        horizons should be visible whenever practical.
-      </p>
-    </div>
 
     <div class="principle">
-      <h3>Scenario based</h3>
+
+      <h3>
+        Visible assumptions
+      </h3>
+
+      <p>
+        Important inputs such as inflation, returns and time horizons
+        should be visible whenever practical.
+      </p>
+
+    </div>
+
+
+
+    <div class="principle">
+
+      <h3>
+        Scenario based
+      </h3>
+
       <p>
         Users should be able to explore how changing assumptions
-        can change projected outcomes.
+        affects projected financial outcomes.
       </p>
+
     </div>
 
+
+
     <div class="principle">
-      <h3>Educational</h3>
+
+      <h3>
+        Educational
+      </h3>
+
       <p>
-        Results should help explain financial relationships, not
-        simply provide a number.
+        Results should help explain financial relationships rather
+        than simply produce a final number.
       </p>
+
     </div>
+
 
   </div>
 
 
-  <h2>Financial assumptions</h2>
+
+  <h2>
+    Financial assumptions
+  </h2>
 
   <p>
     Many financial calculations require assumptions about future
-    conditions. These may include:
+    conditions.
+  </p>
+
+  <p>
+    Depending on the tool, these may include:
   </p>
 
   <ul>
+
     <li>inflation</li>
+
     <li>investment returns</li>
+
     <li>interest rates</li>
+
     <li>income growth</li>
+
     <li>expense growth</li>
+
     <li>retirement age</li>
+
     <li>life expectancy</li>
+
+    <li>future contributions</li>
+
+    <li>future withdrawals</li>
+
     <li>tax treatment</li>
-    <li>future contributions or withdrawals</li>
+
   </ul>
 
   <p>
-    These factors cannot be known with certainty in advance.
-    Where possible, Carrowmont tools allow users to modify important
-    assumptions rather than relying entirely on fixed default values.
-  </p>
-
-
-  <h2>Default values</h2>
-
-  <p>
-    Some tools may provide default values to make the calculator
-    easier to use.
+    These variables cannot be known with certainty in advance.
   </p>
 
   <p>
-    A default value should be treated as a starting assumption,
-    not as a forecast or recommendation.
+    Where practical, Carrowmont aims to allow users to modify
+    important assumptions rather than rely completely on fixed
+    values.
+  </p>
+
+
+
+  <h2>
+    Default values
+  </h2>
+
+  <p>
+    Some Carrowmont tools may include default assumptions to make
+    them easier to use.
   </p>
 
   <p>
-    As Carrowmont develops, methodology notes for individual tools
-    may explain how important default assumptions were selected and,
-    where appropriate, identify the data or reference sources used.
+    A default value should be interpreted as a starting point for
+    calculation rather than a forecast or recommendation.
+  </p>
+
+  <p>
+    Where appropriate, individual tools may explain how important
+    default assumptions were selected and identify relevant reference
+    sources.
   </p>
 
 
-  <h2>Inflation</h2>
+
+  <h2>
+    Inflation
+  </h2>
 
   <p>
     Inflation reduces the purchasing power of money over time.
-    For this reason, many Carrowmont planning tools may distinguish
-    between today's value of money and future nominal amounts.
   </p>
+
+  <p>
+    Because of this, many Carrowmont planning tools may distinguish
+    between money expressed in today's purchasing power and future
+    nominal amounts.
+  </p>
+
 
   <div class="example">
 
-    <strong>Illustrative example</strong>
+    <strong>
+      Illustrative example
+    </strong>
 
     <p>
-      If an expense costs ₹50,000 per month today, the same lifestyle
-      may require a much higher nominal amount many years from now if
+      An expense of ₹50,000 per month today could require a
+      substantially larger nominal amount many years from now if
       prices continue to rise.
     </p>
 
     <p>
-      The exact future cost depends on the inflation assumption and
-      the period being considered.
+      The projected future cost depends on both the assumed inflation
+      rate and the period being considered.
     </p>
 
   </div>
 
 
-  <h2>Investment returns</h2>
+
+  <h2>
+    Investment returns
+  </h2>
 
   <p>
     Investment returns are uncertain and can vary significantly
@@ -347,99 +593,162 @@
   </p>
 
   <p>
-    When a Carrowmont tool uses an assumed return, that return is
-    intended for scenario modelling rather than as a promise,
-    forecast or recommendation.
+    When a Carrowmont tool uses an assumed investment return, the
+    assumption is intended for scenario modelling.
+  </p>
+
+  <p>
+    It should not be interpreted as a guaranteed return, market
+    forecast or investment recommendation.
   </p>
 
   <p>
     Actual investment performance may be substantially higher or
-    lower than an assumed rate.
+    lower than the assumptions used in a calculation.
   </p>
 
 
-  <h2>Retirement projections</h2>
+
+  <h2>
+    Retirement projections
+  </h2>
 
   <p>
-    Retirement planning involves many variables, including current
-    spending, future inflation, retirement income, investment
-    performance, major expenses and the length of retirement.
+    Retirement planning involves many interconnected variables.
   </p>
 
   <p>
-    Carrowmont's retirement tools are intended to help users explore
-    how those variables interact.
+    These can include current expenses, future inflation, retirement
+    income, investment returns, one-time expenses, retirement age
+    and the duration of retirement.
   </p>
 
   <p>
-    A retirement projection should therefore be interpreted as an
-    illustrative scenario rather than a guarantee that a particular
-    amount will be sufficient.
+    Carrowmont's retirement planning tools are intended to help users
+    explore how these variables interact.
+  </p>
+
+  <p>
+    A retirement projection should therefore be treated as an
+    illustrative financial scenario rather than a guarantee that a
+    particular amount will be sufficient.
   </p>
 
 
-  <h2>Rounding</h2>
+
+  <h2>
+    Rounding
+  </h2>
 
   <p>
-    Some values displayed by Carrowmont may be rounded to improve
+    Some values displayed on Carrowmont may be rounded to improve
     readability.
   </p>
 
   <p>
     Calculations may use more precise values internally than the
-    figures displayed on screen. As a result, totals may occasionally
-    differ slightly from calculations performed manually using only
-    the rounded figures shown.
+    figures displayed on screen.
+  </p>
+
+  <p>
+    As a result, manually calculating totals using rounded displayed
+    numbers may occasionally produce a slightly different result.
   </p>
 
 
-  <h2>Taxes and regulations</h2>
+
+  <h2>
+    Taxes, regulations and government schemes
+  </h2>
 
   <p>
     Tax laws, financial regulations and government schemes can
-    change over time and may vary depending on a user's individual
-    circumstances.
+    change over time.
   </p>
 
   <p>
-    Any tax-related calculations or explanations published by
-    Carrowmont should be considered educational unless explicitly
-    stated otherwise.
+    They may also vary according to an individual's circumstances,
+    location, residency status or other factors.
   </p>
 
   <p>
-    Users should confirm important tax, legal or regulatory matters
-    with an appropriately qualified professional or official source.
+    Tax-related tools or explanations published by Carrowmont should
+    therefore be treated as educational unless clearly stated
+    otherwise.
+  </p>
+
+  <p>
+    Important tax, legal or regulatory matters should be confirmed
+    using appropriate official sources or qualified professional
+    advice.
   </p>
 
 
-  <h2>Data and accuracy</h2>
+
+  <h2>
+    Data sources
+  </h2>
 
   <p>
-    We aim to make Carrowmont calculations understandable and
-    internally consistent. However, errors can occur and financial
-    rules, tax provisions and economic conditions can change.
+    Where Carrowmont relies on external information for important
+    assumptions, reference values or financial rules, our aim is to
+    use credible sources wherever reasonably possible.
+  </p>
+
+  <p>
+    These may include government agencies, regulators, central banks,
+    official financial institutions or other reputable sources.
+  </p>
+
+  <p>
+    Data may change after publication, so users should independently
+    verify information that may materially affect an important
+    financial decision.
+  </p>
+
+
+
+  <h2>
+    Accuracy and limitations
+  </h2>
+
+  <p>
+    Carrowmont aims to make its calculations understandable and
+    internally consistent.
+  </p>
+
+  <p>
+    However, errors can occur and financial rules, economic
+    conditions and data may change.
   </p>
 
   <p>
     Important financial decisions should therefore not rely solely
-    on a Carrowmont calculator or article.
+    on a Carrowmont calculator, projection or article.
   </p>
 
 
-  <h2>Improving our methodology</h2>
+
+  <h2>
+    Improving our methodology
+  </h2>
 
   <p>
-    Carrowmont is an evolving platform. Calculators, assumptions,
-    formulas and explanations may be updated as the platform develops
-    or as better information becomes available.
+    Carrowmont is an evolving platform.
   </p>
 
   <p>
-    Where significant methodology changes affect a tool, we intend
-    to make the relevant assumptions and calculation approach as
-    understandable as reasonably possible.
+    Calculators, assumptions, formulas and explanations may be
+    improved as the platform develops or as better information
+    becomes available.
   </p>
+
+  <p>
+    Where significant methodology changes affect a tool, our aim
+    is to make the relevant assumptions and calculation approach
+    understandable to users.
+  </p>
+
 
 
   <div class="notice">
@@ -447,25 +756,89 @@
     <strong>Important:</strong>
 
     Carrowmont provides educational information, planning tools and
-    illustrative calculations. Nothing on the platform should be
-    interpreted as a guarantee of financial outcomes or as
-    individualized investment, financial, legal or tax advice.
+    illustrative calculations.
+
+    Nothing on the platform should be interpreted as a guarantee of
+    financial outcomes or as individualized investment, financial,
+    legal, accounting or tax advice.
 
   </div>
+
 
 
   <div class="updated">
+
     Last updated: September 2026
+
   </div>
+
 
 </main>
 
 
+
 <footer>
+
   <div class="footer-inner">
-    © 2026 Carrowmont. Financial planning tools and educational information.
+
+
+    <div class="footer-brand">
+
+      <strong>
+        CARROWMONT
+      </strong>
+
+      <p>
+        Financial Planning, Tools & Learning
+      </p>
+
+    </div>
+
+
+
+    <div class="footer-links">
+
+      <a href="/about.html">
+        About
+      </a>
+
+      <a href="/methodology.html">
+        Methodology
+      </a>
+
+      <a href="/disclaimer.html">
+        Disclaimer
+      </a>
+
+      <a href="/privacy.html">
+        Privacy
+      </a>
+
+      <a href="/terms.html">
+        Terms
+      </a>
+
+      <a href="/contact.html">
+        Contact
+      </a>
+
+    </div>
+
+
+
+    <div class="footer-copy">
+
+      © 2026 Carrowmont.
+      Financial planning tools and educational information.
+
+    </div>
+
+
   </div>
+
 </footer>
 
+
 </body>
+
 </html>
