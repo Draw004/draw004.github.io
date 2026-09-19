@@ -51,3 +51,26 @@
 
 
 .goal-main-icon svg .goal-dot1{fill:#0c9287;stroke:none}.goal-main-icon svg .goal-dot2{fill:#5ea8d7;stroke:none}.goal-main-icon svg .goal-dot3{fill:#f4b24d;stroke:none}.goal-main-icon svg .goal-path{stroke:#8a5b18;stroke-width:2.2;fill:none}.goal-main-icon svg .goal-flag{fill:#234e78;stroke:none}
+
+/* ===== Contact page: stronger hierarchy and clear email action ===== */
+.contact-section{padding:64px 0 84px;background:#fff}
+.contact-wrap{max-width:1120px}
+.contact-intro{max-width:900px;margin-bottom:26px}
+.contact-intro h2{font-size:32px;line-height:1.15;margin:0 0 12px;letter-spacing:-.6px}
+.contact-intro p{font-size:17px;line-height:1.7;color:#405c78;margin:0}
+.contact-card{position:relative;display:grid;grid-template-columns:76px minmax(0,1fr);gap:24px;align-items:start;margin:30px 0 38px;padding:30px 32px;background:linear-gradient(135deg,#f2fbf9 0%,#fff 66%,#fff8ec 100%);border:1px solid #bfe1dc;border-radius:22px;box-shadow:0 16px 38px rgba(15,39,67,.08);overflow:hidden}
+.contact-card:after{content:"";position:absolute;right:-46px;top:-58px;width:178px;height:178px;border-radius:50%;background:rgba(12,146,135,.07);pointer-events:none}
+.contact-card-icon{position:relative;z-index:1;width:64px;height:64px;border-radius:19px;background:#dff5f1;color:var(--teal-dark);display:grid;place-items:center}
+.contact-card-icon svg{width:31px;height:31px;stroke-width:1.9}
+.contact-card-copy{position:relative;z-index:1}
+.contact-card-label{display:inline-block;margin-bottom:7px;color:var(--teal-dark);font-size:12px;font-weight:900;letter-spacing:1.6px}
+.contact-card h3{font-size:25px;line-height:1.22;margin:0 0 8px;letter-spacing:-.35px}
+.contact-card p{margin:0 0 20px;max-width:780px;color:#526f8e;font-size:16px;line-height:1.62}
+.contact-email-button{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-width:360px;max-width:100%;padding:15px 18px;border-radius:12px;background:var(--navy);color:#fff!important;font-weight:900;font-size:16px;box-shadow:0 8px 20px rgba(15,39,67,.13);transition:transform .16s ease,box-shadow .16s ease}
+.contact-email-button:hover{transform:translateY(-1px);box-shadow:0 11px 24px rgba(15,39,67,.18)}
+.contact-email-button svg{width:20px;height:20px;flex:0 0 auto;stroke:#fff;stroke-width:2}
+.contact-advice-note{display:grid;grid-template-columns:42px 1fr;gap:16px;align-items:start;margin-top:16px;padding:22px 24px;border-left:4px solid var(--navy);background:#f6f9fb;border-radius:0 14px 14px 0}
+.contact-advice-icon{width:34px;height:34px;border-radius:50%;background:#e7eef5;color:var(--navy);display:grid;place-items:center;font-weight:900;font-family:Georgia,serif;font-size:20px}
+.contact-advice-note h2{font-size:22px;margin:1px 0 7px}
+.contact-advice-note p{margin:0;font-size:15.5px;line-height:1.62;color:#526f8e}
+@media(max-width:700px){.contact-section{padding:46px 0 60px}.contact-card{grid-template-columns:1fr;padding:24px 20px;gap:16px}.contact-card-icon{width:58px;height:58px;border-radius:17px}.contact-email-button{min-width:0;width:100%;font-size:15px}.contact-advice-note{grid-template-columns:1fr}.contact-advice-icon{margin-bottom:2px}}
