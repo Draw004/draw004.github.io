@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://carrowmont.com/</loc></url>
+  <url><loc>https://carrowmont.com/learn.html</loc></url>
   <url><loc>https://carrowmont.com/about.html</loc></url>
   <url><loc>https://carrowmont.com/methodology.html</loc></url>
+  <url><loc>https://carrowmont.com/contact.html</loc></url>
   <url><loc>https://carrowmont.com/disclaimer.html</loc></url>
   <url><loc>https://carrowmont.com/privacy.html</loc></url>
   <url><loc>https://carrowmont.com/terms.html</loc></url>
-  <url><loc>https://carrowmont.com/contact.html</loc></url>
   <url><loc>https://carrowmont.com/retirement-calculator/</loc></url>
+  <url><loc>https://carrowmont.com/retirement-calculator/planner.html</loc></url>
+  <url><loc>https://carrowmont.com/retirement-calculator/how-it-works.html</loc></url>
+  <url><loc>https://carrowmont.com/retirement-calculator/methodology.html</loc></url>
+  <url><loc>https://carrowmont.com/retirement-calculator/faq.html</loc></url>
   <url><loc>https://carrowmont.com/inflation-calculator/</loc></url>
+  <url><loc>https://carrowmont.com/inflation-calculator/methodology.html</loc></url>
 </urlset>
