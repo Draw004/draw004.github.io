@@ -78,60 +78,45 @@
 .contact-advice-note p{margin:0;font-size:15.5px;line-height:1.62;color:#526f8e}
 @media(max-width:700px){.contact-section{padding:46px 0 60px}.contact-card{grid-template-columns:1fr;padding:24px 20px;gap:16px}.contact-card-icon{width:58px;height:58px;border-radius:17px}.contact-email-button{min-width:0;width:100%;font-size:15px}.contact-advice-note{grid-template-columns:1fr}.contact-advice-icon{margin-bottom:2px}}
 
-/* ===== Final hero horizontal alignment tweak =====
-   Move the approved hero artwork slightly to the right on desktop only.
-   The visual keeps the exact same width and vertical positioning: left and
-   right offsets are changed by the same amount, so only X-position changes. */
-@media (min-width:1361px){
-  .hero-visual{left:calc(39% + 34px);right:-34px}
-}
-@media (min-width:981px) and (max-width:1360px){
-  .hero-visual{left:calc(40% + 24px);right:-24px}
-}
 
-/* ===== Couple visibility refinement =====
-   Desktop only: keep the hero's vertical position, height, image scale and
-   all surrounding layout unchanged. Restore the visual container to its
-   prior horizontal anchor, then shift only the artwork inside it to the
-   right. The shift stays underneath the existing white blend, revealing
-   more of the couple without changing the hero composition vertically. */
-@media (min-width:1361px){
-  .hero-visual{left:39%;right:0}
-  .hero-visual img{transform:translateX(58px)}
-}
-@media (min-width:981px) and (max-width:1360px){
-  .hero-visual{left:40%;right:0}
-  .hero-visual img{transform:translateX(44px)}
-}
-
-/* ===== Final couple merge refinement =====
-   Keep every existing hero dimension and vertical position unchanged.
-   The artwork remains shifted horizontally so more of the couple is visible,
-   but the image now fades in smoothly from the left instead of creating a
-   hard rectangular edge. */
+/* ===== Final hero couple visibility + soft merge =====
+   Keep the approved artwork, vertical position, hero height and image scale unchanged.
+   Do not translate or mask the image itself. The only blend is a very narrow white
+   overlay at the left edge, so the artwork merges into the copy area while the
+   couple remains substantially visible. */
 @media (min-width:1361px){
   .hero-visual{left:39%;right:0}
   .hero-visual img{
-    transform:translateX(58px);
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.16) 18px,rgba(0,0,0,.52) 44px,rgba(0,0,0,.84) 72px,#000 108px);
-    mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.16) 18px,rgba(0,0,0,.52) 44px,rgba(0,0,0,.84) 72px,#000 108px);
-    -webkit-mask-repeat:no-repeat;
-    mask-repeat:no-repeat;
-    -webkit-mask-size:100% 100%;
-    mask-size:100% 100%;
+    transform:none;
+    -webkit-mask-image:none;
+    mask-image:none;
+    object-position:center center;
   }
-  .hero-visual:after{display:none}
+  .hero-visual:after{
+    display:block;
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:5%;height:auto;
+    background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.82) 22%,rgba(255,255,255,.38) 58%,rgba(255,255,255,0) 100%);
+    pointer-events:none;
+  }
 }
 @media (min-width:981px) and (max-width:1360px){
   .hero-visual{left:40%;right:0}
   .hero-visual img{
-    transform:translateX(44px);
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 14px,rgba(0,0,0,.56) 34px,rgba(0,0,0,.86) 58px,#000 88px);
-    mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 14px,rgba(0,0,0,.56) 34px,rgba(0,0,0,.86) 58px,#000 88px);
-    -webkit-mask-repeat:no-repeat;
-    mask-repeat:no-repeat;
-    -webkit-mask-size:100% 100%;
-    mask-size:100% 100%;
+    transform:none;
+    -webkit-mask-image:none;
+    mask-image:none;
+    object-position:center center;
   }
-  .hero-visual:after{display:none}
+  .hero-visual:after{
+    display:block;
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:5%;height:auto;
+    background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.82) 22%,rgba(255,255,255,.38) 58%,rgba(255,255,255,0) 100%);
+    pointer-events:none;
+  }
 }
