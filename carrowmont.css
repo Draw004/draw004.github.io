@@ -88,3 +88,18 @@
 @media (min-width:981px) and (max-width:1360px){
   .hero-visual{left:calc(40% + 24px);right:-24px}
 }
+
+/* ===== Couple visibility refinement =====
+   Desktop only: keep the hero's vertical position, height, image scale and
+   all surrounding layout unchanged. Restore the visual container to its
+   prior horizontal anchor, then shift only the artwork inside it to the
+   right. The shift stays underneath the existing white blend, revealing
+   more of the couple without changing the hero composition vertically. */
+@media (min-width:1361px){
+  .hero-visual{left:39%;right:0}
+  .hero-visual img{transform:translateX(58px)}
+}
+@media (min-width:981px) and (max-width:1360px){
+  .hero-visual{left:40%;right:0}
+  .hero-visual img{transform:translateX(44px)}
+}
