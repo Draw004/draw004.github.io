@@ -14,53 +14,82 @@
 
   if (!menu || !region || !currency) return;
 
-  function sync() {
+  let pendingRegion = L.getRegion();
+  let pendingCurrency = L.getCurrency();
+
+  function renderApplied() {
     const profile = L.getProfile();
     if (countryLabel) countryLabel.textContent = profile.label;
     if (currencyLabel) currencyLabel.textContent = L.getCurrency();
-    region.value = L.getRegion();
-    currency.value = L.getCurrency();
+  }
+
+  function resetPendingFromApplied() {
+    pendingRegion = L.getRegion();
+    pendingCurrency = L.getCurrency();
+    region.value = pendingRegion;
+    currency.value = pendingCurrency;
   }
 
   function populate() {
     region.innerHTML = Object.entries(L.regions)
       .map(([code, profile]) => `<option value="${code}">${profile.label}</option>`)
       .join("");
-
     currency.innerHTML = Object.entries(L.currencies)
       .map(([code, item]) => `<option value="${code}">${code} — ${item.label}</option>`)
       .join("");
-
-    sync();
+    renderApplied();
+    resetPendingFromApplied();
   }
 
-  function closeLocale() {
+  function closeLocale(discardPending) {
+    if (discardPending) resetPendingFromApplied();
     menu.open = false;
   }
 
   region.addEventListener("change", (event) => {
-    L.setRegion(event.target.value, { syncCurrency: true });
-    sync();
-    window.setTimeout(closeLocale, 80);
+    pendingRegion = event.target.value;
+    const profile = L.regions[pendingRegion];
+    if (profile && L.currencies[profile.currency]) {
+      pendingCurrency = profile.currency;
+      currency.value = pendingCurrency;
+    }
+    // Keep the panel open so the user can choose a different currency before Done.
   });
 
   currency.addEventListener("change", (event) => {
-    L.setCurrency(event.target.value);
-    sync();
-    window.setTimeout(closeLocale, 80);
+    pendingCurrency = event.target.value;
+    // Keep the panel open until Done is pressed.
   });
 
-  if (done) done.addEventListener("click", closeLocale);
+  if (done) {
+    done.addEventListener("click", () => {
+      if (typeof L.setLocale === "function") {
+        L.setLocale(pendingRegion, pendingCurrency);
+      } else {
+        L.setRegion(pendingRegion, { syncCurrency: false });
+        L.setCurrency(pendingCurrency);
+      }
+      renderApplied();
+      closeLocale(false);
+    });
+  }
 
-  window.addEventListener("carrowmont:localechange", sync);
+  menu.addEventListener("toggle", () => {
+    if (menu.open) resetPendingFromApplied();
+  });
+
+  window.addEventListener("carrowmont:localechange", () => {
+    renderApplied();
+    if (!menu.open) resetPendingFromApplied();
+  });
 
   document.addEventListener("pointerdown", (event) => {
-    if (menu.open && !menu.contains(event.target)) closeLocale();
+    if (menu.open && !menu.contains(event.target)) closeLocale(true);
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && menu.open) {
-      closeLocale();
+      closeLocale(true);
       menu.querySelector("summary")?.focus();
     }
   });

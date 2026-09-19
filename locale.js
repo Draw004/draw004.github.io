@@ -91,12 +91,20 @@
     safeSet(STORAGE_CURRENCY, currencyCode);
     emitChange();
   }
+  function setLocale(region, currency) {
+    if (!regions[region]) return;
+    regionCode = region;
+    currencyCode = currencies[currency] ? currency : regions[region].currency;
+    safeSet(STORAGE_REGION, regionCode);
+    safeSet(STORAGE_CURRENCY, currencyCode);
+    emitChange();
+  }
 
   window.CarrowmontLocale = {
     regions, currencies,
     getRegion: () => regionCode,
     getCurrency: () => currencyCode,
     getProfile: () => regions[regionCode] || regions.OTHER,
-    setRegion, setCurrency
+    setRegion, setCurrency, setLocale
   };
 })();

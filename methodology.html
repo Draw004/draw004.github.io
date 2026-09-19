@@ -1,7 +1,45 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Methodology | Carrowmont</title><link rel="stylesheet" href="carrowmont.css?v=200"></head><body><header class="site-header"><div class="shell header-row"><a class="brand" href="/">CARROWMONT</a><div class="header-right"><nav class="desktop-nav" aria-label="Primary"><a href="/#plan">Plan</a><a href="/#tools">Tools</a><a href="/#learn">Learn</a><a href="about.html">About</a></nav><details class="locale-menu" id="localeMenu"><summary><span id="localeCountryLabel">India</span><span class="locale-dot"> · </span><span id="localeCurrencyLabel">INR</span></summary><div class="locale-popover"><h3>Country &amp; currency</h3><p>Choose the context that makes the numbers easiest to understand.</p><label>Country / region<select id="regionSelect"></select></label><label>Currency<select id="currencySelect"></select></label><div class="locale-note"><strong>Important:</strong> changing currency changes the display unit and number format. It does not perform exchange-rate conversion.</div><button class="locale-done-button" id="localeDoneBtn" type="button">Done</button></div></details><details class="mobile-nav"><summary>Menu</summary><div class="mobile-nav-links"><a href="/#plan">Plan</a><a href="/#tools">Tools</a><a href="/#learn">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></details></div></div></header><main><section class="page-hero"><div class="shell page-hero-inner"><span class="section-kicker">Our methodology</span><h1>Transparent assumptions. Understandable calculations.</h1><p>Financial projections are only as useful as the assumptions behind them. Carrowmont aims to make those assumptions clear and allow users to explore how different scenarios may affect the outcome.</p></div></section><section class="content-section"><div class="shell content-wrap">
-<h2>Visible assumptions</h2><p>Where practical, Carrowmont exposes key assumptions such as time horizon, inflation, investment returns, retirement spending and income rather than hiding them inside the model.</p>
-<h2>Scenario analysis</h2><p>Planning tools are designed to help users compare possibilities. Results are estimates based on the information entered and should not be interpreted as predictions or guarantees.</p>
-<h2>Today’s money and future money</h2><p>Carrowmont distinguishes between amounts expressed in today’s purchasing power and nominal future currency values. Tool labels are designed to show which type of value is being displayed.</p>
-<h2>Country and currency</h2><p>The country selector controls context and default currency formatting. Switching currencies does not automatically perform foreign-exchange conversion. Country-specific taxes, pensions, accounts and legal rules are not assumed unless explicitly described by a tool.</p>
-<h2>Limitations</h2><p>Actual inflation, investment returns, taxes, longevity, healthcare costs and market conditions can differ materially from assumptions. Users should treat outputs as educational estimates and consider qualified professional advice where appropriate.</p>
-</div></section></main><footer class="site-footer"><div class="shell"><div class="footer-grid"><div><div class="footer-brand">CARROWMONT</div><div class="footer-copy">Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</div></div><div class="footer-col"><h4>Tools</h4><a href="/retirement-calculator/planner.html">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/#tools">All tools</a></div><div class="footer-col"><h4>Carrowmont</h4><a href="about.html">About</a><a href="methodology.html">Methodology</a><a href="contact.html">Contact</a></div><div class="footer-col"><h4>Legal</h4><a href="disclaimer.html">Disclaimer</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom"><span>© 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div></div></footer><script src="locale.js?v=200"></script><script src="site.js?v=200"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Carrowmont methodology: transparent assumptions, scenario analysis, today's money versus future money, and model limitations.">
+  <title>Methodology | Carrowmont</title>
+  <link rel="stylesheet" href="carrowmont.css?v=20260919b">
+</head>
+<body>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/#plan">Plan</a><a href="/#tools">Tools</a><a href="/#learn">Learn</a><a href="methodology.html">Methodology</a><a href="about.html">About</a>
+    </nav>
+    <details class="locale-menu" id="localeMenu">
+      <summary class="locale-summary" aria-label="Choose country and currency">
+        <span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span>
+        <span id="localeCountryLabel">India</span><span>&middot;</span><span id="localeCurrencyLabel">INR</span>
+        <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></svg></span>
+      </summary>
+      <div class="locale-panel">
+        <strong>Country &amp; currency</strong><p>Choose the context that makes the numbers easiest to understand.</p>
+        <label for="regionSelect">Country / region</label><select id="regionSelect"></select>
+        <label for="currencySelect">Currency</label><select id="currencySelect"></select>
+        <p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert your entered amounts using an exchange rate.</p>
+        <button type="button" class="small-button" id="localeDoneBtn">Done</button>
+      </div>
+    </details>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="shell page-hero-inner"><span class="section-kicker">Our methodology</span><h1>Transparent assumptions. Understandable calculations.</h1><p>Financial projections are only as useful as the assumptions behind them. Carrowmont aims to make those assumptions clear and allow users to explore how different scenarios may affect the outcome.</p></div></section>
+  <section class="content-section"><div class="shell content-wrap">
+    <h2>Visible assumptions</h2><p>Where practical, Carrowmont exposes key assumptions such as time horizon, inflation, investment returns, retirement spending and income rather than hiding them inside the model.</p>
+    <h2>Scenario analysis</h2><p>Planning tools are designed to help users compare possibilities. Results are estimates based on the information entered and should not be interpreted as predictions or guarantees.</p>
+    <h2>Today’s money and future money</h2><p>Carrowmont distinguishes between amounts expressed in today’s purchasing power and nominal future currency values. Tool labels are designed to show which type of value is being displayed.</p>
+    <h2>Country and currency</h2><p>The country selector controls context and default currency formatting. Switching currencies does not automatically perform foreign-exchange conversion. Country-specific taxes, pensions, accounts and legal rules are not assumed unless explicitly described by a tool.</p>
+    <h2>Limitations</h2><p>Actual inflation, investment returns, taxes, longevity, healthcare costs and market conditions can differ materially from assumptions. Users should treat outputs as educational estimates and consider qualified professional advice where appropriate.</p>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div><div><strong>Tools</strong><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/#tools">All tools</a></div><div><strong>Carrowmont</strong><a href="about.html">About</a><a href="methodology.html">Methodology</a><a href="contact.html">Contact</a></div><div><strong>Legal</strong><a href="disclaimer.html">Disclaimer</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="shell footer-bottom"><span>© 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div></footer>
+<script src="locale.js?v=20260919b"></script><script src="site.js?v=20260919b"></script>
+</body></html>
