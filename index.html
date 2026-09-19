@@ -1,870 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>
-    Carrowmont | Financial Planning, Tools & Learning
-  </title>
-
-  <meta name="description"
-        content="Carrowmont helps you understand your money, plan for important financial goals and explore your financial future with practical planning tools and educational content.">
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #17202a;
-      background: #ffffff;
-      line-height: 1.6;
-    }
-
-    /* HEADER */
-
-    header {
-      border-bottom: 1px solid #e7e7e7;
-      background: #ffffff;
-    }
-
-    .nav {
-      max-width: 1150px;
-      margin: auto;
-      padding: 20px 24px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand a {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 1px;
-
-      color: #17202a;
-      text-decoration: none;
-    }
-
-    .nav-links a {
-      color: #333;
-      text-decoration: none;
-
-      margin-left: 28px;
-
-      font-size: 15px;
-    }
-
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-
-
-    /* HERO */
-
-    .hero {
-      max-width: 1150px;
-      margin: auto;
-
-      padding: 90px 24px 80px;
-    }
-
-    .hero-content {
-      max-width: 760px;
-    }
-
-    .eyebrow {
-      font-size: 14px;
-      font-weight: 700;
-
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: 54px;
-      line-height: 1.12;
-
-      margin-bottom: 22px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      color: #56616b;
-
-      max-width: 700px;
-
-      margin-bottom: 32px;
-    }
-
-    .button {
-      display: inline-block;
-
-      background: #17202a;
-      color: #ffffff;
-
-      text-decoration: none;
-
-      padding: 15px 24px;
-
-      border-radius: 6px;
-
-      font-weight: 700;
-    }
-
-    .button:hover {
-      opacity: 0.9;
-    }
-
-    .secondary-link {
-      margin-left: 20px;
-
-      color: #17202a;
-      text-decoration: none;
-
-      font-weight: 600;
-    }
-
-    .secondary-link:hover {
-      text-decoration: underline;
-    }
-
-
-    /* SECTIONS */
-
-    .section {
-      padding: 70px 24px;
-    }
-
-    .light {
-      background: #f7f8f9;
-    }
-
-    .container {
-      max-width: 1150px;
-      margin: auto;
-    }
-
-    .section h2 {
-      font-size: 36px;
-      margin-bottom: 12px;
-    }
-
-    .section-intro {
-      color: #626d77;
-
-      max-width: 680px;
-
-      margin-bottom: 35px;
-
-      font-size: 18px;
-    }
-
-
-    /* CARDS */
-
-    .cards {
-      display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 22px;
-    }
-
-    .card {
-      padding: 28px;
-
-      border: 1px solid #e3e6e8;
-
-      border-radius: 10px;
-
-      background: #ffffff;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-
-      font-size: 21px;
-    }
-
-    .card p {
-      color: #626d77;
-
-      margin-bottom: 18px;
-    }
-
-    .card a {
-      color: #17202a;
-
-      font-weight: 700;
-
-      text-decoration: none;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    .coming {
-      opacity: 0.72;
-    }
-
-
-    /* NOTICE */
-
-    .notice {
-      padding: 24px;
-
-      border-left: 4px solid #17202a;
-
-      background: #f7f8f9;
-
-      margin-top: 35px;
-
-      color: #535d65;
-    }
-
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid #e7e7e7;
-
-      padding: 45px 24px;
-
-      color: #68737c;
-
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      max-width: 1150px;
-      margin: auto;
-    }
-
-    .footer-brand strong {
-      color: #17202a;
-
-      font-size: 18px;
-
-      letter-spacing: 1px;
-    }
-
-    .footer-brand p {
-      margin: 5px 0 20px;
-
-      font-size: 14px;
-
-      color: #68737c;
-    }
-
-    .footer-links {
-      margin-bottom: 22px;
-    }
-
-    .footer-links a {
-      color: #454f58;
-
-      text-decoration: none;
-
-      margin-right: 22px;
-
-      display: inline-block;
-
-      margin-bottom: 8px;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-copy {
-      padding-top: 20px;
-
-      border-top: 1px solid #e7e7e7;
-    }
-
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      h1 {
-        font-size: 40px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .secondary-link {
-        display: block;
-
-        margin: 18px 0 0;
-      }
-
-      .section {
-        padding: 55px 20px;
-      }
-
-      .hero {
-        padding: 65px 20px 60px;
-      }
-
-    }
-
-  </style>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrowmont | Financial Planning, Tools & Learning</title>
+  <meta name="description" content="Carrowmont offers practical financial planning tools, clear explanations and scenario analysis for retirement, inflation and future financial goals." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0f887f" />
+  <link rel="canonical" href="https://carrowmont.com/" />
+  <meta property="og:title" content="Carrowmont | Financial Planning, Tools & Learning" />
+  <meta property="og:description" content="Understand your money. Plan your future with practical financial tools and clear explanations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://carrowmont.com/" />
+  <link rel="preload" as="image" href="carrowmont-hero.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="home.css?v=1.1.0" />
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Carrowmont",
+    "url":"https://carrowmont.com/",
+    "description":"Financial planning tools and educational resources for retirement, inflation and future goals."
+  }</script>
 </head>
-
-
 <body>
-
-
-<header>
-
-  <div class="nav">
-
-    <div class="brand">
-
-      <a href="/">
-        CARROWMONT
-      </a>
-
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Carrowmont home">CARROWMONT</a>
+    <div class="header-actions">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#plan">Plan</a><a href="#tools">Tools</a><a href="#learn">Learn</a><a href="about.html">About</a>
+      </nav>
+      <details class="locale-menu" id="localeMenu">
+        <summary id="localeSummary">India · INR</summary>
+        <div class="locale-popover">
+          <h3>Country & currency</h3>
+          <p>Choose the context that makes Carrowmont's numbers easiest to understand.</p>
+          <label>Country / region<select id="regionSelect"></select></label>
+          <label>Currency<select id="currencySelect"></select></label>
+          <div class="locale-note"><strong>Important:</strong> changing currency changes the display unit and number format. It does not perform an exchange-rate conversion. Tools may ask you to enter country-specific amounts and assumptions.</div>
+          <button class="locale-done-button" id="localeDoneBtn" type="button">Done</button>
+        </div>
+      </details>
+      <details class="mobile-nav">
+        <summary>Menu</summary>
+        <div class="mobile-nav-links"><a href="#plan">Plan</a><a href="#tools">Tools</a><a href="#learn">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      </details>
     </div>
-
-
-    <nav class="nav-links">
-
-      <a href="#plan">
-        Plan
-      </a>
-
-      <a href="#tools">
-        Tools
-      </a>
-
-      <a href="#learn">
-        Learn
-      </a>
-
-      <a href="/about.html">
-        About
-      </a>
-
-    </nav>
-
   </div>
-
 </header>
 
-
-
 <main>
-
-
-  <!-- HERO -->
-
   <section class="hero">
-
-    <div class="hero-content">
-
-
-      <div class="eyebrow">
-
-        Financial planning for real life
-
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="eyebrow">Financial planning for real life</span>
+        <h1>Understand your money.<br>Plan your future.</h1>
+        <p class="hero-copy">Carrowmont combines practical financial planning tools, clear explanations and scenario analysis to help you make more informed financial decisions.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/retirement-calculator/planner.html">Plan Your Retirement <span>→</span></a>
+          <a class="btn btn-secondary" href="/inflation-calculator/">Check Inflation Impact <span>→</span></a>
+        </div>
+        <div class="trust-row"><span>Country-aware currencies</span><span>Transparent assumptions</span><span>No sign-up required</span></div>
       </div>
-
-
-      <h1>
-
-        Understand your money.<br>
-
-        Plan your future.
-
-      </h1>
-
-
-      <p>
-
-        Carrowmont combines practical financial planning tools,
-        clear explanations and scenario analysis to help you make
-        more informed financial decisions.
-
-      </p>
-
-
-      <a class="button"
-         href="/retirement-calculator/planner.html">
-
-        Plan Your Retirement
-
-      </a>
-
-
-      <a class="secondary-link"
-         href="#tools">
-
-        Explore tools →
-
-      </a>
-
-
+      <div class="hero-visual">
+        <div class="hero-image-wrap">
+          <img src="carrowmont-hero.webp" width="1200" height="560" alt="Illustration of a financial journey from saving today toward life goals and retirement" fetchpriority="high" />
+          <div class="hero-caption">Planning is a journey: understand today's choices, model tomorrow's costs and explore different paths before you decide.</div>
+        </div>
+      </div>
     </div>
-
   </section>
 
-
-
-  <!-- PLAN -->
-
-  <section class="section light"
-           id="plan">
-
+  <section class="section section-soft" id="plan">
     <div class="container">
-
-
-      <h2>
-
-        Plan for what matters
-
-      </h2>
-
-
-      <p class="section-intro">
-
-        Explore major financial goals and understand how today's
-        decisions may affect your future.
-
-      </p>
-
-
-      <div class="cards">
-
-
-        <div class="card">
-
-          <h3>
-
-            Retirement
-
-          </h3>
-
-          <p>
-
-            Estimate future expenses, income needs and the savings
-            required for retirement.
-
-          </p>
-
-          <a href="/retirement-calculator/planner.html">
-
-            Start planning →
-
-          </a>
-
-        </div>
-
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Financial Independence
-
-          </h3>
-
-          <p>
-
-            Explore how savings, spending and investment assumptions
-            influence your path to financial independence.
-
-          </p>
-
-          <strong>
-
-            Coming soon
-
-          </strong>
-
-        </div>
-
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Life Goals
-
-          </h3>
-
-          <p>
-
-            Plan for education, a home, major purchases and other
-            important financial milestones.
-
-          </p>
-
-          <strong>
-
-            Coming soon
-
-          </strong>
-
-        </div>
-
-
+      <div class="section-head"><div><h2>Plan for what matters</h2><p class="section-lead">Explore major financial goals and understand how today's decisions may affect your future.</p></div><div class="section-note">Start with the tools that are live today. More planning areas will be added over time.</div></div>
+      <div class="card-grid">
+        <article class="card live"><span class="badge badge-live">Live</span><div class="card-icon">R</div><h3>Retirement</h3><p>Model future expenses, retirement income, savings and the corpus needed for the life you expect to live.</p><a class="card-link" href="/retirement-calculator/planner.html">Start planning →</a></article>
+        <article class="card"><span class="badge badge-next">Planned</span><div class="card-icon">FI</div><h3>Financial Independence</h3><p>Explore how savings, spending and investment assumptions may influence your path to financial independence.</p><span class="coming">Coming later</span></article>
+        <article class="card"><span class="badge badge-next">Coming next</span><div class="card-icon">◎</div><h3>Life Goals</h3><p>Plan for education, a home, major purchases and other important financial milestones.</p><span class="coming">Goal Planner in development</span></article>
       </div>
-
     </div>
-
   </section>
 
-
-
-  <!-- TOOLS -->
-
-  <section class="section"
-           id="tools">
-
+  <section class="section" id="tools">
     <div class="container">
-
-
-      <h2>
-
-        Financial tools
-
-      </h2>
-
-
-      <p class="section-intro">
-
-        Simple tools designed to help turn financial questions
-        into understandable numbers.
-
-      </p>
-
-
-      <div class="cards">
-
-
-        <div class="card">
-
-          <h3>
-
-            Retirement Planner
-
-          </h3>
-
-          <p>
-
-            Model retirement expenses, income, inflation,
-            one-time goals and long-term cash flow.
-
-          </p>
-
-          <a href="/retirement-calculator/planner.html">
-
-            Open planner →
-
-          </a>
-
-        </div>
-
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Goal Planner
-
-          </h3>
-
-          <p>
-
-            Calculate how much you may need to save or invest
-            toward a future financial goal.
-
-          </p>
-
-          <strong>
-
-            Coming soon
-
-          </strong>
-
-        </div>
-
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Inflation Calculator
-
-          </h3>
-
-          <p>
-
-            See how inflation can change the future purchasing
-            power of your money.
-
-          </p>
-
-          <strong>
-
-            Coming soon
-
-          </strong>
-
-        </div>
-
-
+      <div class="section-head"><div><h2>Financial tools</h2><p class="section-lead">Simple tools designed to turn financial questions into understandable numbers.</p></div></div>
+      <div class="tools-grid">
+        <article class="tool-card"><div class="tool-meta">Live tool</div><h3>Retirement Planner</h3><p>Model retirement expenses, income, inflation, one-time goals and long-term cash flow.</p><a class="card-link" href="/retirement-calculator/planner.html">Open planner →</a></article>
+        <article class="tool-card"><div class="tool-meta">Live tool</div><h3>Inflation Calculator</h3><p>See how future costs and purchasing power may change under different inflation assumptions and currencies.</p><a class="card-link" href="/inflation-calculator/">Open calculator →</a></article>
+        <article class="tool-card"><div class="tool-meta">Coming next</div><h3>Goal Planner</h3><p>Estimate how much you may need to save or invest toward education, a home or another financial goal.</p><span class="coming">In development</span></article>
       </div>
-
     </div>
-
   </section>
 
-
-
-  <!-- LEARN -->
-
-  <section class="section light"
-           id="learn">
-
+  <section class="section section-soft" id="learn">
     <div class="container">
-
-
-      <h2>
-
-        Learn before you decide
-
-      </h2>
-
-
-      <p class="section-intro">
-
-        Clear explanations of financial concepts, assumptions
-        and trade-offs — without unnecessary jargon.
-
-      </p>
-
-
-      <div class="cards">
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Retirement
-
-          </h3>
-
-          <p>
-
-            Inflation, retirement income, longevity and building
-            a sustainable retirement plan.
-
-          </p>
-
-          <strong>
-
-            Articles coming soon
-
-          </strong>
-
-        </div>
-
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Saving & Investing
-
-          </h3>
-
-          <p>
-
-            Understand compounding, investment horizons, risk
-            and goal-based investing.
-
-          </p>
-
-          <strong>
-
-            Articles coming soon
-
-          </strong>
-
-        </div>
-
-
-
-        <div class="card coming">
-
-          <h3>
-
-            Money Decisions
-
-          </h3>
-
-          <p>
-
-            Explore the numbers behind loans, savings, insurance
-            and major financial decisions.
-
-          </p>
-
-          <strong>
-
-            Articles coming soon
-
-          </strong>
-
-        </div>
-
-
+      <div class="section-head"><div><h2>Learn before you decide</h2><p class="section-lead">Clear explanations of financial concepts, assumptions and trade-offs — without unnecessary jargon.</p></div><div class="section-note">Learning guides will connect directly to Carrowmont's planning tools.</div></div>
+      <div class="learn-grid">
+        <article class="learn-card"><h3>Retirement</h3><p>Inflation, retirement income, longevity and building a sustainable retirement plan.</p><span class="coming">Learning guides coming next</span></article>
+        <article class="learn-card"><h3>Inflation & purchasing power</h3><p>Understand today's money, future money and why the same amount may buy less over time.</p><span class="coming">Learning guides coming next</span></article>
+        <article class="learn-card"><h3>Saving & investing</h3><p>Compounding, investment horizons, risk and goal-based saving concepts.</p><span class="coming">Learning guides coming next</span></article>
       </div>
-
     </div>
-
   </section>
 
-
-
-  <!-- ABOUT -->
-
-  <section class="section"
-           id="about">
-
-    <div class="container">
-
-
-      <h2>
-
-        About Carrowmont
-
-      </h2>
-
-
-      <p class="section-intro">
-
-        Carrowmont is being built to make financial planning easier
-        to understand through transparent calculations, useful tools
-        and practical educational content.
-
-      </p>
-
-
-      <div class="notice">
-
-        Carrowmont provides educational information and planning
-        tools. Calculations are illustrative and should not be
-        considered investment, tax, legal or financial advice.
-
+  <section class="section" id="about-home">
+    <div class="container about-panel">
+      <div class="about-copy"><h2>About Carrowmont</h2><p>Carrowmont is being built to make financial planning easier to understand through transparent calculations, practical tools and clear educational content. The platform is designed to support different countries and currencies while keeping assumptions visible and editable.</p><a class="card-link" href="about.html">Read about Carrowmont →</a></div>
+      <div class="principles">
+        <div class="principle"><strong>Clear assumptions</strong><span>See what drives the numbers instead of treating results as a black box.</span></div>
+        <div class="principle"><strong>Scenario thinking</strong><span>Explore how changes in time, inflation and spending can affect an outcome.</span></div>
+        <div class="principle"><strong>Global-ready</strong><span>Use country-aware currency formatting while entering assumptions relevant to your situation.</span></div>
+        <div class="principle"><strong>Educational first</strong><span>Carrowmont helps explain possibilities; it does not provide individualized financial advice.</span></div>
       </div>
-
-
+      <div class="notice" style="grid-column:1/-1">Carrowmont provides educational information and planning tools. Calculations are illustrative and should not be considered investment, tax, legal, accounting or individualized financial advice.</div>
     </div>
-
   </section>
-
-
 </main>
 
-
-
-<footer>
-
-  <div class="footer-inner">
-
-
-    <div class="footer-brand">
-
-      <strong>
-        CARROWMONT
-      </strong>
-
-      <p>
-        Financial Planning, Tools & Learning
-      </p>
-
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">CARROWMONT</div><div class="footer-copy">Financial Planning, Tools & Learning — practical calculators and educational resources for clearer financial decisions.</div></div>
+      <div class="footer-col"><h4>Tools</h4><a href="/retirement-calculator/planner.html">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="#tools">All tools</a></div>
+      <div class="footer-col"><h4>Carrowmont</h4><a href="about.html">About</a><a href="methodology.html">Methodology</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="disclaimer.html">Disclaimer</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
     </div>
-
-
-
-    <div class="footer-links">
-
-      <a href="/about.html">
-        About
-      </a>
-
-      <a href="/methodology.html">
-        Methodology
-      </a>
-
-      <a href="/disclaimer.html">
-        Disclaimer
-      </a>
-
-      <a href="/privacy.html">
-        Privacy
-      </a>
-
-      <a href="/terms.html">
-        Terms
-      </a>
-
-      <a href="/contact.html">
-        Contact
-      </a>
-
-    </div>
-
-
-
-    <div class="footer-copy">
-
-      © 2026 Carrowmont.
-      Financial planning tools and educational information.
-
-    </div>
-
-
+    <div class="footer-bottom"><span>© 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div>
   </div>
-
 </footer>
-
-
+<script src="locale.js?v=1.1.0"></script>
+<script src="home.js?v=1.1.0"></script>
 </body>
-
 </html>
