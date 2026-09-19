@@ -77,3 +77,14 @@
 .contact-advice-note h2{font-size:22px;margin:1px 0 7px}
 .contact-advice-note p{margin:0;font-size:15.5px;line-height:1.62;color:#526f8e}
 @media(max-width:700px){.contact-section{padding:46px 0 60px}.contact-card{grid-template-columns:1fr;padding:24px 20px;gap:16px}.contact-card-icon{width:58px;height:58px;border-radius:17px}.contact-email-button{min-width:0;width:100%;font-size:15px}.contact-advice-note{grid-template-columns:1fr}.contact-advice-icon{margin-bottom:2px}}
+
+/* ===== Final hero horizontal alignment tweak =====
+   Move the approved hero artwork slightly to the right on desktop only.
+   The visual keeps the exact same width and vertical positioning: left and
+   right offsets are changed by the same amount, so only X-position changes. */
+@media (min-width:1361px){
+  .hero-visual{left:calc(39% + 34px);right:-34px}
+}
+@media (min-width:981px) and (max-width:1360px){
+  .hero-visual{left:calc(40% + 24px);right:-24px}
+}
