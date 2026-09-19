@@ -103,3 +103,35 @@
   .hero-visual{left:40%;right:0}
   .hero-visual img{transform:translateX(44px)}
 }
+
+/* ===== Final couple merge refinement =====
+   Keep every existing hero dimension and vertical position unchanged.
+   The artwork remains shifted horizontally so more of the couple is visible,
+   but the image now fades in smoothly from the left instead of creating a
+   hard rectangular edge. */
+@media (min-width:1361px){
+  .hero-visual{left:39%;right:0}
+  .hero-visual img{
+    transform:translateX(58px);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.16) 18px,rgba(0,0,0,.52) 44px,rgba(0,0,0,.84) 72px,#000 108px);
+    mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.16) 18px,rgba(0,0,0,.52) 44px,rgba(0,0,0,.84) 72px,#000 108px);
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-size:100% 100%;
+    mask-size:100% 100%;
+  }
+  .hero-visual:after{display:none}
+}
+@media (min-width:981px) and (max-width:1360px){
+  .hero-visual{left:40%;right:0}
+  .hero-visual img{
+    transform:translateX(44px);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 14px,rgba(0,0,0,.56) 34px,rgba(0,0,0,.86) 58px,#000 88px);
+    mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 14px,rgba(0,0,0,.56) 34px,rgba(0,0,0,.86) 58px,#000 88px);
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-size:100% 100%;
+    mask-size:100% 100%;
+  }
+  .hero-visual:after{display:none}
+}
