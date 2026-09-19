@@ -1,0 +1,108 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="600" y1="0" x2="600" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAF7F8"/>
+      <stop offset="0.48" stop-color="#F8FBFA"/>
+      <stop offset="1" stop-color="#FBF2E6"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFF7CF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFF7CF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lake" x1="600" y1="250" x2="600" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A9D7D9"/>
+      <stop offset="1" stop-color="#D9EEEE"/>
+    </linearGradient>
+    <linearGradient id="hill1" x1="600" y1="235" x2="600" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#76A99F"/>
+      <stop offset="1" stop-color="#3E746C"/>
+    </linearGradient>
+    <linearGradient id="hill2" x1="600" y1="330" x2="600" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6E9B82"/>
+      <stop offset="1" stop-color="#385E50"/>
+    </linearGradient>
+    <linearGradient id="path" x1="870" y1="580" x2="1070" y2="255" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6E3BE"/>
+      <stop offset="1" stop-color="#FFF3D9"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#10243B" flood-opacity="0.13"/>
+    </filter>
+    <filter id="blur"><feGaussianBlur stdDeviation="24"/></filter>
+  </defs>
+
+  <rect width="1200" height="700" rx="34" fill="url(#sky)"/>
+  <circle cx="1010" cy="115" r="130" fill="url(#sunGlow)" filter="url(#blur)"/>
+  <circle cx="1030" cy="125" r="43" fill="#FFF4C8"/>
+
+  <!-- distant mountains -->
+  <path d="M0 332L170 205L264 275L405 132L532 247L664 159L803 279L962 180L1122 287L1200 225V430H0V332Z" fill="#B9D5D1"/>
+  <path d="M0 360L180 252L305 315L446 213L578 316L738 232L890 338L1038 258L1200 320V450H0V360Z" fill="#8DB7B0" opacity="0.78"/>
+
+  <!-- lake -->
+  <path d="M120 405C300 349 476 351 602 374C728 397 831 430 1044 390C1110 378 1162 369 1200 366V580C1046 598 895 600 746 578C597 556 442 520 283 540C212 549 155 562 120 570V405Z" fill="url(#lake)"/>
+  <path d="M203 432C363 391 491 398 616 421C741 444 874 465 1047 429" stroke="#F5FFFF" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
+
+  <!-- hills -->
+  <path d="M0 445C117 362 226 361 354 419C482 477 567 486 671 443C775 400 858 344 971 365C1084 386 1128 455 1200 480V700H0V445Z" fill="url(#hill1)"/>
+  <path d="M0 548C130 474 238 463 375 516C512 569 624 586 750 529C876 472 1039 446 1200 518V700H0V548Z" fill="url(#hill2)"/>
+
+  <!-- winding future path -->
+  <path d="M838 700C867 619 884 569 915 528C946 487 994 463 1005 422C1019 372 970 348 998 311C1019 283 1054 269 1076 249" stroke="url(#path)" stroke-width="28" stroke-linecap="round"/>
+  <path d="M838 700C867 619 884 569 915 528C946 487 994 463 1005 422C1019 372 970 348 998 311C1019 283 1054 269 1076 249" stroke="#FFF9EC" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 18" opacity="0.95"/>
+
+  <!-- trees -->
+  <g fill="#274D43" opacity="0.95">
+    <path d="M100 518l24-58 24 58h-15l19 41h-56l19-41h-15Z"/><path d="M184 505l20-48 20 48h-13l16 34h-46l16-34h-13Z"/>
+    <path d="M295 554l28-67 28 67h-17l20 43h-62l20-43h-17Z"/><path d="M1115 470l23-56 23 56h-14l18 39h-54l18-39h-14Z"/>
+    <path d="M1066 503l18-43 18 43h-11l14 31h-42l14-31h-11Z"/><path d="M770 535l22-53 22 53h-14l17 37h-50l17-37h-14Z"/>
+  </g>
+
+  <!-- milestone markers: unlabeled icons -->
+  <g>
+    <g transform="translate(727 388)">
+      <circle r="42" fill="#FFFFFF" stroke="#CFE7E4" stroke-width="3"/>
+      <circle cx="-9" cy="7" r="10" stroke="#0F887F" stroke-width="4"/>
+      <circle cx="10" cy="0" r="10" stroke="#0F887F" stroke-width="4"/>
+      <path d="M-18 21h37" stroke="#0F887F" stroke-width="4" stroke-linecap="round"/>
+      <path d="M0 19V-18" stroke="#0F887F" stroke-width="4" stroke-linecap="round"/>
+      <path d="M0-10c-18-2-20-16-20-16 14-2 23 3 26 11" stroke="#0F887F" stroke-width="4" stroke-linecap="round"/>
+      <path d="M0-6c18-2 20-16 20-16-14-2-23 3-26 11" stroke="#0F887F" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(875 333)">
+      <circle r="42" fill="#FFFFFF" stroke="#CFE7E4" stroke-width="3"/>
+      <rect x="-18" y="-7" width="36" height="24" rx="3" stroke="#0F887F" stroke-width="4"/>
+      <path d="M-24-7L0-26 24-7" stroke="#0F887F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M-4 17V4h8v13" stroke="#0F887F" stroke-width="4"/>
+    </g>
+    <g transform="translate(970 268)">
+      <circle r="42" fill="#FFFFFF" stroke="#CFE7E4" stroke-width="3"/>
+      <path d="M-20 18V4M-5 18V-4M10 18V-12M25 18V-24" stroke="#0F887F" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-24 8L-5-5 10-14 24-28" stroke="#0F887F" stroke-width="4" stroke-linecap="round"/>
+      <path d="M14-28h10v10" stroke="#0F887F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g transform="translate(1080 205)">
+      <circle r="42" fill="#FFFFFF" stroke="#CFE7E4" stroke-width="3"/>
+      <path d="M-8 22V-22" stroke="#0F887F" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-6-19h28l-7 11 7 11H-6" fill="#DFF4F0" stroke="#0F887F" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- couple, viewed from behind -->
+  <g transform="translate(164 492)">
+    <ellipse cx="130" cy="160" rx="162" ry="52" fill="#334F4A" opacity="0.42"/>
+    <circle cx="78" cy="0" r="34" fill="#182C3F"/>
+    <path d="M42 40c18-17 53-18 72 0 22 20 32 65 32 118H13c0-57 8-96 29-118Z" fill="#173C59"/>
+    <path d="M104 47c27 22 52 33 82 27" stroke="#173C59" stroke-width="22" stroke-linecap="round"/>
+    <circle cx="176" cy="24" r="30" fill="#49352E"/>
+    <path d="M151 54c14-15 40-16 56 0 20 20 27 58 27 104H122c0-47 7-82 29-104Z" fill="#EEE8DD"/>
+    <path d="M181 2c11 0 23 4 29 13-4-22-23-33-41-29-14 3-23 12-27 25 10-7 23-9 39-9Z" fill="#2E2625"/>
+    <path d="M157 61c-19 12-33 32-42 53" stroke="#EEE8DD" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <!-- foreground -->
+  <path d="M0 641C120 608 236 599 355 620C474 641 586 663 717 644C848 625 1033 598 1200 620V700H0V641Z" fill="#2F5C4E"/>
+  <g fill="#F1C66A" opacity="0.95">
+    <circle cx="74" cy="623" r="5"/><circle cx="108" cy="646" r="4"/><circle cx="438" cy="631" r="5"/><circle cx="503" cy="654" r="4"/><circle cx="1160" cy="642" r="5"/>
+  </g>
+</svg>
