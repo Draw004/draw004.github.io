@@ -148,3 +148,17 @@
     margin-bottom:22px;
   }
 }
+
+/* ===== Homepage hero seam correction - 2026-09-21 =====
+   Move only the artwork start point progressively to the right on wider desktops.
+   This keeps the approved image, copy, buttons, hero height and image scale unchanged,
+   while giving the CTA/highlight area more room and revealing more of the couple. */
+@media (min-width:1400px) and (max-width:1499px){
+  .hero-visual{left:40%;}
+}
+@media (min-width:1500px) and (max-width:1649px){
+  .hero-visual{left:41%;}
+}
+@media (min-width:1650px){
+  .hero-visual{left:42%;}
+}
