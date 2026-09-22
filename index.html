@@ -357,6 +357,21 @@
       function syncIndiaExperience() {
         var isIndia = country && currency && country.textContent.trim() === 'India' && currency.textContent.trim() === 'INR';
         body.classList.toggle('india-inr', !!isIndia);
+
+        var sipCard = document.querySelector('.sip-card');
+        if (sipCard) {
+          var title = sipCard.querySelector('h3');
+          var description = sipCard.querySelector('p');
+          var link = sipCard.querySelector('a[href="/sip-calculator/"]');
+          if (title) title.textContent = isIndia ? 'SIP Calculator' : 'Monthly Investment Calculator';
+          if (description) description.textContent = isIndia
+            ? 'Calculate SIP future value, work backwards from a goal, compare step-up SIPs and estimate how long a target may take.'
+            : 'Estimate investment growth, work backwards from a goal, compare increasing monthly contributions and estimate time to target.';
+          if (link) link.textContent = isIndia ? 'Calculate SIP →' : 'Calculate Investments →';
+        }
+
+        var footerSipLink = document.querySelector('.footer-col a[href="/sip-calculator/"]');
+        if (footerSipLink) footerSipLink.textContent = isIndia ? 'SIP Calculator' : 'Monthly Investment Calculator';
       }
 
       syncIndiaExperience();

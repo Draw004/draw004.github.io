@@ -50,4 +50,36 @@
     <div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
   </div>
   <div class="shell footer-bottom"><span>&copy; 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div>
-</footer><script src="locale.js?v=20260920-cleanup1"></script><script src="site.js?v=20260920-cleanup1"></script></body></html>
+</footer><script src="locale.js?v=20260920-cleanup1"></script><script src="site.js?v=20260920-cleanup1"></script><script>
+(function () {
+  var country = document.getElementById('localeCountryLabel');
+  var currency = document.getElementById('localeCurrencyLabel');
+  var regionSelect = document.getElementById('regionSelect');
+  var currencySelect = document.getElementById('currencySelect');
+
+  function syncInvestmentTerminology() {
+    var isIndia = country && currency && country.textContent.trim() === 'India' && currency.textContent.trim() === 'INR';
+    var toolLink = document.querySelector('.guide-tool-link[href="/sip-calculator/"]');
+    if (toolLink) {
+      toolLink.textContent = isIndia ? 'SIP Calculator →' : 'Monthly Investment Calculator →';
+      var row = toolLink.parentElement;
+      if (row) {
+        while (toolLink.nextSibling) row.removeChild(toolLink.nextSibling);
+        row.appendChild(document.createTextNode(isIndia
+          ? ' — estimate future SIP value, goal-based SIP needs, step-up SIPs and time to target.'
+          : ' — estimate future investment value, goal-based monthly investment needs, increasing contributions and time to target.'));
+      }
+    }
+
+    var footerLink = document.querySelector('.footer-col a[href="/sip-calculator/"]');
+    if (footerLink) footerLink.textContent = isIndia ? 'SIP Calculator' : 'Monthly Investment Calculator';
+  }
+
+  syncInvestmentTerminology();
+  window.addEventListener('load', syncInvestmentTerminology);
+  if (regionSelect) regionSelect.addEventListener('change', function () { setTimeout(syncInvestmentTerminology, 0); });
+  if (currencySelect) currencySelect.addEventListener('change', function () { setTimeout(syncInvestmentTerminology, 0); });
+  if (country) new MutationObserver(syncInvestmentTerminology).observe(country, { childList: true, characterData: true, subtree: true });
+  if (currency) new MutationObserver(syncInvestmentTerminology).observe(currency, { childList: true, characterData: true, subtree: true });
+})();
+</script></body></html>
