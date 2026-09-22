@@ -32,6 +32,9 @@
 .article-layout-refined .guide-index strong{display:block;font-size:15.5px;line-height:1.3}
 .article-layout-refined .guide-index small{display:block;margin-top:6px}
 @media(max-width:700px){.article-layout-refined .learn-page-hero .page-hero-inner{padding-top:28px;padding-bottom:30px}.article-layout-refined .learn-hub-section{padding-top:20px}.article-layout-refined .guide-section{padding:22px 18px 30px}.article-layout-refined .guide-section h2{margin-top:28px}.article-layout-refined .guide-action-first{padding:17px 16px;margin-bottom:24px}.article-layout-refined .guide-action-first a{font-size:16px;padding:13px 13px 13px 15px}.article-layout-refined .guide-action-first .action-arrow{flex-basis:34px;width:34px;height:34px;font-size:23px}}
+
+.article-layout-refined .guide-locale-context{margin:0 0 22px;padding:11px 14px;border-left:3px solid #0e827a;background:#f5fbfa;color:#405c78;font-size:14px;line-height:1.55;border-radius:0 10px 10px 0}
+@media(max-width:700px){.article-layout-refined .guide-locale-context{font-size:13.5px;margin-bottom:20px}}
 </style></head><body class="article-layout-refined"><header class="site-header">
 <div class="shell header-inner">
 <a aria-label="Carrowmont home" class="brand" href="/">
@@ -58,28 +61,9 @@
 </main><footer class="site-footer">
 <div class="shell footer-grid">
 <div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div>
-<div class="footer-col"><strong>Tools</strong><a href="/sip-calculator/">Monthly Investment (SIP) Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/#tools">All tools</a></div>
+<div class="footer-col"><strong>Tools</strong><a href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/#tools">All tools</a></div>
 <div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/contact.html">Contact</a></div>
 <div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
 </div>
 <div class="shell footer-bottom"><span>© 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div>
-</footer><script src="locale.js?v=20260920-cleanup1"></script><script src="site.js?v=20260920-cleanup1"></script><script>
-(function () {
-  var country = document.getElementById('localeCountryLabel');
-  var currency = document.getElementById('localeCurrencyLabel');
-  var regionSelect = document.getElementById('regionSelect');
-  var currencySelect = document.getElementById('currencySelect');
-  function syncInvestmentTerminology() {
-    var isIndia = country && currency && country.textContent.trim() === 'India' && currency.textContent.trim() === 'INR';
-    document.querySelectorAll('.footer-col a[href="/sip-calculator/"]').forEach(function (link) {
-      link.textContent = 'Monthly Investment (SIP) Calculator';
-    });
-  }
-  syncInvestmentTerminology();
-  window.addEventListener('load', syncInvestmentTerminology);
-  if (regionSelect) regionSelect.addEventListener('change', function () { setTimeout(syncInvestmentTerminology, 0); });
-  if (currencySelect) currencySelect.addEventListener('change', function () { setTimeout(syncInvestmentTerminology, 0); });
-  if (country) new MutationObserver(syncInvestmentTerminology).observe(country, { childList: true, characterData: true, subtree: true });
-  if (currency) new MutationObserver(syncInvestmentTerminology).observe(currency, { childList: true, characterData: true, subtree: true });
-})();
-</script></body></html>
+</footer><script src="locale.js?v=20260920-cleanup1"></script><script src="site.js?v=20260920-cleanup1"></script><script src="learn-localization.js?v=20260923-v110"></script></body></html>
