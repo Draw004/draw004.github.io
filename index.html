@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="Carrowmont offers practical financial planning tools, clear explanations and scenario analysis for SIP investing, retirement, inflation and major life goals.">
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Carrowmont | Financial Planning, Tools &amp; Learning</title>
-  <link rel="stylesheet" href="carrowmont.css?v=20260920-cleanup1">
+  <link rel="stylesheet" href="carrowmont.css?v=20260922-fold1">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Carrowmont","url":"https://carrowmont.com/","description":"Financial planning tools and educational resources for SIP investing, retirement, inflation and major life goals."}</script>
 
@@ -73,6 +73,26 @@
     .sip-main-icon { color: #0e827a; background: #e7f7f4; }
     .sip-main-icon svg { fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 
+    /* Keep the India SIP discovery strip visible on common laptop-height viewports.
+       This is viewport-responsive rather than browser-specific, so Chrome and Edge
+       receive the same layout rule. */
+    @media (min-width: 1050px) and (max-height: 900px) {
+      .hero { min-height: 0 !important; }
+      .hero-inner { min-height: 0 !important; padding-top: 52px !important; padding-bottom: 42px !important; }
+      .hero-copy h1 { margin-top: 14px !important; margin-bottom: 18px !important; }
+      .hero-lede { margin-top: 0 !important; margin-bottom: 0 !important; }
+      .hero-actions { margin-top: 20px !important; }
+      .india-sip-quickline { margin-top: 11px; }
+      .hero-points { margin-top: 18px !important; }
+      .india-sip-spotlight-inner { padding-top: 20px; padding-bottom: 20px; }
+    }
+    @media (min-width: 1050px) and (max-height: 780px) {
+      .hero-inner { padding-top: 38px !important; padding-bottom: 30px !important; }
+      .hero-copy h1 { margin-top: 10px !important; margin-bottom: 14px !important; }
+      .hero-actions { margin-top: 16px !important; }
+      .hero-points { margin-top: 14px !important; }
+      .india-sip-spotlight-inner { padding-top: 16px; padding-bottom: 16px; }
+    }
     @media (max-width: 760px) {
       .india-sip-spotlight-inner { grid-template-columns: 1fr; gap: 18px; }
       .india-sip-spotlight-copy { align-items: flex-start; flex-direction: column; gap: 10px; }
