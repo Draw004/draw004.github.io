@@ -22,7 +22,7 @@ jobs:
             "Draw004/goal-planner"
             "Draw004/financial-independence"
             "Draw004/inflation-calculator"
-            "Draw004/retirement-planner"
+            "Draw004/retirement-calculator"
           )
 
           echo "Checking access to all Carrowmont repositories..."
