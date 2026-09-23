@@ -72,6 +72,11 @@
   let currencyCode = safeGet(STORAGE_CURRENCY);
   if (!currencies[currencyCode]) currencyCode = regions[regionCode].currency;
 
+  function getRegion() { return regionCode; }
+  function getCurrency() { return currencyCode; }
+  function getProfile() { return regions[regionCode] || regions.OTHER; }
+  function getLocale() { return getProfile().locale; }
+
   function emitChange() {
     window.dispatchEvent(new CustomEvent("carrowmont:localechange", { detail: { region: regionCode, currency: currencyCode } }));
   }
@@ -100,11 +105,64 @@
     emitChange();
   }
 
+  function formatMoney(value, options = {}) {
+    const n = Number(value) || 0;
+    const currency = options.currency || currencyCode;
+    const locale = options.locale || getLocale();
+    const maximumFractionDigits = options.maximumFractionDigits ?? 0;
+    try {
+      return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        maximumFractionDigits,
+        minimumFractionDigits: options.minimumFractionDigits ?? 0
+      }).format(n);
+    } catch (_) {
+      return `${currencies[currency]?.symbol || currency} ${Math.round(n).toLocaleString(locale)}`;
+    }
+  }
+
+  function formatCompactMoney(value, options = {}) {
+    const n = Number(value) || 0;
+    const currency = options.currency || currencyCode;
+    const locale = options.locale || getLocale();
+    try {
+      let formatted = new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        notation: "compact",
+        compactDisplay: "short",
+        maximumFractionDigits: options.maximumFractionDigits ?? 2,
+        minimumFractionDigits: options.minimumFractionDigits ?? 0
+      }).format(n);
+      if (currency === "INR") formatted = formatted.replace(/(\d)(?=(?:Cr|L|K)\b)/g, "$1 ");
+      return formatted;
+    } catch (_) {
+      return formatMoney(n, { currency, locale });
+    }
+  }
+
+  function formatNumber(value, options = {}) {
+    const n = Number(value) || 0;
+    return new Intl.NumberFormat(options.locale || getLocale(), {
+      maximumFractionDigits: options.maximumFractionDigits ?? 0
+    }).format(n);
+  }
+
+  function currencySymbol(code = currencyCode) {
+    return currencies[code]?.symbol || code;
+  }
+
   window.CarrowmontLocale = {
     regions, currencies,
-    getRegion: () => regionCode,
-    getCurrency: () => currencyCode,
-    getProfile: () => regions[regionCode] || regions.OTHER,
-    setRegion, setCurrency, setLocale
+    getRegion,
+    getCurrency,
+    getProfile,
+    getLocale,
+    setRegion, setCurrency, setLocale,
+    formatMoney,
+    formatCompactMoney,
+    formatNumber,
+    currencySymbol
   };
 })();
