@@ -1,0 +1,60 @@
+name: Carrowmont PR Automation Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  create-test-pr:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout SIP Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/sip-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create test branch and file
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BRANCH="carrowmont-automation-test-${GITHUB_RUN_ID}"
+
+          git config user.name "Carrowmont Automation"
+          git config user.email "actions@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+
+          mkdir -p .carrowmont
+
+          cat > .carrowmont/automation-pr-test.txt <<EOF
+          Carrowmont PR automation test
+
+          Workflow run: ${GITHUB_RUN_ID}
+
+          This file exists only to verify that the central Carrowmont automation
+          can safely create a branch and pull request without modifying main.
+          EOF
+
+          git add .carrowmont/automation-pr-test.txt
+          git commit -m "test: verify Carrowmont PR automation"
+          git push origin "$BRANCH"
+
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Create pull request
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+        run: |
+          gh pr create \
+            --repo Draw004/sip-calculator \
+            --base main \
+            --head "$BRANCH" \
+            --title "Test: Carrowmont PR automation" \
+            --body "Temporary test PR created by the central Carrowmont automation. Do not merge. It only verifies branch and PR creation."
