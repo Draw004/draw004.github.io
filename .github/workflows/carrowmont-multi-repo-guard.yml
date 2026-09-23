@@ -1,0 +1,200 @@
+name: Carrowmont Multi-Repo Guard
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  guard:
+    name: Guard all 5 Carrowmont tools
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Financial Independence
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/financial-independence
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/financial-independence
+          persist-credentials: false
+
+      - name: Checkout Goal Planner
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/goal-planner
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/goal-planner
+          persist-credentials: false
+
+      - name: Checkout Inflation Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/inflation-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/inflation-calculator
+          persist-credentials: false
+
+      - name: Checkout Retirement Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/retirement-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/retirement-calculator
+          persist-credentials: false
+
+      - name: Checkout SIP Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/sip-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/sip-calculator
+          persist-credentials: false
+
+      - name: Get Carrowmont QA
+        shell: bash
+        run: |
+          git clone --depth 1 https://github.com/Draw004/carrowmont-qa.git qa
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Record repository versions
+        shell: bash
+        run: |
+          {
+            echo "# Carrowmont repositories checked"
+            echo
+            for repo in \
+              financial-independence \
+              goal-planner \
+              inflation-calculator \
+              retirement-calculator \
+              sip-calculator
+            do
+              echo "## $repo"
+              git -C "tools/$repo" log -1 \
+                --format="Commit: %H%nDate: %ci%nMessage: %s"
+              echo
+            done
+          } > repository-versions.txt
+
+          cat repository-versions.txt
+
+      - name: Run source contract
+        id: sourcecheck
+        shell: bash
+        run: |
+          set +e
+
+          SOURCE_ROOT="$GITHUB_WORKSPACE/tools" \
+            node qa/scripts/source-contract.mjs \
+            > carrowmont-source-check.txt 2>&1
+
+          STATUS=$?
+
+          cat carrowmont-source-check.txt
+
+          if [ "$STATUS" -eq 0 ]; then
+            echo "result=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=fail" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "## Carrowmont Multi-Repo Guard"
+            echo
+            echo '```text'
+            cat carrowmont-source-check.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          exit 0
+
+      - name: Upload guard report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: carrowmont-multi-repo-guard-results
+          path: |
+            carrowmont-source-check.txt
+            repository-versions.txt
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Open or update failure issue
+        if: steps.sourcecheck.outputs.result == 'fail'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="Carrowmont multi-repo source contract failure"
+
+          {
+            echo "The automated Carrowmont multi-repository guard found one or more source-contract failures."
+            echo
+            echo "**Workflow run:** $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo
+            echo '```text'
+            cat carrowmont-source-check.txt
+            echo '```'
+          } > issue-body.md
+
+          ISSUE_NUMBER=$(
+            gh issue list \
+              --repo "$GITHUB_REPOSITORY" \
+              --state open \
+              --limit 100 \
+              --json number,title \
+              --jq '.[] | select(.title=="Carrowmont multi-repo source contract failure") | .number' \
+              | head -n 1
+          )
+
+          if [ -z "$ISSUE_NUMBER" ]; then
+            gh issue create \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "$TITLE" \
+              --body-file issue-body.md
+          else
+            gh issue comment "$ISSUE_NUMBER" \
+              --repo "$GITHUB_REPOSITORY" \
+              --body-file issue-body.md
+          fi
+
+      - name: Close old failure issue when healthy
+        if: steps.sourcecheck.outputs.result == 'pass'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ISSUE_NUMBER=$(
+            gh issue list \
+              --repo "$GITHUB_REPOSITORY" \
+              --state open \
+              --limit 100 \
+              --json number,title \
+              --jq '.[] | select(.title=="Carrowmont multi-repo source contract failure") | .number' \
+              | head -n 1
+          )
+
+          if [ -n "$ISSUE_NUMBER" ]; then
+            gh issue close "$ISSUE_NUMBER" \
+              --repo "$GITHUB_REPOSITORY" \
+              --comment "All Carrowmont multi-repository source-contract checks are passing again."
+          fi
+
+      - name: Final result
+        if: steps.sourcecheck.outputs.result == 'fail'
+        shell: bash
+        run: |
+          echo "::error::One or more Carrowmont source-contract checks failed."
+          exit 1
