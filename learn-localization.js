@@ -45,5 +45,22 @@
     if(p==='fi-time-guide'){var annual=c.annualSpending,target=annual*25,start=c.existing,monthly=c.monthly,y=yearsToTarget(start,monthly,target,.07,50);html('fiTimeExample','<strong>Illustrative path</strong><span>Annual spending: '+exact(annual)+'</span><span>Illustrative 25× target: '+human(target)+'</span><span>Current invested assets: '+human(start)+'</span><span>Monthly contribution: '+exact(monthly)+'</span><span>Estimated time at a 7% annual assumption: '+(y?trim(y,1)+' years':'More than 50 years')+'</span>');}
   }
   function apply(){var s=state();updateFooter(s);updateLearn(s);updateInvestmentTarget(s);updateGrowth(s);updateStep(s);updateRetirementMain(s);updateMonthlyGoal(s);updateCompound(s);updateInflationValue(s);updateFiNumber(s);updateSavingsGoal(s);updateNew(s);commonTerminology(s);}
-  apply(); window.addEventListener('carrowmont:localechange',apply);
+  function scheduleApply(){
+    apply();
+    if(window.requestAnimationFrame)window.requestAnimationFrame(apply);
+    window.setTimeout(apply,0);
+    window.setTimeout(apply,120);
+  }
+  function bindLocalization(){
+    scheduleApply();
+    window.addEventListener('carrowmont:localechange',scheduleApply);
+    window.addEventListener('pageshow',scheduleApply);
+    window.addEventListener('storage',function(e){
+      if(!e||e.key==='carrowmont_region_v1'||e.key==='carrowmont_currency_v1')scheduleApply();
+    });
+    var done=document.getElementById('localeDoneBtn');
+    if(done)done.addEventListener('click',function(){window.setTimeout(scheduleApply,0);});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindLocalization,{once:true});
+  else bindLocalization();
 })();
