@@ -1,0 +1,108 @@
+name: Carrowmont Multi-Repo Dry Run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-contract-check:
+    name: Check all 5 Carrowmont tools
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Financial Independence
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/financial-independence
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/financial-independence
+          persist-credentials: false
+
+      - name: Checkout Goal Planner
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/goal-planner
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/goal-planner
+          persist-credentials: false
+
+      - name: Checkout Inflation Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/inflation-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/inflation-calculator
+          persist-credentials: false
+
+      - name: Checkout Retirement Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/retirement-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/retirement-calculator
+          persist-credentials: false
+
+      - name: Checkout SIP Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/sip-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/sip-calculator
+          persist-credentials: false
+
+      - name: Get Carrowmont QA checker
+        shell: bash
+        run: |
+          git clone --depth 1 https://github.com/Draw004/carrowmont-qa.git qa
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Show repositories being checked
+        shell: bash
+        run: |
+          echo "Repositories checked:"
+          echo
+          for repo in \
+            financial-independence \
+            goal-planner \
+            inflation-calculator \
+            retirement-calculator \
+            sip-calculator
+          do
+            echo "===== $repo ====="
+            git -C "tools/$repo" log -1 --format="Commit: %H%nDate: %ci%nMessage: %s"
+            echo
+          done
+
+      - name: Run Carrowmont source contract check
+        shell: bash
+        run: |
+          set +e
+
+          SOURCE_ROOT="$GITHUB_WORKSPACE/tools" \
+            node qa/scripts/source-contract.mjs \
+            | tee carrowmont-source-check.txt
+
+          STATUS=${PIPESTATUS[0]}
+
+          echo "## Carrowmont Source Contract Results" >> "$GITHUB_STEP_SUMMARY"
+          echo '```text' >> "$GITHUB_STEP_SUMMARY"
+          cat carrowmont-source-check.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+          exit "$STATUS"
+
+      - name: Upload dry-run results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: carrowmont-multi-repo-dry-run
+          path: carrowmont-source-check.txt
+          if-no-files-found: warn
+          retention-days: 30
