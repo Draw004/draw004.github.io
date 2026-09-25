@@ -86,7 +86,7 @@ jobs:
           fi
           gh auth setup-git
 
-      - name: Preflight repository access and clone all targets
+      - name: Preflight repository access and clone complete QA baseline
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
@@ -95,12 +95,25 @@ jobs:
           rm -rf staging
           mkdir -p staging
 
+          # Release bundles may intentionally change only a subset of Carrowmont repos.
+          # Validate every manifest target, then clone the complete baseline needed for
+          # staged source-contract, browser, link, chart, and PDF QA.
           jq -r '.repositories[].name' "$MANIFEST" | while IFS= read -r repo; do
             case "$repo" in
               draw004.github.io|sip-calculator|goal-planner|financial-independence|inflation-calculator|retirement-calculator|carrowmont-qa) ;;
               *) echo "Repository is not on the Carrowmont allow-list: $repo"; exit 1 ;;
             esac
+          done
 
+          for repo in \
+            draw004.github.io \
+            sip-calculator \
+            goal-planner \
+            financial-independence \
+            inflation-calculator \
+            retirement-calculator \
+            carrowmont-qa
+          do
             echo "Preflight: Draw004/$repo"
             gh api "repos/Draw004/$repo" >/dev/null
             gh repo clone "Draw004/$repo" "staging/$repo" -- --depth 1 --branch main
