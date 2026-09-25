@@ -1,0 +1,103 @@
+name: Carrowmont Source Snapshot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Create snapshot workspace
+        run: mkdir -p snapshot
+
+      - name: Checkout main Carrowmont site
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/draw004.github.io
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/draw004.github.io
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout SIP Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/sip-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/sip-calculator
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout Goal Planner
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/goal-planner
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/goal-planner
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout Financial Independence
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/financial-independence
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/financial-independence
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout Inflation Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/inflation-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/inflation-calculator
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout Retirement Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/retirement-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/retirement-calculator
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Clone Carrowmont QA
+        run: git clone --depth 1 https://github.com/Draw004/carrowmont-qa.git snapshot/carrowmont-qa
+
+      - name: Record repository versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "Carrowmont Source Snapshot"
+            echo "Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo
+            for repo in               draw004.github.io               sip-calculator               goal-planner               financial-independence               inflation-calculator               retirement-calculator               carrowmont-qa
+            do
+              commit="$(git -C "snapshot/$repo" rev-parse HEAD)"
+              echo "$repo  $commit"
+            done
+          } > snapshot/SNAPSHOT-MANIFEST.txt
+
+          cat snapshot/SNAPSHOT-MANIFEST.txt >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Remove Git metadata from snapshot
+        shell: bash
+        run: |
+          find snapshot -type d -name .git -prune -exec rm -rf {} +
+
+      - name: Upload source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: carrowmont-source-snapshot
+          path: snapshot/
+          retention-days: 7
+          include-hidden-files: true
