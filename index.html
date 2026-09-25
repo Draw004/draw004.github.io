@@ -345,7 +345,7 @@
 </footer>
 
   <script src="locale.js?v=20260920-cleanup1"></script>
-  <script src="site.js?v=20260920-cleanup1"></script>
+  <script src="site.js?v=20260925.1"></script>
 
   <script>
     (function () {
@@ -364,15 +364,15 @@
           var title = sipCard.querySelector('h3');
           var description = sipCard.querySelector('p');
           var link = sipCard.querySelector('a[href="/sip-calculator/"]');
-          if (title) title.textContent = isIndia ? 'SIP Calculator' : 'Monthly Investment Calculator';
+          if (title) title.textContent = isIndia ? 'SIP Calculator' : 'Recurring Investment Calculator';
           if (description) description.textContent = isIndia
             ? 'Calculate SIP future value, work backwards from a goal, compare step-up SIPs and estimate how long a target may take.'
-            : 'Estimate investment growth, work backwards from a goal, compare increasing monthly contributions and estimate time to target.';
+            : 'Estimate recurring investment growth, work backwards from a goal, compare increasing contributions and estimate time to target.';
           if (link) link.textContent = isIndia ? 'Calculate SIP →' : 'Calculate Investments →';
         }
 
         var footerSipLink = document.querySelector('.footer-col a[href="/sip-calculator/"]');
-        if (footerSipLink) footerSipLink.textContent = isIndia ? 'SIP Calculator' : 'Monthly Investment Calculator';
+        if (footerSipLink) footerSipLink.textContent = isIndia ? 'SIP Calculator' : 'Recurring Investment Calculator';
       }
 
       syncIndiaExperience();
