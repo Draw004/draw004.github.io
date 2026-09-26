@@ -320,7 +320,7 @@ jobs:
               echo "- Staged Chrome browser/PDF QA passed before publication."
               echo "- The working-tree diff was checked against the release allow-list."
               echo "- This automation creates a branch and pull request only. It does **not** merge."
-              echo "- Calculation-engine files are not changed by this release bundle."
+              echo "- Only files listed in the release manifest are allowed to change; calculation-engine changes, when present, are explicit and QA-validated."
             } > "$body_file"
 
             pr_url="$(gh pr create --repo "Draw004/$repo" --base main --head "$branch" --title "$title" --body-file "$body_file")"
