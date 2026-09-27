@@ -11,11 +11,19 @@ permissions:
 
 jobs:
   guard:
-    name: Guard all 5 Carrowmont tools
+    name: Guard Carrowmont main site + 5 tools
     runs-on: ubuntu-24.04
     timeout-minutes: 10
 
     steps:
+      - name: Checkout Carrowmont Main Site
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/draw004.github.io
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/draw004.github.io
+          persist-credentials: false
+
       - name: Checkout Financial Independence
         uses: actions/checkout@v4
         with:
@@ -73,6 +81,7 @@ jobs:
             echo "# Carrowmont repositories checked"
             echo
             for repo in \
+              draw004.github.io \
               financial-independence \
               goal-planner \
               inflation-calculator \
