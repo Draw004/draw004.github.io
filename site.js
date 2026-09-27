@@ -265,6 +265,11 @@
 
   function populate() {
     region.innerHTML = Object.entries(L.regions)
+      .sort(([codeA, a], [codeB, b]) => {
+        if (codeA === "OTHER") return 1;
+        if (codeB === "OTHER") return -1;
+        return a.label.localeCompare(b.label, "en", { sensitivity: "base" });
+      })
       .map(([code, profile]) => `<option value="${code}">${profile.label}</option>`)
       .join("");
     currency.innerHTML = Object.entries(L.currencies)
