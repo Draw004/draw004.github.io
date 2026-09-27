@@ -162,3 +162,33 @@
 @media (min-width:1650px){
   .hero-visual{left:42%;}
 }
+
+
+/* ===== Homepage hero refinement - 2026-09-27 ===== */
+.hero-points{align-items:center;gap:22px;margin-top:26px}
+.hero-points span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.hero-point-icon{width:20px;height:20px;display:grid;place-items:center;color:var(--teal);flex:0 0 auto}
+.hero-point-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+@media(min-width:981px){
+  .hero-visual{left:40.5%!important}
+  .hero-copy{width:min(660px,42.5%)!important}
+  .hero-visual:after{display:block!important;width:11%!important;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.88) 26%,rgba(255,255,255,.42) 62%,rgba(255,255,255,0) 100%)!important}
+}
+@media(max-width:700px){.hero-points span{white-space:normal}.hero-point-icon{width:18px;height:18px}.hero-point-icon svg{width:18px;height:18px}}
+
+
+/* ===== Carrowmont shared footer standard - 2026-09-27 ===== */
+.site-footer{background:#102945!important;color:#dce7f0!important;padding:48px 0 20px!important}
+.site-footer .footer-grid{display:grid!important;grid-template-columns:1.65fr repeat(3,minmax(0,1fr))!important;gap:38px!important;align-items:start!important}
+.site-footer .footer-brand-block{display:block!important}
+.site-footer .footer-wordmark{display:block!important;color:#fff!important;text-decoration:none!important;font-size:18px!important;line-height:1.2!important;font-weight:900!important;letter-spacing:.09em!important}
+.site-footer .footer-product-name{display:block!important;margin-top:10px!important;color:#fff!important;font-size:15px!important;line-height:1.35!important;font-weight:850!important}
+.site-footer .footer-brand-block p{max-width:470px!important;margin:10px 0 0!important;color:#b7cadb!important;font-size:14px!important;line-height:1.55!important;font-weight:400!important;letter-spacing:0!important}
+.site-footer .footer-small{display:block!important;margin-top:11px!important;color:#8fa8bf!important;font-size:12px!important;line-height:1.4!important}
+.site-footer .footer-col{display:flex!important;flex-direction:column!important;align-content:start!important;gap:9px!important}
+.site-footer .footer-col strong{margin:0 0 2px!important;color:#fff!important;font-size:14px!important;line-height:1.35!important;font-weight:850!important}
+.site-footer .footer-col a{color:#c7d5e3!important;text-decoration:none!important;font-size:13.5px!important;line-height:1.35!important}
+.site-footer .footer-col a:hover,.site-footer .footer-wordmark:hover{color:#fff!important}
+.site-footer .footer-bottom{border-top:1px solid rgba(255,255,255,.13)!important;margin-top:34px!important;padding-top:18px!important;display:flex!important;justify-content:space-between!important;gap:20px!important;color:#8fa8bf!important;font-size:12.5px!important;line-height:1.4!important}
+@media(max-width:980px){.site-footer .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.site-footer .footer-brand-block{grid-column:1/-1!important}}
+@media(max-width:700px){.site-footer{padding-top:38px!important}.site-footer .footer-grid{grid-template-columns:1fr!important;gap:26px!important}.site-footer .footer-brand-block{grid-column:auto!important}.site-footer .footer-bottom{flex-direction:column!important;gap:6px!important}}
