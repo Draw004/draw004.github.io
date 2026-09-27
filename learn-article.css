@@ -1,0 +1,437 @@
+/* Carrowmont Learn article standard v2 - 2026-09-28
+   Shared by every indexable Learn article. Keep article-specific content in HTML;
+   keep recurring presentation here so future guides inherit the same structure. */
+body[data-cm-learn-article="1"] .learn-page-hero .page-hero-inner{
+  max-width:1120px;
+  padding-top:26px;
+  padding-bottom:30px;
+}
+body[data-cm-learn-article="1"] .learn-page-hero .section-kicker{
+  margin-bottom:14px;
+  font-size:12px;
+  letter-spacing:1.8px;
+}
+body[data-cm-learn-article="1"] .learn-page-hero h1{
+  max-width:1080px;
+  margin-bottom:16px;
+  font-size:clamp(42px,3.25vw,56px);
+  line-height:1.06;
+  letter-spacing:-1.55px;
+}
+body[data-cm-learn-article="1"] .learn-page-hero p{
+  max-width:960px;
+  font-size:17px;
+  line-height:1.55;
+}
+body[data-cm-learn-article="1"] .article-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px 15px;
+  margin:12px 0 0;
+  color:#5b7186;
+  font-size:12.5px;
+  line-height:1.45;
+}
+body[data-cm-learn-article="1"] .article-meta a{
+  color:#31556d;
+  font-weight:800;
+  text-decoration:none;
+}
+body[data-cm-learn-article="1"] .article-meta a:hover{text-decoration:underline}
+
+body[data-cm-learn-article="1"] .learn-hub-section{
+  padding-top:20px;
+  padding-bottom:52px;
+}
+body[data-cm-learn-article="1"] .guide-stack{display:block}
+body[data-cm-learn-article="1"] .guide-section{
+  display:block;
+  grid-template-columns:1fr!important;
+  max-width:1120px;
+  margin:0 auto;
+  padding:26px 36px 34px;
+}
+body[data-cm-learn-article="1"] .guide-section>.guide-number,
+body[data-cm-learn-article="1"] .guide-number,
+body[data-cm-learn-article="1"] .guide-index>a>span{
+  display:none!important;
+}
+body[data-cm-learn-article="1"] .guide-index>a::before{
+  display:none!important;
+  content:none!important;
+}
+body[data-cm-learn-article="1"] .guide-section>div{
+  max-width:940px;
+  margin:0 auto;
+}
+body[data-cm-learn-article="1"] .guide-section h2{
+  margin-top:32px;
+  margin-bottom:11px;
+}
+body[data-cm-learn-article="1"] .guide-section .guide-kicker+h2{margin-top:0}
+body[data-cm-learn-article="1"] .guide-section h3{
+  margin-top:21px;
+  margin-bottom:8px;
+  font-size:20px;
+  line-height:1.3;
+}
+
+/* Top relevant-tool action: prominent, but compact enough that the article begins quickly. */
+body[data-cm-learn-article="1"] .guide-action-first{
+  margin:0 0 24px;
+  padding:15px 18px 16px;
+  border:1px solid #a8d9d3;
+  border-radius:15px;
+  background:#f2fbf9;
+  box-shadow:0 7px 18px rgba(11,118,111,.05);
+}
+body[data-cm-learn-article="1"] .guide-action-first .action-label{
+  display:block;
+  margin:0 0 7px;
+  color:#0b766f;
+  font-size:10.5px;
+  font-weight:900;
+  letter-spacing:1.1px;
+  text-transform:uppercase;
+}
+body[data-cm-learn-article="1"] .guide-action-first a,
+body[data-cm-learn-article="1"] .learn-tool-return a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  width:100%;
+  padding:12px 14px 12px 16px;
+  border-radius:11px;
+  background:#0e827a;
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
+  line-height:1.25;
+  text-decoration:none;
+  box-shadow:0 6px 15px rgba(14,130,122,.14);
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+body[data-cm-learn-article="1"] .guide-action-first a:hover,
+body[data-cm-learn-article="1"] .learn-tool-return a:hover{
+  transform:translateY(-1px);
+  background:#0b766f;
+  box-shadow:0 9px 20px rgba(14,130,122,.19);
+}
+body[data-cm-learn-article="1"] .guide-action-first a:focus-visible,
+body[data-cm-learn-article="1"] .learn-tool-return a:focus-visible{
+  outline:3px solid rgba(14,130,122,.25);
+  outline-offset:3px;
+}
+body[data-cm-learn-article="1"] .guide-action-first .action-arrow,
+body[data-cm-learn-article="1"] .learn-tool-return .action-arrow{
+  display:grid;
+  place-items:center;
+  flex:0 0 32px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#fff;
+  color:#0e827a;
+  font-size:21px;
+  line-height:1;
+  font-weight:1000;
+}
+body[data-cm-learn-article="1"] .guide-action-first p{
+  margin:9px 2px 0;
+  color:#405c78;
+  font-size:14px;
+  line-height:1.5;
+}
+body[data-cm-learn-article="1"] .guide-tool-link{display:none!important}
+
+/* Bottom relevant-tool action is generated from the top action by learn-article.js. */
+body[data-cm-learn-article="1"] .learn-tool-return{
+  margin:30px 0 0;
+  padding:17px 18px 18px;
+  border:1px solid #c7dfdf;
+  border-radius:15px;
+  background:#f7fbfb;
+}
+body[data-cm-learn-article="1"] .learn-tool-return-kicker{
+  display:block;
+  margin:0 0 7px;
+  color:#0b766f;
+  font-size:10.5px;
+  font-weight:900;
+  letter-spacing:1.1px;
+  text-transform:uppercase;
+}
+body[data-cm-learn-article="1"] .learn-tool-return p{
+  margin:9px 2px 0;
+  color:#506a80;
+  font-size:13.5px;
+  line-height:1.5;
+}
+
+body[data-cm-learn-article="1"] .reference-note{
+  margin:22px 0 0;
+  padding-top:12px;
+  border-top:1px solid #dbe8ea;
+  color:#526b82;
+}
+body[data-cm-learn-article="1"] .reference-note summary{
+  cursor:pointer;
+  color:#31556d;
+  font-size:13px;
+  font-weight:800;
+}
+body[data-cm-learn-article="1"] .reference-note p{
+  margin:9px 0 0;
+  font-size:12.75px;
+  line-height:1.5;
+}
+body[data-cm-learn-article="1"] .reference-note a{color:#31556d}
+body[data-cm-learn-article="1"] .source-list{
+  margin:9px 0 0;
+  padding-left:19px;
+}
+body[data-cm-learn-article="1"] .source-list li{
+  margin:6px 0;
+  font-size:12.75px;
+  line-height:1.48;
+}
+body[data-cm-learn-article="1"] .source-list a{overflow-wrap:anywhere}
+
+body[data-cm-learn-article="1"] .learn-disclaimer,
+body[data-cm-learn-article="1"] .learn-more-row,
+body[data-cm-learn-article="1"] .guide-index{
+  max-width:1120px;
+  margin-left:auto;
+  margin-right:auto;
+}
+body[data-cm-learn-article="1"] .learn-disclaimer{
+  margin-top:20px;
+  padding:15px 20px;
+  font-size:14px;
+  line-height:1.55;
+}
+body[data-cm-learn-article="1"] .learn-more-row{margin-top:18px}
+body[data-cm-learn-article="1"] .guide-index{
+  margin-top:22px!important;
+}
+body[data-cm-learn-article="1"] .guide-index>a{
+  display:block;
+  grid-template-columns:1fr!important;
+  padding:16px 18px;
+}
+body[data-cm-learn-article="1"] .guide-index strong{
+  display:block;
+  padding-right:0!important;
+  font-size:15px;
+  line-height:1.3;
+}
+body[data-cm-learn-article="1"] .guide-index small{
+  display:block;
+  margin-top:5px;
+  font-size:13px;
+  line-height:1.45;
+}
+body[data-cm-learn-article="1"] .guide-table-wrap{
+  overflow-x:auto;
+  margin:18px 0 24px;
+  border:1px solid #dbe8ea;
+  border-radius:14px;
+}
+body[data-cm-learn-article="1"] .guide-table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  font-size:14px;
+  line-height:1.45;
+}
+body[data-cm-learn-article="1"] .guide-table th,
+body[data-cm-learn-article="1"] .guide-table td{
+  padding:12px 14px;
+  text-align:left;
+  vertical-align:top;
+  border-bottom:1px solid #e5eef0;
+}
+body[data-cm-learn-article="1"] .guide-table th{
+  background:#f2faf8;
+  color:#173b55;
+  font-weight:900;
+}
+body[data-cm-learn-article="1"] .guide-table tr:last-child td{border-bottom:0}
+body[data-cm-learn-article="1"] .guide-bullets{
+  margin:10px 0 22px;
+  padding-left:22px;
+  color:#294963;
+}
+body[data-cm-learn-article="1"] .guide-bullets li{
+  margin:8px 0;
+  line-height:1.58;
+}
+body[data-cm-learn-article="1"] .guide-formula{
+  margin:18px 0;
+  padding:16px 18px;
+  border:1px solid #dbe5ea;
+  border-radius:12px;
+  background:#f6f9fb;
+  color:#183a55;
+  font-weight:800;
+  line-height:1.55;
+}
+
+@media(max-width:700px){
+  body[data-cm-learn-article="1"] .learn-page-hero .page-hero-inner{
+    padding-top:22px;
+    padding-bottom:24px;
+  }
+  body[data-cm-learn-article="1"] .learn-page-hero .section-kicker{margin-bottom:11px;font-size:11px}
+  body[data-cm-learn-article="1"] .learn-page-hero h1{
+    margin-bottom:13px;
+    font-size:clamp(31px,8.2vw,40px);
+    line-height:1.08;
+    letter-spacing:-1px;
+  }
+  body[data-cm-learn-article="1"] .learn-page-hero p{font-size:15.5px;line-height:1.5}
+  body[data-cm-learn-article="1"] .article-meta{font-size:12px;gap:5px 12px;margin-top:10px}
+  body[data-cm-learn-article="1"] .learn-hub-section{padding-top:16px;padding-bottom:44px}
+  body[data-cm-learn-article="1"] .guide-section{padding:20px 16px 28px}
+  body[data-cm-learn-article="1"] .guide-section h2{margin-top:27px}
+  body[data-cm-learn-article="1"] .guide-action-first{padding:14px 14px 15px;margin-bottom:21px}
+  body[data-cm-learn-article="1"] .guide-action-first a,
+  body[data-cm-learn-article="1"] .learn-tool-return a{font-size:15.5px;padding:11px 11px 11px 13px}
+  body[data-cm-learn-article="1"] .guide-action-first .action-arrow,
+  body[data-cm-learn-article="1"] .learn-tool-return .action-arrow{flex-basis:30px;width:30px;height:30px;font-size:20px}
+  body[data-cm-learn-article="1"] .guide-action-first p{font-size:13.5px}
+  body[data-cm-learn-article="1"] .learn-tool-return{margin-top:26px;padding:15px 14px 16px}
+  body[data-cm-learn-article="1"] .learn-disclaimer{padding:13px 15px;font-size:13.5px}
+  body[data-cm-learn-article="1"] .guide-index{gap:10px}
+  body[data-cm-learn-article="1"] .guide-index>a{padding:15px 16px}
+  body[data-cm-learn-article="1"] .guide-table{font-size:13px}
+  body[data-cm-learn-article="1"] .guide-table th,
+  body[data-cm-learn-article="1"] .guide-table td{padding:10px 11px}
+}
+
+/* Rich-guide editorial modules - v2 content-depth standard. */
+body[data-cm-learn-article="1"] .rich-guide-module{
+  margin-top:30px;
+  padding-top:8px;
+  border-top:1px solid #e1ebed;
+}
+body[data-cm-learn-article="1"] .guide-answer{
+  margin:18px 0 26px;
+  padding:18px 20px;
+  border-left:4px solid #0e827a;
+  border-radius:0 14px 14px 0;
+  background:#f2faf8;
+  color:#173b55;
+}
+body[data-cm-learn-article="1"] .guide-answer>strong{
+  display:block;
+  margin-bottom:6px;
+  color:#0b766f;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+body[data-cm-learn-article="1"] .guide-answer p,
+body[data-cm-learn-article="1"] .guide-note p{
+  margin:0;
+}
+body[data-cm-learn-article="1"] .guide-formula{
+  display:grid;
+  gap:6px;
+}
+body[data-cm-learn-article="1"] .guide-formula>strong{
+  color:#0b766f;
+  font-size:12px;
+  letter-spacing:.45px;
+  text-transform:uppercase;
+}
+body[data-cm-learn-article="1"] .guide-formula code{
+  display:block;
+  padding:0;
+  background:transparent;
+  color:#153a56;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:900;
+  white-space:normal;
+}
+body[data-cm-learn-article="1"] .guide-formula span{
+  color:#5a7184;
+  font-size:13px;
+  font-weight:500;
+}
+body[data-cm-learn-article="1"] .rich-example{
+  display:grid;
+  gap:6px;
+  margin:18px 0 24px;
+  padding:17px 19px;
+  border:1px solid #cce2df;
+  border-radius:13px;
+  background:#f8fcfb;
+}
+body[data-cm-learn-article="1"] .rich-example>strong{
+  margin-bottom:2px;
+  color:#173b55;
+  font-size:15px;
+}
+body[data-cm-learn-article="1"] .rich-example>span{
+  display:block;
+  color:#405d73;
+  font-size:14px;
+  line-height:1.55;
+}
+body[data-cm-learn-article="1"] .guide-note{
+  margin:18px 0 24px;
+  padding:16px 18px;
+  border:1px solid #dbe8ea;
+  border-radius:13px;
+  background:#f6f9fb;
+  color:#294963;
+}
+body[data-cm-learn-article="1"] .guide-note>strong{
+  display:block;
+  margin-bottom:6px;
+  color:#173b55;
+}
+body[data-cm-learn-article="1"] .guide-note.warning{
+  border-color:#e8d9ad;
+  background:#fffaf0;
+}
+body[data-cm-learn-article="1"] .guide-steps{
+  margin:10px 0 24px;
+  padding-left:24px;
+  color:#294963;
+}
+body[data-cm-learn-article="1"] .guide-steps li{
+  margin:9px 0;
+  padding-left:3px;
+  line-height:1.58;
+}
+body[data-cm-learn-article="1"] .guide-depth-module{
+  margin-top:26px;
+  padding-top:4px;
+}
+body[data-cm-learn-article="1"] .guide-depth-module h2:first-child{
+  margin-top:24px;
+}
+body[data-cm-learn-article="1"] .guide-section p{
+  line-height:1.68;
+}
+body[data-cm-learn-article="1"] .guide-section h2{
+  scroll-margin-top:96px;
+}
+body[data-cm-learn-article="1"] .guide-section strong{
+  text-wrap:pretty;
+}
+
+@media(max-width:700px){
+  body[data-cm-learn-article="1"] .rich-guide-module{margin-top:24px}
+  body[data-cm-learn-article="1"] .guide-answer{padding:15px 15px;margin:15px 0 22px}
+  body[data-cm-learn-article="1"] .guide-formula{padding:14px 15px}
+  body[data-cm-learn-article="1"] .guide-formula code{font-size:14.5px}
+  body[data-cm-learn-article="1"] .rich-example,
+  body[data-cm-learn-article="1"] .guide-note{padding:14px 15px}
+  body[data-cm-learn-article="1"] .rich-example>span{font-size:13.5px}
+}
