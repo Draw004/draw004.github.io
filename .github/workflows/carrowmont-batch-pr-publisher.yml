@@ -100,7 +100,7 @@ jobs:
           # staged source-contract, browser, link, chart, and PDF QA.
           jq -r '.repositories[].name' "$MANIFEST" | while IFS= read -r repo; do
             case "$repo" in
-              draw004.github.io|sip-calculator|goal-planner|financial-independence|inflation-calculator|retirement-calculator|carrowmont-qa) ;;
+              draw004.github.io|sip-calculator|goal-planner|financial-independence|inflation-calculator|retirement-calculator|budget-cash-flow-planner|carrowmont-qa) ;;
               *) echo "Repository is not on the Carrowmont allow-list: $repo"; exit 1 ;;
             esac
           done
@@ -112,6 +112,7 @@ jobs:
             financial-independence \
             inflation-calculator \
             retirement-calculator \
+            budget-cash-flow-planner \
             carrowmont-qa
           do
             echo "Preflight: Draw004/$repo"
@@ -206,7 +207,7 @@ jobs:
           mkdir -p staged-site
           cp -a staging/draw004.github.io/. staged-site/
 
-          for repo in sip-calculator goal-planner financial-independence inflation-calculator retirement-calculator; do
+          for repo in sip-calculator goal-planner financial-independence inflation-calculator retirement-calculator budget-cash-flow-planner; do
             mkdir -p "staged-site/$repo"
             cp -a "staging/$repo/." "staged-site/$repo/"
           done

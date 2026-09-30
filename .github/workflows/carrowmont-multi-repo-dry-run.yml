@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   source-contract-check:
-    name: Check Carrowmont main site + 5 tools
+    name: Check Carrowmont main site + 6 tools
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -61,6 +61,14 @@ jobs:
           path: tools/sip-calculator
           persist-credentials: false
 
+      - name: Checkout Budget & Cash Flow Planner
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/budget-cash-flow-planner
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/budget-cash-flow-planner
+          persist-credentials: false
+
       - name: Get Carrowmont QA checker
         shell: bash
         run: |
@@ -82,7 +90,8 @@ jobs:
             goal-planner \
             inflation-calculator \
             retirement-calculator \
-            sip-calculator
+            sip-calculator \
+            budget-cash-flow-planner
           do
             echo "===== $repo ====="
             git -C "tools/$repo" log -1 --format="Commit: %H%nDate: %ci%nMessage: %s"

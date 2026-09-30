@@ -69,6 +69,15 @@ jobs:
           fetch-depth: 1
           persist-credentials: false
 
+      - name: Checkout Budget & Cash Flow Planner
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/budget-cash-flow-planner
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/budget-cash-flow-planner
+          fetch-depth: 1
+          persist-credentials: false
+
       - name: Clone Carrowmont QA
         run: git clone --depth 1 https://github.com/Draw004/carrowmont-qa.git snapshot/carrowmont-qa
 
@@ -80,7 +89,7 @@ jobs:
             echo "Carrowmont Source Snapshot"
             echo "Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             echo
-            for repo in               draw004.github.io               sip-calculator               goal-planner               financial-independence               inflation-calculator               retirement-calculator               carrowmont-qa
+            for repo in               draw004.github.io               sip-calculator               goal-planner               financial-independence               inflation-calculator               retirement-calculator               budget-cash-flow-planner               carrowmont-qa
             do
               commit="$(git -C "snapshot/$repo" rev-parse HEAD)"
               echo "$repo  $commit"

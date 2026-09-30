@@ -5,7 +5,7 @@ on:
 
 jobs:
   verify-repositories:
-    name: Verify all 6 repositories
+    name: Verify all 7 repositories
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,7 @@ jobs:
             "Draw004/financial-independence"
             "Draw004/inflation-calculator"
             "Draw004/retirement-calculator"
+            "Draw004/budget-cash-flow-planner"
           )
 
           echo "Checking access to all Carrowmont repositories..."
@@ -48,4 +49,4 @@ jobs:
             echo
           done
 
-          echo "SUCCESS: Token has access to all 6 repositories."
+          echo "SUCCESS: Token has access to all 7 repositories."
