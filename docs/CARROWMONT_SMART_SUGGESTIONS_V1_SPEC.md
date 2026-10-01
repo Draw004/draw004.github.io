@@ -1,10 +1,10 @@
 # Carrowmont Smart Suggestions V1
 
 **Document:** `CARROWMONT_SMART_SUGGESTIONS_V1_SPEC.md`  
-**Version:** 1.0  
-**Status:** Implementation specification  
+**Version:** 1.1  
+**Status:** SS1 implementation baseline  
 **Date:** 2 October 2026  
-**Baseline:** `carrowmont-source-snapshot (16).zip`  
+**Baseline:** `carrowmont-source-snapshot (17).zip`  
 **Primary product:** Budget & Cash Flow Planner
 
 ## 1. Purpose
@@ -19,11 +19,11 @@ The first production release will therefore be deterministic, local-first, priva
 
 ## 2. Current baseline
 
-Snapshot 16 captures the following repository commits:
+Snapshot 17 captures the following repository commits:
 
 | Repository | Commit |
 |---|---|
-| `draw004.github.io` | `54b4f4333d311c3c085743b54076f43687cc62ab` |
+| `draw004.github.io` | `630390aa611f2dc1f8e1747e0623c0f6494b8df5` |
 | `sip-calculator` | `9309d6b6150c6f09e410b7f0b3c79a456c4c3f42` |
 | `goal-planner` | `e4f14525d858ed1b1bcffcc1c24b211144915d38` |
 | `financial-independence` | `f0abbb8c3be6cf511dabc700713a6300c9b13c84` |
@@ -373,6 +373,10 @@ The release must cover at least these cases:
 15. Backup/restore: Smart Suggestions recompute correctly after restored history.
 16. PDF: report uses the same top deterministic suggestions as the webpage.
 17. Privacy: V1A Smart Suggestions produce no new request containing budget values.
+
+## 18A. SS1 implementation note
+
+Snapshot 17 is the approved development baseline for Batch SS1. The implementation adds a pure local `smart-suggestions.js` analysis/scenario engine and keeps the existing calculator mathematics unchanged. The webpage and Budget PDF consume the same deterministic suggestion model.
 
 ## 19. Release strategy
 
