@@ -1,11 +1,11 @@
 # Carrowmont Smart Suggestions SS2
 
 **Document:** `CARROWMONT_SMART_SUGGESTIONS_SS2_SPEC.md`  
-**Version:** 1.0  
-**Status:** Implementation specification  
+**Version:** 1.1  
+**Status:** SS2 implementation baseline  
 **Date:** 2 October 2026  
 **Primary product:** Budget & Cash Flow Planner  
-**Implementation baseline:** Current production state after successful SS1 release; exact repository commits will be frozen in the fresh Source Snapshot taken after this specification is committed.
+**Implementation baseline:** `carrowmont-source-snapshot (18).zip` — main `3fe5e97c0a3aaa067910cf18ef752d7b61835ddc`, Budget `9e811602b4482dcb7a67d48f2d84e612918c5e4f`, QA `3890355ae9ebcaefc5e264a98a247135c472f891`.
 
 ## 1. Purpose
 
@@ -32,6 +32,10 @@ The revised sequence is:
 | Later V1B / SS3 | Optional AI explanation layer, only after backend and privacy architecture are approved |
 
 This document supersedes the earlier SS2 naming only. The safety, privacy, deterministic-math, and AI-boundary principles from the V1 specification remain in force.
+
+### 2.1 Implementation record
+
+The implementation batch described by this document is **SS2 - Deterministic intelligence enhancement**. The browser engine is versioned as **Smart Suggestions engine version 2.0.0** and is built from Snapshot 18. SS2 remains local-first and introduces **no external AI service** and no new transmission of budget history or row-level financial data.
 
 ## 3. Current SS1 capability
 
