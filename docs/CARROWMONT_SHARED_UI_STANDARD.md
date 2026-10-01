@@ -173,6 +173,8 @@ India · INR
 - white background;
 - minimum desktop width: approximately `170px`;
 - desktop padding: approximately `12px 18px`;
+- canonical computed height: **44px on desktop** and **38px on mobile**;
+- use `border-box` sizing and lock the shared pill height so browser/font differences cannot create cross-tool drift;
 - centered vertical alignment;
 - gap between globe, label and chevron: approximately `9px`;
 - text weight: approximately 800;
