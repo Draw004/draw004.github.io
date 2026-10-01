@@ -2,21 +2,22 @@
 
 ## Purpose
 
-This implementation applies the September 2026 Carrowmont naming and PDF-report standard across the main website, all five calculator repositories, and central QA.
+This implementation record now applies the Carrowmont naming and PDF-report standard across the main website, all six calculator repositories, and central QA.
 
-The release is intentionally limited to naming, PDF rendering, report structure, and QA. Existing calculator calculation engines are outside the change set.
+The original September 2026 report-standardization work was limited to naming, PDF rendering, report structure, and QA. The October 2026 six-tool extension changes only the shared report helper, related QA contracts and documentation for the five existing calculators; the Budget & Cash Flow Planner is introduced as the new sixth calculator in the accompanying V1 release. Existing calculator calculation engines remain outside this report-standard change set.
 
 ## Source snapshot
 
 Reviewed source snapshot commits:
 
-- `draw004.github.io` — `db981a3174e92b7342e9fda625f78fcea4c9eb15`
-- `sip-calculator` — `84dc19dfb4536dba7e2559b93613d20c3aa101f3`
-- `goal-planner` — `ff67d3bbddf36ec1919b76fa5f574b19c133e7d4`
-- `financial-independence` — `50c004dec61a843bdee920e1d2240af0461fc9c7`
-- `inflation-calculator` — `4253b546cae04a69e0ca23cfefe4b9b1cedf70d2`
-- `retirement-calculator` — `68eb0fe8460b84da41132abfc9dc41bc03a508ae`
-- `carrowmont-qa` — `669f43ea893ebb46e0fc6eb401975e091f08b41f`
+- `draw004.github.io` — `ee9b40f47e3a1b7e3d828ea7f151350a7359c947`
+- `sip-calculator` — `05befef2d03c9953faa3b8797a5cb609b0eb450a`
+- `goal-planner` — `78e4232984daeb0e87d1e64a1f0f12cca9f48bf3`
+- `financial-independence` — `fa3de50fd53e8173961cd9bc38a231829489cad3`
+- `inflation-calculator` — `d81b51bb4ba8564edc45ec88eb61ba66944cc633`
+- `retirement-calculator` — `81186b7bbb7cb5e96ae74758e8c828f0639cb709`
+- `budget-cash-flow-planner` — `dc91bc847e75e4cecd974bc569e665a4bd95db15`
+- `carrowmont-qa` — `e64038886d8d0e3abe42cd135de018c809f0de23`
 
 ## Naming standard
 
@@ -38,7 +39,7 @@ The established production route remains `/sip-calculator/`.
 
 ## Shared PDF architecture
 
-The five calculator repositories receive the same byte-identical `report-standard.js` helper.
+The six calculator repositories receive the same byte-identical `report-standard.js` helper.
 
 It provides two standardized final report pages.
 
@@ -63,6 +64,21 @@ The investment-tool card resolves by country:
 
 - India — **SIP Calculator**
 - outside India — **Recurring Investment Calculator**
+
+### Six-tool registry rule
+
+The shared report helper maintains one registry containing all six active Carrowmont calculators:
+
+- SIP Calculator / Recurring Investment Calculator
+- Retirement Planner
+- Goal Planner
+- Financial Independence
+- Inflation Calculator
+- Budget & Cash Flow Planner
+
+For every report, the **Continue planning with Carrowmont** page removes the calculator that generated the report and renders every remaining active calculator. With six active calculators, that means exactly five related-tool cards. The helper must not truncate the registry to four cards, and a new calculator should be added to the shared registry rather than patched into one report independently.
+
+The five-card layout uses a two-column grid with the final odd card centered. The rule is shared across all six calculator repositories and the helper remains byte-identical.
 
 ## SIP / Recurring Investment changes
 
@@ -121,17 +137,19 @@ The following calculation/application files were compared with the source snapsh
 - `inflation-calculator/app.js`
 - `retirement-calculator/app.js`
 
-No `styles.css` file is changed by this release.
+No existing calculator `styles.css` file is changed by the six-tool report-standard extension. Budget & Cash Flow Planner V1 adds its own stylesheet as part of the new tool launch.
 
 ## QA protection
 
 Central QA is updated to verify:
 
-- the shared report standard exists in all five tools
-- the helper is byte-identical across all five tools
+- the shared report standard exists in all six tools
+- the helper is byte-identical across all six tools
 - each tool loads the shared helper before its PDF renderer
 - all reports use the standardized Guide & Methodology page
 - all reports use the standardized Continue Planning page
+- the shared tool registry contains all six active calculators
+- each Continue Planning page renders all five other active calculators without truncation
 - India retains SIP identity
 - international product/report surfaces use Recurring Investment Calculator
 - international hero wording is not monthly-only
@@ -146,7 +164,7 @@ Central QA is updated to verify:
 Completed before creating the release bundle:
 
 - JavaScript syntax validation — **PASS**
-- Carrowmont multi-repo source contract — **56 PASS / 0 FAIL**
+- Carrowmont multi-repo source contract — **154 PASS / 0 FAIL**
 - shared `report-standard.js` hash equality — **PASS**
 - calculation/application file comparison — **PASS / unchanged**
 
@@ -158,7 +176,7 @@ The Batch PR Publisher:
 
 1. verifies the reviewed base SHA-256 for every modified existing file
 2. verifies every bundled replacement SHA-256
-3. applies changes only to an explicit seven-repository allow-list
+3. applies changes only to an explicit eight-repository allow-list
 4. syntax-checks changed JavaScript
 5. runs the multi-repo source contract
 6. builds a combined staged Carrowmont website

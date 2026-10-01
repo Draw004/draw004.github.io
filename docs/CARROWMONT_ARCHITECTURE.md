@@ -12,11 +12,28 @@ Before making major product, UI, localization, reporting, or infrastructure chan
 
 The handover document explains the GitHub automation, QA workflows, token setup, and repository access. This document explains the product itself.
 
+## 1A. October 2026 Budget & Cash Flow Planner extension
+
+The Budget & Cash Flow Planner V1 extends the ecosystem from five to six active calculators. During this launch, older sections that describe the budget planner as a future tool should be read as the design history for the now-implemented product.
+
+The six active calculator repositories are:
+
+- `sip-calculator`
+- `goal-planner`
+- `financial-independence`
+- `inflation-calculator`
+- `retirement-calculator`
+- `budget-cash-flow-planner`
+
+The shared PDF **Continue planning with Carrowmont** page follows one six-tool registry rule: remove the calculator that generated the report and render every remaining active calculator. With six active tools, each report therefore contains five related-tool cards. The shared `report-standard.js` helper must remain byte-identical across all six calculator repositories, and QA should validate the same rule rather than maintaining a separate Budget-only exception.
+
+This extension follows the existing source-of-truth principle: the active tool list should be maintained once where practical and reused by reports and QA.
+
 ---
 
 # 2. Current Carrowmont Ecosystem
 
-Carrowmont currently consists of a main website plus five primary financial planning tools.
+Carrowmont currently consists of a main website plus six primary financial planning tools.
 
 ## Main Website
 
@@ -101,6 +118,20 @@ Purpose:
 - estimate retirement value at the user's selected retirement age
 - produce a Retirement Report
 
+### Budget & Cash Flow Planner
+
+Repository:
+
+`Draw004/budget-cash-flow-planner`
+
+Purpose:
+
+- organize income and expenses into a monthly cash-flow view
+- translate pay frequency into planning context without conflating pay and saving cadence
+- reserve for irregular bills and emergency savings
+- support privacy-first local history and comparison views
+- produce a standardized Budget & Cash Flow Report
+
 ---
 
 # 3. Supporting QA Repository
@@ -137,6 +168,7 @@ Carrowmont
    +-- Financial Independence
    +-- Inflation Calculator
    +-- Retirement Calculator
+   +-- Budget & Cash Flow Planner
    +-- Future Tools
 ```
 
@@ -356,7 +388,7 @@ Tool implications:
 - Goal Planner: Savings / Contribution Frequency; optional future `Same as my pay cycle`.
 - Financial Independence: Income Frequency and Savings / Investment Frequency as independent fields.
 - Retirement Planner: Pay Frequency and Retirement Contribution Frequency may both be relevant and should remain independent.
-- Pay Cycle Budget Planner: Pay Frequency is a primary input; savings/investment allocations can use their own cadence.
+- Budget & Cash Flow Planner: Pay Frequency is a primary input; savings/investment allocations can use their own cadence.
 - Inflation Calculator: no required pay-frequency field.
 
 Country may provide sensible starting suggestions, but a country selection must never imply that a user's actual pay frequency and contribution frequency are identical.
@@ -485,19 +517,19 @@ This should be output-only unless user demand justifies more complexity.
 
 ---
 
-# 12. Future Pay Cycle Budget Planner
+# 12. Budget & Cash Flow Planner
 
-Proposed tool:
+Implemented tool:
 
-`Pay Cycle Budget Planner`
+`Budget & Cash Flow Planner`
 
-Potential repository:
+Repository:
 
-`Draw004/pay-cycle-planner`
+`Draw004/budget-cash-flow-planner`
 
-Potential public path:
+Public path:
 
-`/pay-cycle-planner/`
+`/budget-cash-flow-planner/`
 
 Primary purpose:
 
@@ -541,7 +573,7 @@ Future Carrowmont tools should increasingly connect with one another.
 Example:
 
 ```text
-Pay Cycle Budget Planner
+Budget & Cash Flow Planner
         |
         +-- Invest this amount -> SIP Calculator
         +-- Use for goal -> Goal Planner
@@ -641,6 +673,7 @@ Goal Planner
 Financial Independence
 Inflation Calculator
 Retirement Calculator
+Budget & Cash Flow Planner
 ```
 
 Each item may contain a short description.
@@ -1161,7 +1194,7 @@ The current architecture naturally supports expansion into a broader planning ec
 
 Potential future areas:
 
-- Pay Cycle Budget Planner
+- Budget scenario / cash-flow enhancements
 - Emergency Fund Calculator
 - Debt Payoff Planner
 - Mortgage Affordability / Repayment Planner
@@ -1190,7 +1223,7 @@ Recommended sequence:
 
 ## Phase 1
 
-Keep current five tools stable.
+Keep current six tools stable.
 
 Allow Google / Bing indexing to continue.
 
@@ -1215,11 +1248,11 @@ Expand QA contracts to validate pay-frequency standards.
 
 ## Phase 4
 
-Build Pay Cycle Budget Planner.
+Launch and stabilize Budget & Cash Flow Planner V1.
 
 ## Phase 5
 
-Integrate the new tool with the existing Carrowmont ecosystem.
+Complete six-tool integration, shared report-card coverage and post-launch QA.
 
 ## Phase 6
 
@@ -1290,6 +1323,7 @@ Avoid multiple independent copies of the same information.
 | Financial Independence | Active |
 | Inflation Calculator | Active |
 | Retirement Calculator | Active |
+| Budget & Cash Flow Planner | Active / V1 launch |
 | Central QA repository | Active |
 | Multi-repo access automation | Active |
 | Daily QA Guard | Active |
@@ -1297,7 +1331,6 @@ Avoid multiple independent copies of the same information.
 | Generic automatic updater | Not yet deployed |
 | Country/currency support | Active / evolving |
 | Pay-frequency layer | Planned |
-| Pay Cycle Budget Planner | Planned |
 | Shared user preferences | Future |
 | Account system | Not currently required |
 
