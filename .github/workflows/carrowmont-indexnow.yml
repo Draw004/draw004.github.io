@@ -1,0 +1,90 @@
+name: Carrowmont IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "d7088229f885cb74d3cd2a3b696b5708.txt"
+      - "scripts/indexnow-submit.mjs"
+      - ".github/workflows/carrowmont-indexnow.yml"
+  schedule:
+    - cron: "37 4 * * *"
+  workflow_dispatch:
+    inputs:
+      lookback_days:
+        description: "Submit sitemap URLs changed within this many days (0-30)"
+        required: false
+        default: "1"
+        type: string
+      urls:
+        description: "Optional comma/newline-separated recent changed URLs; leave blank to use sitemap lastmod"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: carrowmont-indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    name: Notify IndexNow of recent Carrowmont changes
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait until the verification key and sitemap are live
+        if: github.event_name != 'schedule'
+        shell: bash
+        env:
+          INDEXNOW_KEY: d7088229f885cb74d3cd2a3b696b5708
+        run: |
+          set -euo pipefail
+          expected_sitemap_sha="$(sha256sum sitemap.xml | awk '{print $1}')"
+          ready=0
+          for attempt in $(seq 1 40); do
+            nonce="$(date +%s)-$attempt"
+            remote_key="$(curl -fsS "https://carrowmont.com/${INDEXNOW_KEY}.txt?indexnow=${nonce}" 2>/dev/null || true)"
+            if [[ "$remote_key" == "$INDEXNOW_KEY" ]]; then
+              tmp="$(mktemp)"
+              if curl -fsS "https://carrowmont.com/sitemap.xml?indexnow=${nonce}" -o "$tmp"; then
+                remote_sitemap_sha="$(sha256sum "$tmp" | awk '{print $1}')"
+                rm -f "$tmp"
+                if [[ "$remote_sitemap_sha" == "$expected_sitemap_sha" ]]; then
+                  ready=1
+                  break
+                fi
+              fi
+            fi
+            echo "Production deploy not visible yet (attempt $attempt/40); waiting 15 seconds."
+            sleep 15
+          done
+          if [[ "$ready" != "1" ]]; then
+            echo "Production key/sitemap did not match this commit within 10 minutes."
+            exit 1
+          fi
+
+      - name: Submit recent changed URLs to IndexNow
+        shell: bash
+        env:
+          INDEXNOW_HOST: carrowmont.com
+          INDEXNOW_KEY: d7088229f885cb74d3cd2a3b696b5708
+          INDEXNOW_KEY_LOCATION: https://carrowmont.com/d7088229f885cb74d3cd2a3b696b5708.txt
+          INDEXNOW_SITEMAP: sitemap.xml
+          INDEXNOW_LOOKBACK_DAYS: ${{ github.event_name == 'workflow_dispatch' && inputs.lookback_days || '1' }}
+          INDEXNOW_URLS: ${{ github.event_name == 'workflow_dispatch' && inputs.urls || '' }}
+        run: node scripts/indexnow-submit.mjs
