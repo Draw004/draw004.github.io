@@ -67,9 +67,14 @@
     P().text(ctx, 'What this report means', M, y, { size: 16, weight: 900, color: C.navy });
     line(ctx, M, W - M, y + 13);
     y += 31;
-    card(ctx, M, y, CW, 118, C.light, C.line, 11);
-    P().wrappedText(ctx, 'The Base path uses the entered return and inflation every year. The Cautious path reduces return by 1.5 percentage points and raises inflation by 1 point. The Adverse path uses a disclosed weak-first ten-year return sequence and higher early inflation. These are deterministic illustrations—not probabilities, forecasts or guarantees.', M + 16, y + 26, CW - 32, { size: 10, lineHeight: 15, weight: 550, color: C.ink, maxLines: 6 });
-    y += 139;
+    const meaningText = 'The Base path uses the entered return and inflation every year. The Cautious path reduces return by 1.5 percentage points and raises inflation by 1 point. The Adverse path uses a disclosed weak-first ten-year return sequence and higher early inflation. These are deterministic illustrations—not probabilities, forecasts or guarantees.';
+    ctx.font = '550 10px Arial, sans-serif';
+    const meaningLines = P().linesForText ? P().linesForText(ctx, meaningText, CW - 32) : null;
+    const meaningLineCount = meaningLines ? Math.min(6, meaningLines.length) : 4;
+    const meaningCardH = Math.max(72, 31 + meaningLineCount * 15);
+    card(ctx, M, y, CW, meaningCardH, C.light, C.line, 11);
+    P().wrappedText(ctx, meaningText, M + 16, y + 26, CW - 32, { size: 10, lineHeight: 15, weight: 550, color: C.ink, maxLines: 6 });
+    y += meaningCardH + 21;
     card(ctx, M, y, CW, 90, C.warm, '#ebd2a8', 11);
     P().text(ctx, 'Educational use only', M + 16, y + 27, { size: 13, weight: 900, color: '#8b5a17' });
     P().wrappedText(ctx, 'This report does not identify a universally safe withdrawal rate and does not model taxes, fees, pensions, spending guardrails, historical data or Monte Carlo probabilities.', M + 16, y + 50, CW - 32, { size: 9.5, lineHeight: 13, weight: 550, color: C.ink, maxLines: 3 });
