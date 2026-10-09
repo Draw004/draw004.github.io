@@ -126,7 +126,14 @@ body{background:#fff;color:var(--stress-ink)}
 .stress-table .stress-status-good{color:#0a7868;font-weight:850}
 .stress-table .stress-status-depleted{color:#a64848;font-weight:850}
 .stress-annual-section{background:#f7fafb}
-.stress-section-heading-row{max-width:none;display:flex;justify-content:space-between;align-items:end;gap:20px}
+.stress-annual-details{border:1px solid var(--stress-line);border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(25,58,77,.04)}
+.stress-annual-details summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 20px;cursor:pointer;background:#f8fbfc;color:var(--stress-navy);font-weight:850}
+.stress-annual-details summary::-webkit-details-marker{display:none}
+.stress-annual-details summary::after{content:'+';font-size:24px;color:var(--stress-teal-dark);font-weight:700;line-height:1;margin-left:4px}
+.stress-annual-details[open] summary::after{content:'−'}
+.stress-annual-details summary small{margin-left:auto;color:#637b96;font-weight:700}
+.stress-annual-detail-body{padding:18px}
+.stress-annual-controls{display:flex;justify-content:flex-end;margin-bottom:14px}
 .stress-scenario-select{min-width:220px}
 .stress-annual-table{min-width:1220px}
 .stress-annual-table-wrap{max-height:650px}
@@ -195,4 +202,12 @@ body{background:#fff;color:var(--stress-ink)}
   .stress-next-grid a{min-height:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.stress-button,.stress-next-grid a{transition:none!important}.stress-button:hover,.stress-next-grid a:hover{transform:none}}
+@media(max-width:560px){
+  .stress-annual-details summary{align-items:flex-start;flex-wrap:wrap}
+  .stress-annual-details summary small{margin-left:0;flex-basis:calc(100% - 34px)}
+  .stress-annual-detail-body{padding:12px}
+  .stress-annual-controls{justify-content:stretch}
+  .stress-scenario-select{width:100%;min-width:0}
+}
+
 @media print{.no-print,.site-header,.site-footer{display:none!important}.stress-section,.stress-workspace{break-inside:avoid}.stress-input-card{position:static}.stress-layout{display:block}.stress-results{margin-top:24px}}

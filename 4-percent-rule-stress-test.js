@@ -23,6 +23,10 @@
     rateBody: $('rateComparisonBody'),
     annualScenario: $('annualScenarioSelect'),
     annualBody: $('annualTableBody'),
+    annualDetails: $('annualValuesDetails'),
+    annualSummary: $('annualValuesSummary'),
+    annualDisclosureLabel: $('annualDisclosureLabel'),
+    annualDisclosureMeta: $('annualDisclosureMeta'),
     copyBtn: $('copySummaryBtn'),
     csvBtn: $('downloadCsvBtn'),
     reportBtn: $('generateReportBtn'),
@@ -154,43 +158,108 @@
     const margin = { left: 74, right: 36, top: 30, bottom: 54 };
     const plotW = width - margin.left - margin.right;
     const plotH = height - margin.top - margin.bottom;
+    const plotRight = width - margin.right;
+    const plotBottom = margin.top + plotH;
     const allValues = seriesConfig.flatMap((series) => series.points.map((point) => point.value));
     const maximum = Math.max(1, ...allValues);
     const yMax = maximum * 1.12;
     const xMax = Math.max(1, assumptions.horizonYears);
     const x = (year) => margin.left + (year / xMax) * plotW;
     const y = (value) => margin.top + plotH - (Math.max(0, value) / yMax) * plotH;
+    const labelBoxes = [];
 
     svg.replaceChildren();
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.dataset.plotLeft = String(margin.left);
+    svg.dataset.plotRight = String(plotRight);
+    svg.dataset.plotTop = String(margin.top);
+    svg.dataset.plotBottom = String(plotBottom);
 
     for (let i = 0; i <= 4; i += 1) {
       const ratio = i / 4;
       const yValue = yMax * (1 - ratio);
       const yPos = margin.top + plotH * ratio;
-      svg.appendChild(svgEl('line', { x1: margin.left, y1: yPos, x2: width - margin.right, y2: yPos, class: 'grid-line' }));
+      svg.appendChild(svgEl('line', { x1: margin.left, y1: yPos, x2: plotRight, y2: yPos, class: 'grid-line' }));
       svg.appendChild(svgEl('text', { x: margin.left - 10, y: yPos + 4, 'text-anchor': 'end' }, formatMoney(yValue, true)));
     }
 
     const tickYears = [...new Set([0, Math.min(10, xMax), Math.min(20, xMax), xMax])].sort((a, b) => a - b);
     tickYears.forEach((year) => {
       const xPos = x(year);
-      svg.appendChild(svgEl('line', { x1: xPos, y1: margin.top, x2: xPos, y2: margin.top + plotH, class: 'grid-line' }));
+      svg.appendChild(svgEl('line', { x1: xPos, y1: margin.top, x2: xPos, y2: plotBottom, class: 'grid-line' }));
       svg.appendChild(svgEl('text', { x: xPos, y: height - 23, 'text-anchor': 'middle' }, year === 0 ? `Age ${assumptions.startAge}` : `Age ${assumptions.startAge + year}`));
     });
-    svg.appendChild(svgEl('line', { x1: margin.left, y1: margin.top + plotH, x2: width - margin.right, y2: margin.top + plotH, class: 'axis-line' }));
-    svg.appendChild(svgEl('line', { x1: margin.left, y1: margin.top, x2: margin.left, y2: margin.top + plotH, class: 'axis-line' }));
+    svg.appendChild(svgEl('line', { x1: margin.left, y1: plotBottom, x2: plotRight, y2: plotBottom, class: 'axis-line' }));
+    svg.appendChild(svgEl('line', { x1: margin.left, y1: margin.top, x2: margin.left, y2: plotBottom, class: 'axis-line' }));
 
-    function addLabel(point, label, color, dx, dy) {
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function overlaps(a, b, padding = 5) {
+      return !(a.x + a.w + padding <= b.x || b.x + b.w + padding <= a.x || a.y + a.h + padding <= b.y || b.y + b.h + padding <= a.y);
+    }
+
+    function coversAnchor(box, px, py, padding = 7) {
+      return px >= box.x - padding && px <= box.x + box.w + padding && py >= box.y - padding && py <= box.y + box.h + padding;
+    }
+
+    function addLabel(point, label, color, placement = {}) {
       const px = x(point.year), py = y(point.value);
       const text = `${label}: ${formatMoney(point.value, true)}`;
-      const boxW = Math.max(96, Math.min(170, text.length * 6.1));
-      let bx = px + dx;
-      let by = py + dy;
-      bx = Math.max(margin.left + 3, Math.min(width - margin.right - boxW - 2, bx));
-      by = Math.max(6, Math.min(height - margin.bottom - 28, by));
-      svg.appendChild(svgEl('rect', { x: bx, y: by, width: boxW, height: 24, rx: 6, class: 'chart-label-bg' }));
-      svg.appendChild(svgEl('text', { x: bx + 8, y: by + 16, class: 'chart-label-text' }, text));
+      const measure = svgEl('text', { x: -9999, y: -9999, class: 'chart-label-text', visibility: 'hidden' }, text);
+      svg.appendChild(measure);
+      const measuredWidth = typeof measure.getComputedTextLength === 'function' ? measure.getComputedTextLength() : text.length * 7;
+      measure.remove();
+      const boxH = 26;
+      const safe = 7;
+      const gap = 11;
+      const boxW = Math.min(plotW - safe * 2, Math.max(98, Math.ceil(measuredWidth) + 18));
+      const preferLeft = placement.preferLeft ?? (px > margin.left + plotW * 0.63);
+      const preferBelow = placement.preferBelow ?? (py < margin.top + plotH * 0.24);
+
+      const left = px - boxW - gap;
+      const right = px + gap;
+      const above = py - boxH - gap;
+      const below = py + gap;
+      const centered = px - boxW / 2;
+      const candidates = preferLeft
+        ? [[left, preferBelow ? below : above], [left, preferBelow ? above : below], [right, preferBelow ? below : above], [right, preferBelow ? above : below], [centered, above], [centered, below]]
+        : [[right, preferBelow ? below : above], [right, preferBelow ? above : below], [left, preferBelow ? below : above], [left, preferBelow ? above : below], [centered, above], [centered, below]];
+
+      // Add two extra vertical lanes for close depletion points.
+      candidates.push([left, py - boxH * 2 - gap * 2], [right, py - boxH * 2 - gap * 2]);
+
+      let chosen = null;
+      for (const [candidateX, candidateY] of candidates) {
+        const box = {
+          x: clamp(candidateX, margin.left + safe, plotRight - safe - boxW),
+          y: clamp(candidateY, margin.top + safe, plotBottom - safe - boxH),
+          w: boxW,
+          h: boxH
+        };
+        if (coversAnchor(box, px, py)) continue;
+        if (labelBoxes.some((other) => overlaps(box, other))) continue;
+        chosen = box;
+        break;
+      }
+      if (!chosen) {
+        // Always stay inside the plot even in a highly compressed edge case.
+        chosen = {
+          x: clamp(preferLeft ? left : right, margin.left + safe, plotRight - safe - boxW),
+          y: clamp(preferBelow ? below : above, margin.top + safe, plotBottom - safe - boxH),
+          w: boxW,
+          h: boxH
+        };
+      }
+      labelBoxes.push(chosen);
+      const labelGroup = svgEl('g', { class: 'chart-callout', 'data-label': label });
+      labelGroup.appendChild(svgEl('rect', {
+        x: chosen.x, y: chosen.y, width: chosen.w, height: chosen.h, rx: 6, class: 'chart-label-bg',
+        'data-anchor-x': px.toFixed(2), 'data-anchor-y': py.toFixed(2)
+      }));
+      labelGroup.appendChild(svgEl('text', { x: chosen.x + 9, y: chosen.y + 17, class: 'chart-label-text' }, text));
+      svg.appendChild(labelGroup);
       svg.appendChild(svgEl('circle', { cx: px, cy: py, r: 4.5, fill: color, class: 'chart-point' }));
     }
 
@@ -198,13 +267,19 @@
       const d = series.points.map((point, pointIndex) => `${pointIndex ? 'L' : 'M'} ${x(point.year).toFixed(2)} ${y(point.value).toFixed(2)}`).join(' ');
       svg.appendChild(svgEl('path', { d, class: `series-path ${series.className}` }));
       const finalPoint = series.points.find((point) => point.depleted) || series.points[series.points.length - 1];
-      addLabel(finalPoint, series.shortLabel, series.color, index % 2 ? -135 : 10, -30 + index * 25);
+      addLabel(finalPoint, series.shortLabel, series.color, {
+        preferLeft: finalPoint.year >= xMax * 0.66,
+        preferBelow: y(finalPoint.value) < margin.top + plotH * 0.22 && index === 0
+      });
     });
 
     if (options.baseCheckpoints && seriesConfig[0]) {
       [10, 20].filter((year) => year < xMax).forEach((year, index) => {
         const point = seriesConfig[0].points.find((candidate) => candidate.year === year);
-        if (point) addLabel(point, `Base age ${assumptions.startAge + year}`, seriesConfig[0].color, index ? -148 : 10, index ? 10 : -34);
+        if (point) addLabel(point, `Base age ${assumptions.startAge + year}`, seriesConfig[0].color, {
+          preferLeft: index > 0,
+          preferBelow: true
+        });
       });
     }
   }
@@ -250,8 +325,20 @@
     return result[key] || result.base;
   }
 
+  function annualScenarioLabel(key) {
+    return ({ base: 'Base', cautious: 'Cautious', adverse: 'Adverse', weakFirst: 'Weak-first', strongFirst: 'Strong-first' })[key] || 'Base';
+  }
+
+  function updateAnnualDisclosure() {
+    if (!els.annualDetails) return;
+    const open = els.annualDetails.open;
+    els.annualSummary?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (els.annualDisclosureLabel) els.annualDisclosureLabel.textContent = open ? 'Hide annual values' : 'Show annual values';
+  }
+
   function renderAnnualTable(result) {
-    const scenario = scenarioByKey(result, els.annualScenario.value);
+    const key = els.annualScenario.value;
+    const scenario = scenarioByKey(result, key);
     els.annualBody.innerHTML = scenario.annualRows.map((row) => `
       <tr data-depleted="${row.depleted}">
         <td>${row.year}</td><td>${row.age}</td><td>${formatMoney(row.openingBalance)}</td>
@@ -259,6 +346,7 @@
         <td>${formatSignedPercent(row.returnRate)}</td><td>${formatMoney(row.investmentGrowth)}</td>
         <td>${formatMoney(row.closingBalance)}</td><td>${row.status}</td>
       </tr>`).join('');
+    if (els.annualDisclosureMeta) els.annualDisclosureMeta.textContent = `${annualScenarioLabel(key)} · ${scenario.annualRows.length} years`;
   }
 
   function updateLocaleText() {
@@ -399,12 +487,14 @@
   els.firstYearWithdrawal.addEventListener('input', () => { if (currentMode() === 'amount') syncWithdrawalFields('amount'); scheduleRender(); });
   [els.startAge, els.planUntilAge, els.inflationRate, els.nominalReturn].forEach((element) => element.addEventListener('input', scheduleRender));
   els.annualScenario.addEventListener('change', () => latestResult && renderAnnualTable(latestResult));
+  els.annualDetails?.addEventListener('toggle', updateAnnualDisclosure);
   els.copyBtn.addEventListener('click', copySummary);
   els.csvBtn.addEventListener('click', downloadCsv);
   els.reportBtn.addEventListener('click', generateReport);
   window.addEventListener('carrowmont:localechange', () => { updateLocaleText(); scheduleRender(); });
 
   syncWithdrawalFields('rate');
+  updateAnnualDisclosure();
   updateLocaleText();
   render();
 })();

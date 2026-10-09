@@ -97,3 +97,8 @@ Central QA covers:
 ## Calculation safety
 
 No existing SIP, Goal, Financial Independence, Inflation, Retirement or Budget calculation engine is modified by this release.
+
+
+## Post-release presentation refinements
+
+After live visual review, SEO3A received a presentation-only hardening pass. Chart callouts now measure their rendered text, remain inside the plotting rectangle, avoid their anchor markers and avoid overlapping other callouts. The Annual Values table uses the same collapsed native disclosure pattern established in other Carrowmont tools, while retaining all year-by-year rows in the page. The PDF summary explanation card now sizes from the actual wrapped text instead of reserving an oversized fixed block. These refinements do not change any withdrawal, inflation, return, depletion, CSV or report calculation.

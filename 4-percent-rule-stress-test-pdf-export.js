@@ -44,5 +44,5 @@
   function canvasToJpeg(canvas,q=.94){return{bytes:dataUrlToBytes(canvas.toDataURL('image/jpeg',q)),width:canvas.width,height:canvas.height};}
   function triggerDownload(bytes,filename){const blob=new Blob([bytes],{type:'application/pdf'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename.endsWith('.pdf')?filename:`${filename}.pdf`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);}
   async function downloadCanvases(canvases,opt={}){const images=canvases.map(c=>canvasToJpeg(c,opt.quality||.94)),pdf=makePdfFromJpegs(images);triggerDownload(pdf,opt.filename||'carrowmont-report.pdf');return pdf;}
-  window.CarrowmontPdfExport={createPage,roundRect,wrappedText,text,line,drawSvgElement,downloadCanvases,makePdfFromJpegs};
+  window.CarrowmontPdfExport={createPage,roundRect,linesForText,wrappedText,text,line,drawSvgElement,downloadCanvases,makePdfFromJpegs};
 })();

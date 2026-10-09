@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="See how inflation, retirement length and return order can change a fixed inflation-adjusted withdrawal plan.">
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <link rel="stylesheet" href="carrowmont.css?v=20261009-seo3a1">
-  <link rel="stylesheet" href="4-percent-rule-stress-test.css?v=20261009-seo3a-chart-fix1">
+  <link rel="stylesheet" href="4-percent-rule-stress-test.css?v=20261009-seo3a-fix2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -209,8 +209,14 @@
 
     <section class="stress-section stress-annual-section" id="annual-values">
       <div class="shell">
-        <div class="stress-section-heading stress-section-heading-row"><div><p class="stress-kicker">ANNUAL VALUES</p><h2>Follow the calculation year by year</h2><p>Use the table to verify opening balance, withdrawal, return and closing balance.</p></div><label class="stress-scenario-select" for="annualScenarioSelect"><span>Show scenario</span><select id="annualScenarioSelect"><option value="base">Base</option><option value="cautious">Cautious</option><option value="adverse">Adverse</option><option value="weakFirst">Weak-first</option><option value="strongFirst">Strong-first</option></select></label></div>
-        <div class="stress-table-wrap stress-annual-table-wrap"><table class="stress-table stress-annual-table"><thead><tr><th>Year</th><th>Age</th><th>Opening balance</th><th>Withdrawal</th><th>Inflation</th><th>Return</th><th>Growth / loss</th><th>Closing balance</th><th>Status</th></tr></thead><tbody id="annualTableBody"></tbody></table></div>
+        <div class="stress-section-heading"><p class="stress-kicker">ANNUAL VALUES</p><h2>Follow the calculation year by year</h2><p>Use the detailed table when you want to verify opening balance, withdrawal, return and closing balance.</p></div>
+        <details class="stress-annual-details" id="annualValuesDetails">
+          <summary id="annualValuesSummary" aria-expanded="false"><span id="annualDisclosureLabel">Show annual values</span><small id="annualDisclosureMeta">Base · 30 years</small></summary>
+          <div class="stress-annual-detail-body">
+            <div class="stress-annual-controls"><label class="stress-scenario-select" for="annualScenarioSelect"><span>Show scenario</span><select id="annualScenarioSelect"><option value="base">Base</option><option value="cautious">Cautious</option><option value="adverse">Adverse</option><option value="weakFirst">Weak-first</option><option value="strongFirst">Strong-first</option></select></label></div>
+            <div class="stress-table-wrap stress-annual-table-wrap"><table class="stress-table stress-annual-table"><thead><tr><th>Year</th><th>Age</th><th>Opening balance</th><th>Withdrawal</th><th>Inflation</th><th>Return</th><th>Growth / loss</th><th>Closing balance</th><th>Status</th></tr></thead><tbody id="annualTableBody"></tbody></table></div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -258,9 +264,9 @@
   <script src="locale.js?v=20261009-seo3a1"></script>
   <script src="site.js?v=20261009-seo3a1"></script>
   <script src="4-percent-rule-stress-test-core.js?v=20261009-seo3a1"></script>
-  <script src="4-percent-rule-stress-test-pdf-export.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test-pdf-export.js?v=20261009-seo3a-fix2"></script>
   <script src="4-percent-rule-stress-test-report-standard.js?v=20261009-seo3a1"></script>
-  <script src="4-percent-rule-stress-test-pdf.js?v=20261009-seo3a1"></script>
-  <script src="4-percent-rule-stress-test.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test-pdf.js?v=20261009-seo3a-fix2"></script>
+  <script src="4-percent-rule-stress-test.js?v=20261009-seo3a-fix2"></script>
 </body>
 </html>
