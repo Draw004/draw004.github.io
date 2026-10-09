@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financial Independence Number by Spending | Carrowmont</title>
+  <meta name="description" content="Estimate a first-pass financial independence number from monthly or annual portfolio-funded spending, compare withdrawal rates and see inflation effects.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <meta name="author" content="Carrowmont">
+  <link rel="canonical" href="https://carrowmont.com/financial-independence-number-by-spending.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="Financial Independence Number by Spending | Carrowmont">
+  <meta property="og:description" content="Turn portfolio-funded spending into a transparent first-pass FI target and compare common withdrawal-rate assumptions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/financial-independence-number-by-spending.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Independence Number by Spending | Carrowmont">
+  <meta name="twitter:description" content="Estimate an FI target from spending, compare withdrawal-rate assumptions and see the future nominal effect of inflation.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <link rel="stylesheet" href="carrowmont.css?v=20261009-seo3b1">
+  <link rel="stylesheet" href="financial-independence-number-by-spending.css?v=20261009-seo3b1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Carrowmont Financial Independence Number by Spending",
+        "url": "https://carrowmont.com/financial-independence-number-by-spending.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "description": "A deterministic educational calculator that translates portfolio-funded spending and a planning withdrawal-rate assumption into a first-pass financial independence target.",
+        "dateModified": "2026-10-09",
+        "publisher": {"@type": "Organization", "name": "Carrowmont", "url": "https://carrowmont.com/"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Carrowmont", "item": "https://carrowmont.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://carrowmont.com/learn.html"},
+          {"@type": "ListItem", "position": 3, "name": "Financial Independence Number by Spending", "item": "https://carrowmont.com/financial-independence-number-by-spending.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "What is a financial independence number?", "acceptedAnswer": {"@type": "Answer", "text": "It is a planning estimate of the invested portfolio that could correspond to the amount of annual spending a portfolio needs to fund under a chosen withdrawal-rate assumption."}},
+          {"@type": "Question", "name": "Is 25 times annual spending always enough?", "acceptedAnswer": {"@type": "Answer", "text": "No. Twenty-five times annual spending is the mathematical reciprocal of a 4% starting withdrawal-rate assumption. Real-world sustainability depends on returns, inflation, taxes, fees, spending flexibility and time horizon."}},
+          {"@type": "Question", "name": "Why does a lower withdrawal rate create a larger FI number?", "acceptedAnswer": {"@type": "Answer", "text": "The target is annual portfolio-funded spending divided by the selected rate. A smaller denominator mechanically produces a larger first-pass target."}},
+          {"@type": "Question", "name": "Should I include pension or rental income?", "acceptedAnswer": {"@type": "Answer", "text": "Enter only the spending that the investment portfolio needs to fund. If dependable income will cover part of your spending, subtract that amount first."}},
+          {"@type": "Question", "name": "Does this tool model investment returns?", "acceptedAnswer": {"@type": "Answer", "text": "No. It estimates the spending-based target. Use the full Financial Independence Planner to model current assets, recurring investments, investment returns and target age."}},
+          {"@type": "Question", "name": "Does changing currency convert my spending?", "acceptedAnswer": {"@type": "Answer", "text": "No. Changing currency changes the unit and number format only. It does not perform an exchange-rate conversion."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-cm-page="fi-number-by-spending">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Carrowmont home">
+        <span class="brand-name">CARROWMONT</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#calculator">Calculator</a>
+        <a href="#methodology">Methodology</a>
+        <a href="/learn.html">Learn</a>
+        <a href="/financial-independence/">Full FI Planner</a>
+        <a href="/">Home</a>
+      </nav>
+      <details class="locale-menu" id="localeMenu">
+        <summary class="locale-summary" aria-label="Choose country and currency">
+          <span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span>
+          <span id="localeCountryLabel">India</span><span>&middot;</span><span id="localeCurrencyLabel">INR</span>
+          <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></svg></span>
+        </summary>
+        <div class="locale-panel">
+          <strong>Country &amp; currency</strong>
+          <p>Choose the context that makes the numbers easiest to understand.</p>
+          <label for="regionSelect">Country / region</label><select id="regionSelect"></select>
+          <label for="currencySelect">Currency</label><select id="currencySelect"></select>
+          <p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert entered amounts using an exchange rate.</p>
+          <button type="button" class="small-button" id="localeDoneBtn">Done</button>
+        </div>
+      </details>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation">Menu</summary>
+        <div class="mobile-nav-panel"><a href="#calculator">Calculator</a><a href="#methodology">Methodology</a><a href="/learn.html">Learn</a><a href="/financial-independence/">Full FI Planner</a><a href="/">Home</a></div>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="fiq-hero">
+      <div class="shell fiq-hero-grid">
+        <div>
+          <a class="fiq-back-link" href="/financial-independence-number.html">&larr; Read the FI number guide</a>
+          <p class="eyebrow">FINANCIAL INDEPENDENCE QUICK REFERENCE</p>
+          <h1>See how spending changes your financial independence number</h1>
+          <p class="fiq-hero-lede">Turn portfolio-funded spending into a transparent first-pass FI target, compare common withdrawal-rate assumptions and see how inflation can change the future nominal number.</p>
+          <div class="fiq-badges" aria-label="Product characteristics"><span>No login</span><span>Local calculations</span><span>Standard report</span></div>
+        </div>
+        <aside class="fiq-hero-note">
+          <strong>Quick target, not the full journey</strong>
+          <p>This tool estimates the target implied by spending. It does not tell you when your current investments may reach that target.</p>
+          <a href="/financial-independence/">Open the full Financial Independence Planner &rarr;</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="fiq-workspace" id="calculator">
+      <div class="shell fiq-layout">
+        <aside class="fiq-input-card" aria-labelledby="fiqInputsTitle">
+          <div class="fiq-card-heading"><p class="fiq-kicker">YOUR ASSUMPTIONS</p><h2 id="fiqInputsTitle">Start with portfolio-funded spending</h2><p>Enter only the spending that would need to come from the investment portfolio.</p></div>
+
+          <fieldset class="fiq-mode-fieldset">
+            <legend>Spending view</legend>
+            <div class="fiq-mode-toggle" role="radiogroup" aria-label="Monthly or annual spending view">
+              <label><input type="radio" name="spendingView" value="monthly" checked><span>Monthly</span></label>
+              <label><input type="radio" name="spendingView" value="annual"><span>Annual</span></label>
+            </div>
+          </fieldset>
+
+          <label class="fiq-field" for="portfolioSpending"><span>Spending the portfolio needs to fund</span><input id="portfolioSpending" type="number" min="0" step="1000" value="100000"><small id="spendingHelp">Enter the monthly amount that would need to come from the portfolio. If dependable income covers part of your expenses, subtract that amount first.</small></label>
+
+          <div class="fiq-field-grid">
+            <label class="fiq-field" for="withdrawalRate"><span>Planning withdrawal rate</span><div class="fiq-input-suffix"><input id="withdrawalRate" type="number" min="2" max="8" step="0.1" value="4"><b>%</b></div><small>This is a planning assumption, not a guaranteed or universally safe withdrawal rate. A lower rate produces a larger target; a higher rate produces a smaller target.</small></label>
+            <label class="fiq-field" for="yearsUntilFi"><span>Years until you want the target expressed</span><div class="fiq-input-suffix"><input id="yearsUntilFi" type="number" min="0" max="60" step="1" value="0"><b>yrs</b></div><small>Use 0 for today's-money target only.</small></label>
+            <label class="fiq-field fiq-field-wide" for="inflationRate"><span>Annual inflation assumption</span><div class="fiq-input-suffix"><input id="inflationRate" type="number" min="0" max="25" step="0.1" value="5"><b>%</b></div><small>Used only to illustrate the future nominal spending and FI target.</small></label>
+          </div>
+
+          <div id="fiqValidation" class="fiq-validation" role="status" aria-live="polite"></div>
+          <p class="fiq-privacy-note">All calculations run in this browser. Carrowmont does not transmit or store the financial values entered here.</p>
+        </aside>
+
+        <div class="fiq-results" aria-live="polite">
+          <div class="fiq-results-heading">
+            <div><p class="fiq-kicker">YOUR RESULT</p><h2>A first-pass FI target from your spending</h2></div>
+            <div class="fiq-actions no-print">
+              <button type="button" class="fiq-button fiq-button-secondary" id="copySummaryBtn">Copy Summary</button>
+              <button type="button" class="fiq-button fiq-button-secondary" id="downloadCsvBtn">Download CSV</button>
+              <button type="button" class="fiq-button fiq-button-primary" id="generateReportBtn">Generate FI Number Report</button>
+            </div>
+          </div>
+          <div id="fiqActionMessage" class="fiq-action-message" role="status" aria-live="polite"></div>
+
+          <div class="fiq-summary-grid" id="summaryCards">
+            <article class="fiq-summary-card"><span>Portfolio-funded spending</span><strong id="annualSpendingValue">—</strong><small>Annual equivalent in today's money.</small></article>
+            <article class="fiq-summary-card fiq-summary-primary"><span>FI number today</span><strong id="fiTodayValue">—</strong><small id="fiTodayNote">At the selected planning withdrawal rate.</small></article>
+            <article class="fiq-summary-card"><span>Spending multiple</span><strong id="multipleValue">—</strong><small>Mathematical reciprocal of the selected rate.</small></article>
+            <article class="fiq-summary-card"><span id="futureCardLabel">Future-money view</span><strong id="fiFutureValue">—</strong><small id="fiFutureNote">Set years above 0 to illustrate inflation.</small></article>
+          </div>
+
+          <div class="fiq-interpretation" id="interpretationText">—</div>
+
+          <div class="fiq-primary-cta">
+            <div><span>Want to know when you may reach this target?</span><strong>Continue with the complete FI planning model.</strong><small>Your spending, withdrawal-rate and inflation inputs will carry across where compatible.</small></div>
+            <a class="fiq-button fiq-button-primary" id="fullPlannerCta" href="/financial-independence/">Build My Full Financial Independence Plan <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fiq-section" id="rate-comparison">
+      <div class="shell">
+        <div class="fiq-section-heading"><p class="fiq-kicker">WITHDRAWAL-RATE SENSITIVITY</p><h2>See how the assumption changes the target</h2><p>A lower rate mechanically creates a larger first-pass FI number. These rates are comparisons, not recommendations.</p></div>
+        <div class="fiq-table-wrap"><table class="fiq-table"><thead><tr><th>Planning withdrawal rate</th><th>Spending multiple</th><th>FI number today</th><th class="future-col">FI number in future money</th></tr></thead><tbody id="rateComparisonBody"></tbody></table></div>
+        <p class="fiq-table-note">The rate is an assumption about how much of the starting portfolio is represented by first-year spending. Real-world sustainability depends on market returns, inflation, taxes, fees, spending flexibility and time horizon. <a href="/4-percent-rule-stress-test.html">Explore sequence risk with the 4% Rule Stress Test &rarr;</a></p>
+      </div>
+    </section>
+
+    <section class="fiq-section fiq-sensitivity-section" id="spending-sensitivity">
+      <div class="shell">
+        <div class="fiq-section-heading"><p class="fiq-kicker">SPENDING SENSITIVITY</p><h2>At a fixed rate, spending and the FI target move together</h2><p>A 10% change in portfolio-funded spending produces a 10% change in this first-pass FI target.</p></div>
+        <div class="fiq-chart-panel">
+          <div class="fiq-chart-heading"><div><span>FI NUMBER BY ANNUAL PORTFOLIO-FUNDED SPENDING</span><strong id="chartRateLabel">Selected rate · 4.0%</strong></div><p>The 100% marker is your entered baseline.</p></div>
+          <div class="fiq-chart-wrap"><svg id="sensitivityChart" class="fiq-chart" viewBox="0 0 800 380" role="img" aria-label="Financial independence number by annual portfolio-funded spending"></svg></div>
+        </div>
+        <div class="fiq-table-wrap fiq-sensitivity-table-wrap"><table class="fiq-table"><thead><tr><th>Spending level</th><th>Annual portfolio-funded spending</th><th>FI number today</th><th class="future-col">FI number in future money</th></tr></thead><tbody id="spendingSensitivityBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="fiq-section fiq-explain-section" id="methodology">
+      <div class="shell fiq-explain-grid">
+        <div>
+          <p class="fiq-kicker">WHAT THE NUMBER MEANS</p><h2>A transparent spending-based target</h2>
+          <p>Your first-pass FI number is the annual spending the portfolio needs to fund divided by the planning withdrawal rate you select.</p>
+          <div class="fiq-formula"><span>FI number today</span><strong>Annual portfolio-funded spending ÷ Planning withdrawal rate</strong></div>
+          <p>If dependable pension, rental or other recurring income will cover part of your lifestyle, subtract that income from spending before using this quick reference.</p>
+        </div>
+        <aside class="fiq-explain-card">
+          <h3>Today's money vs future money</h3>
+          <p>The today's-money result preserves today's purchasing-power frame. When you enter years until FI, Carrowmont also compounds annual spending by the inflation assumption and translates that future nominal spending into a future nominal FI target at the same withdrawal-rate assumption.</p>
+          <p><strong>The future-money number is an illustration, not a forecast.</strong></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="fiq-section fiq-limit-section">
+      <div class="shell fiq-limit-grid">
+        <div><p class="fiq-kicker">LIMITATIONS</p><h2>Useful shortcut, not a complete financial plan</h2><p>This page deliberately does not model your current portfolio, future contributions, investment returns, taxes, fees or the order of market returns.</p></div>
+        <ul><li>No universal withdrawal rate is labelled safe or recommended.</li><li>No probability of success or Monte Carlo simulation.</li><li>No investment-return assumption is used in the target calculation.</li><li>No automatic exchange-rate conversion.</li><li>For your savings path and target age, use the <a href="/financial-independence/">full Financial Independence Planner</a>.</li></ul>
+      </div>
+    </section>
+
+    <section class="fiq-section fiq-faq-section" id="faq">
+      <div class="shell"><div class="fiq-section-heading"><p class="fiq-kicker">FAQ</p><h2>Questions about the FI number</h2></div>
+        <div class="fiq-faq-list">
+          <details><summary>What is a financial independence number?</summary><p>It is a planning estimate of the invested portfolio that corresponds to the annual spending a portfolio needs to fund under a chosen withdrawal-rate assumption.</p></details>
+          <details><summary>Is 25× annual spending always enough?</summary><p>No. Twenty-five times annual spending is simply the reciprocal of a 4% starting withdrawal-rate assumption. Real-world sustainability depends on market returns, inflation, taxes, fees, spending flexibility and time horizon.</p></details>
+          <details><summary>Why does a lower withdrawal rate create a larger FI number?</summary><p>The formula divides annual portfolio-funded spending by the rate. A smaller denominator therefore creates a larger first-pass target.</p></details>
+          <details><summary>Should I include income such as pension or rent?</summary><p>Enter only the spending the portfolio needs to fund. If dependable income will cover part of your spending, subtract that amount first.</p></details>
+          <details><summary>Should I use monthly or annual spending?</summary><p>Use whichever is easier. Monthly inputs are multiplied by 12 internally, so equivalent monthly and annual amounts produce the same target.</p></details>
+          <details><summary>Why is there a future-money FI number?</summary><p>It helps separate a target in today's purchasing-power terms from the larger nominal number that could result if the same spending rises with inflation for several years.</p></details>
+          <details><summary>Does this tool model investment returns?</summary><p>No. It estimates the target implied by spending. Use the full FI Planner for current assets, recurring investments, returns and target age.</p></details>
+          <details><summary>Does changing currency convert my spending?</summary><p>No. Currency selection changes the unit and number format only. The numeric amount you enter is not converted using an exchange rate.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="fiq-section fiq-sources-section">
+      <div class="shell fiq-sources-grid"><div><p class="fiq-kicker">SOURCES &amp; PREPARATION</p><h2>Same FI convention, simpler question</h2><p>This quick reference uses the same spending-based sustainable-FI convention documented in the Carrowmont Financial Independence Planner. It isolates the target question without recreating the full portfolio-growth engine.</p></div><ul><li><a href="/financial-independence-number.html">Financial Independence Number guide</a></li><li><a href="/financial-independence/">Financial Independence Planner</a></li><li><a href="/4-percent-rule-retirement.html">4% Rule guide</a></li><li><a href="/4-percent-rule-stress-test.html">4% Rule Stress Test</a></li></ul></div>
+    </section>
+
+    <section class="fiq-section fiq-next-section">
+      <div class="shell"><div class="fiq-section-heading"><p class="fiq-kicker">CONTINUE PLANNING</p><h2>Turn the quick target into a fuller plan</h2></div><div class="fiq-next-grid">
+        <a href="/financial-independence/" id="fullPlannerCard"><strong>Financial Independence Planner</strong><span>Model current assets, recurring investments, return assumptions, target age and the path toward FI.</span></a>
+        <a href="/4-percent-rule-stress-test.html"><strong>4% Rule Stress Test</strong><span>Explore inflation, a longer horizon and weak-early-return risk after withdrawals begin.</span></a>
+        <a href="/financial-independence-number.html"><strong>FI Number guide</strong><span>Understand what the number represents and which spending belongs in the calculation.</span></a>
+        <a href="/coast-fire-explained.html"><strong>Coast FIRE guide</strong><span>Separate a future retirement milestone from full financial independence today.</span></a>
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand-block"><a class="footer-wordmark" href="/">CARROWMONT</a><span class="footer-product-name">FI Number by Spending</span><p>Turn portfolio-funded spending into a transparent first-pass financial-independence target.</p><span class="footer-small">Educational planning tool &middot; Carrowmont</span></div>
+      <div class="footer-col"><strong>Tools</strong><a class="footer-investment-link" href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/budget-cash-flow-planner/">Budget &amp; Cash Flow Planner</a><a href="/#tools">All tools</a></div>
+      <div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/contact.html">Contact</a></div>
+      <div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>&copy; 2026 Carrowmont</span><span>Illustrative estimates, not financial advice.</span></div>
+  </footer>
+
+  <script src="locale.js?v=20261009-seo3b1"></script>
+  <script src="site.js?v=20261009-seo3b1"></script>
+  <script src="financial-independence-number-by-spending-core.js?v=20261009-seo3b1"></script>
+  <script src="financial-independence-number-by-spending-pdf-export.js?v=20261009-seo3b1"></script>
+  <script src="financial-independence-number-by-spending-report-standard.js?v=20261009-seo3b1"></script>
+  <script src="financial-independence-number-by-spending-pdf-renderer.js?v=20261009-seo3b1"></script>
+  <script src="financial-independence-number-by-spending.js?v=20261009-seo3b1"></script>
+</body>
+</html>
