@@ -1,10 +1,10 @@
 # Carrowmont Optional Login, Monetization & AI Architecture
 
-**Document status:** Approved product direction  
+**Document status:** Approved product direction — updated with report-access, advanced-value and visual-consistency rules  
 **Project:** Carrowmont  
 **Baseline context:** Post-SEO3A / Snapshot 26 generation  
 **Date:** 9 October 2026  
-**Purpose:** Define how Carrowmont should introduce optional accounts, monetization, advanced reports and AI analytics without reducing access to the existing free financial-planning tools.
+**Purpose:** Define how Carrowmont should introduce optional accounts, monetization, advanced reports and AI analytics without reducing access to the existing free financial-planning tools, while preserving standard report access and enforcing Carrowmont-wide visual consistency for SEO assets.
 
 ---
 
@@ -35,7 +35,7 @@ Free/no-login access should include, where applicable:
 - Standard deterministic calculations.
 - Standard scenario analysis.
 - Standard Carrowmont charts and tables.
-- Basic / standard downloadable reports.
+- Standard downloadable reports, including PDF, without requiring an account.
 - Copy Summary and CSV where already part of the tool design.
 - Educational methodology and assumptions.
 - Cross-links between related Carrowmont tools.
@@ -111,6 +111,23 @@ Potential paid features include:
 
 Carrowmont should monetize **greater depth and convenience**, not remove previously free core calculations merely to create a paywall.
 
+### Advanced-value test
+
+A paid or advanced feature must materially improve the user's understanding, decisions or ability to evaluate risk. It should not exist merely because it can be placed behind a paywall.
+
+Before any feature is classified as Advanced, ask:
+
+- Does it explain **why** the user received the result?
+- Does it identify the assumptions or risks that matter most?
+- Does it compare meaningful alternatives or trade-offs?
+- Does it help the user decide what to examine or change next?
+- Does it add insight that is not obvious from the free result after a few minutes of inspection?
+- Can the conclusion be traced back to deterministic Carrowmont calculations or clearly disclosed scenario assumptions?
+
+> **Permanent monetization test:** If a user could obtain essentially the same understanding by looking at the free numbers for five minutes, the feature is not strong enough to be paid.
+
+Advanced should therefore mean **better understanding and better decision support**, not simply more pages, more charts or more words.
+
 ---
 
 ## 3. Relationship Between SEO Tools and Full Tools
@@ -139,7 +156,68 @@ SEO calculators should not hide or replace the full tools.
 
 ---
 
-## 4. Input Handoff Between SEO Assets and Full Tools
+## 4. Carrowmont Visual & Interaction Standard for SEO Assets
+
+Every SEO calculator, authority asset and supporting interactive page must look and behave like part of the same Carrowmont product family. SEO pages must not become separate-looking mini-sites.
+
+### Required consistency
+
+New SEO assets must reuse the established Carrowmont design language wherever practical, including:
+
+- Approved font family, weights and hierarchy.
+- Heading scale and spacing.
+- Card radius, borders, shadows and internal spacing.
+- Buttons, input controls, selects and validation states.
+- Country/currency selector and locale-pill geometry.
+- Number and currency formatting conventions.
+- Chart typography, axes, gridlines, markers, callouts and legends.
+- Disclosure / accordion behavior.
+- Tables and responsive overflow behavior.
+- Copy Summary / CSV / report actions where applicable.
+- Standard report typography and section spacing.
+- Mobile breakpoints and touch targets.
+- Accessibility behavior and keyboard interaction.
+- Footer, related-tools presentation and educational disclaimers.
+
+### Chart and number-formatting rules
+
+Every new chart must inherit the established Carrowmont chart standard before release. At minimum:
+
+- Use the approved Inter/system font stack.
+- SVG chart text must not inherit icon strokes or outlines.
+- Use the shared locale-aware money and compact-number formatter.
+- Preserve Indian notation such as lakh/crore where applicable and locale-appropriate formatting elsewhere.
+- Measure callout text before placement.
+- Keep all labels fully inside the plotting area with safe padding.
+- Reposition edge labels inward automatically.
+- Avoid covering the label's own marker or curve where a valid alternative position exists.
+- Prevent callout overlap where another valid position is available.
+- Important values must not depend on hover alone.
+- Validate representative desktop and mobile widths, including 360 px and 390 px.
+- Validate report/PDF charts separately from the live-page chart.
+
+### Mandatory Carrowmont Visual Consistency Gate
+
+Before any new SEO asset is released, compare it against one or more canonical existing Carrowmont tools. The gate must review:
+
+1. Typography and heading hierarchy.
+2. Control dimensions and spacing.
+3. Currency/country treatment.
+4. Result cards and number formatting.
+5. Chart typography and callout containment.
+6. Accordion/disclosure behavior.
+7. Table behavior.
+8. Mobile layout.
+9. PDF/report visual consistency.
+10. Accessibility-critical states.
+
+Visual inconsistencies should be detected **before Publisher creates release PRs**, not after the page is live.
+
+> **Permanent visual rule:** Every SEO asset must be recognizably Carrowmont in font, layout, controls, charts, reports and interaction behavior.
+
+---
+
+## 5. Input Handoff Between SEO Assets and Full Tools
 
 Where technically safe and logically compatible, focused SEO calculators should transfer relevant user inputs into the corresponding full Carrowmont tool.
 
@@ -164,7 +242,7 @@ The user should not be forced to re-enter information that Carrowmont already ha
 
 ---
 
-## 5. Recommended Technical Separation
+## 6. Recommended Technical Separation
 
 New and existing Carrowmont tools should increasingly follow a separation-of-concerns architecture.
 
@@ -252,7 +330,7 @@ This separation is important for consistency, auditability and trust.
 
 ---
 
-## 6. AI Analytics Principles
+## 7. AI Analytics Principles
 
 AI should be an interpretation and analytical enhancement layer, not an uncontrolled calculation substitute.
 
@@ -290,7 +368,7 @@ Avoid guaranteed-outcome language.
 
 ---
 
-## 7. Privacy & Data Handling Direction
+## 8. Privacy & Data Handling Direction
 
 Anonymous calculations should remain **local-only by default where practical**.
 
@@ -319,7 +397,7 @@ A user should deliberately choose to save data before Carrowmont sends persisten
 
 ---
 
-## 8. Payments
+## 9. Payments
 
 Future paid plans should use a specialist payment provider.
 
@@ -340,7 +418,7 @@ Pricing is intentionally **not locked** in this architecture document.
 
 ---
 
-## 9. Possible Commercial Structure
+## 10. Possible Commercial Structure
 
 A possible future structure is:
 
@@ -359,9 +437,25 @@ Monetization can be concentrated on the Advanced tier first.
 
 ---
 
-## 10. Reporting Strategy
+## 11. Reporting Strategy
 
 Carrowmont should maintain a useful free standard report while creating room for genuinely enhanced paid reports later.
+
+### Permanent report-access rule
+
+> **Standard Carrowmont reports remain downloadable without an account. Optional accounts add saving, history, continuity and personalization. Paid tiers may provide materially more advanced reports, analytics and AI interpretation, but must not remove the standard report available to anonymous users.**
+
+Avoid the pattern:
+
+> **Generate Report → Sign in to download**
+
+A user who has already entered financial information should not encounter a surprise login wall at the point of report generation.
+
+A preferred progression is:
+
+> **Download Standard Report**  
+> **Save This Plan — Free Account**  
+> **Get Advanced Analysis — Carrowmont Advanced**
 
 ### Standard report
 
@@ -373,6 +467,9 @@ May include:
 - Scenario summary.
 - Methodology / educational explanation.
 - Appropriate disclaimer.
+- A subtle account-benefit message such as: **“Create a free Carrowmont account to save and revisit this plan.”**
+
+The account message must remain secondary to the report itself and must not interfere with printing, readability or the user's ability to download the report anonymously.
 
 ### Future advanced report
 
@@ -389,9 +486,21 @@ May include:
 
 The advanced report must add meaningful analytical value rather than merely changing typography or adding pages to the same free output.
 
+A strong Advanced report should, where relevant, move beyond **what happened** to explain:
+
+- **Why** the result occurred.
+- **Which assumptions** drive the result most strongly.
+- **What could materially change** the outcome.
+- **Which risks** deserve the user's attention.
+- **Which alternative actions or scenarios** produce the largest improvement.
+- **What trade-offs** exist between competing goals.
+- **What to review next**, while avoiding unsupported individualized financial advice.
+
+Examples of genuinely value-adding Advanced analysis may include sensitivity ranking, scenario comparisons, sequence-risk analysis, inflation stress, contribution/spending trade-offs, cross-tool goal conflicts, historical-plan comparisons and AI narrative explanations grounded in deterministic outputs.
+
 ---
 
-## 11. Authentication Is Not Required Yet
+## 12. Authentication Is Not Required Yet
 
 This document establishes the architecture direction. It does **not** mean authentication should be added to the current release immediately.
 
@@ -408,7 +517,7 @@ Build the account platform when there is enough product value to justify it.
 
 ---
 
-## 12. Requirements for SEO3B — FI Number by Spending
+## 13. Requirements for SEO3B — FI Number by Spending
 
 SEO3B should be built now with the future account model in mind but should **not require login**.
 
@@ -422,6 +531,8 @@ SEO3B should be built now with the future account model in mind but should **not
 6. Keep the standard report available without login according to the approved specification.
 7. Structure result data so it could later be saved to an optional account.
 8. Do not implement fake or placeholder login controls in the current production version unless a real account system exists.
+9. Pass the Carrowmont Visual Consistency Gate before release.
+10. Use the established Carrowmont chart, currency, typography, disclosure and PDF standards from the first implementation rather than retrofitting them after launch.
 
 ### Future enhancement once accounts exist
 
@@ -437,7 +548,7 @@ These future CTAs must supplement, not replace, the no-login core experience.
 
 ---
 
-## 13. Requirements for Future Tools
+## 14. Requirements for Future Tools
 
 Every future Carrowmont tool should answer the following questions during specification:
 
@@ -451,10 +562,13 @@ Every future Carrowmont tool should answer the following questions during specif
 8. Can compatible inputs be handed off instead of re-entered?
 9. Is the report structured for both standard and future advanced versions?
 10. Does the feature preserve Carrowmont privacy and transparency principles?
+11. Does the free/no-login user retain standard report download access?
+12. Does the page pass the Carrowmont Visual Consistency Gate?
+13. If a feature is proposed as paid, does it pass the Advanced-value test?
 
 ---
 
-## 14. UX Rules for Login & Monetization
+## 15. UX Rules for Login & Monetization
 
 When authentication is eventually introduced:
 
@@ -479,7 +593,7 @@ The user should understand the value of the optional account before being asked 
 
 ---
 
-## 15. Security Direction
+## 16. Security Direction
 
 When accounts and paid features are introduced, the authentication/backend architecture must receive its own formal security specification before implementation.
 
@@ -507,7 +621,7 @@ No sensitive credentials should ever be committed to a public GitHub repository.
 
 ---
 
-## 16. Permanent Carrowmont Product Rules
+## 17. Permanent Carrowmont Product Rules
 
 The following rules are considered the approved direction unless deliberately revised later:
 
@@ -522,13 +636,18 @@ The following rules are considered the approved direction unless deliberately re
 9. **Anonymous data remains local by default where practical.**
 10. **Users deliberately choose when to save information to an account.**
 11. **Carrowmont should not directly store raw payment-card data.**
-12. **Advanced reports must provide real analytical value beyond cosmetic expansion of free reports.**
-13. **Future authentication must not be bolted directly into calculation engines.**
-14. **Privacy, transparency and methodology disclosure remain core product requirements.**
+12. **Standard Carrowmont reports remain downloadable without an account.**
+13. **Free reports may include a subtle invitation to create an account to save and revisit the plan, but download must not depend on signup.**
+14. **Advanced reports must provide real analytical and decision-support value beyond cosmetic expansion of free reports.**
+15. **Paid features must pass the Advanced-value test; more pages, charts or text alone are not sufficient.**
+16. **Every SEO asset must pass the Carrowmont Visual Consistency Gate before release.**
+17. **SEO assets must use established Carrowmont typography, controls, number formatting, chart behavior, responsive patterns and report styling.**
+18. **Future authentication must not be bolted directly into calculation engines.**
+19. **Privacy, transparency and methodology disclosure remain core product requirements.**
 
 ---
 
-## 17. Roadmap Relationship
+## 18. Roadmap Relationship
 
 This architecture should guide, but not delay, the current SEO and traffic roadmap.
 
@@ -547,7 +666,7 @@ The current SEO assets should therefore be built in a way that remains compatibl
 
 ---
 
-## 18. Implementation Note for Future Chats / Developers
+## 19. Implementation Note for Future Chats / Developers
 
 If work continues in a new ChatGPT conversation or with another developer, this document should be read together with:
 
@@ -557,6 +676,19 @@ If work continues in a new ChatGPT conversation or with another developer, this 
 - The approved GitHub release workflow and QA requirements.
 
 Do not infer that the presence of this document means login, payments or AI are already implemented. It defines the **future architectural direction and product rules**.
+
+---
+
+## 20. Revision Notes — 9 October 2026
+
+This revision formally adds the following approved rules:
+
+- Standard PDF/report downloads remain available to no-login users.
+- Reports may include the subtle message: **“Create a free Carrowmont account to save and revisit this plan.”**
+- Paid/Advanced features must create meaningful understanding, risk awareness or decision support rather than simply add more output.
+- AI explanations must remain grounded in deterministic Carrowmont results and disclosed assumptions.
+- Every SEO asset must pass a Carrowmont Visual Consistency Gate before release.
+- SEO charts, number formatting, typography, responsive behavior and PDF presentation must follow the established Carrowmont standards from the first implementation.
 
 ---
 
