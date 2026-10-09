@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4% Rule Stress Test | Retirement Withdrawal Risk</title>
+  <meta name="description" content="Test how inflation, retirement length and weak early returns can affect a 4% withdrawal plan using transparent deterministic scenarios.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <meta name="author" content="Carrowmont">
+  <link rel="canonical" href="https://carrowmont.com/4-percent-rule-stress-test.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="4% Rule Stress Test | Retirement Withdrawal Risk">
+  <meta property="og:description" content="Test how inflation, retirement length and weak early returns can affect a 4% withdrawal plan using transparent deterministic scenarios.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/4-percent-rule-stress-test.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="4% Rule Stress Test | Retirement Withdrawal Risk">
+  <meta name="twitter:description" content="See how inflation, retirement length and return order can change a fixed inflation-adjusted withdrawal plan.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <link rel="stylesheet" href="carrowmont.css?v=20261009-seo3a1">
+  <link rel="stylesheet" href="4-percent-rule-stress-test.css?v=20261009-seo3a1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Carrowmont 4% Rule Stress Test",
+        "url": "https://carrowmont.com/4-percent-rule-stress-test.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "description": "A transparent deterministic retirement-withdrawal stress test covering inflation, retirement length and return order.",
+        "dateModified": "2026-10-09",
+        "publisher": {"@type": "Organization", "name": "Carrowmont", "url": "https://carrowmont.com/"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Carrowmont", "item": "https://carrowmont.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://carrowmont.com/learn.html"},
+          {"@type": "ListItem", "position": 3, "name": "4% Rule Stress Test", "item": "https://carrowmont.com/4-percent-rule-stress-test.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does this tool prove that 4% is safe?",
+            "acceptedAnswer": {"@type": "Answer", "text": "No. It is a deterministic educational stress test. It does not estimate a probability of success or guarantee that any withdrawal rate will work."}
+          },
+          {
+            "@type": "Question",
+            "name": "Why can the order of returns change the result?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Withdrawals remove money while the portfolio is changing. Losses early in retirement can leave less capital available for later recovery, even when the same annual returns occur in a different order."}
+          },
+          {
+            "@type": "Question",
+            "name": "Does Carrowmont store the values I enter?",
+            "acceptedAnswer": {"@type": "Answer", "text": "No. The stress-test calculation runs locally in your browser and does not require an account or cloud storage."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-cm-page="four-percent-rule-stress-test">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Carrowmont home">
+        <span class="brand-name">CARROWMONT</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#assumptions">Stress test</a>
+        <a href="#methodology">Methodology</a>
+        <a href="/learn.html">Learn</a>
+        <a href="/retirement-calculator/">Retirement Planner</a>
+        <a href="/">Home</a>
+      </nav>
+      <details class="locale-menu" id="localeMenu">
+        <summary class="locale-summary" aria-label="Choose country and currency">
+          <span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span>
+          <span id="localeCountryLabel">India</span><span>&middot;</span><span id="localeCurrencyLabel">INR</span>
+          <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></svg></span>
+        </summary>
+        <div class="locale-panel">
+          <strong>Country &amp; currency</strong>
+          <p>Choose the context that makes the numbers easiest to understand.</p>
+          <label for="regionSelect">Country / region</label><select id="regionSelect"></select>
+          <label for="currencySelect">Currency</label><select id="currencySelect"></select>
+          <p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert entered amounts using an exchange rate.</p>
+          <button type="button" class="small-button" id="localeDoneBtn">Done</button>
+        </div>
+      </details>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation">Menu</summary>
+        <div class="mobile-nav-panel">
+          <a href="#assumptions">Stress test</a><a href="#methodology">Methodology</a><a href="/learn.html">Learn</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/">Home</a>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="stress-hero">
+      <div class="shell stress-hero-grid">
+        <div>
+          <a class="stress-back-link" href="/4-percent-rule-retirement.html">&larr; Read the 4% Rule guide</a>
+          <p class="eyebrow">RETIREMENT WITHDRAWAL STRESS TEST</p>
+          <h1>Stress-test the 4% rule against inflation, long retirements and weak early returns</h1>
+          <p class="stress-hero-lede">See how the same starting withdrawal can produce very different outcomes when returns arrive in a different order.</p>
+          <div class="stress-badges" aria-label="Product characteristics">
+            <span>No login</span><span>Local calculations</span><span>Deterministic scenarios</span>
+          </div>
+        </div>
+        <aside class="stress-hero-note">
+          <strong>What this tool does</strong>
+          <p>It models a fixed first-year portfolio withdrawal that increases with inflation, then compares smooth, cautious and weak-early-return paths.</p>
+          <p><b>It does not:</b> forecast markets, calculate a probability of success or identify a universally safe rate.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="stress-workspace" id="assumptions">
+      <div class="shell stress-layout">
+        <aside class="stress-input-card" aria-labelledby="assumptionsTitle">
+          <div class="stress-card-heading">
+            <p class="stress-kicker">YOUR ASSUMPTIONS</p>
+            <h2 id="assumptionsTitle">Set the retirement stress test</h2>
+            <p>Enter assumptions that are relevant to you. Country changes formatting only, not inflation or return assumptions.</p>
+          </div>
+
+          <div class="stress-field-grid">
+            <label class="stress-field" for="startAge"><span>Retirement start age</span><input id="startAge" type="number" min="35" max="90" step="1" value="60"><small>35 to 90</small></label>
+            <label class="stress-field" for="planUntilAge"><span>Plan until age</span><input id="planUntilAge" type="number" min="70" max="120" step="1" value="90"><small>At least 10 years after retirement</small></label>
+            <label class="stress-field stress-field-wide" for="startingPortfolio"><span>Starting portfolio</span><input id="startingPortfolio" type="number" min="1" step="10000" value="10000000"><small id="portfolioCurrencyNote">Entered in the selected currency</small></label>
+          </div>
+
+          <fieldset class="stress-mode-fieldset">
+            <legend>Starting withdrawal</legend>
+            <div class="stress-mode-toggle" role="radiogroup" aria-label="Starting withdrawal input mode">
+              <label><input type="radio" name="withdrawalMode" value="rate" checked><span>Rate</span></label>
+              <label><input type="radio" name="withdrawalMode" value="amount"><span>Annual amount</span></label>
+            </div>
+            <div class="stress-field-grid stress-withdrawal-fields">
+              <label class="stress-field" for="startingWithdrawalRate"><span>Starting withdrawal rate</span><div class="stress-input-suffix"><input id="startingWithdrawalRate" type="number" min="0.5" max="10" step="0.1" value="4"><b>%</b></div></label>
+              <label class="stress-field" for="firstYearWithdrawal"><span>First-year withdrawal</span><input id="firstYearWithdrawal" type="number" min="0" step="1000" value="400000"></label>
+            </div>
+          </fieldset>
+
+          <div class="stress-field-grid">
+            <label class="stress-field" for="inflationRate"><span>Annual inflation</span><div class="stress-input-suffix"><input id="inflationRate" type="number" min="-2" max="15" step="0.1" value="4"><b>%</b></div><small>User-entered planning assumption</small></label>
+            <label class="stress-field" for="nominalReturn"><span>Long-run nominal return</span><div class="stress-input-suffix"><input id="nominalReturn" type="number" min="-10" max="20" step="0.1" value="6"><b>%</b></div><small>Not a forecast or guarantee</small></label>
+          </div>
+
+          <div id="stressValidation" class="stress-validation" role="status" aria-live="polite"></div>
+          <p class="stress-privacy-note">All calculations run in this browser. Carrowmont does not transmit or store the financial values entered here.</p>
+        </aside>
+
+        <div class="stress-results" aria-live="polite">
+          <div class="stress-results-heading">
+            <div><p class="stress-kicker">RESULTS</p><h2>How the plan behaves under three deterministic paths</h2></div>
+            <div class="stress-actions no-print">
+              <button type="button" class="stress-button stress-button-secondary" id="copySummaryBtn">Copy Summary</button>
+              <button type="button" class="stress-button stress-button-secondary" id="downloadCsvBtn">Download CSV</button>
+              <button type="button" class="stress-button stress-button-primary" id="generateReportBtn">Generate Stress Test Report</button>
+            </div>
+          </div>
+          <div id="stressActionMessage" class="stress-action-message" role="status" aria-live="polite"></div>
+
+          <div class="stress-summary-grid" id="summaryCards">
+            <article class="stress-summary-card" data-scenario-card="base"><span>Base</span><strong>—</strong><small>—</small></article>
+            <article class="stress-summary-card" data-scenario-card="cautious"><span>Cautious</span><strong>—</strong><small>—</small></article>
+            <article class="stress-summary-card" data-scenario-card="adverse"><span>Adverse early sequence</span><strong>—</strong><small>—</small></article>
+          </div>
+
+          <section class="stress-result-panel" aria-labelledby="portfolioChartTitle">
+            <div class="stress-panel-heading"><div><p class="stress-kicker">PORTFOLIO PATH</p><h3 id="portfolioChartTitle">Balance through the selected retirement horizon</h3></div><p>Withdrawals occur at the start of each year, then the selected scenario return is applied.</p></div>
+            <div class="stress-chart-wrap"><svg id="portfolioChart" class="stress-chart" viewBox="0 0 760 380" role="img" aria-label="Portfolio balance chart comparing Base, Cautious and Adverse scenarios"></svg></div>
+            <div class="stress-chart-legend" aria-label="Chart legend"><span><i class="legend-line base"></i>Base</span><span><i class="legend-line cautious"></i>Cautious</span><span><i class="legend-line adverse"></i>Adverse early sequence</span></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="stress-section stress-sequence-section" id="sequence-risk">
+      <div class="shell">
+        <div class="stress-section-heading"><p class="stress-kicker">WHY ORDER MATTERS</p><h2>The same returns can produce different outcomes</h2><p>These paths use the same ten annual return values in a different order. The difference comes from withdrawals interacting with the timing of gains and losses.</p></div>
+        <div class="stress-sequence-grid">
+          <div class="stress-result-panel"><div class="stress-chart-wrap"><svg id="sequenceChart" class="stress-chart" viewBox="0 0 760 380" role="img" aria-label="Portfolio balance chart comparing weak-first and strong-first return orders"></svg></div><div class="stress-chart-legend"><span><i class="legend-line weak"></i>Weak-first</span><span><i class="legend-line strong"></i>Strong-first</span></div></div>
+          <aside class="stress-sequence-note"><strong>Same values, reversed order</strong><p id="sequenceSummary">—</p><div class="stress-return-strip" id="returnStrip" aria-label="First ten normalized annual returns"></div><a class="text-link" href="/sequence-of-returns-risk.html">Read the sequence-of-returns guide &rarr;</a></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="stress-section" id="rate-comparison">
+      <div class="shell">
+        <div class="stress-section-heading"><p class="stress-kicker">RATE SENSITIVITY</p><h2>Compare 3%, 3.5%, 4% and 5% under the same adverse assumptions</h2><p>This is a sensitivity table, not a recommendation that one percentage is universally safe.</p></div>
+        <div class="stress-table-wrap"><table class="stress-table"><thead><tr><th>Starting rate</th><th>First-year withdrawal</th><th>Modelled status</th><th>Ending balance in today's money</th></tr></thead><tbody id="rateComparisonBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="stress-section stress-annual-section" id="annual-values">
+      <div class="shell">
+        <div class="stress-section-heading stress-section-heading-row"><div><p class="stress-kicker">ANNUAL VALUES</p><h2>Follow the calculation year by year</h2><p>Use the table to verify opening balance, withdrawal, return and closing balance.</p></div><label class="stress-scenario-select" for="annualScenarioSelect"><span>Show scenario</span><select id="annualScenarioSelect"><option value="base">Base</option><option value="cautious">Cautious</option><option value="adverse">Adverse</option><option value="weakFirst">Weak-first</option><option value="strongFirst">Strong-first</option></select></label></div>
+        <div class="stress-table-wrap stress-annual-table-wrap"><table class="stress-table stress-annual-table"><thead><tr><th>Year</th><th>Age</th><th>Opening balance</th><th>Withdrawal</th><th>Inflation</th><th>Return</th><th>Growth / loss</th><th>Closing balance</th><th>Status</th></tr></thead><tbody id="annualTableBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="stress-section stress-methodology-section" id="methodology">
+      <div class="shell stress-methodology-grid">
+        <div>
+          <p class="stress-kicker">METHOD</p><h2>Transparent annual mechanics</h2>
+          <ol class="stress-method-steps"><li>Record the opening portfolio.</li><li>Take the inflation-adjusted withdrawal at the start of the year.</li><li>Apply that year's deterministic return to the remaining balance.</li><li>Increase the next withdrawal using that scenario's inflation assumption.</li></ol>
+          <div class="stress-formula"><span>Closing balance</span><strong>max(0, (Opening balance − Withdrawal) × (1 + Return))</strong></div>
+        </div>
+        <div class="stress-limitations"><h3>Important limitations</h3><ul><li>No Monte Carlo probability or historical backtest.</li><li>No taxes, investment fees, pension income or spending guardrails.</li><li>The adverse return pattern is synthetic, disclosed and normalized to the selected ten-year geometric return.</li><li>Results are educational illustrations, not individualized financial advice.</li></ul><a class="text-link" href="/4-percent-rule-retirement.html">Read the full 4% Rule guide &rarr;</a></div>
+      </div>
+    </section>
+
+    <section class="stress-section stress-faq-section" id="faq">
+      <div class="shell"><div class="stress-section-heading"><p class="stress-kicker">FAQ</p><h2>Important questions about the stress test</h2></div>
+        <div class="stress-faq-list">
+          <details><summary>Does this tool prove that 4% is safe?</summary><p>No. It is a deterministic educational stress test. It does not estimate a probability of success or guarantee that any withdrawal rate will work.</p></details>
+          <details><summary>Why can the order of returns change the result?</summary><p>Withdrawals remove money while the portfolio is changing. Losses early in retirement can leave less capital available for later recovery, even when the same annual returns occur in a different order.</p></details>
+          <details><summary>Why is the adverse return sequence synthetic?</summary><p>The purpose is to isolate a disclosed stress pattern without pretending it is historical data. The first ten annual returns are normalized so their geometric average matches your selected long-run return.</p></details>
+          <details><summary>Does Carrowmont store the values I enter?</summary><p>No. The calculation runs locally in your browser. No account or cloud storage is required.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="stress-section stress-sources-section">
+      <div class="shell stress-sources-grid"><div><p class="stress-kicker">SOURCES &amp; PREPARATION</p><h2>Educational context, transparent model</h2><p>Carrowmont owns and maintains this deterministic model. External research supports the educational concepts of withdrawal rates, inflation and sequence risk; it does not guarantee the model's future accuracy.</p></div><ul><li><a href="https://www.bengenfs.com/the-4-percent-rule/" target="_blank" rel="noopener">William P. Bengen: The 4% Rule</a></li><li><a href="https://www.morningstar.com/retirement/whats-safe-retirement-withdrawal-rate-2026" target="_blank" rel="noopener">Morningstar retirement-income research</a></li><li><a href="https://ownyourfuture.vanguard.com/content/en/learn/living-in-retirement/spending-strategies-in-retirement.html" target="_blank" rel="noopener">Vanguard retirement spending strategies</a></li></ul></div>
+    </section>
+
+    <section class="stress-section stress-next-section">
+      <div class="shell"><div class="stress-section-heading"><p class="stress-kicker">CONTINUE PLANNING</p><h2>Use the stress test alongside the rest of your plan</h2></div><div class="stress-next-grid"><a href="/retirement-calculator/"><strong>Retirement Planner</strong><span>Model detailed expenses, income, goals and the corpus required at retirement.</span></a><a href="/inflation-calculator/"><strong>Inflation Calculator</strong><span>Explore how purchasing power and future costs change over time.</span></a><a href="/4-percent-rule-retirement.html"><strong>4% Rule guide</strong><span>Understand the history, mechanics and limitations behind the rule.</span></a><a href="/sequence-of-returns-risk.html"><strong>Sequence-risk guide</strong><span>Learn why early losses can matter more once withdrawals begin.</span></a></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand-block"><a class="footer-wordmark" href="/">CARROWMONT</a><span class="footer-product-name">4% Rule Stress Test</span><p>Transparent retirement-withdrawal stress testing for inflation, long horizons and return-order risk.</p><span class="footer-small">Educational planning tool &middot; Carrowmont</span></div>
+      <div class="footer-col"><strong>Tools</strong><a class="footer-investment-link" href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/budget-cash-flow-planner/">Budget &amp; Cash Flow Planner</a><a href="/#tools">All tools</a></div>
+      <div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/contact.html">Contact</a></div>
+      <div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>&copy; 2026 Carrowmont</span><span>Illustrative estimates, not financial advice.</span></div>
+  </footer>
+
+  <script src="locale.js?v=20261009-seo3a1"></script>
+  <script src="site.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test-core.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test-pdf-export.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test-report-standard.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test-pdf.js?v=20261009-seo3a1"></script>
+  <script src="4-percent-rule-stress-test.js?v=20261009-seo3a1"></script>
+</body>
+</html>
