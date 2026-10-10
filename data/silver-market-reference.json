@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "methodologyVersion": "silver-supply-demand-macro-v1.0",
+  "referenceYear": 2025,
+  "unit": "million_troy_ounces",
+  "status": "validated-completed-year-reference",
+  "reviewedAt": "2026-10-10",
+  "source": {
+    "publisher": "The Silver Institute / Metals Focus",
+    "title": "World Silver Survey 2026",
+    "publicationDate": "2026-04-15",
+    "url": "https://silverinstitute.org/wp-content/uploads/2026/04/World-Silver-Survey-2026.pdf",
+    "summaryUrl": "https://silverinstitute.org/elevated-lease-rates-regional-liquidity-tightness-and-robust-investor-interest-resulted-in-record-silver-prices-in-2025/",
+    "dataStatus": "completed-year 2025 actual/estimate as published in World Silver Survey 2026"
+  },
+  "supply": {
+    "mineProductionMoz": 846.6,
+    "recyclingMoz": 197.6,
+    "otherSupplyMoz": 46.2,
+    "otherSupplyComponents": {
+      "netHedgingSupplyMoz": 44.7,
+      "netOfficialSectorSalesMoz": 1.5
+    },
+    "publishedTotalSupplyMoz": 1090.4
+  },
+  "demand": {
+    "industrialMoz": 657.4,
+    "physicalInvestmentMoz": 217.7,
+    "jewelryMoz": 189.3,
+    "silverwareMoz": 42.1,
+    "photographyMoz": 24.2,
+    "otherDemandMoz": 0,
+    "publishedTotalDemandMoz": 1130.6
+  },
+  "publishedBalanceMoz": -40.3,
+  "roundingNote": "Published demand categories are rounded to one decimal place. Their displayed sum is 0.1 Moz above the published total; the published market balance is preserved separately for source comparison.",
+  "limitedHistory": [
+    {"year": 2021, "totalSupplyMoz": 1018.7, "totalDemandMoz": 1102.4, "marketBalanceMoz": -83.7},
+    {"year": 2022, "totalSupplyMoz": 1030.1, "totalDemandMoz": 1284.1, "marketBalanceMoz": -254.0},
+    {"year": 2023, "totalSupplyMoz": 997.0, "totalDemandMoz": 1197.0, "marketBalanceMoz": -200.1},
+    {"year": 2024, "totalSupplyMoz": 1019.6, "totalDemandMoz": 1157.4, "marketBalanceMoz": -137.9},
+    {"year": 2025, "totalSupplyMoz": 1090.4, "totalDemandMoz": 1130.6, "marketBalanceMoz": -40.3}
+  ],
+  "secondaryValidation": {
+    "publisher": "U.S. Geological Survey",
+    "title": "Mineral Commodity Summaries 2026 — Silver",
+    "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-silver.pdf",
+    "globalMineProduction2025MetricTonnes": 26000,
+    "status": "USGS estimate used only as a trend cross-check; definitions/timing differ from World Silver Survey"
+  },
+  "notes": [
+    "The default engine uses the latest completed full-year physical-market reference rather than the 2026 forecast.",
+    "A flow deficit is not the same as an immediate shortage; above-ground inventories and investor holdings can absorb or release metal.",
+    "The browser reads this bundled same-origin file only and does not call Silver Institute, Metals Focus or USGS endpoints.",
+    "Physical silver data are reviewed annually rather than updated by a blind automated PDF scrape."
+  ]
+}
