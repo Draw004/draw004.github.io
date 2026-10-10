@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Debt Interest Cost Calculator | Carrowmont</title>
+  <meta name="description" content="Model how U.S. debt, refinancing rates, primary deficits and debt rollover assumptions can change annual federal interest costs over time.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <meta name="author" content="Carrowmont">
+  <link rel="canonical" href="https://carrowmont.com/us-debt-interest-cost-calculator.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="US Debt Interest Cost Calculator | Carrowmont">
+  <meta property="og:description" content="Explore how debt rollover, refinancing rates and primary deficits can change modeled U.S. federal interest costs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/us-debt-interest-cost-calculator.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="US Debt Interest Cost Calculator | Carrowmont">
+  <meta name="twitter:description" content="Test transparent scenarios for U.S. federal debt refinancing and interest costs.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <link rel="stylesheet" href="carrowmont.css?v=20261010-seo3c1">
+  <link rel="stylesheet" href="us-debt-interest-cost-calculator.css?v=20261010-seo3c1">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"Carrowmont US Debt Interest Cost Calculator",
+        "url":"https://carrowmont.com/us-debt-interest-cost-calculator.html",
+        "applicationCategory":"FinanceApplication",
+        "operatingSystem":"Any",
+        "isAccessibleForFree":true,
+        "description":"A deterministic educational calculator for U.S. federal debt refinancing and modeled interest-cost scenarios.",
+        "dateModified":"2026-10-10",
+        "publisher":{"@type":"Organization","name":"Carrowmont","url":"https://carrowmont.com/"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},
+          {"@type":"ListItem","position":2,"name":"Learn","item":"https://carrowmont.com/learn.html"},
+          {"@type":"ListItem","position":3,"name":"US Debt Interest Cost Calculator","item":"https://carrowmont.com/us-debt-interest-cost-calculator.html"}
+        ]
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"What is debt held by the public?","acceptedAnswer":{"@type":"Answer","text":"It is federal debt held outside federal government accounts, including Treasury securities held by investors, institutions, governments and Federal Reserve Banks, subject to Treasury definitions."}},
+          {"@type":"Question","name":"How is total public debt different?","acceptedAnswer":{"@type":"Answer","text":"Total Public Debt Outstanding includes debt held by the public plus intragovernmental holdings."}},
+          {"@type":"Question","name":"Why does a higher Treasury yield not immediately apply to all U.S. debt?","acceptedAnswer":{"@type":"Answer","text":"Outstanding Treasury securities have different maturities and existing rates. Their borrowing cost changes gradually as debt matures and is refinanced."}},
+          {"@type":"Question","name":"Does this calculator predict a U.S. default?","acceptedAnswer":{"@type":"Answer","text":"No. It is an educational sensitivity model for debt and interest-cost mechanics, not a default, market or yield forecast."}},
+          {"@type":"Question","name":"Why are calculations in USD?","acceptedAnswer":{"@type":"Answer","text":"The tool models U.S. federal debt, which is denominated in U.S. dollars. It does not perform foreign-exchange conversion."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-cm-page="us-debt-interest-cost-calculator">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Carrowmont home">
+        <span class="brand-name">CARROWMONT</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#calculator">Calculator</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#sources">Sources</a>
+        <a href="/learn.html">Learn</a>
+        <a href="/">Home</a>
+      </nav>
+      <div class="usdc-fixed-context" aria-label="Model currency and country"><span class="usdc-globe" aria-hidden="true">◎</span><span>United States</span><span>·</span><strong>USD</strong></div>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation">Menu</summary>
+        <div class="mobile-nav-panel"><a href="#calculator">Calculator</a><a href="#methodology">Methodology</a><a href="#sources">Sources</a><a href="/learn.html">Learn</a><a href="/">Home</a></div>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="usdc-hero">
+      <div class="shell usdc-hero-grid">
+        <div>
+          <p class="eyebrow">GLOBAL MACRO RISK &amp; FINANCIAL RESILIENCE</p>
+          <h1>See how debt and refinancing rates can change the U.S. interest burden</h1>
+          <p class="usdc-hero-lede">Model how a changing refinancing rate, new borrowing and the pace of debt rollover can affect the U.S. government’s interest burden over time.</p>
+          <div class="usdc-badges" aria-label="Product characteristics"><span>No login</span><span>Transparent math</span><span>Official data reference</span></div>
+        </div>
+        <aside class="usdc-warning-card">
+          <strong>Scenario analysis, not a crisis forecast</strong>
+          <p>This calculator does not predict Treasury yields, federal policy, a U.S. default, a dollar move or future official net-interest outlays.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="usdc-workspace" id="calculator">
+      <div class="shell usdc-layout">
+        <aside class="usdc-input-card" aria-labelledby="usdcInputsTitle">
+          <div class="usdc-card-heading"><p class="usdc-kicker">OFFICIAL REFERENCE</p><h2 id="usdcInputsTitle">Start with the latest validated debt snapshot</h2></div>
+
+          <div class="usdc-reference-card" id="officialReferenceCard" aria-live="polite">
+            <span>Debt held by the public</span>
+            <strong id="referenceDebt">Loading…</strong>
+            <small id="referenceMeta">U.S. Treasury reference</small>
+          </div>
+
+          <label class="usdc-field" for="refinancingRate"><span>Rate on refinanced and new borrowing</span><div class="usdc-input-suffix"><input id="refinancingRate" type="number" min="0" max="20" step="0.1" value="4.0" inputmode="decimal"><b>%</b></div><small>Treasury borrows across multiple maturities. This single rate is a simplified blended scenario assumption, not a forecast of any one Treasury yield.</small></label>
+
+          <label class="usdc-field" for="projectionYears"><span>Projection period</span><div class="usdc-input-suffix"><input id="projectionYears" type="number" min="1" max="15" step="1" value="10" inputmode="numeric"><b>years</b></div></label>
+
+          <button type="button" class="usdc-button usdc-button-primary usdc-primary-action" id="calculateBtn">See the impact</button>
+          <p class="usdc-validation" id="validationMessage" role="alert"></p>
+
+          <details class="usdc-advanced" id="advancedAssumptions">
+            <summary>Advanced Assumptions</summary>
+            <div class="usdc-advanced-body">
+              <label class="usdc-field" for="debtBasis"><span>Starting debt basis</span><select id="debtBasis"><option value="public">Debt Held by the Public</option><option value="total">Total Public Debt Outstanding</option><option value="custom">Custom</option></select><small id="debtProvenance">Official U.S. Treasury reference.</small></label>
+              <label class="usdc-field" for="startingDebtTrillions"><span>Starting modeled debt</span><div class="usdc-input-prefix"><b>$</b><input id="startingDebtTrillions" type="number" min="0.1" max="100" step="0.01" inputmode="decimal"><b>trillion</b></div><small>Editing an official preset turns it into a custom scenario value.</small></label>
+              <label class="usdc-field" for="existingAverageRate"><span>Existing average interest rate</span><div class="usdc-input-suffix"><input id="existingAverageRate" type="number" min="0" max="20" step="0.1" value="3.4" inputmode="decimal"><b>%</b></div><small>CBO estimated the average interest rate on debt held by the public at 3.4% in 2026. This is not the same as today’s 10-year Treasury yield.</small></label>
+              <label class="usdc-field" for="primaryDeficitTrillions"><span>Annual primary deficit before interest</span><div class="usdc-input-prefix"><b>$</b><input id="primaryDeficitTrillions" type="number" min="0" max="10" step="0.05" value="1.0" inputmode="decimal"><b>trillion</b></div><small>Illustrative scenario assumption. Primary deficit means spending minus revenues before net interest.</small></label>
+              <label class="usdc-field" for="refinancingWindow"><span>Refinance the starting debt over</span><div class="usdc-input-suffix"><input id="refinancingWindow" type="number" min="1" max="30" step="1" value="5" inputmode="numeric"><b>years</b></div><small>A 5-year window reprices one-fifth of the original starting debt each year in this simplified model.</small></label>
+              <button type="button" class="usdc-button usdc-button-secondary" id="resetBtn">Reset Published Defaults</button>
+            </div>
+          </details>
+
+          <p class="usdc-data-note">The debt figure is a validated U.S. Treasury reference snapshot and shows its <em>as of</em> date. Carrowmont checks for a newer official debt record weekly. Rate, deficit and refinancing assumptions are scenario inputs, not forecasts.</p>
+        </aside>
+
+        <div class="usdc-results" id="resultsArea">
+          <div class="usdc-results-heading">
+            <div><p class="usdc-kicker">YOUR SCENARIO</p><h2>Modeled debt-service path</h2></div>
+            <div class="usdc-actions" aria-label="Scenario actions"><button class="usdc-button usdc-button-secondary" id="copySummaryBtn" type="button">Copy Summary</button><button class="usdc-button usdc-button-secondary" id="downloadCsvBtn" type="button">Download CSV</button><button class="usdc-button usdc-button-primary" id="generateReportBtn" type="button">Download US Debt Interest Cost Report</button></div>
+          </div>
+          <p class="usdc-action-message" id="actionMessage" aria-live="polite"></p>
+          <div class="usdc-summary-grid">
+            <article class="usdc-summary-card usdc-summary-primary"><span>Opening annualized interest estimate</span><strong id="openingInterest">—</strong><small>Starting debt × existing average rate</small></article>
+            <article class="usdc-summary-card"><span>Year 1 modeled interest cost</span><strong id="yearOneInterest">—</strong><small>After Year 1 refinancing step</small></article>
+            <article class="usdc-summary-card"><span>Final-year modeled interest cost</span><strong id="finalYearInterest">—</strong><small id="finalYearInterestNote">Selected rate scenario</small></article>
+            <article class="usdc-summary-card"><span>Final modeled debt</span><strong id="finalDebt">—</strong><small id="finalDebtNote">After projection period</small></article>
+            <article class="usdc-summary-card"><span>Cumulative modeled interest</span><strong id="cumulativeInterest">—</strong><small id="cumulativeInterestNote">Across projection period</small></article>
+            <article class="usdc-summary-card"><span>Change in annual interest cost</span><strong id="changeInterest">—</strong><small>Final year vs opening annualized estimate</small></article>
+          </div>
+          <div class="usdc-interpretation" id="interpretation">Loading the reference data…</div>
+          <div class="usdc-progress-grid">
+            <article><span>Original debt repriced</span><strong id="repricedShare">—</strong><small id="repricedText">—</small></article>
+            <article><span>1 pp on full starting debt</span><strong id="fullOnePp">—</strong><small>Mechanical annual sensitivity if the full starting debt carried a 1 percentage-point difference.</small></article>
+            <article><span>1 pp on one refi tranche</span><strong id="trancheOnePp">—</strong><small>Illustrates why the effect emerges gradually as debt reprices.</small></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="usdc-section usdc-chart-section" id="sensitivity">
+      <div class="shell">
+        <div class="usdc-section-heading"><p class="usdc-kicker">RATE SENSITIVITY</p><h2>Modeled annual interest cost by year</h2><p>Compare the selected refinancing rate with a mechanical 1 percentage-point lower and higher path. These are sensitivity bands, not forecasts.</p></div>
+        <div class="usdc-chart-panel">
+          <div class="usdc-chart-legend" aria-label="Chart legend"><span><i class="lower"></i>1 pp lower</span><span class="selected"><i class="selected"></i>Selected rate</span><span><i class="higher"></i>1 pp higher</span></div>
+          <div class="usdc-chart-wrap"><svg id="interestChart" class="usdc-chart" viewBox="0 0 980 420" role="img" aria-labelledby="interestChartTitle interestChartDesc"><title id="interestChartTitle">Modeled annual U.S. interest cost by year</title><desc id="interestChartDesc">Three deterministic rate-sensitivity scenarios from Year 0 through the selected projection period.</desc></svg></div>
+        </div>
+        <div class="usdc-table-wrap usdc-comparison-wrap"><table class="usdc-table" id="scenarioComparisonTable"><thead><tr><th>Scenario</th><th>New/refi rate</th><th>Final-year interest</th><th>Cumulative interest</th><th>Final debt</th><th>Vs selected final-year interest</th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="usdc-section">
+      <div class="shell">
+        <div class="usdc-section-heading"><p class="usdc-kicker">DETAIL</p><h2>Year-by-year selected-rate path</h2><p>Exact values remain available even though the dense table is collapsed by default.</p></div>
+        <details class="usdc-detail-table" id="annualDetail"><summary>Show year-by-year debt and interest detail</summary><div class="usdc-table-wrap"><table class="usdc-table usdc-annual-table" id="annualTable"><thead><tr><th>Year</th><th>Legacy debt remaining</th><th>Original debt refinanced</th><th>Debt at new rate before additions</th><th>Modeled interest</th><th>Primary deficit</th><th>Closing debt</th><th>Effective modeled rate</th></tr></thead><tbody></tbody></table></div></details>
+      </div>
+    </section>
+
+    <section class="usdc-section usdc-explain-section" id="methodology">
+      <div class="shell usdc-explain-grid">
+        <div>
+          <p class="usdc-kicker">HOW TO READ IT</p><h2>What drives the result?</h2>
+          <p>The model separates the original starting debt into a legacy-rate portion and a portion that has refinanced at the selected new rate. Each year, a fixed tranche of the original debt moves to the selected refinancing rate. The primary deficit and modeled interest cost are then added to debt at year-end and begin accruing interest in the following modeled year.</p>
+          <div class="usdc-formula"><span>Year t modeled interest</span><strong>(legacy debt × existing rate) + (new/refinanced debt × selected rate)</strong></div>
+          <p>The model deliberately uses a transparent beginning-of-year interest / year-end borrowing convention. Real Treasury issuance, coupons, bills, TIPS adjustments and maturity schedules are more complex.</p>
+        </div>
+        <aside class="usdc-explain-card"><h3>Why refinancing takes time</h3><p>A move in market yields does not instantly reset the rate on every dollar of outstanding debt. Treasury securities mature over different horizons, so the average cost of the debt stock can move with a lag.</p><h3>Average cost is not one market yield</h3><p>The existing average rate in this model is different from a current 10-year Treasury yield or the federal funds rate. It is a simplified average-cost assumption applied to the still-unrefinanced portion of the starting debt.</p></aside>
+      </div>
+    </section>
+
+    <section class="usdc-section usdc-education-section">
+      <div class="shell usdc-education-grid">
+        <article><h3>Debt held by the public vs total public debt</h3><p>Debt held by the public is Treasury debt held outside federal government accounts. Total Public Debt Outstanding also includes intragovernmental holdings. Carrowmont defaults to debt held by the public because that measure is commonly used in budget and economic analysis.</p></article>
+        <article><h3>Primary deficit vs total deficit</h3><p>The primary deficit excludes net interest. Asking for a primary deficit prevents the model from adding interest twice: the model calculates interest separately and then adds both primary deficit and modeled interest to year-end debt.</p></article>
+        <article><h3>Modeled interest vs official net interest</h3><p>Carrowmont’s modeled interest cost is a simplified scenario output. It is not Treasury-reported gross interest expense and it is not CBO net interest outlays, which use official budget-accounting definitions and offsets.</p></article>
+        <article><h3>Why interest can compound the burden</h3><p>When deficits and interest costs are financed with additional borrowing, the debt stock can grow. In later years that larger stock can itself create more interest cost under the model.</p></article>
+      </div>
+    </section>
+
+    <section class="usdc-section usdc-global-section">
+      <div class="shell usdc-explain-grid">
+        <div><p class="usdc-kicker">GLOBAL CONTEXT</p><h2>How could U.S. debt-service conditions matter beyond the U.S.?</h2><p>Higher or more volatile Treasury borrowing costs can interact with global bond yields, dollar funding conditions, investor risk appetite and capital flows. Those channels may influence borrowing costs and asset prices elsewhere, but the direction and size of any effect depend on many forces.</p><p>For India, relevant transmission channels can include global yields, the U.S. dollar, capital flows, the rupee, imported energy costs and domestic financial conditions. This calculator does not predict any of those outcomes.</p></div>
+        <aside class="usdc-explain-card"><h3>Keep scenario and prediction separate</h3><p>A rising modeled interest bill does not by itself imply a default, a dollar collapse, higher gold prices or falling equities. Those outcomes depend on policy, growth, inflation, investor demand and many other variables.</p></aside>
+      </div>
+    </section>
+
+    <section class="usdc-section usdc-faq-section">
+      <div class="shell"><div class="usdc-section-heading"><p class="usdc-kicker">FAQ</p><h2>Common questions</h2></div><div class="usdc-faq-list">
+        <details><summary>What is debt held by the public?</summary><p>It is federal debt held by investors and entities outside federal government accounts, subject to Treasury definitions. The figure includes Treasury securities held by individuals, institutions, governments and Federal Reserve Banks.</p></details>
+        <details><summary>How is total public debt different?</summary><p>Total Public Debt Outstanding equals debt held by the public plus intragovernmental holdings.</p></details>
+        <details><summary>Why doesn’t a higher Treasury yield immediately apply to all U.S. debt?</summary><p>Outstanding securities keep their existing terms until they mature or otherwise roll over. New market rates affect the debt stock gradually as borrowing is issued or refinanced.</p></details>
+        <details><summary>What is the average interest rate on federal debt?</summary><p>It is an average borrowing-cost concept across the debt stock, not one current Treasury yield. CBO estimated the average interest rate on debt held by the public at 3.4% in 2026.</p></details>
+        <details><summary>Why does this calculator use a primary deficit?</summary><p>Because primary deficit excludes net interest. The model calculates interest separately, avoiding double counting.</p></details>
+        <details><summary>Is modeled interest cost the same as CBO net interest outlays?</summary><p>No. This is a simplified deterministic model. CBO net interest is an official budget measure with specific accounting treatment and offsets.</p></details>
+        <details><summary>Does this calculator predict a U.S. default?</summary><p>No. It is an educational sensitivity model, not a default, market or Treasury-yield forecast.</p></details>
+        <details><summary>Does the Federal Reserve directly set the interest rate on all Treasury debt?</summary><p>No. The Federal Reserve sets a target range for the federal funds rate. Treasury securities are issued across maturities and their market yields reflect many forces.</p></details>
+        <details><summary>Why can interest expense keep rising even if rates stop rising?</summary><p>If existing lower-rate debt continues to mature into a higher-rate environment, the average cost can keep moving upward. Additional borrowing can also expand the debt stock.</p></details>
+        <details><summary>How could U.S. debt-service conditions affect India?</summary><p>Possible channels include global yields, the dollar, capital flows, the rupee, imported energy costs and domestic financing conditions. The calculator does not predict direction or magnitude.</p></details>
+        <details><summary>Why are all calculations in USD?</summary><p>The tool models U.S. federal debt. It does not perform exchange-rate conversion or relabel dollar debt in another currency.</p></details>
+        <details><summary>Is this investment advice?</summary><p>No. The tool is educational scenario analysis and does not recommend securities, portfolios or market trades.</p></details>
+      </div></div>
+    </section>
+
+    <section class="usdc-section usdc-sources-section" id="sources">
+      <div class="shell usdc-sources-grid">
+        <div><p class="usdc-kicker">SOURCES &amp; LIMITATIONS</p><h2>Official data where facts matter; explicit assumptions where scenarios begin</h2><p id="sourceDateCopy">The starting debt is a validated U.S. Treasury reference snapshot. The page never calls the Treasury API in your browser; the bundled reference is updated through a protected maintenance workflow.</p><p><strong>Limitation:</strong> real Treasury refinancing does not occur in equal annual tranches. The model is intentionally simplified so users can understand the mechanics rather than mistake complexity for precision.</p></div>
+        <ul>
+          <li><a href="https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/" rel="noopener">U.S. Treasury FiscalData — Debt to the Penny</a></li>
+          <li><a href="https://fiscaldata.treasury.gov/datasets/average-interest-rates-treasury-securities/" rel="noopener">U.S. Treasury FiscalData — Average Interest Rates</a></li>
+          <li><a href="https://fiscaldata.treasury.gov/datasets/interest-expense-debt-outstanding/" rel="noopener">U.S. Treasury FiscalData — Interest Expense</a></li>
+          <li><a href="https://fiscaldata.treasury.gov/datasets/monthly-statement-public-debt/" rel="noopener">U.S. Treasury FiscalData — Monthly Statement of the Public Debt</a></li>
+          <li><a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/" rel="noopener">U.S. Treasury — Daily Treasury Par Yield Curve Rates</a></li>
+          <li><a href="https://www.cbo.gov/publication/62105" rel="noopener">Congressional Budget Office — Budget and Economic Outlook: 2026 to 2036</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="usdc-section usdc-next-section">
+      <div class="shell"><div class="usdc-section-heading"><p class="usdc-kicker">CONTINUE PLANNING</p><h2>Connect macro conditions back to household planning</h2></div><div class="usdc-next-grid">
+        <a href="/inflation-calculator/"><strong>Inflation Calculator</strong><span>Explore how inflation changes future purchasing power and costs.</span></a>
+        <a href="/retirement-calculator/"><strong>Retirement Planner</strong><span>Model retirement spending, savings and the time your money needs to last.</span></a>
+        <a href="/financial-independence/"><strong>Financial Independence</strong><span>Build a fuller plan around spending, assets, contributions and target age.</span></a>
+        <a href="/stocks-vs-bonds.html"><strong>Stocks vs Bonds</strong><span>Review how different asset classes behave and why rates matter.</span></a>
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><div><strong>CARROWMONT</strong><p>Financial planning tools and educational resources.</p></div><nav aria-label="Footer"><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/privacy.html">Privacy</a><a href="/disclaimer.html">Disclaimer</a><a href="/contact.html">Contact</a></nav></div></footer>
+
+  <script src="site.js?v=20261010-seo3c1"></script>
+  <script src="us-debt-interest-cost-calculator-core.js?v=20261010-seo3c1"></script>
+  <script src="us-debt-interest-cost-calculator-pdf-export.js?v=20261010-seo3c1"></script>
+  <script src="us-debt-interest-cost-calculator-report-standard.js?v=20261010-seo3c1"></script>
+  <script src="us-debt-interest-cost-calculator-pdf-renderer.js?v=20261010-seo3c1"></script>
+  <script src="us-debt-interest-cost-calculator.js?v=20261010-seo3c1"></script>
+</body>
+</html>
