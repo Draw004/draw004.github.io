@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gold Under Macro Stress Explorer | Carrowmont</title>
+  <meta name="description" content="Explore how real yields, the U.S. dollar, inflation, central-bank demand, fiscal stress and geopolitical or financial stress can create competing forces for gold.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <meta name="author" content="Carrowmont">
+  <link rel="canonical" href="https://carrowmont.com/gold-macro-stress-explorer.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="Gold Under Macro Stress Explorer | Carrowmont">
+  <meta property="og:description" content="Map the competing macro forces that can support or challenge gold without turning them into a price forecast.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/gold-macro-stress-explorer.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gold Under Macro Stress Explorer | Carrowmont">
+  <meta name="twitter:description" content="Explore real yields, the dollar, inflation, official demand and stress as competing forces for gold.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <link rel="stylesheet" href="carrowmont.css?v=20261010-seo3d1">
+  <link rel="stylesheet" href="gold-macro-stress-explorer.css?v=20261010-seo3d1">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"WebApplication","name":"Carrowmont Gold Under Macro Stress Explorer","url":"https://carrowmont.com/gold-macro-stress-explorer.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"A deterministic educational explorer showing how six macro forces can be supportive, adverse or mixed for gold without forecasting the gold price.","dateModified":"2026-10-10","publisher":{"@type":"Organization","name":"Carrowmont","url":"https://carrowmont.com/"}},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://carrowmont.com/learn.html"},{"@type":"ListItem","position":3,"name":"Gold Under Macro Stress Explorer","item":"https://carrowmont.com/gold-macro-stress-explorer.html"}]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"Does this tool predict the gold price?","acceptedAnswer":{"@type":"Answer","text":"No. It classifies a macro environment from six transparent drivers and does not estimate a gold price, return or trading signal."}},
+        {"@type":"Question","name":"Why can gold face supportive forces and headwinds at the same time?","acceptedAnswer":{"@type":"Answer","text":"Real yields, the U.S. dollar, inflation, official-sector demand and stress can move in different directions. The explorer makes those competing forces visible instead of reducing gold to one headline."}},
+        {"@type":"Question","name":"Does high inflation guarantee higher gold prices?","acceptedAnswer":{"@type":"Answer","text":"No. Inflation can add support, while high real yields or a strong dollar can offset it. The relationship is not mechanical."}},
+        {"@type":"Question","name":"Is the reference snapshot live market data?","acceptedAnswer":{"@type":"Answer","text":"No. It is a dated, validated Carrowmont reference snapshot. The browser uses bundled data and does not call external macro-data providers."}}
+      ]}
+    ]
+  }
+  </script>
+</head>
+<body data-cm-page="gold-macro-stress-explorer">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule" aria-hidden="true"></span><span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span></a>
+      <nav class="desktop-nav" aria-label="Primary navigation"><a href="#explorer">Explorer</a><a href="#methodology">Methodology</a><a href="#sources">Sources</a><a href="/learn.html">Learn</a><a href="/">Home</a></nav>
+      <div class="gmse-fixed-context" aria-label="Tool context"><span class="gmse-globe" aria-hidden="true">◎</span><span>Global Macro</span><span>·</span><strong>Gold</strong></div>
+      <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="#explorer">Explorer</a><a href="#methodology">Methodology</a><a href="#sources">Sources</a><a href="/learn.html">Learn</a><a href="/">Home</a></div></details>
+    </div>
+  </header>
+
+  <main>
+    <section class="gmse-hero">
+      <div class="shell gmse-hero-grid">
+        <div><p class="eyebrow">GLOBAL MACRO RISK &amp; FINANCIAL RESILIENCE</p><h1>See the competing macro forces shaping gold</h1><p class="gmse-hero-lede">Explore how real yields, the U.S. dollar, inflation, central-bank demand, fiscal conditions and geopolitical or financial stress can push gold’s macro backdrop in different directions.</p><div class="gmse-badges"><span>No login</span><span>Dated reference data</span><span>Transparent rules</span><span>No price forecast</span></div></div>
+        <aside class="gmse-warning-card"><strong>A force map, not a gold-price target</strong><p>Gold can face supportive conditions and strong headwinds at the same time. This explorer explains that tension; it does not tell you where gold will trade next.</p></aside>
+      </div>
+    </section>
+
+    <section class="gmse-workspace" id="explorer">
+      <div class="shell gmse-layout">
+        <aside class="gmse-control-card" aria-labelledby="controlsTitle">
+          <div class="gmse-card-heading"><p class="gmse-kicker">REFERENCE FIRST</p><h2 id="controlsTitle">Start with Carrowmont’s dated macro snapshot</h2></div>
+          <div class="gmse-snapshot-meta"><strong id="snapshotLabel">Carrowmont Gold Macro Reference Snapshot</strong><span id="snapshotDate">Loading…</span></div>
+          <div class="gmse-reference-list" id="referenceList" aria-live="polite"></div>
+          <p class="gmse-control-intro">Change any condition below to test a what-if scenario. Your selections are scenario assumptions, not claims about current reality.</p>
+          <div class="gmse-fields" id="driverControls"></div>
+          <div class="gmse-control-actions"><button type="button" class="gmse-button gmse-button-primary" id="exploreBtn">Explore Gold Conditions</button><button type="button" class="gmse-button gmse-button-secondary" id="resetBtn">Reset to Reference Snapshot</button></div>
+          <details class="gmse-presets" id="scenarioPresets"><summary>Scenario Shortcuts</summary><div class="gmse-preset-grid"><button type="button" data-preset="lower-real-yields">Lower real yields</button><button type="button" data-preset="higher-real-yields">Higher real yields</button><button type="button" data-preset="dollar-weakness">Dollar weakness</button><button type="button" data-preset="inflation-shock">Inflation shock</button><button type="button" data-preset="central-bank-demand">Strong central-bank demand</button><button type="button" data-preset="stress-shock">Fiscal + geopolitical stress</button></div></details>
+          <p class="gmse-validation" id="validationMessage" role="alert"></p>
+        </aside>
+
+        <section class="gmse-results" aria-labelledby="resultsTitle">
+          <div class="gmse-results-heading"><div><p class="gmse-kicker" id="scenarioType">REFERENCE SNAPSHOT</p><h2 id="resultsTitle">Gold macro environment</h2></div><div class="gmse-actions"><button class="gmse-button gmse-button-secondary" id="copySummaryBtn" type="button">Copy Summary</button><button class="gmse-button gmse-button-secondary" id="downloadCsvBtn" type="button">Download CSV</button><button class="gmse-button gmse-button-primary" id="generateReportBtn" type="button">Generate Gold Macro Report</button></div></div>
+          <p class="gmse-action-message" id="actionMessage" role="status"></p>
+          <article class="gmse-primary-result"><span>Overall classification</span><strong id="environmentLabel">—</strong><p id="forceCounts">—</p><div class="gmse-conflict" id="conflictBadge" hidden>Competing forces are present.</div></article>
+          <div class="gmse-result-grid"><article><span>Strongest supportive forces</span><strong id="supportHeadline">—</strong><p id="supportDetail">—</p></article><article><span>Strongest headwinds</span><strong id="headwindHeadline">—</strong><p id="headwindDetail">—</p></article></div>
+          <div class="gmse-interpretation" id="interpretation">Loading the validated reference snapshot…</div>
+          <div class="gmse-disclaimer"><strong>Important:</strong> This describes a macro environment, not a gold-price forecast or investment recommendation.</div>
+          <div class="gmse-changes" id="changesPanel" hidden><strong>Changed from reference</strong><ul id="changedList"></ul></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="gmse-section gmse-chart-section" id="force-map">
+      <div class="shell"><div class="gmse-section-heading"><p class="gmse-kicker">FORCE MAP</p><h2>Which forces support gold — and which push the other way?</h2><p>The scale represents influence inside this transparent framework. It is not a return scale and does not represent a percentage price move.</p></div><div class="gmse-chart-panel"><div class="gmse-chart-head"><span>Strong headwind</span><strong>Macro influence in this framework</strong><span>Strong support</span></div><div class="gmse-chart-wrap"><svg id="forceMap" class="gmse-chart" viewBox="0 0 960 390" role="img" aria-labelledby="forceMapTitle forceMapDesc"><title id="forceMapTitle">Gold macro force map</title><desc id="forceMapDesc">Six horizontal rows display macro driver scores from strong headwind to strong support.</desc></svg></div><div class="gmse-chart-equivalent"><table aria-label="Accessible force map values"><thead><tr><th>Driver</th><th>State</th><th>Direction</th></tr></thead><tbody id="forceMapTable"></tbody></table></div></div></div>
+    </section>
+
+    <section class="gmse-section gmse-comparison-section">
+      <div class="shell"><div class="gmse-section-heading"><p class="gmse-kicker">REFERENCE VS SCENARIO</p><h2>See exactly what changed</h2></div><div class="gmse-table-wrap"><table class="gmse-table" id="comparisonTable"><thead><tr><th>Driver</th><th>Reference state</th><th>Your scenario</th><th>Changed?</th></tr></thead><tbody></tbody></table></div>
+      <details class="gmse-reference-detail" id="referenceDataDetails"><summary>View Reference Data &amp; Sources</summary><div class="gmse-table-wrap"><table class="gmse-table gmse-data-table"><thead><tr><th>Driver</th><th>Reference value</th><th>As of / period</th><th>Source</th><th>Reference state</th></tr></thead><tbody id="referenceDataBody"></tbody></table></div><p class="gmse-data-note">The browser reads a bundled validated data file. Weekly automated sources update only through a protected pull request; central-bank demand and fiscal stress remain reviewed inputs.</p></details>
+      </div>
+    </section>
+
+    <section class="gmse-section gmse-method-section" id="methodology"><div class="shell gmse-two-col"><div><p class="gmse-kicker">METHODOLOGY</p><h2>Six drivers, deterministic classifications, visible conflict</h2><p>Real yields and the U.S. dollar receive slightly higher weights because they are important financial conditions for a globally priced, non-yielding asset. Inflation, central-bank demand, fiscal stress and geopolitical/financial stress each retain meaningful influence.</p><p>The engine classifies each driver from <strong>strong headwind</strong> to <strong>strong support</strong>, then combines those states using fixed weights. The score is used only to select a qualitative environment label.</p><div class="gmse-formula"><span>Internal framework</span><strong>Real yields × 1.5 + Dollar × 1.5 + four other drivers × 1.0</strong><small>Internal scores run from −2 to +2. They are not probabilities, returns or price targets.</small></div></div><aside class="gmse-method-card"><h3>Why conflict matters</h3><p>High inflation, fiscal concern or geopolitical stress can coexist with high real yields and a strong dollar. The explorer keeps both sides visible instead of letting a simple majority vote create a false prediction.</p><h3>High inflation is not a guarantee</h3><p>Inflation can add support to gold’s macro environment, but real yields and dollar strength separately capture important offsetting forces.</p></aside></div></section>
+
+    <section class="gmse-section gmse-india-section"><div class="shell gmse-two-col"><div><p class="gmse-kicker">INDIA CONTEXT</p><h2>Global gold conditions and Indian gold prices are not the same thing</h2><p>Gold is globally priced in U.S. dollars, while Indian buyers experience the additional effect of USD/INR, import duties and taxes, local premiums and domestic demand. A globally supportive macro environment therefore does not translate one-for-one into an INR gold-price forecast.</p></div><aside class="gmse-method-card"><h3>Use this as context, not allocation advice</h3><p>The explorer does not tell an Indian investor how much gold to hold. Portfolio fit depends on goals, liquidity needs, time horizon, other assets and risk tolerance.</p></aside></div></section>
+
+    <section class="gmse-section gmse-education"><div class="shell"><div class="gmse-section-heading"><p class="gmse-kicker">UNDERSTAND THE DRIVERS</p><h2>Why each force can matter</h2></div><div class="gmse-education-grid"><article><h3>Real yields</h3><p>Higher inflation-adjusted yields can raise the opportunity cost of holding a non-yielding asset. Falling or low real yields can reduce that headwind.</p></article><article><h3>U.S. dollar</h3><p>A stronger dollar can be a headwind for a globally dollar-priced metal, while dollar weakness can be supportive. The relationship is not mechanical.</p></article><article><h3>Inflation pressure</h3><p>Persistent inflation can support demand for stores of value, but inflation by itself does not guarantee higher gold prices.</p></article><article><h3>Central-bank demand</h3><p>Official-sector net buying can provide structural demand. Quarterly estimates can be revised, so Carrowmont keeps this driver human-reviewed.</p></article><article><h3>Fiscal stress</h3><p>Rising debt and interest burdens can increase attention on fiscal credibility and alternative stores of value, without implying default or currency collapse.</p></article><article><h3>Geopolitical / financial stress</h3><p>Periods of geopolitical or market stress can increase safe-haven demand, but the effect can compete with liquidity, yields and dollar moves.</p></article></div></div></section>
+
+    <section class="gmse-section gmse-faq"><div class="shell"><div class="gmse-section-heading"><p class="gmse-kicker">FAQ</p><h2>Common questions</h2></div><div class="gmse-faq-list"><details><summary>Does this tool predict the gold price?</summary><p>No. It produces a qualitative macro-environment classification and never estimates a future gold price, percentage return or buy/sell signal.</p></details><details><summary>Why are real yields and the dollar weighted more heavily?</summary><p>They are important financial conditions for a globally dollar-priced asset that does not itself pay interest. The weights are fixed, disclosed and protected by deterministic tests.</p></details><details><summary>Can inflation be supportive while the overall result is adverse?</summary><p>Yes. High real yields and a strong dollar can outweigh inflation support in the framework. That is one of the main lessons the explorer is designed to show.</p></details><details><summary>Are the source values live?</summary><p>No. Carrowmont uses a dated validated reference snapshot. The browser never calls the macro-data providers directly.</p></details><details><summary>Why is central-bank demand reviewed rather than automatically changed?</summary><p>Quarterly demand estimates can be revised. Human review helps preserve the source period and prevents a provisional estimate from being silently treated as final.</p></details><details><summary>Is this investment advice?</summary><p>No. It is educational macro scenario analysis and does not recommend a security, metal allocation, timing decision or trade.</p></details></div></div></section>
+
+    <section class="gmse-section gmse-sources" id="sources"><div class="shell gmse-two-col"><div><p class="gmse-kicker">SOURCES &amp; LIMITATIONS</p><h2>Official sources where possible; reviewed specialist data where necessary</h2><p id="sourceDateCopy">Reference source dates will appear after the bundled snapshot loads.</p><p><strong>Limitation:</strong> macro relationships change over time. A classification that is historically associated with support or headwinds does not prove what gold will do next.</p></div><ul><li><a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_real_yield_curve" rel="noopener">U.S. Treasury — Daily Treasury Par Real Yield Curve Rates</a></li><li><a href="https://www.federalreserve.gov/releases/h10/summary/" rel="noopener">Federal Reserve H.10 — Broad Dollar Index</a></li><li><a href="https://www.bls.gov/news.release/cpi.toc.htm" rel="noopener">U.S. Bureau of Labor Statistics — CPI-U</a></li><li><a href="https://www.gold.org/goldhub/research/gold-demand-trends" rel="noopener">World Gold Council — Gold Demand Trends</a></li><li><a href="https://www.cbo.gov/publication/62105" rel="noopener">Congressional Budget Office — Budget and Economic Outlook</a></li><li><a href="https://www.matteoiacoviello.com/gpr.htm" rel="noopener">Caldara-Iacoviello — Geopolitical Risk Index</a></li><li><a href="https://www.financialresearch.gov/financial-stress-index/" rel="noopener">Office of Financial Research — Financial Stress Index</a></li></ul></div></section>
+
+    <section class="gmse-section gmse-next"><div class="shell"><div class="gmse-section-heading"><p class="gmse-kicker">KEEP EXPLORING</p><h2>Connect gold’s macro backdrop to the rest of your plan</h2></div><div class="gmse-next-grid"><a href="/us-debt-interest-cost-calculator.html"><strong>U.S. Debt Interest Cost</strong><span>Explore how refinancing and debt growth can change modeled U.S. interest costs.</span></a><a href="/gold-and-inflation.html"><strong>Gold and Inflation</strong><span>Understand why gold is not a simple one-for-one inflation hedge.</span></a><a href="/gold-vs-stocks.html"><strong>Gold vs Stocks</strong><span>Compare cash-flow, return drivers and portfolio roles.</span></a><a href="/asset-allocation-explained.html"><strong>Asset Allocation</strong><span>Put any gold holding inside a broader portfolio framework.</span></a></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><div><strong>CARROWMONT</strong><p>Financial planning tools and educational resources.</p></div><nav aria-label="Footer"><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/privacy.html">Privacy</a><a href="/disclaimer.html">Disclaimer</a><a href="/contact.html">Contact</a></nav></div></footer>
+
+  <script src="site.js?v=20261010-seo3d1"></script>
+  <script src="gold-macro-stress-explorer-core.js?v=20261010-seo3d1"></script>
+  <script src="gold-macro-stress-explorer-pdf.js?v=20261010-seo3d1"></script>
+  <script src="gold-macro-stress-explorer-report-standard.js?v=20261010-seo3d1"></script>
+  <script src="gold-macro-stress-explorer.js?v=20261010-seo3d1"></script>
+</body>
+</html>

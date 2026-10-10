@@ -1,0 +1,128 @@
+name: Update Gold Macro Reference
+
+on:
+  schedule:
+    - cron: "25 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: carrowmont-gold-macro-reference
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Check macro sources and prepare a protected data PR
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Python for official GPR workbook parsing
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install narrow GPR workbook dependency
+        run: python -m pip install --disable-pip-version-check --no-cache-dir 'xlrd==2.0.1'
+
+      - name: Check for an existing gold-reference PR
+        id: existing
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing repository secret CARROWMONT_REPO_TOKEN."
+            exit 1
+          fi
+          existing_url="$(gh pr list --repo Draw004/draw004.github.io --state open --json headRefName,url --jq '[.[] | select(.headRefName | startswith("automation/gold-macro-reference-"))][0].url // ""')"
+          if [[ -n "$existing_url" ]]; then
+            echo "An automated gold-macro reference PR is already open: $existing_url"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Refresh validated automated macro fields
+        if: steps.existing.outputs.skip != 'true'
+        id: refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="$(sha256sum data/gold-macro-reference.json | awk '{print $1}')"
+          node scripts/update-gold-macro-reference.mjs > /tmp/gold-update-result.json
+          cat /tmp/gold-update-result.json
+          after="$(sha256sum data/gold-macro-reference.json | awk '{print $1}')"
+          if [[ "$before" = "$after" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Stop when automated sources have no newer material change
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed != 'true'
+        shell: bash
+        run: echo "No newer material validated macro change; main remains unchanged."
+
+      - name: Prepare update summary
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed == 'true'
+        shell: bash
+        run: |
+          node - <<'NODE' > /tmp/gold-pr-body.md
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync('/tmp/gold-update-result.json','utf8'));
+          const a=j.automated;
+          console.log('## Carrowmont Gold Macro Reference Update\n');
+          console.log(`Reference snapshot: **${j.oldSnapshotDate} -> ${j.newSnapshotDate}**\n`);
+          console.log('| Automated field | New value | As of | Score |');
+          console.log('|---|---:|---|---:|');
+          console.log(`| 10Y real yield (5-day avg) | ${a.realYield.value}% | ${a.realYield.asOf} | ${a.realYield.score} |`);
+          console.log(`| Broad Dollar Index (5-day avg) | ${a.dollar.value} | ${a.dollar.asOf} | ${a.dollar.score} |`);
+          console.log(`| CPI-U YoY | ${a.inflation.value}% | ${a.inflation.asOf} | ${a.inflation.score} |`);
+          console.log(`| GPR / OFR stress | ${a.stress.gpr} / ${a.stress.ofr} | ${a.stress.asOf} | ${a.stress.score} |`);
+          console.log('\nReviewed central-bank-demand and fiscal-stress fields were preserved unchanged.');
+          console.log('\nThis workflow does not merge directly to `main`. Review source dates, values and classifications before merging.');
+          NODE
+          cat /tmp/gold-pr-body.md
+
+      - name: Create protected data-only pull request
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing repository secret CARROWMONT_REPO_TOKEN."
+            exit 1
+          fi
+          branch="automation/gold-macro-reference-${GITHUB_RUN_ID}"
+          git config user.name "Carrowmont Release Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/gold-macro-reference.json
+          test "$(git diff --cached --name-only)" = "data/gold-macro-reference.json"
+          git diff --cached --quiet && { echo "No data change to publish."; exit 0; }
+          git commit -m "chore: update Gold Macro reference"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/Draw004/draw004.github.io.git"
+          git push origin "HEAD:${branch}"
+          gh pr create \
+            --repo Draw004/draw004.github.io \
+            --base main \
+            --head "$branch" \
+            --title "Data: update Gold Macro reference snapshot" \
+            --body-file /tmp/gold-pr-body.md
