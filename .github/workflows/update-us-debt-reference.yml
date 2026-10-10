@@ -1,0 +1,127 @@
+name: Update US Debt Reference
+
+on:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: carrowmont-us-debt-reference
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Check Treasury and prepare a protected data PR
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check for an existing debt-reference PR
+        id: existing
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing repository secret CARROWMONT_REPO_TOKEN."
+            exit 1
+          fi
+          existing_url="$(gh pr list --repo Draw004/draw004.github.io --state open --json headRefName,url --jq '[.[] | select(.headRefName | startswith("automation/us-debt-reference-"))][0].url // ""')"
+          if [[ -n "$existing_url" ]]; then
+            echo "An automated US-debt reference PR is already open: $existing_url"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch and validate latest Treasury reference
+        if: steps.existing.outputs.skip != 'true'
+        id: refresh
+        shell: bash
+        run: node scripts/update-us-debt-reference.mjs
+
+      - name: Stop when Treasury has no newer valid record
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed != 'true'
+        shell: bash
+        run: echo "No newer validated Treasury record; main remains unchanged."
+
+      - name: Build review summary
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed == 'true'
+        shell: bash
+        env:
+          OLD_DATE: ${{ steps.refresh.outputs.old_record_date }}
+          NEW_DATE: ${{ steps.refresh.outputs.record_date }}
+          OLD_PUBLIC: ${{ steps.refresh.outputs.old_debt_held_public }}
+          NEW_PUBLIC: ${{ steps.refresh.outputs.debt_held_public }}
+          OLD_TOTAL: ${{ steps.refresh.outputs.old_total_public_debt }}
+          NEW_TOTAL: ${{ steps.refresh.outputs.total_public_debt }}
+          PUBLIC_CHANGE: ${{ steps.refresh.outputs.public_change_pct }}
+          TOTAL_CHANGE: ${{ steps.refresh.outputs.total_change_pct }}
+          ANOMALY: ${{ steps.refresh.outputs.anomaly }}
+        run: |
+          set -euo pipefail
+          flag="Normal weekly validation range."
+          if [[ "$ANOMALY" == "true" ]]; then
+            flag="WARNING: change exceeds the 5% anomaly-review threshold. Verify the Treasury source carefully before merging."
+          fi
+          cat > us-debt-update-pr.md <<EOF_BODY
+          ## Carrowmont US debt reference update
+
+          This data-only PR was prepared from the official U.S. Treasury FiscalData **Debt to the Penny** dataset.
+
+          | Field | Stored reference | Proposed reference |
+          |---|---:|---:|
+          | Record date | $OLD_DATE | $NEW_DATE |
+          | Debt Held by the Public | $OLD_PUBLIC | $NEW_PUBLIC |
+          | Total Public Debt Outstanding | $OLD_TOTAL | $NEW_TOTAL |
+
+          - Debt Held by the Public change: $PUBLIC_CHANGE%
+          - Total Public Debt change: $TOTAL_CHANGE%
+          - Review flag: **$flag**
+          - Source: https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/
+
+          The workflow does not write directly to protected `main`. Merge only after reviewing the values and checks.
+          EOF_BODY
+
+      - name: Create protected data-only pull request
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          RECORD_DATE: ${{ steps.refresh.outputs.record_date }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing repository secret CARROWMONT_REPO_TOKEN."
+            exit 1
+          fi
+          branch="automation/us-debt-reference-${RECORD_DATE}-${GITHUB_RUN_ID}"
+          git config user.name "Carrowmont Release Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/us-debt-reference.json
+          git diff --cached --quiet && { echo "No data change to publish."; exit 0; }
+          git commit -m "chore: update US debt reference to ${RECORD_DATE}"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/Draw004/draw004.github.io.git"
+          git push origin "HEAD:${branch}"
+          gh pr create \
+            --repo Draw004/draw004.github.io \
+            --base main \
+            --head "$branch" \
+            --title "chore: update US debt reference to ${RECORD_DATE}" \
+            --body-file us-debt-update-pr.md
