@@ -435,3 +435,9 @@ body[data-cm-learn-article="1"] .guide-section strong{
   body[data-cm-learn-article="1"] .guide-note{padding:14px 15px}
   body[data-cm-learn-article="1"] .rich-example>span{font-size:13.5px}
 }
+
+/* LEARN-LOCALE1: related-guide links may use long localized wording; allow them to wrap on narrow screens. */
+body[data-cm-learn-article="1"] .seo-related-guides .text-link{
+  white-space:normal;
+  overflow-wrap:anywhere;
+}

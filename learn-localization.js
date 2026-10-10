@@ -3,8 +3,23 @@
   var L = window.CarrowmontLocale;
   if (!L) return;
 
+  // Round illustrative profiles for every currency supported by locale.js.
+  // These are teaching examples, not FX conversions. Derived anchors below keep
+  // each guide internally consistent while letting country and currency remain
+  // separate user choices.
   var currencyExamples = {
-    INR:{target:10000000,monthly:10000}, USD:{target:1000000,monthly:500}, CAD:{target:1000000,monthly:500}, GBP:{target:1000000,monthly:500}, AUD:{target:1000000,monthly:500}, NZD:{target:1000000,monthly:500}, EUR:{target:1000000,monthly:500}, CNY:{target:1000000,monthly:3000}, JPY:{target:100000000,monthly:50000}, KRW:{target:1000000000,monthly:500000}, SGD:{target:1000000,monthly:500}, AED:{target:1000000,monthly:2000}, SAR:{target:1000000,monthly:2000}, CHF:{target:1000000,monthly:500}, BRL:{target:1000000,monthly:1000}, MXN:{target:1000000,monthly:5000}, ZAR:{target:1000000,monthly:5000}, IDR:{target:1000000000,monthly:1000000}, MYR:{target:1000000,monthly:1000}, THB:{target:10000000,monthly:10000}, PHP:{target:1000000,monthly:10000}, VND:{target:1000000000,monthly:5000000}, HKD:{target:1000000,monthly:5000}, TWD:{target:10000000,monthly:10000}, RUB:{target:1000000,monthly:20000}, TRY:{target:1000000,monthly:10000}
+    INR:{target:10000000,monthly:10000}, USD:{target:1000000,monthly:500}, CAD:{target:1000000,monthly:500},
+    GBP:{target:1000000,monthly:500}, AUD:{target:1000000,monthly:500}, NZD:{target:1000000,monthly:500},
+    BDT:{target:100000000,monthly:50000}, CLP:{target:1000000000,monthly:500000}, DKK:{target:5000000,monthly:3000},
+    EUR:{target:1000000,monthly:500}, CNY:{target:1000000,monthly:3000}, JPY:{target:100000000,monthly:50000},
+    KRW:{target:1000000000,monthly:500000}, SGD:{target:1000000,monthly:500}, AED:{target:1000000,monthly:2000},
+    SAR:{target:1000000,monthly:2000}, OMR:{target:500000,monthly:200}, QAR:{target:5000000,monthly:2000},
+    CHF:{target:1000000,monthly:500}, NOK:{target:10000000,monthly:5000}, PLN:{target:5000000,monthly:2000},
+    SEK:{target:10000000,monthly:5000}, BRL:{target:1000000,monthly:1000}, MXN:{target:1000000,monthly:5000},
+    ZAR:{target:1000000,monthly:5000}, IDR:{target:1000000000,monthly:1000000}, MYR:{target:1000000,monthly:1000},
+    THB:{target:10000000,monthly:10000}, PHP:{target:1000000,monthly:10000}, VND:{target:1000000000,monthly:5000000},
+    HKD:{target:1000000,monthly:5000}, TWD:{target:10000000,monthly:10000}, RUB:{target:1000000,monthly:20000},
+    TRY:{target:1000000,monthly:10000}
   };
   function text(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
   function html(id,v){var e=document.getElementById(id);if(e)e.innerHTML=v;}
@@ -12,7 +27,8 @@
   function decimals(v){var a=Math.abs(v);if(a>=100)return 0;if(a>=10)return 1;return 2;}
   function trim(v,d){return Number(v).toLocaleString(L.getLocale(),{maximumFractionDigits:d,minimumFractionDigits:0});}
   function exact(v){return L.formatMoney(v,{maximumFractionDigits:0});}
-  function human(v){var c=L.getCurrency(),s=L.currencySymbol(c),space=['AED','SAR','CHF'].indexOf(c)>=0?' ':''; if(c==='INR'){if(Math.abs(v)>=10000000)return s+trim(v/10000000,decimals(v/10000000))+' crore';if(Math.abs(v)>=100000)return s+trim(v/100000,decimals(v/100000))+' lakh';return exact(v);} if(Math.abs(v)>=1000000000){var b=v/1000000000;return s+space+trim(b,decimals(b))+' billion';} if(Math.abs(v)>=1000000){var m=v/1000000;return s+space+trim(m,decimals(m))+' million';} return exact(v);}
+  function exactAdaptive(v,digits){var d=digits==='auto'||digits==null?(Math.abs(v-Math.round(v))<1e-9?0:2):Math.max(0,Math.min(4,Number(digits)||0));return L.formatMoney(v,{maximumFractionDigits:d,minimumFractionDigits:0});}
+  function human(v){var c=L.getCurrency(),s=L.currencySymbol(c),space=/^[A-Za-z]/.test(s)&&!/\$$/.test(s)?' ':''; if(c==='INR'){if(Math.abs(v)>=10000000)return s+trim(v/10000000,decimals(v/10000000))+' crore';if(Math.abs(v)>=100000)return s+trim(v/100000,decimals(v/100000))+' lakh';return exactAdaptive(v,'auto');} if(Math.abs(v)>=1000000000){var b=v/1000000000;return s+space+trim(b,decimals(b))+' billion';} if(Math.abs(v)>=1000000){var m=v/1000000;return s+space+trim(m,decimals(m))+' million';} return exactAdaptive(v,'auto');}
   function monthlyRate(a){return Math.pow(1+a,1/12)-1;}
   function fvMonthly(m,y,a){var r=monthlyRate(a),n=y*12;return r===0?m*n:m*(Math.pow(1+r,n)-1)/r;}
   function monthlyForTarget(t,y,a){var r=monthlyRate(a),n=y*12;return r===0?t/n:t*r/(Math.pow(1+r,n)-1);}
@@ -20,6 +36,47 @@
   function yearsToTarget(start,monthly,target,a,maxYears){var r=monthlyRate(a),b=start;for(var i=1;i<=maxYears*12;i++){b*=1+r;b+=monthly;if(b>=target)return i/12;}return null;}
   function updateStructured(headline,desc){var b=document.querySelector('script[type="application/ld+json"]');if(!b)return;try{var d=JSON.parse(b.textContent);if(d&&d['@type']==='Article'){d.headline=headline;d.description=desc;b.textContent=JSON.stringify(d);}}catch(_){} }
   function state(){var region=L.getRegion(),currency=L.getCurrency(),isIndia=region==='IN',cfg=currencyExamples[currency]||currencyExamples.USD;cfg={target:cfg.target,monthly:cfg.monthly};cfg.goal=cfg.target/10;cfg.monthlyExpense=cfg.target/200;cfg.annualSpending=cfg.monthlyExpense*12;cfg.existing=cfg.target/10; return {region:region,currency:currency,isIndia:isIndia,cfg:cfg,term:isIndia?'Monthly Investment (SIP)':'Monthly Investment',fixedTerm:isIndia?'Fixed Monthly Investment (SIP)':'Fixed Monthly Investment',increasingTerm:isIndia?'Increasing Monthly Investment (Step-up SIP)':'Increasing Monthly Investment',calculator:isIndia?'SIP Calculator':'Monthly Investment Calculator',retirementTerm:isIndia?'retirement corpus':'retirement savings target'};}
+  function scaledIllustrativeAmount(inrAmount,basis,s){var source=currencyExamples.INR,target=s.cfg;if(basis==='unit')return inrAmount;if(basis==='monthly')return inrAmount*(target.monthly/source.monthly);return inrAmount*(target.target/source.target);}
+  function termValue(key,s){
+    var nonIndia={
+      'monthly-investment-sip':'Monthly Investment',
+      'fixed-monthly-investment-sip':'Fixed Monthly Investment',
+      'increasing-monthly-investment-stepup':'Increasing Monthly Investment',
+      'stepup-plan':'increasing investment plan',
+      'sip-calculator':'Recurring Investment Calculator',
+      'sip-investors':'regular investors',
+      'sip-investor':'regular investor',
+      'sip-plural':'recurring investment plans',
+      'sip':'recurring investment plan',
+      'cost-averaging':s.region==='US'?'dollar-cost averaging':'cost averaging'
+    };
+    if(!s.isIndia)return nonIndia[key]||'';
+    var india={
+      'monthly-investment-sip':'Monthly Investment (SIP)',
+      'fixed-monthly-investment-sip':'Fixed Monthly Investment (SIP)',
+      'increasing-monthly-investment-stepup':'Increasing Monthly Investment (Step-up SIP)',
+      'stepup-plan':'Step-up SIP',
+      'sip-calculator':'SIP Calculator',
+      'sip-investors':'SIP investors',
+      'sip-investor':'SIP investor',
+      'sip-plural':'SIPs',
+      'sip':'SIP',
+      'cost-averaging':'rupee-cost averaging'
+    };
+    return india[key]||nonIndia[key]||'';
+  }
+  function updateDeclarativeBindings(s){
+    document.querySelectorAll('[data-cm-money-inr]').forEach(function(el){
+      var source=Number(el.getAttribute('data-cm-money-inr'));
+      if(!Number.isFinite(source))return;
+      var basis=el.getAttribute('data-cm-money-basis')||'target';
+      var value=scaledIllustrativeAmount(source,basis,s);
+      var format=el.getAttribute('data-cm-money-format')||'exact';
+      var digits=el.getAttribute('data-cm-money-digits')||'auto';
+      el.textContent=format==='human'?human(value):exactAdaptive(value,digits);
+    });
+    document.querySelectorAll('[data-cm-term]').forEach(function(el){var v=termValue(el.getAttribute('data-cm-term'),s);if(v)el.textContent=v;});
+  }
   function updateFooter(s){document.querySelectorAll('.footer-col a[href="/sip-calculator/"]').forEach(function(a){a.textContent=s.calculator;});}
   function commonTerminology(s){}
   function updateLearn(s){if(document.body.dataset.cmPage!=='learn-hub')return;var target=human(s.cfg.target),monthly=exact(s.cfg.monthly);text('investmentCategoryTitle',s.isIndia?'Monthly Investment (SIP)':'Monthly Investment');text('investmentTargetTopicTitle','How much '+s.term+' is needed to build '+target+'?');text('investmentTargetTopicDesc','Work backward from a '+target+' target across different time horizons and assumptions.');text('investmentMonthlyTopicTitle',monthly+' '+s.term+': what could it grow to?');text('investmentMonthlyTopicDesc','Compare illustrative outcomes for '+monthly+' per month over 10, 15, 20 and 25 years.');text('investmentStepTopicTitle',s.increasingTerm+' vs '+s.fixedTerm+': what changes?');text('investmentStepTopicDesc','See how increasing contributions can change the contribution path and projected value.');var wrap=document.querySelector('.planning-categories');if(wrap){var order=s.isIndia?['investment','retirement','goals','fi','inflation','foundation']:['retirement','goals','investment','fi','inflation','foundation'];order.forEach(function(k){var e=wrap.querySelector('[data-category=\"'+k+'\"]');if(e)wrap.appendChild(e);});}}
@@ -44,7 +101,7 @@
     if(p==='inflation-savings-guide'){var b=c.goal;html('inflationSavingsExample','<strong>Illustrative fixed balance under 5% inflation</strong><span>Balance today: '+human(b)+'</span><span>Purchasing power after 10 years: '+human(b/Math.pow(1.05,10))+'</span><span>After 20 years: '+human(b/Math.pow(1.05,20))+'</span><span>After 30 years: '+human(b/Math.pow(1.05,30))+'</span>');}
     if(p==='fi-time-guide'){var annual=c.annualSpending,target=annual*25,start=c.existing,monthly=c.monthly,y=yearsToTarget(start,monthly,target,.07,50);html('fiTimeExample','<strong>Illustrative path</strong><span>Annual spending: '+exact(annual)+'</span><span>Illustrative 25× target: '+human(target)+'</span><span>Current invested assets: '+human(start)+'</span><span>Monthly contribution: '+exact(monthly)+'</span><span>Estimated time at a 7% annual assumption: '+(y?trim(y,1)+' years':'More than 50 years')+'</span>');}
   }
-  function apply(){var s=state();updateFooter(s);updateLearn(s);updateInvestmentTarget(s);updateGrowth(s);updateStep(s);updateRetirementMain(s);updateMonthlyGoal(s);updateCompound(s);updateInflationValue(s);updateFiNumber(s);updateSavingsGoal(s);updateNew(s);commonTerminology(s);}
+  function apply(){var s=state();updateFooter(s);updateLearn(s);updateInvestmentTarget(s);updateGrowth(s);updateStep(s);updateRetirementMain(s);updateMonthlyGoal(s);updateCompound(s);updateInflationValue(s);updateFiNumber(s);updateSavingsGoal(s);updateNew(s);commonTerminology(s);updateDeclarativeBindings(s);}
   function scheduleApply(){
     apply();
     if(window.requestAnimationFrame)window.requestAnimationFrame(apply);
@@ -61,6 +118,7 @@
     var done=document.getElementById('localeDoneBtn');
     if(done)done.addEventListener('click',function(){window.setTimeout(scheduleApply,0);});
   }
+  window.CarrowmontLearnLocalization=Object.freeze({apply:scheduleApply,currencyExamples:currencyExamples,getState:state,scaledIllustrativeAmount:scaledIllustrativeAmount});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindLocalization,{once:true});
   else bindLocalization();
 })();
