@@ -342,6 +342,134 @@
   populate();
 })();
 
+/* TOOLS-HUB1: canonical tools navigation, country-aware homepage ordering and tool terminology. */
+(function () {
+  "use strict";
+
+  const TOOL_ORDER_PROFILES = Object.freeze({
+    P1: Object.freeze(["investment", "retirement", "budget", "inflation", "goals", "independence"]),
+    P2: Object.freeze(["retirement", "investment", "budget", "inflation", "goals", "independence"]),
+    P3: Object.freeze(["retirement", "inflation", "budget", "investment", "goals", "independence"]),
+    P4: Object.freeze(["retirement", "investment", "budget", "inflation", "goals", "independence"]),
+    P5: Object.freeze(["investment", "retirement", "budget", "inflation", "goals", "independence"]),
+    P6: Object.freeze(["budget", "investment", "inflation", "retirement", "goals", "independence"]),
+    P7: Object.freeze(["budget", "investment", "retirement", "inflation", "goals", "independence"]),
+    P8: Object.freeze(["investment", "inflation", "budget", "retirement", "goals", "independence"]),
+    P9: Object.freeze(["budget", "retirement", "investment", "inflation", "goals", "independence"]),
+    P10: Object.freeze(["inflation", "budget", "investment", "retirement", "goals", "independence"]),
+    P11: Object.freeze(["retirement", "investment", "budget", "inflation", "goals", "independence"])
+  });
+
+  const REGION_ORDER_PROFILE = Object.freeze({
+    IN: "P1",
+    US: "P2", CA: "P2", GB: "P2", AU: "P2", NZ: "P2", IE: "P2",
+    AT: "P3", BE: "P3", DE: "P3", DK: "P3", FI: "P3", FR: "P3", IT: "P3", NL: "P3", NO: "P3", PL: "P3", PT: "P3", ES: "P3", SE: "P3", CH: "P3",
+    CN: "P4", JP: "P4", KR: "P4", TW: "P4",
+    SG: "P5", HK: "P5", MY: "P5",
+    BD: "P6", ID: "P6", TH: "P6", PH: "P6", VN: "P6",
+    AE: "P7", SA: "P7", OM: "P7", QA: "P7",
+    BR: "P8", MX: "P8", CL: "P8",
+    ZA: "P9",
+    RU: "P10", TR: "P10",
+    OTHER: "P11"
+  });
+
+  function getLocaleApi() {
+    return window.CarrowmontLocale || null;
+  }
+
+  function getOrderForRegion(regionCode) {
+    const profile = REGION_ORDER_PROFILE[regionCode] || "P11";
+    return [...TOOL_ORDER_PROFILES[profile]];
+  }
+
+  function upgradeLegacyToolsLinks() {
+    document.querySelectorAll('a[href="/#tools"], a[href="#tools"]').forEach((link) => {
+      const label = (link.textContent || "").trim();
+      if (/tools/i.test(label)) link.setAttribute("href", "/tools.html");
+    });
+  }
+
+  function applyInvestmentTerminology(regionCode) {
+    const india = regionCode === "IN";
+    document.querySelectorAll("[data-cm-investment-title]").forEach((node) => {
+      node.textContent = india ? "SIP Calculator" : "Recurring Investment Calculator";
+    });
+    document.querySelectorAll("[data-cm-investment-description]").forEach((node) => {
+      node.textContent = india
+        ? "Calculate SIP future value, work backwards from a goal, compare step-up SIPs and estimate how long a target may take."
+        : "Estimate recurring investment growth, work backwards from a goal, compare increasing contributions and estimate time to target.";
+    });
+    document.querySelectorAll("[data-cm-investment-cta]").forEach((node) => {
+      node.textContent = india ? "Calculate SIP →" : "Calculate investments →";
+    });
+    document.querySelectorAll("[data-cm-investment-kicker]").forEach((node) => {
+      node.textContent = india ? "SIP investing" : "Investing";
+    });
+    document.querySelectorAll(".footer-investment-link, [data-cm-footer-investment]").forEach((node) => {
+      node.textContent = india ? "SIP Calculator" : "Recurring Investment Calculator";
+    });
+  }
+
+  let lastOrderedRegion = null;
+  function applyHomepageOrder(regionCode) {
+    const grid = document.querySelector("[data-homepage-core-grid]");
+    if (!grid || lastOrderedRegion === regionCode) return;
+
+    const cards = new Map(
+      [...grid.querySelectorAll("[data-tool-id]")].map((card) => [card.dataset.toolId, card])
+    );
+    const order = getOrderForRegion(regionCode);
+    order.forEach((toolId) => {
+      const card = cards.get(toolId);
+      if (card) grid.appendChild(card);
+    });
+    const gateway = grid.querySelector("[data-tools-gateway]");
+    if (gateway) grid.appendChild(gateway);
+
+    grid.dataset.appliedCountry = regionCode;
+    grid.dataset.appliedOrder = order.join(",");
+    lastOrderedRegion = regionCode;
+  }
+
+  function applyIndiaExperience(regionCode) {
+    // Keep the established class name for compatibility with existing QA and CSS;
+    // country, not currency, now controls the India-specific terminology/discovery layer.
+    document.body.classList.toggle("india-inr", regionCode === "IN");
+  }
+
+  function applyToolsHubExperience() {
+    const locale = getLocaleApi();
+    if (!locale) return;
+    const regionCode = locale.getRegion();
+    applyIndiaExperience(regionCode);
+    applyInvestmentTerminology(regionCode);
+    applyHomepageOrder(regionCode);
+    upgradeLegacyToolsLinks();
+  }
+
+  function bindToolsHubExperience() {
+    upgradeLegacyToolsLinks();
+    applyToolsHubExperience();
+    window.addEventListener("carrowmont:localechange", applyToolsHubExperience);
+    window.addEventListener("pageshow", applyToolsHubExperience);
+  }
+
+  window.CarrowmontToolsHub = Object.freeze({
+    version: "tools-hub1",
+    profiles: TOOL_ORDER_PROFILES,
+    regionProfiles: REGION_ORDER_PROFILE,
+    getOrderForRegion,
+    apply: applyToolsHubExperience
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindToolsHubExperience, { once: true });
+  } else {
+    bindToolsHubExperience();
+  }
+})();
+
 /* Carrowmont Learn/content localization — integrated with site locale controller (v1.1.0-integrated1). */
 (function () {
   "use strict";

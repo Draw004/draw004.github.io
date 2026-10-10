@@ -768,6 +768,24 @@ The homepage should make it obvious that Carrowmont is a financial planning ecos
 
 Future tools should be added only when they create meaningful new user value.
 
+## 20A. All-Tools Directory and Homepage Discovery Rule
+
+`/tools.html` is the canonical directory for all live Carrowmont calculators, planners, stress tests and scenario explorers. The homepage remains curated rather than attempting to display every public asset in one primary grid.
+
+The homepage core-tools area must:
+
+- preserve each tool's complete visual identity, including icon, badge, title, description, illustration and CTA;
+- support expansion beyond the original six planning tools without relying on a permanent six-card limit;
+- keep a visually prominent **Explore All Tools** gateway fixed after the live core tools;
+- never show a dead or placeholder card for an unfinished tool;
+- keep authority and macro assets in a separate discovery section unless they become approved core planning tools.
+
+Core-tool ordering may adapt to the selected country profile when documented demand evidence supports a different priority. The ordering contract must be static, deterministic and version-controlled. It must use the selected **country**, not the selected currency, and must preserve DOM, keyboard and visual order together. Currency-only changes must not reorder tools.
+
+Country-aware terminology remains governed by the shared localization architecture. The same universal calculation engine may therefore appear as `SIP Calculator` in India and `Recurring Investment Calculator` elsewhere, while all static links and the underlying mathematics remain stable.
+
+The supporting evidence, fallback profiles and country-to-order mapping are documented in `CARROWMONT_HOMEPAGE_TOOL_DEMAND_MATRIX.md`. Search-demand ordering is a discovery aid, not a claim that one tool is universally more important than another.
+
 ---
 
 # 21. SEO Architecture
@@ -895,10 +913,12 @@ When a new calculator or planner is created, developers should review all of the
 
 ## Main Website
 
-- add tool card
-- add navigation
-- add internal links
+- add the tool to `/tools.html` in the correct product category
+- add a homepage core card only when the tool is approved for the curated core-planning area
+- preserve the established icon / illustration / card visual system
+- add navigation and contextual internal links
 - update any related tool recommendations
+- update the country-demand order contract only when supported by documented evidence
 
 ## Country / Currency
 
