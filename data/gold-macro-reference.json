@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "methodologyVersion": "gold-macro-stress-v1.0",
+  "snapshotDate": "2026-10-10",
+  "generatedAt": "2026-10-10T08:45:00Z",
+  "status": "validated-reference-snapshot",
+  "drivers": {
+    "realYields": {
+      "value": 2.916,
+      "unit": "% 10Y real yield, 5-business-day average",
+      "asOf": "2026-10-07",
+      "source": "U.S. Department of the Treasury — Daily Treasury Par Real Yield Curve Rates",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_real_yield_curve",
+      "fiveYearPercentile": 99,
+      "trend13WeekPp": 0.31,
+      "referenceScore": -2
+    },
+    "dollar": {
+      "value": 121.1735,
+      "unit": "Broad Dollar Index, 5-business-day average",
+      "asOf": "2026-10-02",
+      "source": "Federal Reserve H.10 — Nominal Broad U.S. Dollar Index",
+      "sourceUrl": "https://www.federalreserve.gov/releases/h10/summary/",
+      "fiveYearPercentile": 98,
+      "trend13WeekPct": 2.4,
+      "referenceScore": -2
+    },
+    "inflation": {
+      "value": 3.4,
+      "unit": "% YoY CPI-U All Items",
+      "asOf": "2026-08",
+      "source": "U.S. Bureau of Labor Statistics — CPI-U",
+      "sourceUrl": "https://www.bls.gov/news.release/cpi.toc.htm",
+      "fiveYearPercentile": 34,
+      "trend3MonthPp": -0.8,
+      "referenceScore": -2
+    },
+    "centralBankDemand": {
+      "trailingFourQuarterTonnes": 796.1,
+      "unit": "tonnes, trailing four quarters",
+      "asOfQuarter": "2026 Q2",
+      "reviewedAt": "2026-10-10",
+      "source": "World Gold Council — Gold Demand Trends / central banks",
+      "sourceUrl": "https://www.gold.org/goldhub/research/gold-demand-trends",
+      "referenceScore": 1,
+      "manualReviewed": true,
+      "classificationMethod": "reviewed-threshold-v1",
+      "classificationNote": "V1 uses a disclosed reviewed threshold table rather than republishing a long specialist-source history."
+    },
+    "fiscalStress": {
+      "sourceBaseline": "CBO Budget and Economic Outlook: 2026 to 2036",
+      "sourceDate": "2026",
+      "source": "Congressional Budget Office",
+      "sourceUrl": "https://www.cbo.gov/publication/62105",
+      "referenceScore": 2,
+      "manualReviewed": true,
+      "metrics": {
+        "debtHeldByPublicPctGdp2026": 101,
+        "debtHeldByPublicPctGdp2036": 120,
+        "netInterestPctGdp2026": 3.3,
+        "netInterestPctGdp2036": 4.6,
+        "deficitPctGdp2026": 5.8
+      },
+      "rationale": "The reviewed CBO baseline shows debt held by the public and net interest at historically elevated levels with a rising longer-run path; this is classified as very elevated fiscal stress, not as a default prediction."
+    },
+    "stress": {
+      "gprFourWeekAverage": 167.31,
+      "gprUnit": "index, approximately 4-week/30-day average",
+      "gprPercentile": 91,
+      "gprAsOf": "2026-10-05",
+      "gprSource": "Caldara-Iacoviello Geopolitical Risk Index — Recent Daily GPR",
+      "gprSourceUrl": "https://www.matteoiacoviello.com/gpr.htm",
+      "gprPreliminary": true,
+      "ofrFourWeekAverage": -2.364,
+      "ofrUnit": "OFR FSI, approximately 4-week average",
+      "ofrPercentile": 8,
+      "ofrAsOf": "2026-10-07",
+      "ofrSource": "Office of Financial Research — Financial Stress Index",
+      "ofrSourceUrl": "https://www.financialresearch.gov/financial-stress-index/",
+      "referenceScore": 2
+    }
+  },
+  "notes": {
+    "browserDataPolicy": "The production browser reads this bundled file only and does not call external macro-data providers.",
+    "maintenancePolicy": "Automated weekly fields update only through a validated protected PR. Central-bank demand and fiscal stress remain reviewed fields.",
+    "educationalUse": "Reference classifications describe macro conditions in this framework and do not predict gold prices or investment returns."
+  }
+}
