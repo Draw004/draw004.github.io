@@ -185,4 +185,10 @@
 <url><loc>https://carrowmont.com/gold-macro-stress-explorer.html</loc><lastmod>2026-10-10</lastmod></url>
 <url><loc>https://carrowmont.com/silver-vs-gold.html</loc><lastmod>2026-10-10</lastmod></url>
 <url><loc>https://carrowmont.com/silver-supply-demand-macro-stress-explorer.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url>
+    <loc>https://carrowmont.com/mortgage-payoff-calculator/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

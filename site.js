@@ -347,17 +347,17 @@
   "use strict";
 
   const TOOL_ORDER_PROFILES = Object.freeze({
-    P1: Object.freeze(["investment", "retirement", "budget", "inflation", "goals", "independence"]),
-    P2: Object.freeze(["retirement", "investment", "budget", "inflation", "goals", "independence"]),
-    P3: Object.freeze(["retirement", "inflation", "budget", "investment", "goals", "independence"]),
-    P4: Object.freeze(["retirement", "investment", "budget", "inflation", "goals", "independence"]),
-    P5: Object.freeze(["investment", "retirement", "budget", "inflation", "goals", "independence"]),
-    P6: Object.freeze(["budget", "investment", "inflation", "retirement", "goals", "independence"]),
-    P7: Object.freeze(["budget", "investment", "retirement", "inflation", "goals", "independence"]),
-    P8: Object.freeze(["investment", "inflation", "budget", "retirement", "goals", "independence"]),
-    P9: Object.freeze(["budget", "retirement", "investment", "inflation", "goals", "independence"]),
-    P10: Object.freeze(["inflation", "budget", "investment", "retirement", "goals", "independence"]),
-    P11: Object.freeze(["retirement", "investment", "budget", "inflation", "goals", "independence"])
+    P1: Object.freeze(["investment", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
+    P2: Object.freeze(["housing", "retirement", "investment", "budget", "inflation", "goals", "independence"]),
+    P3: Object.freeze(["retirement", "housing", "inflation", "budget", "investment", "goals", "independence"]),
+    P4: Object.freeze(["retirement", "housing", "investment", "budget", "inflation", "goals", "independence"]),
+    P5: Object.freeze(["investment", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
+    P6: Object.freeze(["budget", "housing", "investment", "inflation", "retirement", "goals", "independence"]),
+    P7: Object.freeze(["budget", "housing", "investment", "retirement", "inflation", "goals", "independence"]),
+    P8: Object.freeze(["investment", "housing", "inflation", "budget", "retirement", "goals", "independence"]),
+    P9: Object.freeze(["budget", "housing", "retirement", "investment", "inflation", "goals", "independence"]),
+    P10: Object.freeze(["inflation", "budget", "housing", "investment", "retirement", "goals", "independence"]),
+    P11: Object.freeze(["retirement", "housing", "investment", "budget", "inflation", "goals", "independence"])
   });
 
   const REGION_ORDER_PROFILE = Object.freeze({
@@ -411,6 +411,28 @@
     });
   }
 
+  function housingIdentity(regionCode) {
+    const map = {
+      IN: { title:"Home Loan Prepayment / Foreclosure", description:"See how part-prepayments, extra EMI principal or an earlier foreclosure target could change interest and remaining tenure.", cta:"Explore home-loan prepayment →" },
+      US: { title:"Mortgage Payoff", description:"See how extra principal, lump-sum payments or an earlier payoff target could change mortgage interest and time to debt-free.", cta:"Explore mortgage payoff →" },
+      CA: { title:"Mortgage Prepayment & Payoff", description:"Explore extra payments and lump-sum prepayments with Canadian fixed-rate convention support.", cta:"Explore mortgage prepayment →" },
+      GB: { title:"Mortgage Overpayment", description:"See how mortgage overpayments or a lump sum could reduce interest and shorten the remaining term.", cta:"Explore mortgage overpayments →" },
+      AU: { title:"Home Loan Extra Repayments", description:"See how extra repayments or a lump sum could reduce home-loan interest and shorten the loan.", cta:"Explore extra repayments →" },
+      NZ: { title:"Home Loan Extra Repayments", description:"See how extra repayments or a lump sum could reduce mortgage interest and shorten the remaining loan.", cta:"Explore extra repayments →" },
+      IE: { title:"Mortgage Overpayment", description:"See how mortgage overpayments or an early repayment could change interest and remaining term.", cta:"Explore mortgage overpayments →" }
+    };
+    return map[regionCode] || { title:"Mortgage / Home Loan Payoff", description:"See how extra payments, prepayments or an earlier payoff target could change interest and time to debt-free.", cta:"Explore payoff options →" };
+  }
+
+  function applyHousingTerminology(regionCode) {
+    const copy = housingIdentity(regionCode);
+    document.querySelectorAll("[data-cm-housing-title]").forEach((node) => { node.textContent = copy.title; });
+    document.querySelectorAll("[data-cm-housing-description]").forEach((node) => { node.textContent = copy.description; });
+    document.querySelectorAll("[data-cm-housing-cta]").forEach((node) => { node.textContent = copy.cta; });
+    document.querySelectorAll("[data-cm-housing-kicker]").forEach((node) => { node.textContent = regionCode === "IN" ? "Home loans" : "Home & loans"; });
+    document.querySelectorAll("[data-cm-footer-housing]").forEach((node) => { node.textContent = copy.title; });
+  }
+
   let lastOrderedRegion = null;
   function applyHomepageOrder(regionCode) {
     const grid = document.querySelector("[data-homepage-core-grid]");
@@ -444,6 +466,7 @@
     const regionCode = locale.getRegion();
     applyIndiaExperience(regionCode);
     applyInvestmentTerminology(regionCode);
+    applyHousingTerminology(regionCode);
     applyHomepageOrder(regionCode);
     upgradeLegacyToolsLinks();
   }

@@ -31,9 +31,31 @@ This extension follows the existing source-of-truth principle: the active tool l
 
 ---
 
+## 1B. October 2026 CORE7 Home Loan / Mortgage extension
+
+The approved Home Loan / Mortgage Prepayment & Early Payoff Calculator expands the primary planning suite from six to seven core tools. This is an explicit architecture change approved in `CARROWMONT_CORE7_HOME_LOAN_MORTGAGE_PAYOFF_SPEC.md`; older six-tool passages remain useful design history but do not describe the post-CORE7 registry.
+
+The seven primary calculator repositories are:
+
+- `sip-calculator`
+- `goal-planner`
+- `financial-independence`
+- `inflation-calculator`
+- `retirement-calculator`
+- `budget-cash-flow-planner`
+- `mortgage-payoff-calculator`
+
+The shared PDF **Continue planning with Carrowmont** rule now uses one seven-tool registry: remove the calculator that generated the report and render every other primary calculator. With seven active tools, each report therefore contains six related-tool cards. `report-standard.js` must remain byte-identical across all seven primary calculator repositories.
+
+CORE7 also introduces the versioned same-origin browser-state contract `carrowmont_plan_context_v1`. Compatible values may be reused across tools only when their meaning and currency are compatible, receiving tools validate them, and the user is not silently overridden. Country/currency continuity is shared; financial values require semantic compatibility and, where appropriate, explicit confirmation.
+
+The homepage curated planning area contains seven real core tools plus the permanent **Explore All Tools** gateway. On wide desktop layouts this forms a balanced 4 x 2 grid. The seven real tools are ordered by country-specific demand profiles; currency-only changes do not reorder them.
+
+---
+
 # 2. Current Carrowmont Ecosystem
 
-Carrowmont currently consists of a main website plus six primary financial planning tools.
+Carrowmont currently consists of a main website plus seven primary financial planning tools.
 
 ## Main Website
 
@@ -131,6 +153,22 @@ Purpose:
 - reserve for irregular bills and emergency savings
 - support privacy-first local history and comparison views
 - produce a standardized Budget & Cash Flow Report
+
+### Home Loan / Mortgage Prepayment & Early Payoff
+
+Repository:
+
+`Draw004/mortgage-payoff-calculator`
+
+Purpose:
+
+- model principal-and-interest repayment from the user-entered balance, rate, remaining duration and scheduled repayment frequency
+- compare recurring extra principal, lump-sum prepayment, target payoff and full early-payoff scenarios
+- keep scheduled repayment frequency, Monthly / Pay Cycle planning view and part-prepayment cadence as separate concepts
+- localize Home Loan / Mortgage / Overpayment / Foreclosure terminology without changing the universal mathematical core unless a country convention genuinely requires it
+- share compatible housing-loan context with the wider Carrowmont ecosystem through the versioned local browser-state contract
+- produce the standardized Home Loan / Mortgage payoff report
+
 
 ---
 
@@ -1243,7 +1281,7 @@ Recommended sequence:
 
 ## Phase 1
 
-Keep current six tools stable.
+Keep the current primary tool suite stable.
 
 Allow Google / Bing indexing to continue.
 
@@ -1272,7 +1310,7 @@ Launch and stabilize Budget & Cash Flow Planner V1.
 
 ## Phase 5
 
-Complete six-tool integration, shared report-card coverage and post-launch QA.
+Complete core-tool integration, shared report-card coverage and post-launch QA.
 
 ## Phase 6
 

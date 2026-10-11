@@ -2,9 +2,11 @@
 
 ## Purpose
 
-This implementation record now applies the Carrowmont naming and PDF-report standard across the main website, all six calculator repositories, and central QA.
+This implementation record now applies the Carrowmont naming and PDF-report standard across the main website, all seven primary calculator repositories, and central QA.
 
 The original September 2026 report-standardization work was limited to naming, PDF rendering, report structure, and QA. The October 2026 six-tool extension changes only the shared report helper, related QA contracts and documentation for the five existing calculators; the Budget & Cash Flow Planner is introduced as the new sixth calculator in the accompanying V1 release. Existing calculator calculation engines remain outside this report-standard change set.
+
+The October 2026 CORE7 Home Loan / Mortgage extension is a later approved architecture change. It expands the shared primary report registry from six to seven tools. Each primary-tool report now removes its own tool from the registry and renders the other six. Older six-tool/five-card passages in this record describe the historical Budget launch, not the current registry.
 
 ## Source snapshot
 
@@ -39,7 +41,7 @@ The established production route remains `/sip-calculator/`.
 
 ## Shared PDF architecture
 
-The six calculator repositories receive the same byte-identical `report-standard.js` helper.
+The seven primary calculator repositories receive the same byte-identical `report-standard.js` helper.
 
 It provides two standardized final report pages.
 
@@ -65,9 +67,9 @@ The investment-tool card resolves by country:
 - India — **SIP Calculator**
 - outside India — **Recurring Investment Calculator**
 
-### Six-tool registry rule
+### Seven-tool registry rule
 
-The shared report helper maintains one registry containing all six active Carrowmont calculators:
+The shared report helper maintains one registry containing all seven active Carrowmont primary calculators:
 
 - SIP Calculator / Recurring Investment Calculator
 - Retirement Planner
@@ -75,10 +77,11 @@ The shared report helper maintains one registry containing all six active Carrow
 - Financial Independence
 - Inflation Calculator
 - Budget & Cash Flow Planner
+- Home Loan / Mortgage Prepayment & Early Payoff Calculator
 
-For every report, the **Continue planning with Carrowmont** page removes the calculator that generated the report and renders every remaining active calculator. With six active calculators, that means exactly five related-tool cards. The helper must not truncate the registry to four cards, and a new calculator should be added to the shared registry rather than patched into one report independently.
+For every report, the **Continue planning with Carrowmont** page removes the calculator that generated the report and renders every remaining active calculator. With seven active primary calculators, that means exactly six related-tool cards. The helper must not truncate the registry, and a new approved primary calculator should be added to the shared registry rather than patched into one report independently.
 
-The five-card layout uses a two-column grid with the final odd card centered. The rule is shared across all six calculator repositories and the helper remains byte-identical.
+The current six-card related-tools layout uses the established two-column grid. The rule is shared across all seven primary calculator repositories and the helper remains byte-identical.
 
 ## SIP / Recurring Investment changes
 
@@ -143,13 +146,13 @@ No existing calculator `styles.css` file is changed by the six-tool report-stand
 
 Central QA is updated to verify:
 
-- the shared report standard exists in all six tools
-- the helper is byte-identical across all six tools
+- the shared report standard exists in all seven primary tools
+- the helper is byte-identical across all seven primary tools
 - each tool loads the shared helper before its PDF renderer
 - all reports use the standardized Guide & Methodology page
 - all reports use the standardized Continue Planning page
-- the shared tool registry contains all six active calculators
-- each Continue Planning page renders all five other active calculators without truncation
+- the shared tool registry contains all seven active primary calculators
+- each Continue Planning page renders all six other active primary calculators without truncation
 - India retains SIP identity
 - international product/report surfaces use Recurring Investment Calculator
 - international hero wording is not monthly-only
