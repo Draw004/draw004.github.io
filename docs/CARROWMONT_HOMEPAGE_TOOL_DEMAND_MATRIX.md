@@ -1,185 +1,177 @@
 # Carrowmont Homepage Tool Demand Matrix
 
-**Status:** Initial build-time ordering dataset for TOOLS-HUB1  
-**Research date:** 10 October 2026  
-**Applies to:** the six currently live homepage core tools  
-**Review target:** every 6–12 months, or sooner when Carrowmont Search Console data materially changes the picture
+**Status:** CORE7 build-time ordering dataset
+**Research revision:** 11 October 2026
+**Applies to:** the seven primary homepage planning tools
+**Review target:** every 6-12 months, or sooner when Carrowmont Search Console data materially changes the picture
 
 ## 1. Purpose
 
-Carrowmont keeps one universal set of core planning tools, but the order of those tools on the homepage should reflect the financial questions people most commonly look for in the selected country.
+Carrowmont keeps one universal set of primary planning tools, but the order of those tools on the homepage should reflect the financial questions people most commonly look for in the selected country. This document records the evidence, fallbacks and deterministic ordering used by the homepage. It is a build-time product input; the public site does not call an external keyword, trend or ranking API.
 
-This document records the evidence, fallbacks and deterministic ordering used by the homepage. It is a build-time product input. The public site does not call an external keyword, trend or ranking API.
-
-The six ranked tools are:
+The seven ranked tools are:
 
 | Tool key | Universal intent cluster |
 |---|---|
 | `investment` | recurring investment, compound growth, SIP, monthly investment |
+| `housing` | home-loan prepayment / foreclosure, mortgage payoff / overpayment, extra repayments |
 | `budget` | budget planner, cash-flow planner, spending planner |
 | `retirement` | retirement calculator, pension calculator, retirement corpus / savings target |
 | `inflation` | inflation calculator, future cost, purchasing-power calculator |
 | `goals` | savings goal, goal planner, target contribution calculator |
 | `independence` | financial independence, FIRE number, early-retirement calculator |
 
-The planned Home Loan / Mortgage Prepayment & Early Payoff tool is not ranked until it is live. **Explore All Tools** is always outside the ranking system and remains the final gateway card.
+**Explore All Tools** is outside the ranking system and remains the fixed eighth gateway card.
 
 ## 2. Evidence standard and limitations
 
-The initial matrix uses a hierarchy of evidence:
+The matrix uses a hierarchy of country-selectable search-volume evidence where defensible, Google Trends as a corroborating signal, the prominence of calculator categories on established local finance/public-information sites, and documented regional/global fallbacks when like-for-like country data are weak.
 
-1. country-selectable search-volume tools where comparable data are available;
-2. country-level Google Trends comparisons as a corroborating signal;
-3. calculator prominence and category structure on established local finance/public-information sites;
-4. a documented regional fallback where comparable country-level evidence is weak.
-
-Exact, like-for-like monthly search volume was not consistently available for every country and every translated synonym. This matrix therefore uses **ordinal demand scores** rather than fabricated precision:
-
-- rank 1 = score 6
-- rank 2 = score 5
-- rank 3 = score 4
-- rank 4 = score 3
-- rank 5 = score 2
-- rank 6 = score 1
-
-The matrix is directional homepage prioritization, not a claim that every resident of a country has the same needs.
+Exact comparable monthly volume is not available for every country and every translated synonym. The matrix therefore uses ordinal priority rather than fabricated precision. With seven tools, rank 1 is the highest-priority homepage position and rank 7 the lowest among the primary tools. The matrix is directional homepage prioritization, not a claim that every resident of a country has the same needs.
 
 ## 3. Research source registry
 
 | Source key | Source and use |
 |---|---|
-| S1 | [Semrush Keyword Search Volume Checker](https://www.semrush.com/free-tools/keyword-search-volume-checker/) — country-selectable demand checks and synonym comparison. |
-| S2 | [Google Trends Explore](https://trends.google.com/trends/explore) — country-level relative-interest corroboration where terms were comparable. |
-| S3 | [Groww financial calculators](https://groww.in/calculators) and its SIP/retirement calculator structure — representative India evidence for very strong SIP/recurring-investment demand and material retirement demand. |
-| S4 | [Bankrate calculators](https://www.bankrate.com/calculators/) — representative United States evidence across retirement, compound savings, budgeting/savings goals and household finance. |
-| S5 | [MoneyHelper tools and calculators](https://www.moneyhelper.org.uk/en/tools-and-calculators.html) — representative United Kingdom evidence for pensions/retirement, budget planning and savings. |
-| S6 | [Moneysmart calculators](https://moneysmart.gov.au/) — representative Australian public-interest evidence for retirement, budgeting, savings goals and investing. |
-| S7 | [WealthWise Canada calculators](https://mywealthwise.ca/en/calculators) and [CalcCanada savings & retirement](https://calccanada.ca/finance/) — representative Canadian evidence for retirement/FIRE and compound saving. |
-| S8 | [CalcuZone Europe finance calculators](https://calcuzone.eu/calculators/finance) and [DEdata inflation check](https://de-data.de/en/inflation-check) — multilingual European evidence for pension/retirement, savings/interest and inflation demand. |
-| S9 | [SG Finance Tools](https://sgfinancetools.com/) — representative Singapore/Asian evidence for investment, retirement/FIRE, savings and household planning. |
-| S10 | [RoviDev regional finance calculators](https://herramientas.rovidev.com/en/tools/finance-calculators/) — directional Latin American/multilingual evidence for compound interest, inflation, budgeting and retirement. |
-| S11 | [Treasury.to global calculator directory](https://treasury.to/en) — international fallback evidence for compound growth, retirement/FIRE, inflation, savings goals and debt/budget decisions. |
+| S1 | [Semrush Keyword Search Volume Checker](https://www.semrush.com/free-tools/keyword-search-volume-checker/) - country-selectable demand checks and synonym comparison. |
+| S2 | [Google Trends Explore](https://trends.google.com/trends/explore) - country-level relative-interest corroboration where terms were comparable. |
+| S3 | [Groww financial calculators](https://groww.in/calculators) - representative India evidence for SIP/recurring-investment and retirement calculator demand. |
+| S4 | [Bankrate calculators](https://www.bankrate.com/calculators/) - representative United States evidence across mortgages, retirement, savings and household finance. |
+| S5 | [MoneyHelper tools and calculators](https://www.moneyhelper.org.uk/en/tools-and-calculators.html) - representative United Kingdom evidence for mortgages, pensions/retirement, budgeting and savings. |
+| S6 | [Moneysmart calculators](https://moneysmart.gov.au/) - Australian public-interest evidence for home loans, retirement, budgeting and investing. |
+| S7 | [WealthWise Canada calculators](https://mywealthwise.ca/en/calculators) and [CalcCanada](https://calccanada.ca/finance/) - representative Canadian evidence for retirement/FIRE and saving. |
+| S8 | [CalcuZone Europe finance calculators](https://calcuzone.eu/calculators/finance) and [DEdata inflation check](https://de-data.de/en/inflation-check) - multilingual European evidence for retirement, savings/interest and inflation. |
+| S9 | [SG Finance Tools](https://sgfinancetools.com/) - representative Singapore/Asian evidence for investment, retirement/FIRE, savings and household planning. |
+| S10 | [RoviDev regional finance calculators](https://herramientas.rovidev.com/en/tools/finance-calculators/) - directional Latin American/multilingual evidence for compound interest, inflation, budgeting and retirement. |
+| S11 | [Treasury.to global calculator directory](https://treasury.to/en) - international fallback evidence across compound growth, retirement/FIRE, inflation, savings goals and debt/budget decisions. |
+| S12 | [seodata.dev - mortgage payoff calculator](https://www.seodata.dev/keyword/mortgage-payoff-calculator) - US mortgage-payoff keyword evidence; June 2026 page reported approximately 74,000 monthly searches using Google Ads API-based data. |
+| S13 | [Techmagnate Home Loan Trends India FY2024-25](https://www.techmagnate.com/campaigns/ppc/health-insurance-industry-trends-india/pdf/2024/Techmagnate-Home-Loan-STR.pdf) - India home-loan calculator and housing-loan prepayment intent evidence. |
+| S14 | [Consumer Financial Protection Bureau](https://www.consumerfinance.gov/ask-cfpb/what-is-a-payoff-amount-and-is-it-the-same-as-my-current-balance-en-205/) - US consumer payoff context and terminology. |
+| S15 | [Financial Consumer Agency of Canada](https://www.canada.ca/en/financial-consumer-agency/services/rights-responsibilities/rights-mortgages/rights-prepayments.html) - Canadian mortgage prepayment terminology and consumer relevance. |
+| S16 | [MoneyHelper - pay off your mortgage early](https://www.moneyhelper.org.uk/en/homes/buying-a-home/should-you-pay-off-your-mortgage-early) - UK overpayment / early repayment consumer context. |
+| S17 | [Moneysmart - pay off your mortgage faster](https://moneysmart.gov.au/home-loans/pay-off-your-mortgage-faster) - Australian extra-repayment consumer context. |
+| S18 | [Sorted mortgage calculator](https://sorted.org.nz/tools/mortgage-calculator/) - New Zealand mortgage repayment context. |
 
 ## 4. Order profiles
 
-### P1 — India investment-led
+### P1 - India investment + housing-led
 
-**Order:** investment → retirement → budget → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S3. SIP terminology and investment-calculator demand are unusually strong in India; retirement remains a major planning query. The remaining tools are ordered by broader household-planning demand, with FI/FIRE kept as a more specialized intent.
+**Order:** investment → housing → retirement → budget → inflation → goals → independence
 
-### P2 — Anglo retirement/investment-led
+**Rationale:** Direct India evidence shows unusually strong SIP / recurring-investment demand and material home-loan calculator / prepayment intent. Retirement and broad household planning follow.
 
-**Order:** retirement → investment → budget → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S4, S5, S6, S7. Retirement/pension and compound-saving tools receive high prominence across established English-language finance services. Budget and inflation are broad supporting needs; FI is more specialized.
+### P2 - Anglo housing + retirement-led
 
-### P3 — Continental Europe retirement/inflation-led
+**Order:** housing → retirement → investment → budget → inflation → goals → independence
 
-**Order:** retirement → inflation → budget → investment → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S8. Pension/retirement and inflation/purchasing-power tools recur prominently across European-language calculator catalogues. Budgeting and saving/investment remain important but use more country-specific terminology, so the initial profile uses a regional fallback.
+**Rationale:** Mortgage payoff / overpayment / extra-repayment calculators are prominent across US, Canada, UK and Australia, while retirement and investment remain broad high-intent categories.
 
-### P4 — Mature East Asia retirement/investment-led
+### P3 - Continental Europe retirement + housing-led
 
-**Order:** retirement → investment → budget → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S9 and regional fallback. Aging-population retirement needs and savings/investment planning are the strongest comparable universal intents. Local pension/account terminology varies substantially by country.
+**Order:** retirement → housing → inflation → budget → investment → goals → independence
 
-### P5 — Asian financial-hub investment-led
+**Rationale:** Retirement/pension is the strongest universal planning cluster; housing debt and inflation follow. Local mortgage terminology varies, so the housing rank is a regional product fallback rather than a claim of identical keyword volume.
 
-**Order:** investment → retirement → budget → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S9. Investment/compound-growth and retirement/FIRE tools receive strong prominence in Singapore/Hong Kong/Malaysia finance ecosystems.
+### P4 - Mature East Asia retirement + housing-led
 
-### P6 — Emerging Asia household-budget-led
+**Order:** retirement → housing → investment → budget → inflation → goals → independence
 
-**Order:** budget → investment → inflation → retirement → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S9, S11 and regional fallback. Budget/cash-flow, saving/investment and inflation are broad near-term household intents; retirement terminology and formal pension systems vary.
+**Rationale:** Retirement and housing are durable household planning needs; investment follows. Local pension and mortgage terminology varies materially by country.
 
-### P7 — Gulf household-planning-led
+### P5 - Asian financial-hub investment + housing-led
 
-**Order:** budget → investment → retirement → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S11 and regional fallback. Household budgeting and investment/savings planning are the most transferable universal intents across resident and expatriate populations.
+**Order:** investment → housing → retirement → budget → inflation → goals → independence
 
-### P8 — Latin America investment/inflation-led
+**Rationale:** Investment / compound-growth and housing finance are prominent in high-cost financial hubs, with retirement/FIRE close behind.
 
-**Order:** investment → inflation → budget → retirement → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S10. Compound-interest/investment and inflation tools are prominent regional intents; budget and retirement follow.
+### P6 - Emerging Asia household-budget + housing-led
 
-### P9 — South Africa budget/retirement-led
+**Order:** budget → housing → investment → inflation → retirement → goals → independence
 
-**Order:** budget → retirement → investment → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S11 and regional English-language fallback. Household budgeting and retirement planning are prioritized ahead of generic recurring-investment terminology.
+**Rationale:** Near-term household cash flow and housing commitments are prioritized before broader investing and retirement terms.
 
-### P10 — High-inflation-market profile
+### P7 - Gulf household-planning + housing-led
 
-**Order:** inflation → budget → investment → retirement → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S1, S2, S8, S10 and regional fallback. Inflation/purchasing-power questions are unusually central, followed by budget and savings/investment decisions.
+**Order:** budget → housing → investment → retirement → inflation → goals → independence
 
-### P11 — Other / International fallback
+**Rationale:** Budget/cash-flow and housing costs are broadly relevant across resident and expatriate populations; investment and retirement follow.
 
-**Order:** retirement → investment → budget → inflation → goals → independence  
-**Scores:** 6, 5, 4, 3, 2, 1  
-**Evidence:** S11 plus the cross-market pattern in S4–S9. This is a conservative global fallback, not a country-specific claim.
+### P8 - Latin America investment + housing/inflation-led
+
+**Order:** investment → housing → inflation → budget → retirement → goals → independence
+
+**Rationale:** Compound-growth/investment remains prominent, with housing and inflation as major household planning concerns.
+
+### P9 - South Africa budget + housing/retirement-led
+
+**Order:** budget → housing → retirement → investment → inflation → goals → independence
+
+**Rationale:** Household budgeting and housing commitments are prioritized, followed by retirement and investment.
+
+### P10 - High-inflation-market profile
+
+**Order:** inflation → budget → housing → investment → retirement → goals → independence
+
+**Rationale:** Inflation/purchasing power remains first, followed by budget and housing-debt decisions.
+
+### P11 - Other / International fallback
+
+**Order:** retirement → housing → investment → budget → inflation → goals → independence
+
+**Rationale:** Conservative global fallback using cross-market prominence of retirement, housing debt, investing and budget planning.
 
 ## 5. Country-to-profile matrix
 
 | Code | Country / region | Profile | Final order | Evidence / fallback note |
 |---|---|---|---|---|
-| IN | India | P1 | investment, retirement, budget, inflation, goals, independence | Direct India evidence (S1–S3). |
-| US | United States | P2 | retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S4). |
-| CA | Canada | P2 | retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S7). |
-| GB | United Kingdom | P2 | retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S5). |
-| AU | Australia | P2 | retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S6). |
-| NZ | New Zealand | P2 | retirement, investment, budget, inflation, goals, independence | Anglo-market fallback from GB/AU/CA evidence. |
-| IE | Ireland | P2 | retirement, investment, budget, inflation, goals, independence | Anglo/European English-language fallback. |
-| AT | Austria | P3 | retirement, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
-| BE | Belgium | P3 | retirement, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
-| DE | Germany | P3 | retirement, inflation, budget, investment, goals, independence | Representative direct/regional evidence (S2, S8). |
-| DK | Denmark | P3 | retirement, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
-| FI | Finland | P3 | retirement, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
-| FR | France | P3 | retirement, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
-| IT | Italy | P3 | retirement, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
-| NL | Netherlands | P3 | retirement, inflation, budget, investment, goals, independence | Representative direct/regional evidence (S8). |
-| NO | Norway | P3 | retirement, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
-| PL | Poland | P3 | retirement, inflation, budget, investment, goals, independence | Representative regional evidence (S8). |
-| PT | Portugal | P3 | retirement, inflation, budget, investment, goals, independence | Representative regional evidence (S8). |
-| ES | Spain | P3 | retirement, inflation, budget, investment, goals, independence | Representative regional evidence (S8). |
-| SE | Sweden | P3 | retirement, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
-| CH | Switzerland | P3 | retirement, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
-| CN | China | P4 | retirement, investment, budget, inflation, goals, independence | Mature East Asia fallback; local-language pension/savings terms vary. |
-| JP | Japan | P4 | retirement, investment, budget, inflation, goals, independence | Mature East Asia fallback with strong retirement relevance. |
-| KR | South Korea | P4 | retirement, investment, budget, inflation, goals, independence | Mature East Asia fallback with strong retirement relevance. |
-| TW | Taiwan | P4 | retirement, investment, budget, inflation, goals, independence | Mature East Asia fallback. |
-| SG | Singapore | P5 | investment, retirement, budget, inflation, goals, independence | Representative direct evidence (S1, S2, S9). |
-| HK | Hong Kong | P5 | investment, retirement, budget, inflation, goals, independence | Asian financial-hub fallback from Singapore/HK market structure. |
-| MY | Malaysia | P5 | investment, retirement, budget, inflation, goals, independence | Regional investment-led fallback. |
-| BD | Bangladesh | P6 | budget, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
-| ID | Indonesia | P6 | budget, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
-| TH | Thailand | P6 | budget, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
-| PH | Philippines | P6 | budget, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
-| VN | Vietnam | P6 | budget, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
-| AE | United Arab Emirates | P7 | budget, investment, retirement, inflation, goals, independence | Gulf resident/expatriate fallback. |
-| SA | Saudi Arabia | P7 | budget, investment, retirement, inflation, goals, independence | Gulf regional fallback. |
-| OM | Oman | P7 | budget, investment, retirement, inflation, goals, independence | Gulf regional fallback. |
-| QA | Qatar | P7 | budget, investment, retirement, inflation, goals, independence | Gulf resident/expatriate fallback. |
-| BR | Brazil | P8 | investment, inflation, budget, retirement, goals, independence | Latin America representative/fallback evidence (S2, S10). |
-| MX | Mexico | P8 | investment, inflation, budget, retirement, goals, independence | Latin America representative/fallback evidence (S2, S10). |
-| CL | Chile | P8 | investment, inflation, budget, retirement, goals, independence | Latin America regional fallback (S10). |
-| ZA | South Africa | P9 | budget, retirement, investment, inflation, goals, independence | South Africa English-language/regional fallback. |
-| RU | Russia | P10 | inflation, budget, investment, retirement, goals, independence | High-inflation-market fallback. |
-| TR | Türkiye | P10 | inflation, budget, investment, retirement, goals, independence | High-inflation-market fallback. |
-| OTHER | Other / International | P11 | retirement, investment, budget, inflation, goals, independence | Conservative global fallback (S11). |
+| IN | India | P1 | investment, housing, retirement, budget, inflation, goals, independence | Direct India evidence (S1-S3, S12-S13). |
+| US | United States | P2 | housing, retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S4, S12, S14). |
+| CA | Canada | P2 | housing, retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S7, S15). |
+| GB | United Kingdom | P2 | housing, retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S5, S16). |
+| AU | Australia | P2 | housing, retirement, investment, budget, inflation, goals, independence | Direct representative evidence (S1, S2, S6, S17). |
+| NZ | New Zealand | P2 | housing, retirement, investment, budget, inflation, goals, independence | Anglo-market fallback with local mortgage terminology support (S18). |
+| IE | Ireland | P2 | housing, retirement, investment, budget, inflation, goals, independence | Anglo/European English-language fallback. |
+| AT | Austria | P3 | retirement, housing, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
+| BE | Belgium | P3 | retirement, housing, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
+| DE | Germany | P3 | retirement, housing, inflation, budget, investment, goals, independence | Representative direct/regional evidence (S2, S8). |
+| DK | Denmark | P3 | retirement, housing, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
+| FI | Finland | P3 | retirement, housing, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
+| FR | France | P3 | retirement, housing, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
+| IT | Italy | P3 | retirement, housing, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
+| NL | Netherlands | P3 | retirement, housing, inflation, budget, investment, goals, independence | Representative direct/regional evidence (S8). |
+| NO | Norway | P3 | retirement, housing, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
+| PL | Poland | P3 | retirement, housing, inflation, budget, investment, goals, independence | Representative regional evidence (S8). |
+| PT | Portugal | P3 | retirement, housing, inflation, budget, investment, goals, independence | Representative regional evidence (S8). |
+| ES | Spain | P3 | retirement, housing, inflation, budget, investment, goals, independence | Representative regional evidence (S8). |
+| SE | Sweden | P3 | retirement, housing, inflation, budget, investment, goals, independence | Nordic/continental fallback. |
+| CH | Switzerland | P3 | retirement, housing, inflation, budget, investment, goals, independence | Continental Europe fallback (S8). |
+| CN | China | P4 | retirement, housing, investment, budget, inflation, goals, independence | Mature East Asia fallback; local-language pension/housing terms vary. |
+| JP | Japan | P4 | retirement, housing, investment, budget, inflation, goals, independence | Mature East Asia fallback with strong retirement relevance. |
+| KR | South Korea | P4 | retirement, housing, investment, budget, inflation, goals, independence | Mature East Asia fallback with strong retirement relevance. |
+| TW | Taiwan | P4 | retirement, housing, investment, budget, inflation, goals, independence | Mature East Asia fallback. |
+| SG | Singapore | P5 | investment, housing, retirement, budget, inflation, goals, independence | Representative direct/regional evidence (S1, S2, S9). |
+| HK | Hong Kong | P5 | investment, housing, retirement, budget, inflation, goals, independence | Asian financial-hub fallback. |
+| MY | Malaysia | P5 | investment, housing, retirement, budget, inflation, goals, independence | Regional investment/housing fallback. |
+| BD | Bangladesh | P6 | budget, housing, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
+| ID | Indonesia | P6 | budget, housing, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
+| TH | Thailand | P6 | budget, housing, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
+| PH | Philippines | P6 | budget, housing, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
+| VN | Vietnam | P6 | budget, housing, investment, inflation, retirement, goals, independence | Emerging Asia fallback. |
+| AE | United Arab Emirates | P7 | budget, housing, investment, retirement, inflation, goals, independence | Gulf resident/expatriate fallback. |
+| SA | Saudi Arabia | P7 | budget, housing, investment, retirement, inflation, goals, independence | Gulf regional fallback. |
+| OM | Oman | P7 | budget, housing, investment, retirement, inflation, goals, independence | Gulf regional fallback. |
+| QA | Qatar | P7 | budget, housing, investment, retirement, inflation, goals, independence | Gulf resident/expatriate fallback. |
+| BR | Brazil | P8 | investment, housing, inflation, budget, retirement, goals, independence | Latin America representative/fallback evidence (S2, S10). |
+| MX | Mexico | P8 | investment, housing, inflation, budget, retirement, goals, independence | Latin America representative/fallback evidence (S2, S10). |
+| CL | Chile | P8 | investment, housing, inflation, budget, retirement, goals, independence | Latin America regional fallback (S10). |
+| ZA | South Africa | P9 | budget, housing, retirement, investment, inflation, goals, independence | South Africa English-language/regional fallback. |
+| RU | Russia | P10 | inflation, budget, housing, investment, retirement, goals, independence | High-inflation-market fallback. |
+| TR | Türkiye | P10 | inflation, budget, housing, investment, retirement, goals, independence | High-inflation-market fallback. |
+| OTHER | Other / International | P11 | retirement, housing, investment, budget, inflation, goals, independence | Conservative global fallback (S11 plus cross-market housing evidence). |
 
 ## 6. Runtime implementation contract
 
-The public homepage uses the country code returned by `CarrowmontLocale.getRegion()` and maps it to one of the profiles above. The real tool-card elements carry stable identifiers:
+The public homepage uses the country code returned by `CarrowmontLocale.getRegion()` and maps it to one of the profiles above. The seven real tool-card elements carry stable identifiers:
 
 - `budget`
 - `investment`
@@ -187,20 +179,14 @@ The public homepage uses the country code returned by `CarrowmontLocale.getRegio
 - `inflation`
 - `goals`
 - `independence`
+- `housing`
 
-The implementation physically reorders the card nodes so keyboard and screen-reader traversal match the visual order. Currency-only changes do not select a different profile. The Explore All Tools gateway is appended after the ranked real tools and is never scored.
+The implementation physically reorders the card nodes so keyboard and screen-reader traversal match the visual order. Currency-only changes do not select a different profile. The **Explore All Tools** gateway is appended after the seven ranked tools and is never scored.
 
-## 7. Future seventh tool
+## 7. Housing terminology contract
 
-When the Home Loan / Mortgage Prepayment & Early Payoff tool is live, a new research revision must add its country-specific intent clusters, including terms such as:
-
-- home loan prepayment / foreclosure calculator;
-- mortgage payoff / early payoff calculator;
-- mortgage overpayment calculator;
-- extra repayment / home-loan repayment calculator.
-
-It must not be added to the ranking before the page exists and has passed the standard Carrowmont release process.
+The `housing` card keeps one stable tool identity and URL while visible wording changes by country. India uses Home Loan Prepayment / Foreclosure language; the US uses Mortgage Payoff; Canada uses Mortgage Prepayment & Payoff; the UK and Ireland use Mortgage Overpayment; Australia and New Zealand use Home Loan Extra Repayments. The country changes wording and homepage rank; currency-only changes do neither.
 
 ## 8. Maintenance rule
 
-On review, use Carrowmont Search Console impressions/clicks as the preferred first-party signal once sample size is meaningful. Preserve historical revisions so changes in homepage ordering remain explainable.
+On review, use Carrowmont Search Console impressions/clicks as the preferred first-party signal once sample size is meaningful. Record source dates and preserve historical revisions so changes in homepage ordering remain explainable. Do not alter the matrix in response to one or two impressions; use the established Carrowmont evidence threshold and review discipline.

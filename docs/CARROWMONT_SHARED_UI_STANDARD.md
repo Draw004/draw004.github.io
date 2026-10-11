@@ -1,11 +1,11 @@
 # Carrowmont Shared UI Standard
 
 **Document:** `CARROWMONT_SHARED_UI_STANDARD.md`  
-**Version:** 1.0  
+**Version:** 1.1  
 **Status:** Approved baseline for implementation  
-**Date:** 1 October 2026  
+**Date:** 11 October 2026  
 **Scope:** Main Carrowmont website and all active Carrowmont planning tools  
-**Baseline source snapshot:** 1 October 2026, generated `2026-10-01T02:54:27Z`
+**Current implementation baseline:** Carrowmont Source Snapshot 43, generated `2026-10-11T04:24:07Z`
 
 ## 1. Purpose
 
@@ -36,23 +36,29 @@ The active ecosystem at this baseline contains:
 4. Inflation Calculator
 5. Retirement Planner
 6. Budget & Cash Flow Planner
-7. Main Carrowmont website
-8. Central `carrowmont-qa` repository
+7. Home Loan / Mortgage Prepayment & Early Payoff Calculator
+8. Main Carrowmont website
+9. Central `carrowmont-qa` repository
 
-The six planning tools are the current active **tool registry**. Any shared tool list used in the site header, footer, report cross-links, or shared navigation should derive from one maintained registry wherever practical.
+The seven planning tools are the current active **core tool registry**. Any shared tool list used in the site header, footer, report cross-links, or shared navigation should derive from one maintained registry wherever practical.
 
-### Baseline repository commits
+### Current repository commits - Snapshot 43
 
-| Repository | Baseline commit |
+| Repository | Snapshot 43 commit |
 |---|---|
-| `draw004.github.io` | `c824c13a9b2161cd0b6451a24e01b5c02e9f741c` |
-| `sip-calculator` | `1dd9f30101b8ede4bf77f1fb877713296ce14b68` |
-| `goal-planner` | `a5c780c6366a74e3b2432c63f10e3bf328853ab9` |
-| `financial-independence` | `97b8ad6b56cd7440966f8ac8aba2f77d6f2ee944` |
-| `inflation-calculator` | `b1014d67a52bf0c62aab985e8c3296903e59bcc9` |
-| `retirement-calculator` | `e1158643127efc29a7f1d4ac7d740282fac4f6d1` |
-| `budget-cash-flow-planner` | `4c1ffa474c8737384755b23853f554f05fa1b36d` |
-| `carrowmont-qa` | `ccd9987994d3dc1b1b1448eaa10113723329b224` |
+| `draw004.github.io` | `0f572a4903be35d724d1d58e7ec8d55527d88f80` |
+| `sip-calculator` | `9309d6b6150c6f09e410b7f0b3c79a456c4c3f42` |
+| `goal-planner` | `bc61b12b5e1632d99892a9d72d4f11cf147afa57` |
+| `financial-independence` | `3b0c69be1629ae1f1cfa940d71ab6f192a395d60` |
+| `inflation-calculator` | `885fb1a09946632dccee1d4f2cb9a3bb686282b5` |
+| `retirement-calculator` | `3385406f104940f20ff4a7c3769ba34baccca93e` |
+| `budget-cash-flow-planner` | `b657d819c401bf7d3beeeb797ca706c3d5ac2e55` |
+| `mortgage-payoff-calculator` | `b2cbe9769b4b982629e717bd6efe6873a8f06d73` |
+| `carrowmont-qa` | `49a46160c375175e1558de6325d080db163fa5ea` |
+
+### CORE7 extension
+
+The approved `CARROWMONT_CORE7_HOME_LOAN_MORTGAGE_PAYOFF_SPEC.md` expands the primary planning suite from six to seven tools. The Home Loan / Mortgage tool must inherit this shared shell from its first production release. The shared report/footer/navigation registries must therefore treat seven primary tools as the current rule; older references to a six-tool registry below describe the historical Budget launch or UI Standardization Batch 1 only.
 
 ---
 
@@ -288,7 +294,7 @@ A tool may add a short tool-specific clarification when necessary, for example t
 
 # 6. Footer standard
 
-The shared footer standard dated 27 September 2026 remains the visual baseline and is extended here for the six-tool ecosystem.
+The shared footer standard dated 27 September 2026 remains the visual baseline and is extended here for the seven-tool CORE7 ecosystem.
 
 ## 6.1 Required structure
 
@@ -319,7 +325,7 @@ Main-site pages may omit the current-product line where not applicable.
 
 ## 6.3 Canonical Tools list
 
-The tool footer must now reflect the current six-tool registry:
+The tool footer must now reflect the current seven-tool registry:
 
 1. SIP Calculator / Recurring Investment Calculator
 2. Retirement Planner
@@ -327,7 +333,8 @@ The tool footer must now reflect the current six-tool registry:
 4. Goal Planner
 5. Financial Independence
 6. Budget & Cash Flow Planner
-7. All tools
+7. Home Loan / Mortgage Prepayment & Early Payoff Calculator
+8. All tools
 
 The investment-tool label remains country-aware:
 
@@ -528,7 +535,7 @@ footer inclusion
 report inclusion
 ```
 
-All six active tools should derive cross-tool navigation from this registry wherever practical.
+All seven active primary tools should derive cross-tool navigation from this registry wherever practical.
 
 ## 11.2 Shared UI assets
 
@@ -612,11 +619,11 @@ Current Budget logic updates both `.investment-tool-link` and `.footer-investmen
 
 **Required correction:** separate the semantic name from CTA presentation. Footer receives plain text; CTA may receive the arrow.
 
-## 12.4 Existing tool footers do not all reflect the six-tool registry
+## 12.4 Historical Batch 1 deviation: existing tool footers did not all reflect the then-current six-tool registry
 
 The main site and Budget footer include Budget & Cash Flow Planner, while several established calculator footers still show the earlier five-tool list.
 
-**Required correction:** all tool footers should resolve from the same six-tool registry and use the same order.
+**Historical Batch 1 correction:** all tool footers were moved to the same then-current six-tool registry. CORE7 supersedes that count with the current seven-tool registry.
 
 ## 12.5 Shared shell values remain duplicated
 
@@ -636,12 +643,12 @@ Verify that:
 
 - every active tool exposes the standard header structure;
 - every active tool exposes the standard footer structure;
-- the active tool registry contains all six tools;
+- the active core-tool registry contains all seven tools;
 - `Other / International` is last in every country selector;
 - currency option format is `CODE · Currency Name`;
 - footer tool links do not contain `→`;
 - the country-aware investment name is correct;
-- all tool footers include Budget & Cash Flow Planner;
+- all tool footers include Budget & Cash Flow Planner and Home Loan / Mortgage Prepayment & Early Payoff;
 - no shared shell update changes calculation-engine files unexpectedly.
 
 ## 13.2 Browser checks
@@ -681,7 +688,7 @@ The first implementation batch under this document should be deliberately limite
 - make Budget header/nav/locale component match the canonical tool shell;
 - standardize currency option label format;
 - remove the arrow from Budget footer investment link;
-- update all calculator footers to the six-tool registry;
+- update all calculator footers to the then-current six-tool registry (historical Batch 1 scope; CORE7 later expands the registry to seven);
 - preserve country-aware SIP / Recurring Investment naming;
 - update central QA to protect these rules;
 - verify desktop and mobile layout;
@@ -714,7 +721,7 @@ The UI-standardization batch is complete only when all of the following are true
 - [ ] Country lists are alphabetical with `Other / International` last.
 - [ ] No footer link contains a directional arrow.
 - [ ] CTA arrows remain available where intentionally designed.
-- [ ] Every tool footer contains the same six-tool registry plus `All tools`.
+- [ ] Every tool footer contains the same current core-tool registry plus `All tools` (six at historical Batch 1; seven after CORE7).
 - [ ] India shows `SIP Calculator`; international contexts show `Recurring Investment Calculator` where applicable.
 - [ ] Desktop header and footer remain responsive without overlap.
 - [ ] Mobile locale control remains usable without horizontal overflow.
