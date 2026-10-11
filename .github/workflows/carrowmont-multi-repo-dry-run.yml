@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   source-contract-check:
-    name: Check Carrowmont main site + 6 tools
+    name: Check Carrowmont main site + 7 tools
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -69,6 +69,14 @@ jobs:
           path: tools/budget-cash-flow-planner
           persist-credentials: false
 
+      - name: Checkout Mortgage Payoff Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/mortgage-payoff-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/mortgage-payoff-calculator
+          persist-credentials: false
+
       - name: Get Carrowmont QA checker
         shell: bash
         run: |
@@ -91,7 +99,8 @@ jobs:
             inflation-calculator \
             retirement-calculator \
             sip-calculator \
-            budget-cash-flow-planner
+            budget-cash-flow-planner \
+            mortgage-payoff-calculator
           do
             echo "===== $repo ====="
             git -C "tools/$repo" log -1 --format="Commit: %H%nDate: %ci%nMessage: %s"

@@ -78,6 +78,15 @@ jobs:
           fetch-depth: 1
           persist-credentials: false
 
+      - name: Checkout Mortgage Payoff Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/mortgage-payoff-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: snapshot/mortgage-payoff-calculator
+          fetch-depth: 1
+          persist-credentials: false
+
       - name: Clone Carrowmont QA
         run: git clone --depth 1 https://github.com/Draw004/carrowmont-qa.git snapshot/carrowmont-qa
 
@@ -89,7 +98,7 @@ jobs:
             echo "Carrowmont Source Snapshot"
             echo "Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             echo
-            for repo in               draw004.github.io               sip-calculator               goal-planner               financial-independence               inflation-calculator               retirement-calculator               budget-cash-flow-planner               carrowmont-qa
+            for repo in               draw004.github.io               sip-calculator               goal-planner               financial-independence               inflation-calculator               retirement-calculator               budget-cash-flow-planner               mortgage-payoff-calculator               carrowmont-qa
             do
               commit="$(git -C "snapshot/$repo" rev-parse HEAD)"
               echo "$repo  $commit"
