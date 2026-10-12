@@ -11,7 +11,7 @@
   };
   const els={
     snapshotDate:document.getElementById('snapshotDate'),referenceList:document.getElementById('referenceList'),driverControls:document.getElementById('driverControls'),
-    explore:document.getElementById('exploreBtn'),reset:document.getElementById('resetBtn'),presets:document.getElementById('scenarioPresets'),validation:document.getElementById('validationMessage'),
+    explore:document.getElementById('exploreBtn'),results:document.getElementById('goldResults'),reset:document.getElementById('resetBtn'),presets:document.getElementById('scenarioPresets'),validation:document.getElementById('validationMessage'),
     scenarioType:document.getElementById('scenarioType'),environmentLabel:document.getElementById('environmentLabel'),forceCounts:document.getElementById('forceCounts'),conflict:document.getElementById('conflictBadge'),
     supportHeadline:document.getElementById('supportHeadline'),supportDetail:document.getElementById('supportDetail'),headwindHeadline:document.getElementById('headwindHeadline'),headwindDetail:document.getElementById('headwindDetail'),
     interpretation:document.getElementById('interpretation'),changesPanel:document.getElementById('changesPanel'),changedList:document.getElementById('changedList'),
@@ -118,6 +118,7 @@
     els.changesPanel.hidden=s.changedDrivers.length===0;els.changedList.innerHTML='';s.changedDrivers.forEach(d=>{const li=document.createElement('li');li.textContent=`${d.name}: ${d.fromState} → ${d.toState}.`;els.changedList.appendChild(li);});updateChangedStyling(s);renderChart(bundle);renderComparison(bundle);
   }
   function calculate(){if(!reference)return null;try{const bundle=resultBundle();els.validation.textContent='';renderResult(bundle);return bundle;}catch(error){els.validation.textContent='The selected scenario could not be classified. Reset the controls and try again.';console.error(error);return null;}}
+  function viewResults(){setAction('');const bundle=calculate();if(!bundle||!els.results)return;const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;els.results.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});els.results.focus({preventScroll:true});}
   function reset(){if(!referenceScores)return;Core().DRIVER_ORDER.forEach(k=>{const el=document.getElementById(`driver-${k}`);if(el)el.value=String(referenceScores[k]);});setAction('');calculate();}
   function applyPreset(name){reset();const set=(k,v)=>{const el=document.getElementById(`driver-${k}`);if(el)el.value=String(v);};if(name==='lower-real-yields')set('realYield',2);if(name==='higher-real-yields')set('realYield',-2);if(name==='dollar-weakness')set('dollar',2);if(name==='inflation-shock')set('inflation',2);if(name==='central-bank-demand')set('centralBank',2);if(name==='stress-shock'){set('fiscal',2);set('stress',2);}calculate();}
 
@@ -129,6 +130,6 @@
 
   async function loadReference(){const response=await fetch('data/gold-macro-reference.json',{cache:'no-store'});if(!response.ok)throw new Error(`Reference data HTTP ${response.status}`);const data=await response.json();reference=data;referenceScores=validateReference(data);buildReferenceUi();calculate();}
 
-  els.explore.addEventListener('click',()=>{setAction('');calculate();});els.reset.addEventListener('click',reset);els.copy.addEventListener('click',copySummary);els.csv.addEventListener('click',downloadCsv);els.report.addEventListener('click',generateReport);els.driverControls.addEventListener('change',calculate);els.presets.addEventListener('click',event=>{const b=event.target.closest('button[data-preset]');if(b)applyPreset(b.dataset.preset);});window.addEventListener('resize',()=>{if(lastResult)renderChart(lastResult);});
+  els.explore.addEventListener('click',viewResults);els.reset.addEventListener('click',reset);els.copy.addEventListener('click',copySummary);els.csv.addEventListener('click',downloadCsv);els.report.addEventListener('click',generateReport);els.driverControls.addEventListener('change',calculate);els.presets.addEventListener('click',event=>{const b=event.target.closest('button[data-preset]');if(b)applyPreset(b.dataset.preset);});window.addEventListener('resize',()=>{if(lastResult)renderChart(lastResult);});
   loadReference().catch(error=>{console.error(error);els.snapshotDate.textContent='Reference unavailable';els.validation.textContent='The explorer cannot run until its validated bundled reference snapshot is available.';[els.explore,els.copy,els.csv,els.report].forEach(b=>{b.disabled=true;});});
 })();
