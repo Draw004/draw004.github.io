@@ -64,12 +64,12 @@
           <div class="gmse-reference-list" id="referenceList" aria-live="polite"></div>
           <p class="gmse-control-intro">Change any condition below to test a what-if scenario. Your selections are scenario assumptions, not claims about current reality.</p>
           <div class="gmse-fields" id="driverControls"></div>
-          <div class="gmse-control-actions"><button type="button" class="gmse-button gmse-button-primary" id="exploreBtn">Explore Gold Conditions</button><button type="button" class="gmse-button gmse-button-secondary" id="resetBtn">Reset to Reference Snapshot</button></div>
+          <div class="gmse-control-actions"><button type="button" class="gmse-button gmse-button-primary" id="exploreBtn" aria-controls="goldResults">View Gold Scenario Results</button><button type="button" class="gmse-button gmse-button-secondary" id="resetBtn">Reset to Reference Snapshot</button></div>
           <details class="gmse-presets" id="scenarioPresets"><summary>Scenario Shortcuts</summary><div class="gmse-preset-grid"><button type="button" data-preset="lower-real-yields">Lower real yields</button><button type="button" data-preset="higher-real-yields">Higher real yields</button><button type="button" data-preset="dollar-weakness">Dollar weakness</button><button type="button" data-preset="inflation-shock">Inflation shock</button><button type="button" data-preset="central-bank-demand">Strong central-bank demand</button><button type="button" data-preset="stress-shock">Fiscal + geopolitical stress</button></div></details>
           <p class="gmse-validation" id="validationMessage" role="alert"></p>
         </aside>
 
-        <section class="gmse-results" aria-labelledby="resultsTitle">
+        <section class="gmse-results" id="goldResults" tabindex="-1" aria-labelledby="resultsTitle">
           <div class="gmse-results-heading"><div><p class="gmse-kicker" id="scenarioType">REFERENCE SNAPSHOT</p><h2 id="resultsTitle">Gold macro environment</h2></div><div class="gmse-actions"><button class="gmse-button gmse-button-secondary" id="copySummaryBtn" type="button">Copy Summary</button><button class="gmse-button gmse-button-secondary" id="downloadCsvBtn" type="button">Download CSV</button><button class="gmse-button gmse-button-primary" id="generateReportBtn" type="button">Generate Gold Macro Report</button></div></div>
           <p class="gmse-action-message" id="actionMessage" role="status"></p>
           <article class="gmse-primary-result"><span>Overall classification</span><strong id="environmentLabel">—</strong><p id="forceCounts">—</p><div class="gmse-conflict" id="conflictBadge" hidden>Competing forces are present.</div></article>

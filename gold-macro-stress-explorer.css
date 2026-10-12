@@ -9,3 +9,5 @@
 @media(max-width:420px){.gmse-hero h1{font-size:34px}.gmse-primary-result>strong{font-size:24px}.gmse-reference-row{grid-template-columns:1fr}.gmse-reference-row strong{max-width:none;text-align:left}.gmse-button{font-size:12px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gmse-button,.gmse-next-grid a{transition:none!important}.gmse-next-grid a:hover{transform:none}}
 @media print{.site-header,.site-footer,.gmse-actions,.gmse-control-actions,.gmse-presets{display:none!important}.gmse-control-card{position:static}.gmse-layout{display:block}.gmse-section,.gmse-workspace{break-inside:avoid}}
+/* GSEO1B-1: primary scenario action moves keyboard and visual context to the results without changing the live calculation model. */
+#goldResults{scroll-margin-top:96px}
