@@ -447,23 +447,19 @@ The workflow should:
 
 ## 10.1 Failure-safe policy
 
-V1 should use an **all-or-nothing automated weekly refresh** for the automated source set.
+The weekly updater remains **fail-closed for Treasury real yields, Broad Dollar, CPI and GPR**. A failure, malformed response, backwards date, insufficient history or anomaly in any of those source groups must create no production-data change and must leave the last verified reference file untouched.
 
-If any required automated source:
+OFR FSI has one narrow availability exception because the official download endpoint may reject automated GitHub-hosted clients even while the OFR index itself remains available. The updater may preserve the **previously validated OFR FSI value, percentile and source date** only when all of the following are true:
 
-- cannot be fetched;
-- returns malformed data;
-- returns a date outside reasonable expectations;
-- fails a numeric sanity check;
-- cannot provide the history required for classification;
+- the official OFR CSV endpoint cannot be retrieved because of a clearly identified availability/access condition such as HTTP 403/429/5xx or a network fetch failure;
+- the stored OFR value, percentile and date are already present and valid in the current verified reference snapshot;
+- Treasury, Broad Dollar, CPI and GPR are fetched and fully validated normally;
+- the preserved OFR component remains visibly dated with its original `ofrAsOf` date;
+- the updater reports that OFR was preserved rather than refreshed.
 
-then the workflow must:
+This exception **must not** be used when OFR returns a successful response that is malformed, has unrecognized headers, supplies an invalid/backwards date, lacks required history, or triggers an anomaly guard. Those conditions remain hard failures requiring owner review.
 
-- create no production-data change;
-- leave the last verified reference file untouched;
-- fail or warn clearly enough for owner review.
-
-The website continues using the last verified reference snapshot.
+If the OFR availability exception is used, Carrowmont may still refresh the other validated automated fields and recompute the combined stress classification using the new GPR state plus the preserved validated OFR subscore. The production browser continues to read only the bundled reference snapshot.
 
 ## 10.2 Anomaly safeguards
 
