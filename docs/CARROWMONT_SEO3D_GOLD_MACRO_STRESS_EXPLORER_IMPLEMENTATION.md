@@ -167,11 +167,15 @@ Percentiles and rolling-state metrics are Carrowmont calculations from the under
 - the official Caldara-Iacoviello recent daily GPR workbook;
 - OFR Financial Stress Index CSV.
 
-For OFR, the updater sends a Carrowmont-identifying User-Agent and accepts both the current `ofr-fsi.csv` path and the same official site's `fsi.csv` filename as a fallback. The parser accepts ISO and U.S.-style source dates, but still rejects unrecognized headers or unusable rows. This is source-availability hardening only; both paths must resolve to OFR and the same validation/classification logic applies.
+For OFR, the updater sends browser-compatible, Carrowmont-identifying request headers and accepts both the current `ofr-fsi.csv` path and the same official site's `fsi.csv` filename as a fallback. The parser accepts ISO and U.S.-style source dates, but still rejects unrecognized headers or unusable rows.
 
 The browser never calls these endpoints.
 
-The updater is deliberately **all-or-nothing**. All five automated source groups must be fetched and validated before a new reference file can be proposed. If any source fails, is malformed, moves backwards in date, lacks sufficient history, or triggers an anomaly guard, the existing production reference file remains unchanged.
+The updater is fail-closed for Treasury, Broad Dollar, CPI and GPR. Those source groups must be fetched and validated normally before a new reference file can be proposed.
+
+OFR has one deliberately narrow **availability fallback**. If the official OFR CSV endpoint is blocked or temporarily unavailable to the GitHub runner (for example HTTP 403/429/5xx or a network fetch failure), the updater preserves the previously validated OFR four-week average, percentile and `ofrAsOf` date from the current reference snapshot. It then recomputes the combined stress score from the fresh GPR classification plus that preserved OFR subscore. The updater emits `sourceStatus.ofr.status = "preserved"` and a reason so the workflow log clearly identifies that OFR was not refreshed.
+
+The OFR fallback is not used for a successful-but-malformed response, unrecognized headers, invalid/backwards dates, insufficient history or anomaly-guard failures. Those remain hard failures. If the stored reference does not contain a valid prior OFR value/percentile/date, the updater also fails rather than inventing a replacement.
 
 Central-bank demand and fiscal stress are explicitly preserved by the weekly updater. They can change only through deliberate reviewed maintenance.
 
@@ -195,8 +199,9 @@ Updater fixture QA covers:
 
 - valid newer data;
 - identical/no-change rerun;
-- malformed/missing source input;
-- simulated partial-source failure;
+- malformed/missing OFR input without an approved fallback;
+- simulated OFR availability failure with preservation of the prior validated OFR component;
+- simulated non-OFR source failure;
 - anomaly rejection;
 - preservation of reviewed fields.
 
