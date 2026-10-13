@@ -461,6 +461,8 @@ This exception **must not** be used when OFR returns a successful response that 
 
 If the OFR availability exception is used, Carrowmont may still refresh the other validated automated fields and recompute the combined stress classification using the new GPR state plus the preserved validated OFR subscore. The production browser continues to read only the bundled reference snapshot.
 
+The top-level `snapshotDate` is monotonic. A weekly automated refresh must set it to the later of the prior validated `snapshotDate` and the newest validated automated source date. It may advance or remain unchanged, but it must never move backwards merely because a reviewed/manual field was validated on a later date than the newest automated series.
+
 ## 10.2 Anomaly safeguards
 
 At minimum validate:

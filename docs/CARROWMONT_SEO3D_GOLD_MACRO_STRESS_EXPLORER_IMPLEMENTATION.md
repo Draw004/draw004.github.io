@@ -175,6 +175,8 @@ The updater is fail-closed for Treasury, Broad Dollar, CPI and GPR. Those source
 
 OFR has one deliberately narrow **availability fallback**. If the official OFR CSV endpoint is blocked or temporarily unavailable to the GitHub runner (for example HTTP 403/429/5xx or a network fetch failure), the updater preserves the previously validated OFR four-week average, percentile and `ofrAsOf` date from the current reference snapshot. It then recomputes the combined stress score from the fresh GPR classification plus that preserved OFR subscore. The updater emits `sourceStatus.ofr.status = "preserved"` and a reason so the workflow log clearly identifies that OFR was not refreshed.
 
+The updater also preserves **monotonic reference freshness**: the top-level `snapshotDate` becomes the later of the existing validated snapshot date and the newest validated automated-source date. An automated run can therefore advance the reference date or leave it unchanged, but cannot regress it.
+
 The OFR fallback is not used for a successful-but-malformed response, unrecognized headers, invalid/backwards dates, insufficient history or anomaly-guard failures. Those remain hard failures. If the stored reference does not contain a valid prior OFR value/percentile/date, the updater also fails rather than inventing a replacement.
 
 Central-bank demand and fiscal stress are explicitly preserved by the weekly updater. They can change only through deliberate reviewed maintenance.
