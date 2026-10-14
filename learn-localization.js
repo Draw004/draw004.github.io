@@ -77,9 +77,76 @@
     });
     document.querySelectorAll('[data-cm-term]').forEach(function(el){var v=termValue(el.getAttribute('data-cm-term'),s);if(v)el.textContent=v;});
   }
-  function updateFooter(s){document.querySelectorAll('.footer-col a[href="/sip-calculator/"]').forEach(function(a){a.textContent=s.calculator;});}
-  function commonTerminology(s){}
-  function updateLearn(s){if(document.body.dataset.cmPage!=='learn-hub')return;var target=human(s.cfg.target),monthly=exact(s.cfg.monthly);text('investmentCategoryTitle',s.isIndia?'Monthly Investment (SIP)':'Monthly Investment');text('investmentTargetTopicTitle','How much '+s.term+' is needed to build '+target+'?');text('investmentTargetTopicDesc','Work backward from a '+target+' target across different time horizons and assumptions.');text('investmentMonthlyTopicTitle',monthly+' '+s.term+': what could it grow to?');text('investmentMonthlyTopicDesc','Compare illustrative outcomes for '+monthly+' per month over 10, 15, 20 and 25 years.');text('investmentStepTopicTitle',s.increasingTerm+' vs '+s.fixedTerm+': what changes?');text('investmentStepTopicDesc','See how increasing contributions can change the contribution path and projected value.');var wrap=document.querySelector('.planning-categories');if(wrap){var order=s.isIndia?['investment','retirement','goals','fi','inflation','foundation']:['retirement','goals','investment','fi','inflation','foundation'];order.forEach(function(k){var e=wrap.querySelector('[data-category=\"'+k+'\"]');if(e)wrap.appendChild(e);});}}
+  function updateFooter(s){
+    document.querySelectorAll('.footer-col a[href="/sip-calculator/"]').forEach(function(a){a.textContent=s.calculator;});
+    var mt=L.getMortgageTerms?L.getMortgageTerms():null;
+    if(mt)document.querySelectorAll('.footer-col a[href="/mortgage-payoff-calculator/"]').forEach(function(a){a.textContent=mt.payoffLabel;});
+  }
+  function setGuideCard(root,href,title,desc){
+    if(!root)return;var a=root.querySelector('a[href="'+href+'"]');if(!a)return;
+    var strong=a.querySelector('strong'),small=a.querySelector('small');
+    if(strong&&title)strong.textContent=title;if(small&&desc)small.textContent=desc;
+  }
+  function updateMortgageLearnHub(){
+    if(document.body.dataset.cmPage!=='learn-hub'||!L.getMortgageTerms)return;
+    var t=L.getMortgageTerms(),home=document.querySelector('#home-loans');
+    if(home){
+      var heading=home.querySelector('.category-head h2');if(heading)heading.textContent=t.learnCategory;
+      var tool=home.querySelector('.category-tool-link');if(tool)tool.textContent=t.learnHubCta;
+      setGuideCard(home,'/mortgage-prepayment-vs-investing.html',t.learnPrepayTitle,'Use the same planned cash and one comparison date so paying down the loan and investing are compared fairly.');
+      setGuideCard(home,'/mortgage-refinance-break-even.html',t.learnRefiTitle,'Compare the lower rate with switching costs, cashback and any term change before treating a lower payment as a saving.');
+      setGuideCard(home,'/mortgage-rate-rise-payment-stress.html',t.learnStressTitle,'Stress test an immediate or future rate change and optionally add household cash-flow context.');
+      setGuideCard(home,'/one-extra-mortgage-payment-a-year.html',t.learnOneExtraTitle,'See how one additional scheduled payment can change the payoff path on a long loan.');
+      setGuideCard(home,'/extra-mortgage-payments-early-vs-late.html',t.learnEarlyExtraTitle,'Compare the same five extra payments made early versus much later.');
+      setGuideCard(home,'/pay-off-mortgage-five-years-early.html',t.learnFiveYearsTitle,'Work backward from a target payoff date instead of guessing an extra percentage.');
+      setGuideCard(home,'/rent-vs-buy-home.html','Rent vs buy: compare the full housing trade-offs',t.learnRentBuyDesc);
+    }
+    var popular=document.querySelector('.popular-guides-grid');
+    if(popular){
+      setGuideCard(popular,'/one-extra-mortgage-payment-a-year.html',t.learnOneExtraTitle,'See how one additional scheduled payment can change the payoff path on a long loan.');
+      setGuideCard(popular,'/rent-vs-buy-home.html','Rent or buy a home?',t.learnRentBuyDesc);
+    }
+  }
+  var housingTextSource=new WeakMap();
+  function housingText(value,t){
+    if(!value||!/mortgage|home[- ]loan/i.test(value))return value;
+    var v=value;
+    if(t.homeLoanMarket){
+      v=v.replace(/Mortgage \/ Home Loan/g,'Home Loan').replace(/mortgage \/ home loan/g,'home loan');
+      v=v.replace(/Home Loan & Mortgage guides/g,'Home Loan guides').replace(/Home Loans & Mortgages/g,'Home Loans');
+      v=v.replace(/mortgage or home[- ]loan/gi,'home loan').replace(/mortgage\/home[- ]loan/gi,'home loan');
+      v=v.replace(/home[- ]loan or mortgage/gi,'home loan');
+      v=v.replace(/\bMortgages\b/g,'Home loans').replace(/\bmortgages\b/g,'home loans');
+      v=v.replace(/\bMortgage\b/g,'Home loan').replace(/\bmortgage\b/g,'home loan');
+    }else if(t.mortgageMarket){
+      v=v.replace(/Mortgage \/ Home Loan/g,'Mortgage').replace(/mortgage \/ home loan/g,'mortgage');
+      v=v.replace(/Home Loan & Mortgage guides/g,'Mortgage guides').replace(/Home Loans & Mortgages/g,'Mortgages');
+      v=v.replace(/mortgage or home[- ]loan/gi,'mortgage').replace(/mortgage\/home[- ]loan/gi,'mortgage');
+      v=v.replace(/home[- ]loan or mortgage/gi,'mortgage');
+      v=v.replace(/\bHome loans\b/g,'Mortgages').replace(/\bhome loans\b/g,'mortgages');
+      v=v.replace(/\bHome loan\b/g,'Mortgage').replace(/\bhome loan\b/g,'mortgage').replace(/\bhome-loan\b/g,'mortgage');
+    }
+    return v;
+  }
+  function localizeHousingLearnSurface(){
+    if(!L.getMortgageTerms)return;
+    var body=document.body;
+    if(!body||!(body.dataset.cmLearnArticle==='1'||body.dataset.cmPage==='learn-hub'))return;
+    var t=L.getMortgageTerms();
+    [document.querySelector('main'),document.querySelector('footer')].forEach(function(root){
+      if(!root||!document.createTreeWalker)return;
+      var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(node){
+        var parent=node.parentElement,value=node.nodeValue||'';
+        if(!parent||!(/mortgage|home[- ]loan/i.test(value)))return NodeFilter.FILTER_SKIP;
+        if(parent.closest('script,style,code,pre,.reference-note'))return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],node;while((node=walker.nextNode()))nodes.push(node);
+      nodes.forEach(function(n){if(!housingTextSource.has(n))housingTextSource.set(n,n.nodeValue);n.nodeValue=housingText(housingTextSource.get(n),t);});
+    });
+  }
+  function commonTerminology(s){localizeHousingLearnSurface();updateMortgageLearnHub();}
+  function updateLearn(s){if(document.body.dataset.cmPage!=='learn-hub')return;var target=human(s.cfg.target),monthly=exact(s.cfg.monthly);text('investmentCategoryTitle',s.isIndia?'Monthly Investment (SIP)':'Monthly Investment');text('investmentTargetTopicTitle','How much '+s.term+' is needed to build '+target+'?');text('investmentTargetTopicDesc','Work backward from a '+target+' target across different time horizons and assumptions.');text('investmentMonthlyTopicTitle',monthly+' '+s.term+': what could it grow to?');text('investmentMonthlyTopicDesc','Compare illustrative outcomes for '+monthly+' per month over 10, 15, 20 and 25 years.');text('investmentStepTopicTitle',s.increasingTerm+' vs '+s.fixedTerm+': what changes?');text('investmentStepTopicDesc','See how increasing contributions can change the contribution path and projected value.');var wrap=document.querySelector('.planning-categories');if(wrap){var order=s.isIndia?['investment','retirement','goals','fi','inflation','foundation']:['retirement','goals','investment','fi','inflation','foundation'];order.forEach(function(k){var e=wrap.querySelector('[data-category="'+k+'"]');if(e)wrap.appendChild(e);});}updateMortgageLearnHub();}
   function updateInvestmentTarget(s){if(document.body.dataset.cmPage!=='investment-target-guide')return;var target=human(s.cfg.target),title='How much '+s.term+' is needed to build '+target+'?',desc='Estimate the monthly contribution needed for a '+target+' target over 10, 15, 20 or 25 years and understand the assumptions behind the calculation.';document.title=title+' | Carrowmont';meta('description',desc);meta('og:title',document.title,true);meta('og:description',desc,true);updateStructured(title,desc);text('articleKicker',s.isIndia?'MONTHLY INVESTMENT (SIP) GUIDE':'MONTHLY INVESTMENT GUIDE');text('articleTitle',title);text('articleCtaText','Calculate your path to '+target);text('localeContext',s.isIndia?'In India, recurring monthly investing is commonly called a SIP. Carrowmont uses that familiar term here while keeping the underlying maths the same.':'Carrowmont uses the general term monthly investment here. The example amount changes with your selected currency, but it is a round illustration rather than an exchange-rate conversion.');text('targetIntroHeading','There is no single monthly amount for '+target+'.');text('targetIntroText','The monthly contribution depends on the time horizon, expected return assumption, contribution timing and whether contributions increase over time. The same '+target+' target can require a very different starting amount over 10 years versus 25 years.');text('targetExampleHeading','Illustrative '+s.term+' for a '+target+' target at a 12% annual return assumption');[10,15,20,25].forEach(function(y){text('target'+y,y+' years: about '+exact(monthlyForTarget(s.cfg.target,y,.12))+' per month');});text('targetNominalHeading','But '+target+' is a nominal target.');text('targetInflationText','If the goal is many years away, ask what '+target+' is intended to buy. At 5% annual inflation, something costing '+target+' today would cost about '+human(s.cfg.target*Math.pow(1.05,20))+' in 20 years. A nominal target should always be interpreted alongside purchasing power.');text('targetFaqSmall','Can a smaller monthly investment reach '+target+' with more time?');text('targetFaqInflation','Should the '+target+' target be inflation-adjusted?');text('targetFaqInflationAnswer','If '+target+' represents the cost of something in today\'s money, the future target should generally reflect expected price growth. If it is simply a nominal future target, no extra inflation adjustment is required.');}
   function updateGrowth(s){if(document.body.dataset.cmPage!=='investment-growth-guide')return;var monthly=exact(s.cfg.monthly),title=monthly+' '+s.term+' for 10, 15, 20 and 25 years: what could it grow to?',desc='See illustrative future values for a '+monthly+' monthly contribution over 10, 15, 20 and 25 years and understand what drives the result.';document.title=title+' | Carrowmont';meta('description',desc);meta('og:title',document.title,true);meta('og:description',desc,true);updateStructured(title,desc);text('articleKicker',s.isIndia?'MONTHLY INVESTMENT (SIP) GROWTH GUIDE':'MONTHLY INVESTMENT GROWTH GUIDE');text('articleTitle',title);text('localeContext',s.isIndia?'In India, a recurring monthly investment is commonly called a SIP. The example below uses '+monthly+' per month.':'The example below uses a round '+monthly+' monthly contribution for your selected currency. It is an illustration, not an exchange-rate conversion.');text('growthIntroText','Consider a fixed '+monthly+' '+s.term+' with no existing investment and no annual increase. Using a 12% annual return assumption converted to an equivalent monthly compound rate, the projected values are:');text('growthExampleHeading',monthly+' '+s.term+' at a 12% annual assumption');[10,15,20,25].forEach(function(y){text('growth12y'+y,y+' years: about '+human(fvMonthly(s.cfg.monthly,y,.12)));});var c=[10,15,20,25].map(function(y){return human(s.cfg.monthly*12*y)});text('growthContributionText','Your own money contributed over those periods would be '+c[0]+', '+c[1]+', '+c[2]+' and '+c[3]+' respectively. The difference between contributions and projected value is the modelled investment growth.');var low=[10,15,20,25].map(function(y){return human(fvMonthly(s.cfg.monthly,y,.10))});text('growthLowerReturnText','At a 10% annual assumption, the same '+monthly+' monthly investment would project to about '+low[0]+' after 10 years, '+low[1]+' after 15 years, '+low[2]+' after 20 years and '+low[3]+' after 25 years. The monthly investment did not change; only the assumed return did.');text('growthGuaranteeHeading','Does a '+s.term+' guarantee returns?');text('growthGuaranteeText','No. '+s.term+' describes a contribution approach, not an investment return. Actual outcomes depend on the investment selected, market performance, fees, taxes and the timing of returns. Calculator outputs are illustrative, not guaranteed.');}
   function updateStep(s){if(document.body.dataset.cmPage!=='investment-stepup-guide')return;var monthly=exact(s.cfg.monthly),fixed=fvMonthly(s.cfg.monthly,20,.12),step=fvStep(s.cfg.monthly,20,.12,.10),year20=s.cfg.monthly*Math.pow(1.10,19),title=s.increasingTerm+' vs '+s.fixedTerm+': what changes?',desc='Compare increasing and fixed monthly contributions with an illustrative 10% annual increase and see how the contribution path affects projected value.';document.title=title+' | Carrowmont';meta('description',desc);meta('og:title',document.title,true);meta('og:description',desc,true);updateStructured(title,desc);text('articleKicker',s.isIndia?'MONTHLY INVESTMENT (SIP) GUIDE':'MONTHLY INVESTMENT GUIDE');text('articleTitle',title);text('localeContext',s.isIndia?'In India, increasing a SIP periodically is commonly called a Step-up SIP. The example below starts at '+monthly+' per month.':'This guide compares an increasing monthly contribution with a fixed one. The example starts at a round '+monthly+' per month for your selected currency.');text('stepIntroHeading',s.increasingTerm+' changes the contribution path, not the return assumption.');text('stepIntroText','With a '+s.fixedTerm+', the contribution stays the same. With an '+s.increasingTerm+', it rises by a chosen percentage, typically once a year. The return assumption can be identical in both cases; the difference comes from putting more money to work later.');text('stepExampleHeading','Illustration: starting monthly investment '+monthly+', 20 years, 12% annual return assumption');text('stepFixedValue',s.fixedTerm+' projected value: about '+human(fixed));text('stepIncreasingValue','10% annual increase projected value: about '+human(step));text('stepYear20','In year 20, the monthly investment would be about '+exact(year20)+'.');text('stepAffordabilityText','A 10% annual increase sounds modest in year one, but it compounds too. A '+monthly+' monthly investment becomes roughly '+exact(s.cfg.monthly*Math.pow(1.10,10))+' in year 11 and about '+exact(year20)+' in year 20. Before using a large annual increase in a plan, ask whether income is realistically expected to support that contribution path.');}

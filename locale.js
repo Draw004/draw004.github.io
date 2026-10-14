@@ -192,6 +192,32 @@
     return currencies[code]?.symbol || code;
   }
 
+  function getMortgageTerms(region = regionCode) {
+    const homeLoanMarket = ['IN', 'AU', 'NZ'].includes(region);
+    const mortgageMarket = ['US', 'CA', 'GB', 'IE'].includes(region);
+    const ukStyle = ['GB', 'IE'].includes(region);
+    const noun = homeLoanMarket ? 'home loan' : mortgageMarket ? 'mortgage' : 'mortgage / home loan';
+    const nounCap = homeLoanMarket ? 'Home loan' : mortgageMarket ? 'Mortgage' : 'Mortgage / home loan';
+    const familyName = homeLoanMarket ? 'Home Loan Decision Centre' : mortgageMarket ? 'Mortgage Decision Centre' : 'Mortgage / Home Loan Decision Centre';
+    const learnCategory = homeLoanMarket ? 'Home Loans' : mortgageMarket ? 'Mortgages' : 'Home Loans & Mortgages';
+    const learnGuides = homeLoanMarket ? 'Home Loan guides' : mortgageMarket ? 'Mortgage guides' : 'Home Loan & Mortgage guides';
+    const paymentLabel = region === 'IN' ? 'home loan EMI / payment' : homeLoanMarket ? 'home loan repayment' : mortgageMarket ? 'mortgage payment' : 'mortgage / home loan payment';
+    const prepayLabel = region === 'IN' ? 'home loan prepayment' : ['AU','NZ'].includes(region) ? 'extra home loan repayments' : ukStyle ? 'mortgage overpayment' : mortgageMarket ? 'mortgage prepayment' : 'mortgage / home loan prepayment';
+    const refinanceLabel = region === 'IN' ? 'home loan balance transfer' : ukStyle ? 'remortgaging or switching a mortgage deal' : ['AU','NZ'].includes(region) ? 'refinancing a home loan' : mortgageMarket ? 'mortgage refinancing' : 'refinancing or a balance transfer';
+    const payoffLabel = homeLoanMarket ? 'Home Loan Payoff / Prepayment' : mortgageMarket ? 'Mortgage Payoff / Prepayment' : 'Mortgage / Home Loan Payoff';
+    return {
+      homeLoanMarket, mortgageMarket, ukStyle, noun, nounCap, familyName, learnCategory, learnGuides, paymentLabel, prepayLabel, refinanceLabel, payoffLabel,
+      learnHubCta: `Open ${familyName} →`,
+      learnPrepayTitle: `${prepayLabel.charAt(0).toUpperCase()+prepayLabel.slice(1)} vs investing: how should the trade-off be compared?`,
+      learnRefiTitle: `When does ${refinanceLabel} break even?`,
+      learnStressTitle: `How much could your ${paymentLabel} rise if rates increase?`,
+      learnOneExtraTitle: `One extra ${homeLoanMarket ? 'home loan' : mortgageMarket ? 'mortgage' : 'mortgage / home loan'} payment a year: what could it save?`,
+      learnEarlyExtraTitle: `Why can earlier extra ${homeLoanMarket ? 'home loan' : mortgageMarket ? 'mortgage' : 'loan'} payments save more?`,
+      learnFiveYearsTitle: `How much extra could clear a ${noun} five years earlier?`,
+      learnRentBuyDesc: `Compare the full financial trade-offs instead of only rent versus a ${paymentLabel}.`
+    };
+  }
+
   window.CarrowmontLocale = {
     regions, currencies,
     getRegion,
@@ -202,6 +228,7 @@
     formatMoney,
     formatCompactMoney,
     formatNumber,
-    currencySymbol
+    currencySymbol,
+    getMortgageTerms
   };
 })();
