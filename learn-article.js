@@ -19,7 +19,8 @@
     '/inflation-calculator/': 'Inflation Calculator',
     '/sip-calculator/': 'Monthly Investment Calculator',
     '/mortgage-payoff-calculator/': 'Mortgage / Home Loan Payoff Calculator',
-    '/mortgage-payoff-calculator/prepayment-vs-investing.html': 'Mortgage Prepayment vs Investing Calculator'
+    '/mortgage-payoff-calculator/prepayment-vs-investing.html': 'Mortgage Prepayment vs Investing Calculator',
+    '/mortgage-payoff-calculator/refinance-break-even.html': 'Mortgage Refinance Break-Even Calculator'
   };
   var toolName = names[href] || 'relevant Carrowmont tool';
 
@@ -39,6 +40,7 @@
   label.textContent = 'Continue with the ' + toolName;
   if (href === '/mortgage-payoff-calculator/') label.setAttribute('data-cm-mortgage-term', 'calculator-return');
   if (href === '/mortgage-payoff-calculator/prepayment-vs-investing.html') label.setAttribute('data-cm-mortgage-term', 'decision-calculator-return');
+  if (href === '/mortgage-payoff-calculator/refinance-break-even.html') label.setAttribute('data-cm-mortgage-term', 'refinance-calculator-return');
 
   var arrow = document.createElement('strong');
   arrow.className = 'action-arrow';
