@@ -1,0 +1,27 @@
+/* Market Chain Reaction Learn extensions — MCR1, 2026-10-15 */
+body[data-cm-mcr-learn="1"] .guide-answer{
+  margin:0 0 26px;padding:20px 22px;border:1px solid #b9dcda;border-radius:16px;background:#f4fbfa;
+}
+body[data-cm-mcr-learn="1"] .guide-answer strong{display:block;margin-bottom:7px;color:#0b766f;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+body[data-cm-mcr-learn="1"] .guide-answer p{margin:0;color:#173b55;font-size:18px;font-weight:800;line-height:1.5}
+body[data-cm-mcr-learn="1"] .mcr-chain{margin:20px 0 26px;display:grid;gap:8px}
+body[data-cm-mcr-learn="1"] .mcr-chain-step{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding:12px 14px;border:1px solid #dbe8ea;border-radius:12px;background:#fff}
+body[data-cm-mcr-learn="1"] .mcr-chain-step span:first-child{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eaf7f5;color:#0b766f;font-size:13px;font-weight:900}
+body[data-cm-mcr-learn="1"] .mcr-chain-step strong{display:block;color:#173b55;font-size:15px;line-height:1.35}
+body[data-cm-mcr-learn="1"] .mcr-chain-step small{display:block;margin-top:3px;color:#536d82;font-size:13px;line-height:1.45}
+body[data-cm-mcr-learn="1"] .mcr-breaker{margin:24px 0;padding:18px 20px;border-left:4px solid #0e827a;border-radius:0 14px 14px 0;background:#f5fbfa}
+body[data-cm-mcr-learn="1"] .mcr-breaker strong{display:block;margin-bottom:6px;color:#0b766f;font-size:12px;letter-spacing:.9px;text-transform:uppercase}
+body[data-cm-mcr-learn="1"] .mcr-breaker p{margin:0;color:#294963;line-height:1.62}
+body[data-cm-mcr-learn="1"] .mcr-watch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 26px}
+body[data-cm-mcr-learn="1"] .mcr-watch{padding:16px 17px;border:1px solid #dbe8ea;border-radius:13px;background:#fff}
+body[data-cm-mcr-learn="1"] .mcr-watch strong{display:block;color:#173b55;margin-bottom:5px}
+body[data-cm-mcr-learn="1"] .mcr-watch span{display:block;color:#536d82;font-size:13.5px;line-height:1.48}
+body[data-cm-mcr-learn="1"] .mcr-label{display:inline-block;margin:0 0 8px;padding:5px 9px;border-radius:999px;background:#eaf7f5;color:#0b766f;font-size:11px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+body[data-cm-mcr-learn="1"] .mcr-precision-note{margin:18px 0;padding:14px 16px;border:1px solid #dce7ec;border-radius:12px;background:#f8fafb;color:#405c78;font-size:13.5px;line-height:1.58}
+body[data-cm-mcr-learn="1"] .mcr-precision-note strong{color:#173b55}
+@media(max-width:700px){
+  body[data-cm-mcr-learn="1"] .guide-answer{padding:17px 16px}
+  body[data-cm-mcr-learn="1"] .guide-answer p{font-size:16px}
+  body[data-cm-mcr-learn="1"] .mcr-watch-grid{grid-template-columns:1fr}
+  body[data-cm-mcr-learn="1"] .mcr-chain-step{grid-template-columns:30px 1fr;padding:11px 12px}
+}

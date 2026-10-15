@@ -1,0 +1,1947 @@
+{
+  "version": "MCR1-1.0",
+  "reviewedDate": "2026-10-15",
+  "allowedVerdicts": [
+    "Usually supportive",
+    "Usually a headwind",
+    "Usually pushes lower",
+    "Usually pushes higher",
+    "Mixed / cause-dependent",
+    "Indirect effect",
+    "No reliable one-way relationship",
+    "Mechanical inverse relationship"
+  ],
+  "allowedRelationshipTypes": [
+    "Mechanical relationship",
+    "Economic transmission",
+    "Market tendency",
+    "Context-dependent relationship"
+  ],
+  "relationships": [
+    {
+      "id": "yields-rise__broad-stocks",
+      "eventId": "yields-rise",
+      "targetId": "broad-stocks",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Higher bond yields can pressure stock valuations and borrowing costs, but stocks do not automatically fall. If yields are rising because growth and earnings are improving, that positive force can partly or fully offset the higher-rate headwind.",
+      "mechanismSteps": [
+        "Government bond yields rise",
+        "Safe bonds become more competitive and discount rates rise",
+        "Borrowing can become more expensive",
+        "Stock valuations may face pressure"
+      ],
+      "supportingForces": [
+        "Stronger growth and earnings can support stocks even with higher yields."
+      ],
+      "headwinds": [
+        "Higher discount rates can reduce the present value investors place on future profits.",
+        "Higher financing costs can pressure households and companies."
+      ],
+      "chainBreaker": "Stocks can still rise when stronger economic growth and earnings are the main reason yields are rising.",
+      "differentReactions": [
+        "Profitable, cash-generative companies may be less rate-sensitive than highly valued long-duration growth companies."
+      ],
+      "historicalExample": "The same rise in yields can produce different equity outcomes when it reflects growth optimism rather than an inflation or fiscal-risk shock.",
+      "sourceIds": [
+        "fed-long-yields-2026",
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "growth": {
+          "verdict": "Mixed / cause-dependent",
+          "directAnswer": "Yields rising because growth is stronger can coexist with rising stocks. Better earnings and demand can offset some valuation pressure from higher yields.",
+          "mechanismSteps": [
+            "Growth expectations improve",
+            "Expected earnings may rise",
+            "Government bond yields rise",
+            "Higher discount rates push the other way"
+          ],
+          "chainBreaker": "If inflation or policy tightening becomes the dominant story, the same yield increase can become more negative for equities."
+        },
+        "inflation": {
+          "verdict": "Usually a headwind",
+          "directAnswer": "When yields rise mainly because inflation concerns are increasing, stocks face a clearer headwind: discount rates and financing costs can rise while inflation may squeeze margins.",
+          "mechanismSteps": [
+            "Inflation concerns rise",
+            "Bond yields rise",
+            "Discount rates and financing costs rise",
+            "Equity valuations and margins can come under pressure"
+          ],
+          "chainBreaker": "Companies with strong pricing power or unexpectedly strong earnings can still outperform."
+        },
+        "fiscal-term-premium": {
+          "verdict": "Usually a headwind",
+          "directAnswer": "A yield rise driven by heavier government borrowing or a higher term premium is usually a valuation and financing headwind for stocks, although the size of the effect varies by sector and balance-sheet strength.",
+          "mechanismSteps": [
+            "Government borrowing / term premium rises",
+            "Long-term yields rise",
+            "Financing benchmarks rise",
+            "Equity valuation pressure increases"
+          ],
+          "chainBreaker": "Very strong earnings growth or a rapid easing in fiscal-risk concerns can offset part of the pressure."
+        }
+      }
+    },
+    {
+      "id": "yields-rise__growth-tech",
+      "eventId": "yields-rise",
+      "targetId": "growth-tech",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Growth and technology stocks are often more sensitive to higher yields because more of their valuation depends on profits expected far in the future. Higher yields increase the rate used to value those future cash flows.",
+      "mechanismSteps": [
+        "Government bond yields rise",
+        "Discount rates rise",
+        "Far-future profits are worth less in present-value terms",
+        "High-multiple growth valuations may face pressure"
+      ],
+      "supportingForces": [
+        "Strong earnings surprises can dominate the rate effect."
+      ],
+      "headwinds": [
+        "Long-duration valuations are more sensitive to discount rates.",
+        "Financing costs can rise for expansion-heavy businesses."
+      ],
+      "chainBreaker": "Growth stocks can still rise if earnings, margins or expected growth improve enough to outweigh the higher discount rate.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-stock-channels-2026",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-rise__bond-prices",
+      "eventId": "yields-rise",
+      "targetId": "bond-prices",
+      "verdict": "Mechanical inverse relationship",
+      "relationshipType": "Mechanical relationship",
+      "directAnswer": "For an existing fixed-rate bond, a higher market yield generally means a lower market price, all else equal. The old coupon has to compete with newly issued bonds offering higher yields.",
+      "mechanismSteps": [
+        "Market yields rise",
+        "New bonds offer more competitive income",
+        "Existing lower-coupon bonds become less attractive at the old price",
+        "Existing fixed-rate bond prices adjust lower"
+      ],
+      "supportingForces": [],
+      "headwinds": [
+        "Longer-duration fixed-rate bonds usually move more for the same yield change."
+      ],
+      "chainBreaker": "Credit quality, maturity, call features and changing cash-flow expectations can affect the size of the move, but they do not remove the basic fixed-rate price/yield relationship.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "investor-bond-prices"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-rise__borrowing-costs",
+      "eventId": "yields-rise",
+      "targetId": "borrowing-costs",
+      "verdict": "Usually pushes higher",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Higher government bond yields often feed into borrowing benchmarks, so new mortgages, corporate bonds and other longer-term loans can become more expensive. The pass-through is not one-for-one.",
+      "mechanismSteps": [
+        "Government yields rise",
+        "Market funding benchmarks rise",
+        "Lenders / bond investors demand higher returns",
+        "New borrowing costs can rise"
+      ],
+      "supportingForces": [],
+      "headwinds": [
+        "Higher debt-service costs can reduce cash available for spending or investment."
+      ],
+      "chainBreaker": "Borrowing costs can stay relatively stable if credit spreads narrow, lenders compete aggressively, or central-bank policy affects shorter-term rates differently.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-rise__gold",
+      "eventId": "yields-rise",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Higher real yields are usually a headwind for gold because interest-bearing assets become more attractive. But if yields are rising because inflation, fiscal stress or geopolitical risk is also increasing, safe-haven or inflation-related demand can push the other way.",
+      "mechanismSteps": [
+        "Government yields rise",
+        "If real yields rise, the opportunity cost of holding non-yielding gold increases",
+        "Gold can face pressure",
+        "Safe-haven or inflation demand may offset that pressure"
+      ],
+      "supportingForces": [
+        "Inflation fear, fiscal stress or geopolitical uncertainty can support defensive demand."
+      ],
+      "headwinds": [
+        "Higher real yields and a stronger U.S. dollar can weigh on gold."
+      ],
+      "chainBreaker": "Gold can rise alongside yields when fiscal, inflation or geopolitical concerns create enough defensive demand, or when nominal yields rise but real yields do not.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-rise__dollar",
+      "eventId": "yields-rise",
+      "targetId": "dollar",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Higher U.S. yields can support the U.S. dollar when they make dollar assets relatively more attractive. But the dollar also depends on why yields rose, what other central banks are doing and whether global risk appetite is changing.",
+      "mechanismSteps": [
+        "U.S. yields rise",
+        "Relative return on dollar assets may improve",
+        "Capital demand for dollar assets may increase",
+        "The U.S. dollar may strengthen"
+      ],
+      "supportingForces": [
+        "Higher relative U.S. yields can support the dollar."
+      ],
+      "headwinds": [
+        "Fiscal-risk concerns or stronger policy elsewhere can offset the rate advantage."
+      ],
+      "chainBreaker": "If yields rise because investors are demanding a larger fiscal-risk premium, confidence effects can complicate or even reverse the usual rate-differential story.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-long-yields-2026",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-fall__broad-stocks",
+      "eventId": "yields-fall",
+      "targetId": "broad-stocks",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Lower yields can support stock valuations by reducing discount rates and borrowing costs. But if yields are falling because recession fear is rising, weaker earnings can outweigh that benefit.",
+      "mechanismSteps": [
+        "Government yields fall",
+        "Discount rates and borrowing benchmarks may fall",
+        "Valuations receive support",
+        "Economic weakness may push earnings the other way"
+      ],
+      "supportingForces": [
+        "Lower discount rates can support valuations."
+      ],
+      "headwinds": [
+        "Recession-driven yield declines can arrive with falling earnings expectations."
+      ],
+      "chainBreaker": "Stocks can fall alongside yields when investors are buying government bonds for safety because the growth outlook is deteriorating.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-stock-channels-2026",
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "recession": {
+          "verdict": "Mixed / cause-dependent",
+          "directAnswer": "Falling yields during recession fear are not automatically good for stocks. Lower rates help valuations, but weaker demand and earnings can dominate.",
+          "mechanismSteps": [
+            "Recession fear rises",
+            "Investors seek safer bonds",
+            "Government yields fall",
+            "Earnings expectations may fall as well"
+          ],
+          "chainBreaker": "If policy easing stabilizes growth quickly, lower yields can become more supportive for equities."
+        },
+        "lower-inflation": {
+          "verdict": "Usually supportive",
+          "directAnswer": "If yields fall because inflation is cooling without a major growth shock, lower discount rates and financing costs can be more supportive for stocks.",
+          "mechanismSteps": [
+            "Inflation pressure eases",
+            "Yields fall",
+            "Discount rates decline",
+            "Stock valuations receive support"
+          ],
+          "chainBreaker": "A sudden deterioration in earnings or credit conditions can still pull stocks lower."
+        }
+      }
+    },
+    {
+      "id": "yields-fall__bond-prices",
+      "eventId": "yields-fall",
+      "targetId": "bond-prices",
+      "verdict": "Mechanical inverse relationship",
+      "relationshipType": "Mechanical relationship",
+      "directAnswer": "For an existing fixed-rate bond, lower market yields generally mean a higher market price, all else equal.",
+      "mechanismSteps": [
+        "Market yields fall",
+        "New bonds offer lower income",
+        "Existing higher-coupon bonds become more attractive",
+        "Existing fixed-rate bond prices adjust higher"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Credit deterioration or default risk can still push a specific bond price down even while risk-free yields fall.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "investor-bond-prices"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-fall__borrowing-costs",
+      "eventId": "yields-fall",
+      "targetId": "borrowing-costs",
+      "verdict": "Usually pushes lower",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Lower government yields can reduce important borrowing benchmarks and make new longer-term financing cheaper, although lenders may not pass the full decline through.",
+      "mechanismSteps": [
+        "Government yields fall",
+        "Funding benchmarks ease",
+        "New loan / bond pricing can ease",
+        "Borrowing costs may fall"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Credit spreads can widen during stress, leaving corporate or household borrowing costs high even while government yields fall.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-fall__gold",
+      "eventId": "yields-fall",
+      "targetId": "gold",
+      "verdict": "Usually supportive",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Falling real yields are generally supportive for gold because the opportunity cost of holding a non-yielding asset declines. A weaker dollar can add support.",
+      "mechanismSteps": [
+        "Government yields fall",
+        "If real yields also fall, the return advantage of safe interest-bearing assets narrows",
+        "Gold becomes relatively less costly to hold",
+        "Gold demand may receive support"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can still weaken if the U.S. dollar strengthens sharply, risk appetite improves, or the yield decline mainly reflects falling inflation rather than lower real yields.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "yields-fall__dollar",
+      "eventId": "yields-fall",
+      "targetId": "dollar",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Lower U.S. yields can reduce the relative return advantage of dollar assets and weigh on the dollar, but recession fear can create safe-haven dollar demand at the same time.",
+      "mechanismSteps": [
+        "U.S. yields fall",
+        "Rate advantage may narrow",
+        "Dollar demand may weaken",
+        "Safe-haven demand can offset the move"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "A global risk-off episode can strengthen the dollar even while U.S. yields fall.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "bis-dollar-eme",
+        "imf-strong-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__broad-stocks",
+      "eventId": "policy-rate-rise",
+      "targetId": "broad-stocks",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Higher policy rates tighten financial conditions. They can raise borrowing costs and discount rates, which is usually a headwind for stocks, although strong growth can soften the impact.",
+      "mechanismSteps": [
+        "Central bank raises policy rate",
+        "Short-term financing costs rise",
+        "Longer-term financial conditions may tighten",
+        "Equity valuations and demand can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Stocks can still rise if the rate increase is well anticipated and earnings remain stronger than expected.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__growth-tech",
+      "eventId": "policy-rate-rise",
+      "targetId": "growth-tech",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Growth and technology stocks are often especially sensitive to higher policy rates because higher discount rates reduce the present value of distant expected profits.",
+      "mechanismSteps": [
+        "Policy rate rises",
+        "Market discount rates may rise",
+        "Future profits are discounted more heavily",
+        "Long-duration growth valuations may compress"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Exceptional earnings growth or falling long-term yields can offset part of the policy-rate headwind.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__government-yields",
+      "eventId": "policy-rate-rise",
+      "targetId": "government-yields",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "A policy-rate increase can push shorter-term yields higher and influence longer-term yields, but long yields also reflect future inflation, growth and term-premium expectations.",
+      "mechanismSteps": [
+        "Policy rate rises",
+        "Short-term rates move higher",
+        "Markets reassess future rates and inflation",
+        "Government yields may rise"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Long-term yields can fall if the rate increase convinces investors that inflation will fall or if growth expectations weaken sharply.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__bond-prices",
+      "eventId": "policy-rate-rise",
+      "targetId": "bond-prices",
+      "verdict": "Usually pushes lower",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "When rate increases push market yields higher, existing fixed-rate bond prices generally fall. The size depends heavily on maturity and duration.",
+      "mechanismSteps": [
+        "Policy rate rises",
+        "Market yields may rise",
+        "Existing fixed coupons become less competitive",
+        "Bond prices can fall"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Long-duration bond prices can rise if investors expect the tighter policy to cause recession and much lower future rates.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "investor-bond-prices",
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__borrowing-costs",
+      "eventId": "policy-rate-rise",
+      "targetId": "borrowing-costs",
+      "verdict": "Usually pushes higher",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Higher policy rates usually make floating-rate and newly priced borrowing more expensive, with the timing depending on the loan structure and market.",
+      "mechanismSteps": [
+        "Policy rate rises",
+        "Bank / money-market funding costs rise",
+        "Loan pricing adjusts",
+        "Household and business interest expense may increase"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Fixed-rate borrowers may be insulated until they refinance, and strong competition can reduce pass-through.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__dollar",
+      "eventId": "policy-rate-rise",
+      "targetId": "dollar",
+      "verdict": "Usually supportive",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Higher relative U.S. policy rates can support the U.S. dollar by making dollar assets more attractive, but relative policy and risk conditions matter.",
+      "mechanismSteps": [
+        "U.S. policy rate rises",
+        "Relative yield advantage can widen",
+        "Demand for dollar assets may increase",
+        "Dollar may strengthen"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If markets believe the rate increase will trigger a sharp slowdown, or other central banks tighten more, the dollar response can differ.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-rise__gold",
+      "eventId": "policy-rate-rise",
+      "targetId": "gold",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Higher real rates are usually a headwind for gold because safe interest-bearing assets offer more return. The dollar can also strengthen, adding pressure.",
+      "mechanismSteps": [
+        "Policy rates rise",
+        "Real yields may rise",
+        "Opportunity cost of non-yielding gold rises",
+        "Gold can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can still rise if inflation, geopolitical risk or financial stress increases faster than real yields.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-cut__broad-stocks",
+      "eventId": "policy-rate-cut",
+      "targetId": "broad-stocks",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Rate cuts can support stocks by lowering discount rates and financing costs. But the reason for the cut matters: an emergency or recession-driven cut can arrive with rapidly weakening earnings.",
+      "mechanismSteps": [
+        "Central bank cuts policy rate",
+        "Financing and discount rates may fall",
+        "Equity valuations get support",
+        "Growth / earnings conditions determine whether that support dominates"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Stocks can fall after a rate cut if the cut is a response to a recession, financial accident or sharp deterioration in profits.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "normalizing": {
+          "verdict": "Usually supportive",
+          "directAnswer": "A rate cut made because inflation is cooling while growth remains reasonably stable is usually more supportive for stocks than an emergency cut. Lower discount rates help without the same recession warning.",
+          "mechanismSteps": [
+            "Inflation cools",
+            "Central bank normalizes policy",
+            "Financing / discount rates ease",
+            "Stocks may receive support"
+          ],
+          "chainBreaker": "A new inflation shock or sudden earnings deterioration can still overwhelm the benefit."
+        },
+        "recession": {
+          "verdict": "Mixed / cause-dependent",
+          "directAnswer": "A recession-driven rate cut is not automatically bullish for stocks. Cheaper money helps, but collapsing demand and earnings can matter more.",
+          "mechanismSteps": [
+            "Recession risk rises",
+            "Central bank cuts rates",
+            "Discount rates fall",
+            "Earnings expectations may also fall sharply"
+          ],
+          "chainBreaker": "If policy support stabilizes growth faster than feared, equities can recover even while the economy is still weak."
+        },
+        "financial-stress": {
+          "verdict": "Mixed / cause-dependent",
+          "directAnswer": "An emergency cut can calm funding markets, but it can also signal that financial stress is serious. The market response depends on whether the policy action restores confidence.",
+          "mechanismSteps": [
+            "Financial stress rises",
+            "Central bank cuts quickly",
+            "Funding conditions may ease",
+            "Risk assets respond to whether stress is contained"
+          ],
+          "chainBreaker": "If the underlying credit problem continues to worsen, stocks can fall despite easier policy."
+        }
+      }
+    },
+    {
+      "id": "policy-rate-cut__bond-prices",
+      "eventId": "policy-rate-cut",
+      "targetId": "bond-prices",
+      "verdict": "Usually pushes higher",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "If a policy-rate cut pulls market yields lower, existing fixed-rate bond prices generally receive support.",
+      "mechanismSteps": [
+        "Policy rate falls",
+        "Market yields may fall",
+        "Existing coupons look more attractive",
+        "Fixed-rate bond prices may rise"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If inflation expectations or fiscal term premium rise at the same time, long-term bond yields can stay high or rise despite the policy cut.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "investor-bond-prices",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-cut__borrowing-costs",
+      "eventId": "policy-rate-cut",
+      "targetId": "borrowing-costs",
+      "verdict": "Usually pushes lower",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Policy-rate cuts usually reduce short-term funding costs and can lower new borrowing rates, although mortgages and long-term loans also depend on longer-term yields and credit spreads.",
+      "mechanismSteps": [
+        "Policy rate falls",
+        "Short-term funding costs ease",
+        "Some loan rates reset lower",
+        "Debt-service pressure may ease"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Long-term borrowing can remain expensive if bond yields or credit spreads stay high.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-cut__dollar",
+      "eventId": "policy-rate-cut",
+      "targetId": "dollar",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Rate cuts can reduce the dollar's relative yield advantage and weigh on it, but a recession or financial shock can simultaneously create safe-haven dollar demand.",
+      "mechanismSteps": [
+        "Policy rate falls",
+        "Relative yield support for the dollar may weaken",
+        "Dollar may face pressure",
+        "Safe-haven demand can push the other way"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "The dollar can strengthen during aggressive cuts if global investors are seeking liquidity and safety.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-cut__gold",
+      "eventId": "policy-rate-cut",
+      "targetId": "gold",
+      "verdict": "Usually supportive",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Lower real rates are generally supportive for gold because the opportunity cost of holding a non-yielding asset falls. A weaker dollar can add support.",
+      "mechanismSteps": [
+        "Policy rate falls",
+        "Real yields may decline",
+        "Opportunity cost of gold falls",
+        "Gold demand may receive support"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can still weaken if inflation falls faster than nominal rates, the dollar strengthens, or financial stress fades sharply.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "policy-rate-cut__economic-growth",
+      "eventId": "policy-rate-cut",
+      "targetId": "economic-growth",
+      "verdict": "Indirect effect",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Lower policy rates can support demand by reducing financing costs and easing financial conditions, but monetary policy works with lags and cannot instantly repair weak productivity, supply problems or impaired credit channels.",
+      "mechanismSteps": [
+        "Policy rate falls",
+        "Borrowing / financing conditions may ease",
+        "Spending and investment may receive support",
+        "Growth can improve with a lag"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If households and businesses are repairing balance sheets or banks are unwilling to lend, lower rates may have a weaker effect.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__inflation",
+      "eventId": "oil-rise",
+      "targetId": "inflation",
+      "verdict": "Usually pushes higher",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "A sharp oil-price increase usually pushes headline inflation higher through fuel, transport, production and freight costs. The persistence depends on wages, expectations and how much businesses pass through.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Fuel / transport / production costs rise",
+        "Some costs pass into consumer prices",
+        "Headline inflation pressure rises"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If the oil move is brief, demand is weak or firms absorb part of the cost, the effect on underlying inflation can be smaller and shorter-lived.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026",
+        "sf-fed-oil-supply-demand-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__broad-stocks",
+      "eventId": "oil-rise",
+      "targetId": "broad-stocks",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Higher oil is not automatically bad for stocks. A supply shock can hurt margins and consumers, while oil rising because global demand is strong can occur alongside healthy earnings and rising equities.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Business and household energy costs change",
+        "Inflation / demand expectations adjust",
+        "Stocks react to the cause and sector exposure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Oil and stocks can rise together when stronger economic demand is the main reason oil prices are increasing.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "sf-fed-oil-supply-demand-2026",
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "demand": {
+          "verdict": "Mixed / cause-dependent",
+          "directAnswer": "Oil rising because global demand is strong can coexist with rising stocks. The higher oil price is partly a symptom of stronger activity rather than only a cost shock.",
+          "mechanismSteps": [
+            "Global demand strengthens",
+            "Oil demand and price rise",
+            "Company revenues / activity may improve",
+            "Stocks can rise even as energy costs increase"
+          ],
+          "chainBreaker": "If the oil rise becomes large enough to reignite inflation and squeeze consumers, the relationship can turn negative."
+        },
+        "supply": {
+          "verdict": "Usually a headwind",
+          "directAnswer": "A supply-driven oil spike is usually a clearer headwind for broad stocks because it raises costs and inflation without the same boost from stronger demand.",
+          "mechanismSteps": [
+            "Oil supply is disrupted",
+            "Oil prices jump",
+            "Inflation and input costs rise",
+            "Margins, consumers and valuations can come under pressure"
+          ],
+          "chainBreaker": "Energy producers can benefit, and broad markets can recover if the disruption proves short-lived."
+        }
+      }
+    },
+    {
+      "id": "oil-rise__energy",
+      "eventId": "oil-rise",
+      "targetId": "energy",
+      "verdict": "Usually supportive",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Higher oil prices can increase revenue and cash flow for some oil producers, although costs, hedges, taxes and production volumes still matter.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Realized selling prices may improve",
+        "Producer cash flow can improve",
+        "Energy-company earnings may receive support"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Energy shares can still fall if production is disrupted, costs surge, taxes change, or the oil rise is expected to be temporary.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__airlines-transport",
+      "eventId": "oil-rise",
+      "targetId": "airlines-transport",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Fuel is a major cost for airlines and many transport businesses, so a sharp oil rise can squeeze margins unless costs are hedged or passed to customers.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Jet fuel / diesel costs rise",
+        "Operating costs increase",
+        "Margins or ticket / freight prices face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Hedging, fuel surcharges, stronger demand or greater pricing power can reduce the hit.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__consumer-spending",
+      "eventId": "oil-rise",
+      "targetId": "consumer-spending",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Higher fuel and energy bills can leave households with less money for other spending, especially where incomes do not rise at the same pace.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Household energy / transport bills rise",
+        "Disposable income is squeezed",
+        "Other consumer spending may slow"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Energy exporters or households with energy-linked income can experience a different effect, and government support can cushion the shock.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__government-yields",
+      "eventId": "oil-rise",
+      "targetId": "government-yields",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Oil-driven inflation can push yields higher if investors expect tighter policy or more persistent inflation. But a severe growth shock can create safe-haven bond demand and pull yields lower.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Inflation expectations may rise",
+        "Policy expectations may become less dovish",
+        "Bond yields can face upward pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If the oil shock is severe enough to raise recession fear, safe-haven demand can pull government yields down instead.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__gold",
+      "eventId": "oil-rise",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Oil can support gold through inflation and geopolitical-risk channels, but the same oil shock can raise real yields or strengthen the dollar, which are potential headwinds for gold.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Inflation / geopolitical concern may increase",
+        "Defensive demand for gold may increase",
+        "Rates and the dollar can push in the opposite direction"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can fall even during an oil shock if higher real yields and a stronger dollar dominate safe-haven demand.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026",
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "oil-rise__copper",
+      "eventId": "oil-rise",
+      "targetId": "copper",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Copper does not have a simple one-way relationship with oil. Strong global demand can lift both, while a supply-driven oil shock can raise costs and weaken growth expectations, which can pressure copper.",
+      "mechanismSteps": [
+        "Oil prices rise",
+        "Markets identify demand-driven or supply-driven cause",
+        "Industrial growth expectations adjust",
+        "Copper responds to growth, supply and inventories"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Copper can rise during an oil shock if its own supply is tight or infrastructure demand remains strong.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "iea-copper-2026",
+        "sf-fed-oil-supply-demand-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__policy-rates",
+      "eventId": "inflation-rise",
+      "targetId": "policy-rates",
+      "verdict": "Usually pushes higher",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Persistent inflation often increases pressure on central banks to keep policy rates higher or raise them, especially when inflation expectations risk becoming unanchored.",
+      "mechanismSteps": [
+        "Inflation rises",
+        "Central bank assesses persistence / expectations",
+        "Policy may stay restrictive or tighten",
+        "Borrowing conditions remain tighter"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Central banks can look through a temporary supply shock if underlying inflation is easing and growth is weak.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__government-yields",
+      "eventId": "inflation-rise",
+      "targetId": "government-yields",
+      "verdict": "Usually pushes higher",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Higher inflation usually puts upward pressure on nominal bond yields because investors want compensation for lost purchasing power and may expect tighter policy.",
+      "mechanismSteps": [
+        "Inflation rises",
+        "Expected real return on nominal bonds is eroded",
+        "Investors demand more yield / expect tighter policy",
+        "Nominal yields may rise"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Yields can still fall if recession risk or safe-haven demand becomes dominant.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__bond-prices",
+      "eventId": "inflation-rise",
+      "targetId": "bond-prices",
+      "verdict": "Usually pushes lower",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "When inflation pushes market yields higher, existing fixed-rate bond prices generally fall. Inflation also reduces the purchasing power of fixed coupon payments.",
+      "mechanismSteps": [
+        "Inflation rises",
+        "Required nominal yields may rise",
+        "Existing fixed coupons become less attractive",
+        "Bond prices may fall"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Inflation-linked bonds or a rapid collapse in growth expectations can behave differently.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "investor-bond-prices",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__broad-stocks",
+      "eventId": "inflation-rise",
+      "targetId": "broad-stocks",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Moderate inflation can coexist with rising stocks, especially when demand and earnings are strong. Persistent or surprise inflation can become a headwind through higher rates, costs and valuation pressure.",
+      "mechanismSteps": [
+        "Inflation rises",
+        "Costs / policy expectations change",
+        "Discount rates may rise",
+        "Stock impact depends on pricing power and growth"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Companies with strong pricing power and robust demand can grow profits even in an inflationary environment.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__gold",
+      "eventId": "inflation-rise",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Inflation can support the case for gold as a store-of-value asset, but gold does not track inflation mechanically. Real yields and the U.S. dollar can offset or dominate the inflation effect.",
+      "mechanismSteps": [
+        "Inflation rises",
+        "Demand for inflation protection may increase",
+        "Gold may receive support",
+        "Real yields / dollar can push the other way"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can fall during high inflation if real yields rise sharply or the U.S. dollar strengthens enough.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__cash-purchasing-power",
+      "eventId": "inflation-rise",
+      "targetId": "cash-purchasing-power",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "If the return on cash does not keep pace with inflation, each unit of money buys less over time.",
+      "mechanismSteps": [
+        "Prices rise",
+        "Cash balance stays nominally the same",
+        "The same money buys fewer goods and services",
+        "Real purchasing power falls"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Cash can preserve purchasing power better when deposit yields rise enough to offset inflation after tax and fees.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "inflation-rise__dollar",
+      "eventId": "inflation-rise",
+      "targetId": "dollar",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Higher U.S. inflation can support the dollar if it causes U.S. rates to rise relative to other countries, but it can weaken the dollar if markets see inflation as eroding purchasing power or policy credibility.",
+      "mechanismSteps": [
+        "Inflation rises",
+        "Rate and credibility expectations change",
+        "Relative yields / risk appetite shift",
+        "Dollar response depends on which channel dominates"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If inflation is global and other central banks tighten more aggressively, the dollar can weaken even with high U.S. inflation.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "dollar-strengthens__gold",
+      "eventId": "dollar-strengthens",
+      "targetId": "gold",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "A stronger U.S. dollar is usually a headwind for dollar-priced gold because it raises the local-currency cost for many non-U.S. buyers and often accompanies tighter financial conditions.",
+      "mechanismSteps": [
+        "U.S. dollar strengthens",
+        "Dollar-priced gold becomes more expensive in other currencies",
+        "Demand can face pressure",
+        "Gold may face a headwind"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold and the dollar can rise together during severe geopolitical or financial stress when both are being sought defensively.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "dollar-strengthens__silver",
+      "eventId": "dollar-strengthens",
+      "targetId": "silver",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "A stronger dollar is often a headwind for silver through the precious-metal channel, while its industrial demand adds a separate growth-sensitive force.",
+      "mechanismSteps": [
+        "U.S. dollar strengthens",
+        "Dollar-priced metal becomes costlier for non-dollar buyers",
+        "Precious-metal demand can face pressure",
+        "Industrial conditions determine the second part of silver's response"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Tight physical supply or strong industrial demand can support silver even during dollar strength.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "silver-institute-2026",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "dollar-strengthens__copper",
+      "eventId": "dollar-strengthens",
+      "targetId": "copper",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "A stronger dollar can weigh on copper and other dollar-priced commodities, while the same dollar move can also tighten global financial conditions. Copper still depends heavily on industrial demand and physical supply.",
+      "mechanismSteps": [
+        "U.S. dollar strengthens",
+        "Dollar-priced copper becomes more expensive in other currencies",
+        "Global financial conditions may tighten",
+        "Copper demand / price can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "A strong physical shortage or powerful grid and infrastructure demand can outweigh the currency headwind.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "iea-copper-2026",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "dollar-strengthens__eme-conditions",
+      "eventId": "dollar-strengthens",
+      "targetId": "eme-conditions",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Broad dollar strength can tighten financial conditions in emerging markets, especially where borrowers or investors carry dollar-linked balance-sheet exposure.",
+      "mechanismSteps": [
+        "U.S. dollar strengthens",
+        "Dollar liabilities / investor currency risk become harder to absorb",
+        "Capital and credit conditions can tighten",
+        "Investment and growth can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Countries with strong external balances, deep local markets and limited dollar debt can be more resilient.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "bis-dollar-eme",
+        "imf-strong-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "dollar-strengthens__multinational-earnings",
+      "eventId": "dollar-strengthens",
+      "targetId": "multinational-earnings",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "For a U.S. company earning revenue abroad, a stronger dollar can translate the same foreign-currency sales into fewer dollars when results are reported.",
+      "mechanismSteps": [
+        "U.S. dollar strengthens",
+        "Foreign-currency revenue converts into fewer U.S. dollars",
+        "Reported revenue / earnings translation can weaken",
+        "Multinational results may face a headwind"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Natural hedges, local costs, financial hedging and stronger overseas sales volumes can offset the translation effect.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "dollar-strengthens__import-price-pressure",
+      "eventId": "dollar-strengthens",
+      "targetId": "import-price-pressure",
+      "verdict": "Usually pushes lower",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "A stronger dollar can reduce the U.S.-dollar cost of some imported goods and inputs, creating downward pressure on import-price inflation.",
+      "mechanismSteps": [
+        "U.S. dollar strengthens",
+        "Foreign goods become cheaper in dollar terms, all else equal",
+        "Import-price pressure can ease",
+        "Some inflation pressure may soften"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Tariffs, supply shortages or foreign producers raising prices can offset the currency benefit.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "imf-strong-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "geopolitical-escalation__oil",
+      "eventId": "geopolitical-escalation",
+      "targetId": "oil",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Geopolitical conflict can push oil higher when it threatens production, pipelines or major shipping routes. A conflict with little connection to energy supply may have a much smaller oil effect.",
+      "mechanismSteps": [
+        "Conflict escalates",
+        "Energy supply / shipping risk is assessed",
+        "Expected available supply may fall",
+        "Oil prices can face upward pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Oil can stay flat or fall if spare supply is ample, demand is weak, or the conflict does not threaten energy flows.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "oil-region": {
+          "verdict": "Usually supportive",
+          "directAnswer": "Conflict in a major oil-producing region is usually more supportive for oil prices because traders may price a higher risk of lost production or exports.",
+          "mechanismSteps": [
+            "Conflict hits an oil-producing region",
+            "Supply / export risk rises",
+            "Expected available oil falls",
+            "Oil prices can rise"
+          ],
+          "chainBreaker": "Spare capacity, alternative supply or a short-lived disruption can contain the price response."
+        },
+        "shipping": {
+          "verdict": "Usually supportive",
+          "directAnswer": "Conflict around a major energy shipping route can raise oil prices by threatening transport even if production itself is unchanged.",
+          "mechanismSteps": [
+            "Shipping route risk rises",
+            "Insurance / transit disruption increases",
+            "Delivered energy supply becomes less certain",
+            "Oil prices can rise"
+          ],
+          "chainBreaker": "Successful rerouting or rapid reopening can reverse the risk premium."
+        }
+      }
+    },
+    {
+      "id": "geopolitical-escalation__inflation",
+      "eventId": "geopolitical-escalation",
+      "targetId": "inflation",
+      "verdict": "Indirect effect",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Geopolitical conflict raises inflation mainly when it disrupts energy, food, shipping or manufacturing supply. The location and transmission channel matter more than the word “war” itself.",
+      "mechanismSteps": [
+        "Conflict escalates",
+        "Supply / shipping / commodity costs are disrupted",
+        "Business and household costs rise",
+        "Inflation pressure can increase"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If the conflict does not materially affect traded supply or demand, inflation can remain little changed.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "geopolitical-escalation__gold",
+      "eventId": "geopolitical-escalation",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Geopolitical stress can increase defensive demand for gold, but that does not guarantee a higher gold price. Real yields and the U.S. dollar can push in the opposite direction.",
+      "mechanismSteps": [
+        "Geopolitical uncertainty rises",
+        "Demand for defensive assets may increase",
+        "Gold may receive support",
+        "Rates and the dollar can offset that support"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can struggle during a conflict if real yields and the U.S. dollar rise sharply enough.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026",
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "geopolitical-escalation__broad-stocks",
+      "eventId": "geopolitical-escalation",
+      "targetId": "broad-stocks",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "A major geopolitical shock can hurt risk appetite and raise uncertainty, but the economic effect depends heavily on location, duration and whether energy or supply chains are disrupted.",
+      "mechanismSteps": [
+        "Conflict escalates",
+        "Uncertainty / risk premium rises",
+        "Supply or demand may be disrupted",
+        "Stocks can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Stocks can recover quickly if the conflict remains contained and earnings / supply chains are not materially affected.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "geopolitical-escalation__dollar",
+      "eventId": "geopolitical-escalation",
+      "targetId": "dollar",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "The U.S. dollar can benefit from global demand for liquidity and safe assets during a shock, but its response can vary because the conflict may directly affect the United States or change relative policy expectations.",
+      "mechanismSteps": [
+        "Geopolitical risk rises",
+        "Investors seek liquidity / safety",
+        "Demand for dollars can increase",
+        "Dollar may strengthen"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If the shock undermines confidence in U.S. assets or pushes other currencies into a stronger policy response, the dollar can behave differently.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "geopolitical-escalation__shipping-supply-chains",
+      "eventId": "geopolitical-escalation",
+      "targetId": "shipping-supply-chains",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Conflict near a major shipping or manufacturing route can raise freight, insurance and delay costs and can interrupt access to components or commodities.",
+      "mechanismSteps": [
+        "Conflict disrupts route / region",
+        "Shipping / insurance / lead times worsen",
+        "Input availability falls or costs rise",
+        "Supply chains come under pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Alternative routes, inventories and diversified suppliers can reduce the impact.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "fiscal-stress__government-yields",
+      "eventId": "fiscal-stress",
+      "targetId": "government-yields",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Heavier borrowing or a higher fiscal term premium can put upward pressure on Treasury yields because more securities must be absorbed and investors may demand more compensation for long-term risk. The effect is not mechanical.",
+      "mechanismSteps": [
+        "Fiscal borrowing needs rise",
+        "Treasury supply / perceived long-term risk increases",
+        "Investors may demand higher compensation",
+        "Long-term yields can face upward pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Strong safe-haven demand, lower inflation or weaker growth can still pull Treasury yields down.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-debt-rates-2026",
+        "fed-long-yields-2026",
+        "cbo-budget-2026",
+        "gao-debt-limit-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "fiscal-stress__borrowing-costs",
+      "eventId": "fiscal-stress",
+      "targetId": "borrowing-costs",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "If fiscal stress pushes Treasury yields or risk premia higher, borrowing benchmarks across the economy can also rise.",
+      "mechanismSteps": [
+        "Fiscal risk / issuance pressure rises",
+        "Treasury yields may rise",
+        "Market borrowing benchmarks increase",
+        "Household and corporate borrowing may become more expensive"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Borrowing costs can ease if monetary policy or recession forces push overall yields lower.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-debt-rates-2026",
+        "fed-long-yields-2026",
+        "cbo-budget-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "fiscal-stress__broad-stocks",
+      "eventId": "fiscal-stress",
+      "targetId": "broad-stocks",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Fiscal stress can pressure stocks through higher yields, financing costs and uncertainty, but deficits can also support near-term demand. The balance depends on inflation, growth and how markets view debt sustainability.",
+      "mechanismSteps": [
+        "Fiscal stress rises",
+        "Yields / risk premium may rise",
+        "Financing and valuation pressure increases",
+        "Stocks react to growth support versus long-run risk"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If fiscal spending strongly supports growth without raising long-term yields much, stocks can still perform well.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-debt-rates-2026",
+        "cbo-budget-2026",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "fiscal-stress__dollar",
+      "eventId": "fiscal-stress",
+      "targetId": "dollar",
+      "verdict": "No reliable one-way relationship",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Fiscal stress can support the dollar through higher yields or safe-haven demand, but it can also weaken confidence in U.S. assets. There is no reliable one-direction rule.",
+      "mechanismSteps": [
+        "Fiscal stress rises",
+        "Yields, risk appetite and confidence can move in different directions",
+        "Capital flows adjust",
+        "Dollar response is uncertain"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "The dollar can strengthen during a U.S.-centered stress episode if global investors still prefer dollar liquidity and Treasuries over alternatives.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-long-yields-2026",
+        "gao-debt-limit-2026",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "fiscal-stress__gold",
+      "eventId": "fiscal-stress",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Fiscal stress can support gold through sovereign-risk and store-of-value demand, while higher real yields or a stronger dollar can offset that support.",
+      "mechanismSteps": [
+        "Fiscal stress rises",
+        "Alternative-store-of-value demand may increase",
+        "Gold may receive support",
+        "Real yields / dollar can push the other way"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can fall if fiscal stress mainly lifts real yields and the dollar rather than defensive gold demand.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026",
+        "cbo-budget-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "recession-risk__broad-stocks",
+      "eventId": "recession-risk",
+      "targetId": "broad-stocks",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Rising recession risk is usually a headwind for stocks because sales, profits and credit quality may weaken.",
+      "mechanismSteps": [
+        "Recession risk rises",
+        "Demand / earnings expectations fall",
+        "Credit risk may increase",
+        "Stocks can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Stocks can rise before the economy improves if markets begin to expect recovery, policy support or better future earnings.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "recession-risk__government-yields",
+      "eventId": "recession-risk",
+      "targetId": "government-yields",
+      "verdict": "Usually pushes lower",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Recession fear often pulls government yields lower as investors seek safer bonds and expect policy-rate cuts.",
+      "mechanismSteps": [
+        "Recession risk rises",
+        "Safe-haven bond demand increases",
+        "Rate-cut expectations build",
+        "Government yields can fall"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Yields can stay high if inflation or fiscal term premium remains the dominant concern.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "recession-risk__oil",
+      "eventId": "recession-risk",
+      "targetId": "oil",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Recession risk usually weighs on oil by reducing expected transport, industrial and consumer demand.",
+      "mechanismSteps": [
+        "Recession risk rises",
+        "Expected economic activity falls",
+        "Expected oil demand weakens",
+        "Oil prices can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "A major supply disruption can keep oil high even while demand expectations weaken.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "sf-fed-oil-supply-demand-2026",
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "recession-risk__copper",
+      "eventId": "recession-risk",
+      "targetId": "copper",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Market tendency",
+      "directAnswer": "Copper is highly exposed to construction, manufacturing, grids and industrial activity, so recession fear can weaken demand expectations.",
+      "mechanismSteps": [
+        "Recession risk rises",
+        "Industrial / construction expectations weaken",
+        "Expected copper demand falls",
+        "Copper can face pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Supply disruptions or powerful structural grid / data-centre demand can partly offset cyclical weakness.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "iea-copper-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "recession-risk__gold",
+      "eventId": "recession-risk",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Recession risk can support gold through falling real yields and defensive demand, but liquidity stress or a stronger dollar can create headwinds.",
+      "mechanismSteps": [
+        "Recession risk rises",
+        "Rate-cut / safe-haven expectations increase",
+        "Real yields may fall",
+        "Gold may receive support"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "During an acute liquidity squeeze, investors may sell gold to raise cash even while recession risk is high.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "recession-risk__dollar",
+      "eventId": "recession-risk",
+      "targetId": "dollar",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Global recession fear can support the dollar through liquidity and safe-haven demand, even if U.S. rates are expected to fall.",
+      "mechanismSteps": [
+        "Recession fear rises",
+        "Global risk appetite falls",
+        "Demand for dollar liquidity may increase",
+        "Dollar can strengthen"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If the downturn is concentrated in the United States or policy easing is much larger than elsewhere, the dollar can weaken.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "bis-dollar-eme",
+        "imf-strong-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "stagflation__broad-stocks",
+      "eventId": "stagflation",
+      "targetId": "broad-stocks",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Stagflation is difficult for stocks because weak growth can hurt earnings while high inflation can keep discount rates and costs elevated.",
+      "mechanismSteps": [
+        "Growth weakens",
+        "Inflation stays high",
+        "Margins / demand weaken while rates stay restrictive",
+        "Stocks face pressure from both sides"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Companies with strong pricing power or direct commodity exposure can behave differently from the broad market.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026",
+        "fed-stock-channels-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "stagflation__bond-prices",
+      "eventId": "stagflation",
+      "targetId": "bond-prices",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Stagflation pulls bonds in opposite directions: weak growth supports lower yields, while persistent inflation argues for higher yields. Which force dominates matters.",
+      "mechanismSteps": [
+        "Growth weakness supports bonds",
+        "Persistent inflation hurts nominal bonds",
+        "Policy response becomes difficult",
+        "Bond prices can move either way"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If inflation breaks quickly, the growth channel can dominate and bond prices can rise strongly.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "investor-bond-prices",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "stagflation__gold",
+      "eventId": "stagflation",
+      "targetId": "gold",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Stagflation can support gold through inflation and economic stress, but high real yields or a strong dollar can still be powerful headwinds.",
+      "mechanismSteps": [
+        "Inflation remains high",
+        "Growth weakens",
+        "Demand for defensive / real assets may increase",
+        "Real yields / dollar determine whether support persists"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can underperform if policy stays very tight and real yields rise despite weak growth.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "stagflation__oil-commodities",
+      "eventId": "stagflation",
+      "targetId": "oil-commodities",
+      "verdict": "Mixed / cause-dependent",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "If stagflation begins with an energy supply shock, oil and some commodities may stay expensive even as growth weakens. Other cyclical commodities can fall with demand.",
+      "mechanismSteps": [
+        "Supply shock lifts commodity costs",
+        "Inflation rises",
+        "Growth weakens",
+        "Commodity responses split between scarce inputs and demand-sensitive markets"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "A deep recession can eventually destroy demand and pull even the initially scarce commodity lower.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026",
+        "iea-copper-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "stagflation__borrowing-costs",
+      "eventId": "stagflation",
+      "targetId": "borrowing-costs",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "High inflation can prevent central banks and bond markets from easing much even while growth is weak, leaving borrowing costs elevated.",
+      "mechanismSteps": [
+        "Inflation stays high",
+        "Policy / yields stay restrictive",
+        "Borrowing costs remain elevated",
+        "Weak growth makes those costs harder to absorb"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "If inflation falls decisively, central banks and bond yields can ease even before growth fully recovers.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "fed-fomc-transmission",
+        "fed-long-yields-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "stagflation__cash-purchasing-power",
+      "eventId": "stagflation",
+      "targetId": "cash-purchasing-power",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Economic transmission",
+      "directAnswer": "Stagflation can be especially painful for cash purchasing power because prices rise while income and growth are weak.",
+      "mechanismSteps": [
+        "Prices keep rising",
+        "Economic growth is weak",
+        "Income growth may not keep pace",
+        "Cash purchasing power is squeezed"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "High deposit rates can cushion the loss, especially if inflation begins to fall.",
+      "differentReactions": [],
+      "historicalExample": "Historical episodes differ because the cause, starting valuation, policy response and wider financial conditions are not the same.",
+      "sourceIds": [
+        "world-bank-commodity-2026"
+      ],
+      "reviewedDate": "2026-10-15"
+    },
+    {
+      "id": "treasury-default-stress__treasury-market",
+      "eventId": "treasury-default-stress",
+      "targetId": "treasury-market",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "A missed or delayed Treasury payment could disrupt the market that normally serves as a global benchmark and source of collateral. The exact form and duration of disruption would depend on which payments were affected and how authorities responded.",
+      "mechanismSteps": [
+        "Payment confidence breaks down",
+        "Specific Treasury securities may face unusual pricing / liquidity",
+        "Collateral and benchmark functions can be disrupted",
+        "Market functioning can deteriorate"
+      ],
+      "supportingForces": [],
+      "headwinds": [
+        "Liquidity, collateral and benchmark pricing can be disrupted."
+      ],
+      "chainBreaker": "Some Treasury securities could still be sought for liquidity or because investors distinguish affected maturities from the rest of the market.",
+      "differentReactions": [],
+      "historicalExample": "The United States has not experienced a modern broad Treasury default that provides a clean template for all asset reactions. Debt-limit episodes show that even payment-risk concerns can distort yields and market functioning.",
+      "sourceIds": [
+        "gao-debt-limit-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "hypothetical": {
+          "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+        }
+      },
+      "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+    },
+    {
+      "id": "treasury-default-stress__broad-stocks",
+      "eventId": "treasury-default-stress",
+      "targetId": "broad-stocks",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Treasury payment stress would likely be a major risk-off shock for equities through uncertainty, funding conditions and confidence, but the size and duration are impossible to state precisely.",
+      "mechanismSteps": [
+        "Treasury payment confidence breaks",
+        "Financial uncertainty rises",
+        "Funding / valuation conditions tighten",
+        "Stocks can face broad pressure"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Rapid political resolution and credible payment restoration could reverse part of the shock quickly.",
+      "differentReactions": [],
+      "historicalExample": "The United States has not experienced a modern broad Treasury default that provides a clean template for all asset reactions. Debt-limit episodes show that even payment-risk concerns can distort yields and market functioning.",
+      "sourceIds": [
+        "gao-debt-limit-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "hypothetical": {
+          "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+        }
+      },
+      "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+    },
+    {
+      "id": "treasury-default-stress__dollar",
+      "eventId": "treasury-default-stress",
+      "targetId": "dollar",
+      "verdict": "No reliable one-way relationship",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "A U.S. payment default creates opposing forces for the dollar: loss of confidence in U.S. credit can weigh on it, while global demand for dollar liquidity can push the other way. There is no reliable one-direction rule.",
+      "mechanismSteps": [
+        "Treasury confidence is damaged",
+        "Dollar safe-haven role and U.S.-credit confidence conflict",
+        "Global liquidity demand changes",
+        "Dollar response is uncertain"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "The dollar can strengthen during stress if liquidity demand dominates, even when the shock originates in the United States.",
+      "differentReactions": [],
+      "historicalExample": "The United States has not experienced a modern broad Treasury default that provides a clean template for all asset reactions. Debt-limit episodes show that even payment-risk concerns can distort yields and market functioning.",
+      "sourceIds": [
+        "gao-debt-limit-2026",
+        "bis-dollar-eme"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "hypothetical": {
+          "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+        }
+      },
+      "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+    },
+    {
+      "id": "treasury-default-stress__gold",
+      "eventId": "treasury-default-stress",
+      "targetId": "gold",
+      "verdict": "No reliable one-way relationship",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Gold could receive support from sovereign-risk and safe-haven demand, but extreme liquidity stress, real-yield moves and the dollar can create opposing forces. A precise direction should not be presented as certain.",
+      "mechanismSteps": [
+        "Treasury payment stress rises",
+        "Sovereign-risk / safe-haven demand may increase",
+        "Gold may receive support",
+        "Liquidity, real yields and dollar moves can offset it"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Gold can fall temporarily if investors sell liquid assets to raise cash or if real yields / the dollar rise sharply.",
+      "differentReactions": [],
+      "historicalExample": "The United States has not experienced a modern broad Treasury default that provides a clean template for all asset reactions. Debt-limit episodes show that even payment-risk concerns can distort yields and market functioning.",
+      "sourceIds": [
+        "wgc-gold-inflation-2026",
+        "gao-debt-limit-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "hypothetical": {
+          "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+        }
+      },
+      "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+    },
+    {
+      "id": "treasury-default-stress__funding-credit",
+      "eventId": "treasury-default-stress",
+      "targetId": "funding-credit",
+      "verdict": "Usually a headwind",
+      "relationshipType": "Context-dependent relationship",
+      "directAnswer": "Treasury securities are deeply embedded in collateral and pricing systems. Payment stress could tighten funding and credit conditions even beyond the securities directly affected.",
+      "mechanismSteps": [
+        "Treasury collateral confidence weakens",
+        "Repo / money-market pricing can become less orderly",
+        "Lenders and investors become more cautious",
+        "Credit conditions can tighten"
+      ],
+      "supportingForces": [],
+      "headwinds": [],
+      "chainBreaker": "Strong official liquidity support and rapid resolution could limit spillovers.",
+      "differentReactions": [],
+      "historicalExample": "The United States has not experienced a modern broad Treasury default that provides a clean template for all asset reactions. Debt-limit episodes show that even payment-risk concerns can distort yields and market functioning.",
+      "sourceIds": [
+        "gao-debt-limit-2026"
+      ],
+      "reviewedDate": "2026-10-15",
+      "causeOverrides": {
+        "hypothetical": {
+          "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+        }
+      },
+      "scenarioWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response."
+    }
+  ]
+}
