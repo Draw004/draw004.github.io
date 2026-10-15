@@ -1,0 +1,474 @@
+{
+  "version": "MCR1-1.0",
+  "reviewedDate": "2026-10-15",
+  "events": [
+    {
+      "id": "yields-rise",
+      "label": "Government bond yields rise",
+      "summary": "Long-term government borrowing costs move higher.",
+      "defaultCause": "inflation",
+      "causes": [
+        {
+          "id": "growth",
+          "label": "Stronger economic growth"
+        },
+        {
+          "id": "inflation",
+          "label": "Higher inflation or inflation expectations"
+        },
+        {
+          "id": "higher-for-longer",
+          "label": "Policy rates expected to stay higher for longer"
+        },
+        {
+          "id": "fiscal-term-premium",
+          "label": "Heavier government borrowing / higher term premium"
+        },
+        {
+          "id": "less-safe-demand",
+          "label": "Reduced demand for safe government bonds"
+        }
+      ],
+      "targets": [
+        "broad-stocks",
+        "growth-tech",
+        "bond-prices",
+        "borrowing-costs",
+        "gold",
+        "dollar"
+      ]
+    },
+    {
+      "id": "yields-fall",
+      "label": "Government bond yields fall",
+      "summary": "Long-term government borrowing costs move lower.",
+      "defaultCause": "recession",
+      "causes": [
+        {
+          "id": "recession",
+          "label": "Weaker growth / recession fear"
+        },
+        {
+          "id": "lower-inflation",
+          "label": "Lower inflation expectations"
+        },
+        {
+          "id": "cut-expectations",
+          "label": "Policy-rate cuts expected"
+        },
+        {
+          "id": "flight-safety",
+          "label": "Flight to safety / stronger bond demand"
+        }
+      ],
+      "targets": [
+        "broad-stocks",
+        "bond-prices",
+        "borrowing-costs",
+        "gold",
+        "dollar"
+      ]
+    },
+    {
+      "id": "policy-rate-rise",
+      "label": "Central bank raises its policy rate",
+      "summary": "The central bank makes short-term money more expensive.",
+      "defaultCause": "inflation",
+      "causes": [
+        {
+          "id": "inflation",
+          "label": "Inflation is too high"
+        },
+        {
+          "id": "overheating",
+          "label": "Demand / labour market is too strong"
+        },
+        {
+          "id": "currency",
+          "label": "Currency or external pressure matters"
+        }
+      ],
+      "targets": [
+        "broad-stocks",
+        "growth-tech",
+        "government-yields",
+        "bond-prices",
+        "borrowing-costs",
+        "dollar",
+        "gold"
+      ]
+    },
+    {
+      "id": "policy-rate-cut",
+      "label": "Central bank cuts its policy rate",
+      "summary": "The central bank lowers the short-term policy rate.",
+      "defaultCause": "normalizing",
+      "causes": [
+        {
+          "id": "normalizing",
+          "label": "Inflation is cooling and policy is normalizing"
+        },
+        {
+          "id": "weak-growth",
+          "label": "Growth is weakening"
+        },
+        {
+          "id": "recession",
+          "label": "Recession risk is rising"
+        },
+        {
+          "id": "financial-stress",
+          "label": "Financial stress requires faster support"
+        }
+      ],
+      "targets": [
+        "broad-stocks",
+        "bond-prices",
+        "borrowing-costs",
+        "dollar",
+        "gold",
+        "economic-growth"
+      ]
+    },
+    {
+      "id": "oil-rise",
+      "label": "Oil prices rise sharply",
+      "summary": "Crude-oil prices jump enough to matter for costs and expectations.",
+      "defaultCause": "supply",
+      "causes": [
+        {
+          "id": "supply",
+          "label": "Supply disruption"
+        },
+        {
+          "id": "geopolitical",
+          "label": "Geopolitical / shipping risk"
+        },
+        {
+          "id": "demand",
+          "label": "Strong global demand"
+        },
+        {
+          "id": "producer-cuts",
+          "label": "Producer restraint / production cuts"
+        }
+      ],
+      "targets": [
+        "inflation",
+        "broad-stocks",
+        "energy",
+        "airlines-transport",
+        "consumer-spending",
+        "government-yields",
+        "gold",
+        "copper"
+      ]
+    },
+    {
+      "id": "inflation-rise",
+      "label": "Inflation rises",
+      "summary": "The general price level is increasing faster.",
+      "defaultCause": "energy-supply",
+      "causes": [
+        {
+          "id": "energy-supply",
+          "label": "Energy or supply shock"
+        },
+        {
+          "id": "demand",
+          "label": "Strong demand"
+        },
+        {
+          "id": "wages-services",
+          "label": "Wage / services pressure"
+        },
+        {
+          "id": "currency",
+          "label": "Currency weakness / imported inflation"
+        }
+      ],
+      "targets": [
+        "policy-rates",
+        "government-yields",
+        "bond-prices",
+        "broad-stocks",
+        "gold",
+        "cash-purchasing-power",
+        "dollar"
+      ]
+    },
+    {
+      "id": "dollar-strengthens",
+      "label": "U.S. dollar strengthens",
+      "summary": "The U.S. dollar rises broadly against other currencies.",
+      "defaultCause": "higher-us-rates",
+      "causes": [
+        {
+          "id": "higher-us-rates",
+          "label": "Higher relative U.S. interest rates / yields"
+        },
+        {
+          "id": "us-growth",
+          "label": "Stronger relative U.S. growth"
+        },
+        {
+          "id": "safe-haven",
+          "label": "Safe-haven / liquidity demand"
+        },
+        {
+          "id": "other-currencies",
+          "label": "Weakness in other major currencies"
+        }
+      ],
+      "targets": [
+        "gold",
+        "silver",
+        "copper",
+        "eme-conditions",
+        "multinational-earnings",
+        "import-price-pressure"
+      ]
+    },
+    {
+      "id": "geopolitical-escalation",
+      "label": "Geopolitical conflict escalates",
+      "summary": "A conflict or geopolitical shock becomes materially more disruptive.",
+      "defaultCause": "oil-region",
+      "causes": [
+        {
+          "id": "oil-region",
+          "label": "Oil-producing region"
+        },
+        {
+          "id": "shipping",
+          "label": "Major shipping route"
+        },
+        {
+          "id": "manufacturing",
+          "label": "Manufacturing / supply-chain region"
+        },
+        {
+          "id": "sanctions",
+          "label": "Sanctions / financial-system channel"
+        }
+      ],
+      "targets": [
+        "oil",
+        "inflation",
+        "gold",
+        "broad-stocks",
+        "dollar",
+        "shipping-supply-chains"
+      ]
+    },
+    {
+      "id": "fiscal-stress",
+      "label": "U.S. fiscal / debt stress increases",
+      "summary": "Concerns rise about deficits, borrowing needs or fiscal risk.",
+      "defaultCause": "deficits",
+      "causes": [
+        {
+          "id": "deficits",
+          "label": "Persistent large deficits"
+        },
+        {
+          "id": "issuance",
+          "label": "Increased Treasury issuance / supply"
+        },
+        {
+          "id": "term-premium",
+          "label": "Higher long-term risk / term premium"
+        },
+        {
+          "id": "debt-limit",
+          "label": "Debt-limit brinkmanship"
+        }
+      ],
+      "targets": [
+        "government-yields",
+        "borrowing-costs",
+        "broad-stocks",
+        "dollar",
+        "gold"
+      ]
+    },
+    {
+      "id": "recession-risk",
+      "label": "Recession risk rises",
+      "summary": "Investors and businesses see a greater chance of economic contraction.",
+      "defaultCause": "demand",
+      "causes": [
+        {
+          "id": "demand",
+          "label": "Demand is weakening"
+        },
+        {
+          "id": "tight-policy",
+          "label": "Tight financial conditions are biting"
+        },
+        {
+          "id": "credit",
+          "label": "Credit stress is increasing"
+        },
+        {
+          "id": "external",
+          "label": "External shock / trade shock"
+        }
+      ],
+      "targets": [
+        "broad-stocks",
+        "government-yields",
+        "oil",
+        "copper",
+        "gold",
+        "dollar"
+      ]
+    },
+    {
+      "id": "stagflation",
+      "label": "Stagflation develops",
+      "summary": "Inflation stays high while economic growth is weak.",
+      "defaultCause": "supply",
+      "causes": [
+        {
+          "id": "supply",
+          "label": "Supply / energy shock"
+        },
+        {
+          "id": "persistent-inflation",
+          "label": "Inflation stays persistent as growth slows"
+        }
+      ],
+      "targets": [
+        "broad-stocks",
+        "bond-prices",
+        "gold",
+        "oil-commodities",
+        "borrowing-costs",
+        "cash-purchasing-power"
+      ]
+    },
+    {
+      "id": "treasury-default-stress",
+      "label": "U.S. Treasury payment / default stress",
+      "summary": "Hypothetical scenario: a Treasury payment is delayed or confidence in timely payment breaks down.",
+      "defaultCause": "hypothetical",
+      "specialWarning": "Hypothetical stress scenario. A U.S. Treasury payment default would be historically unusual and potentially disorderly. The Explorer does not claim a precise asset-price response.",
+      "causes": [
+        {
+          "id": "hypothetical",
+          "label": "Hypothetical missed / delayed payment scenario"
+        }
+      ],
+      "targets": [
+        "treasury-market",
+        "broad-stocks",
+        "dollar",
+        "gold",
+        "funding-credit"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "broad-stocks",
+      "label": "Broad stock market"
+    },
+    {
+      "id": "growth-tech",
+      "label": "Growth / technology stocks"
+    },
+    {
+      "id": "energy",
+      "label": "Energy companies"
+    },
+    {
+      "id": "airlines-transport",
+      "label": "Airlines / transport"
+    },
+    {
+      "id": "banks-financials",
+      "label": "Banks / financials"
+    },
+    {
+      "id": "bond-prices",
+      "label": "Existing fixed-rate bond prices"
+    },
+    {
+      "id": "government-yields",
+      "label": "Government bond yields"
+    },
+    {
+      "id": "borrowing-costs",
+      "label": "Borrowing costs / mortgages"
+    },
+    {
+      "id": "gold",
+      "label": "Gold"
+    },
+    {
+      "id": "silver",
+      "label": "Silver"
+    },
+    {
+      "id": "copper",
+      "label": "Copper"
+    },
+    {
+      "id": "oil",
+      "label": "Oil"
+    },
+    {
+      "id": "dollar",
+      "label": "U.S. dollar"
+    },
+    {
+      "id": "inflation",
+      "label": "Inflation pressure"
+    },
+    {
+      "id": "economic-growth",
+      "label": "Economic growth"
+    },
+    {
+      "id": "consumer-spending",
+      "label": "Consumer spending"
+    },
+    {
+      "id": "eme-conditions",
+      "label": "Emerging-market financial conditions"
+    },
+    {
+      "id": "policy-rates",
+      "label": "Central-bank policy rates"
+    },
+    {
+      "id": "cash-purchasing-power",
+      "label": "Cash purchasing power"
+    },
+    {
+      "id": "multinational-earnings",
+      "label": "U.S. multinational earnings translation"
+    },
+    {
+      "id": "import-price-pressure",
+      "label": "U.S. import-price pressure"
+    },
+    {
+      "id": "shipping-supply-chains",
+      "label": "Shipping / supply chains"
+    },
+    {
+      "id": "treasury-market",
+      "label": "U.S. Treasury market functioning"
+    },
+    {
+      "id": "funding-credit",
+      "label": "Funding / credit conditions"
+    },
+    {
+      "id": "oil-commodities",
+      "label": "Oil / broad commodities"
+    }
+  ]
+}

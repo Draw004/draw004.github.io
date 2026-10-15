@@ -1,0 +1,181 @@
+{
+  "version": "MCR1-1.0",
+  "reviewedDate": "2026-10-15",
+  "sources": [
+    {
+      "id": "investor-bond-prices",
+      "publisher": "U.S. Securities and Exchange Commission / Investor.gov",
+      "title": "What Are Corporate Bonds?",
+      "url": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/what-are",
+      "sourceType": "official investor education",
+      "published": "2013",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "fixed-rate bond prices and market yields generally move in opposite directions"
+      ]
+    },
+    {
+      "id": "fed-fomc-transmission",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "Federal Open Market Committee",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomc.htm",
+      "sourceType": "central bank",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "policy-rate changes transmit through short-term rates, foreign exchange, long-term rates, credit, output, employment and prices"
+      ]
+    },
+    {
+      "id": "fed-stock-channels-2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "The Effect of the Federal Reserve on the Stock Market: Magnitudes, Channels and Shocks",
+      "url": "https://www.federalreserve.gov/econres/feds/the-effect-of-the-federal-reserve-on-the-stock-market-magnitudes-channels-and-shocks.htm",
+      "sourceType": "central-bank research",
+      "published": "2026-05",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "monetary-policy news can affect equities through yields, equity premia and expected dividends",
+        "the reason for policy news matters"
+      ]
+    },
+    {
+      "id": "fed-long-yields-2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "Why Have Far-Forward Nominal Treasury Rates Increased So Much in the Past Few Years?",
+      "url": "https://www.federalreserve.gov/econres/notes/feds-notes/why-have-far-forward-nominal-treasury-rates-increased-so-much-in-the-past-few-years-20260212.html",
+      "sourceType": "central-bank research",
+      "published": "2026-02-12",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "long-term Treasury yields reflect expected short rates and term premium",
+        "fiscal and supply-side risks can affect longer-run rates"
+      ]
+    },
+    {
+      "id": "sf-fed-oil-supply-demand-2026",
+      "publisher": "Federal Reserve Bank of San Francisco",
+      "title": "Financial Markets, Oil Prices, and Supply-Side Risks",
+      "url": "https://www.frbsf.org/research-and-insights/publications/economic-letter/2026/08/financial-markets-oil-prices-and-supply-side-risks/",
+      "sourceType": "central-bank research",
+      "published": "2026-08",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "oil-price increases driven by stronger demand can differ from supply-driven oil shocks",
+        "the source of an oil move matters for equities and the economy"
+      ]
+    },
+    {
+      "id": "world-bank-commodity-2026",
+      "publisher": "World Bank",
+      "title": "Middle East War to Spark Biggest Energy Price Surge in Four Years",
+      "url": "https://www.worldbank.org/en/news/press-release/2026/04/28/commodity-markets-outlook-april-2026-press-release",
+      "sourceType": "multilateral institution",
+      "published": "2026-04-28",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "energy-supply shocks can transmit to inflation, interest rates, debt burdens and growth",
+        "commodity importers and exporters can be affected differently"
+      ]
+    },
+    {
+      "id": "bis-dollar-eme",
+      "publisher": "Bank for International Settlements",
+      "title": "The broad dollar exchange rate as an EME risk factor",
+      "url": "https://www.bis.org/publications/broad-dollar-exchange-rate-eme-risk-factor",
+      "sourceType": "international central-bank research",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "broad U.S. dollar strength can tighten financial conditions and weaken investment in emerging-market economies"
+      ]
+    },
+    {
+      "id": "imf-strong-dollar-eme",
+      "publisher": "International Monetary Fund",
+      "title": "Emerging Market Economies Bear the Brunt of a Stronger Dollar",
+      "url": "https://www.imf.org/en/blogs/articles/2023/07/19/emerging-market-economies-bear-the-brunt-of-a-stronger-dollar",
+      "sourceType": "multilateral institution",
+      "published": "2023-07-19",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "global-dollar appreciation can create larger spillovers for emerging-market economies than for many advanced economies"
+      ]
+    },
+    {
+      "id": "wgc-gold-inflation-2026",
+      "publisher": "World Gold Council",
+      "title": "Gold Market Commentary: Making waves",
+      "url": "https://www.gold.org/goldhub/research/gold-market-commentary-july-2026",
+      "sourceType": "specialist industry research",
+      "published": "2026-08",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "gold can respond to inflation, real rates, the U.S. dollar and growth expectations at the same time",
+        "inflation alone does not determine gold's direction"
+      ]
+    },
+    {
+      "id": "silver-institute-2026",
+      "publisher": "Silver Institute / Metals Focus",
+      "title": "Global Silver Investment to Remain Strong in 2026 Against the Backdrop of a Sixth Consecutive Annual Market Deficit",
+      "url": "https://silverinstitute.org/global-silver-investment-to-remain-strong-in-2026-against-the-backdrop-of-a-sixth-consecutive-annual-market-deficit/",
+      "sourceType": "specialist industry research",
+      "published": "2026-02-10",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "silver has both investment and industrial demand",
+        "industrial thrifting and substitution can offset some demand growth"
+      ]
+    },
+    {
+      "id": "iea-copper-2026",
+      "publisher": "International Energy Agency",
+      "title": "Global Critical Minerals Outlook 2026 — Outlook",
+      "url": "https://www.iea.org/reports/global-critical-minerals-outlook-2026/outlook",
+      "sourceType": "international energy agency",
+      "published": "2026",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "copper demand is closely tied to electricity networks and next-generation technologies",
+        "supply constraints and recycling influence the long-run copper balance"
+      ]
+    },
+    {
+      "id": "cbo-budget-2026",
+      "publisher": "Congressional Budget Office",
+      "title": "The Budget and Economic Outlook: 2026 to 2036",
+      "url": "https://www.cbo.gov/publication/62105",
+      "sourceType": "official fiscal institution",
+      "published": "2026-02",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "U.S. debt held by the public and net interest costs are projected to rise under CBO's baseline",
+        "large deficits do not by themselves establish a default forecast"
+      ]
+    },
+    {
+      "id": "gao-debt-limit-2026",
+      "publisher": "U.S. Government Accountability Office",
+      "title": "Debt Limit: Prolonged Negotiations Increase Taxpayer Costs and Disrupt Financial Markets",
+      "url": "https://www.gao.gov/products/gao-26-107872",
+      "sourceType": "official audit institution",
+      "published": "2026-03-25",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "debt-limit impasses can raise yields on securities near an expected X-date and disrupt financial markets"
+      ]
+    },
+    {
+      "id": "fed-debt-rates-2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "The Causal Effect of Debt on Interest Rates",
+      "url": "https://www.federalreserve.gov/econres/feds/the-causal-effect-of-debt-on-interest-rates.htm",
+      "sourceType": "central-bank research",
+      "published": "2026-05",
+      "reviewedDate": "2026-10-15",
+      "supports": [
+        "higher expected U.S. debt-to-GDP can raise estimates of the longer-run neutral rate and the 10-year Treasury term premium",
+        "fiscal borrowing can influence long-term interest rates without implying that debt alone determines yields"
+      ]
+    }
+  ]
+}

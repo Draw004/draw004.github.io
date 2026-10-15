@@ -21,7 +21,8 @@
     '/mortgage-payoff-calculator/': 'Mortgage / Home Loan Payoff Calculator',
     '/mortgage-payoff-calculator/prepayment-vs-investing.html': 'Mortgage Prepayment vs Investing Calculator',
     '/mortgage-payoff-calculator/refinance-break-even.html': 'Mortgage Refinance Break-Even Calculator',
-    '/mortgage-payoff-calculator/rate-rise-stress-test.html': 'Mortgage Rate Rise & Payment Stress Test'
+    '/mortgage-payoff-calculator/rate-rise-stress-test.html': 'Mortgage Rate Rise & Payment Stress Test',
+    '/market-chain-reaction-explorer.html': 'Market Chain Reaction Explorer'
   };
   var toolName = names[href] || 'relevant Carrowmont tool';
 
