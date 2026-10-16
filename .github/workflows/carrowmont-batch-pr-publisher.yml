@@ -71,7 +71,31 @@ jobs:
             exit 1
           fi
 
-          jq -e '.schema_version == 1 and (.repositories | type == "array") and (.repositories | length > 0)' "$MANIFEST" >/dev/null
+          if ! jq -e '
+            .schema_version == 1 and
+            (.release_id | type == "string" and test("^[A-Za-z0-9][A-Za-z0-9._-]*$")) and
+            (.release_name | type == "string" and (gsub("^[[:space:]]+|[[:space:]]+$"; "") | length > 0)) and
+            (.summary | type == "string" and (gsub("^[[:space:]]+|[[:space:]]+$"; "") | length > 0)) and
+            (.repositories | type == "array" and length > 0) and
+            all(.repositories[];
+              (.name | type == "string" and (gsub("^[[:space:]]+|[[:space:]]+$"; "") | length > 0)) and
+              (.pr_title | type == "string" and (gsub("^[[:space:]]+|[[:space:]]+$"; "") | length > 0)) and
+              (.commit_message | type == "string" and (gsub("^[[:space:]]+|[[:space:]]+$"; "") | length > 0)) and
+              (.files | type == "array" and length > 0) and
+              all(.files[];
+                (.path | type == "string" and length > 0) and
+                (.new_sha256 | type == "string" and test("^[0-9a-f]{64}$")) and
+                (.base_sha256 == null or (.base_sha256 | type == "string" and test("^[0-9a-f]{64}$")))
+              )
+            )
+          ' "$MANIFEST" >/dev/null; then
+            echo "release-manifest.json is missing required release/repository metadata or valid file hashes."
+            echo "Required release fields: release_id, release_name, summary."
+            echo "Required repository fields: name, pr_title, commit_message, non-empty files."
+            exit 1
+          fi
+
+          echo "Release manifest metadata contract verified."
           echo "MANIFEST=$MANIFEST" >> "$GITHUB_ENV"
 
       - name: Authenticate GitHub CLI and Git
