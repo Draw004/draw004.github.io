@@ -32,9 +32,17 @@ const validateUrl = url => {
 function recentUrlsFromSitemap() {
   if (!fs.existsSync(SITEMAP)) fail(`Sitemap not found: ${SITEMAP}`);
   const xml = fs.readFileSync(SITEMAP, 'utf8');
-  const entries = [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>\s*<\/url>/g)]
-    .map(match => ({ url: match[1].trim(), lastmod: match[2] }));
+  const urlBlocks = [...xml.matchAll(/<url\b[^>]*>([\s\S]*?)<\/url>/gi)];
+  const entries = urlBlocks
+    .map(match => {
+      const block = match[1];
+      const loc = (block.match(/<loc>\s*([^<]+?)\s*<\/loc>/i) || [])[1];
+      const lastmod = (block.match(/<lastmod>\s*(\d{4}-\d{2}-\d{2})\s*<\/lastmod>/i) || [])[1];
+      return loc && lastmod ? { url: loc.trim(), lastmod } : null;
+    })
+    .filter(Boolean);
   if (!entries.length) fail('No sitemap URL entries with lastmod were found.');
+  if (entries.length !== urlBlocks.length) fail('Every sitemap <url> entry must include both <loc> and <lastmod>.');
 
   const target = new Date(`${TARGET_DATE}T00:00:00Z`);
   const cutoff = new Date(target);
