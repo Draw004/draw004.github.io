@@ -80,6 +80,14 @@ jobs:
           path: tools/mortgage-payoff-calculator
           persist-credentials: false
 
+      - name: Checkout Compound Interest Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/compound-interest-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/compound-interest-calculator
+          persist-credentials: false
+
       - name: Get Carrowmont QA
         shell: bash
         run: |
@@ -104,7 +112,8 @@ jobs:
               retirement-calculator \
               sip-calculator \
               budget-cash-flow-planner \
-              mortgage-payoff-calculator
+              mortgage-payoff-calculator \
+              compound-interest-calculator
             do
               echo "## $repo"
               git -C "tools/$repo" log -1 \
