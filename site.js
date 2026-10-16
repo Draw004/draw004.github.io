@@ -347,17 +347,17 @@
   "use strict";
 
   const TOOL_ORDER_PROFILES = Object.freeze({
-    P1: Object.freeze(["investment", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
-    P2: Object.freeze(["housing", "retirement", "investment", "budget", "inflation", "goals", "independence"]),
-    P3: Object.freeze(["retirement", "housing", "inflation", "budget", "investment", "goals", "independence"]),
-    P4: Object.freeze(["retirement", "housing", "investment", "budget", "inflation", "goals", "independence"]),
-    P5: Object.freeze(["investment", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
-    P6: Object.freeze(["budget", "housing", "investment", "inflation", "retirement", "goals", "independence"]),
-    P7: Object.freeze(["budget", "housing", "investment", "retirement", "inflation", "goals", "independence"]),
-    P8: Object.freeze(["investment", "housing", "inflation", "budget", "retirement", "goals", "independence"]),
-    P9: Object.freeze(["budget", "housing", "retirement", "investment", "inflation", "goals", "independence"]),
-    P10: Object.freeze(["inflation", "budget", "housing", "investment", "retirement", "goals", "independence"]),
-    P11: Object.freeze(["retirement", "housing", "investment", "budget", "inflation", "goals", "independence"])
+    P1: Object.freeze(["investment", "compound", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
+    P2: Object.freeze(["housing", "retirement", "investment", "compound", "budget", "inflation", "goals", "independence"]),
+    P3: Object.freeze(["retirement", "housing", "inflation", "budget", "investment", "compound", "goals", "independence"]),
+    P4: Object.freeze(["retirement", "housing", "investment", "compound", "budget", "inflation", "goals", "independence"]),
+    P5: Object.freeze(["investment", "compound", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
+    P6: Object.freeze(["budget", "housing", "investment", "compound", "inflation", "retirement", "goals", "independence"]),
+    P7: Object.freeze(["budget", "housing", "investment", "compound", "retirement", "inflation", "goals", "independence"]),
+    P8: Object.freeze(["investment", "compound", "housing", "inflation", "budget", "retirement", "goals", "independence"]),
+    P9: Object.freeze(["budget", "housing", "retirement", "investment", "compound", "inflation", "goals", "independence"]),
+    P10: Object.freeze(["inflation", "budget", "housing", "investment", "compound", "retirement", "goals", "independence"]),
+    P11: Object.freeze(["retirement", "housing", "investment", "compound", "budget", "inflation", "goals", "independence"])
   });
 
   const REGION_ORDER_PROFILE = Object.freeze({
