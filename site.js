@@ -471,6 +471,20 @@
     document.querySelectorAll("[data-cm-footer-loan]").forEach((node) => { node.textContent = copy.title; });
   }
 
+  function retirementWithdrawalIdentity(regionCode) {
+    if (regionCode === 'IN') return { title:'Retirement SWP / Withdrawal Calculator', kicker:'Retirement income', cta:'Model retirement withdrawals →' };
+    if (regionCode === 'GB' || regionCode === 'IE') return { title:'Retirement Drawdown Calculator', kicker:'Retirement income', cta:'Model retirement drawdown →' };
+    if (regionCode === 'US' || regionCode === 'CA' || regionCode === 'AU' || regionCode === 'NZ') return { title:'Retirement Withdrawal Calculator', kicker:'Retirement income', cta:'Model retirement withdrawals →' };
+    return { title:'Retirement Withdrawal & Drawdown Calculator', kicker:'Retirement income', cta:'Model retirement withdrawals →' };
+  }
+
+  function applyRetirementWithdrawalTerminology(regionCode) {
+    const copy = retirementWithdrawalIdentity(regionCode);
+    document.querySelectorAll('[data-cm-retire1-title]').forEach(node => { node.textContent = copy.title; });
+    document.querySelectorAll('[data-cm-retire1-kicker]').forEach(node => { node.textContent = copy.kicker; });
+    document.querySelectorAll('[data-cm-retire1-cta]').forEach(node => { node.textContent = copy.cta; });
+  }
+
   let lastOrderedRegion = null;
   function applyHomepageOrder(regionCode) {
     const grid = document.querySelector("[data-homepage-core-grid]");
@@ -506,6 +520,7 @@
     applyInvestmentTerminology(regionCode);
     applyHousingTerminology(regionCode);
     applyLoanTerminology(regionCode);
+    applyRetirementWithdrawalTerminology(regionCode);
     applyHomepageOrder(regionCode);
     upgradeLegacyToolsLinks();
   }
