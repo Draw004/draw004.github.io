@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   guard:
-    name: Guard Carrowmont main site + 7 tools
+    name: Guard Carrowmont main site + 9 tools
     runs-on: ubuntu-24.04
     timeout-minutes: 10
 
@@ -88,6 +88,14 @@ jobs:
           path: tools/compound-interest-calculator
           persist-credentials: false
 
+      - name: Checkout Loan Calculator
+        uses: actions/checkout@v4
+        with:
+          repository: Draw004/loan-calculator
+          token: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+          path: tools/loan-calculator
+          persist-credentials: false
+
       - name: Get Carrowmont QA
         shell: bash
         run: |
@@ -113,7 +121,8 @@ jobs:
               sip-calculator \
               budget-cash-flow-planner \
               mortgage-payoff-calculator \
-              compound-interest-calculator
+              compound-interest-calculator \
+              loan-calculator
             do
               echo "## $repo"
               git -C "tools/$repo" log -1 \
