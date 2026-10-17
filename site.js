@@ -347,17 +347,17 @@
   "use strict";
 
   const TOOL_ORDER_PROFILES = Object.freeze({
-    P1: Object.freeze(["investment", "compound", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
-    P2: Object.freeze(["housing", "retirement", "investment", "compound", "budget", "inflation", "goals", "independence"]),
-    P3: Object.freeze(["retirement", "housing", "inflation", "budget", "investment", "compound", "goals", "independence"]),
-    P4: Object.freeze(["retirement", "housing", "investment", "compound", "budget", "inflation", "goals", "independence"]),
-    P5: Object.freeze(["investment", "compound", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
-    P6: Object.freeze(["budget", "housing", "investment", "compound", "inflation", "retirement", "goals", "independence"]),
-    P7: Object.freeze(["budget", "housing", "investment", "compound", "retirement", "inflation", "goals", "independence"]),
-    P8: Object.freeze(["investment", "compound", "housing", "inflation", "budget", "retirement", "goals", "independence"]),
-    P9: Object.freeze(["budget", "housing", "retirement", "investment", "compound", "inflation", "goals", "independence"]),
-    P10: Object.freeze(["inflation", "budget", "housing", "investment", "compound", "retirement", "goals", "independence"]),
-    P11: Object.freeze(["retirement", "housing", "investment", "compound", "budget", "inflation", "goals", "independence"])
+    P1: Object.freeze(["investment", "compound", "loan", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
+    P2: Object.freeze(["housing", "loan", "retirement", "investment", "compound", "budget", "inflation", "goals", "independence"]),
+    P3: Object.freeze(["retirement", "housing", "loan", "inflation", "budget", "investment", "compound", "goals", "independence"]),
+    P4: Object.freeze(["retirement", "housing", "loan", "investment", "compound", "budget", "inflation", "goals", "independence"]),
+    P5: Object.freeze(["investment", "compound", "loan", "housing", "retirement", "budget", "inflation", "goals", "independence"]),
+    P6: Object.freeze(["budget", "loan", "housing", "investment", "compound", "inflation", "retirement", "goals", "independence"]),
+    P7: Object.freeze(["budget", "housing", "loan", "investment", "compound", "retirement", "inflation", "goals", "independence"]),
+    P8: Object.freeze(["investment", "compound", "loan", "housing", "inflation", "budget", "retirement", "goals", "independence"]),
+    P9: Object.freeze(["budget", "housing", "loan", "retirement", "investment", "compound", "inflation", "goals", "independence"]),
+    P10: Object.freeze(["inflation", "budget", "loan", "housing", "investment", "compound", "retirement", "goals", "independence"]),
+    P11: Object.freeze(["retirement", "housing", "loan", "investment", "compound", "budget", "inflation", "goals", "independence"])
   });
 
   const REGION_ORDER_PROFILE = Object.freeze({
@@ -433,6 +433,29 @@
     document.querySelectorAll("[data-cm-footer-housing]").forEach((node) => { node.textContent = copy.title; });
   }
 
+
+  function loanIdentity(regionCode) {
+    const map = {
+      IN: { title:"EMI Calculator", description:"Calculate a monthly EMI, total interest and repayment for one fixed-rate reducing-balance loan, with optional extra-payment scenarios.", cta:"Calculate EMI →", kicker:"Loans & EMI" },
+      US: { title:"Loan Calculator", description:"Calculate a monthly loan payment, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.", cta:"Calculate loan payment →", kicker:"Loans" },
+      CA: { title:"Loan Calculator", description:"Calculate a monthly loan payment, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.", cta:"Calculate loan payment →", kicker:"Loans" },
+      GB: { title:"Loan Repayment Calculator", description:"Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.", cta:"Calculate loan repayment →", kicker:"Loans" },
+      AU: { title:"Loan Repayment Calculator", description:"Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra repayments.", cta:"Calculate loan repayment →", kicker:"Loans" },
+      NZ: { title:"Loan Repayment Calculator", description:"Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra repayments.", cta:"Calculate loan repayment →", kicker:"Loans" },
+      IE: { title:"Loan Repayment Calculator", description:"Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra repayments.", cta:"Calculate loan repayment →", kicker:"Loans" }
+    };
+    return map[regionCode] || { title:"Loan / EMI Calculator", description:"Calculate a monthly loan payment or EMI, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.", cta:"Calculate loan payment →", kicker:"Loans" };
+  }
+
+  function applyLoanTerminology(regionCode) {
+    const copy = loanIdentity(regionCode);
+    document.querySelectorAll("[data-cm-loan-title]").forEach((node) => { node.textContent = copy.title; });
+    document.querySelectorAll("[data-cm-loan-description]").forEach((node) => { node.textContent = copy.description; });
+    document.querySelectorAll("[data-cm-loan-cta]").forEach((node) => { node.textContent = copy.cta; });
+    document.querySelectorAll("[data-cm-loan-kicker]").forEach((node) => { node.textContent = copy.kicker; });
+    document.querySelectorAll("[data-cm-footer-loan]").forEach((node) => { node.textContent = copy.title; });
+  }
+
   let lastOrderedRegion = null;
   function applyHomepageOrder(regionCode) {
     const grid = document.querySelector("[data-homepage-core-grid]");
@@ -467,6 +490,7 @@
     applyIndiaExperience(regionCode);
     applyInvestmentTerminology(regionCode);
     applyHousingTerminology(regionCode);
+    applyLoanTerminology(regionCode);
     applyHomepageOrder(regionCode);
     upgradeLegacyToolsLinks();
   }
@@ -479,7 +503,7 @@
   }
 
   window.CarrowmontToolsHub = Object.freeze({
-    version: "tools-hub1",
+    version: "core9-tools-hub2",
     profiles: TOOL_ORDER_PROFILES,
     regionProfiles: REGION_ORDER_PROFILE,
     getOrderForRegion,
