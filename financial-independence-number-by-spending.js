@@ -3,6 +3,7 @@
 
   const Core = window.CarrowmontFINumberBySpendingCore;
   const Locale = window.CarrowmontLocale;
+  const FI_HANDOFF_KEY = 'carrowmont_fi_spending_handoff_v2';
   if (!Core || !Locale) return;
 
   const $ = (id) => document.getElementById(id);
@@ -233,17 +234,26 @@
 
   function updatePlannerLinks(result) {
     const monthly = result.inputs.view === 'monthly' ? result.inputs.spending : result.inputs.spending / 12;
-    const params = new URLSearchParams({
-      cm_handoff: 'fi_spending_v1',
-      spendingMonthly: String(monthly),
-      withdrawalRate: String(Number((result.inputs.withdrawalRate * 100).toFixed(10))),
-      inflation: String(Number((result.inputs.inflationRate * 100).toFixed(10))),
+    const payload = {
+      version: 2,
+      spendingMonthly: monthly,
+      withdrawalRate: Number((result.inputs.withdrawalRate * 100).toFixed(10)),
+      inflation: Number((result.inputs.inflationRate * 100).toFixed(10)),
       region: Locale.getRegion(),
       currency: Locale.getCurrency()
+    };
+    const href = '/financial-independence/?cm_handoff=fi_spending_v2';
+    [els.fullPlannerCta, els.fullPlannerCard].forEach((link) => {
+      if (!link) return;
+      link.href = href;
+      link.onclick = () => {
+        try {
+          window.sessionStorage.setItem(FI_HANDOFF_KEY, JSON.stringify(payload));
+        } catch (_) {
+          // Privacy-first fallback: navigate without placing financial values in the URL.
+        }
+      };
     });
-    const href = `/financial-independence/?${params.toString()}`;
-    els.fullPlannerCta.href = href;
-    els.fullPlannerCard.href = href;
   }
 
   function render() {
