@@ -250,6 +250,27 @@
     document.querySelectorAll("[data-cm-footer-loan]").forEach((node) => { node.textContent = copy.title; });
   }
 
+  function homeAffordabilityIdentity(regionCode) {
+    const map = {
+      IN: { title:"Home Loan Affordability Calculator", description:"Estimate a home price and home-loan amount that may fit your household budget, down payment, monthly costs and chosen cash-flow buffer.", cta:"Check home-loan affordability →", kicker:"Home affordability" },
+      US: { title:"Home Affordability Calculator", description:"Estimate a home price and mortgage amount that may fit your household budget, down payment, monthly costs and chosen cash-flow buffer.", cta:"Check home affordability →", kicker:"Home affordability" },
+      CA: { title:"Mortgage Affordability Calculator", description:"Estimate a home price and mortgage amount that may fit your household budget, down payment, monthly costs and chosen cash-flow buffer.", cta:"Check mortgage affordability →", kicker:"Home affordability" },
+      GB: { title:"Mortgage Affordability Calculator — How Much Can I Borrow?", description:"Estimate a home price and mortgage amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.", cta:"Check mortgage affordability →", kicker:"Home affordability" },
+      IE: { title:"Mortgage Affordability Calculator — How Much Can I Borrow?", description:"Estimate a home price and mortgage amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.", cta:"Check mortgage affordability →", kicker:"Home affordability" },
+      AU: { title:"Home Loan Borrowing Power Calculator", description:"Estimate a home price and home-loan amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.", cta:"Check borrowing power →", kicker:"Home affordability" },
+      NZ: { title:"Home Loan Borrowing Power Calculator", description:"Estimate a home price and home-loan amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.", cta:"Check borrowing power →", kicker:"Home affordability" }
+    };
+    return map[regionCode] || { title:"Home Affordability & Mortgage Calculator", description:"Estimate a home price and mortgage or home-loan amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.", cta:"Check home affordability →", kicker:"Home affordability" };
+  }
+
+  function applyHomeAffordabilityTerminology(regionCode) {
+    const copy = homeAffordabilityIdentity(regionCode);
+    document.querySelectorAll('[data-cm-home1-title]').forEach(node => { node.textContent = copy.title; });
+    document.querySelectorAll('[data-cm-home1-description]').forEach(node => { node.textContent = copy.description; });
+    document.querySelectorAll('[data-cm-home1-cta]').forEach(node => { node.textContent = copy.cta; });
+    document.querySelectorAll('[data-cm-home1-kicker]').forEach(node => { node.textContent = copy.kicker; });
+  }
+
   function retirementWithdrawalIdentity(regionCode) {
     if (regionCode === 'IN') return { title:'Retirement SWP / Withdrawal Calculator', kicker:'Retirement income', cta:'Model retirement withdrawals →' };
     if (regionCode === 'GB' || regionCode === 'IE') return { title:'Retirement Drawdown Calculator', kicker:'Retirement income', cta:'Model retirement drawdown →' };
@@ -299,6 +320,7 @@
     applyInvestmentTerminology(regionCode);
     applyHousingTerminology(regionCode);
     applyLoanTerminology(regionCode);
+    applyHomeAffordabilityTerminology(regionCode);
     applyRetirementWithdrawalTerminology(regionCode);
     applyHomepageOrder(regionCode);
     upgradeLegacyToolsLinks();

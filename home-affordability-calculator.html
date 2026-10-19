@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Home Affordability Calculator | Carrowmont</title>
+  <meta name="description" content="Estimate a home price and mortgage or home-loan amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <meta name="author" content="Carrowmont">
+  <link rel="canonical" href="https://carrowmont.com/home-affordability-calculator.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="Home Affordability Calculator | Carrowmont">
+  <meta property="og:description" content="Estimate a home price and mortgage or home-loan amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/home-affordability-calculator.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta property="og:image:alt" content="Carrowmont financial planning tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Home Affordability Calculator | Carrowmont">
+  <meta name="twitter:description" content="See what home price may fit your household cash flow without treating lender approval as the same thing as affordability.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <link rel="stylesheet" href="carrowmont.css?v=20261019-home1">
+  <link rel="stylesheet" href="home-affordability-calculator.css?v=20261019-home1">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"Carrowmont Home Affordability Calculator",
+        "url":"https://carrowmont.com/home-affordability-calculator.html",
+        "applicationCategory":"FinanceApplication",
+        "operatingSystem":"Any",
+        "isAccessibleForFree":true,
+        "description":"Estimate a home price and mortgage or home-loan amount that may fit household cash flow, deposit, ownership costs and a user-chosen monthly buffer.",
+        "dateModified":"2026-10-19",
+        "publisher":{"@type":"Organization","name":"Carrowmont","url":"https://carrowmont.com/"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},
+          {"@type":"ListItem","position":2,"name":"Tools","item":"https://carrowmont.com/tools.html"},
+          {"@type":"ListItem","position":3,"name":"Home Affordability Calculator","item":"https://carrowmont.com/home-affordability-calculator.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-cm-page="home-affordability-calculator" data-carrowmont-tool="home-affordability-calculator">
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule" aria-hidden="true"></span><span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="#calculator">Calculator</a><a href="#how-it-works">How it works</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/">Home</a></nav>
+    <details class="locale-menu" id="localeMenu">
+      <summary class="locale-summary" aria-label="Choose country and currency"><span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"></path></svg></span><span id="localeCountryLabel">India</span><span>·</span><span id="localeCurrencyLabel">INR</span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"></path></svg></span></summary>
+      <div class="locale-panel"><strong>Country &amp; currency</strong><p>Choose the context that makes the numbers easiest to understand.</p><label for="regionSelect">Country / region</label><select id="regionSelect"></select><label for="currencySelect">Currency</label><select id="currencySelect"></select><p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert entered amounts using an exchange rate.</p><button type="button" class="small-button" id="localeDoneBtn">Done</button></div>
+    </details>
+    <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="#calculator">Calculator</a><a href="#how-it-works">How it works</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/">Home</a></div></details>
+  </div>
+</header>
+
+<main>
+  <section class="home1-hero">
+    <div class="shell home1-hero-grid">
+      <div>
+        <p class="eyebrow" data-home1-product-label>Home Loan Affordability Calculator</p>
+        <h1>See what home price may fit your budget without squeezing everything else.</h1>
+        <p class="home1-hero-lede">Start with the money your household actually has each month. Protect normal spending, existing debt, savings and the free cash you want to keep before deciding how much room is left for housing.</p>
+        <div class="home1-badges" aria-label="Calculator characteristics"><span>No login</span><span>Local calculation</span><span>No lender approval claim</span></div>
+      </div>
+      <aside class="home1-hero-note"><strong>Two different questions</strong><p><b>Affordability:</b> what may fit your own household budget.</p><p><b>Lender approval:</b> what a lender may offer after applying its own rules. Carrowmont does not estimate approval.</p></aside>
+    </div>
+    <div class="shell"><p class="home1-search-context" data-cm-search-identity><strong>Home affordability calculator:</strong> this page models household affordability. Depending on the market, people may also search for a mortgage affordability calculator, home-loan affordability calculator, how-much-home-can-I-afford calculator or borrowing power calculator.</p></div>
+  </section>
+
+  <section class="home1-workspace" id="calculator">
+    <div class="shell home1-layout">
+      <aside class="home1-input-card" aria-labelledby="home1InputsTitle">
+        <div class="home1-card-heading"><p class="home1-kicker">YOUR HOUSEHOLD PLAN</p><h2 id="home1InputsTitle">Start with your monthly life</h2><p>Use regular amounts. The calculator does not choose a lender ratio or a “safe” maximum for you.</p></div>
+
+        <fieldset class="home1-mode-fieldset">
+          <legend>What do you want to check?</legend>
+          <div class="home1-mode-toggle" role="radiogroup" aria-label="Affordability mode">
+            <label><input type="radio" name="home1Mode" value="budget" checked><span>What home price may fit?</span></label>
+            <label><input type="radio" name="home1Mode" value="target"><span>Check a home price</span></label>
+          </div>
+        </fieldset>
+
+        <div class="home1-field-grid">
+          <label class="home1-field home1-field-wide" for="takeHomeIncome"><span data-home1-income-label>Monthly take-home household income</span><input id="takeHomeIncome" type="number" min="0" step="100" value="150000"><small>Use the amount your household actually receives after tax and payroll deductions.</small></label>
+          <label class="home1-field" for="essentialSpending"><span>Essential monthly spending</span><input id="essentialSpending" type="number" min="0" step="100" value="60000"><small>Exclude the future home payment.</small></label>
+          <label class="home1-field" for="existingDebt"><span>Existing monthly debt repayments</span><input id="existingDebt" type="number" min="0" step="100" value="10000"></label>
+          <label class="home1-field" for="protectedSavings"><span>Monthly savings / investing I want to protect</span><input id="protectedSavings" type="number" min="0" step="100" value="20000"></label>
+          <label class="home1-field" for="freeBuffer"><span>Money I want left free each month</span><input id="freeBuffer" type="number" min="0" step="100" value="15000"><small>Your own comfort buffer. Carrowmont does not choose it for you.</small></label>
+          <label class="home1-field" for="deposit"><span data-home1-deposit-label>Down payment available</span><input id="deposit" type="number" min="0" step="1000" value="2000000"><small>Use the amount available after cash you want to keep and expected buying costs.</small></label>
+          <label class="home1-field home1-target-field" for="targetHomePrice" hidden><span>Home price I want to check</span><input id="targetHomePrice" type="number" min="0" step="1000" value="6000000"></label>
+          <label class="home1-field" for="annualRate"><span>Interest rate</span><div class="home1-suffix"><input id="annualRate" type="number" min="0" max="40" step="0.01" value="8.5"><b>%</b></div><small>Use a realistic quoted or researched rate.</small></label>
+          <label class="home1-field" for="termYears"><span data-home1-term-label>Loan term</span><div class="home1-suffix"><input id="termYears" type="number" min="1" max="50" step="1" value="20"><b>years</b></div></label>
+          <label class="home1-field home1-field-wide" for="ownershipCosts"><span>Other monthly homeownership costs</span><input id="ownershipCosts" type="number" min="0" step="100" value="8000"><small>For example: property tax / rates, insurance, HOA / strata / service charge, maintenance reserve or other regular ownership costs.</small></label>
+        </div>
+
+        <details class="home1-optional" id="optionalAssumptions">
+          <summary>Optional context and rate check</summary>
+          <div class="home1-optional-grid">
+            <label class="home1-field" for="grossAnnualIncome"><span>Gross annual household income</span><input id="grossAnnualIncome" type="number" min="0" step="1000" value="0"><small>Optional context only. It never changes the affordability result.</small></label>
+            <label class="home1-check" for="higherRateEnabled"><input id="higherRateEnabled" type="checkbox" checked><span><strong>Also check a higher rate</strong><small>This is a personal stress check, not a forecast or lender stress test.</small></span></label>
+            <label class="home1-field" for="higherRate"><span>Higher rate to check</span><div class="home1-suffix"><input id="higherRate" type="number" min="0" max="40" step="0.01" value="10.5"><b>%</b></div></label>
+          </div>
+        </details>
+
+        <div id="home1Errors" class="home1-error-box" role="alert" aria-live="polite" hidden></div>
+        <div class="home1-input-actions"><button class="home1-button home1-button-primary" type="button" id="calculateBtn">Update result</button><button class="home1-button home1-button-secondary" type="button" id="resetBtn">Reset</button></div>
+        <p class="home1-local-note">Your calculator values stay in this browser calculation. Carrowmont does not send the financial amounts you enter to website analytics.</p>
+      </aside>
+
+      <section class="home1-results" aria-labelledby="home1ResultsTitle" aria-live="polite">
+        <article class="home1-result-hero">
+          <p class="home1-kicker" id="home1ResultKicker">PLANNING HOME PRICE</p>
+          <h2 id="home1ResultsTitle">Planning home price based on your chosen monthly buffer</h2>
+          <div class="home1-headline-value" id="headlineValue">—</div>
+          <p id="headlineExplanation">This is a household planning estimate, not lender approval.</p>
+          <div class="home1-verdict" id="bufferVerdict">—</div>
+        </article>
+
+        <div class="home1-metric-grid">
+          <article><span data-home1-loan-label>Estimated home-loan amount</span><strong id="loanAmount">—</strong></article>
+          <article><span data-home1-payment-label>Modeled EMI / repayment</span><strong id="monthlyPayment">—</strong></article>
+          <article><span>All-in monthly housing cost</span><strong id="allInHousing">—</strong></article>
+          <article><span>Monthly amount left</span><strong id="monthlyLeftover">—</strong></article>
+          <article><span data-home1-deposit-label>Down payment available</span><strong id="depositResult">—</strong></article>
+          <article><span>Chosen free-cash buffer</span><strong id="bufferResult">—</strong></article>
+        </div>
+
+        <article class="home1-approval-note"><strong>Lender approval: not estimated</strong><p>A lender may offer more, less or nothing depending on its criteria, your circumstances, the property and local rules.</p></article>
+        <p class="home1-gross-context" id="grossIncomeContext" hidden></p>
+
+        <article class="home1-cashflow-card" aria-labelledby="cashflowTitle">
+          <div class="home1-section-head"><div><p class="home1-kicker">MONTHLY CASH FLOW</p><h3 id="cashflowTitle">See where the household income goes</h3></div><span id="cashflowTotal">—</span></div>
+          <div class="home1-stack" id="cashflowBar" role="img" aria-label="Monthly household cash-flow allocation"></div>
+          <div class="home1-cashflow-legend" id="cashflowLegend"></div>
+          <p class="home1-shortfall" id="cashflowShortfall" hidden></p>
+        </article>
+
+        <article class="home1-rate-card" id="rateCard">
+          <div class="home1-section-head"><div><p class="home1-kicker">RATE CHECK</p><h3>What changes at the higher rate?</h3></div></div>
+          <div class="home1-table-wrap"><table><thead><tr><th>Scenario</th><th>Rate</th><th data-home1-payment-label>Payment</th><th id="rateHomeHeading">Home price</th><th>Monthly leftover</th></tr></thead><tbody id="rateTableBody"></tbody></table></div>
+          <p class="home1-table-note">The higher-rate row is an illustration you chose. It is not a rate forecast or lender qualification test.</p>
+        </article>
+
+        <article class="home1-warning-card" id="warningCard"><strong>Before relying on the headline</strong><ul id="warningList"></ul></article>
+
+        <div class="home1-actions" aria-label="Result actions">
+          <button type="button" class="home1-button home1-button-primary" id="copySummaryBtn">Copy Summary</button>
+          <button type="button" class="home1-button home1-button-secondary" id="downloadCsvBtn">Download CSV</button>
+          <button type="button" class="home1-button home1-button-secondary" id="generateReportBtn">Generate Home Affordability Report</button>
+        </div>
+        <p class="home1-action-message" id="actionMessage" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </section>
+
+  <section class="home1-education" id="how-it-works">
+    <div class="shell home1-education-grid">
+      <div class="home1-education-main">
+        <p class="eyebrow">WHAT THIS NUMBER MEANS</p>
+        <h2>Affordability starts with cash flow, not with the biggest loan available.</h2>
+        <p>Carrowmont starts with monthly take-home income. It then keeps aside the essential spending, existing debt, savings you want to protect, other ownership costs and the amount you want left free. Only the remaining amount is used for the modeled principal-and-interest payment.</p>
+        <div class="home1-formula"><strong>Monthly room for the loan payment</strong><span>Take-home income − essentials − existing debt − protected savings − free-cash buffer − other ownership costs</span></div>
+        <p>The calculator then works backward from that monthly payment using the interest rate and term you entered. A larger deposit reduces the loan needed. A higher interest rate reduces the loan that fits the same monthly payment. A longer term can lower the monthly payment, but it usually keeps the debt for longer and can increase total interest.</p>
+        <h3>Why other ownership costs matter</h3><p>A mortgage or home-loan payment is not the whole housing budget. Property tax or rates, insurance, service charges, HOA or strata costs and maintenance can materially change what the home feels like each month. Carrowmont does not invent country-specific amounts; enter the costs that are relevant to the property you are considering.</p>
+        <h3>Why lender approval can be different</h3><p>Lenders can consider verified income, credit history, current debt, property value, loan-to-value rules, stress rates, product rules and local regulation. HOME1 does not reproduce those underwriting systems. Its job is narrower: help you see whether the housing commitment fits the monthly life you described.</p>
+      </div>
+      <aside class="home1-moves-card"><h3>What moves this number?</h3><ul><li><strong>Larger deposit:</strong> usually reduces the loan needed.</li><li><strong>Higher rate:</strong> raises the payment for the same loan and reduces borrowing room.</li><li><strong>Longer term:</strong> can reduce the monthly payment but keeps debt for longer.</li><li><strong>Existing debt:</strong> leaves less monthly room for housing.</li><li><strong>Ownership costs:</strong> reduce the price that fits the same budget.</li><li><strong>More protected savings or buffer:</strong> lowers the modeled price but preserves more room for other priorities.</li></ul></aside>
+    </div>
+  </section>
+
+  <section class="home1-next">
+    <div class="shell">
+      <div class="home1-section-heading"><p class="eyebrow">WHAT WOULD YOU LIKE TO CHECK NEXT?</p><h2>Use HOME1 on its own, or continue the home-buying decision.</h2><p>Each Carrowmont calculator works independently. These links simply take the next question one step further; no financial values are placed in the URL.</p></div>
+      <div class="home1-next-grid">
+        <a href="/mortgage-payoff-calculator/rent-vs-buy-calculator.html"><strong>Rent vs Buy Calculator</strong><span>Compare buying with continuing to rent using the full housing trade-off.</span></a>
+        <a href="/loan-calculator/"><strong>Loan / EMI Calculator</strong><span>Model a specific loan payment, total interest and amortization schedule.</span></a>
+        <a href="/mortgage-payoff-calculator/"><strong>Mortgage / Home Loan Payoff</strong><span>See what extra repayments could change after the loan has started.</span></a>
+        <a href="/mortgage-payoff-calculator/rate-rise-stress-test.html"><strong>Rate Rise &amp; Budget Stress</strong><span>Run a deeper payment stress test for an existing or planned mortgage.</span></a>
+      </div>
+      <div class="home1-learn-links"><h3>Learn before deciding</h3><a href="/how-much-home-can-i-afford.html">How much home can I afford?</a><a href="/mortgage-affordability-vs-lender-approval.html">Mortgage affordability vs lender approval</a><a href="/how-deposit-and-interest-rates-affect-home-affordability.html">How deposits, down payments and rates affect affordability</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div><div class="footer-col"><strong>Tools</strong><a href="/tools.html">All financial tools</a><a href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/mortgage-payoff-calculator/">Mortgage / Home Loan Payoff</a><a href="/budget-cash-flow-planner/">Budget &amp; Cash Flow Planner</a></div><div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/contact.html">Contact</a></div><div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><div class="shell footer-bottom"><span>© 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div></footer>
+
+<script src="locale.js?v=20261019-home1"></script>
+<script src="site.js?v=20261019-home1"></script>
+<script src="home-affordability-calculator-core.js?v=20261019-home1"></script>
+<script src="home-affordability-calculator-pdf-export.js?v=20261019-home1"></script>
+<script src="home-affordability-calculator-pdf-renderer.js?v=20261019-home1"></script>
+<script src="home-affordability-calculator.js?v=20261019-home1"></script>
+</body>
+</html>
