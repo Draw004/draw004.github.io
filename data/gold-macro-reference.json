@@ -1,39 +1,39 @@
 {
   "schemaVersion": 1,
   "methodologyVersion": "gold-macro-stress-v1.0",
-  "snapshotDate": "2026-10-10",
-  "generatedAt": "2026-10-13T07:59:57.384Z",
+  "snapshotDate": "2026-10-16",
+  "generatedAt": "2026-10-19T15:05:15.350Z",
   "status": "validated-reference-snapshot",
   "drivers": {
     "realYields": {
-      "value": 2.912,
+      "value": 2.83,
       "unit": "% 10Y real yield, 5-business-day average",
-      "asOf": "2026-10-09",
+      "asOf": "2026-10-16",
       "source": "U.S. Department of the Treasury — Daily Treasury Par Real Yield Curve Rates",
       "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_real_yield_curve",
-      "fiveYearPercentile": 99.6,
-      "trend13WeekPp": 0.616,
+      "fiveYearPercentile": 99,
+      "trend13WeekPp": 0.496,
       "referenceScore": -2
     },
     "dollar": {
-      "value": 121.1735,
+      "value": 121.2947,
       "unit": "Broad Dollar Index, 5-business-day average",
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-09",
       "source": "Federal Reserve H.10 — Nominal Broad U.S. Dollar Index",
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/summary/",
-      "fiveYearPercentile": 68.8,
-      "trend13WeekPct": 25.25,
-      "referenceScore": -2
+      "fiveYearPercentile": 70.5,
+      "trend13WeekPct": 0.4,
+      "referenceScore": -1
     },
     "inflation": {
-      "value": 3.69,
+      "value": 4,
       "unit": "% YoY CPI-U All Items",
-      "asOf": "2026-08",
+      "asOf": "2026-09",
       "source": "U.S. Bureau of Labor Statistics — CPI-U",
       "sourceUrl": "https://www.bls.gov/news.release/cpi.toc.htm",
-      "fiveYearPercentile": 55,
-      "trend3MonthPp": -0.77,
-      "referenceScore": -1
+      "fiveYearPercentile": 60,
+      "trend3MonthPp": 0.12,
+      "referenceScore": 1
     },
     "centralBankDemand": {
       "trailingFourQuarterTonnes": 796.1,
@@ -64,10 +64,10 @@
       "rationale": "The reviewed CBO baseline shows debt held by the public and net interest at historically elevated levels with a rising longer-run path; this is classified as very elevated fiscal stress, not as a default prediction."
     },
     "stress": {
-      "gprFourWeekAverage": 170.23,
+      "gprFourWeekAverage": 175.97,
       "gprUnit": "index, approximately 4-week/30-day average",
-      "gprPercentile": 83.4,
-      "gprAsOf": "2026-10-05",
+      "gprPercentile": 86.2,
+      "gprAsOf": "2026-10-13",
       "gprSource": "Caldara-Iacoviello Geopolitical Risk Index — Recent Daily GPR",
       "gprSourceUrl": "https://www.matteoiacoviello.com/gpr.htm",
       "gprPreliminary": true,
