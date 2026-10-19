@@ -22,7 +22,13 @@
     '/mortgage-payoff-calculator/prepayment-vs-investing.html': 'Mortgage Prepayment vs Investing Calculator',
     '/mortgage-payoff-calculator/refinance-break-even.html': 'Mortgage Refinance Break-Even Calculator',
     '/mortgage-payoff-calculator/rate-rise-stress-test.html': 'Mortgage Rate Rise & Payment Stress Test',
-    '/market-chain-reaction-explorer.html': 'Market Chain Reaction Explorer'
+    '/market-chain-reaction-explorer.html': 'Market Chain Reaction Explorer',
+    '/loan-calculator/': 'Loan & EMI Calculator',
+    '/compound-interest-calculator/': 'Compound Interest Calculator',
+    '/budget-cash-flow-planner/': 'Budget & Cash Flow Planner',
+    '/budget-cash-flow-planner/debt-payoff-calculator.html': 'Debt Payoff Calculator',
+    '/mortgage-payoff-calculator/rent-vs-buy-calculator.html': 'Rent vs Buy Calculator',
+    '/retirement-calculator/withdrawal-calculator.html': 'SWP / Retirement Withdrawal Calculator'
   };
   var toolName = names[href] || 'relevant Carrowmont tool';
 
