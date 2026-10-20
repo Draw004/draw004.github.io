@@ -96,13 +96,15 @@
       "keywords": [
         "50 30 20 budget rule",
         "What is the 50/30/20 budget rule, and when should you adjust it?",
-        "budget",
-        "rule",
-        "works"
+        "needs wants savings",
+        "budget percentages",
+        "take home income budget"
       ],
       "aliases": [
         "50 30 20 rule",
-        "budget percentages"
+        "50 30 20 budget",
+        "needs wants savings budget",
+        "budget percentage rule"
       ],
       "priority": 65
     },
@@ -215,14 +217,19 @@
       "category": "Budgeting & Saving",
       "keywords": [
         "budgeting by pay frequency",
-        "How do weekly, biweekly, fortnightly and monthly pay cycles change budgeting?",
-        "budgeting",
-        "pay",
-        "frequency",
-        "weekly",
-        "monthly"
+        "weekly pay budget",
+        "biweekly budget",
+        "fortnightly budget",
+        "twice monthly budget",
+        "payday budgeting"
       ],
-      "aliases": [],
+      "aliases": [
+        "paycheck budget",
+        "payday budget",
+        "budget by pay cycle",
+        "three paycheck month",
+        "fortnightly pay budget"
+      ],
       "priority": 65
     },
     {
@@ -233,13 +240,17 @@
       "category": "Budgeting & Saving",
       "keywords": [
         "budgeting with irregular income",
-        "How do you budget when your income changes every month?",
-        "budget",
-        "irregular",
-        "income",
-        "budgeting"
+        "variable income budget",
+        "commission income budget",
+        "freelancer budget",
+        "income smoothing buffer"
       ],
-      "aliases": [],
+      "aliases": [
+        "budget when income changes",
+        "irregular pay budget",
+        "variable earnings budget",
+        "seasonal income budget"
+      ],
       "priority": 65
     },
     {
@@ -250,17 +261,16 @@
       "category": "Budgeting & Saving",
       "keywords": [
         "cash flow vs income",
-        "Cash flow vs income: why earning more does not always mean saving more",
-        "cash",
-        "flow",
-        "income",
-        "why",
-        "difference",
-        "matters"
+        "income vs cash flow",
+        "personal cash flow",
+        "monthly surplus",
+        "cash timing"
       ],
       "aliases": [
-        "cash flow vs income",
-        "income is not cash flow"
+        "income is not cash flow",
+        "why salary does not equal savings",
+        "free cash flow personal finance",
+        "cash flow timing"
       ],
       "priority": 65
     },
@@ -1529,15 +1539,16 @@
       "category": "Budgeting & Saving",
       "keywords": [
         "pay yourself first budgeting",
-        "What does pay yourself first mean in a budget?",
-        "pay",
-        "yourself",
-        "first",
-        "means",
-        "budget",
-        "budgeting"
+        "save before optional spending",
+        "automatic savings plan",
+        "future priorities budget"
       ],
-      "aliases": [],
+      "aliases": [
+        "pay yourself first method",
+        "save first budget",
+        "automatic saving",
+        "pay yourself first rule"
+      ],
       "priority": 65
     },
     {
@@ -2335,15 +2346,15 @@
       "category": "Budgeting & Saving",
       "keywords": [
         "zero based budgeting",
-        "What is zero-based budgeting and how does it work?",
-        "zero",
-        "based",
-        "budgeting",
-        "works"
+        "every unit of income has a job",
+        "zero based budget example",
+        "monthly allocation budget"
       ],
       "aliases": [
         "zero based budget",
-        "every dollar budget"
+        "every dollar budget",
+        "give every dollar a job",
+        "zero sum budget"
       ],
       "priority": 65
     },
