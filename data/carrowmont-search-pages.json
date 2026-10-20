@@ -364,23 +364,20 @@
     {
       "url": "/debt-snowball-vs-avalanche.html",
       "title": "Debt Snowball vs Avalanche: Compare Methods",
-      "description": "Compare debt snowball and avalanche using the same monthly payment. See how payoff order can change interest, first payoff timing and your debt-free date.",
+      "description": "Compare debt snowball and avalanche with the same monthly debt payment, including interest, first payoff timing and practical trade-offs.",
       "type": "guide",
       "category": "Debt & Credit",
       "keywords": [
         "debt snowball vs avalanche",
-        "Debt snowball vs avalanche: which debt gets paid first?",
-        "debt",
-        "snowball",
-        "avalanche",
-        "compare",
-        "methods"
+        "debt payoff order",
+        "highest interest first",
+        "smallest balance first"
       ],
       "aliases": [
         "debt snowball",
         "debt avalanche",
-        "smallest balance first",
-        "highest interest first"
+        "snowball method",
+        "avalanche method"
       ],
       "priority": 65
     },
@@ -443,42 +440,43 @@
     {
       "url": "/emergency-fund-how-much.html",
       "title": "How Much Emergency Fund Should You Have?",
-      "description": "Estimate an emergency-fund range from essential monthly expenses, income stability and the risks your household wants to absorb.",
+      "description": "Estimate an emergency-fund range from essential monthly costs, income stability, dependants, insurance gaps and household risk.",
       "type": "guide",
       "category": "Budgeting & Saving",
       "keywords": [
         "emergency fund how much",
-        "much",
-        "emergency",
-        "fund",
-        "should",
-        "you",
-        "have"
+        "essential monthly costs",
+        "income stability",
+        "three months expenses",
+        "six months expenses"
       ],
       "aliases": [
         "how much emergency fund",
         "emergency savings amount",
-        "rainy day fund"
+        "rainy day fund target",
+        "months of expenses"
       ],
       "priority": 65
     },
     {
       "url": "/emergency-savings.html",
-      "title": "Emergency savings & liquidity",
-      "description": "Learn why emergency savings differs from long-term investing and which personal factors can influence how much accessible liquidity someone keeps.",
+      "title": "Emergency Savings and Liquidity",
+      "description": "Learn why emergency savings should be stable and accessible, how layered liquidity works, when to use it and how to rebuild it.",
       "type": "guide",
       "category": "Budgeting & Saving",
       "keywords": [
         "emergency savings",
-        "Emergency savings has a different job from long-term investing.",
-        "emergency",
-        "savings",
-        "liquidity"
+        "liquidity",
+        "accessible savings",
+        "financial shock",
+        "cash reserve"
       ],
       "aliases": [
         "emergency fund",
-        "emergency savings",
-        "liquid savings"
+        "emergency cash",
+        "liquid savings",
+        "rainy day fund",
+        "emergency liquidity"
       ],
       "priority": 65
     },
@@ -1027,19 +1025,21 @@
     },
     {
       "url": "/lifestyle-inflation.html",
-      "title": "Lifestyle Inflation and Financial Progress",
-      "description": "Learn how lifestyle inflation occurs when spending rises with income, how to spot it, and how recurring expenses can slow long-term progress.",
+      "title": "Lifestyle Inflation: How Spending Rises With Income",
+      "description": "Learn how lifestyle inflation can turn pay rises into recurring costs, how to spot it and how to improve life without losing flexibility.",
       "type": "guide",
       "category": "Budgeting & Saving",
       "keywords": [
         "lifestyle inflation",
-        "What is lifestyle inflation and how can it slow financial progress?",
-        "lifestyle",
-        "inflation",
-        "financial",
-        "progress"
+        "pay rise spending",
+        "fixed costs",
+        "financial progress"
       ],
-      "aliases": [],
+      "aliases": [
+        "lifestyle creep",
+        "spending after a raise",
+        "income rises spending rises"
+      ],
       "priority": 65
     },
     {
@@ -1872,18 +1872,21 @@
     {
       "url": "/savings-goal-planning.html",
       "title": "How to Plan a Savings Goal",
-      "description": "Learn how to plan a savings goal by estimating the future target, using existing savings and solving for the monthly contribution required.",
+      "description": "Plan a savings goal by defining the amount, date, existing savings, future cost, risk and regular contribution required.",
       "type": "guide",
       "category": "Goals & Saving",
       "keywords": [
         "savings goal planning",
-        "How do you plan a savings goal and work backward from the target?",
-        "plan",
-        "savings",
-        "goal",
-        "planning"
+        "monthly savings goal",
+        "future cost",
+        "target date",
+        "existing savings"
       ],
-      "aliases": [],
+      "aliases": [
+        "how to save for a goal",
+        "goal savings plan",
+        "savings target"
+      ],
       "priority": 65
     },
     {
@@ -1949,19 +1952,20 @@
     {
       "url": "/sinking-fund-vs-emergency-fund.html",
       "title": "Sinking Fund vs Emergency Fund: Key Differences",
-      "description": "Learn the difference between a sinking fund for predictable future costs and an emergency fund for unexpected financial shocks.",
+      "description": "Compare sinking funds for predictable costs with emergency funds for unexpected shocks, including grey areas, examples and priority rules.",
       "type": "guide",
       "category": "Budgeting & Saving",
       "keywords": [
         "sinking fund vs emergency fund",
-        "Sinking fund vs emergency fund: what is the difference?",
-        "sinking",
-        "fund",
-        "emergency",
-        "key",
-        "differences"
+        "predictable expenses",
+        "annual bills",
+        "cash reserves"
       ],
-      "aliases": [],
+      "aliases": [
+        "sinking fund",
+        "expected expense fund",
+        "known future expense"
+      ],
       "priority": 65
     },
     {
