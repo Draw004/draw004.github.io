@@ -320,8 +320,12 @@
 .authority-tools-footer{display:flex;justify-content:center;margin-top:28px}
 .authority-tools-footer .button{min-height:54px}
 
-.tools-directory-hero .page-hero-inner{max-width:1220px}
-.tools-directory-hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.tools-directory-hero .page-hero-inner{max-width:1220px;padding:50px 0 62px}
+.tools-directory-hero h1{max-width:1050px;margin-bottom:18px}
+.tools-directory-hero p{max-width:1050px;font-size:17px;line-height:1.55}
+.tools-directory-hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+body[data-cm-page="tools-directory"] .search-discovery-section{position:relative;z-index:2;margin-top:-36px;padding-bottom:34px}
+body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-widget{margin-top:0}
 .tools-directory-section{padding:68px 0 76px;background:#fff}
 .tools-directory-section-alt{background:#f6f9fb;border-top:1px solid #e3edf2;border-bottom:1px solid #e3edf2}
 .tools-directory-heading{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:30px}
@@ -390,7 +394,19 @@
   .authority-card-icon svg{width:25px;height:25px}
   .authority-tools-footer{justify-content:stretch}
   .authority-tools-footer .button{width:100%}
-  .tools-directory-hero-actions{display:grid}
+  .tools-directory-hero .page-hero-inner{padding:18px 0 22px}
+  .tools-directory-hero h1{margin-bottom:12px}
+  .tools-directory-hero p{font-size:15.5px;line-height:1.45}
+  /* On narrow screens the search field is the primary action. The two hero
+     shortcuts are redundant with the categories below and the mobile menu, so
+     remove them from the first viewport instead of forcing users to scroll. */
+  .tools-directory-hero-actions{display:none}
+  body[data-cm-page="tools-directory"] .search-discovery-section{margin-top:-28px;padding-bottom:24px}
+  body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-widget{padding:17px 16px 20px}
+  body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-heading{margin-bottom:10px}
+  body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-kicker{margin-bottom:4px;font-size:11px}
+  body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-heading h2{margin-bottom:5px;font-size:21px;line-height:1.16}
+  body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-heading p{font-size:14px;line-height:1.45}
   .tools-directory-section{padding:48px 0 56px}
   .tools-directory-heading{display:block;margin-bottom:24px}
   .tools-directory-heading h2{font-size:31px}
