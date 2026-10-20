@@ -32,6 +32,12 @@ const fixtures = [
   { name: 'credit rating finds the same guide in Australia', query: 'credit rating', region: 'AU', first: '/credit-score-explained.html' },
   { name: 'debt consolidation finds the total-cost guide', query: 'debt consolidation', region: 'CA', first: '/debt-consolidation-explained.html' },
   { name: 'credit card interest finds the revolving-debt guide', query: 'credit card interest', region: 'GB', first: '/how-credit-card-interest-works.html' },
+  { name: '50 30 20 budget finds the focused framework guide', query: '50 30 20 budget', region: 'US', first: '/50-30-20-budget-rule.html' },
+  { name: 'payday budget finds pay-frequency planning', query: 'payday budget', region: 'US', first: '/budgeting-by-pay-frequency.html' },
+  { name: 'variable income budget finds the irregular-income guide', query: 'variable income budget', region: 'CA', first: '/budgeting-with-irregular-income.html' },
+  { name: 'cash flow vs income finds the focused explanation', query: 'cash flow vs income', region: 'OTHER', first: '/cash-flow-vs-income.html' },
+  { name: 'every dollar budget finds zero-based budgeting', query: 'every dollar budget', region: 'US', first: '/zero-based-budgeting.html' },
+  { name: 'pay yourself first finds the focused saving-priority guide', query: 'pay yourself first', region: 'AU', first: '/pay-yourself-first-budgeting.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 

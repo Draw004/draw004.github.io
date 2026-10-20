@@ -38,6 +38,11 @@
   function state(){var region=L.getRegion(),currency=L.getCurrency(),isIndia=region==='IN',cfg=currencyExamples[currency]||currencyExamples.USD;cfg={target:cfg.target,monthly:cfg.monthly};cfg.goal=cfg.target/10;cfg.monthlyExpense=cfg.target/200;cfg.annualSpending=cfg.monthlyExpense*12;cfg.existing=cfg.target/10; return {region:region,currency:currency,isIndia:isIndia,cfg:cfg,term:isIndia?'Monthly Investment (SIP)':'Monthly Investment',fixedTerm:isIndia?'Fixed Monthly Investment (SIP)':'Fixed Monthly Investment',increasingTerm:isIndia?'Increasing Monthly Investment (Step-up SIP)':'Increasing Monthly Investment',calculator:isIndia?'SIP Calculator':'Monthly Investment Calculator',retirementTerm:isIndia?'retirement corpus':'retirement savings target'};}
   function scaledIllustrativeAmount(inrAmount,basis,s){var source=currencyExamples.INR,target=s.cfg;if(basis==='unit')return inrAmount;if(basis==='monthly')return inrAmount*(target.monthly/source.monthly);return inrAmount*(target.target/source.target);}
   function termValue(key,s){
+    if(key==='two-week-pay-label'){
+      if(['US','CA'].includes(s.region))return 'Biweekly';
+      if(['GB','IE','AU','NZ'].includes(s.region))return 'Fortnightly';
+      return 'Every two weeks';
+    }
     var nonIndia={
       'monthly-investment-sip':'Monthly Investment',
       'fixed-monthly-investment-sip':'Fixed Monthly Investment',
