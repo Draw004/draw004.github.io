@@ -23,9 +23,10 @@ const fixtures = [
   { name: 'remortgage finds refinance break-even', query: 'remortgage', region: 'GB', first: '/mortgage-payoff-calculator/refinance-break-even.html' },
   { name: 'SWP finds retirement withdrawals', query: 'swp', region: 'IN', first: '/retirement-calculator/withdrawal-calculator.html' },
   { name: 'home loan finds home-loan tools', query: 'home loan', region: 'IN', includes: ['/mortgage-payoff-calculator/', '/home-affordability-calculator.html'] },
-  { name: 'how to make a budget finds the budget planner', query: 'how to make a budget', region: 'US', first: '/budget-cash-flow-planner/' },
-  { name: 'ETF finds the current ETF guide', query: 'etf', region: 'US', first: '/physical-gold-vs-gold-etf.html' },
-  { name: 'index fund waits for the approved LEARN2A guide instead of matching emergency funds', query: 'index fund', region: 'US', count: 0 },
+  { name: 'how to make a budget finds the evergreen guide', query: 'how to make a budget', region: 'US', first: '/how-to-make-a-budget.html' },
+  { name: 'ETF finds the general ETF foundation guide', query: 'etf', region: 'US', first: '/what-is-an-etf.html' },
+  { name: 'index fund finds the approved LEARN2A guide', query: 'index fund', region: 'US', first: '/index-funds-explained.html' },
+  { name: 'investing for beginners finds the foundation guide', query: 'investing for beginners', region: 'US', first: '/investing-for-beginners.html' },
   { name: 'APR waits for the approved LEARN2A guide instead of matching generic rate pages', query: 'apr', region: 'US', count: 0 },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
