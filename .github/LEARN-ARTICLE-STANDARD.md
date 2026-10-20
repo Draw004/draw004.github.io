@@ -1,7 +1,7 @@
 # Carrowmont Learn Article Standard
 
-**Version:** 2.0  
-**Effective:** 28 September 2026
+**Version:** 2.1  
+**Effective:** 20 October 2026
 
 This is the required structure and editorial-depth standard for every indexable Carrowmont Learn article. It exists so future guides inherit the same layout, trust signals, SEO treatment, tool journey and content quality without repeating one-off page work.
 
@@ -49,6 +49,19 @@ The shared JavaScript reuses the top relevant-tool link to create the consistent
 
 Current QA keeps titles at 25–70 characters and descriptions at 100–170 characters as a Carrowmont editorial guardrail. This is not a claim that search engines impose fixed character limits.
 
+
+### Heading and title capitalization after a colon
+
+In public-facing titles, H1–H6 headings, card headings, chart titles and standalone labels, the first alphabetic word after a colon begins with a capital letter.
+
+Correct examples:
+
+- `Diversification: Helpful, but not automatic`
+- `Worked example: The score is not the whole decision`
+- `APR vs interest rate: Why the cheaper-looking loan may not be cheaper`
+
+This is a presentation rule for headings and labels. It must **not** force unnatural capitalization inside ordinary paragraph prose, quotations, code, formulas, URLs or the official titles of external sources.
+
 ## 4. Content-depth standard
 
 Carrowmont Learn must not publish thin pages whose only purpose is to capture a keyword. The reader should be able to understand the topic, the mechanics, the important trade-offs and what to test next without needing another generic explainer immediately afterward.
@@ -72,7 +85,7 @@ Every substantive guide should include, when relevant:
 
 The standard deliberately does **not** impose one universal word count. A focused concept can be complete in less space than a pillar topic. Depth is judged by coverage, examples, trade-offs, sourcing and reader usefulness—not by padding. As a QA warning signal, however, an article that remains unusually short after removing navigation/boilerplate should be reviewed manually for missing substance.
 
-For the current 52-guide library, automated QA also uses **1,000 words of visible guide text as a regression floor** so an accidental rollback to the previous thin-page state fails staged QA. This is a floor, not a writing target: a future focused guide may justify an exception only through an intentional QA/standard review rather than by silently weakening content.
+For the current 83-guide library, automated QA also uses **1,000 words of visible guide text as a regression floor** so an accidental rollback to the previous thin-page state fails staged QA. This is a floor, not a writing target: a future focused guide may justify an exception only through an intentional QA/standard review rather than by silently weakening content.
 
 ## 5. Evidence and sourcing standard
 
