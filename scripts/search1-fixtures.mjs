@@ -27,7 +27,11 @@ const fixtures = [
   { name: 'ETF finds the general ETF foundation guide', query: 'etf', region: 'US', first: '/what-is-an-etf.html' },
   { name: 'index fund finds the approved LEARN2A guide', query: 'index fund', region: 'US', first: '/index-funds-explained.html' },
   { name: 'investing for beginners finds the foundation guide', query: 'investing for beginners', region: 'US', first: '/investing-for-beginners.html' },
-  { name: 'APR waits for the approved LEARN2A guide instead of matching generic rate pages', query: 'apr', region: 'US', count: 0 },
+  { name: 'APR finds the approved borrowing-cost guide', query: 'apr', region: 'US', first: '/apr-vs-interest-rate.html' },
+  { name: 'credit score finds the credit foundation guide', query: 'credit score', region: 'US', first: '/credit-score-explained.html' },
+  { name: 'credit rating finds the same guide in Australia', query: 'credit rating', region: 'AU', first: '/credit-score-explained.html' },
+  { name: 'debt consolidation finds the total-cost guide', query: 'debt consolidation', region: 'CA', first: '/debt-consolidation-explained.html' },
+  { name: 'credit card interest finds the revolving-debt guide', query: 'credit card interest', region: 'GB', first: '/how-credit-card-interest-works.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 

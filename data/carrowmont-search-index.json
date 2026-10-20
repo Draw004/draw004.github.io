@@ -123,6 +123,48 @@
       "priority": 40
     },
     {
+      "url": "/apr-vs-interest-rate.html",
+      "title": "APR vs Interest Rate: The Difference",
+      "description": "Understand how interest rates, APR, comparison rates, fees, term and local disclosure rules affect the true cost of borrowing.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "annual percentage rate",
+        "apr vs interest rate",
+        "APR vs interest rate: why the cheaper-looking loan may not be cheaper",
+        "borrowing cost",
+        "comparison rate",
+        "loan fees"
+      ],
+      "aliases": [
+        "annual percentage rate explained",
+        "apr meaning",
+        "comparison rate explained",
+        "interest rate versus apr",
+        "what is apr"
+      ],
+      "priority": 84,
+      "locale_aliases": {
+        "AU": [
+          "comparison rate",
+          "interest rate"
+        ],
+        "CA": [
+          "annual percentage rate",
+          "APR"
+        ],
+        "IN": [
+          "annual percentage rate",
+          "APR",
+          "Key Facts Statement"
+        ],
+        "US": [
+          "annual percentage rate",
+          "APR"
+        ]
+      }
+    },
+    {
       "url": "/asset-allocation-explained.html",
       "title": "What Is Asset Allocation? How It Works",
       "description": "Asset allocation is how a portfolio is divided among stocks, bonds, cash and other assets. Learn how goals, time horizon and risk tolerance shape the mix.",
@@ -350,6 +392,71 @@
         "feedback"
       ],
       "priority": 40
+    },
+    {
+      "url": "/credit-score-explained.html",
+      "title": "Credit Score Explained: What Affects It",
+      "description": "Understand credit reports, scoring models, common factors, errors, applications and why a score never guarantees approval.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "credit history",
+        "credit report",
+        "credit score explained",
+        "hard inquiry",
+        "lender approval",
+        "soft inquiry",
+        "What is a credit score, and what can affect it?"
+      ],
+      "aliases": [
+        "check credit score",
+        "cibil score",
+        "credit rating explained",
+        "credit report vs credit score",
+        "improve credit record",
+        "what is a credit score"
+      ],
+      "priority": 84,
+      "locale_aliases": {
+        "AU": [
+          "credit rating",
+          "credit report",
+          "credit score"
+        ],
+        "GB": [
+          "credit file",
+          "credit rating",
+          "credit score"
+        ],
+        "IN": [
+          "CIBIL score",
+          "credit report",
+          "credit score"
+        ]
+      }
+    },
+    {
+      "url": "/debt-consolidation-explained.html",
+      "title": "Debt Consolidation Explained",
+      "description": "Compare one simpler payment with interest rates, fees, term extension, secured borrowing risk and the total cost of replacing several debts.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "combine debts",
+        "consolidation loan",
+        "debt consolidation explained",
+        "refinancing debt",
+        "total repayment",
+        "What is debt consolidation, and can a lower payment cost more?"
+      ],
+      "aliases": [
+        "combine debts into one payment",
+        "consolidate credit card debt",
+        "debt consolidation loan",
+        "loan consolidation",
+        "what is debt consolidation"
+      ],
+      "priority": 84
     },
     {
       "url": "/debt-snowball-vs-avalanche.html",
@@ -717,6 +824,30 @@
           "mortgage affordability"
         ]
       }
+    },
+    {
+      "url": "/how-credit-card-interest-works.html",
+      "title": "How Credit-Card Interest Works",
+      "description": "Understand card balances, periodic rates, grace periods, minimum payments, transaction types and why a carried balance can take years to repay.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "credit card balance",
+        "daily balance",
+        "grace period",
+        "how credit card interest works",
+        "How does credit-card interest build up?",
+        "minimum payment",
+        "revolving debt"
+      ],
+      "aliases": [
+        "card interest",
+        "credit card apr",
+        "credit card interest explained",
+        "how is credit card interest calculated",
+        "minimum credit card payment"
+      ],
+      "priority": 84
     },
     {
       "url": "/how-deposit-and-interest-rates-affect-home-affordability.html",
