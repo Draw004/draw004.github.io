@@ -1,12 +1,16 @@
 /* SEARCH1 — local, privacy-first Carrowmont site search. */
 .cm-search-page-main{background:#f7fafc;min-height:62vh}
-.cm-search-page-hero{padding-bottom:26px}
-.cm-search-page-section{padding:0 0 70px}
+.cm-search-page-hero{padding-bottom:0}
+.cm-search-page-hero .page-hero-inner{padding:46px 0 94px;max-width:1120px}
+.cm-search-page-hero .section-kicker{margin-bottom:11px}
+.cm-search-page-hero h1{font-size:clamp(42px,4vw,60px);line-height:1.04;letter-spacing:-1.8px;margin-bottom:15px}
+.cm-search-page-hero p{max-width:900px;font-size:17px;line-height:1.55}
+.cm-search-page-section{position:relative;z-index:2;margin-top:-64px;padding:0 0 62px}
 .search-discovery-section{padding:0 0 28px;background:#fff}
 .search-discovery-section .cm-search-widget{margin-top:-10px}
 .cm-search-widget{min-width:0;border:1px solid #cfe0e5;border-radius:22px;background:#fff;box-shadow:0 10px 30px rgba(17,40,68,.055);padding:24px}
-.cm-search-widget[data-search-variant="page"]{padding:30px;box-shadow:0 16px 42px rgba(17,40,68,.075)}
-.cm-search-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:17px}
+.cm-search-widget[data-search-variant="page"]{padding:24px 30px 27px;box-shadow:0 16px 42px rgba(17,40,68,.075)}
+.cm-search-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:13px}
 .cm-search-heading-copy{max-width:800px}
 .cm-search-kicker{display:block;margin-bottom:5px;color:#0b6f69;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
 .cm-search-heading h2{margin:0 0 7px;color:#102f4f;font-size:clamp(23px,2.3vw,31px);line-height:1.2;letter-spacing:-.35px}
@@ -56,7 +60,10 @@
   .cm-search-submit{min-height:50px;width:100%}
   .cm-search-results{grid-template-columns:1fr}
   .cm-search-result-card{padding:16px}
-  .cm-search-page-section{padding-bottom:54px}
+  .cm-search-page-hero .page-hero-inner{padding:34px 0 72px}
+  .cm-search-page-hero h1{font-size:clamp(37px,11vw,48px);letter-spacing:-1.25px;margin-bottom:12px}
+  .cm-search-page-hero p{font-size:16px;line-height:1.5}
+  .cm-search-page-section{margin-top:-48px;padding-bottom:54px}
   .search-discovery-section{padding-bottom:22px}
 }
 @media(max-width:390px){

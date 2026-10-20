@@ -2441,6 +2441,137 @@
         "how index funds work"
       ],
       "priority": 84
+    },
+    {
+      "url": "/credit-score-explained.html",
+      "title": "Credit Score Explained: What Affects It",
+      "description": "Understand credit reports, scoring models, common factors, errors, applications and why a score never guarantees approval.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "credit score explained",
+        "What is a credit score, and what can affect it?",
+        "credit report",
+        "credit history",
+        "hard inquiry",
+        "soft inquiry",
+        "lender approval"
+      ],
+      "aliases": [
+        "what is a credit score",
+        "credit rating explained",
+        "credit report vs credit score",
+        "improve credit record",
+        "check credit score",
+        "cibil score"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "credit score",
+          "CIBIL score",
+          "credit report"
+        ],
+        "GB": [
+          "credit score",
+          "credit rating",
+          "credit file"
+        ],
+        "AU": [
+          "credit score",
+          "credit rating",
+          "credit report"
+        ]
+      },
+      "priority": 84
+    },
+    {
+      "url": "/debt-consolidation-explained.html",
+      "title": "Debt Consolidation Explained",
+      "description": "Compare one simpler payment with interest rates, fees, term extension, secured borrowing risk and the total cost of replacing several debts.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "debt consolidation explained",
+        "What is debt consolidation, and can a lower payment cost more?",
+        "consolidation loan",
+        "combine debts",
+        "refinancing debt",
+        "total repayment"
+      ],
+      "aliases": [
+        "what is debt consolidation",
+        "debt consolidation loan",
+        "combine debts into one payment",
+        "loan consolidation",
+        "consolidate credit card debt"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/how-credit-card-interest-works.html",
+      "title": "How Credit-Card Interest Works",
+      "description": "Understand card balances, periodic rates, grace periods, minimum payments, transaction types and why a carried balance can take years to repay.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "how credit card interest works",
+        "How does credit-card interest build up?",
+        "credit card balance",
+        "minimum payment",
+        "grace period",
+        "daily balance",
+        "revolving debt"
+      ],
+      "aliases": [
+        "credit card interest explained",
+        "how is credit card interest calculated",
+        "card interest",
+        "minimum credit card payment",
+        "credit card apr"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/apr-vs-interest-rate.html",
+      "title": "APR vs Interest Rate: The Difference",
+      "description": "Understand how interest rates, APR, comparison rates, fees, term and local disclosure rules affect the true cost of borrowing.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "apr vs interest rate",
+        "APR vs interest rate: why the cheaper-looking loan may not be cheaper",
+        "annual percentage rate",
+        "comparison rate",
+        "borrowing cost",
+        "loan fees"
+      ],
+      "aliases": [
+        "what is apr",
+        "apr meaning",
+        "annual percentage rate explained",
+        "interest rate versus apr",
+        "comparison rate explained"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "APR",
+          "annual percentage rate",
+          "Key Facts Statement"
+        ],
+        "AU": [
+          "comparison rate",
+          "interest rate"
+        ],
+        "US": [
+          "APR",
+          "annual percentage rate"
+        ],
+        "CA": [
+          "APR",
+          "annual percentage rate"
+        ]
+      },
+      "priority": 84
     }
   ]
 }
