@@ -38,6 +38,12 @@ const fixtures = [
   { name: 'cash flow vs income finds the focused explanation', query: 'cash flow vs income', region: 'OTHER', first: '/cash-flow-vs-income.html' },
   { name: 'every dollar budget finds zero-based budgeting', query: 'every dollar budget', region: 'US', first: '/zero-based-budgeting.html' },
   { name: 'pay yourself first finds the focused saving-priority guide', query: 'pay yourself first', region: 'AU', first: '/pay-yourself-first-budgeting.html' },
+  { name: 'how much emergency fund finds the sizing guide', query: 'how much emergency fund', region: 'CA', first: '/emergency-fund-how-much.html' },
+  { name: 'emergency liquidity finds the purpose guide', query: 'emergency liquidity', region: 'GB', first: '/emergency-savings.html' },
+  { name: 'sinking fund finds the expected-cost guide', query: 'sinking fund', region: 'AU', first: '/sinking-fund-vs-emergency-fund.html' },
+  { name: 'savings goal finds the planning guide', query: 'savings goal', region: 'OTHER', first: '/savings-goal-planning.html' },
+  { name: 'lifestyle creep finds lifestyle inflation', query: 'lifestyle creep', region: 'US', first: '/lifestyle-inflation.html' },
+  { name: 'debt snowball vs avalanche finds the method comparison', query: 'debt snowball vs avalanche', region: 'IN', first: '/debt-snowball-vs-avalanche.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
