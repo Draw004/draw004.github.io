@@ -413,3 +413,13 @@
 @media (min-width:1361px){.planning-grid[data-core-tool-count="9"]{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:701px) and (max-width:1360px){.planning-grid[data-core-tool-count="9"]{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:700px){.planning-grid[data-core-tool-count="9"]{grid-template-columns:1fr}}
+
+/* SEARCH1: compact, site-wide search entry in the established header. */
+.desktop-nav .site-search-link{display:inline-flex;align-items:center;gap:6px;border:1px solid #bfd4de;border-radius:999px;padding:8px 12px;color:#183c5a;background:#f8fbfc;line-height:1;white-space:nowrap}
+.desktop-nav .site-search-link:hover{border-color:#70b9b1;background:#eef9f7;color:#0b6f69}
+.desktop-nav .site-search-link[aria-current="page"]{border-color:#0e827a;background:#e8f7f5;color:#0b6f69}
+.site-search-link-icon{display:inline-grid;place-items:center;width:16px;height:16px}
+.site-search-link-icon svg{display:block;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mobile-nav-panel a[data-cm-search-link],.mobile-nav-links a[data-cm-search-link]{color:#0b6f69}
+@media(max-width:1180px) and (min-width:981px){.desktop-nav .site-search-link{padding:8px 10px}.desktop-nav{gap:15px}}
+@media(prefers-reduced-motion:reduce){.desktop-nav .site-search-link{transition:none}}

@@ -419,3 +419,50 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindLocalization,{once:true});
   else bindLocalization();
 })();
+
+/* SEARCH1: add one consistent search entry to main-site desktop and mobile navigation. */
+(function () {
+  'use strict';
+
+  function iconMarkup() {
+    return '<span class="site-search-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg></span><span>Search</span>';
+  }
+
+  function createSearchLink(desktop) {
+    var link = document.createElement('a');
+    link.href = '/search.html';
+    link.dataset.cmSearchLink = '';
+    link.setAttribute('aria-label', 'Search Carrowmont');
+    if (desktop) {
+      link.className = 'site-search-link';
+      link.innerHTML = iconMarkup();
+    } else {
+      link.textContent = 'Search';
+    }
+    if (window.location.pathname === '/search.html') link.setAttribute('aria-current', 'page');
+    return link;
+  }
+
+  function insertSearchLinks() {
+    document.querySelectorAll('.desktop-nav').forEach(function (nav) {
+      if (nav.querySelector('[data-cm-search-link], a[href="/search.html"]')) return;
+      var link = createSearchLink(true);
+      var learn = nav.querySelector('a[href="/learn.html"]');
+      if (learn && learn.nextSibling) nav.insertBefore(link, learn.nextSibling);
+      else if (learn) nav.appendChild(link);
+      else nav.appendChild(link);
+    });
+
+    document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (panel) {
+      if (panel.querySelector('[data-cm-search-link], a[href="/search.html"]')) return;
+      var link = createSearchLink(false);
+      var learn = panel.querySelector('a[href="/learn.html"]');
+      if (learn && learn.nextSibling) panel.insertBefore(link, learn.nextSibling);
+      else if (learn) panel.appendChild(link);
+      else panel.appendChild(link);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', insertSearchLinks, { once: true });
+  else insertSearchLinks();
+})();

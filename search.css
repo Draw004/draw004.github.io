@@ -1,0 +1,70 @@
+/* SEARCH1 — local, privacy-first Carrowmont site search. */
+.cm-search-page-main{background:#f7fafc;min-height:62vh}
+.cm-search-page-hero{padding-bottom:26px}
+.cm-search-page-section{padding:0 0 70px}
+.search-discovery-section{padding:0 0 28px;background:#fff}
+.search-discovery-section .cm-search-widget{margin-top:-10px}
+.cm-search-widget{min-width:0;border:1px solid #cfe0e5;border-radius:22px;background:#fff;box-shadow:0 10px 30px rgba(17,40,68,.055);padding:24px}
+.cm-search-widget[data-search-variant="page"]{padding:30px;box-shadow:0 16px 42px rgba(17,40,68,.075)}
+.cm-search-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:17px}
+.cm-search-heading-copy{max-width:800px}
+.cm-search-kicker{display:block;margin-bottom:5px;color:#0b6f69;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.cm-search-heading h2{margin:0 0 7px;color:#102f4f;font-size:clamp(23px,2.3vw,31px);line-height:1.2;letter-spacing:-.35px}
+.cm-search-heading p{margin:0;color:#536d83;font-size:15px;line-height:1.55}
+.cm-search-form{margin:0}
+.cm-search-label{display:block;margin-bottom:8px;color:#183c5a;font-size:14px;font-weight:850}
+.cm-search-control{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:stretch}
+.cm-search-input-wrap{position:relative;min-width:0}
+.cm-search-input-icon{position:absolute;left:16px;top:50%;width:20px;height:20px;transform:translateY(-50%);pointer-events:none;color:#507089}
+.cm-search-input-icon svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cm-search-input{width:100%;min-width:0;height:54px;border:1px solid #afc8d7;border-radius:14px;background:#fff;padding:0 16px 0 49px;color:#102f4f;font:inherit;font-size:16px;outline:none;transition:border-color .16s ease,box-shadow .16s ease}
+.cm-search-input::placeholder{color:#74899b}
+.cm-search-input:focus{border-color:#0e827a;box-shadow:0 0 0 4px rgba(14,130,122,.13)}
+.cm-search-submit{min-width:118px;border:0;border-radius:14px;padding:0 22px;background:#0e827a;color:#fff;font:inherit;font-weight:850;cursor:pointer;transition:transform .16s ease,background .16s ease}
+.cm-search-submit:hover{background:#0b6f69;transform:translateY(-1px)}
+.cm-search-submit:focus-visible{outline:3px solid rgba(14,130,122,.3);outline-offset:3px}
+.cm-search-submit:disabled{cursor:wait;opacity:.72;transform:none}
+.cm-search-suggestions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.cm-search-suggestions[hidden]{display:none!important}
+.cm-search-suggestions-label{margin-right:2px;color:#60788d;font-size:13px;font-weight:750}
+.cm-search-suggestion{border:1px solid #c9dbe3;border-radius:999px;background:#f7fbfc;color:#234c68;padding:8px 12px;font:inherit;font-size:13px;font-weight:760;cursor:pointer}
+.cm-search-suggestion:hover,.cm-search-suggestion:focus-visible{border-color:#70b9b1;background:#eef9f7;color:#0b6f69;outline:none}
+.cm-search-status{min-height:22px;margin:14px 0 0;color:#536d83;font-size:13px;font-weight:700}
+.cm-search-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:9px;min-width:0}
+.cm-search-result-card{min-width:0;border:1px solid #d7e4e9;border-radius:16px;background:#fff;padding:17px 18px;box-shadow:0 5px 14px rgba(17,40,68,.035)}
+.cm-search-result-card:hover{border-color:#91c9c3;box-shadow:0 8px 20px rgba(14,130,122,.07)}
+.cm-search-result-meta{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:9px}
+.cm-search-result-type{display:inline-flex;align-items:center;border-radius:999px;background:#e9f7f5;color:#0b6f69;padding:4px 8px;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.cm-search-result-category{color:#667f93;font-size:12px;font-weight:750}
+.cm-search-result-card h3{margin:0 0 7px;font-size:18px;line-height:1.3;letter-spacing:-.15px}
+.cm-search-result-card h3 a{color:#153d5c;text-decoration:none}
+.cm-search-result-card h3 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.cm-search-result-card p{margin:0;color:#536d83;font-size:14px;line-height:1.52}
+.cm-search-message{grid-column:1/-1;border:1px solid #d6e4e9;border-radius:15px;background:#f8fbfc;padding:17px 18px;color:#3f5f76}
+.cm-search-message strong{display:block;margin-bottom:4px;color:#183c5a;font-size:16px}
+.cm-search-message p{margin:5px 0 0}
+.cm-search-message a{font-weight:800;color:#0b6f69}
+.cm-search-error{border-color:#e2d5c9;background:#fffaf5}
+.cm-search-privacy-note{display:flex;align-items:flex-start;gap:9px;margin:17px 0 0;color:#5c7488;font-size:13px;line-height:1.5}
+.cm-search-privacy-note svg{flex:0 0 auto;width:18px;height:18px;margin-top:1px;fill:none;stroke:#0e827a;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cm-search-fallback{margin:14px 0 0;color:#526c81;font-size:14px}
+.cm-search-fallback a{font-weight:800;color:#0b6f69}
+@media(max-width:760px){
+  .cm-search-widget,.cm-search-widget[data-search-variant="page"]{padding:20px 16px;border-radius:18px}
+  .cm-search-heading{display:block;margin-bottom:15px}
+  .cm-search-control{grid-template-columns:1fr}
+  .cm-search-submit{min-height:50px;width:100%}
+  .cm-search-results{grid-template-columns:1fr}
+  .cm-search-result-card{padding:16px}
+  .cm-search-page-section{padding-bottom:54px}
+  .search-discovery-section{padding-bottom:22px}
+}
+@media(max-width:390px){
+  .cm-search-input{font-size:15px;padding-left:45px}
+  .cm-search-suggestion{font-size:12.5px;padding:7px 10px}
+  .cm-search-heading h2{font-size:23px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cm-search-input,.cm-search-submit{transition:none}
+  .cm-search-submit:hover{transform:none}
+}
