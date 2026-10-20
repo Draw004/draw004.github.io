@@ -177,7 +177,6 @@
         "budget calculator",
         "cash flow planner",
         "household budget",
-        "how to make a budget",
         "monthly budget planner"
       ],
       "priority": 100
@@ -865,6 +864,53 @@
       "priority": 65
     },
     {
+      "url": "/how-to-make-a-budget.html",
+      "title": "How to Make a Budget That Works",
+      "description": "Build a practical budget from reliable income, essential and flexible spending, irregular bills, debt, savings, goals and a free-cash buffer.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "budget",
+        "cash flow",
+        "emergency savings",
+        "how to make a budget",
+        "How to make a budget that fits your real life",
+        "irregular bills",
+        "sinking fund"
+      ],
+      "aliases": [
+        "budget for beginners",
+        "household budget guide",
+        "how to budget",
+        "make a budget",
+        "monthly budget"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/index-funds-explained.html",
+      "title": "Index Funds Explained: How Passive Investing Works",
+      "description": "Learn how index funds track a market index, how weighting and concentration work, and what fees, tracking difference and passive-investing risks mean.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "index funds explained",
+        "market index",
+        "passive investing",
+        "tracking difference",
+        "tracking error",
+        "What is an index fund, and what does it actually track?"
+      ],
+      "aliases": [
+        "how index funds work",
+        "index fund explained",
+        "index mutual fund",
+        "passive fund",
+        "what is an index fund"
+      ],
+      "priority": 84
+    },
+    {
       "url": "/inflation-and-retirement-planning.html",
       "title": "Inflation and Retirement Planning",
       "description": "See how inflation can change retirement expenses, future spending and the retirement savings target over long planning horizons.",
@@ -975,6 +1021,30 @@
       ],
       "aliases": [],
       "priority": 65
+    },
+    {
+      "url": "/investing-for-beginners.html",
+      "title": "Investing for Beginners: A Simple Starting Guide",
+      "description": "Understand goals, time horizon, liquidity, risk, diversification, stocks, bonds, funds, fees and recurring contributions before choosing a product.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "diversification",
+        "fees",
+        "investing for beginners",
+        "Investing for beginners: understand the basics before choosing a product",
+        "investment basics",
+        "risk capacity",
+        "risk tolerance"
+      ],
+      "aliases": [
+        "beginner investing guide",
+        "how to start investing",
+        "investing basics",
+        "investment guide for beginners",
+        "start investing"
+      ],
+      "priority": 84
     },
     {
       "url": "/investment-time-to-target.html",
@@ -2268,6 +2338,30 @@
       ],
       "aliases": [],
       "priority": 65
+    },
+    {
+      "url": "/what-is-an-etf.html",
+      "title": "What Is an ETF? Exchange-Traded Funds Explained",
+      "description": "Understand what an ETF holds, how it trades, its costs, diversification and concentration risks, and how it differs from a share or mutual fund.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "ETF costs",
+        "ETF risk",
+        "ETF vs mutual fund",
+        "exchange traded fund",
+        "what is an etf",
+        "What is an ETF, and how does it work?"
+      ],
+      "aliases": [
+        "etf",
+        "etf basics",
+        "etf explained",
+        "etf meaning",
+        "exchange-traded fund",
+        "how etfs work"
+      ],
+      "priority": 84
     },
     {
       "url": "/what-is-swp-systematic-withdrawal-plan.html",

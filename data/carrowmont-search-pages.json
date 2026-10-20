@@ -177,7 +177,6 @@
         "budget calculator",
         "monthly budget planner",
         "cash flow planner",
-        "how to make a budget",
         "household budget"
       ],
       "priority": 100
@@ -2347,6 +2346,101 @@
         "every dollar budget"
       ],
       "priority": 65
+    },
+    {
+      "url": "/how-to-make-a-budget.html",
+      "title": "How to Make a Budget That Works",
+      "description": "Build a practical budget from reliable income, essential and flexible spending, irregular bills, debt, savings, goals and a free-cash buffer.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "how to make a budget",
+        "How to make a budget that fits your real life",
+        "budget",
+        "cash flow",
+        "irregular bills",
+        "sinking fund",
+        "emergency savings"
+      ],
+      "aliases": [
+        "make a budget",
+        "how to budget",
+        "budget for beginners",
+        "monthly budget",
+        "household budget guide"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/investing-for-beginners.html",
+      "title": "Investing for Beginners: A Simple Starting Guide",
+      "description": "Understand goals, time horizon, liquidity, risk, diversification, stocks, bonds, funds, fees and recurring contributions before choosing a product.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "investing for beginners",
+        "Investing for beginners: understand the basics before choosing a product",
+        "investment basics",
+        "risk tolerance",
+        "risk capacity",
+        "diversification",
+        "fees"
+      ],
+      "aliases": [
+        "how to start investing",
+        "start investing",
+        "beginner investing guide",
+        "investing basics",
+        "investment guide for beginners"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/what-is-an-etf.html",
+      "title": "What Is an ETF? Exchange-Traded Funds Explained",
+      "description": "Understand what an ETF holds, how it trades, its costs, diversification and concentration risks, and how it differs from a share or mutual fund.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "what is an etf",
+        "What is an ETF, and how does it work?",
+        "exchange traded fund",
+        "ETF costs",
+        "ETF risk",
+        "ETF vs mutual fund"
+      ],
+      "aliases": [
+        "etf explained",
+        "exchange-traded fund",
+        "etf basics",
+        "how etfs work",
+        "etf meaning",
+        "etf"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/index-funds-explained.html",
+      "title": "Index Funds Explained: How Passive Investing Works",
+      "description": "Learn how index funds track a market index, how weighting and concentration work, and what fees, tracking difference and passive-investing risks mean.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "index funds explained",
+        "What is an index fund, and what does it actually track?",
+        "passive investing",
+        "tracking difference",
+        "tracking error",
+        "market index"
+      ],
+      "aliases": [
+        "what is an index fund",
+        "index fund explained",
+        "passive fund",
+        "index mutual fund",
+        "how index funds work"
+      ],
+      "priority": 84
     }
   ]
 }
