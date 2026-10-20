@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-20",
+  "groups": [
+    {
+      "id": "regular-investing",
+      "terms": ["sip", "systematic investment plan", "recurring investment", "regular investment", "monthly investment"],
+      "locale_terms": {
+        "IN": ["sip"],
+        "US": ["recurring investment"],
+        "CA": ["recurring investment"],
+        "GB": ["regular investment"],
+        "IE": ["regular investment"],
+        "AU": ["regular investment"],
+        "NZ": ["regular investment"],
+        "OTHER": ["recurring investment", "regular investment"]
+      }
+    },
+    {
+      "id": "loan-payment",
+      "terms": ["emi", "loan payment", "loan repayment", "monthly instalment", "monthly installment"],
+      "locale_terms": {
+        "IN": ["emi", "monthly instalment"],
+        "US": ["monthly payment", "installment"],
+        "CA": ["monthly payment", "instalment"],
+        "GB": ["repayment", "instalment"],
+        "IE": ["repayment", "instalment"],
+        "AU": ["repayment", "instalment"],
+        "NZ": ["repayment", "instalment"],
+        "OTHER": ["loan payment", "repayment"]
+      }
+    },
+    {
+      "id": "housing-loan",
+      "terms": ["home loan", "mortgage", "housing loan"],
+      "locale_terms": {
+        "IN": ["home loan", "housing loan"],
+        "US": ["mortgage"],
+        "CA": ["mortgage"],
+        "GB": ["mortgage"],
+        "IE": ["mortgage"],
+        "AU": ["home loan"],
+        "NZ": ["home loan"],
+        "OTHER": ["mortgage", "home loan"]
+      }
+    },
+    {
+      "id": "home-upfront-money",
+      "terms": ["deposit", "down payment", "home deposit"],
+      "locale_terms": {
+        "IN": ["down payment"],
+        "US": ["down payment"],
+        "CA": ["down payment"],
+        "GB": ["deposit"],
+        "IE": ["deposit"],
+        "AU": ["deposit"],
+        "NZ": ["deposit"],
+        "OTHER": ["deposit", "down payment"]
+      }
+    },
+    {
+      "id": "refinance",
+      "terms": ["refinance", "remortgage", "balance transfer", "loan transfer"],
+      "locale_terms": {
+        "IN": ["balance transfer"],
+        "US": ["refinance"],
+        "CA": ["refinance"],
+        "GB": ["remortgage"],
+        "IE": ["remortgage"],
+        "AU": ["refinance"],
+        "NZ": ["refinance"],
+        "OTHER": ["refinance", "transfer"]
+      }
+    },
+    {
+      "id": "early-payoff",
+      "terms": ["early payoff", "prepayment", "overpayment", "extra repayment", "part prepayment"],
+      "locale_terms": {
+        "IN": ["foreclosure", "pre-closure", "part prepayment", "extra emi"],
+        "US": ["early payoff", "extra principal"],
+        "CA": ["prepayment"],
+        "GB": ["overpayment", "early repayment"],
+        "IE": ["overpayment", "early repayment"],
+        "AU": ["extra repayment"],
+        "NZ": ["extra repayment"],
+        "OTHER": ["prepayment", "early payoff"]
+      }
+    },
+    {
+      "id": "retirement-withdrawal",
+      "terms": ["swp", "systematic withdrawal plan", "retirement withdrawal", "drawdown", "portfolio withdrawal"],
+      "locale_terms": {
+        "IN": ["swp", "systematic withdrawal plan"],
+        "GB": ["drawdown"],
+        "IE": ["drawdown"],
+        "US": ["retirement withdrawal"],
+        "CA": ["retirement withdrawal"],
+        "AU": ["retirement withdrawal"],
+        "NZ": ["retirement withdrawal"],
+        "OTHER": ["withdrawal", "drawdown"]
+      }
+    },
+    {
+      "id": "retirement-savings",
+      "terms": ["corpus", "retirement corpus", "retirement savings", "retirement fund", "retirement portfolio"],
+      "locale_terms": {
+        "IN": ["retirement corpus", "corpus"],
+        "OTHER": ["retirement savings", "retirement fund"]
+      }
+    },
+    {
+      "id": "credit-card-debt",
+      "terms": ["credit card debt", "card balance", "revolving debt", "credit card balance"]
+    },
+    {
+      "id": "apr",
+      "terms": ["apr", "annual percentage rate", "borrowing cost", "comparison rate"]
+    },
+    {
+      "id": "etf",
+      "terms": ["etf", "exchange traded fund", "exchange-traded fund"]
+    },
+    {
+      "id": "index-fund",
+      "terms": ["index fund", "passive fund", "market tracking fund", "market-tracking fund"]
+    },
+    {
+      "id": "financial-independence",
+      "terms": ["financial independence", "fire", "financial freedom", "fi number"]
+    },
+    {
+      "id": "budgeting",
+      "terms": ["budget", "budgeting", "spending plan", "monthly budget", "household budget"]
+    }
+  ]
+}

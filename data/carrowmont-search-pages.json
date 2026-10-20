@@ -1,0 +1,2352 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-20",
+  "entries": [
+    {
+      "url": "/",
+      "title": "Carrowmont | Financial Planning, Tools & Learning",
+      "description": "Carrowmont offers practical financial planning tools for budgeting, cash flow, investing, retirement, inflation and major life goals.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "Understand your money. Plan your future.",
+        "financial",
+        "planning",
+        "tools",
+        "learning"
+      ],
+      "aliases": [
+        "financial planning website",
+        "money tools and guides",
+        "Carrowmont"
+      ],
+      "priority": 85
+    },
+    {
+      "url": "/10000-sip-returns.html",
+      "title": "Monthly Investment Growth Examples",
+      "description": "See how a regular monthly investment may grow over 10, 15, 20 and 25 years under different return assumptions.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "10000 sip returns",
+        "What could a regular monthly investment grow to over time?",
+        "monthly",
+        "investment",
+        "growth",
+        "examples",
+        "10000",
+        "sip",
+        "returns"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/4-percent-rule-retirement.html",
+      "title": "The 4% Rule in Retirement: Meaning and Limits",
+      "description": "Understand the 4% retirement withdrawal rule, its 25x spending shortcut, historical context and why it is not a guaranteed safe rate for every plan.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "4 percent rule retirement",
+        "What is the 4% rule in retirement, and what are its limits?",
+        "rule",
+        "retirement",
+        "meaning",
+        "limits",
+        "percent"
+      ],
+      "aliases": [
+        "what is the 4 percent rule",
+        "25x retirement rule"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/4-percent-rule-stress-test.html",
+      "title": "4% Rule Stress Test | Retirement Withdrawal Risk",
+      "description": "Test how inflation, retirement length and weak early returns can affect a 4% withdrawal plan using transparent deterministic scenarios.",
+      "type": "tool",
+      "category": "Retirement",
+      "keywords": [
+        "4 percent rule stress test",
+        "Stress-test the 4% rule against inflation, long retirements and weak early returns",
+        "rule",
+        "stress",
+        "test",
+        "retirement",
+        "withdrawal",
+        "risk",
+        "percent"
+      ],
+      "aliases": [
+        "4 percent rule calculator",
+        "retirement withdrawal stress test",
+        "safe withdrawal rate"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/50-30-20-budget-rule.html",
+      "title": "50/30/20 Budget Rule: How It Works",
+      "description": "Learn how the 50/30/20 budget rule divides take-home income among needs, wants and savings, plus when a different split may fit better.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "50 30 20 budget rule",
+        "What is the 50/30/20 budget rule, and when should you adjust it?",
+        "budget",
+        "rule",
+        "works"
+      ],
+      "aliases": [
+        "50 30 20 rule",
+        "budget percentages"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/about.html",
+      "title": "About",
+      "description": "Learn about Carrowmont and its approach to transparent calculations, practical financial planning tools and clear financial education.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "about",
+        "Better financial decisions start with understanding the numbers."
+      ],
+      "aliases": [
+        "about Carrowmont",
+        "who is Carrowmont"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/asset-allocation-explained.html",
+      "title": "What Is Asset Allocation? How It Works",
+      "description": "Asset allocation is how a portfolio is divided among stocks, bonds, cash and other assets. Learn how goals, time horizon and risk tolerance shape the mix.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "asset allocation explained",
+        "What is asset allocation, and why does it matter?",
+        "asset",
+        "allocation",
+        "works"
+      ],
+      "aliases": [
+        "what is asset allocation",
+        "portfolio allocation"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/biweekly-fortnightly-mortgage-payments.html",
+      "title": "Biweekly vs Monthly Mortgage Payments",
+      "description": "Understand biweekly, fortnightly and twice-monthly mortgage schedules, why 26 half-payments equal 13 monthly payments, and what lenders may do differently.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "biweekly fortnightly mortgage payments",
+        "Biweekly or fortnightly mortgage payments: where do the savings actually come from?",
+        "biweekly",
+        "monthly",
+        "mortgage",
+        "payments",
+        "fortnightly"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/budget-cash-flow-planner/",
+      "title": "Budget Calculator & Monthly Cash Flow Planner",
+      "description": "Build a monthly budget, compare income and expenses, plan irregular bills and pay cycles, and see the cash flow left for savings, debt and goals.",
+      "type": "tool",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "budget cash flow planner",
+        "See what comes in, what goes out, and what is actually left.",
+        "budget",
+        "monthly",
+        "cash",
+        "flow"
+      ],
+      "aliases": [
+        "budget calculator",
+        "monthly budget planner",
+        "cash flow planner",
+        "how to make a budget",
+        "household budget"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
+      "title": "Debt Payoff Calculator | Compare Snowball vs Avalanche",
+      "description": "See how long it could take to clear your debts. Compare paying the smallest debt first with paying the highest-interest debt first, and test an extra monthly payment.",
+      "type": "tool",
+      "category": "Debt & Credit",
+      "keywords": [
+        "budget cash flow planner debt payoff calculator",
+        "See which debts disappear first — and when you could be debt-free.",
+        "debt",
+        "payoff",
+        "compare",
+        "snowball",
+        "avalanche",
+        "budget",
+        "cash",
+        "flow"
+      ],
+      "aliases": [
+        "debt payoff calculator",
+        "debt snowball calculator",
+        "debt avalanche calculator",
+        "pay off debt"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/budgeting-by-pay-frequency.html",
+      "title": "Budgeting by Pay Frequency: Weekly to Monthly",
+      "description": "Understand how pay frequency affects budgeting, monthly normalization, extra-payday months and the timing of bills and savings.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "budgeting by pay frequency",
+        "How do weekly, biweekly, fortnightly and monthly pay cycles change budgeting?",
+        "budgeting",
+        "pay",
+        "frequency",
+        "weekly",
+        "monthly"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/budgeting-with-irregular-income.html",
+      "title": "How to Budget With Irregular Income",
+      "description": "Build a budget for irregular income using a conservative baseline, essential-cost floor, buffers and planned treatment of stronger months.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "budgeting with irregular income",
+        "How do you budget when your income changes every month?",
+        "budget",
+        "irregular",
+        "income",
+        "budgeting"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/cash-flow-vs-income.html",
+      "title": "Cash Flow vs Income: Why the Difference Matters",
+      "description": "Understand income vs cash flow, how spending and timing affect monthly surplus, and why higher earnings do not automatically create more saving.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "cash flow vs income",
+        "Cash flow vs income: why earning more does not always mean saving more",
+        "cash",
+        "flow",
+        "income",
+        "why",
+        "difference",
+        "matters"
+      ],
+      "aliases": [
+        "cash flow vs income",
+        "income is not cash flow"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/coast-fire-explained.html",
+      "title": "Coast FIRE Explained",
+      "description": "Learn the Coast FIRE concept, how compounding can reduce the need for future retirement contributions, and why current living costs still need funding.",
+      "type": "guide",
+      "category": "Financial Independence",
+      "keywords": [
+        "coast fire explained",
+        "What is Coast FIRE and how is it different from full financial independence?",
+        "coast",
+        "fire"
+      ],
+      "aliases": [
+        "what is coast fire",
+        "coast financial independence"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/compound-interest-calculator/",
+      "title": "Compound Interest Calculator",
+      "description": "Calculate compound growth from a starting amount, annual rate and compounding frequency. Add optional regular contributions and compare growth over time.",
+      "type": "tool",
+      "category": "Investing",
+      "keywords": [
+        "compound interest calculator",
+        "See how compounding can change your money over time.",
+        "compound",
+        "interest"
+      ],
+      "aliases": [
+        "compound interest calculator",
+        "compounding calculator",
+        "investment growth calculator",
+        "savings growth calculator"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/compound-interest-monthly-contributions.html",
+      "title": "Compound Interest With Monthly Contributions",
+      "description": "Understand compound interest with monthly contributions, why time matters and how to interpret future-value calculator results.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "compound interest monthly contributions",
+        "How does compound interest work with monthly contributions?",
+        "compound",
+        "interest",
+        "monthly",
+        "contributions"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/compounding-and-time.html",
+      "title": "Compounding & time",
+      "description": "Understand how compounding works for savings, investment assumptions and inflation, and why long time horizons make small rate differences matter more.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "compounding and time",
+        "Compounding makes time an important part of every long-term projection.",
+        "compounding",
+        "time"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/contact.html",
+      "title": "Contact",
+      "description": "Contact Carrowmont for general questions, feedback, corrections, technical issues or business enquiries.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "contact",
+        "Questions, feedback or ideas?"
+      ],
+      "aliases": [
+        "contact Carrowmont",
+        "feedback",
+        "corrections"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/debt-snowball-vs-avalanche.html",
+      "title": "Debt Snowball vs Avalanche: Compare Methods",
+      "description": "Compare debt snowball and avalanche using the same monthly payment. See how payoff order can change interest, first payoff timing and your debt-free date.",
+      "type": "guide",
+      "category": "Debt & Credit",
+      "keywords": [
+        "debt snowball vs avalanche",
+        "Debt snowball vs avalanche: which debt gets paid first?",
+        "debt",
+        "snowball",
+        "avalanche",
+        "compare",
+        "methods"
+      ],
+      "aliases": [
+        "debt snowball",
+        "debt avalanche",
+        "smallest balance first",
+        "highest interest first"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/disclaimer.html",
+      "title": "Disclaimer",
+      "description": "Read Carrowmont’s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "disclaimer",
+        "Financial information should be understood in context."
+      ],
+      "aliases": [
+        "financial disclaimer",
+        "educational information"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/diversification-across-asset-classes.html",
+      "title": "Diversification Across Asset Classes",
+      "description": "Learn diversification across and within asset classes, concentration risk, correlation and why diversification cannot prevent every investment loss.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "diversification across asset classes",
+        "What does diversification across asset classes actually mean?",
+        "diversification",
+        "across",
+        "asset",
+        "classes"
+      ],
+      "aliases": [
+        "what is diversification",
+        "diversified portfolio"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/editorial-policy.html",
+      "title": "Editorial & Review Policy",
+      "description": "Read Carrowmont's editorial and review standards for financial education, calculators, sources, quality checks, corrections and professional-review labels.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "editorial policy",
+        "Clear standards for how Carrowmont publishes financial information.",
+        "editorial",
+        "review",
+        "policy"
+      ],
+      "aliases": [
+        "editorial policy",
+        "review policy",
+        "content standards"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/emergency-fund-how-much.html",
+      "title": "How Much Emergency Fund Should You Have?",
+      "description": "Estimate an emergency-fund range from essential monthly expenses, income stability and the risks your household wants to absorb.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "emergency fund how much",
+        "much",
+        "emergency",
+        "fund",
+        "should",
+        "you",
+        "have"
+      ],
+      "aliases": [
+        "how much emergency fund",
+        "emergency savings amount",
+        "rainy day fund"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/emergency-savings.html",
+      "title": "Emergency savings & liquidity",
+      "description": "Learn why emergency savings differs from long-term investing and which personal factors can influence how much accessible liquidity someone keeps.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "emergency savings",
+        "Emergency savings has a different job from long-term investing.",
+        "emergency",
+        "savings",
+        "liquidity"
+      ],
+      "aliases": [
+        "emergency fund",
+        "emergency savings",
+        "liquid savings"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/extra-mortgage-payments-early-vs-late.html",
+      "title": "Extra Mortgage Payments: Early vs Late",
+      "description": "See why the same mortgage or home-loan prepayment can save more interest when made earlier, with a controlled 25-year comparison using equal extra cash.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "extra mortgage payments early vs late",
+        "Why extra mortgage payments made earlier can save more",
+        "extra",
+        "mortgage",
+        "payments",
+        "early",
+        "late"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/financial-independence-number-by-spending.html",
+      "title": "Financial Independence Number by Spending",
+      "description": "Estimate a first-pass financial independence number from monthly or annual portfolio-funded spending, compare withdrawal rates and see inflation effects.",
+      "type": "tool",
+      "category": "Financial Independence",
+      "keywords": [
+        "financial independence number by spending",
+        "See how spending changes your financial independence number",
+        "financial",
+        "independence",
+        "number",
+        "spending"
+      ],
+      "aliases": [
+        "fi number calculator",
+        "fire number",
+        "financial independence number",
+        "25x spending"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/financial-independence-number.html",
+      "title": "What is your financial independence number?",
+      "description": "Learn how to estimate a financial independence number from annual spending, withdrawal assumptions, existing assets and future contributions.",
+      "type": "guide",
+      "category": "Financial Independence",
+      "keywords": [
+        "financial independence number",
+        "your",
+        "financial",
+        "independence",
+        "number"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/financial-independence/",
+      "title": "Financial Independence & FIRE Calculator",
+      "description": "Estimate your financial independence or FIRE target, model when you may reach it, and compare spending, savings, inflation and investment assumptions.",
+      "type": "tool",
+      "category": "Financial Independence",
+      "keywords": [
+        "financial independence",
+        "See how spending and saving may shape your path to financial independence.",
+        "financial",
+        "independence",
+        "fire"
+      ],
+      "aliases": [
+        "fire calculator",
+        "financial independence calculator",
+        "fi planner",
+        "financial freedom calculator"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/future-cost-of-expenses.html",
+      "title": "Future Cost of Monthly Expenses",
+      "description": "Estimate how today’s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "future cost of expenses",
+        "How much will today’s monthly expenses cost in 10, 20 and 30 years?",
+        "future",
+        "cost",
+        "monthly",
+        "expenses"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/goal-planner/",
+      "title": "Savings Goal Calculator & Financial Goal Planner",
+      "description": "Plan education, a home, wedding, travel, vehicle, emergency savings or another future goal. Estimate future cost, funding gap and recurring savings needed.",
+      "type": "tool",
+      "category": "Goals & Saving",
+      "keywords": [
+        "goal planner",
+        "Turn a future goal into a clear savings plan.",
+        "savings",
+        "goal",
+        "financial"
+      ],
+      "aliases": [
+        "savings goal calculator",
+        "financial goal planner",
+        "goal savings planner"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/gold-and-inflation.html",
+      "title": "Does gold protect against inflation?",
+      "description": "Understand why gold is often called an inflation hedge, why short-term results can differ, and how to think about purchasing power without assuming a guarantee.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "gold and inflation",
+        "does",
+        "gold",
+        "protect",
+        "against",
+        "inflation"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/gold-as-an-investment.html",
+      "title": "Gold as an Investment: Risks and Role",
+      "description": "Understand gold as an asset class, including diversification, liquidity, price risk, lack of cash flow and the main ways investors gain exposure.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "gold as an investment",
+        "Gold as an investment: what role can it play in a financial plan?",
+        "gold",
+        "investment",
+        "risks",
+        "role"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/gold-macro-stress-explorer.html",
+      "title": "Gold Under Macro Stress Explorer",
+      "description": "Explore how real yields, the U.S. dollar, inflation, central-bank demand, fiscal stress and geopolitical or financial stress can create competing forces for gold.",
+      "type": "tool",
+      "category": "Markets & Macro",
+      "keywords": [
+        "gold macro stress explorer",
+        "See the competing macro forces shaping gold",
+        "gold",
+        "under",
+        "macro",
+        "stress",
+        "explorer"
+      ],
+      "aliases": [
+        "gold macro conditions",
+        "what moves gold",
+        "gold stress explorer"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/gold-vs-stocks.html",
+      "title": "Gold vs Stocks: Risks and Return Drivers",
+      "description": "Compare gold and stocks across cash flow, growth, volatility, diversification, liquidity and their different roles in a long-term portfolio.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "gold vs stocks",
+        "Gold vs stocks: how are the risks and return drivers different?",
+        "gold",
+        "stocks",
+        "risks",
+        "return",
+        "drivers"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/home-affordability-calculator.html",
+      "title": "Home Affordability Calculator",
+      "description": "Estimate a home price and mortgage or home-loan amount that may fit your household budget, deposit, monthly costs and chosen cash-flow buffer.",
+      "type": "tool",
+      "category": "Home & Loans",
+      "keywords": [
+        "home affordability calculator",
+        "See what home price may fit your budget without squeezing everything else.",
+        "home",
+        "affordability"
+      ],
+      "aliases": [
+        "how much home can i afford",
+        "home affordability calculator",
+        "mortgage affordability calculator",
+        "home loan affordability",
+        "borrowing power calculator"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "home loan affordability",
+          "emi affordability"
+        ],
+        "US": [
+          "mortgage affordability",
+          "down payment"
+        ],
+        "CA": [
+          "mortgage affordability",
+          "down payment"
+        ],
+        "GB": [
+          "how much can i borrow",
+          "mortgage affordability",
+          "deposit"
+        ],
+        "IE": [
+          "how much can i borrow",
+          "mortgage affordability",
+          "deposit"
+        ],
+        "AU": [
+          "borrowing power",
+          "home loan affordability",
+          "deposit"
+        ],
+        "NZ": [
+          "borrowing power",
+          "home loan affordability",
+          "deposit"
+        ],
+        "OTHER": [
+          "home affordability"
+        ]
+      },
+      "priority": 100
+    },
+    {
+      "url": "/how-deposit-and-interest-rates-affect-home-affordability.html",
+      "title": "Deposit and Interest Rates: Home Affordability",
+      "description": "See how a larger deposit, higher or lower interest rate, loan term and ownership costs can change the home price that fits the same household budget.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "how deposit and interest rates affect home affordability",
+        "How do deposit and interest rates affect home affordability?",
+        "deposit",
+        "interest",
+        "rates",
+        "home",
+        "affordability",
+        "affect"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/how-is-loan-emi-calculated.html",
+      "title": "How Is a Loan EMI Calculated?",
+      "description": "Learn how a fixed-rate loan EMI or monthly payment is calculated, how principal and interest change over time, and what can make lender figures differ.",
+      "type": "guide",
+      "category": "Debt & Credit",
+      "keywords": [
+        "how is loan emi calculated",
+        "How is a loan EMI or monthly payment calculated?",
+        "loan",
+        "emi",
+        "calculated"
+      ],
+      "aliases": [
+        "what is emi",
+        "emi meaning",
+        "monthly loan payment formula",
+        "loan installment calculation"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/how-long-will-retirement-savings-last.html",
+      "title": "How long could your retirement savings last?",
+      "description": "Understand what determines how long retirement savings may last and why withdrawal, inflation and retirement length should be tested together.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "how long will retirement savings last",
+        "long",
+        "could",
+        "your",
+        "retirement",
+        "savings",
+        "last",
+        "will"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/how-much-home-can-i-afford.html",
+      "title": "How Much Home Can I Afford?",
+      "description": "Learn how to estimate a home price from monthly cash flow, deposit, debt, savings, ownership costs and a buffer without confusing it with lender approval.",
+      "type": "guide",
+      "category": "Financial Planning",
+      "keywords": [
+        "how much home can i afford",
+        "much",
+        "home",
+        "can",
+        "afford"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/how-much-money-do-i-need-to-retire.html",
+      "title": "How much money do you need to retire?",
+      "description": "Learn how to estimate a retirement corpus from spending, inflation, retirement income, time horizon and existing savings.",
+      "type": "guide",
+      "category": "Financial Planning",
+      "keywords": [
+        "how much money do i need to retire",
+        "much",
+        "money",
+        "you",
+        "need",
+        "retire"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/how-much-should-i-invest-each-month.html",
+      "title": "How Much Should You Invest Each Month?",
+      "description": "Learn how to work backward from a future goal to estimate the monthly investment required, including time, returns and existing savings.",
+      "type": "guide",
+      "category": "Financial Planning",
+      "keywords": [
+        "how much should i invest each month",
+        "How much should you invest each month to reach a financial goal?",
+        "much",
+        "should",
+        "you",
+        "invest",
+        "each",
+        "month"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/how-much-should-i-save-each-month.html",
+      "title": "How Much Should You Save Each Month?",
+      "description": "Learn how to choose a monthly saving amount from cash flow, emergency needs, debt and financial goals instead of relying on one universal percentage.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "how much should i save each month",
+        "much",
+        "should",
+        "you",
+        "save",
+        "each",
+        "month"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/how-oil-prices-affect-inflation.html",
+      "title": "How Do Oil Prices Affect Inflation?",
+      "description": "See how higher oil prices can move through fuel, freight and business costs into inflation, and why a short-lived oil spike may not create lasting inflation.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "how oil prices affect inflation",
+        "oil",
+        "prices",
+        "affect",
+        "inflation"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/inflation-and-retirement-planning.html",
+      "title": "Inflation and Retirement Planning",
+      "description": "See how inflation can change retirement expenses, future spending and the retirement savings target over long planning horizons.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "inflation and retirement planning",
+        "How does inflation change the retirement amount you need?",
+        "inflation",
+        "retirement",
+        "planning"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/inflation-calculator/",
+      "title": "Inflation & Purchasing Power Calculator",
+      "description": "See how inflation changes future costs and purchasing power over time. Compare scenarios across currencies using the inflation rate and horizon you choose.",
+      "type": "tool",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "inflation calculator",
+        "See what inflation can do to your money.",
+        "inflation",
+        "purchasing",
+        "power"
+      ],
+      "aliases": [
+        "inflation calculator",
+        "purchasing power calculator",
+        "future cost calculator",
+        "value of money"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/inflation-calculator/methodology.html",
+      "title": "Inflation Calculator Methodology",
+      "description": "Understand the calculation methodology used by the Carrowmont Inflation Calculator.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "inflation calculator methodology",
+        "Simple mathematics. Explicit assumptions.",
+        "inflation",
+        "methodology"
+      ],
+      "aliases": [],
+      "priority": 40
+    },
+    {
+      "url": "/inflation-purchasing-power-savings.html",
+      "title": "How Inflation Reduces Purchasing Power",
+      "description": "See how inflation can reduce the purchasing power of a fixed savings balance over 10, 20 and 30 years, with simple examples and planning context.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "inflation purchasing power savings",
+        "How much purchasing power can inflation take from your savings?",
+        "inflation",
+        "reduces",
+        "purchasing",
+        "power",
+        "savings"
+      ],
+      "aliases": [
+        "inflation on savings",
+        "real value of savings"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/inflation-purchasing-power.html",
+      "title": "Inflation & purchasing power",
+      "description": "Learn how inflation compounds, why household inflation can differ from headline inflation, and how scenarios can show changes in purchasing power.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "inflation purchasing power",
+        "Inflation changes both future prices and what money can buy.",
+        "inflation",
+        "purchasing",
+        "power"
+      ],
+      "aliases": [
+        "what is purchasing power",
+        "how inflation works"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/inflation-value-of-money-over-time.html",
+      "title": "Future Value of Money After Inflation",
+      "description": "See how inflation can change purchasing power over 10, 20 and 30 years and learn how to use inflation assumptions in financial planning.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "inflation value of money over time",
+        "What will your money be worth in 10, 20 and 30 years?",
+        "future",
+        "value",
+        "money",
+        "after",
+        "inflation",
+        "over",
+        "time"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/investment-time-to-target.html",
+      "title": "How Long to Reach an Investment Target",
+      "description": "Estimate how time to an investment target changes with monthly contributions, existing savings and return assumptions.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "investment time to target",
+        "How long could it take to reach your investment target?",
+        "long",
+        "reach",
+        "investment",
+        "target",
+        "time"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/learn.html",
+      "title": "Financial Planning Guides & Calculators",
+      "description": "Explore practical guides on retirement, investing, budgeting, inflation, financial independence, gold and real estate, with related Carrowmont calculators.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "learn",
+        "Answer the money questions people actually search for.",
+        "financial",
+        "planning",
+        "guides",
+        "calculators"
+      ],
+      "aliases": [
+        "financial education",
+        "money guides",
+        "finance guides",
+        "learn finance"
+      ],
+      "priority": 85
+    },
+    {
+      "url": "/lifestyle-inflation.html",
+      "title": "Lifestyle Inflation and Financial Progress",
+      "description": "Learn how lifestyle inflation occurs when spending rises with income, how to spot it, and how recurring expenses can slow long-term progress.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "lifestyle inflation",
+        "What is lifestyle inflation and how can it slow financial progress?",
+        "lifestyle",
+        "inflation",
+        "financial",
+        "progress"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/loan-calculator/",
+      "title": "Loan & EMI Calculator",
+      "description": "Calculate a monthly loan payment or EMI, total interest and total repayment. Explore an amortization schedule and optional extra-payment scenarios.",
+      "type": "tool",
+      "category": "Debt & Credit",
+      "keywords": [
+        "loan calculator",
+        "See what a loan could cost each month.",
+        "loan",
+        "emi"
+      ],
+      "aliases": [
+        "loan calculator",
+        "emi calculator",
+        "loan repayment calculator",
+        "monthly loan payment",
+        "amortization calculator"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "emi",
+          "monthly instalment"
+        ],
+        "US": [
+          "monthly payment",
+          "installment"
+        ],
+        "CA": [
+          "monthly payment",
+          "instalment"
+        ],
+        "GB": [
+          "loan repayment",
+          "instalment"
+        ],
+        "AU": [
+          "loan repayment",
+          "instalment"
+        ],
+        "NZ": [
+          "loan repayment",
+          "instalment"
+        ],
+        "OTHER": [
+          "loan payment"
+        ]
+      },
+      "priority": 100
+    },
+    {
+      "url": "/loan-interest-rate-vs-term.html",
+      "title": "Loan Interest Rate vs Term: What Changes?",
+      "description": "See how interest rate and loan term can change the monthly payment and total interest, and why the lowest monthly payment is not always the lowest-cost loan.",
+      "type": "guide",
+      "category": "Debt & Credit",
+      "keywords": [
+        "loan interest rate vs term",
+        "How do interest rate and loan term change what a loan costs?",
+        "loan",
+        "interest",
+        "rate",
+        "term",
+        "changes"
+      ],
+      "aliases": [
+        "loan rate vs term",
+        "interest rate vs loan term",
+        "monthly payment vs total interest"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/longevity-risk-retirement.html",
+      "title": "Longevity Risk in Retirement: Why Time Matters",
+      "description": "Learn how living longer than planned can affect retirement spending, inflation exposure and the amount a portfolio may need to support.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "longevity risk retirement",
+        "What is longevity risk and why does retirement length matter?",
+        "longevity",
+        "risk",
+        "retirement",
+        "why",
+        "time",
+        "matters"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/lump-sum-vs-monthly-investing.html",
+      "title": "Lump Sum vs Monthly Investing",
+      "description": "Compare the mathematics of investing a lump sum now with spreading the same total contribution across monthly investments.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "lump sum vs monthly investing",
+        "Lump sum vs monthly investing: how does timing change the maths?",
+        "lump",
+        "sum",
+        "monthly",
+        "investing"
+      ],
+      "aliases": [
+        "lump sum vs regular investing",
+        "invest all at once or monthly"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/market-chain-reaction-explorer.html",
+      "title": "What Happens When Markets Change?",
+      "description": "Explore how bond yields, interest rates, oil, inflation, the U.S. dollar, debt stress and geopolitical shocks can affect stocks, bonds, gold, silver, copper and the wider economy.",
+      "type": "tool",
+      "category": "Markets & Macro",
+      "keywords": [
+        "market chain reaction explorer",
+        "happens",
+        "when",
+        "markets",
+        "change",
+        "market",
+        "chain",
+        "reaction",
+        "explorer"
+      ],
+      "aliases": [
+        "what happens when markets change",
+        "market cause and effect",
+        "market chain reaction"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/methodology.html",
+      "title": "Methodology",
+      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today’s vs future money, country and currency context, and model limitations.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "methodology",
+        "Transparent assumptions. Understandable calculations."
+      ],
+      "aliases": [
+        "calculator methodology",
+        "how calculations work",
+        "assumptions"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/monthly-extra-vs-annual-lump-sum-mortgage.html",
+      "title": "Monthly Extra vs Annual Lump Sum Mortgage",
+      "description": "Compare monthly mortgage extras with one annual lump sum using the same yearly cash, and see why payment timing changes interest and payoff results.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "monthly extra vs annual lump sum mortgage",
+        "Monthly extra vs one annual lump sum: which pays off a mortgage faster?",
+        "monthly",
+        "extra",
+        "annual",
+        "lump",
+        "sum",
+        "mortgage"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/mortgage-affordability-vs-lender-approval.html",
+      "title": "Mortgage Affordability vs Lender Approval",
+      "description": "Understand why a home price that fits your household budget can differ from what a mortgage or home-loan lender is willing to approve.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage affordability vs lender approval",
+        "Mortgage affordability vs lender approval: what is the difference?",
+        "mortgage",
+        "affordability",
+        "lender",
+        "approval"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/mortgage-payoff-calculator/",
+      "title": "Mortgage Payoff & Home Loan Prepayment Calculator",
+      "description": "Estimate how extra mortgage or home-loan payments, lump-sum prepayments and an earlier payoff target may change interest, repayments and time to debt-free.",
+      "type": "tool",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage payoff calculator",
+        "See how extra payments could change your home loan or mortgage",
+        "mortgage",
+        "payoff",
+        "home",
+        "loan",
+        "prepayment"
+      ],
+      "aliases": [
+        "mortgage payoff calculator",
+        "home loan prepayment calculator",
+        "mortgage overpayment calculator",
+        "early payoff calculator",
+        "foreclosure calculator",
+        "extra repayments calculator"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "home loan prepayment",
+          "foreclosure",
+          "pre-closure",
+          "extra emi"
+        ],
+        "US": [
+          "mortgage payoff",
+          "extra principal"
+        ],
+        "CA": [
+          "mortgage prepayment"
+        ],
+        "GB": [
+          "mortgage overpayment",
+          "early repayment"
+        ],
+        "IE": [
+          "mortgage overpayment"
+        ],
+        "AU": [
+          "home loan extra repayments"
+        ],
+        "NZ": [
+          "home loan extra repayments"
+        ],
+        "OTHER": [
+          "mortgage prepayment"
+        ]
+      },
+      "priority": 100
+    },
+    {
+      "url": "/mortgage-payoff-calculator/decision-centre.html",
+      "title": "Mortgage Decision Centre - Prepay, Refinance & Rate Stress",
+      "description": "Compare the next mortgage decisions after a payoff calculation: prepay versus invest, refinance break-even and payment stress from higher rates.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "mortgage payoff calculator decision centre",
+        "What are you trying to decide?",
+        "mortgage",
+        "decision",
+        "centre",
+        "prepay",
+        "refinance",
+        "rate",
+        "stress",
+        "payoff"
+      ],
+      "aliases": [],
+      "priority": 75
+    },
+    {
+      "url": "/mortgage-payoff-calculator/prepayment-vs-investing.html",
+      "title": "Mortgage Prepayment vs Investing Calculator",
+      "description": "Compare mortgage or home-loan prepayment with investing the same extra money using equal cash flows, a common horizon and a modeled break-even investment return.",
+      "type": "tool",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage payoff calculator prepayment vs investing",
+        "Should you prepay your home loan or invest the extra money?",
+        "mortgage",
+        "prepayment",
+        "investing",
+        "payoff"
+      ],
+      "aliases": [
+        "pay mortgage or invest",
+        "prepay home loan or invest",
+        "mortgage prepayment vs investing"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/mortgage-payoff-calculator/rate-rise-stress-test.html",
+      "title": "Mortgage Rate Rise Calculator & Payment Stress Test",
+      "description": "See how much your mortgage or home-loan payment could rise if interest rates increase. Stress test future payments, monthly income share and optional household budget buffer.",
+      "type": "tool",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage payoff calculator rate rise stress test",
+        "How much would your mortgage payment rise if rates increase?",
+        "mortgage",
+        "rate",
+        "rise",
+        "payment",
+        "stress",
+        "test",
+        "payoff"
+      ],
+      "aliases": [
+        "mortgage rate rise calculator",
+        "mortgage payment stress test",
+        "interest rate shock"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/mortgage-payoff-calculator/refinance-break-even.html",
+      "title": "Mortgage Refinance Break-Even Calculator",
+      "description": "Compare a mortgage refinance, remortgage or home-loan balance transfer after fees, cashback and term changes. See same-term payment, proposed payment, break-even timing and modeled lifetime cost.",
+      "type": "tool",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage payoff calculator refinance break even",
+        "When does refinancing actually break even?",
+        "mortgage",
+        "refinance",
+        "break",
+        "even",
+        "payoff"
+      ],
+      "aliases": [
+        "mortgage refinance calculator",
+        "remortgage calculator",
+        "balance transfer calculator",
+        "refinance break even"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "balance transfer"
+        ],
+        "US": [
+          "refinance"
+        ],
+        "CA": [
+          "refinance"
+        ],
+        "GB": [
+          "remortgage"
+        ],
+        "IE": [
+          "remortgage"
+        ],
+        "AU": [
+          "refinance"
+        ],
+        "NZ": [
+          "refinance"
+        ],
+        "OTHER": [
+          "refinance"
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "url": "/mortgage-payoff-calculator/rent-vs-buy-calculator.html",
+      "title": "Rent vs Buy Calculator | Compare Renting and Buying",
+      "description": "Compare renting with buying a similar home. Model the down payment, loan, rent, buying costs, maintenance, home value, selling costs and money kept invested.",
+      "type": "tool",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage payoff calculator rent vs buy calculator",
+        "Rent vs Buy Calculator",
+        "rent",
+        "buy",
+        "compare",
+        "renting",
+        "buying",
+        "mortgage",
+        "payoff"
+      ],
+      "aliases": [
+        "rent vs buy calculator",
+        "rent or buy calculator",
+        "buying vs renting"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/mortgage-prepayment-vs-investing.html",
+      "title": "Mortgage Prepayment vs Investing: How to Compare the Trade-Off",
+      "description": "Compare mortgage or home-loan prepayment with investing the same extra money using equal cash flows, a common horizon and a modeled break-even investment return.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage prepayment vs investing",
+        "mortgage",
+        "prepayment",
+        "investing",
+        "compare",
+        "trade",
+        "off"
+      ],
+      "aliases": [
+        "pay off mortgage or invest",
+        "prepay home loan or invest"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/mortgage-rate-rise-payment-stress.html",
+      "title": "How Much Could Your Mortgage Payment Rise if Rates Increase?",
+      "description": "Learn how a higher mortgage or home-loan rate can change payments at an immediate reset or future renewal, plus how to test monthly household cash flow.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage rate rise payment stress",
+        "much",
+        "could",
+        "your",
+        "mortgage",
+        "payment",
+        "rise",
+        "rates",
+        "increase"
+      ],
+      "aliases": [
+        "what happens if mortgage rates rise",
+        "higher mortgage payment"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/mortgage-refinance-break-even.html",
+      "title": "When Does Mortgage Refinancing Break Even?",
+      "description": "Compare mortgage refinance, remortgage or balance-transfer break-even after fees, cashback and term changes, and see when a lower payment may cost more.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "mortgage refinance break even",
+        "When does refinancing or a balance transfer break even?",
+        "when",
+        "does",
+        "mortgage",
+        "refinancing",
+        "break",
+        "even",
+        "refinance"
+      ],
+      "aliases": [
+        "when does refinancing break even",
+        "remortgage break even",
+        "balance transfer break even"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/one-extra-mortgage-payment-a-year.html",
+      "title": "One Extra Mortgage Payment a Year",
+      "description": "See how one extra mortgage or home-loan payment each year can change payoff time and interest, with transparent 25-year examples and lender-rule caveats.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "one extra mortgage payment a year",
+        "One extra mortgage payment a year: how much time and interest could it save?",
+        "one",
+        "extra",
+        "mortgage",
+        "payment",
+        "year"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/pay-off-mortgage-five-years-early.html",
+      "title": "Pay Off a Mortgage 5 Years Earlier",
+      "description": "Work backward from a payoff date five years earlier, compare required mortgage payments at different rates, and understand lender limits and affordability.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "pay off mortgage five years early",
+        "How much extra do you need to pay to clear a mortgage five years earlier?",
+        "pay",
+        "off",
+        "mortgage",
+        "years",
+        "earlier",
+        "five",
+        "early"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/pay-yourself-first-budgeting.html",
+      "title": "Pay Yourself First: What It Means in a Budget",
+      "description": "Learn how pay-yourself-first budgeting prioritizes savings before discretionary spending, and how to use it without ignoring essential bills or cash buffers.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "pay yourself first budgeting",
+        "What does pay yourself first mean in a budget?",
+        "pay",
+        "yourself",
+        "first",
+        "means",
+        "budget",
+        "budgeting"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/physical-gold-vs-gold-etf.html",
+      "title": "Physical Gold vs Gold ETF",
+      "description": "Compare physical gold and gold ETFs across ownership, storage, liquidity, fees, price tracking and country-specific product rules.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "physical gold vs gold etf",
+        "Physical gold vs gold ETF: what is the difference?",
+        "physical",
+        "gold",
+        "etf"
+      ],
+      "aliases": [
+        "gold etf",
+        "physical gold vs etf",
+        "gold fund"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/planning-life-goals.html",
+      "title": "Planning for life goals",
+      "description": "Turn education, a home, travel, a career change or another future milestone into clearer assumptions about cost, timing, inflation and available resources.",
+      "type": "guide",
+      "category": "Goals & Saving",
+      "keywords": [
+        "planning life goals",
+        "A future goal becomes easier to plan when you separate the assumptions.",
+        "planning",
+        "life",
+        "goals"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/privacy.html",
+      "title": "Privacy Policy",
+      "description": "Learn how Carrowmont handles calculator information, local browser storage, country and currency preferences, email communications and future services.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "privacy",
+        "Your privacy matters.",
+        "policy"
+      ],
+      "aliases": [
+        "privacy policy",
+        "data privacy",
+        "calculator data"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/real-estate-vs-stocks.html",
+      "title": "Real Estate vs Stocks: Key Trade-Offs",
+      "description": "Compare direct real estate and stocks across liquidity, concentration, leverage, income, maintenance, diversification and pricing.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "real estate vs stocks",
+        "Real estate vs stocks: how are the investment trade-offs different?",
+        "real",
+        "estate",
+        "stocks",
+        "key",
+        "trade",
+        "offs"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/reit-vs-direct-property.html",
+      "title": "REIT vs Direct Property: Key Differences",
+      "description": "Compare a REIT with directly owning property across liquidity, control, diversification, capital requirements, income and operating responsibility.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "reit vs direct property",
+        "REIT vs direct property: what are the key differences?",
+        "reit",
+        "direct",
+        "property",
+        "key",
+        "differences"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/rent-vs-buy-home.html",
+      "title": "Rent vs Buy: Financial Trade-Offs",
+      "description": "Compare renting and buying a home using time horizon, transaction costs, maintenance, mortgage costs, flexibility and alternative uses of the down payment.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "rent vs buy home",
+        "Rent vs buy: how should you compare the financial trade-offs?",
+        "rent",
+        "buy",
+        "financial",
+        "trade",
+        "offs",
+        "home"
+      ],
+      "aliases": [
+        "should i rent or buy",
+        "renting vs buying a home"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/rental-yield-explained.html",
+      "title": "Rental Yield: Meaning and Calculation",
+      "description": "Learn gross and net rental yield, the costs that can reduce property income, and why yield should be separated from expected property-price growth.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "rental yield explained",
+        "What is rental yield, and how do you calculate it?",
+        "rental",
+        "yield",
+        "meaning",
+        "calculation"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/retirement-calculator/",
+      "title": "Retirement Calculator & Retirement Planner",
+      "description": "Use Carrowmont’s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
+      "type": "tool",
+      "category": "Retirement",
+      "keywords": [
+        "retirement calculator",
+        "Plan retirement around the life you'll actually live.",
+        "retirement"
+      ],
+      "aliases": [
+        "retirement calculator",
+        "retirement planner",
+        "retirement corpus calculator",
+        "how much do i need to retire"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/retirement-calculator/faq.html",
+      "title": "FAQ | Carrowmont Retirement Planner",
+      "description": "Answers to common questions about retirement expenses, inflation, pension income, savings, taxes, saved plans and Carrowmont Retirement Planner calculation assumptions.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "retirement calculator faq",
+        "Questions worth asking before acting on a retirement estimate.",
+        "faq",
+        "retirement"
+      ],
+      "aliases": [],
+      "priority": 40
+    },
+    {
+      "url": "/retirement-calculator/how-it-works.html",
+      "title": "How the Carrowmont Retirement Planner Works | Retirement Planning Workflow",
+      "description": "Understand the Carrowmont Retirement Planner planning workflow, from changing expenses and retirement income to corpus calculation and funding-gap analysis.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "retirement calculator how it works",
+        "From today's household budget to a retirement cash-flow plan.",
+        "retirement",
+        "works",
+        "planning",
+        "workflow"
+      ],
+      "aliases": [],
+      "priority": 40
+    },
+    {
+      "url": "/retirement-calculator/methodology.html",
+      "title": "Methodology | How Carrowmont Retirement Planner Calculates Retirement Corpus",
+      "description": "Read the Carrowmont Retirement Planner methodology for changing expenses, inflation, retirement income, future goals, corpus present value and funding-gap calculations.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "retirement calculator methodology",
+        "Understand the calculation before you trust the number.",
+        "methodology",
+        "retirement",
+        "calculates",
+        "corpus"
+      ],
+      "aliases": [],
+      "priority": 40
+    },
+    {
+      "url": "/retirement-calculator/planner.html",
+      "title": "Detailed Retirement Planner",
+      "description": "Build a detailed, expense-aware retirement plan using changing expenses, retirement income, inflation, future goals, savings and investment assumptions.",
+      "type": "tool",
+      "category": "Retirement",
+      "keywords": [
+        "retirement calculator planner",
+        "Your retirement plan should reflect how your expenses actually change.",
+        "detailed",
+        "retirement"
+      ],
+      "aliases": [
+        "detailed retirement planner",
+        "expense aware retirement plan"
+      ],
+      "priority": 100
+    },
+    {
+      "url": "/retirement-calculator/withdrawal-calculator.html",
+      "title": "SWP, Retirement Withdrawal & Drawdown Calculator",
+      "description": "Plan a Systematic Withdrawal Plan (SWP), retirement withdrawals or drawdown. See how long savings may last or estimate a starting withdrawal.",
+      "type": "tool",
+      "category": "Retirement",
+      "keywords": [
+        "retirement calculator withdrawal calculator",
+        "Plan regular withdrawals or an SWP and see how long your retirement savings may last.",
+        "swp",
+        "retirement",
+        "withdrawal",
+        "drawdown"
+      ],
+      "aliases": [
+        "swp calculator",
+        "systematic withdrawal plan",
+        "retirement withdrawal calculator",
+        "retirement drawdown calculator",
+        "how long will savings last"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "swp",
+          "systematic withdrawal plan",
+          "retirement corpus"
+        ],
+        "GB": [
+          "drawdown"
+        ],
+        "IE": [
+          "drawdown"
+        ],
+        "US": [
+          "retirement withdrawal"
+        ],
+        "CA": [
+          "retirement withdrawal"
+        ],
+        "AU": [
+          "retirement withdrawal"
+        ],
+        "NZ": [
+          "retirement withdrawal"
+        ],
+        "OTHER": [
+          "withdrawal",
+          "drawdown"
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "url": "/retirement-expenses.html",
+      "title": "How retirement expenses may change",
+      "description": "Learn why retirement spending is better modeled expense by expense, including costs that end, continue, rise, begin later, or are offset by retirement income.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "retirement expenses",
+        "Retirement spending is not simply today's budget plus inflation.",
+        "retirement",
+        "expenses",
+        "may",
+        "change"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/retirement-monthly-income-needed.html",
+      "title": "Monthly Income Needed in Retirement",
+      "description": "Estimate monthly retirement income needs from current spending, inflation, retirement income and the expenses that may change after work.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "retirement monthly income needed",
+        "How much monthly income will you need in retirement?",
+        "monthly",
+        "income",
+        "needed",
+        "retirement"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/retirement-savings-by-age.html",
+      "title": "Retirement Savings by Age: 30, 40, 50 and 60",
+      "description": "Compare common retirement savings benchmarks by age and learn why your spending, retirement age and income sources matter more.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "retirement savings by age",
+        "How much should you have saved for retirement by 30, 40, 50 and 60?",
+        "retirement",
+        "savings",
+        "age"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/savings-goal-planning.html",
+      "title": "How to Plan a Savings Goal",
+      "description": "Learn how to plan a savings goal by estimating the future target, using existing savings and solving for the monthly contribution required.",
+      "type": "guide",
+      "category": "Goals & Saving",
+      "keywords": [
+        "savings goal planning",
+        "How do you plan a savings goal and work backward from the target?",
+        "plan",
+        "savings",
+        "goal",
+        "planning"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/sequence-of-returns-risk.html",
+      "title": "Sequence-of-Returns Risk in Retirement",
+      "description": "Learn why the order of investment returns can matter when you are withdrawing from a portfolio, even when long-run average returns look similar.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "sequence of returns risk",
+        "What is sequence-of-returns risk in retirement?",
+        "sequence",
+        "returns",
+        "risk",
+        "retirement"
+      ],
+      "aliases": [
+        "sequence risk",
+        "sequence of returns"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/silver-supply-demand-macro-stress-explorer.html",
+      "title": "Silver Supply, Demand & Macro Stress Explorer",
+      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver’s physical-market balance and macro backdrop.",
+      "type": "tool",
+      "category": "Markets & Macro",
+      "keywords": [
+        "silver supply demand macro stress explorer",
+        "See what is driving silver’s physical and macro environment",
+        "silver",
+        "supply",
+        "demand",
+        "macro",
+        "stress",
+        "explorer"
+      ],
+      "aliases": [
+        "what moves silver",
+        "silver supply and demand",
+        "silver macro conditions"
+      ],
+      "priority": 90
+    },
+    {
+      "url": "/silver-vs-gold.html",
+      "title": "Silver vs Gold: Is Silver a Good Alternative?",
+      "description": "Compare silver and gold across industrial demand, investment use, volatility, supply dynamics and portfolio roles. See why silver is not simply cheaper gold.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "silver vs gold",
+        "Silver vs gold: is silver a good alternative to gold?",
+        "silver",
+        "gold",
+        "good",
+        "alternative"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/sinking-fund-vs-emergency-fund.html",
+      "title": "Sinking Fund vs Emergency Fund: Key Differences",
+      "description": "Learn the difference between a sinking fund for predictable future costs and an emergency fund for unexpected financial shocks.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "sinking fund vs emergency fund",
+        "Sinking fund vs emergency fund: what is the difference?",
+        "sinking",
+        "fund",
+        "emergency",
+        "key",
+        "differences"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/sip-calculator/",
+      "title": "SIP Calculator & Recurring Investment Calculator",
+      "description": "Estimate SIP or recurring investment growth, step-up contributions, goal-based monthly amounts and time to target with transparent assumptions.",
+      "type": "tool",
+      "category": "Investing",
+      "keywords": [
+        "sip calculator",
+        "See how a monthly SIP may grow or what SIP may be required for a goal.",
+        "sip",
+        "recurring",
+        "investment"
+      ],
+      "aliases": [
+        "sip calculator",
+        "systematic investment plan",
+        "recurring investment calculator",
+        "regular investment calculator",
+        "monthly investment calculator"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "sip",
+          "systematic investment plan"
+        ],
+        "US": [
+          "recurring investment"
+        ],
+        "GB": [
+          "regular investment"
+        ],
+        "AU": [
+          "regular investment"
+        ],
+        "NZ": [
+          "regular investment"
+        ],
+        "OTHER": [
+          "recurring investment"
+        ]
+      },
+      "priority": 100
+    },
+    {
+      "url": "/sip-during-market-fall.html",
+      "title": "What Happens to a SIP When Markets Fall?",
+      "description": "Learn what a fixed SIP does during a market decline, how rupee-cost averaging works, and why regular investing does not guarantee profits or prevent losses.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "sip during market fall",
+        "What happens to a recurring investment plan when markets fall?",
+        "happens",
+        "sip",
+        "when",
+        "markets",
+        "fall",
+        "during",
+        "market"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/sip-for-1-crore.html",
+      "title": "Monthly Investment Target Guide",
+      "description": "Estimate the monthly investment needed for a long-term target across different time horizons and return assumptions.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "sip for 1 crore",
+        "How much should you invest each month to build a long-term target?",
+        "monthly",
+        "investment",
+        "target",
+        "sip",
+        "crore"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/starting-investing-earlier.html",
+      "title": "Why Starting to Invest Earlier Matters",
+      "description": "Compare the effect of starting monthly investing 5 or 10 years earlier using the same contribution and return assumption.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "starting investing earlier",
+        "How much difference can starting 5 or 10 years earlier make?",
+        "why",
+        "starting",
+        "invest",
+        "earlier",
+        "matters",
+        "investing"
+      ],
+      "aliases": [
+        "start investing early",
+        "time in the market"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/step-up-sip-vs-regular-sip.html",
+      "title": "Increasing vs Fixed Monthly Investment",
+      "description": "Compare increasing and fixed monthly contributions and see how the contribution path can affect projected value.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "step up sip vs regular sip",
+        "Increasing monthly investment vs fixed monthly investment: what changes?",
+        "increasing",
+        "fixed",
+        "monthly",
+        "investment",
+        "step",
+        "sip",
+        "regular"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/stocks-vs-bonds.html",
+      "title": "Stocks vs bonds: what is the difference?",
+      "description": "Compare stocks and bonds across ownership, income, volatility, interest-rate risk, credit risk and their different roles in a diversified portfolio.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "stocks vs bonds",
+        "stocks",
+        "bonds",
+        "difference"
+      ],
+      "aliases": [
+        "stocks or bonds",
+        "shares vs bonds",
+        "equities vs bonds"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/terms.html",
+      "title": "Terms of Use",
+      "description": "Read the Terms of Use for Carrowmont financial planning tools, calculators, educational resources and website services.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "terms",
+        "Terms for using Carrowmont.",
+        "use"
+      ],
+      "aliases": [
+        "terms of use"
+      ],
+      "priority": 40
+    },
+    {
+      "url": "/todays-money-vs-future-money.html",
+      "title": "Today's money vs future money",
+      "description": "Understand the difference between today's purchasing power and future nominal currency amounts, and why mixing them can make financial projections confusing.",
+      "type": "guide",
+      "category": "Inflation & Purchasing Power",
+      "keywords": [
+        "todays money vs future money",
+        "Today's money and future money answer different questions.",
+        "today",
+        "money",
+        "future",
+        "todays"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/tools.html",
+      "title": "Financial Calculators, Planners & Scenario Tools",
+      "description": "Explore Carrowmont financial calculators, planning tools, retirement stress tests and macro scenario explorers. Tool terminology adapts by country where appropriate.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "tools",
+        "Financial calculators, planners and scenario tools",
+        "financial",
+        "calculators",
+        "planners",
+        "scenario"
+      ],
+      "aliases": [
+        "all calculators",
+        "all tools",
+        "financial calculators",
+        "money calculators"
+      ],
+      "priority": 85
+    },
+    {
+      "url": "/us-debt-interest-cost-calculator.html",
+      "title": "US Debt Interest Cost Calculator",
+      "description": "Model how U.S. debt, refinancing rates, primary deficits and debt rollover assumptions can change annual federal interest costs over time.",
+      "type": "tool",
+      "category": "Debt & Credit",
+      "keywords": [
+        "us debt interest cost calculator",
+        "See how debt and refinancing rates can change the U.S. interest burden",
+        "debt",
+        "interest",
+        "cost"
+      ],
+      "aliases": [],
+      "priority": 90
+    },
+    {
+      "url": "/what-happens-to-gold-when-dollar-rises.html",
+      "title": "What Happens to Gold When the Dollar Rises?",
+      "description": "Learn why a stronger U.S. dollar can pressure gold, why local-currency returns differ, and how safe-haven demand can make both assets rise together.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "what happens to gold when dollar rises",
+        "What happens to gold when the U.S. dollar rises?",
+        "happens",
+        "gold",
+        "when",
+        "dollar",
+        "rises"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/what-happens-to-gold-when-interest-rates-rise.html",
+      "title": "What Happens to Gold When Interest Rates Rise?",
+      "description": "Understand why higher real yields can pressure gold, why rate hikes do not set the outcome, and how the dollar, inflation and stress can change the result.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "what happens to gold when interest rates rise",
+        "happens",
+        "gold",
+        "when",
+        "interest",
+        "rates",
+        "rise"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/what-happens-when-bond-yields-rise.html",
+      "title": "What Happens When Bond Yields Rise?",
+      "description": "Understand why bond prices usually fall when yields rise, why stocks do not always fall, and how higher yields can affect borrowing costs and gold.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "what happens when bond yields rise",
+        "happens",
+        "when",
+        "bond",
+        "yields",
+        "rise"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/what-happens-when-dollar-strengthens.html",
+      "title": "What Happens When the U.S. Dollar Strengthens?",
+      "description": "Understand how a stronger U.S. dollar can affect gold, silver, copper, imports, multinational earnings and emerging-market financial conditions.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "what happens when dollar strengthens",
+        "happens",
+        "when",
+        "dollar",
+        "strengthens"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/what-happens-when-fed-cuts-interest-rates.html",
+      "title": "What Happens When the Fed Cuts Interest Rates?",
+      "description": "Understand how a Federal Reserve rate cut can affect bond yields, stocks, the U.S. dollar, mortgages and gold, and why the reason for the cut matters.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "what happens when fed cuts interest rates",
+        "happens",
+        "when",
+        "fed",
+        "cuts",
+        "interest",
+        "rates"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/what-is-a-reit.html",
+      "title": "What Is a REIT? How It Works",
+      "description": "Learn what a real estate investment trust (REIT) is, how it owns income-producing property, how investors may receive distributions, and the main risks.",
+      "type": "guide",
+      "category": "Home & Loans",
+      "keywords": [
+        "what is a reit",
+        "What is a REIT, and how does real-estate investing through one work?",
+        "reit",
+        "works"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/what-is-swp-systematic-withdrawal-plan.html",
+      "title": "What Is an SWP? Systematic Withdrawal Plan",
+      "description": "Learn what a Systematic Withdrawal Plan (SWP) is, how regular mutual-fund redemptions work, what changes the result, and what to check before relying on one.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "what is swp systematic withdrawal plan",
+        "What is an SWP (Systematic Withdrawal Plan)?",
+        "swp",
+        "systematic",
+        "withdrawal",
+        "plan"
+      ],
+      "aliases": [
+        "what is swp",
+        "systematic withdrawal plan explained",
+        "retirement drawdown"
+      ],
+      "priority": 65
+    },
+    {
+      "url": "/when-can-i-reach-financial-independence.html",
+      "title": "When could you reach financial independence?",
+      "description": "Estimate how the path to financial independence changes with spending, existing assets, monthly contributions and return assumptions.",
+      "type": "guide",
+      "category": "Financial Independence",
+      "keywords": [
+        "when can i reach financial independence",
+        "when",
+        "could",
+        "you",
+        "reach",
+        "financial",
+        "independence",
+        "can"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/why-do-stocks-fall-when-bond-yields-rise.html",
+      "title": "Why Do Stocks Fall When Bond Yields Rise?",
+      "description": "See how higher bond yields can affect stock valuations and borrowing costs—and why stronger growth can sometimes make stocks and yields rise together.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "why do stocks fall when bond yields rise",
+        "why",
+        "stocks",
+        "fall",
+        "when",
+        "bond",
+        "yields",
+        "rise"
+      ],
+      "aliases": [],
+      "priority": 65
+    },
+    {
+      "url": "/zero-based-budgeting.html",
+      "title": "Zero-Based Budgeting: How It Works",
+      "description": "Understand zero-based budgeting, how to assign every unit of planned income, and how it differs from percentage-based budget rules.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "zero based budgeting",
+        "What is zero-based budgeting and how does it work?",
+        "zero",
+        "based",
+        "budgeting",
+        "works"
+      ],
+      "aliases": [
+        "zero based budget",
+        "every dollar budget"
+      ],
+      "priority": 65
+    }
+  ]
+}
