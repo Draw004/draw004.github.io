@@ -19,14 +19,17 @@
     return L.getMortgageTerms?L.getMortgageTerms():{homeLoanMarket:false,mortgageMarket:false,noun:'mortgage or home loan',nounCap:'Mortgage / home loan',familyName:'Mortgage / Home Loan Decision Centre',learnGuides:'Home Loan & Mortgage guides',payoffLabel:'Mortgage / Home Loan Payoff'};
   }
   function setText(el,value){if(el&&value)el.textContent=value;}
+  function capitalizeAfterColon(value){
+    return String(value||'').replace(/(:[^A-Za-z]*)([a-z])/g,function(_,prefix,letter){return prefix+letter.toUpperCase();});
+  }
   function selectedPath(){return (window.location.pathname||'').replace(/\/+$/,'');}
   function articleTitle(path,p,t){
-    if(path.endsWith('/mortgage-prepayment-vs-investing.html'))return t.learnPrepayTitle||((p.decisionCalculator||'').replace(/ Calculator$/,'')+': how should the trade-off be compared?');
+    if(path.endsWith('/mortgage-prepayment-vs-investing.html'))return t.learnPrepayTitle||((p.decisionCalculator||'').replace(/ Calculator$/,'')+': How should the trade-off be compared?');
     if(path.endsWith('/mortgage-refinance-break-even.html'))return t.learnRefiTitle||'When does refinancing or a balance transfer break even?';
     if(path.endsWith('/mortgage-rate-rise-payment-stress.html'))return t.learnStressTitle||'How much could your mortgage payment rise if rates increase?';
-    if(path.endsWith('/one-extra-mortgage-payment-a-year.html'))return 'One extra '+t.noun+' payment a year: how much time and interest could it save?';
-    if(path.endsWith('/monthly-extra-vs-annual-lump-sum-mortgage.html'))return 'Monthly extra vs one annual lump sum: which could clear your '+t.noun+' faster?';
-    if(path.endsWith('/biweekly-fortnightly-mortgage-payments.html'))return 'Biweekly or fortnightly '+t.noun+' payments: where do the savings actually come from?';
+    if(path.endsWith('/one-extra-mortgage-payment-a-year.html'))return 'One extra '+t.noun+' payment a year: How much time and interest could it save?';
+    if(path.endsWith('/monthly-extra-vs-annual-lump-sum-mortgage.html'))return 'Monthly extra vs one annual lump sum: Which pays off a '+t.noun+' faster?';
+    if(path.endsWith('/biweekly-fortnightly-mortgage-payments.html'))return 'Biweekly or fortnightly '+t.noun+' payments: Where do the savings actually come from?';
     if(path.endsWith('/extra-mortgage-payments-early-vs-late.html'))return 'Why extra '+t.noun+' payments made earlier can save more';
     if(path.endsWith('/pay-off-mortgage-five-years-early.html'))return 'How much extra do you need to pay to clear a '+t.noun+' five years earlier?';
     return '';
@@ -84,7 +87,7 @@
   function updateVisibleFrame(p,t){
     var hero=document.querySelector('.learn-page-hero');
     var title=hero&&hero.querySelector('h1');
-    var localizedTitle=articleTitle(selectedPath(),p,t);if(title&&localizedTitle)title.textContent=localizedTitle;
+    var localizedTitle=articleTitle(selectedPath(),p,t);if(title&&localizedTitle)title.textContent=capitalizeAfterColon(localizedTitle);
     if(hero){var intro=hero.querySelector('p:not(.article-meta)');if(intro)intro.textContent=localizeLoanWords(intro.textContent,t);}
     document.querySelectorAll('main h2, main h3').forEach(function(el){if(!el.closest('.reference-note'))el.textContent=localizeLoanWords(el.textContent,t);});
     document.querySelectorAll('.guide-answer p').forEach(function(el){el.textContent=localizeLoanWords(el.textContent,t);});
