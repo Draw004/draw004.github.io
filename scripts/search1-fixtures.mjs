@@ -65,6 +65,14 @@ const fixtures = [
   { name: 'retirement 4 percent rule finds the explanatory guide', query: 'retirement 4 percent rule', region: 'US', first: '/4-percent-rule-retirement.html' },
   { name: 'retirement sequence risk finds the sequence guide', query: 'retirement sequence risk', region: 'US', first: '/sequence-of-returns-risk.html' },
   { name: 'retirement longevity risk finds the longevity guide', query: 'retirement longevity risk', region: 'GB', first: '/longevity-risk-retirement.html' },
+  { name: 'FI number query finds the target-definition guide', query: 'fi number', region: 'US', first: '/financial-independence-number.html' },
+  { name: 'FI timeline query finds the timing guide', query: 'financial independence timeline', region: 'CA', first: '/when-can-i-reach-financial-independence.html' },
+  { name: 'Coast FI number finds the Coast FIRE guide', query: 'coast fi number', region: 'AU', first: '/coast-fire-explained.html' },
+  { name: 'future purchasing power finds the value-over-time guide', query: 'future purchasing power', region: 'GB', first: '/inflation-value-of-money-over-time.html' },
+  { name: 'future expense cost finds the future-cost guide', query: 'future expense cost', region: 'OTHER', first: '/future-cost-of-expenses.html' },
+  { name: 'purchasing power of savings finds the savings-specific guide', query: 'purchasing power of savings', region: 'US', first: '/inflation-purchasing-power-savings.html' },
+  { name: 'price level vs inflation finds the inflation foundation', query: 'price level vs inflation', region: 'GB', first: '/inflation-purchasing-power.html' },
+  { name: 'real terms vs nominal terms finds the money-basis guide', query: 'real terms vs nominal terms', region: 'AU', first: '/todays-money-vs-future-money.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
