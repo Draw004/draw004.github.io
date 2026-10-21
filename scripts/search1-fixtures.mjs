@@ -44,6 +44,13 @@ const fixtures = [
   { name: 'savings goal finds the planning guide', query: 'savings goal', region: 'OTHER', first: '/savings-goal-planning.html' },
   { name: 'lifestyle creep finds lifestyle inflation', query: 'lifestyle creep', region: 'US', first: '/lifestyle-inflation.html' },
   { name: 'debt snowball vs avalanche finds the method comparison', query: 'debt snowball vs avalanche', region: 'IN', first: '/debt-snowball-vs-avalanche.html' },
+  { name: 'monthly investment growth finds the fixed-contribution guide', query: 'monthly investment growth', region: 'US', first: '/10000-sip-returns.html' },
+  { name: 'investment needed for target finds the target-funding guide', query: 'investment needed for target', region: 'OTHER', first: '/sip-for-1-crore.html' },
+  { name: 'step up SIP finds the fixed-vs-increasing guide', query: 'step up sip vs regular sip', region: 'IN', first: '/step-up-sip-vs-regular-sip.html' },
+  { name: 'compound interest monthly contributions finds the mechanics guide', query: 'compound interest monthly contributions', region: 'US', first: '/compound-interest-monthly-contributions.html' },
+  { name: 'time to investment target finds the timing guide', query: 'time to investment target', region: 'CA', first: '/investment-time-to-target.html' },
+  { name: 'start investing early finds the early-start guide', query: 'start investing early', region: 'AU', first: '/starting-investing-earlier.html' },
+  { name: 'investing during downturn finds the market-fall guide', query: 'investing during downturn', region: 'GB', first: '/sip-during-market-fall.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 

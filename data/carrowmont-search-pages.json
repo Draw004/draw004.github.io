@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-10-20",
+  "reviewed_at": "2026-10-21",
   "entries": [
     {
       "url": "/",
@@ -24,22 +24,30 @@
     },
     {
       "url": "/10000-sip-returns.html",
-      "title": "Monthly Investment Growth Examples",
-      "description": "See how a regular monthly investment may grow over 10, 15, 20 and 25 years under different return assumptions.",
+      "title": "Monthly Investment Growth Over Time",
+      "description": "See how a fixed monthly investment can grow over 10, 15, 20 and 25 years, separating contributions from modeled growth, fees and inflation.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
-        "10000 sip returns",
-        "What could a regular monthly investment grow to over time?",
-        "monthly",
-        "investment",
-        "growth",
-        "examples",
         "10000",
+        "10000 sip returns",
+        "examples",
+        "growth",
+        "investment",
+        "monthly",
+        "monthly investment growth",
+        "monthly investment growth over time",
+        "recurring investment growth",
+        "returns",
         "sip",
-        "returns"
+        "sip return examples",
+        "What could a regular monthly investment grow to over time?"
       ],
-      "aliases": [],
+      "aliases": [
+        "monthly investment growth",
+        "recurring investment growth",
+        "sip return examples"
+      ],
       "priority": 65
     },
     {
@@ -191,7 +199,7 @@
       "category": "Debt & Credit",
       "keywords": [
         "budget cash flow planner debt payoff calculator",
-        "See which debts disappear first — and when you could be debt-free.",
+        "See which debts disappear first \u2014 and when you could be debt-free.",
         "debt",
         "payoff",
         "compare",
@@ -315,18 +323,23 @@
     {
       "url": "/compound-interest-monthly-contributions.html",
       "title": "Compound Interest With Monthly Contributions",
-      "description": "Understand compound interest with monthly contributions, why time matters and how to interpret future-value calculator results.",
+      "description": "Understand how recurring contributions and compound growth work together, including contribution timing, fees, inflation and future-value assumptions.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
-        "compound interest monthly contributions",
-        "How does compound interest work with monthly contributions?",
         "compound",
+        "compound interest monthly contributions",
+        "compound interest recurring contributions",
+        "contributions",
+        "How does compound interest work with monthly contributions?",
         "interest",
         "monthly",
-        "contributions"
+        "monthly contribution compounding"
       ],
-      "aliases": [],
+      "aliases": [
+        "compound interest recurring contributions",
+        "monthly contribution compounding"
+      ],
       "priority": 65
     },
     {
@@ -384,7 +397,7 @@
     {
       "url": "/disclaimer.html",
       "title": "Disclaimer",
-      "description": "Read Carrowmont’s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
+      "description": "Read Carrowmont\u2019s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -560,12 +573,12 @@
     {
       "url": "/future-cost-of-expenses.html",
       "title": "Future Cost of Monthly Expenses",
-      "description": "Estimate how today’s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
+      "description": "Estimate how today\u2019s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
       "type": "guide",
       "category": "Inflation & Purchasing Power",
       "keywords": [
         "future cost of expenses",
-        "How much will today’s monthly expenses cost in 10, 20 and 30 years?",
+        "How much will today\u2019s monthly expenses cost in 10, 20 and 30 years?",
         "future",
         "cost",
         "monthly",
@@ -986,19 +999,25 @@
     {
       "url": "/investment-time-to-target.html",
       "title": "How Long to Reach an Investment Target",
-      "description": "Estimate how time to an investment target changes with monthly contributions, existing savings and return assumptions.",
+      "description": "See how target size, current savings, monthly contributions and return assumptions change the modeled time to an investment goal.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
-        "investment time to target",
         "How long could it take to reach your investment target?",
+        "how long to reach investment goal",
+        "investment",
+        "investment target time",
+        "investment time to target",
         "long",
         "reach",
-        "investment",
         "target",
-        "time"
+        "time",
+        "time to investment target"
       ],
-      "aliases": [],
+      "aliases": [
+        "how long to reach investment goal",
+        "investment target time"
+      ],
       "priority": 65
     },
     {
@@ -1180,7 +1199,7 @@
     {
       "url": "/methodology.html",
       "title": "Methodology",
-      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today’s vs future money, country and currency context, and model limitations.",
+      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today\u2019s vs future money, country and currency context, and model limitations.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -1684,7 +1703,7 @@
     {
       "url": "/retirement-calculator/",
       "title": "Retirement Calculator & Retirement Planner",
-      "description": "Use Carrowmont’s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
+      "description": "Use Carrowmont\u2019s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
       "type": "tool",
       "category": "Retirement",
       "keywords": [
@@ -1912,12 +1931,12 @@
     {
       "url": "/silver-supply-demand-macro-stress-explorer.html",
       "title": "Silver Supply, Demand & Macro Stress Explorer",
-      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver’s physical-market balance and macro backdrop.",
+      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver\u2019s physical-market balance and macro backdrop.",
       "type": "tool",
       "category": "Markets & Macro",
       "keywords": [
         "silver supply demand macro stress explorer",
-        "See what is driving silver’s physical and macro environment",
+        "See what is driving silver\u2019s physical and macro environment",
         "silver",
         "supply",
         "demand",
@@ -2013,59 +2032,78 @@
     },
     {
       "url": "/sip-during-market-fall.html",
-      "title": "What Happens to a SIP When Markets Fall?",
-      "description": "Learn what a fixed SIP does during a market decline, how rupee-cost averaging works, and why regular investing does not guarantee profits or prevent losses.",
+      "title": "Recurring Investing During a Market Fall",
+      "description": "See how fixed recurring investing behaves when prices fall, how cost averaging changes units bought, and why lower prices do not remove investment risk.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
+        "cost averaging market fall",
+        "during",
+        "fall",
+        "happens",
+        "investing during downturn",
+        "market",
+        "markets",
+        "recurring investing market fall",
+        "sip",
         "sip during market fall",
         "What happens to a recurring investment plan when markets fall?",
-        "happens",
-        "sip",
-        "when",
-        "markets",
-        "fall",
-        "during",
-        "market"
+        "when"
       ],
-      "aliases": [],
+      "aliases": [
+        "cost averaging market fall",
+        "investing during downturn",
+        "sip during market fall"
+      ],
       "priority": 65
     },
     {
       "url": "/sip-for-1-crore.html",
-      "title": "Monthly Investment Target Guide",
-      "description": "Estimate the monthly investment needed for a long-term target across different time horizons and return assumptions.",
+      "title": "Monthly Investment for a Long-Term Target",
+      "description": "See how target size, time, existing savings and return assumptions change the monthly investment needed for a long-term goal.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
-        "sip for 1 crore",
+        "crore",
         "How much should you invest each month to build a long-term target?",
-        "monthly",
         "investment",
-        "target",
+        "investment needed for target",
+        "monthly",
+        "monthly investment for target",
+        "monthly investment target",
         "sip",
-        "crore"
+        "sip for 1 crore",
+        "sip for long term goal",
+        "target"
       ],
-      "aliases": [],
+      "aliases": [
+        "investment needed for target",
+        "monthly investment target",
+        "sip for long term goal"
+      ],
       "priority": 65
     },
     {
       "url": "/starting-investing-earlier.html",
       "title": "Why Starting to Invest Earlier Matters",
-      "description": "Compare the effect of starting monthly investing 5 or 10 years earlier using the same contribution and return assumption.",
+      "description": "See how starting 5 or 10 years earlier changes contributions and compounding, with fair comparisons that separate extra time from extra money.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
-        "starting investing earlier",
-        "How much difference can starting 5 or 10 years earlier make?",
-        "why",
-        "starting",
-        "invest",
         "earlier",
+        "How much difference can starting 5 or 10 years earlier make?",
+        "invest",
+        "investing",
+        "investing earlier",
         "matters",
-        "investing"
+        "start investing early",
+        "starting",
+        "starting investing earlier",
+        "time in the market",
+        "why"
       ],
       "aliases": [
+        "investing earlier",
         "start investing early",
         "time in the market"
       ],
@@ -2073,22 +2111,29 @@
     },
     {
       "url": "/step-up-sip-vs-regular-sip.html",
-      "title": "Increasing vs Fixed Monthly Investment",
-      "description": "Compare increasing and fixed monthly contributions and see how the contribution path can affect projected value.",
+      "title": "Increasing vs Fixed Monthly Investing",
+      "description": "Compare fixed and increasing monthly contributions using the same horizon and return assumption, including total contributions, affordability and risk.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
-        "step up sip vs regular sip",
-        "Increasing monthly investment vs fixed monthly investment: what changes?",
-        "increasing",
         "fixed",
-        "monthly",
+        "fixed vs increasing investment",
+        "increasing",
+        "Increasing monthly investment vs fixed monthly investment: what changes?",
+        "increasing recurring investment",
+        "increasing vs fixed monthly investing",
         "investment",
-        "step",
+        "monthly",
+        "regular",
         "sip",
-        "regular"
+        "step",
+        "step up sip vs regular sip"
       ],
-      "aliases": [],
+      "aliases": [
+        "fixed vs increasing investment",
+        "increasing recurring investment",
+        "step up sip vs regular sip"
+      ],
       "priority": 65
     },
     {
@@ -2326,7 +2371,7 @@
     {
       "url": "/why-do-stocks-fall-when-bond-yields-rise.html",
       "title": "Why Do Stocks Fall When Bond Yields Rise?",
-      "description": "See how higher bond yields can affect stock valuations and borrowing costs—and why stronger growth can sometimes make stocks and yields rise together.",
+      "description": "See how higher bond yields can affect stock valuations and borrowing costs\u2014and why stronger growth can sometimes make stocks and yields rise together.",
       "type": "guide",
       "category": "Markets & Macro",
       "keywords": [
