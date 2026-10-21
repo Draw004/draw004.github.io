@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-20",
+  "generated_at": "2026-10-21",
   "entries": [
     {
       "url": "/",
@@ -24,8 +24,8 @@
     },
     {
       "url": "/10000-sip-returns.html",
-      "title": "Monthly Investment Growth Examples",
-      "description": "See how a regular monthly investment may grow over 10, 15, 20 and 25 years under different return assumptions.",
+      "title": "Monthly Investment Growth Over Time",
+      "description": "See how a fixed monthly investment can grow over 10, 15, 20 and 25 years, separating contributions from modeled growth, fees and inflation.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
@@ -35,11 +35,19 @@
         "growth",
         "investment",
         "monthly",
+        "monthly investment growth",
+        "monthly investment growth over time",
+        "recurring investment growth",
         "returns",
         "sip",
+        "sip return examples",
         "What could a regular monthly investment grow to over time?"
       ],
-      "aliases": [],
+      "aliases": [
+        "monthly investment growth",
+        "recurring investment growth",
+        "sip return examples"
+      ],
       "priority": 65
     },
     {
@@ -357,18 +365,23 @@
     {
       "url": "/compound-interest-monthly-contributions.html",
       "title": "Compound Interest With Monthly Contributions",
-      "description": "Understand compound interest with monthly contributions, why time matters and how to interpret future-value calculator results.",
+      "description": "Understand how recurring contributions and compound growth work together, including contribution timing, fees, inflation and future-value assumptions.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
         "compound",
         "compound interest monthly contributions",
+        "compound interest recurring contributions",
         "contributions",
         "How does compound interest work with monthly contributions?",
         "interest",
-        "monthly"
+        "monthly",
+        "monthly contribution compounding"
       ],
-      "aliases": [],
+      "aliases": [
+        "compound interest recurring contributions",
+        "monthly contribution compounding"
+      ],
       "priority": 65
     },
     {
@@ -1188,19 +1201,25 @@
     {
       "url": "/investment-time-to-target.html",
       "title": "How Long to Reach an Investment Target",
-      "description": "Estimate how time to an investment target changes with monthly contributions, existing savings and return assumptions.",
+      "description": "See how target size, current savings, monthly contributions and return assumptions change the modeled time to an investment goal.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
         "How long could it take to reach your investment target?",
+        "how long to reach investment goal",
         "investment",
+        "investment target time",
         "investment time to target",
         "long",
         "reach",
         "target",
-        "time"
+        "time",
+        "time to investment target"
       ],
-      "aliases": [],
+      "aliases": [
+        "how long to reach investment goal",
+        "investment target time"
+      ],
       "priority": 65
     },
     {
@@ -2215,46 +2234,61 @@
     },
     {
       "url": "/sip-during-market-fall.html",
-      "title": "What Happens to a SIP When Markets Fall?",
-      "description": "Learn what a fixed SIP does during a market decline, how rupee-cost averaging works, and why regular investing does not guarantee profits or prevent losses.",
+      "title": "Recurring Investing During a Market Fall",
+      "description": "See how fixed recurring investing behaves when prices fall, how cost averaging changes units bought, and why lower prices do not remove investment risk.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
+        "cost averaging market fall",
         "during",
         "fall",
         "happens",
+        "investing during downturn",
         "market",
         "markets",
+        "recurring investing market fall",
         "sip",
         "sip during market fall",
         "What happens to a recurring investment plan when markets fall?",
         "when"
       ],
-      "aliases": [],
+      "aliases": [
+        "cost averaging market fall",
+        "investing during downturn",
+        "sip during market fall"
+      ],
       "priority": 65
     },
     {
       "url": "/sip-for-1-crore.html",
-      "title": "Monthly Investment Target Guide",
-      "description": "Estimate the monthly investment needed for a long-term target across different time horizons and return assumptions.",
+      "title": "Monthly Investment for a Long-Term Target",
+      "description": "See how target size, time, existing savings and return assumptions change the monthly investment needed for a long-term goal.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
         "crore",
         "How much should you invest each month to build a long-term target?",
         "investment",
+        "investment needed for target",
         "monthly",
+        "monthly investment for target",
+        "monthly investment target",
         "sip",
         "sip for 1 crore",
+        "sip for long term goal",
         "target"
       ],
-      "aliases": [],
+      "aliases": [
+        "investment needed for target",
+        "monthly investment target",
+        "sip for long term goal"
+      ],
       "priority": 65
     },
     {
       "url": "/starting-investing-earlier.html",
       "title": "Why Starting to Invest Earlier Matters",
-      "description": "Compare the effect of starting monthly investing 5 or 10 years earlier using the same contribution and return assumption.",
+      "description": "See how starting 5 or 10 years earlier changes contributions and compounding, with fair comparisons that separate extra time from extra money.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
@@ -2262,12 +2296,16 @@
         "How much difference can starting 5 or 10 years earlier make?",
         "invest",
         "investing",
+        "investing earlier",
         "matters",
+        "start investing early",
         "starting",
         "starting investing earlier",
+        "time in the market",
         "why"
       ],
       "aliases": [
+        "investing earlier",
         "start investing early",
         "time in the market"
       ],
@@ -2275,14 +2313,17 @@
     },
     {
       "url": "/step-up-sip-vs-regular-sip.html",
-      "title": "Increasing vs Fixed Monthly Investment",
-      "description": "Compare increasing and fixed monthly contributions and see how the contribution path can affect projected value.",
+      "title": "Increasing vs Fixed Monthly Investing",
+      "description": "Compare fixed and increasing monthly contributions using the same horizon and return assumption, including total contributions, affordability and risk.",
       "type": "guide",
       "category": "Investing",
       "keywords": [
         "fixed",
+        "fixed vs increasing investment",
         "increasing",
         "Increasing monthly investment vs fixed monthly investment: what changes?",
+        "increasing recurring investment",
+        "increasing vs fixed monthly investing",
         "investment",
         "monthly",
         "regular",
@@ -2290,7 +2331,11 @@
         "step",
         "step up sip vs regular sip"
       ],
-      "aliases": [],
+      "aliases": [
+        "fixed vs increasing investment",
+        "increasing recurring investment",
+        "step up sip vs regular sip"
+      ],
       "priority": 65
     },
     {
