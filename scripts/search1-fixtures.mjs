@@ -51,6 +51,12 @@ const fixtures = [
   { name: 'time to investment target finds the timing guide', query: 'time to investment target', region: 'CA', first: '/investment-time-to-target.html' },
   { name: 'start investing early finds the early-start guide', query: 'start investing early', region: 'AU', first: '/starting-investing-earlier.html' },
   { name: 'investing during downturn finds the market-fall guide', query: 'investing during downturn', region: 'GB', first: '/sip-during-market-fall.html' },
+  { name: 'lump sum vs staged investing finds the timing guide', query: 'lump sum vs staged investing', region: 'US', first: '/lump-sum-vs-monthly-investing.html' },
+  { name: 'compound interest over time finds the compounding foundation', query: 'compound interest over time', region: 'CA', first: '/compounding-and-time.html' },
+  { name: 'portfolio allocation finds the asset-allocation guide', query: 'portfolio allocation', region: 'AU', first: '/asset-allocation-explained.html' },
+  { name: 'portfolio diversification finds the diversification guide', query: 'portfolio diversification', region: 'GB', first: '/diversification-across-asset-classes.html' },
+  { name: 'stocks vs fixed income finds the stocks-and-bonds guide', query: 'stocks vs fixed income', region: 'US', first: '/stocks-vs-bonds.html' },
+  { name: 'how much to invest monthly finds the goal-funding guide', query: 'how much to invest monthly', region: 'OTHER', first: '/how-much-should-i-invest-each-month.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
