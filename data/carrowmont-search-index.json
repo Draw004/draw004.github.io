@@ -67,6 +67,8 @@
       ],
       "aliases": [
         "25x retirement rule",
+        "4 percent withdrawal rule",
+        "retirement 4 percent rule",
         "what is the 4 percent rule"
       ],
       "priority": 65
@@ -936,7 +938,10 @@
         "will",
         "your"
       ],
-      "aliases": [],
+      "aliases": [
+        "how long will my retirement money last",
+        "retirement savings runway"
+      ],
       "priority": 65
     },
     {
@@ -1090,7 +1095,10 @@
         "planning",
         "retirement"
       ],
-      "aliases": [],
+      "aliases": [
+        "inflation in retirement planning",
+        "retirement inflation"
+      ],
       "priority": 65
     },
     {
@@ -1366,7 +1374,10 @@
         "What is longevity risk and why does retirement length matter?",
         "why"
       ],
-      "aliases": [],
+      "aliases": [
+        "planning for a longer retirement",
+        "retirement longevity risk"
+      ],
       "priority": 65
     },
     {
@@ -2072,7 +2083,10 @@
         "retirement expenses",
         "Retirement spending is not simply today's budget plus inflation."
       ],
-      "aliases": [],
+      "aliases": [
+        "expenses after retirement",
+        "retirement expense checklist"
+      ],
       "priority": 65
     },
     {
@@ -2089,7 +2103,10 @@
         "retirement",
         "retirement monthly income needed"
       ],
-      "aliases": [],
+      "aliases": [
+        "income needed in retirement",
+        "retirement monthly income"
+      ],
       "priority": 65
     },
     {
@@ -2105,7 +2122,10 @@
         "retirement savings by age",
         "savings"
       ],
-      "aliases": [],
+      "aliases": [
+        "how much retirement savings by age",
+        "retirement savings benchmark by age"
+      ],
       "priority": 65
     },
     {
@@ -2143,6 +2163,8 @@
         "What is sequence-of-returns risk in retirement?"
       ],
       "aliases": [
+        "retirement sequence risk",
+        "return order retirement",
         "sequence of returns",
         "sequence risk"
       ],

@@ -57,6 +57,14 @@ const fixtures = [
   { name: 'portfolio diversification finds the diversification guide', query: 'portfolio diversification', region: 'GB', first: '/diversification-across-asset-classes.html' },
   { name: 'stocks vs fixed income finds the stocks-and-bonds guide', query: 'stocks vs fixed income', region: 'US', first: '/stocks-vs-bonds.html' },
   { name: 'how much to invest monthly finds the goal-funding guide', query: 'how much to invest monthly', region: 'OTHER', first: '/how-much-should-i-invest-each-month.html' },
+  { name: 'retirement savings benchmark by age finds the benchmark guide', query: 'retirement savings benchmark by age', region: 'US', first: '/retirement-savings-by-age.html' },
+  { name: 'retirement monthly income finds the income-needs guide', query: 'retirement monthly income', region: 'CA', first: '/retirement-monthly-income-needed.html' },
+  { name: 'retirement expense checklist finds the expense guide', query: 'retirement expense checklist', region: 'GB', first: '/retirement-expenses.html' },
+  { name: 'retirement inflation finds the two-stage inflation guide', query: 'retirement inflation', region: 'AU', first: '/inflation-and-retirement-planning.html' },
+  { name: 'retirement money runway finds the savings-longevity guide', query: 'how long will my retirement money last', region: 'OTHER', first: '/how-long-will-retirement-savings-last.html' },
+  { name: 'retirement 4 percent rule finds the explanatory guide', query: 'retirement 4 percent rule', region: 'US', first: '/4-percent-rule-retirement.html' },
+  { name: 'retirement sequence risk finds the sequence guide', query: 'retirement sequence risk', region: 'US', first: '/sequence-of-returns-risk.html' },
+  { name: 'retirement longevity risk finds the longevity guide', query: 'retirement longevity risk', region: 'GB', first: '/longevity-risk-retirement.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 

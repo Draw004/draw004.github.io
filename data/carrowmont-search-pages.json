@@ -66,8 +66,10 @@
         "percent"
       ],
       "aliases": [
-        "what is the 4 percent rule",
-        "25x retirement rule"
+        "25x retirement rule",
+        "4 percent withdrawal rule",
+        "retirement 4 percent rule",
+        "what is the 4 percent rule"
       ],
       "priority": 65
     },
@@ -805,7 +807,10 @@
         "last",
         "will"
       ],
-      "aliases": [],
+      "aliases": [
+        "how long will my retirement money last",
+        "retirement savings runway"
+      ],
       "priority": 65
     },
     {
@@ -912,7 +917,10 @@
         "retirement",
         "planning"
       ],
-      "aliases": [],
+      "aliases": [
+        "inflation in retirement planning",
+        "retirement inflation"
+      ],
       "priority": 65
     },
     {
@@ -1164,7 +1172,10 @@
         "time",
         "matters"
       ],
-      "aliases": [],
+      "aliases": [
+        "planning for a longer retirement",
+        "retirement longevity risk"
+      ],
       "priority": 65
     },
     {
@@ -1870,7 +1881,10 @@
         "may",
         "change"
       ],
-      "aliases": [],
+      "aliases": [
+        "expenses after retirement",
+        "retirement expense checklist"
+      ],
       "priority": 65
     },
     {
@@ -1887,7 +1901,10 @@
         "needed",
         "retirement"
       ],
-      "aliases": [],
+      "aliases": [
+        "income needed in retirement",
+        "retirement monthly income"
+      ],
       "priority": 65
     },
     {
@@ -1903,7 +1920,10 @@
         "savings",
         "age"
       ],
-      "aliases": [],
+      "aliases": [
+        "how much retirement savings by age",
+        "retirement savings benchmark by age"
+      ],
       "priority": 65
     },
     {
@@ -1941,8 +1961,10 @@
         "retirement"
       ],
       "aliases": [
-        "sequence risk",
-        "sequence of returns"
+        "retirement sequence risk",
+        "return order retirement",
+        "sequence of returns",
+        "sequence risk"
       ],
       "priority": 65
     },
