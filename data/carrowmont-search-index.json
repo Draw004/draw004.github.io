@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-21",
+  "generated_at": "2026-10-22",
   "entries": [
     {
       "url": "/",
@@ -213,9 +213,9 @@
         "payments"
       ],
       "aliases": [
+        "biweekly vs twice monthly mortgage",
         "every two weeks mortgage",
-        "fortnightly home loan repayments",
-        "biweekly vs twice monthly mortgage"
+        "fortnightly home loan repayments"
       ],
       "priority": 65
     },
@@ -635,9 +635,9 @@
         "Why extra mortgage payments made earlier can save more"
       ],
       "aliases": [
+        "early extra home loan payment",
         "mortgage prepayment early vs late",
-        "pay mortgage extra early",
-        "early extra home loan payment"
+        "pay mortgage extra early"
       ],
       "priority": 65
     },
@@ -1490,9 +1490,9 @@
         "sum"
       ],
       "aliases": [
+        "annual lump sum home loan",
         "monthly extra payment vs lump sum mortgage",
-        "mortgage lump sum vs monthly extra",
-        "annual lump sum home loan"
+        "mortgage lump sum vs monthly extra"
       ],
       "priority": 65
     },
@@ -1793,8 +1793,8 @@
       ],
       "aliases": [
         "13th mortgage payment",
-        "one additional mortgage payment per year",
-        "extra home loan payment yearly"
+        "extra home loan payment yearly",
+        "one additional mortgage payment per year"
       ],
       "priority": 65
     },
@@ -1816,9 +1816,9 @@
         "years"
       ],
       "aliases": [
-        "pay mortgage off 5 years early",
+        "extra payment to finish home loan early",
         "mortgage payoff target five years",
-        "extra payment to finish home loan early"
+        "pay mortgage off 5 years early"
       ],
       "priority": 65
     },
@@ -1912,7 +1912,12 @@
         "stocks",
         "trade"
       ],
-      "aliases": [],
+      "aliases": [
+        "property vs shares",
+        "property vs stocks",
+        "real estate vs equities",
+        "real estate vs stocks"
+      ],
       "priority": 65
     },
     {
@@ -1930,7 +1935,12 @@
         "reit vs direct property",
         "REIT vs direct property: what are the key differences?"
       ],
-      "aliases": [],
+      "aliases": [
+        "reit or direct property",
+        "reit versus property",
+        "reit vs direct property",
+        "reit vs rental property"
+      ],
       "priority": 65
     },
     {
@@ -1969,7 +1979,12 @@
         "What is rental yield, and how do you calculate it?",
         "yield"
       ],
-      "aliases": [],
+      "aliases": [
+        "gross rental yield",
+        "net rental yield",
+        "rental yield formula",
+        "what is rental yield"
+      ],
       "priority": 65
     },
     {
@@ -2614,7 +2629,12 @@
         "What is a REIT, and how does real-estate investing through one work?",
         "works"
       ],
-      "aliases": [],
+      "aliases": [
+        "how reit works",
+        "real estate investment trust",
+        "reit meaning",
+        "what is a reit"
+      ],
       "priority": 65
     },
     {

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-10-21",
+  "reviewed_at": "2026-10-22",
   "entries": [
     {
       "url": "/",
@@ -207,7 +207,7 @@
       "category": "Debt & Credit",
       "keywords": [
         "budget cash flow planner debt payoff calculator",
-        "See which debts disappear first — and when you could be debt-free.",
+        "See which debts disappear first \u2014 and when you could be debt-free.",
         "debt",
         "payoff",
         "compare",
@@ -413,7 +413,7 @@
     {
       "url": "/disclaimer.html",
       "title": "Disclaimer",
-      "description": "Read Carrowmont’s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
+      "description": "Read Carrowmont\u2019s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -600,12 +600,12 @@
     {
       "url": "/future-cost-of-expenses.html",
       "title": "Future Cost of Monthly Expenses",
-      "description": "Estimate how today’s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
+      "description": "Estimate how today\u2019s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
       "type": "guide",
       "category": "Inflation & Purchasing Power",
       "keywords": [
         "future cost of expenses",
-        "How much will today’s monthly expenses cost in 10, 20 and 30 years?",
+        "How much will today\u2019s monthly expenses cost in 10, 20 and 30 years?",
         "future",
         "cost",
         "monthly",
@@ -1257,7 +1257,7 @@
     {
       "url": "/methodology.html",
       "title": "Methodology",
-      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today’s vs future money, country and currency context, and model limitations.",
+      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today\u2019s vs future money, country and currency context, and model limitations.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -1710,7 +1710,12 @@
         "trade",
         "offs"
       ],
-      "aliases": [],
+      "aliases": [
+        "property vs shares",
+        "property vs stocks",
+        "real estate vs equities",
+        "real estate vs stocks"
+      ],
       "priority": 65
     },
     {
@@ -1728,7 +1733,12 @@
         "key",
         "differences"
       ],
-      "aliases": [],
+      "aliases": [
+        "reit or direct property",
+        "reit versus property",
+        "reit vs direct property",
+        "reit vs rental property"
+      ],
       "priority": 65
     },
     {
@@ -1767,13 +1777,18 @@
         "meaning",
         "calculation"
       ],
-      "aliases": [],
+      "aliases": [
+        "gross rental yield",
+        "net rental yield",
+        "rental yield formula",
+        "what is rental yield"
+      ],
       "priority": 65
     },
     {
       "url": "/retirement-calculator/",
       "title": "Retirement Calculator & Retirement Planner",
-      "description": "Use Carrowmont’s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
+      "description": "Use Carrowmont\u2019s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
       "type": "tool",
       "category": "Retirement",
       "keywords": [
@@ -2012,12 +2027,12 @@
     {
       "url": "/silver-supply-demand-macro-stress-explorer.html",
       "title": "Silver Supply, Demand & Macro Stress Explorer",
-      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver’s physical-market balance and macro backdrop.",
+      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver\u2019s physical-market balance and macro backdrop.",
       "type": "tool",
       "category": "Markets & Macro",
       "keywords": [
         "silver supply demand macro stress explorer",
-        "See what is driving silver’s physical and macro environment",
+        "See what is driving silver\u2019s physical and macro environment",
         "silver",
         "supply",
         "demand",
@@ -2412,7 +2427,12 @@
         "reit",
         "works"
       ],
-      "aliases": [],
+      "aliases": [
+        "how reit works",
+        "real estate investment trust",
+        "reit meaning",
+        "what is a reit"
+      ],
       "priority": 65
     },
     {
@@ -2462,7 +2482,7 @@
     {
       "url": "/why-do-stocks-fall-when-bond-yields-rise.html",
       "title": "Why Do Stocks Fall When Bond Yields Rise?",
-      "description": "See how higher bond yields can affect stock valuations and borrowing costs—and why stronger growth can sometimes make stocks and yields rise together.",
+      "description": "See how higher bond yields can affect stock valuations and borrowing costs\u2014and why stronger growth can sometimes make stocks and yields rise together.",
       "type": "guide",
       "category": "Markets & Macro",
       "keywords": [

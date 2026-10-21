@@ -78,6 +78,10 @@ const fixtures = [
   { name: 'monthly extra payment vs lump sum finds the fair timing comparison', query: 'monthly extra payment vs lump sum mortgage', region: 'CA', first: '/monthly-extra-vs-annual-lump-sum-mortgage.html' },
   { name: '13th mortgage payment finds the annual extra-payment guide', query: '13th mortgage payment', region: 'US', first: '/one-extra-mortgage-payment-a-year.html' },
   { name: 'mortgage payoff target five years finds the target-payoff guide', query: 'mortgage payoff target five years', region: 'AU', first: '/pay-off-mortgage-five-years-early.html' },
+  { name: 'gross rental yield finds the yield guide', query: 'gross rental yield', region: 'AU', first: '/rental-yield-explained.html' },
+  { name: 'REIT vs rental property finds the structure comparison', query: 'reit vs rental property', region: 'US', first: '/reit-vs-direct-property.html' },
+  { name: 'REIT meaning finds the REIT foundation guide', query: 'reit meaning', region: 'GB', first: '/what-is-a-reit.html' },
+  { name: 'property vs shares finds the property-equity comparison', query: 'property vs shares', region: 'IN', first: '/real-estate-vs-stocks.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
