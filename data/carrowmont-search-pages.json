@@ -299,8 +299,11 @@
         "fire"
       ],
       "aliases": [
-        "what is coast fire",
-        "coast financial independence"
+        "coast fi number",
+        "coast financial independence",
+        "coast fire calculation",
+        "coast fire number",
+        "what is coast fire"
       ],
       "priority": 65
     },
@@ -558,7 +561,11 @@
         "independence",
         "number"
       ],
-      "aliases": [],
+      "aliases": [
+        "fi number",
+        "financial freedom number",
+        "how much money for financial independence"
+      ],
       "priority": 65
     },
     {
@@ -596,7 +603,11 @@
         "monthly",
         "expenses"
       ],
-      "aliases": [],
+      "aliases": [
+        "future expense cost",
+        "inflation future cost",
+        "what will expenses cost in future"
+      ],
       "priority": 65
     },
     {
@@ -976,7 +987,10 @@
       ],
       "aliases": [
         "inflation on savings",
-        "real value of savings"
+        "purchasing power of savings",
+        "real value of cash savings",
+        "real value of savings",
+        "savings vs inflation"
       ],
       "priority": 65
     },
@@ -994,8 +1008,11 @@
         "power"
       ],
       "aliases": [
-        "what is purchasing power",
-        "how inflation works"
+        "how inflation works",
+        "inflation explained",
+        "price level vs inflation",
+        "what does purchasing power mean",
+        "what is purchasing power"
       ],
       "priority": 65
     },
@@ -1016,7 +1033,11 @@
         "over",
         "time"
       ],
-      "aliases": [],
+      "aliases": [
+        "future purchasing power",
+        "money worth in 20 years",
+        "value of money after inflation"
+      ],
       "priority": 65
     },
     {
@@ -2227,7 +2248,11 @@
         "future",
         "todays"
       ],
-      "aliases": [],
+      "aliases": [
+        "real terms vs nominal terms",
+        "today money future money",
+        "today's money vs nominal money"
+      ],
       "priority": 65
     },
     {
@@ -2407,7 +2432,11 @@
         "independence",
         "can"
       ],
-      "aliases": [],
+      "aliases": [
+        "financial independence timeline",
+        "time to financial independence",
+        "when will i reach fi"
+      ],
       "priority": 65
     },
     {
