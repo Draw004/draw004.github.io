@@ -212,7 +212,11 @@
         "mortgage",
         "payments"
       ],
-      "aliases": [],
+      "aliases": [
+        "every two weeks mortgage",
+        "fortnightly home loan repayments",
+        "biweekly vs twice monthly mortgage"
+      ],
       "priority": 65
     },
     {
@@ -630,7 +634,11 @@
         "payments",
         "Why extra mortgage payments made earlier can save more"
       ],
-      "aliases": [],
+      "aliases": [
+        "mortgage prepayment early vs late",
+        "pay mortgage extra early",
+        "early extra home loan payment"
+      ],
       "priority": 65
     },
     {
@@ -1481,7 +1489,11 @@
         "mortgage",
         "sum"
       ],
-      "aliases": [],
+      "aliases": [
+        "monthly extra payment vs lump sum mortgage",
+        "mortgage lump sum vs monthly extra",
+        "annual lump sum home loan"
+      ],
       "priority": 65
     },
     {
@@ -1779,7 +1791,11 @@
         "payment",
         "year"
       ],
-      "aliases": [],
+      "aliases": [
+        "13th mortgage payment",
+        "one additional mortgage payment per year",
+        "extra home loan payment yearly"
+      ],
       "priority": 65
     },
     {
@@ -1799,7 +1815,11 @@
         "pay off mortgage five years early",
         "years"
       ],
-      "aliases": [],
+      "aliases": [
+        "pay mortgage off 5 years early",
+        "mortgage payoff target five years",
+        "extra payment to finish home loan early"
+      ],
       "priority": 65
     },
     {

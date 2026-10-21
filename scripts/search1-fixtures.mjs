@@ -73,6 +73,11 @@ const fixtures = [
   { name: 'purchasing power of savings finds the savings-specific guide', query: 'purchasing power of savings', region: 'US', first: '/inflation-purchasing-power-savings.html' },
   { name: 'price level vs inflation finds the inflation foundation', query: 'price level vs inflation', region: 'GB', first: '/inflation-purchasing-power.html' },
   { name: 'real terms vs nominal terms finds the money-basis guide', query: 'real terms vs nominal terms', region: 'AU', first: '/todays-money-vs-future-money.html' },
+  { name: 'every two weeks mortgage finds the cadence guide', query: 'every two weeks mortgage', region: 'US', first: '/biweekly-fortnightly-mortgage-payments.html' },
+  { name: 'mortgage prepayment early vs late finds the timing guide', query: 'mortgage prepayment early vs late', region: 'GB', first: '/extra-mortgage-payments-early-vs-late.html' },
+  { name: 'monthly extra payment vs lump sum finds the fair timing comparison', query: 'monthly extra payment vs lump sum mortgage', region: 'CA', first: '/monthly-extra-vs-annual-lump-sum-mortgage.html' },
+  { name: '13th mortgage payment finds the annual extra-payment guide', query: '13th mortgage payment', region: 'US', first: '/one-extra-mortgage-payment-a-year.html' },
+  { name: 'mortgage payoff target five years finds the target-payoff guide', query: 'mortgage payoff target five years', region: 'AU', first: '/pay-off-mortgage-five-years-early.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
