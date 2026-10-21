@@ -146,8 +146,10 @@
         "works"
       ],
       "aliases": [
-        "what is asset allocation",
-        "portfolio allocation"
+        "asset mix",
+        "portfolio allocation",
+        "portfolio mix",
+        "what is asset allocation"
       ],
       "priority": 65
     },
@@ -199,7 +201,7 @@
       "category": "Debt & Credit",
       "keywords": [
         "budget cash flow planner debt payoff calculator",
-        "See which debts disappear first \u2014 and when you could be debt-free.",
+        "See which debts disappear first — and when you could be debt-free.",
         "debt",
         "payoff",
         "compare",
@@ -354,7 +356,12 @@
         "compounding",
         "time"
       ],
-      "aliases": [],
+      "aliases": [
+        "compound growth",
+        "compound interest over time",
+        "how compounding works",
+        "time and compounding"
+      ],
       "priority": 65
     },
     {
@@ -397,7 +404,7 @@
     {
       "url": "/disclaimer.html",
       "title": "Disclaimer",
-      "description": "Read Carrowmont\u2019s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
+      "description": "Read Carrowmont’s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -425,8 +432,11 @@
         "classes"
       ],
       "aliases": [
-        "what is diversification",
-        "diversified portfolio"
+        "concentration risk",
+        "diversified portfolio",
+        "investment diversification",
+        "portfolio diversification",
+        "what is diversification"
       ],
       "priority": 65
     },
@@ -573,12 +583,12 @@
     {
       "url": "/future-cost-of-expenses.html",
       "title": "Future Cost of Monthly Expenses",
-      "description": "Estimate how today\u2019s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
+      "description": "Estimate how today’s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
       "type": "guide",
       "category": "Inflation & Purchasing Power",
       "keywords": [
         "future cost of expenses",
-        "How much will today\u2019s monthly expenses cost in 10, 20 and 30 years?",
+        "How much will today’s monthly expenses cost in 10, 20 and 30 years?",
         "future",
         "cost",
         "monthly",
@@ -847,7 +857,12 @@
         "each",
         "month"
       ],
-      "aliases": [],
+      "aliases": [
+        "how much should i invest per month",
+        "how much to invest monthly",
+        "investment amount per month",
+        "monthly investment required"
+      ],
       "priority": 65
     },
     {
@@ -1167,8 +1182,11 @@
         "investing"
       ],
       "aliases": [
+        "invest all at once or monthly",
+        "invest now or gradually",
+        "lump sum vs dollar cost averaging",
         "lump sum vs regular investing",
-        "invest all at once or monthly"
+        "lump sum vs staged investing"
       ],
       "priority": 65
     },
@@ -1199,7 +1217,7 @@
     {
       "url": "/methodology.html",
       "title": "Methodology",
-      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today\u2019s vs future money, country and currency context, and model limitations.",
+      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today’s vs future money, country and currency context, and model limitations.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -1703,7 +1721,7 @@
     {
       "url": "/retirement-calculator/",
       "title": "Retirement Calculator & Retirement Planner",
-      "description": "Use Carrowmont\u2019s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
+      "description": "Use Carrowmont’s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
       "type": "tool",
       "category": "Retirement",
       "keywords": [
@@ -1931,12 +1949,12 @@
     {
       "url": "/silver-supply-demand-macro-stress-explorer.html",
       "title": "Silver Supply, Demand & Macro Stress Explorer",
-      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver\u2019s physical-market balance and macro backdrop.",
+      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver’s physical-market balance and macro backdrop.",
       "type": "tool",
       "category": "Markets & Macro",
       "keywords": [
         "silver supply demand macro stress explorer",
-        "See what is driving silver\u2019s physical and macro environment",
+        "See what is driving silver’s physical and macro environment",
         "silver",
         "supply",
         "demand",
@@ -2149,9 +2167,11 @@
         "difference"
       ],
       "aliases": [
-        "stocks or bonds",
+        "equities vs bonds",
+        "shares and bonds difference",
         "shares vs bonds",
-        "equities vs bonds"
+        "stocks or bonds",
+        "stocks vs fixed income"
       ],
       "priority": 65
     },
@@ -2371,7 +2391,7 @@
     {
       "url": "/why-do-stocks-fall-when-bond-yields-rise.html",
       "title": "Why Do Stocks Fall When Bond Yields Rise?",
-      "description": "See how higher bond yields can affect stock valuations and borrowing costs\u2014and why stronger growth can sometimes make stocks and yields rise together.",
+      "description": "See how higher bond yields can affect stock valuations and borrowing costs—and why stronger growth can sometimes make stocks and yields rise together.",
       "type": "guide",
       "category": "Markets & Macro",
       "keywords": [
