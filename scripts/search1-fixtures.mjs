@@ -86,6 +86,9 @@ const fixtures = [
   { name: 'US debt interest expense finds the debt-cost mechanics guide', query: 'us debt interest expense', region: 'US', first: '/why-us-debt-interest-costs-matter.html' },
   { name: 'Treasury bills notes bonds finds the maturity guide', query: 'treasury bills notes bonds', region: 'US', first: '/treasury-bills-vs-notes-vs-bonds.html' },
   { name: 'reserve currency finds the reserve-currency foundation guide', query: 'reserve currency', region: 'OTHER', first: '/what-makes-a-global-reserve-currency.html' },
+  { name: 'central bank gold buying finds the official-demand guide', query: 'central bank gold buying', region: 'OTHER', first: '/why-central-banks-buy-gold.html' },
+  { name: 'dedollarization finds the de-dollarisation guide', query: 'dedollarization', region: 'US', first: '/de-dollarisation-explained.html' },
+  { name: 'gold vs Treasuries reserves finds the reserve-asset comparison', query: 'gold vs treasuries reserves', region: 'US', first: '/gold-vs-government-bonds-reserve-assets.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 

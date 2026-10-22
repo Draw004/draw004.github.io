@@ -2831,6 +2831,68 @@
         "international reserve currency"
       ],
       "priority": 86
+    },
+    {
+      "url": "/why-central-banks-buy-gold.html",
+      "title": "Why Are Central Banks Buying Gold?",
+      "description": "Understand why reserve managers buy gold, what recent official-sector data show, and why central-bank objectives differ from household investing.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "why are central banks buying gold",
+        "central bank gold purchases",
+        "central bank gold reserves",
+        "official sector gold demand"
+      ],
+      "aliases": [
+        "central bank gold buying",
+        "official gold reserves",
+        "why central banks buy gold",
+        "central bank gold demand"
+      ],
+      "priority": 88
+    },
+    {
+      "url": "/de-dollarisation-explained.html",
+      "title": "De-Dollarisation Explained",
+      "description": "Understand reserve diversification, IMF COFER shares, valuation effects, non-dollar trade settlement and what true dollar displacement would require.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "de-dollarisation explained",
+        "de-dollarization explained",
+        "dedollarization",
+        "dollar reserve share",
+        "moving away from dollar"
+      ],
+      "aliases": [
+        "de dollarisation",
+        "de-dollarization",
+        "dedollarization",
+        "dollar diversification",
+        "moving away from us dollar"
+      ],
+      "priority": 88
+    },
+    {
+      "url": "/gold-vs-government-bonds-reserve-assets.html",
+      "title": "Gold vs Government Bonds as Reserve Assets",
+      "description": "Compare why central banks hold gold and government securities for different combinations of liquidity, yield, collateral and crisis resilience.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "gold vs government bonds reserve assets",
+        "gold vs treasuries reserves",
+        "why central banks hold gold and bonds",
+        "reserve assets"
+      ],
+      "aliases": [
+        "gold vs treasuries reserves",
+        "gold vs government bonds reserves",
+        "central bank gold and bonds",
+        "reserve asset comparison"
+      ],
+      "priority": 87
     }
   ]
 }

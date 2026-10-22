@@ -1,0 +1,7 @@
+period,net_demand_tonnes,period_type,source_publication_date,source,source_url,note
+2021,463.1,full year,2022-01-28,World Gold Council,https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2021/16761,Contemporaneous annual estimate.
+2022,1135.7,full year,2023-01-31,World Gold Council,https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2022/central-banks,Publication later noted revisions can occur.
+2023,1037.4,full year,2024-01-31,World Gold Council,https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2023/central-banks,Contemporaneous annual estimate.
+2024,1044.6,full year,2025-02-05,World Gold Council,https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2024/central-banks,Contemporaneous annual estimate; later WGC publications revised 2024.
+2025,863.3,full year,2026-01-29,World Gold Council,https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2025/central-banks,Latest full-year estimate used here.
+H1 2026,345.0,half year,2026-07-30,World Gold Council,https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026/central-banks,Partial-year value; not directly comparable with full-year columns.
