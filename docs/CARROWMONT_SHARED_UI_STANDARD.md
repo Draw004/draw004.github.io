@@ -450,13 +450,13 @@ A new tool should not introduce materially smaller controls in shared shell area
 # 8. Typography and color rules for shared shell
 
 
-## 8.1 Colon capitalization in public headings
+## 8.1 Colon capitalization in public text
 
-Across Carrowmont public interfaces, the first alphabetic word after a colon must start with a capital letter when the colon appears in a page title, H1–H6 heading, card heading, chart title, standalone field group heading or comparable UI label.
+Across Carrowmont public interfaces, the first alphabetic word after a colon must start with a capital letter in Carrowmont-authored visible text, including headings, labels, checklist/list explanations and ordinary explanatory prose.
 
 Example: `Diversification: Helpful, but not automatic`.
 
-Do not apply this as a blind transformation to ordinary prose, quotations, code, URLs, formulas or external source titles. Normal sentence grammar remains authoritative in those contexts.
+Do not alter URLs, code, formulas, numeric notation, direct quotations or official external-source titles to force the rule.
 
 ## Core shared palette
 

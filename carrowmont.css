@@ -439,3 +439,19 @@ body[data-cm-page="tools-directory"] .search-discovery-section .cm-search-widget
 .mobile-nav-panel a[data-cm-search-link],.mobile-nav-links a[data-cm-search-link]{color:#0b6f69}
 @media(max-width:1180px) and (min-width:981px){.desktop-nav .site-search-link{padding:8px 10px}.desktop-nav{gap:15px}}
 @media(prefers-reduced-motion:reduce){.desktop-nav .site-search-link{transition:none}}
+
+
+/* CONTACT-PRESENTATION2 — compact contact hero so the primary email action enters the first desktop viewport. */
+body.contact-page .page-hero-inner{padding:42px 0 38px}
+body.contact-page .page-hero .section-kicker{margin-bottom:12px}
+body.contact-page .page-hero h1{margin-bottom:16px;font-size:clamp(43px,3.65vw,60px)}
+body.contact-page .page-hero p{font-size:18px;line-height:1.55}
+body.contact-page .contact-section{padding:38px 0 72px}
+body.contact-page .contact-intro{margin-bottom:18px}
+body.contact-page .contact-card{margin-top:22px}
+@media(max-width:700px){
+  body.contact-page .page-hero-inner{padding:28px 0 26px}
+  body.contact-page .page-hero h1{font-size:clamp(34px,10vw,44px);margin-bottom:13px}
+  body.contact-page .page-hero p{font-size:16px}
+  body.contact-page .contact-section{padding:30px 0 56px}
+}

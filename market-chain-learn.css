@@ -2,8 +2,9 @@
 body[data-cm-mcr-learn="1"] .guide-answer{
   margin:0 0 26px;padding:20px 22px;border:1px solid #b9dcda;border-radius:16px;background:#f4fbfa;
 }
-body[data-cm-mcr-learn="1"] .guide-answer strong{display:block;margin-bottom:7px;color:#0b766f;font-size:12px;letter-spacing:1px;text-transform:uppercase}
-body[data-cm-mcr-learn="1"] .guide-answer p{margin:0;color:#173b55;font-size:18px;font-weight:800;line-height:1.5}
+body[data-cm-mcr-learn="1"] .guide-answer>strong{display:block;margin-bottom:7px;color:#0b766f;font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+body[data-cm-mcr-learn="1"] .guide-answer p{margin:0;color:#173b55;font-size:18px;font-weight:400;line-height:1.55}
+body[data-cm-mcr-learn="1"] .guide-answer p strong{display:inline;margin:0;color:inherit;font-size:inherit;font-weight:800;letter-spacing:normal;text-transform:none}
 body[data-cm-mcr-learn="1"] .mcr-chain{margin:20px 0 26px;display:grid;gap:8px}
 body[data-cm-mcr-learn="1"] .mcr-chain-step{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding:12px 14px;border:1px solid #dbe8ea;border-radius:12px;background:#fff}
 body[data-cm-mcr-learn="1"] .mcr-chain-step span:first-child{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eaf7f5;color:#0b766f;font-size:13px;font-weight:900}

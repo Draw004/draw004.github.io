@@ -50,9 +50,9 @@ The shared JavaScript reuses the top relevant-tool link to create the consistent
 Current QA keeps titles at 25–70 characters and descriptions at 100–170 characters as a Carrowmont editorial guardrail. This is not a claim that search engines impose fixed character limits.
 
 
-### Heading and title capitalization after a colon
+### Public-text capitalization after a colon
 
-In public-facing titles, H1–H6 headings, card headings, chart titles and standalone labels, the first alphabetic word after a colon begins with a capital letter.
+In Carrowmont-authored public text, the first alphabetic word after a colon begins with a capital letter. This applies to titles, H1–H6 headings, card headings, chart titles, standalone labels, checklist/list explanations and ordinary explanatory prose.
 
 Correct examples:
 
@@ -60,7 +60,7 @@ Correct examples:
 - `Worked example: The score is not the whole decision`
 - `APR vs interest rate: Why the cheaper-looking loan may not be cheaper`
 
-This is a presentation rule for headings and labels. It must **not** force unnatural capitalization inside ordinary paragraph prose, quotations, code, formulas, URLs or the official titles of external sources.
+This is a sitewide presentation rule. Do not alter URLs, code, formulas, numeric notation, direct quotations or the official titles of external sources to force the rule.
 
 ## 4. Content-depth standard
 

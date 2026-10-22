@@ -482,3 +482,74 @@ body[data-cm-learn-article="1"] .learn-fixed-context-globe{font-size:18px;color:
   body[data-cm-learn-article="1"] .learn-fixed-context{display:none}
 }
 
+
+
+/* LEARN-PRESENTATION2 — owner-reviewed presentation standard, 22 October 2026.
+   30-second answers use normal body weight with optional targeted emphasis only.
+   Checklist/question cards use compact single-column rhythm with no stacked margins.
+   Data tables receive a restrained visual hierarchy without changing underlying values. */
+body[data-cm-learn-article="1"] .guide-answer p{
+  font-weight:400;
+}
+body[data-cm-learn-article="1"] .guide-answer p strong{
+  display:inline;
+  margin:0;
+  color:inherit;
+  font-size:inherit;
+  font-weight:800;
+  letter-spacing:normal;
+  line-height:inherit;
+  text-transform:none;
+}
+body[data-cm-learn-article="1"] .guide-steps{
+  display:grid;
+  gap:8px;
+  margin:12px 0 22px;
+  padding-left:0;
+}
+body[data-cm-learn-article="1"] .guide-steps li{
+  display:block;
+  margin:0;
+  padding:11px 14px;
+  border:1px solid #e7eff1;
+  border-left:3px solid #d4ebe7;
+  border-radius:11px;
+  background:linear-gradient(90deg,#f7fafc 0%,#fbfdfd 100%);
+  color:#294963;
+  line-height:1.52;
+}
+body[data-cm-learn-article="1"] .guide-steps li>strong:first-child{
+  display:inline;
+  margin-right:.28em;
+  color:#173b55;
+  font-weight:800;
+}
+body[data-cm-learn-article="1"] .guide-bullets{
+  margin:9px 0 20px;
+}
+body[data-cm-learn-article="1"] .guide-bullets li{
+  margin:6px 0;
+  line-height:1.55;
+}
+body[data-cm-learn-article="1"] .guide-table-wrap{
+  background:#fff;
+  box-shadow:0 8px 24px rgba(17,40,68,.045);
+}
+body[data-cm-learn-article="1"] .guide-table th{
+  background:linear-gradient(180deg,#eef9f7 0%,#f4fbfa 100%);
+  border-bottom:1px solid #cfe3e1;
+}
+body[data-cm-learn-article="1"] .guide-table tbody tr:nth-child(even) td{
+  background:#fbfdfd;
+}
+body[data-cm-learn-article="1"] .guide-table-note{
+  display:block;
+  margin-top:4px;
+  color:#60798c;
+  font-size:12.5px;
+  line-height:1.4;
+}
+@media(max-width:700px){
+  body[data-cm-learn-article="1"] .guide-steps{gap:7px;margin:10px 0 20px}
+  body[data-cm-learn-article="1"] .guide-steps li{padding:10px 12px}
+}
