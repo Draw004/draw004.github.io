@@ -1921,6 +1921,28 @@
       "priority": 65
     },
     {
+      "url": "/real-yields-explained.html",
+      "title": "Real Yields Explained: Real vs Nominal Yield",
+      "description": "Understand real yields, nominal yields, inflation compensation, TIPS and why real yields matter across bonds, gold and other assets.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "inflation compensation",
+        "real vs nominal yield",
+        "real yields explained",
+        "TIPS real yield",
+        "what is a real yield"
+      ],
+      "aliases": [
+        "inflation adjusted yield",
+        "real interest rate",
+        "real vs nominal yield",
+        "real yield",
+        "real yield explained"
+      ],
+      "priority": 86
+    },
+    {
       "url": "/reit-vs-direct-property.html",
       "title": "REIT vs Direct Property: Key Differences",
       "description": "Compare a REIT with directly owning property across liquidity, control, diversification, capital requirements, income and operating responsibility.",
@@ -2515,6 +2537,28 @@
       "priority": 85
     },
     {
+      "url": "/treasury-bills-vs-notes-vs-bonds.html",
+      "title": "Treasury Bills vs Notes vs Bonds",
+      "description": "Compare Treasury bills, notes and bonds by maturity, payment structure, duration, reinvestment risk and inflation exposure.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "duration risk",
+        "T bills vs Treasury bonds",
+        "Treasury bills vs notes vs bonds",
+        "Treasury maturity risk",
+        "Treasury notes"
+      ],
+      "aliases": [
+        "t bills vs bonds",
+        "T bills vs notes",
+        "Treasury bills notes bonds",
+        "Treasury bond maturity",
+        "Treasury maturity"
+      ],
+      "priority": 86
+    },
+    {
       "url": "/us-debt-interest-cost-calculator.html",
       "title": "US Debt Interest Cost Calculator",
       "description": "Model how U.S. debt, refinancing rates, primary deficits and debt rollover assumptions can change annual federal interest costs over time.",
@@ -2683,6 +2727,28 @@
       "priority": 65
     },
     {
+      "url": "/what-makes-a-global-reserve-currency.html",
+      "title": "What Makes a Global Reserve Currency?",
+      "description": "Understand why reserve-currency status depends on convertibility, deep markets, institutional confidence, payment networks and network effects.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "currency reserves",
+        "global reserve currency explained",
+        "reserve currency status",
+        "what is a reserve currency",
+        "what makes a reserve currency"
+      ],
+      "aliases": [
+        "global reserve currency",
+        "international reserve currency",
+        "reserve currency",
+        "reserve currency explained",
+        "what makes a currency reserve currency"
+      ],
+      "priority": 86
+    },
+    {
       "url": "/when-can-i-reach-financial-independence.html",
       "title": "When could you reach financial independence?",
       "description": "Estimate how the path to financial independence changes with spending, existing assets, monthly contributions and return assumptions.",
@@ -2723,6 +2789,28 @@
       ],
       "aliases": [],
       "priority": 65
+    },
+    {
+      "url": "/why-us-debt-interest-costs-matter.html",
+      "title": "US Debt Interest Costs: Why They Matter",
+      "description": "Understand why federal interest expense depends on debt size, average rates, maturities, refinancing and new borrowing rather than one market rate.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "debt refinancing",
+        "federal interest cost",
+        "government interest expense",
+        "US debt interest cost",
+        "US debt service explained"
+      ],
+      "aliases": [
+        "federal interest cost",
+        "government debt service",
+        "us debt interest expense",
+        "us government interest bill",
+        "why debt interest costs rise"
+      ],
+      "priority": 86
     },
     {
       "url": "/zero-based-budgeting.html",
