@@ -82,6 +82,10 @@ const fixtures = [
   { name: 'REIT vs rental property finds the structure comparison', query: 'reit vs rental property', region: 'US', first: '/reit-vs-direct-property.html' },
   { name: 'REIT meaning finds the REIT foundation guide', query: 'reit meaning', region: 'GB', first: '/what-is-a-reit.html' },
   { name: 'property vs shares finds the property-equity comparison', query: 'property vs shares', region: 'IN', first: '/real-estate-vs-stocks.html' },
+  { name: 'real yield finds the real-yield foundation guide', query: 'real yield', region: 'US', first: '/real-yields-explained.html' },
+  { name: 'US debt interest expense finds the debt-cost mechanics guide', query: 'us debt interest expense', region: 'US', first: '/why-us-debt-interest-costs-matter.html' },
+  { name: 'Treasury bills notes bonds finds the maturity guide', query: 'treasury bills notes bonds', region: 'US', first: '/treasury-bills-vs-notes-vs-bonds.html' },
+  { name: 'reserve currency finds the reserve-currency foundation guide', query: 'reserve currency', region: 'OTHER', first: '/what-makes-a-global-reserve-currency.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
