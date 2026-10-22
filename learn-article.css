@@ -441,3 +441,44 @@ body[data-cm-learn-article="1"] .seo-related-guides .text-link{
   white-space:normal;
   overflow-wrap:anywhere;
 }
+
+/* LEARN-CLOSEOUT1 — final whole-library consistency pass, 22 October 2026.
+   The legacy site stylesheet made every .guide-steps row a two-column grid.
+   Rich Learn content now uses natural card flow so inline emphasis does not create
+   detached words or large empty columns. Global macro guides use a fixed context
+   pill instead of a country/currency control when no locale-dependent values exist. */
+body[data-cm-learn-article="1"] .guide-steps li{
+  display:block;
+  grid-template-columns:none;
+  gap:0;
+  min-width:0;
+}
+body[data-cm-learn-article="1"] .guide-steps li>strong:first-child{
+  display:inline;
+  margin-right:.28em;
+  color:#173b55;
+  font-weight:900;
+}
+body[data-cm-learn-article="1"] .guide-answer>strong{
+  font-weight:900;
+}
+body[data-cm-learn-article="1"] .learn-fixed-context{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  border:1px solid #d6e4e8;
+  border-radius:999px;
+  color:#537084;
+  font-size:12px;
+  white-space:nowrap;
+}
+body[data-cm-learn-article="1"] .learn-fixed-context strong{color:#173b55}
+body[data-cm-learn-article="1"] .learn-fixed-context-globe{font-size:18px;color:#0e827a}
+@media(max-width:980px){
+  body[data-cm-learn-article="1"] .learn-fixed-context{margin-left:auto}
+}
+@media(max-width:700px){
+  body[data-cm-learn-article="1"] .learn-fixed-context{display:none}
+}
+
