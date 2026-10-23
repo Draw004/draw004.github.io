@@ -89,6 +89,8 @@ const fixtures = [
   { name: 'central bank gold buying finds the official-demand guide', query: 'central bank gold buying', region: 'OTHER', first: '/why-central-banks-buy-gold.html' },
   { name: 'dedollarization finds the de-dollarisation guide', query: 'dedollarization', region: 'US', first: '/de-dollarisation-explained.html' },
   { name: 'gold vs Treasuries reserves finds the reserve-asset comparison', query: 'gold vs treasuries reserves', region: 'US', first: '/gold-vs-government-bonds-reserve-assets.html' },
+  { name: 'mortgage affordability monitor finds the Research study', query: 'mortgage affordability monitor', region: 'US', first: '/research/mortgage-affordability-monitor.html' },
+  { name: 'mortgage affordability calculator stays owned by the tool', query: 'mortgage affordability calculator', region: 'US', first: '/home-affordability-calculator.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 

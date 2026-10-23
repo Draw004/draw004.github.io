@@ -466,3 +466,37 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', insertSearchLinks, { once: true });
   else insertSearchLinks();
 })();
+
+
+/* TRAFFIC1A: add Research to shared main-site navigation without rewriting every public page. */
+(function () {
+  'use strict';
+
+  /* TRAFFIC1A-NAV-FIT: the extra Research item must not make the shared desktop header overflow at 1440px. */
+  function ensureResearchNavFit() {
+    if (document.getElementById('traffic1aResearchNavFit')) return;
+    var style = document.createElement('style');
+    style.id = 'traffic1aResearchNavFit';
+    style.textContent = '@media (min-width:1361px) and (max-width:1500px){.header-inner{gap:18px}.header-inner .brand-tagline,.header-inner .brand-rule{display:none}.desktop-nav{gap:20px}}';
+    document.head.appendChild(style);
+  }
+
+  function addResearchLinks() {
+    ensureResearchNavFit();
+    document.querySelectorAll('.desktop-nav').forEach(function (nav) {
+      if (nav.querySelector('a[href="/research.html"]')) return;
+      var link=document.createElement('a'); link.href='/research.html'; link.textContent='Research'; link.dataset.cmResearchLink='';
+      if (window.location.pathname==='/research.html' || window.location.pathname.indexOf('/research/')===0) link.setAttribute('aria-current','page');
+      var search=nav.querySelector('a[href="/search.html"]');
+      if (search) nav.insertBefore(link,search); else { var learn=nav.querySelector('a[href="/learn.html"]'); if(learn&&learn.nextSibling) nav.insertBefore(link,learn.nextSibling); else nav.appendChild(link); }
+    });
+    document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (panel) {
+      if (panel.querySelector('a[href="/research.html"]')) return;
+      var link=document.createElement('a'); link.href='/research.html'; link.textContent='Research'; link.dataset.cmResearchLink='';
+      if (window.location.pathname==='/research.html' || window.location.pathname.indexOf('/research/')===0) link.setAttribute('aria-current','page');
+      var search=panel.querySelector('a[href="/search.html"]');
+      if (search) panel.insertBefore(link,search); else { var learn=panel.querySelector('a[href="/learn.html"]'); if(learn&&learn.nextSibling) panel.insertBefore(link,learn.nextSibling); else panel.appendChild(link); }
+    });
+  }
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',addResearchLinks,{once:true}); else addResearchLinks();
+})();

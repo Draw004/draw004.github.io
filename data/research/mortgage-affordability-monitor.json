@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "study": "Carrowmont Mortgage Affordability Monitor",
+  "geography": "United States",
+  "published": "2026-10-23",
+  "retrieved": "2026-10-23",
+  "sources": {
+    "mortgage_rate": {
+      "name": "Freddie Mac Primary Mortgage Market Survey (PMMS)",
+      "url": "https://www.freddiemac.com/pmms",
+      "current_period": "2026-10-22",
+      "current_30yr_fixed_pct": 7.32,
+      "year_ago_period": "2025-10-23",
+      "year_ago_30yr_fixed_pct": 6.19
+    },
+    "home_price": {
+      "name": "U.S. Census Bureau / HUD New Residential Sales",
+      "url": "https://www.census.gov/construction/nrs/current/index.html",
+      "period": "2026-08",
+      "median_new_home_price_usd": 393700,
+      "series_access_note": "Recent revised monthly values are consistent with the Census/HUD MSPNHSUS series as distributed by FRED."
+    },
+    "household_income": {
+      "name": "U.S. Census Bureau, Income in the United States: 2025",
+      "url": "https://www.census.gov/library/publications/2026/demo/p60-289.html",
+      "period": "2025",
+      "median_household_income_usd": 87460
+    }
+  },
+  "assumptions": {
+    "amortization_years": 30,
+    "down_payment_pct": 20,
+    "payment_scope": "Principal and interest only",
+    "excluded_costs": [
+      "property tax",
+      "homeowners insurance",
+      "mortgage insurance",
+      "HOA/strata charges",
+      "closing costs",
+      "maintenance",
+      "lender fees"
+    ]
+  },
+  "headline_metrics": {
+    "current_30yr_fixed_pct": 7.32,
+    "year_ago_30yr_fixed_pct": 6.19,
+    "reference_400k_current_monthly_pi_usd": 2747.72,
+    "reference_400k_year_ago_monthly_pi_usd": 2447.28,
+    "reference_400k_monthly_change_usd": 300.44,
+    "reference_400k_payment_change_pct": 12.28,
+    "median_new_home_price_usd": 393700,
+    "median_new_home_20pct_down_loan_usd": 314960.0,
+    "median_new_home_current_monthly_pi_usd": 2163.56,
+    "median_household_income_usd": 87460,
+    "pi_share_of_gross_median_monthly_income_pct": 29.69
+  },
+  "rate_snapshots": [
+    {
+      "date": "2025-10-23",
+      "rate_pct": 6.19
+    },
+    {
+      "date": "2025-11-26",
+      "rate_pct": 6.23
+    },
+    {
+      "date": "2025-12-31",
+      "rate_pct": 6.15
+    },
+    {
+      "date": "2026-01-29",
+      "rate_pct": 6.1
+    },
+    {
+      "date": "2026-02-26",
+      "rate_pct": 5.98
+    },
+    {
+      "date": "2026-03-26",
+      "rate_pct": 6.38
+    },
+    {
+      "date": "2026-04-30",
+      "rate_pct": 6.3
+    },
+    {
+      "date": "2026-05-28",
+      "rate_pct": 6.53
+    },
+    {
+      "date": "2026-06-25",
+      "rate_pct": 6.49
+    },
+    {
+      "date": "2026-07-30",
+      "rate_pct": 6.66
+    },
+    {
+      "date": "2026-08-27",
+      "rate_pct": 6.66
+    },
+    {
+      "date": "2026-09-24",
+      "rate_pct": 7.03
+    },
+    {
+      "date": "2026-10-22",
+      "rate_pct": 7.32
+    }
+  ],
+  "median_new_home_prices": [
+    {
+      "period": "2025-09",
+      "median_price_usd": 416800
+    },
+    {
+      "period": "2025-10",
+      "median_price_usd": 404200
+    },
+    {
+      "period": "2025-11",
+      "median_price_usd": 402500
+    },
+    {
+      "period": "2025-12",
+      "median_price_usd": 429100
+    },
+    {
+      "period": "2026-01",
+      "median_price_usd": 416200
+    },
+    {
+      "period": "2026-02",
+      "median_price_usd": 412000
+    },
+    {
+      "period": "2026-03",
+      "median_price_usd": 398700
+    },
+    {
+      "period": "2026-04",
+      "median_price_usd": 415700
+    },
+    {
+      "period": "2026-05",
+      "median_price_usd": 414300
+    },
+    {
+      "period": "2026-06",
+      "median_price_usd": 406400
+    },
+    {
+      "period": "2026-07",
+      "median_price_usd": 392200
+    },
+    {
+      "period": "2026-08",
+      "median_price_usd": 393700
+    }
+  ],
+  "payment_sensitivity": [
+    {
+      "loan_usd": 200000,
+      "scenario": "Current - 1 pp",
+      "rate_pct": 6.32,
+      "monthly_pi_usd": 1240.55
+    },
+    {
+      "loan_usd": 200000,
+      "scenario": "Current",
+      "rate_pct": 7.32,
+      "monthly_pi_usd": 1373.86
+    },
+    {
+      "loan_usd": 200000,
+      "scenario": "Current + 1 pp",
+      "rate_pct": 8.32,
+      "monthly_pi_usd": 1512.39
+    },
+    {
+      "loan_usd": 300000,
+      "scenario": "Current - 1 pp",
+      "rate_pct": 6.32,
+      "monthly_pi_usd": 1860.83
+    },
+    {
+      "loan_usd": 300000,
+      "scenario": "Current",
+      "rate_pct": 7.32,
+      "monthly_pi_usd": 2060.79
+    },
+    {
+      "loan_usd": 300000,
+      "scenario": "Current + 1 pp",
+      "rate_pct": 8.32,
+      "monthly_pi_usd": 2268.58
+    },
+    {
+      "loan_usd": 400000,
+      "scenario": "Current - 1 pp",
+      "rate_pct": 6.32,
+      "monthly_pi_usd": 2481.11
+    },
+    {
+      "loan_usd": 400000,
+      "scenario": "Current",
+      "rate_pct": 7.32,
+      "monthly_pi_usd": 2747.72
+    },
+    {
+      "loan_usd": 400000,
+      "scenario": "Current + 1 pp",
+      "rate_pct": 8.32,
+      "monthly_pi_usd": 3024.77
+    },
+    {
+      "loan_usd": 500000,
+      "scenario": "Current - 1 pp",
+      "rate_pct": 6.32,
+      "monthly_pi_usd": 3101.39
+    },
+    {
+      "loan_usd": 500000,
+      "scenario": "Current",
+      "rate_pct": 7.32,
+      "monthly_pi_usd": 3434.65
+    },
+    {
+      "loan_usd": 500000,
+      "scenario": "Current + 1 pp",
+      "rate_pct": 8.32,
+      "monthly_pi_usd": 3780.97
+    },
+    {
+      "loan_usd": 750000,
+      "scenario": "Current - 1 pp",
+      "rate_pct": 6.32,
+      "monthly_pi_usd": 4652.08
+    },
+    {
+      "loan_usd": 750000,
+      "scenario": "Current",
+      "rate_pct": 7.32,
+      "monthly_pi_usd": 5151.98
+    },
+    {
+      "loan_usd": 750000,
+      "scenario": "Current + 1 pp",
+      "rate_pct": 8.32,
+      "monthly_pi_usd": 5671.45
+    }
+  ]
+}

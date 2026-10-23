@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-22",
+  "generated_at": "2026-10-23",
   "entries": [
     {
       "url": "/",
@@ -2050,6 +2050,43 @@
         "what is rental yield"
       ],
       "priority": 65
+    },
+    {
+      "url": "/research.html",
+      "title": "Carrowmont Research | Financial Data & Scenario Studies",
+      "description": "Original Carrowmont research combining authoritative public data with transparent financial calculations, downloadable charts and methodology.",
+      "type": "carrowmont",
+      "category": "Research",
+      "keywords": [
+        "Carrowmont Research",
+        "financial data research",
+        "household finance research",
+        "scenario studies"
+      ],
+      "aliases": [
+        "Carrowmont data studies",
+        "financial research"
+      ],
+      "priority": 80
+    },
+    {
+      "url": "/research/mortgage-affordability-monitor.html",
+      "title": "U.S. Mortgage Affordability Monitor | Carrowmont Research",
+      "description": "See how current U.S. mortgage rates change standardized monthly payments, with new-home price and household-income context.",
+      "type": "guide",
+      "category": "Research",
+      "keywords": [
+        "housing affordability data",
+        "mortgage affordability monitor",
+        "mortgage payment pressure",
+        "mortgage rate research",
+        "mortgage rates and payments"
+      ],
+      "aliases": [
+        "mortgage payment research",
+        "US mortgage affordability data"
+      ],
+      "priority": 90
     },
     {
       "url": "/retirement-calculator/",
