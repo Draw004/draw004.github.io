@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "study": "Carrowmont U.S. Emergency Savings & Income-Loss Resilience Report",
+  "geography": "United States",
+  "published": "2026-10-23",
+  "official_source": {
+    "name": "Federal Reserve Board - Economic Well-Being of U.S. Households in 2025",
+    "survey": "Survey of Household Economics and Decisionmaking (SHED)",
+    "publication_date": "2026-05-13",
+    "survey_field_period": "October 2025",
+    "url": "https://www.federalreserve.gov/publications/2026-economic-well-being-of-us-households-in-2025-savings-investments.htm"
+  },
+  "official_metrics": {
+    "three_month_fund_pct": 55,
+    "three_month_other_means_pct": 15,
+    "three_month_unable_pct": 30,
+    "cash_equiv_400_pct": 63,
+    "unable_400_pct": 12,
+    "at_least_500_from_savings_pct": 70,
+    "major_unexpected_expense_pct": 59
+  },
+  "three_month_savings_by_monthly_surplus_frequency": [
+    {
+      "frequency": "Never",
+      "percent_with_three_month_fund": 13
+    },
+    {
+      "frequency": "Rarely",
+      "percent_with_three_month_fund": 26
+    },
+    {
+      "frequency": "Sometimes",
+      "percent_with_three_month_fund": 52
+    },
+    {
+      "frequency": "Often",
+      "percent_with_three_month_fund": 75
+    },
+    {
+      "frequency": "Always",
+      "percent_with_three_month_fund": 86
+    }
+  ],
+  "largest_emergency_expense_using_only_savings": [
+    {
+      "amount_band": "Less than $100",
+      "percent": 18
+    },
+    {
+      "amount_band": "$100-$499",
+      "percent": 12
+    },
+    {
+      "amount_band": "$500-$999",
+      "percent": 9
+    },
+    {
+      "amount_band": "$1,000-$1,999",
+      "percent": 11
+    },
+    {
+      "amount_band": "$2,000-$4,999",
+      "percent": 12
+    },
+    {
+      "amount_band": "$5,000 or more",
+      "percent": 38
+    }
+  ],
+  "carrowmont_runway_matrix": [
+    {
+      "reserve_usd": 5000,
+      "monthly_cash_shortfall_usd": 1500,
+      "months_runway": 3.33
+    },
+    {
+      "reserve_usd": 5000,
+      "monthly_cash_shortfall_usd": 2500,
+      "months_runway": 2.0
+    },
+    {
+      "reserve_usd": 5000,
+      "monthly_cash_shortfall_usd": 3500,
+      "months_runway": 1.43
+    },
+    {
+      "reserve_usd": 5000,
+      "monthly_cash_shortfall_usd": 5000,
+      "months_runway": 1.0
+    },
+    {
+      "reserve_usd": 10000,
+      "monthly_cash_shortfall_usd": 1500,
+      "months_runway": 6.67
+    },
+    {
+      "reserve_usd": 10000,
+      "monthly_cash_shortfall_usd": 2500,
+      "months_runway": 4.0
+    },
+    {
+      "reserve_usd": 10000,
+      "monthly_cash_shortfall_usd": 3500,
+      "months_runway": 2.86
+    },
+    {
+      "reserve_usd": 10000,
+      "monthly_cash_shortfall_usd": 5000,
+      "months_runway": 2.0
+    },
+    {
+      "reserve_usd": 20000,
+      "monthly_cash_shortfall_usd": 1500,
+      "months_runway": 13.33
+    },
+    {
+      "reserve_usd": 20000,
+      "monthly_cash_shortfall_usd": 2500,
+      "months_runway": 8.0
+    },
+    {
+      "reserve_usd": 20000,
+      "monthly_cash_shortfall_usd": 3500,
+      "months_runway": 5.71
+    },
+    {
+      "reserve_usd": 20000,
+      "monthly_cash_shortfall_usd": 5000,
+      "months_runway": 4.0
+    },
+    {
+      "reserve_usd": 30000,
+      "monthly_cash_shortfall_usd": 1500,
+      "months_runway": 20.0
+    },
+    {
+      "reserve_usd": 30000,
+      "monthly_cash_shortfall_usd": 2500,
+      "months_runway": 12.0
+    },
+    {
+      "reserve_usd": 30000,
+      "monthly_cash_shortfall_usd": 3500,
+      "months_runway": 8.57
+    },
+    {
+      "reserve_usd": 30000,
+      "monthly_cash_shortfall_usd": 5000,
+      "months_runway": 6.0
+    }
+  ],
+  "carrowmont_income_loss_example": {
+    "dependable_monthly_income_usd": 6000,
+    "essential_monthly_outflow_usd": 4800,
+    "accessible_reserve_usd": 20000,
+    "scenarios": [
+      {
+        "income_reduction_pct": 25,
+        "remaining_income_usd": 4500.0,
+        "essential_monthly_outflow_usd": 4800,
+        "monthly_cash_shortfall_usd": 300.0,
+        "months_runway_on_20000_reserve": 66.67
+      },
+      {
+        "income_reduction_pct": 50,
+        "remaining_income_usd": 3000.0,
+        "essential_monthly_outflow_usd": 4800,
+        "monthly_cash_shortfall_usd": 1800.0,
+        "months_runway_on_20000_reserve": 11.11
+      },
+      {
+        "income_reduction_pct": 100,
+        "remaining_income_usd": 0.0,
+        "essential_monthly_outflow_usd": 4800,
+        "monthly_cash_shortfall_usd": 4800.0,
+        "months_runway_on_20000_reserve": 4.17
+      }
+    ],
+    "note": "Illustrative deterministic scenario only. It excludes severance, benefits, taxes, spending reductions, investment returns and new emergency costs."
+  },
+  "three_month_target_examples": [
+    {
+      "monthly_essential_outflow_usd": 1500,
+      "three_month_target_usd": 4500
+    },
+    {
+      "monthly_essential_outflow_usd": 2500,
+      "three_month_target_usd": 7500
+    },
+    {
+      "monthly_essential_outflow_usd": 3500,
+      "three_month_target_usd": 10500
+    },
+    {
+      "monthly_essential_outflow_usd": 5000,
+      "three_month_target_usd": 15000
+    }
+  ]
+}

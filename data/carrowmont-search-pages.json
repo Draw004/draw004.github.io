@@ -135,6 +135,48 @@
       "priority": 40
     },
     {
+      "url": "/apr-vs-interest-rate.html",
+      "title": "APR vs Interest Rate: The Difference",
+      "description": "Understand how interest rates, APR, comparison rates, fees, term and local disclosure rules affect the true cost of borrowing.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "apr vs interest rate",
+        "APR vs interest rate: why the cheaper-looking loan may not be cheaper",
+        "annual percentage rate",
+        "comparison rate",
+        "borrowing cost",
+        "loan fees"
+      ],
+      "aliases": [
+        "what is apr",
+        "apr meaning",
+        "annual percentage rate explained",
+        "interest rate versus apr",
+        "comparison rate explained"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "APR",
+          "annual percentage rate",
+          "Key Facts Statement"
+        ],
+        "AU": [
+          "comparison rate",
+          "interest rate"
+        ],
+        "US": [
+          "APR",
+          "annual percentage rate"
+        ],
+        "CA": [
+          "APR",
+          "annual percentage rate"
+        ]
+      },
+      "priority": 84
+    },
+    {
       "url": "/asset-allocation-explained.html",
       "title": "What Is Asset Allocation? How It Works",
       "description": "Asset allocation is how a portfolio is divided among stocks, bonds, cash and other assets. Learn how goals, time horizon and risk tolerance shape the mix.",
@@ -207,7 +249,7 @@
       "category": "Debt & Credit",
       "keywords": [
         "budget cash flow planner debt payoff calculator",
-        "See which debts disappear first \u2014 and when you could be debt-free.",
+        "See which debts disappear first — and when you could be debt-free.",
         "debt",
         "payoff",
         "compare",
@@ -391,6 +433,93 @@
       "priority": 40
     },
     {
+      "url": "/credit-score-explained.html",
+      "title": "Credit Score Explained: What Affects It",
+      "description": "Understand credit reports, scoring models, common factors, errors, applications and why a score never guarantees approval.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "credit score explained",
+        "What is a credit score, and what can affect it?",
+        "credit report",
+        "credit history",
+        "hard inquiry",
+        "soft inquiry",
+        "lender approval"
+      ],
+      "aliases": [
+        "what is a credit score",
+        "credit rating explained",
+        "credit report vs credit score",
+        "improve credit record",
+        "check credit score",
+        "cibil score"
+      ],
+      "locale_aliases": {
+        "IN": [
+          "credit score",
+          "CIBIL score",
+          "credit report"
+        ],
+        "GB": [
+          "credit score",
+          "credit rating",
+          "credit file"
+        ],
+        "AU": [
+          "credit score",
+          "credit rating",
+          "credit report"
+        ]
+      },
+      "priority": 84
+    },
+    {
+      "url": "/de-dollarisation-explained.html",
+      "title": "De-Dollarisation Explained",
+      "description": "Understand reserve diversification, IMF COFER shares, valuation effects, non-dollar trade settlement and what true dollar displacement would require.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "de-dollarisation explained",
+        "de-dollarization explained",
+        "dedollarization",
+        "dollar reserve share",
+        "moving away from dollar"
+      ],
+      "aliases": [
+        "de dollarisation",
+        "de-dollarization",
+        "dedollarization",
+        "dollar diversification",
+        "moving away from us dollar"
+      ],
+      "priority": 88
+    },
+    {
+      "url": "/debt-consolidation-explained.html",
+      "title": "Debt Consolidation Explained",
+      "description": "Compare one simpler payment with interest rates, fees, term extension, secured borrowing risk and the total cost of replacing several debts.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "debt consolidation explained",
+        "What is debt consolidation, and can a lower payment cost more?",
+        "consolidation loan",
+        "combine debts",
+        "refinancing debt",
+        "total repayment"
+      ],
+      "aliases": [
+        "what is debt consolidation",
+        "debt consolidation loan",
+        "combine debts into one payment",
+        "loan consolidation",
+        "consolidate credit card debt"
+      ],
+      "priority": 84
+    },
+    {
       "url": "/debt-snowball-vs-avalanche.html",
       "title": "Debt Snowball vs Avalanche: Compare Methods",
       "description": "Compare debt snowball and avalanche with the same monthly debt payment, including interest, first payoff timing and practical trade-offs.",
@@ -413,7 +542,7 @@
     {
       "url": "/disclaimer.html",
       "title": "Disclaimer",
-      "description": "Read Carrowmont\u2019s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
+      "description": "Read Carrowmont’s educational and financial information disclaimer, including calculator limitations, assumptions and the role of professional advice.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -600,12 +729,12 @@
     {
       "url": "/future-cost-of-expenses.html",
       "title": "Future Cost of Monthly Expenses",
-      "description": "Estimate how today\u2019s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
+      "description": "Estimate how today’s monthly expenses may grow over 10, 20 and 30 years under a constant inflation assumption.",
       "type": "guide",
       "category": "Inflation & Purchasing Power",
       "keywords": [
         "future cost of expenses",
-        "How much will today\u2019s monthly expenses cost in 10, 20 and 30 years?",
+        "How much will today’s monthly expenses cost in 10, 20 and 30 years?",
         "future",
         "cost",
         "monthly",
@@ -695,6 +824,26 @@
       "priority": 90
     },
     {
+      "url": "/gold-vs-government-bonds-reserve-assets.html",
+      "title": "Gold vs Government Bonds as Reserve Assets",
+      "description": "Compare why central banks hold gold and government securities for different combinations of liquidity, yield, collateral and crisis resilience.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "gold vs government bonds reserve assets",
+        "gold vs treasuries reserves",
+        "why central banks hold gold and bonds",
+        "reserve assets"
+      ],
+      "aliases": [
+        "gold vs treasuries reserves",
+        "gold vs government bonds reserves",
+        "central bank gold and bonds",
+        "reserve asset comparison"
+      ],
+      "priority": 87
+    },
+    {
       "url": "/gold-vs-stocks.html",
       "title": "Gold vs Stocks: Risks and Return Drivers",
       "description": "Compare gold and stocks across cash flow, growth, volatility, diversification, liquidity and their different roles in a long-term portfolio.",
@@ -769,6 +918,30 @@
         ]
       },
       "priority": 100
+    },
+    {
+      "url": "/how-credit-card-interest-works.html",
+      "title": "How Credit-Card Interest Works",
+      "description": "Understand card balances, periodic rates, grace periods, minimum payments, transaction types and why a carried balance can take years to repay.",
+      "type": "guide",
+      "category": "Credit & Debt",
+      "keywords": [
+        "how credit card interest works",
+        "How does credit-card interest build up?",
+        "credit card balance",
+        "minimum payment",
+        "grace period",
+        "daily balance",
+        "revolving debt"
+      ],
+      "aliases": [
+        "credit card interest explained",
+        "how is credit card interest calculated",
+        "card interest",
+        "minimum credit card payment",
+        "credit card apr"
+      ],
+      "priority": 84
     },
     {
       "url": "/how-deposit-and-interest-rates-affect-home-affordability.html",
@@ -924,6 +1097,53 @@
       "priority": 65
     },
     {
+      "url": "/how-to-make-a-budget.html",
+      "title": "How to Make a Budget That Works",
+      "description": "Build a practical budget from reliable income, essential and flexible spending, irregular bills, debt, savings, goals and a free-cash buffer.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "how to make a budget",
+        "How to make a budget that fits your real life",
+        "budget",
+        "cash flow",
+        "irregular bills",
+        "sinking fund",
+        "emergency savings"
+      ],
+      "aliases": [
+        "make a budget",
+        "how to budget",
+        "budget for beginners",
+        "monthly budget",
+        "household budget guide"
+      ],
+      "priority": 84
+    },
+    {
+      "url": "/index-funds-explained.html",
+      "title": "Index Funds Explained: How Passive Investing Works",
+      "description": "Learn how index funds track a market index, how weighting and concentration work, and what fees, tracking difference and passive-investing risks mean.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "index funds explained",
+        "What is an index fund, and what does it actually track?",
+        "passive investing",
+        "tracking difference",
+        "tracking error",
+        "market index"
+      ],
+      "aliases": [
+        "what is an index fund",
+        "index fund explained",
+        "passive fund",
+        "index mutual fund",
+        "how index funds work"
+      ],
+      "priority": 84
+    },
+    {
       "url": "/inflation-and-retirement-planning.html",
       "title": "Inflation and Retirement Planning",
       "description": "See how inflation can change retirement expenses, future spending and the retirement savings target over long planning horizons.",
@@ -1047,6 +1267,30 @@
         "value of money after inflation"
       ],
       "priority": 65
+    },
+    {
+      "url": "/investing-for-beginners.html",
+      "title": "Investing for Beginners: A Simple Starting Guide",
+      "description": "Understand goals, time horizon, liquidity, risk, diversification, stocks, bonds, funds, fees and recurring contributions before choosing a product.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "investing for beginners",
+        "Investing for beginners: understand the basics before choosing a product",
+        "investment basics",
+        "risk tolerance",
+        "risk capacity",
+        "diversification",
+        "fees"
+      ],
+      "aliases": [
+        "how to start investing",
+        "start investing",
+        "beginner investing guide",
+        "investing basics",
+        "investment guide for beginners"
+      ],
+      "priority": 84
     },
     {
       "url": "/investment-time-to-target.html",
@@ -1257,7 +1501,7 @@
     {
       "url": "/methodology.html",
       "title": "Methodology",
-      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today\u2019s vs future money, country and currency context, and model limitations.",
+      "description": "Understand Carrowmont methodology, assumptions, scenario analysis, today’s vs future money, country and currency context, and model limitations.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -1719,6 +1963,28 @@
       "priority": 65
     },
     {
+      "url": "/real-yields-explained.html",
+      "title": "Real Yields Explained: Real vs Nominal Yield",
+      "description": "Understand real yields, nominal yields, inflation compensation, TIPS and why real yields matter across bonds, gold and other assets.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "real yields explained",
+        "what is a real yield",
+        "real vs nominal yield",
+        "TIPS real yield",
+        "inflation compensation"
+      ],
+      "aliases": [
+        "real yield",
+        "real interest rate",
+        "real vs nominal yield",
+        "real yield explained",
+        "inflation adjusted yield"
+      ],
+      "priority": 86
+    },
+    {
       "url": "/reit-vs-direct-property.html",
       "title": "REIT vs Direct Property: Key Differences",
       "description": "Compare a REIT with directly owning property across liquidity, control, diversification, capital requirements, income and operating responsibility.",
@@ -1786,9 +2052,65 @@
       "priority": 65
     },
     {
+      "url": "/research.html",
+      "title": "Carrowmont Research | Financial Data & Scenario Studies",
+      "description": "Original Carrowmont research combining authoritative public data with transparent financial calculations, downloadable charts and methodology.",
+      "type": "carrowmont",
+      "category": "Research",
+      "keywords": [
+        "Carrowmont Research",
+        "financial data research",
+        "household finance research",
+        "scenario studies"
+      ],
+      "aliases": [
+        "financial research",
+        "Carrowmont data studies"
+      ],
+      "priority": 80
+    },
+    {
+      "url": "/research/emergency-savings-resilience.html",
+      "title": "U.S. Emergency Savings & Income-Loss Resilience Report | Carrowmont Research",
+      "description": "Federal Reserve emergency-savings evidence plus transparent cash-runway scenarios for different household income shortfalls.",
+      "type": "guide",
+      "category": "Research",
+      "keywords": [
+        "emergency savings resilience report",
+        "emergency fund research",
+        "income loss runway research",
+        "financial resilience data",
+        "rainy day savings data"
+      ],
+      "aliases": [
+        "emergency savings report",
+        "income interruption savings research"
+      ],
+      "priority": 88
+    },
+    {
+      "url": "/research/mortgage-affordability-monitor.html",
+      "title": "U.S. Mortgage Affordability Monitor | Carrowmont Research",
+      "description": "See how current U.S. mortgage rates change standardized monthly payments, with new-home price and household-income context.",
+      "type": "guide",
+      "category": "Research",
+      "keywords": [
+        "mortgage affordability monitor",
+        "mortgage payment pressure",
+        "mortgage rate research",
+        "housing affordability data",
+        "mortgage rates and payments"
+      ],
+      "aliases": [
+        "mortgage payment research",
+        "US mortgage affordability data"
+      ],
+      "priority": 90
+    },
+    {
       "url": "/retirement-calculator/",
       "title": "Retirement Calculator & Retirement Planner",
-      "description": "Use Carrowmont\u2019s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
+      "description": "Use Carrowmont’s retirement calculator to estimate retirement needs from spending, inflation, income, savings and investment assumptions, then build a more detailed plan.",
       "type": "tool",
       "category": "Retirement",
       "keywords": [
@@ -2027,12 +2349,12 @@
     {
       "url": "/silver-supply-demand-macro-stress-explorer.html",
       "title": "Silver Supply, Demand & Macro Stress Explorer",
-      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver\u2019s physical-market balance and macro backdrop.",
+      "description": "Explore how industrial demand, investment demand, mine supply, recycling, real yields and the U.S. dollar can shape silver’s physical-market balance and macro backdrop.",
       "type": "tool",
       "category": "Markets & Macro",
       "keywords": [
         "silver supply demand macro stress explorer",
-        "See what is driving silver\u2019s physical and macro environment",
+        "See what is driving silver’s physical and macro environment",
         "silver",
         "supply",
         "demand",
@@ -2313,6 +2635,28 @@
       "priority": 85
     },
     {
+      "url": "/treasury-bills-vs-notes-vs-bonds.html",
+      "title": "Treasury Bills vs Notes vs Bonds",
+      "description": "Compare Treasury bills, notes and bonds by maturity, payment structure, duration, reinvestment risk and inflation exposure.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "Treasury bills vs notes vs bonds",
+        "T bills vs Treasury bonds",
+        "Treasury maturity risk",
+        "duration risk",
+        "Treasury notes"
+      ],
+      "aliases": [
+        "t bills vs bonds",
+        "Treasury bills notes bonds",
+        "Treasury maturity",
+        "T bills vs notes",
+        "Treasury bond maturity"
+      ],
+      "priority": 86
+    },
+    {
       "url": "/us-debt-interest-cost-calculator.html",
       "title": "US Debt Interest Cost Calculator",
       "description": "Model how U.S. debt, refinancing rates, primary deficits and debt rollover assumptions can change annual federal interest costs over time.",
@@ -2436,6 +2780,30 @@
       "priority": 65
     },
     {
+      "url": "/what-is-an-etf.html",
+      "title": "What Is an ETF? Exchange-Traded Funds Explained",
+      "description": "Understand what an ETF holds, how it trades, its costs, diversification and concentration risks, and how it differs from a share or mutual fund.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "what is an etf",
+        "What is an ETF, and how does it work?",
+        "exchange traded fund",
+        "ETF costs",
+        "ETF risk",
+        "ETF vs mutual fund"
+      ],
+      "aliases": [
+        "etf explained",
+        "exchange-traded fund",
+        "etf basics",
+        "how etfs work",
+        "etf meaning",
+        "etf"
+      ],
+      "priority": 84
+    },
+    {
       "url": "/what-is-swp-systematic-withdrawal-plan.html",
       "title": "What Is an SWP? Systematic Withdrawal Plan",
       "description": "Learn what a Systematic Withdrawal Plan (SWP) is, how regular mutual-fund redemptions work, what changes the result, and what to check before relying on one.",
@@ -2455,6 +2823,28 @@
         "retirement drawdown"
       ],
       "priority": 65
+    },
+    {
+      "url": "/what-makes-a-global-reserve-currency.html",
+      "title": "What Makes a Global Reserve Currency?",
+      "description": "Understand why reserve-currency status depends on convertibility, deep markets, institutional confidence, payment networks and network effects.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "what is a reserve currency",
+        "what makes a reserve currency",
+        "global reserve currency explained",
+        "currency reserves",
+        "reserve currency status"
+      ],
+      "aliases": [
+        "reserve currency",
+        "global reserve currency",
+        "reserve currency explained",
+        "what makes a currency reserve currency",
+        "international reserve currency"
+      ],
+      "priority": 86
     },
     {
       "url": "/when-can-i-reach-financial-independence.html",
@@ -2480,9 +2870,29 @@
       "priority": 65
     },
     {
+      "url": "/why-central-banks-buy-gold.html",
+      "title": "Why Are Central Banks Buying Gold?",
+      "description": "Understand why reserve managers buy gold, what recent official-sector data show, and why central-bank objectives differ from household investing.",
+      "type": "guide",
+      "category": "Markets & Macro",
+      "keywords": [
+        "why are central banks buying gold",
+        "central bank gold purchases",
+        "central bank gold reserves",
+        "official sector gold demand"
+      ],
+      "aliases": [
+        "central bank gold buying",
+        "official gold reserves",
+        "why central banks buy gold",
+        "central bank gold demand"
+      ],
+      "priority": 88
+    },
+    {
       "url": "/why-do-stocks-fall-when-bond-yields-rise.html",
       "title": "Why Do Stocks Fall When Bond Yields Rise?",
-      "description": "See how higher bond yields can affect stock valuations and borrowing costs\u2014and why stronger growth can sometimes make stocks and yields rise together.",
+      "description": "See how higher bond yields can affect stock valuations and borrowing costs—and why stronger growth can sometimes make stocks and yields rise together.",
       "type": "guide",
       "category": "Markets & Macro",
       "keywords": [
@@ -2497,274 +2907,6 @@
       ],
       "aliases": [],
       "priority": 65
-    },
-    {
-      "url": "/zero-based-budgeting.html",
-      "title": "Zero-Based Budgeting: How It Works",
-      "description": "Understand zero-based budgeting, how to assign every unit of planned income, and how it differs from percentage-based budget rules.",
-      "type": "guide",
-      "category": "Budgeting & Saving",
-      "keywords": [
-        "zero based budgeting",
-        "every unit of income has a job",
-        "zero based budget example",
-        "monthly allocation budget"
-      ],
-      "aliases": [
-        "zero based budget",
-        "every dollar budget",
-        "give every dollar a job",
-        "zero sum budget"
-      ],
-      "priority": 65
-    },
-    {
-      "url": "/how-to-make-a-budget.html",
-      "title": "How to Make a Budget That Works",
-      "description": "Build a practical budget from reliable income, essential and flexible spending, irregular bills, debt, savings, goals and a free-cash buffer.",
-      "type": "guide",
-      "category": "Budgeting & Saving",
-      "keywords": [
-        "how to make a budget",
-        "How to make a budget that fits your real life",
-        "budget",
-        "cash flow",
-        "irregular bills",
-        "sinking fund",
-        "emergency savings"
-      ],
-      "aliases": [
-        "make a budget",
-        "how to budget",
-        "budget for beginners",
-        "monthly budget",
-        "household budget guide"
-      ],
-      "priority": 84
-    },
-    {
-      "url": "/investing-for-beginners.html",
-      "title": "Investing for Beginners: A Simple Starting Guide",
-      "description": "Understand goals, time horizon, liquidity, risk, diversification, stocks, bonds, funds, fees and recurring contributions before choosing a product.",
-      "type": "guide",
-      "category": "Investing",
-      "keywords": [
-        "investing for beginners",
-        "Investing for beginners: understand the basics before choosing a product",
-        "investment basics",
-        "risk tolerance",
-        "risk capacity",
-        "diversification",
-        "fees"
-      ],
-      "aliases": [
-        "how to start investing",
-        "start investing",
-        "beginner investing guide",
-        "investing basics",
-        "investment guide for beginners"
-      ],
-      "priority": 84
-    },
-    {
-      "url": "/what-is-an-etf.html",
-      "title": "What Is an ETF? Exchange-Traded Funds Explained",
-      "description": "Understand what an ETF holds, how it trades, its costs, diversification and concentration risks, and how it differs from a share or mutual fund.",
-      "type": "guide",
-      "category": "Investing",
-      "keywords": [
-        "what is an etf",
-        "What is an ETF, and how does it work?",
-        "exchange traded fund",
-        "ETF costs",
-        "ETF risk",
-        "ETF vs mutual fund"
-      ],
-      "aliases": [
-        "etf explained",
-        "exchange-traded fund",
-        "etf basics",
-        "how etfs work",
-        "etf meaning",
-        "etf"
-      ],
-      "priority": 84
-    },
-    {
-      "url": "/index-funds-explained.html",
-      "title": "Index Funds Explained: How Passive Investing Works",
-      "description": "Learn how index funds track a market index, how weighting and concentration work, and what fees, tracking difference and passive-investing risks mean.",
-      "type": "guide",
-      "category": "Investing",
-      "keywords": [
-        "index funds explained",
-        "What is an index fund, and what does it actually track?",
-        "passive investing",
-        "tracking difference",
-        "tracking error",
-        "market index"
-      ],
-      "aliases": [
-        "what is an index fund",
-        "index fund explained",
-        "passive fund",
-        "index mutual fund",
-        "how index funds work"
-      ],
-      "priority": 84
-    },
-    {
-      "url": "/credit-score-explained.html",
-      "title": "Credit Score Explained: What Affects It",
-      "description": "Understand credit reports, scoring models, common factors, errors, applications and why a score never guarantees approval.",
-      "type": "guide",
-      "category": "Credit & Debt",
-      "keywords": [
-        "credit score explained",
-        "What is a credit score, and what can affect it?",
-        "credit report",
-        "credit history",
-        "hard inquiry",
-        "soft inquiry",
-        "lender approval"
-      ],
-      "aliases": [
-        "what is a credit score",
-        "credit rating explained",
-        "credit report vs credit score",
-        "improve credit record",
-        "check credit score",
-        "cibil score"
-      ],
-      "locale_aliases": {
-        "IN": [
-          "credit score",
-          "CIBIL score",
-          "credit report"
-        ],
-        "GB": [
-          "credit score",
-          "credit rating",
-          "credit file"
-        ],
-        "AU": [
-          "credit score",
-          "credit rating",
-          "credit report"
-        ]
-      },
-      "priority": 84
-    },
-    {
-      "url": "/debt-consolidation-explained.html",
-      "title": "Debt Consolidation Explained",
-      "description": "Compare one simpler payment with interest rates, fees, term extension, secured borrowing risk and the total cost of replacing several debts.",
-      "type": "guide",
-      "category": "Credit & Debt",
-      "keywords": [
-        "debt consolidation explained",
-        "What is debt consolidation, and can a lower payment cost more?",
-        "consolidation loan",
-        "combine debts",
-        "refinancing debt",
-        "total repayment"
-      ],
-      "aliases": [
-        "what is debt consolidation",
-        "debt consolidation loan",
-        "combine debts into one payment",
-        "loan consolidation",
-        "consolidate credit card debt"
-      ],
-      "priority": 84
-    },
-    {
-      "url": "/how-credit-card-interest-works.html",
-      "title": "How Credit-Card Interest Works",
-      "description": "Understand card balances, periodic rates, grace periods, minimum payments, transaction types and why a carried balance can take years to repay.",
-      "type": "guide",
-      "category": "Credit & Debt",
-      "keywords": [
-        "how credit card interest works",
-        "How does credit-card interest build up?",
-        "credit card balance",
-        "minimum payment",
-        "grace period",
-        "daily balance",
-        "revolving debt"
-      ],
-      "aliases": [
-        "credit card interest explained",
-        "how is credit card interest calculated",
-        "card interest",
-        "minimum credit card payment",
-        "credit card apr"
-      ],
-      "priority": 84
-    },
-    {
-      "url": "/apr-vs-interest-rate.html",
-      "title": "APR vs Interest Rate: The Difference",
-      "description": "Understand how interest rates, APR, comparison rates, fees, term and local disclosure rules affect the true cost of borrowing.",
-      "type": "guide",
-      "category": "Credit & Debt",
-      "keywords": [
-        "apr vs interest rate",
-        "APR vs interest rate: why the cheaper-looking loan may not be cheaper",
-        "annual percentage rate",
-        "comparison rate",
-        "borrowing cost",
-        "loan fees"
-      ],
-      "aliases": [
-        "what is apr",
-        "apr meaning",
-        "annual percentage rate explained",
-        "interest rate versus apr",
-        "comparison rate explained"
-      ],
-      "locale_aliases": {
-        "IN": [
-          "APR",
-          "annual percentage rate",
-          "Key Facts Statement"
-        ],
-        "AU": [
-          "comparison rate",
-          "interest rate"
-        ],
-        "US": [
-          "APR",
-          "annual percentage rate"
-        ],
-        "CA": [
-          "APR",
-          "annual percentage rate"
-        ]
-      },
-      "priority": 84
-    },
-    {
-      "url": "/real-yields-explained.html",
-      "title": "Real Yields Explained: Real vs Nominal Yield",
-      "description": "Understand real yields, nominal yields, inflation compensation, TIPS and why real yields matter across bonds, gold and other assets.",
-      "type": "guide",
-      "category": "Markets & Macro",
-      "keywords": [
-        "real yields explained",
-        "what is a real yield",
-        "real vs nominal yield",
-        "TIPS real yield",
-        "inflation compensation"
-      ],
-      "aliases": [
-        "real yield",
-        "real interest rate",
-        "real vs nominal yield",
-        "real yield explained",
-        "inflation adjusted yield"
-      ],
-      "priority": 86
     },
     {
       "url": "/why-us-debt-interest-costs-matter.html",
@@ -2789,147 +2931,24 @@
       "priority": 86
     },
     {
-      "url": "/treasury-bills-vs-notes-vs-bonds.html",
-      "title": "Treasury Bills vs Notes vs Bonds",
-      "description": "Compare Treasury bills, notes and bonds by maturity, payment structure, duration, reinvestment risk and inflation exposure.",
+      "url": "/zero-based-budgeting.html",
+      "title": "Zero-Based Budgeting: How It Works",
+      "description": "Understand zero-based budgeting, how to assign every unit of planned income, and how it differs from percentage-based budget rules.",
       "type": "guide",
-      "category": "Markets & Macro",
+      "category": "Budgeting & Saving",
       "keywords": [
-        "Treasury bills vs notes vs bonds",
-        "T bills vs Treasury bonds",
-        "Treasury maturity risk",
-        "duration risk",
-        "Treasury notes"
+        "zero based budgeting",
+        "every unit of income has a job",
+        "zero based budget example",
+        "monthly allocation budget"
       ],
       "aliases": [
-        "t bills vs bonds",
-        "Treasury bills notes bonds",
-        "Treasury maturity",
-        "T bills vs notes",
-        "Treasury bond maturity"
+        "zero based budget",
+        "every dollar budget",
+        "give every dollar a job",
+        "zero sum budget"
       ],
-      "priority": 86
-    },
-    {
-      "url": "/what-makes-a-global-reserve-currency.html",
-      "title": "What Makes a Global Reserve Currency?",
-      "description": "Understand why reserve-currency status depends on convertibility, deep markets, institutional confidence, payment networks and network effects.",
-      "type": "guide",
-      "category": "Markets & Macro",
-      "keywords": [
-        "what is a reserve currency",
-        "what makes a reserve currency",
-        "global reserve currency explained",
-        "currency reserves",
-        "reserve currency status"
-      ],
-      "aliases": [
-        "reserve currency",
-        "global reserve currency",
-        "reserve currency explained",
-        "what makes a currency reserve currency",
-        "international reserve currency"
-      ],
-      "priority": 86
-    },
-    {
-      "url": "/why-central-banks-buy-gold.html",
-      "title": "Why Are Central Banks Buying Gold?",
-      "description": "Understand why reserve managers buy gold, what recent official-sector data show, and why central-bank objectives differ from household investing.",
-      "type": "guide",
-      "category": "Markets & Macro",
-      "keywords": [
-        "why are central banks buying gold",
-        "central bank gold purchases",
-        "central bank gold reserves",
-        "official sector gold demand"
-      ],
-      "aliases": [
-        "central bank gold buying",
-        "official gold reserves",
-        "why central banks buy gold",
-        "central bank gold demand"
-      ],
-      "priority": 88
-    },
-    {
-      "url": "/de-dollarisation-explained.html",
-      "title": "De-Dollarisation Explained",
-      "description": "Understand reserve diversification, IMF COFER shares, valuation effects, non-dollar trade settlement and what true dollar displacement would require.",
-      "type": "guide",
-      "category": "Markets & Macro",
-      "keywords": [
-        "de-dollarisation explained",
-        "de-dollarization explained",
-        "dedollarization",
-        "dollar reserve share",
-        "moving away from dollar"
-      ],
-      "aliases": [
-        "de dollarisation",
-        "de-dollarization",
-        "dedollarization",
-        "dollar diversification",
-        "moving away from us dollar"
-      ],
-      "priority": 88
-    },
-    {
-      "url": "/gold-vs-government-bonds-reserve-assets.html",
-      "title": "Gold vs Government Bonds as Reserve Assets",
-      "description": "Compare why central banks hold gold and government securities for different combinations of liquidity, yield, collateral and crisis resilience.",
-      "type": "guide",
-      "category": "Markets & Macro",
-      "keywords": [
-        "gold vs government bonds reserve assets",
-        "gold vs treasuries reserves",
-        "why central banks hold gold and bonds",
-        "reserve assets"
-      ],
-      "aliases": [
-        "gold vs treasuries reserves",
-        "gold vs government bonds reserves",
-        "central bank gold and bonds",
-        "reserve asset comparison"
-      ],
-      "priority": 87
-    },
-    {
-      "url": "/research.html",
-      "title": "Carrowmont Research | Financial Data & Scenario Studies",
-      "description": "Original Carrowmont research combining authoritative public data with transparent financial calculations, downloadable charts and methodology.",
-      "type": "carrowmont",
-      "category": "Research",
-      "keywords": [
-        "Carrowmont Research",
-        "financial data research",
-        "household finance research",
-        "scenario studies"
-      ],
-      "aliases": [
-        "financial research",
-        "Carrowmont data studies"
-      ],
-      "priority": 80
-    },
-    {
-      "url": "/research/mortgage-affordability-monitor.html",
-      "title": "U.S. Mortgage Affordability Monitor | Carrowmont Research",
-      "description": "See how current U.S. mortgage rates change standardized monthly payments, with new-home price and household-income context.",
-      "type": "guide",
-      "category": "Research",
-      "keywords": [
-        "mortgage affordability monitor",
-        "mortgage payment pressure",
-        "mortgage rate research",
-        "housing affordability data",
-        "mortgage rates and payments"
-      ],
-      "aliases": [
-        "mortgage payment research",
-        "US mortgage affordability data"
-      ],
-      "priority": 90
+      "priority": 65
     }
   ]
 }

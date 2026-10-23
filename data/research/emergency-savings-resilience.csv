@@ -1,0 +1,42 @@
+section,metric,category,reserve_usd,monthly_cash_shortfall_usd,value,unit,notes
+official_metric,three_month_fund_pct,,,,55,percent,Federal Reserve SHED 2025
+official_metric,three_month_other_means_pct,,,,15,percent,Federal Reserve SHED 2025
+official_metric,three_month_unable_pct,,,,30,percent,Federal Reserve SHED 2025
+official_metric,cash_equiv_400_pct,,,,63,percent,Federal Reserve SHED 2025
+official_metric,unable_400_pct,,,,12,percent,Federal Reserve SHED 2025
+official_metric,at_least_500_from_savings_pct,,,,70,percent,Federal Reserve SHED 2025
+official_metric,major_unexpected_expense_pct,,,,59,percent,Federal Reserve SHED 2025
+surplus_frequency,three_month_fund,Never,,,13,percent,Federal Reserve Figure 25
+surplus_frequency,three_month_fund,Rarely,,,26,percent,Federal Reserve Figure 25
+surplus_frequency,three_month_fund,Sometimes,,,52,percent,Federal Reserve Figure 25
+surplus_frequency,three_month_fund,Often,,,75,percent,Federal Reserve Figure 25
+surplus_frequency,three_month_fund,Always,,,86,percent,Federal Reserve Figure 25
+savings_capacity,largest_emergency_expense,Less than $100,,,18,percent,Federal Reserve Table 26
+savings_capacity,largest_emergency_expense,$100-$499,,,12,percent,Federal Reserve Table 26
+savings_capacity,largest_emergency_expense,$500-$999,,,9,percent,Federal Reserve Table 26
+savings_capacity,largest_emergency_expense,"$1,000-$1,999",,,11,percent,Federal Reserve Table 26
+savings_capacity,largest_emergency_expense,"$2,000-$4,999",,,12,percent,Federal Reserve Table 26
+savings_capacity,largest_emergency_expense,"$5,000 or more",,,38,percent,Federal Reserve Table 26
+runway_matrix,months_runway,,5000,1500,3.33,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,5000,2500,2.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,5000,3500,1.43,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,5000,5000,1.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,10000,1500,6.67,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,10000,2500,4.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,10000,3500,2.86,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,10000,5000,2.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,20000,1500,13.33,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,20000,2500,8.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,20000,3500,5.71,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,20000,5000,4.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,30000,1500,20.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,30000,2500,12.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,30000,3500,8.57,months,Carrowmont calculation: reserve / monthly cash shortfall
+runway_matrix,months_runway,,30000,5000,6.0,months,Carrowmont calculation: reserve / monthly cash shortfall
+income_loss_example,monthly_cash_shortfall,25% income reduction,20000,300.0,66.67,months,"Illustrative income $6,000; essential outflow $4,800"
+income_loss_example,monthly_cash_shortfall,50% income reduction,20000,1800.0,11.11,months,"Illustrative income $6,000; essential outflow $4,800"
+income_loss_example,monthly_cash_shortfall,100% income reduction,20000,4800.0,4.17,months,"Illustrative income $6,000; essential outflow $4,800"
+three_month_target,target,"$1,500/month",,1500,4500,USD,Carrowmont calculation: 3 x monthly essential outflow
+three_month_target,target,"$2,500/month",,2500,7500,USD,Carrowmont calculation: 3 x monthly essential outflow
+three_month_target,target,"$3,500/month",,3500,10500,USD,Carrowmont calculation: 3 x monthly essential outflow
+three_month_target,target,"$5,000/month",,5000,15000,USD,Carrowmont calculation: 3 x monthly essential outflow
