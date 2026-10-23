@@ -2070,6 +2070,25 @@
       "priority": 80
     },
     {
+      "url": "/research/emergency-savings-resilience.html",
+      "title": "U.S. Emergency Savings & Income-Loss Resilience Report | Carrowmont Research",
+      "description": "Federal Reserve emergency-savings evidence plus transparent cash-runway scenarios for different household income shortfalls.",
+      "type": "guide",
+      "category": "Research",
+      "keywords": [
+        "emergency fund research",
+        "emergency savings resilience report",
+        "financial resilience data",
+        "income loss runway research",
+        "rainy day savings data"
+      ],
+      "aliases": [
+        "emergency savings report",
+        "income interruption savings research"
+      ],
+      "priority": 88
+    },
+    {
       "url": "/research/mortgage-affordability-monitor.html",
       "title": "U.S. Mortgage Affordability Monitor | Carrowmont Research",
       "description": "See how current U.S. mortgage rates change standardized monthly payments, with new-home price and household-income context.",
