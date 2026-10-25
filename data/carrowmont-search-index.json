@@ -2089,6 +2089,28 @@
       "priority": 88
     },
     {
+      "url": "/research/inflation-purchasing-power-monitor.html",
+      "title": "U.S. Inflation & Purchasing-Power Monitor | Carrowmont Research",
+      "description": "Track current U.S. CPI, compare major household spending groups, see long-run purchasing-power erosion and test an illustrative personal spending mix.",
+      "type": "guide",
+      "category": "Research",
+      "keywords": [
+        "inflation purchasing power monitor",
+        "US inflation research",
+        "inflation by household spending category",
+        "CPI household spending groups",
+        "purchasing power research",
+        "personal inflation basket research"
+      ],
+      "aliases": [
+        "inflation monitor",
+        "household inflation research",
+        "personal inflation basket",
+        "US CPI purchasing power"
+      ],
+      "priority": 89
+    },
+    {
       "url": "/research/mortgage-affordability-monitor.html",
       "title": "U.S. Mortgage Affordability Monitor | Carrowmont Research",
       "description": "See how current U.S. mortgage rates change standardized monthly payments, with new-home price and household-income context.",

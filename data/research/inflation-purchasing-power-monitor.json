@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "study": "U.S. Inflation & Purchasing-Power Monitor",
+  "geography": "United States",
+  "published": "2026-10-26",
+  "official_release_date": "2026-10-14",
+  "retrieved": "2026-10-26",
+  "next_release": "2026-11-10",
+  "official_metrics": {
+    "cpi_u_all_items_index_sep_2026": 336.94,
+    "all_items_monthly_sa_pct": 0.6,
+    "all_items_yoy_nsa_pct": 3.7,
+    "core_monthly_sa_pct": 0.3,
+    "core_yoy_nsa_pct": 2.6,
+    "major_group_weighted_yoy_estimate_pct": 3.75
+  },
+  "major_groups": [
+    {
+      "id": "food_beverages",
+      "category": "Food and beverages",
+      "relative_importance_pct": 14.33,
+      "yoy_pct": 2.4
+    },
+    {
+      "id": "housing",
+      "category": "Housing",
+      "relative_importance_pct": 44.14,
+      "yoy_pct": 3.3
+    },
+    {
+      "id": "apparel",
+      "category": "Apparel",
+      "relative_importance_pct": 2.445,
+      "yoy_pct": 3.4
+    },
+    {
+      "id": "transportation",
+      "category": "Transportation",
+      "relative_importance_pct": 17.086,
+      "yoy_pct": 7.9
+    },
+    {
+      "id": "medical_care",
+      "category": "Medical care",
+      "relative_importance_pct": 8.23,
+      "yoy_pct": 1.5
+    },
+    {
+      "id": "recreation",
+      "category": "Recreation",
+      "relative_importance_pct": 5.063,
+      "yoy_pct": 2.8
+    },
+    {
+      "id": "education_communication",
+      "category": "Education and communication",
+      "relative_importance_pct": 5.807,
+      "yoy_pct": 2.3
+    },
+    {
+      "id": "other_goods_services",
+      "category": "Other goods and services",
+      "relative_importance_pct": 2.9,
+      "yoy_pct": 4.1
+    }
+  ],
+  "purchasing_power_anchors": [
+    {
+      "period": "Sep 2016",
+      "index": 241.428,
+      "price_level_change_to_sep_2026_pct": 39.56,
+      "dollars_in_sep_2026_needed_to_match_100_then": 139.56,
+      "sep_2026_100_expressed_in_then_dollars": 71.65
+    },
+    {
+      "period": "Sep 2021",
+      "index": 274.31,
+      "price_level_change_to_sep_2026_pct": 22.83,
+      "dollars_in_sep_2026_needed_to_match_100_then": 122.83,
+      "sep_2026_100_expressed_in_then_dollars": 81.41
+    },
+    {
+      "period": "Sep 2023",
+      "index": 307.789,
+      "price_level_change_to_sep_2026_pct": 9.47,
+      "dollars_in_sep_2026_needed_to_match_100_then": 109.47,
+      "sep_2026_100_expressed_in_then_dollars": 91.35
+    },
+    {
+      "period": "Sep 2025",
+      "index": 324.8,
+      "price_level_change_to_sep_2026_pct": 3.74,
+      "dollars_in_sep_2026_needed_to_match_100_then": 103.74,
+      "sep_2026_100_expressed_in_then_dollars": 96.4
+    },
+    {
+      "period": "Sep 2026",
+      "index": 336.94,
+      "price_level_change_to_sep_2026_pct": 0.0,
+      "dollars_in_sep_2026_needed_to_match_100_then": 100.0,
+      "sep_2026_100_expressed_in_then_dollars": 100.0
+    }
+  ],
+  "selected_pressure_points": [
+    {
+      "category": "Energy",
+      "yoy_pct": 20.4
+    },
+    {
+      "category": "Gasoline",
+      "yoy_pct": 34.2
+    },
+    {
+      "category": "Airline fares",
+      "yoy_pct": 22.4
+    },
+    {
+      "category": "Motor vehicle maintenance & repair",
+      "yoy_pct": 5.8
+    },
+    {
+      "category": "Hospital services",
+      "yoy_pct": 5.6
+    },
+    {
+      "category": "Electricity",
+      "yoy_pct": 4.4
+    },
+    {
+      "category": "Shelter",
+      "yoy_pct": 3.2
+    },
+    {
+      "category": "Food",
+      "yoy_pct": 2.5
+    },
+    {
+      "category": "Used cars & trucks",
+      "yoy_pct": -1.5
+    }
+  ],
+  "personal_basket_presets": [
+    {
+      "id": "bls_major_groups",
+      "name": "BLS major-group weights",
+      "weights": {
+        "food_beverages": 14.33,
+        "housing": 44.14,
+        "apparel": 2.445,
+        "transportation": 17.086,
+        "medical_care": 8.23,
+        "recreation": 5.063,
+        "education_communication": 5.807,
+        "other_goods_services": 2.9
+      },
+      "weight_total_pct": 100.001,
+      "weighted_inflation_pct": 3.75
+    },
+    {
+      "id": "housing_heavy",
+      "name": "Illustrative housing-heavy household",
+      "weights": {
+        "food_beverages": 12,
+        "housing": 55,
+        "apparel": 2,
+        "transportation": 10,
+        "medical_care": 8,
+        "recreation": 4,
+        "education_communication": 4,
+        "other_goods_services": 5
+      },
+      "weight_total_pct": 100,
+      "weighted_inflation_pct": 3.49
+    },
+    {
+      "id": "transport_heavy",
+      "name": "Illustrative transport-heavy household",
+      "weights": {
+        "food_beverages": 14,
+        "housing": 30,
+        "apparel": 2,
+        "transportation": 30,
+        "medical_care": 8,
+        "recreation": 5,
+        "education_communication": 6,
+        "other_goods_services": 5
+      },
+      "weight_total_pct": 100,
+      "weighted_inflation_pct": 4.37
+    },
+    {
+      "id": "medical_heavy",
+      "name": "Illustrative medical-heavy household",
+      "weights": {
+        "food_beverages": 12,
+        "housing": 35,
+        "apparel": 2,
+        "transportation": 12,
+        "medical_care": 25,
+        "recreation": 4,
+        "education_communication": 5,
+        "other_goods_services": 5
+      },
+      "weight_total_pct": 100,
+      "weighted_inflation_pct": 3.27
+    }
+  ],
+  "sources": [
+    {
+      "name": "BLS CPI September 2026 news release",
+      "url": "https://www.bls.gov/news.release/cpi.htm",
+      "role": "Current CPI-U, major-group weights and annual changes"
+    },
+    {
+      "name": "BLS CPI home / latest release",
+      "url": "https://www.bls.gov/cpi/",
+      "role": "Release summary and next-release schedule"
+    },
+    {
+      "name": "BLS CPI-U historical table, U.S. city average",
+      "url": "https://www.bls.gov/regions/mid-atlantic/data/consumerpriceindexhistorical_us_table.htm",
+      "role": "Historical September CPI-U index anchors"
+    }
+  ],
+  "notes": [
+    "Major expenditure-group relative importance values sum to 100.001% because BLS publishes rounded weights.",
+    "The personal-basket estimate is a weighted illustration using current 12-month major-group changes; it is not an official personal CPI and does not reproduce the full BLS index methodology.",
+    "Selected pressure-point categories overlap major groups and are shown for context only; they should not be added together."
+  ]
+}

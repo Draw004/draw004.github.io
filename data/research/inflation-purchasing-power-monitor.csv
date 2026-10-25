@@ -1,0 +1,51 @@
+section,period_or_category,metric,value,unit,source_or_note
+official_metrics,Sep 2026,cpi_u_all_items_index_sep_2026,336.94,index,BLS / Carrowmont as labelled
+official_metrics,Sep 2026,all_items_monthly_sa_pct,0.6,percent,BLS / Carrowmont as labelled
+official_metrics,Sep 2026,all_items_yoy_nsa_pct,3.7,percent,BLS / Carrowmont as labelled
+official_metrics,Sep 2026,core_monthly_sa_pct,0.3,percent,BLS / Carrowmont as labelled
+official_metrics,Sep 2026,core_yoy_nsa_pct,2.6,percent,BLS / Carrowmont as labelled
+official_metrics,Sep 2026,major_group_weighted_yoy_estimate_pct,3.75,percent,BLS / Carrowmont as labelled
+major_groups,Food and beverages,relative_importance,14.33,percent,BLS Table 1
+major_groups,Food and beverages,yoy_change,2.4,percent,BLS Table 1
+major_groups,Housing,relative_importance,44.14,percent,BLS Table 1
+major_groups,Housing,yoy_change,3.3,percent,BLS Table 1
+major_groups,Apparel,relative_importance,2.445,percent,BLS Table 1
+major_groups,Apparel,yoy_change,3.4,percent,BLS Table 1
+major_groups,Transportation,relative_importance,17.086,percent,BLS Table 1
+major_groups,Transportation,yoy_change,7.9,percent,BLS Table 1
+major_groups,Medical care,relative_importance,8.23,percent,BLS Table 1
+major_groups,Medical care,yoy_change,1.5,percent,BLS Table 1
+major_groups,Recreation,relative_importance,5.063,percent,BLS Table 1
+major_groups,Recreation,yoy_change,2.8,percent,BLS Table 1
+major_groups,Education and communication,relative_importance,5.807,percent,BLS Table 1
+major_groups,Education and communication,yoy_change,2.3,percent,BLS Table 1
+major_groups,Other goods and services,relative_importance,2.9,percent,BLS Table 1
+major_groups,Other goods and services,yoy_change,4.1,percent,BLS Table 1
+purchasing_power,Sep 2016,cpi_u_index,241.428,index,BLS historical CPI-U
+purchasing_power,Sep 2016,dollars_needed_in_sep_2026_to_match_100_then,139.56,USD,Carrowmont calculation
+purchasing_power,Sep 2016,price_level_change_to_sep_2026,39.56,percent,Carrowmont calculation
+purchasing_power,Sep 2021,cpi_u_index,274.31,index,BLS historical CPI-U
+purchasing_power,Sep 2021,dollars_needed_in_sep_2026_to_match_100_then,122.83,USD,Carrowmont calculation
+purchasing_power,Sep 2021,price_level_change_to_sep_2026,22.83,percent,Carrowmont calculation
+purchasing_power,Sep 2023,cpi_u_index,307.789,index,BLS historical CPI-U
+purchasing_power,Sep 2023,dollars_needed_in_sep_2026_to_match_100_then,109.47,USD,Carrowmont calculation
+purchasing_power,Sep 2023,price_level_change_to_sep_2026,9.47,percent,Carrowmont calculation
+purchasing_power,Sep 2025,cpi_u_index,324.8,index,BLS historical CPI-U
+purchasing_power,Sep 2025,dollars_needed_in_sep_2026_to_match_100_then,103.74,USD,Carrowmont calculation
+purchasing_power,Sep 2025,price_level_change_to_sep_2026,3.74,percent,Carrowmont calculation
+purchasing_power,Sep 2026,cpi_u_index,336.94,index,BLS historical CPI-U
+purchasing_power,Sep 2026,dollars_needed_in_sep_2026_to_match_100_then,100.0,USD,Carrowmont calculation
+purchasing_power,Sep 2026,price_level_change_to_sep_2026,0.0,percent,Carrowmont calculation
+selected_pressure_points,Energy,yoy_change,20.4,percent,BLS September 2026
+selected_pressure_points,Gasoline,yoy_change,34.2,percent,BLS September 2026
+selected_pressure_points,Airline fares,yoy_change,22.4,percent,BLS September 2026
+selected_pressure_points,Motor vehicle maintenance & repair,yoy_change,5.8,percent,BLS September 2026
+selected_pressure_points,Hospital services,yoy_change,5.6,percent,BLS September 2026
+selected_pressure_points,Electricity,yoy_change,4.4,percent,BLS September 2026
+selected_pressure_points,Shelter,yoy_change,3.2,percent,BLS September 2026
+selected_pressure_points,Food,yoy_change,2.5,percent,BLS September 2026
+selected_pressure_points,Used cars & trucks,yoy_change,-1.5,percent,BLS September 2026
+personal_basket_preset,BLS major-group weights,weighted_inflation,3.75,percent,Carrowmont illustration
+personal_basket_preset,Illustrative housing-heavy household,weighted_inflation,3.49,percent,Carrowmont illustration
+personal_basket_preset,Illustrative transport-heavy household,weighted_inflation,4.37,percent,Carrowmont illustration
+personal_basket_preset,Illustrative medical-heavy household,weighted_inflation,3.27,percent,Carrowmont illustration
