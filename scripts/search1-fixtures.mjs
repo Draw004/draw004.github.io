@@ -93,6 +93,8 @@ const fixtures = [
   { name: 'mortgage affordability calculator stays owned by the tool', query: 'mortgage affordability calculator', region: 'US', first: '/home-affordability-calculator.html' },
   { name: 'emergency savings resilience report finds the Research study', query: 'emergency savings resilience report', region: 'US', first: '/research/emergency-savings-resilience.html' },
   { name: 'income loss runway research finds the Research study', query: 'income loss runway research', region: 'US', first: '/research/emergency-savings-resilience.html' },
+  { name: 'inflation purchasing power monitor finds the Research study', query: 'inflation purchasing power monitor', region: 'US', first: '/research/inflation-purchasing-power-monitor.html' },
+  { name: 'personal inflation basket research finds the Research study', query: 'personal inflation basket research', region: 'US', first: '/research/inflation-purchasing-power-monitor.html' },
   { name: 'nonsense returns no misleading match', query: 'zzzzxyqnotatopic', region: 'OTHER', count: 0 }
 ];
 
