@@ -1,38 +1,38 @@
 {
   "schemaVersion": 1,
   "methodologyVersion": "gold-macro-stress-v1.0",
-  "snapshotDate": "2026-10-16",
-  "generatedAt": "2026-10-19T15:05:15.350Z",
+  "snapshotDate": "2026-10-26",
+  "generatedAt": "2026-10-27T10:41:34.234Z",
   "status": "validated-reference-snapshot",
   "drivers": {
     "realYields": {
-      "value": 2.83,
+      "value": 2.698,
       "unit": "% 10Y real yield, 5-business-day average",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-26",
       "source": "U.S. Department of the Treasury — Daily Treasury Par Real Yield Curve Rates",
       "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_real_yield_curve",
-      "fiveYearPercentile": 99,
-      "trend13WeekPp": 0.496,
+      "fiveYearPercentile": 98.3,
+      "trend13WeekPp": 0.286,
       "referenceScore": -2
     },
     "dollar": {
-      "value": 121.2947,
+      "value": 121.2913,
       "unit": "Broad Dollar Index, 5-business-day average",
-      "asOf": "2026-10-09",
+      "asOf": "2026-10-23",
       "source": "Federal Reserve H.10 — Nominal Broad U.S. Dollar Index",
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/summary/",
-      "fiveYearPercentile": 70.5,
-      "trend13WeekPct": 0.4,
+      "fiveYearPercentile": 61.4,
+      "trend13WeekPct": 0.52,
       "referenceScore": -1
     },
     "inflation": {
-      "value": 4,
+      "value": 3.74,
       "unit": "% YoY CPI-U All Items",
       "asOf": "2026-09",
       "source": "U.S. Bureau of Labor Statistics — CPI-U",
       "sourceUrl": "https://www.bls.gov/news.release/cpi.toc.htm",
       "fiveYearPercentile": 60,
-      "trend3MonthPp": 0.12,
+      "trend3MonthPp": 0.21,
       "referenceScore": 1
     },
     "centralBankDemand": {
@@ -64,10 +64,10 @@
       "rationale": "The reviewed CBO baseline shows debt held by the public and net interest at historically elevated levels with a rising longer-run path; this is classified as very elevated fiscal stress, not as a default prediction."
     },
     "stress": {
-      "gprFourWeekAverage": 175.97,
+      "gprFourWeekAverage": 175.56,
       "gprUnit": "index, approximately 4-week/30-day average",
-      "gprPercentile": 86.2,
-      "gprAsOf": "2026-10-13",
+      "gprPercentile": 86,
+      "gprAsOf": "2026-10-26",
       "gprSource": "Caldara-Iacoviello Geopolitical Risk Index — Recent Daily GPR",
       "gprSourceUrl": "https://www.matteoiacoviello.com/gpr.htm",
       "gprPreliminary": true,
