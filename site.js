@@ -507,17 +507,17 @@
   'use strict';
 
   var CHANNELS = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/carrowmont/' },
-    { label: 'Facebook', href: 'https://www.facebook.com/carrowmont' },
-    { label: 'Instagram', href: 'https://www.instagram.com/carrowmont.finance/' },
-    { label: 'YouTube', href: 'https://www.youtube.com/@carrowmontfinance' }
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/carrowmont/', icon: '<svg class="footer-social-icon footer-social-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.4a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.4 9H7v11.6H3.4V9Zm5.8 0h3.5v1.6h.1c.5-.9 1.7-2.1 3.6-2.1 3.9 0 4.6 2.6 4.6 6v6.1h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.5H9.2V9Z"/></svg>' },
+    { label: 'Facebook', href: 'https://www.facebook.com/carrowmont', icon: '<svg class="footer-social-icon footer-social-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.7Z"/></svg>' },
+    { label: 'Instagram', href: 'https://www.instagram.com/carrowmont.finance/', icon: '<svg class="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="footer-social-dot" cx="17.5" cy="6.5" r="1"/></svg>' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@carrowmontfinance', icon: '<svg class="footer-social-icon footer-social-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7.5a2.7 2.7 0 0 0-1.9-1.9C17.4 5 12 5 12 5s-5.4 0-7.1.6A2.7 2.7 0 0 0 3 7.5C2.5 9.1 2.5 12 2.5 12s0 2.9.5 4.5a2.7 2.7 0 0 0 1.9 1.9c1.7.6 7.1.6 7.1.6s5.4 0 7.1-.6a2.7 2.7 0 0 0 1.9-1.9c.5-1.6.5-4.5.5-4.5s0-2.9-.5-4.5Z"/><path class="footer-social-play" d="m10 15 5-3-5-3z"/></svg>' }
   ];
 
   function ensureSocialFooterStyles() {
     if (document.getElementById('social1FooterStyles')) return;
     var style = document.createElement('style');
     style.id = 'social1FooterStyles';
-    style.textContent = '.footer-social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.footer-social-links a{display:inline-flex;align-items:center;min-height:36px;padding:7px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#dce7f0!important;text-decoration:none!important;font-size:12.5px;font-weight:800;line-height:1}.footer-social-links a:hover{border-color:rgba(255,255,255,.42);color:#fff!important}.footer-social-label{display:block;margin-top:17px;color:#fff;font-size:12px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}@media(max-width:700px){.footer-social-links{gap:7px}.footer-social-links a{min-height:38px;padding:8px 11px}}';
+    style.textContent = '.footer-social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.footer-social-links a{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:7px 11px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#dce7f0!important;text-decoration:none!important;font-size:12.5px;font-weight:800;line-height:1}.footer-social-links a:hover{border-color:rgba(255,255,255,.42);color:#fff!important}.footer-social-icon{width:16px;height:16px;flex:0 0 auto;stroke:currentColor;stroke-width:1.9;fill:none}.footer-social-fill{fill:currentColor;stroke:none}.footer-social-play{fill:#102f50;stroke:none}.footer-social-dot{fill:currentColor;stroke:none}.footer-social-label{display:block;margin-top:17px;color:#fff;font-size:12px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}@media(max-width:700px){.footer-social-links{gap:7px}.footer-social-links a{min-height:40px;padding:8px 11px}}';
     document.head.appendChild(style);
   }
 
@@ -537,7 +537,7 @@
       CHANNELS.forEach(function (channel) {
         var link = document.createElement('a');
         link.href = channel.href;
-        link.textContent = channel.label;
+        link.innerHTML = channel.icon + '<span>' + channel.label + '</span>';
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         link.setAttribute('aria-label', channel.label + ' - Carrowmont (opens in a new tab)');
