@@ -500,3 +500,54 @@
   }
   if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',addResearchLinks,{once:true}); else addResearchLinks();
 })();
+
+
+/* SOCIAL1: expose Carrowmont's official social channels in the shared site footer. */
+(function () {
+  'use strict';
+
+  var CHANNELS = [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/carrowmont/' },
+    { label: 'Facebook', href: 'https://www.facebook.com/carrowmont' },
+    { label: 'Instagram', href: 'https://www.instagram.com/carrowmont.finance/' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@carrowmontfinance' }
+  ];
+
+  function ensureSocialFooterStyles() {
+    if (document.getElementById('social1FooterStyles')) return;
+    var style = document.createElement('style');
+    style.id = 'social1FooterStyles';
+    style.textContent = '.footer-social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.footer-social-links a{display:inline-flex;align-items:center;min-height:36px;padding:7px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#dce7f0!important;text-decoration:none!important;font-size:12.5px;font-weight:800;line-height:1}.footer-social-links a:hover{border-color:rgba(255,255,255,.42);color:#fff!important}.footer-social-label{display:block;margin-top:17px;color:#fff;font-size:12px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}@media(max-width:700px){.footer-social-links{gap:7px}.footer-social-links a{min-height:38px;padding:8px 11px}}';
+    document.head.appendChild(style);
+  }
+
+  function addFooterSocialLinks() {
+    ensureSocialFooterStyles();
+    document.querySelectorAll('.site-footer').forEach(function (footer) {
+      if (footer.querySelector('[data-cm-footer-social]')) return;
+      var brand = footer.querySelector('.footer-brand-block, .footer-brand');
+      if (!brand) return;
+      var label = document.createElement('span');
+      label.className = 'footer-social-label';
+      label.textContent = 'Follow Carrowmont';
+      var nav = document.createElement('nav');
+      nav.className = 'footer-social-links';
+      nav.dataset.cmFooterSocial = '';
+      nav.setAttribute('aria-label', 'Carrowmont social channels');
+      CHANNELS.forEach(function (channel) {
+        var link = document.createElement('a');
+        link.href = channel.href;
+        link.textContent = channel.label;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', channel.label + ' - Carrowmont (opens in a new tab)');
+        nav.appendChild(link);
+      });
+      brand.appendChild(label);
+      brand.appendChild(nav);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addFooterSocialLinks, { once: true });
+  else addFooterSocialLinks();
+})();

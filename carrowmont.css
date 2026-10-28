@@ -455,3 +455,22 @@ body.contact-page .contact-card{margin-top:22px}
   body.contact-page .page-hero p{font-size:16px}
   body.contact-page .contact-section{padding:30px 0 56px}
 }
+
+
+/* SOCIAL1: official Carrowmont channels and financial-awareness positioning. */
+.social-follow-section{padding:58px 0 64px;background:#f5f9fa;border-top:1px solid var(--line)}
+.social-follow-inner{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.45fr);gap:54px;align-items:center}
+.social-follow-copy h2{margin:7px 0 14px;font-size:clamp(30px,3vw,42px);line-height:1.08;color:var(--navy)}
+.social-follow-copy>p:last-child{margin:0;max-width:640px;color:var(--muted);line-height:1.7}
+.social-follow-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.social-follow-links a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid #d9e5e9;border-radius:14px;background:#fff;text-decoration:none;color:var(--navy);transition:border-color .18s ease,transform .18s ease}
+.social-follow-links a strong{font-size:16px}
+.social-follow-links a span{color:#4f6a77;font-size:13px}
+@media(hover:hover) and (pointer:fine){.social-follow-links a:hover{border-color:#8fc7c2;transform:translateY(-1px)}}
+.contact-social-panel{margin-top:22px;padding:26px 28px;border:1px solid #d9e5e9;border-radius:20px;background:#f7fbfb;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.8fr);gap:28px;align-items:center}
+.contact-social-panel h2{margin:6px 0 8px;color:var(--navy);font-size:25px}
+.contact-social-panel p{margin:0;color:var(--muted);line-height:1.65}
+.contact-social-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.contact-social-links a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;border:1px solid #bfd8d6;border-radius:999px;background:#fff;color:#086b64;text-decoration:none;font-weight:800;font-size:14px}
+@media(max-width:980px){.social-follow-inner{grid-template-columns:1fr;gap:28px}.contact-social-panel{grid-template-columns:1fr}}
+@media(max-width:700px){.social-follow-section{padding:42px 0 48px}.social-follow-links,.contact-social-links{grid-template-columns:1fr}.contact-social-panel{padding:22px 18px}}
