@@ -551,3 +551,276 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addFooterSocialLinks, { once: true });
   else addFooterSocialLinks();
 })();
+
+
+/* MOBILE1: mobile app-like web UX for the main Carrowmont site. */
+(function () {
+  'use strict';
+
+  var MOBILE_QUERY = '(max-width: 700px)';
+  var QUICK_TOOL_PROFILES = {
+    IN: ['investment', 'loan', 'retirement', 'compound', 'goals'],
+    DEFAULT: ['retirement', 'housing', 'loan', 'investment', 'compound']
+  };
+
+  var ICONS = {
+    home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5M9.5 20v-6h5v6"/></svg>',
+    tools: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="2"/><rect x="14" y="4" width="7" height="7" rx="2"/><rect x="3" y="15" width="7" height="6" rx="2"/><rect x="14" y="15" width="7" height="6" rx="2"/></svg>',
+    learn: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5c2.8-.8 5.4-.3 8 1.5v12c-2.6-1.8-5.2-2.3-8-1.5z"/><path d="M20 5.5c-2.8-.8-5.4-.3-8 1.5v12c2.6-1.8 5.2-2.3 8-1.5z"/></svg>',
+    research: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 13v-3m3 3V7m3 6v-2"/></svg>',
+    more: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>',
+    search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg>',
+    about: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>',
+    methodology: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>',
+    contact: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="3" height="10" rx=".5"/><circle cx="5.5" cy="5.5" r="1.5"/><path d="M10 19V9h3v1.7c1-1.3 2.1-2 3.8-2 2.8 0 4.2 1.8 4.2 5V19h-3v-4.8c0-1.7-.5-2.8-2-2.8-1.8 0-3 1.2-3 3V19z"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h4l-.6 4H14v9h-4v-9H7V8h3V5.5C10 2.5 11.8 1 15 1h3v4h-2c-1.4 0-2 .5-2 1.8z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7.5a2.7 2.7 0 0 0-1.9-1.9C17.4 5 12 5 12 5s-5.4 0-7.1.6A2.7 2.7 0 0 0 3 7.5C2.5 9.1 2.5 12 2.5 12s0 2.9.5 4.5a2.7 2.7 0 0 0 1.9 1.9c1.7.6 7.1.6 7.1.6s5.4 0 7.1-.6a2.7 2.7 0 0 0 1.9-1.9c.5-1.6.5-4.5.5-4.5s0-2.9-.5-4.5Z"/><path d="m10 15 5-3-5-3z"/></svg>'
+  };
+
+  function ensureStyles() {
+    if (document.getElementById('mobile1Styles')) return;
+    var style = document.createElement('style');
+    style.id = 'mobile1Styles';
+    style.textContent = [
+      '.mobile1-header-search,.mobile1-bottom-nav,.mobile1-quick-tools{display:none}',
+      '.mobile1-more-dialog{border:0;padding:0;background:transparent;color:var(--navy,#0f2743)}',
+      '@media(max-width:700px){',
+      'html.mobile1-active body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}',
+      'html.mobile1-active .site-header{position:sticky;top:0;z-index:95;box-shadow:0 5px 18px rgba(15,39,67,.08)}',
+      'html.mobile1-active .header-inner{min-height:64px!important;gap:8px!important;flex-wrap:nowrap!important}',
+      'html.mobile1-active .brand{min-width:0;gap:8px}',
+      'html.mobile1-active .brand-name{font-size:18px!important;letter-spacing:1.2px!important}',
+      'html.mobile1-active .brand-rule,html.mobile1-active .brand-tagline{display:none!important}',
+      'html.mobile1-active .mobile-nav{display:none!important}',
+      '.mobile1-header-search{display:grid;width:42px;height:42px;place-items:center;border:1px solid #d2e0e8;border-radius:13px;background:#fff;color:#163a5b;margin-left:auto;flex:0 0 auto}',
+      '.mobile1-header-search svg{width:21px;height:21px}',
+      'html.mobile1-active .locale-menu{margin-left:0!important;flex:0 0 auto}',
+      'html.mobile1-active .locale-summary{min-height:42px;padding:8px 10px!important;gap:6px!important}',
+      'html.mobile1-active .locale-summary #localeCountryLabel,html.mobile1-active .locale-summary #localeCountryLabel+span{display:none!important}',
+      'html.mobile1-active .locale-summary #localeCurrencyLabel{font-size:12px}',
+      'html.mobile1-active .locale-summary .chevron{display:none!important}',
+      'html.mobile1-active .locale-panel{top:70px!important}',
+      '.mobile1-bottom-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(255,255,255,.97);border-top:1px solid #d5e1e8;box-shadow:0 -7px 22px rgba(15,39,67,.09);padding:5px 6px calc(5px + env(safe-area-inset-bottom,0px));backdrop-filter:blur(12px)}',
+      '.mobile1-nav-item{min-width:0;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:#667e98;font:inherit;font-size:10.5px;font-weight:800;text-decoration:none;border-radius:12px;padding:4px 2px}',
+      '.mobile1-nav-item svg{width:22px;height:22px;stroke-width:2}',
+      '.mobile1-nav-item[aria-current="page"]{color:#08766e;background:#eaf7f5}',
+      '.mobile1-nav-item:focus-visible,.mobile1-header-search:focus-visible,.mobile1-more-link:focus-visible,.mobile1-quick-tool:focus-visible{outline:3px solid rgba(12,146,135,.28);outline-offset:2px}',
+      '.mobile1-more-dialog{display:none}',
+      '.mobile1-more-dialog[open]{display:block;position:fixed;inset:auto 0 0 0;width:100%;max-width:none;max-height:min(78%,650px);margin:0;border-radius:24px 24px 0 0;background:#fff;box-shadow:0 -18px 50px rgba(15,39,67,.18);overflow:auto;padding:0 0 calc(20px + env(safe-area-inset-bottom,0px));z-index:150}',
+      '.mobile1-more-dialog::backdrop{background:rgba(9,28,47,.42)}',
+      '.mobile1-more-head{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;background:#fff;border-bottom:1px solid #e0e8ed;z-index:1}',
+      '.mobile1-more-head strong{font-size:18px}',
+      '.mobile1-more-close{width:42px;height:42px;border:1px solid #d7e3ea;border-radius:50%;background:#fff;color:#173b5e;font-size:24px;line-height:1;cursor:pointer}',
+      '.mobile1-more-body{padding:14px 16px 4px}',
+      '.mobile1-more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}',
+      '.mobile1-more-link{display:flex;align-items:center;gap:11px;min-height:54px;padding:10px 12px;border:1px solid #dce6eb;border-radius:14px;background:#fff;color:#173b5e;text-decoration:none;font-size:13px;font-weight:850;text-align:left}',
+      '.mobile1-more-link svg{width:21px;height:21px;color:#0c9287;flex:0 0 auto}',
+      '.mobile1-more-link.mobile1-locale-button{grid-column:1/-1;width:100%;font:inherit;cursor:pointer}',
+      '.mobile1-more-social-title{margin:20px 2px 9px;color:#667e98;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}',
+      '.mobile1-more-social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}',
+      '.mobile1-more-social .mobile1-more-link{min-height:48px}',
+      '.mobile1-quick-tools{display:block;margin:2px 0 0;padding:15px 0 4px}',
+      '.mobile1-quick-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:13px}',
+      '.mobile1-quick-head strong{font-size:16px}',
+      '.mobile1-quick-head a{color:#08766e;font-size:13px;font-weight:900}',
+      '.mobile1-quick-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}',
+      '.mobile1-quick-tool{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;padding:7px 1px 5px;color:#173b5e;text-decoration:none;text-align:center;border-radius:13px}',
+      '.mobile1-quick-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#eaf7f5;color:#087e75}',
+      '.mobile1-quick-icon svg{width:25px;height:25px}',
+      '.mobile1-quick-tool span:last-child{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.5px;font-weight:850;line-height:1.15}',
+      'html.mobile1-active [data-homepage-core-grid]{display:none!important}',
+      'html.mobile1-active .planning-section{padding:34px 0 38px!important}',
+      'html.mobile1-active .planning-section .section-heading-row{margin-bottom:6px!important}',
+      'html.mobile1-active .planning-section .section-heading-row>.text-link{display:none!important}',
+      'html.mobile1-active .planning-section .section-heading-row h2{font-size:31px!important}',
+      'html.mobile1-active .planning-section .section-heading-row p{font-size:16px!important;line-height:1.5}',
+      'html.mobile1-active body.india-inr .india-sip-spotlight{display:none!important}',
+      'html.mobile1-active .authority-tools-section{padding:42px 0 46px!important}',
+      'html.mobile1-active .authority-tools-grid{display:flex!important;gap:12px!important;overflow-x:auto;scroll-snap-type:x mandatory;padding:1px 14px 10px 0;margin-right:-14px;scrollbar-width:none}',
+      'html.mobile1-active .authority-tools-grid::-webkit-scrollbar,html.mobile1-active .learn-grid::-webkit-scrollbar{display:none}',
+      'html.mobile1-active .authority-tool-card{flex:0 0 84%;scroll-snap-align:start;min-height:0!important}',
+      'html.mobile1-active .learn-section{padding:44px 0!important}',
+      'html.mobile1-active .learn-grid{display:flex!important;gap:12px!important;overflow-x:auto;scroll-snap-type:x mandatory;padding:1px 14px 10px 0;margin-right:-14px;scrollbar-width:none}',
+      'html.mobile1-active .learn-grid article{flex:0 0 84%;scroll-snap-align:start;min-height:205px!important}',
+      'html.mobile1-active .about-preview{padding:48px 0!important}',
+      'html.mobile1-active .social-follow-section{padding-bottom:40px!important}',
+      '}',
+      '@media(max-width:360px){.mobile1-quick-grid{gap:3px}.mobile1-quick-icon{width:42px;height:42px}.mobile1-quick-tool span:last-child{font-size:10px}.mobile1-nav-item{font-size:10px}}'
+    ].join('');
+    document.head.appendChild(style);
+  }
+
+  function pathKey() {
+    var path = window.location.pathname || '/';
+    if (path === '/' || path === '/index.html') return 'home';
+    if (path === '/tools.html' || path.indexOf('/sip-calculator/') === 0 || path.indexOf('/retirement-calculator/') === 0 || path.indexOf('/goal-planner/') === 0 || path.indexOf('/financial-independence/') === 0 || path.indexOf('/inflation-calculator/') === 0 || path.indexOf('/budget-cash-flow-planner/') === 0 || path.indexOf('/mortgage-payoff-calculator/') === 0 || path.indexOf('/compound-interest-calculator/') === 0 || path.indexOf('/loan-calculator/') === 0) return 'tools';
+    if (path === '/learn.html' || document.body.dataset.cmPage === 'learn-hub') return 'learn';
+    if (path === '/research.html' || path.indexOf('/research/') === 0) return 'research';
+    return '';
+  }
+
+  function addHeaderSearch() {
+    document.querySelectorAll('.header-inner').forEach(function (header) {
+      if (header.querySelector('[data-mobile1-header-search]')) return;
+      var link = document.createElement('a');
+      link.className = 'mobile1-header-search';
+      link.dataset.mobile1HeaderSearch = '';
+      link.href = '/search.html';
+      link.setAttribute('aria-label', 'Search Carrowmont');
+      link.innerHTML = ICONS.search;
+      var locale = header.querySelector('.locale-menu');
+      if (locale) header.insertBefore(link, locale);
+      else header.appendChild(link);
+    });
+  }
+
+  function createNavItem(item, active) {
+    var node = document.createElement(item.button ? 'button' : 'a');
+    node.className = 'mobile1-nav-item';
+    if (item.button) node.type = 'button';
+    else node.href = item.href;
+    node.dataset.mobile1Nav = item.key;
+    node.innerHTML = ICONS[item.key] + '<span>' + item.label + '</span>';
+    if (active === item.key) node.setAttribute('aria-current', 'page');
+    return node;
+  }
+
+  function buildMoreDialog() {
+    var existing = document.getElementById('mobile1MoreDialog');
+    if (existing) return existing;
+    var dialog = document.createElement('dialog');
+    dialog.id = 'mobile1MoreDialog';
+    dialog.className = 'mobile1-more-dialog';
+    dialog.setAttribute('aria-labelledby', 'mobile1MoreTitle');
+    dialog.innerHTML = '' +
+      '<div class="mobile1-more-head"><strong id="mobile1MoreTitle">More from Carrowmont</strong><button type="button" class="mobile1-more-close" aria-label="Close menu">&times;</button></div>' +
+      '<div class="mobile1-more-body">' +
+        '<div class="mobile1-more-grid">' +
+          '<a class="mobile1-more-link" href="/search.html">' + ICONS.search + '<span>Search</span></a>' +
+          '<a class="mobile1-more-link" href="/about.html">' + ICONS.about + '<span>About</span></a>' +
+          '<a class="mobile1-more-link" href="/methodology.html">' + ICONS.methodology + '<span>Methodology</span></a>' +
+          '<a class="mobile1-more-link" href="/contact.html">' + ICONS.contact + '<span>Contact</span></a>' +
+          '<button type="button" class="mobile1-more-link mobile1-locale-button">' + ICONS.globe + '<span>Country &amp; currency</span></button>' +
+        '</div>' +
+        '<p class="mobile1-more-social-title">Follow Carrowmont</p>' +
+        '<div class="mobile1-more-social">' +
+          '<a class="mobile1-more-link" href="https://www.linkedin.com/company/carrowmont/" target="_blank" rel="noopener noreferrer">' + ICONS.linkedin + '<span>LinkedIn</span></a>' +
+          '<a class="mobile1-more-link" href="https://www.facebook.com/carrowmont" target="_blank" rel="noopener noreferrer">' + ICONS.facebook + '<span>Facebook</span></a>' +
+          '<a class="mobile1-more-link" href="https://www.instagram.com/carrowmont.finance/" target="_blank" rel="noopener noreferrer">' + ICONS.instagram + '<span>Instagram</span></a>' +
+          '<a class="mobile1-more-link" href="https://www.youtube.com/@carrowmontfinance" target="_blank" rel="noopener noreferrer">' + ICONS.youtube + '<span>YouTube</span></a>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.mobile1-more-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.querySelector('.mobile1-locale-button').addEventListener('click', function () {
+      dialog.close();
+      var locale = document.getElementById('localeMenu') || document.querySelector('.locale-menu');
+      if (locale) {
+        locale.open = true;
+        var summary = locale.querySelector('summary');
+        if (summary) summary.focus();
+      }
+    });
+    return dialog;
+  }
+
+  function buildBottomNav() {
+    if (document.querySelector('[data-mobile1-bottom-nav]')) return;
+    var active = pathKey();
+    var nav = document.createElement('nav');
+    nav.className = 'mobile1-bottom-nav';
+    nav.dataset.mobile1BottomNav = '';
+    nav.setAttribute('aria-label', 'Mobile primary navigation');
+    [
+      { key: 'home', label: 'Home', href: '/' },
+      { key: 'tools', label: 'Tools', href: '/tools.html' },
+      { key: 'learn', label: 'Learn', href: '/learn.html' },
+      { key: 'research', label: 'Research', href: '/research.html' },
+      { key: 'more', label: 'More', button: true }
+    ].forEach(function (item) { nav.appendChild(createNavItem(item, active)); });
+    document.body.appendChild(nav);
+    var dialog = buildMoreDialog();
+    nav.querySelector('[data-mobile1-nav="more"]').addEventListener('click', function () {
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+    });
+  }
+
+  function compactLabel(toolId, regionCode) {
+    var labels = {
+      retirement: 'Retirement', compound: 'Compound', goals: 'Goals', budget: 'Budget', inflation: 'Inflation', independence: 'FI'
+    };
+    if (toolId === 'investment') return regionCode === 'IN' ? 'SIP' : 'Invest';
+    if (toolId === 'loan') return regionCode === 'IN' ? 'EMI' : 'Loan';
+    if (toolId === 'housing') {
+      if (regionCode === 'IN') return 'Home Loan';
+      if (regionCode === 'AU' || regionCode === 'NZ') return 'Home Loan';
+      return 'Mortgage';
+    }
+    return labels[toolId] || toolId;
+  }
+
+  function currentRegion() {
+    var api = window.CarrowmontLocale;
+    return api && typeof api.getRegion === 'function' ? api.getRegion() : 'OTHER';
+  }
+
+  function renderQuickTools() {
+    if (document.body.dataset.cmPage !== 'home') return;
+    var grid = document.querySelector('[data-homepage-core-grid]');
+    var heading = document.querySelector('.planning-section .section-heading-row');
+    if (!grid || !heading) return;
+    var host = document.querySelector('[data-mobile1-quick-tools]');
+    if (!host) {
+      host = document.createElement('div');
+      host.className = 'mobile1-quick-tools';
+      host.dataset.mobile1QuickTools = '';
+      host.innerHTML = '<div class="mobile1-quick-head"><strong>Popular tools</strong><a href="/tools.html">See all</a></div><div class="mobile1-quick-grid"></div>';
+      heading.insertAdjacentElement('afterend', host);
+    }
+    var region = currentRegion();
+    var ids = (region === 'IN' ? QUICK_TOOL_PROFILES.IN : QUICK_TOOL_PROFILES.DEFAULT).slice();
+    var quickGrid = host.querySelector('.mobile1-quick-grid');
+    quickGrid.textContent = '';
+    ids.forEach(function (toolId) {
+      var card = grid.querySelector('[data-tool-id="' + toolId + '"]');
+      if (!card) return;
+      var destination = card.querySelector(':scope > a[href]');
+      var icon = card.querySelector('.tool-icon');
+      if (!destination || !icon) return;
+      var link = document.createElement('a');
+      link.className = 'mobile1-quick-tool';
+      link.href = destination.getAttribute('href');
+      link.setAttribute('aria-label', 'Open ' + (card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : compactLabel(toolId, region)));
+      var iconWrap = document.createElement('span');
+      iconWrap.className = 'mobile1-quick-icon';
+      var svg = icon.querySelector('svg');
+      if (svg) iconWrap.appendChild(svg.cloneNode(true));
+      var label = document.createElement('span');
+      label.textContent = compactLabel(toolId, region);
+      link.appendChild(iconWrap);
+      link.appendChild(label);
+      quickGrid.appendChild(link);
+    });
+  }
+
+  function init() {
+    ensureStyles();
+    addHeaderSearch();
+    buildBottomNav();
+    renderQuickTools();
+    document.documentElement.classList.add('mobile1-active');
+    window.addEventListener('carrowmont:localechange', renderQuickTools);
+    window.addEventListener('pageshow', renderQuickTools);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
+})();
