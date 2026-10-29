@@ -574,10 +574,10 @@
     about: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>',
     methodology: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>',
     contact: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>',
-    linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="3" height="10" rx=".5"/><circle cx="5.5" cy="5.5" r="1.5"/><path d="M10 19V9h3v1.7c1-1.3 2.1-2 3.8-2 2.8 0 4.2 1.8 4.2 5V19h-3v-4.8c0-1.7-.5-2.8-2-2.8-1.8 0-3 1.2-3 3V19z"/></svg>',
-    facebook: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h4l-.6 4H14v9h-4v-9H7V8h3V5.5C10 2.5 11.8 1 15 1h3v4h-2c-1.4 0-2 .5-2 1.8z"/></svg>',
-    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>',
-    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7.5a2.7 2.7 0 0 0-1.9-1.9C17.4 5 12 5 12 5s-5.4 0-7.1.6A2.7 2.7 0 0 0 3 7.5C2.5 9.1 2.5 12 2.5 12s0 2.9.5 4.5a2.7 2.7 0 0 0 1.9 1.9c1.7.6 7.1.6 7.1.6s5.4 0 7.1-.6a2.7 2.7 0 0 0 1.9-1.9c.5-1.6.5-4.5.5-4.5s0-2.9-.5-4.5Z"/><path d="m10 15 5-3-5-3z"/></svg>'
+    linkedin: '<svg class="mobile1-social-icon mobile1-social-fill mobile1-social-linkedin" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.4a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.4 9H7v11.6H3.4V9Zm5.8 0h3.5v1.6h.1c.5-.9 1.7-2.1 3.6-2.1 3.9 0 4.6 2.6 4.6 6v6.1h-3.6v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.5H9.2V9Z"/></svg>',
+    facebook: '<svg class="mobile1-social-icon mobile1-social-fill mobile1-social-facebook" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.7Z"/></svg>',
+    instagram: '<svg class="mobile1-social-icon mobile1-social-instagram" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="cmInstagramGradientMobile1" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#feda75"/><stop offset=".25" stop-color="#fa7e1e"/><stop offset=".5" stop-color="#d62976"/><stop offset=".75" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5" stroke="url(#cmInstagramGradientMobile1)"/><circle cx="12" cy="12" r="4" stroke="url(#cmInstagramGradientMobile1)"/><circle cx="17.5" cy="6.5" r="1" fill="url(#cmInstagramGradientMobile1)" stroke="none"/></svg>',
+    youtube: '<svg class="mobile1-social-icon mobile1-social-fill mobile1-social-youtube" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7.5a2.7 2.7 0 0 0-1.9-1.9C17.4 5 12 5 12 5s-5.4 0-7.1.6A2.7 2.7 0 0 0 3 7.5C2.5 9.1 2.5 12 2.5 12s0 2.9.5 4.5a2.7 2.7 0 0 0 1.9 1.9c1.7.6 7.1.6 7.1.6s5.4 0 7.1-.6a2.7 2.7 0 0 0 1.9-1.9c.5-1.6.5-4.5.5-4.5s0-2.9-.5-4.5Z"/><path class="mobile1-social-play" d="m10 15 5-3-5-3z"/></svg>'
   };
 
   function ensureStyles() {
@@ -622,6 +622,12 @@
       '.mobile1-more-social-title{margin:20px 2px 9px;color:#667e98;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}',
       '.mobile1-more-social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}',
       '.mobile1-more-social .mobile1-more-link{min-height:48px}',
+      '.mobile1-more-social .mobile1-social-icon{width:21px;height:21px;flex:0 0 auto;stroke:currentColor;stroke-width:1.9;fill:none}',
+      '.mobile1-more-social .mobile1-social-fill{fill:currentColor;stroke:none}',
+      '.mobile1-more-social .mobile1-social-linkedin{color:#0a66c2}',
+      '.mobile1-more-social .mobile1-social-facebook{color:#1877f2}',
+      '.mobile1-more-social .mobile1-social-youtube{color:#ff0000}',
+      '.mobile1-more-social .mobile1-social-play{fill:#fff;stroke:none}',
       '.mobile1-quick-tools{display:block;margin:2px 0 0;padding:15px 0 4px}',
       '.mobile1-quick-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:13px}',
       '.mobile1-quick-head strong{font-size:16px}',
