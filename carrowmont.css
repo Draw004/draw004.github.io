@@ -469,6 +469,9 @@ body.contact-page .contact-card{margin-top:22px}
 .social-platform-icon .social-logo-fill{fill:currentColor;stroke:none}
 .social-platform-icon .social-logo-play{fill:#fff;stroke:none}
 .social-platform-icon .social-logo-dot{fill:currentColor;stroke:none}
+.social-platform-icon .social-logo-linkedin{color:#0a66c2}
+.social-platform-icon .social-logo-facebook{color:#1877f2}
+.social-platform-icon .social-logo-youtube{color:#ff0000}
 .social-platform-copy{display:block;min-width:0}
 .social-follow-links a strong{display:block;font-size:16px}
 .social-follow-links a .social-platform-copy>span{display:block;margin-top:3px;color:#4f6a77;font-size:13px}
