@@ -830,3 +830,125 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();
 })();
+
+
+/* NEWSLETTER1: optional Carrowmont Money in Real Life signup on Home, Learn articles and Research studies. */
+(function () {
+  'use strict';
+
+  var KIT_UID = '6ba4a35ab0';
+  var KIT_SRC = 'https://carrowmont.kit.com/6ba4a35ab0/index.js';
+
+  function isHomePage() {
+    return location.pathname === '/' || location.pathname === '/index.html';
+  }
+
+  function isLearnArticle() {
+    return document.body && document.body.getAttribute('data-cm-learn-article') === '1';
+  }
+
+  function isResearchStudy() {
+    return document.body && document.body.classList.contains('research-page');
+  }
+
+  function ensureNewsletterStyles() {
+    if (document.getElementById('newsletter1Styles')) return;
+    var style = document.createElement('style');
+    style.id = 'newsletter1Styles';
+    style.textContent = [
+      '.cm-newsletter-section{padding:54px 0 58px;background:linear-gradient(135deg,#eef8f6 0%,#f8fbfc 58%,#fffaf4 100%);border-top:1px solid #d7e6e8;border-bottom:1px solid #d7e6e8}',
+      '.cm-newsletter-inner{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:42px;align-items:center}',
+      '.cm-newsletter-copy h2{margin:7px 0 13px;color:var(--navy,#0f2743);font-size:clamp(30px,3vw,42px);line-height:1.08}',
+      '.cm-newsletter-copy>p{margin:0;color:var(--muted,#587184);font-size:16px;line-height:1.7;max-width:680px}',
+      '.cm-newsletter-promise{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:18px;color:#244d66;font-size:13px;font-weight:750}',
+      '.cm-newsletter-promise span{display:inline-flex;align-items:center;gap:7px}',
+      '.cm-newsletter-promise span::before{content:"";width:7px;height:7px;border-radius:50%;background:#0e9488;flex:0 0 auto}',
+      '.cm-newsletter-signup{padding:24px;border:1px solid #cfe2e1;border-radius:20px;background:rgba(255,255,255,.92);box-shadow:0 14px 35px rgba(15,39,67,.07)}',
+      '.cm-newsletter-signup-label{margin:0 0 12px;color:#173b55;font-size:14px;font-weight:850}',
+      '.cm-newsletter-form{min-height:60px}',
+      '.cm-newsletter-form .formkit-form{margin:0!important;max-width:none!important}',
+      '.cm-newsletter-fineprint{margin:12px 0 0;color:#667f90;font-size:12px;line-height:1.55}',
+      '.cm-newsletter-fineprint a{color:#08766e;font-weight:800}',
+      '.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:34px;padding:40px 0 44px}',
+      '.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner{grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:30px}',
+      '.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-copy h2{font-size:clamp(27px,2.5vw,35px)}',
+      '@media(max-width:900px){.cm-newsletter-inner,.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner{grid-template-columns:1fr;gap:24px}.cm-newsletter-signup{max-width:700px}}',
+      '@media(max-width:700px){.cm-newsletter-section{padding:40px 0 44px}.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:26px;padding:34px 0 38px}.cm-newsletter-inner{gap:20px}.cm-newsletter-copy h2{font-size:30px}.cm-newsletter-copy>p{font-size:15px}.cm-newsletter-promise{display:grid;gap:7px}.cm-newsletter-signup{padding:18px 16px;border-radius:17px;overflow:hidden}.cm-newsletter-form{min-height:74px;overflow:hidden}}'
+    ].join('');
+    document.head.appendChild(style);
+  }
+
+  function loadKitForm(target) {
+    if (!target || target.dataset.cmKitLoaded === 'true') return;
+    target.dataset.cmKitLoaded = 'true';
+    var script = document.createElement('script');
+    script.async = true;
+    script.dataset.uid = KIT_UID;
+    script.src = KIT_SRC;
+    script.referrerPolicy = 'strict-origin-when-cross-origin';
+    script.setAttribute('data-cm-kit-newsletter', 'true');
+    target.appendChild(script);
+  }
+
+  function watchKitForm(target) {
+    if (!('IntersectionObserver' in window)) {
+      loadKitForm(target);
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+      observer.disconnect();
+      loadKitForm(target);
+    }, { rootMargin: '500px 0px' });
+    observer.observe(target);
+  }
+
+  function buildSection(context) {
+    var section = document.createElement('section');
+    section.className = 'cm-newsletter-section';
+    section.dataset.cmNewsletter = 'carrowmont-money-in-real-life';
+    section.dataset.cmNewsletterContext = context;
+    section.setAttribute('aria-labelledby', 'cmNewsletterHeading');
+    section.innerHTML = [
+      '<div class="shell cm-newsletter-inner">',
+        '<div class="cm-newsletter-copy">',
+          '<p class="eyebrow">CARROWMONT MONEY IN REAL LIFE</p>',
+          '<h2 id="cmNewsletterHeading">Money explained for real life — once a week.</h2>',
+          '<p>Get one clear weekly briefing connecting financial developments to the decisions that affect everyday money, with practical explanations, useful context and relevant Carrowmont tools.</p>',
+          '<div class="cm-newsletter-promise" aria-label="Newsletter promise"><span>No hype</span><span>No stock tips</span><span>Clearer financial thinking</span></div>',
+        '</div>',
+        '<div class="cm-newsletter-signup">',
+          '<p class="cm-newsletter-signup-label">Get the weekly money briefing</p>',
+          '<div class="cm-newsletter-form" data-cm-kit-form></div>',
+          '<p class="cm-newsletter-fineprint">Optional. No Carrowmont account required. By subscribing, you agree to receive Carrowmont Money in Real Life by email. Unsubscribe anytime. <a href="/privacy.html">Privacy</a>.</p>',
+        '</div>',
+      '</div>'
+    ].join('');
+    return section;
+  }
+
+  function mountNewsletter() {
+    if (document.querySelector('[data-cm-newsletter]')) return;
+    var main = document.querySelector('main');
+    if (!main) return;
+
+    var context = null;
+    if (isHomePage()) context = 'home';
+    else if (isLearnArticle() || isResearchStudy()) context = 'article';
+    if (!context) return;
+
+    ensureNewsletterStyles();
+    var section = buildSection(context);
+    if (context === 'home') {
+      var social = main.querySelector('.social-follow-section');
+      if (social) main.insertBefore(section, social);
+      else main.appendChild(section);
+    } else {
+      main.appendChild(section);
+    }
+    watchKitForm(section.querySelector('[data-cm-kit-form]'));
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountNewsletter, { once: true });
+  else mountNewsletter();
+})();
