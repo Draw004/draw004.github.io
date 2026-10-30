@@ -1,6 +1,6 @@
 # CARROWMONT NEWSLETTER1 — Money in Real Life implementation
 
-Baseline: Source Snapshot generated 2026-10-29T22:17:00Z.
+Baseline: Source Snapshot generated 2026-10-30T16:39:37Z (draw004.github.io b9840b3501dc4f0a6cc4a52c1ecce1d776b9cf6d).
 
 ## Scope
 - Adds the optional **Carrowmont Money in Real Life** weekly newsletter signup to the homepage and the end of all 90 Learn articles plus the three current Research studies.
@@ -21,10 +21,11 @@ Baseline: Source Snapshot generated 2026-10-29T22:17:00Z.
 - Homepage: newsletter module appears before Follow Carrowmont.
 - Learn/Research: compact module appears after the article/study content and before the footer.
 - Desktop and mobile use the existing Carrowmont shell, typography and responsive spacing.
+- NEWSLETTER1B replaces the small bullet-style promise row with a hero-style three-item value row using teal outline SVG icons: **Key developments**, **Real-life impact**, and **Practical next steps**.
 - Kit branding is not hidden or removed.
 
 ## Cache / rollout
-- `site.js` is cache-busted to `20261030-newsletter1` on the homepage, all 90 Learn articles and all three Research studies for immediate deterministic rollout.
+- `site.js` is cache-busted to `20261030-newsletter1b` on the homepage, all 90 Learn articles and all three Research studies for immediate deterministic rollout.
 
 ## Safety boundaries
 - No calculator formulas, report engines, shared-plan logic, country/currency math, analytics provider, social URLs or GitHub workflow files change.

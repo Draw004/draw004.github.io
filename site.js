@@ -860,9 +860,10 @@
       '.cm-newsletter-inner{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:42px;align-items:center}',
       '.cm-newsletter-copy h2{margin:7px 0 13px;color:var(--navy,#0f2743);font-size:clamp(30px,3vw,42px);line-height:1.08}',
       '.cm-newsletter-copy>p{margin:0;color:var(--muted,#587184);font-size:16px;line-height:1.7;max-width:680px}',
-      '.cm-newsletter-promise{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:18px;color:#244d66;font-size:13px;font-weight:750}',
-      '.cm-newsletter-promise span{display:inline-flex;align-items:center;gap:7px}',
-      '.cm-newsletter-promise span::before{content:"";width:7px;height:7px;border-radius:50%;background:#0e9488;flex:0 0 auto}',
+      '.cm-newsletter-promise{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:22px;color:#294762;font-size:14px;font-weight:800}',
+      '.cm-newsletter-promise-item{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}',
+      '.cm-newsletter-promise-icon{width:20px;height:20px;display:grid;place-items:center;color:var(--teal,#0e9488);flex:0 0 auto}',
+      '.cm-newsletter-promise-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}',
       '.cm-newsletter-signup{padding:24px;border:1px solid #cfe2e1;border-radius:20px;background:rgba(255,255,255,.92);box-shadow:0 14px 35px rgba(15,39,67,.07)}',
       '.cm-newsletter-signup-label{margin:0 0 12px;color:#173b55;font-size:14px;font-weight:850}',
       '.cm-newsletter-form{min-height:60px}',
@@ -873,7 +874,7 @@
       '.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner{grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:30px}',
       '.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-copy h2{font-size:clamp(27px,2.5vw,35px)}',
       '@media(max-width:900px){.cm-newsletter-inner,.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner{grid-template-columns:1fr;gap:24px}.cm-newsletter-signup{max-width:700px}}',
-      '@media(max-width:700px){.cm-newsletter-section{padding:40px 0 44px}.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:26px;padding:34px 0 38px}.cm-newsletter-inner{gap:20px}.cm-newsletter-copy h2{font-size:30px}.cm-newsletter-copy>p{font-size:15px}.cm-newsletter-promise{display:grid;gap:7px}.cm-newsletter-signup{padding:18px 16px;border-radius:17px;overflow:hidden}.cm-newsletter-form{min-height:74px;overflow:hidden}}'
+      '@media(max-width:700px){.cm-newsletter-section{padding:40px 0 44px}.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:26px;padding:34px 0 38px}.cm-newsletter-inner{gap:20px}.cm-newsletter-copy h2{font-size:30px}.cm-newsletter-copy>p{font-size:15px}.cm-newsletter-promise{display:grid;gap:10px;font-size:13.5px}.cm-newsletter-promise-item{white-space:normal}.cm-newsletter-promise-icon,.cm-newsletter-promise-icon svg{width:18px;height:18px}.cm-newsletter-signup{padding:18px 16px;border-radius:17px;overflow:hidden}.cm-newsletter-form{min-height:74px;overflow:hidden}}'
     ].join('');
     document.head.appendChild(style);
   }
@@ -915,7 +916,11 @@
           '<p class="eyebrow">CARROWMONT MONEY IN REAL LIFE</p>',
           '<h2 id="cmNewsletterHeading">Money explained for real life — once a week.</h2>',
           '<p>Get one clear weekly briefing connecting financial developments to the decisions that affect everyday money, with practical explanations, useful context and relevant Carrowmont tools.</p>',
-          '<div class="cm-newsletter-promise" aria-label="Newsletter promise"><span>No hype</span><span>No stock tips</span><span>Clearer financial thinking</span></div>',
+          '<div class="cm-newsletter-promise" aria-label="Newsletter promise">',
+            '<span class="cm-newsletter-promise-item"><i class="cm-newsletter-promise-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M7 15l4-4 3 2 5-6"/><circle cx="7" cy="15" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="13" r="1"/><circle cx="19" cy="7" r="1"/></svg></i>Key developments</span>',
+            '<span class="cm-newsletter-promise-item"><i class="cm-newsletter-promise-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/></svg></i>Real-life impact</span>',
+            '<span class="cm-newsletter-promise-item"><i class="cm-newsletter-promise-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m4 6 1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg></i>Practical next steps</span>',
+          '</div>',
         '</div>',
         '<div class="cm-newsletter-signup">',
           '<p class="cm-newsletter-signup-label">Get the weekly money briefing</p>',
