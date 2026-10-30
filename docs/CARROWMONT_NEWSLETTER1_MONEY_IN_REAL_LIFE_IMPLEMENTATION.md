@@ -22,6 +22,7 @@ Baseline: Source Snapshot generated 2026-10-30T16:39:37Z (draw004.github.io b984
 - Learn/Research: compact module appears after the article/study content and before the footer.
 - Desktop and mobile use the existing Carrowmont shell, typography and responsive spacing.
 - NEWSLETTER1B replaces the small bullet-style promise row with a hero-style three-item value row using teal outline SVG icons: **Key developments**, **Real-life impact**, and **Practical next steps**.
+- NEWSLETTER1C aligns the post-confirmation page to the same three-promise model and removes the legacy negative tagline so the subscriber journey stays consistent.
 - Kit branding is not hidden or removed.
 
 ## Cache / rollout
