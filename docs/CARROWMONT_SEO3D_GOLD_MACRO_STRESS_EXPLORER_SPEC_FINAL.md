@@ -455,11 +455,14 @@ OFR FSI has one narrow availability exception because the official download endp
 - the stored OFR value, percentile and date are already present and valid in the current verified reference snapshot;
 - Treasury, Broad Dollar, CPI and GPR are fetched and fully validated normally;
 - the preserved OFR component remains visibly dated with its original `ofrAsOf` date;
-- the updater reports that OFR was preserved rather than refreshed.
+- the stored OFR observation is no more than **5 business days** behind the freshest validated daily macro source among real yields, Broad Dollar and GPR;
+- the updater reports that OFR was preserved rather than refreshed, including the preserved source date and age.
 
-This exception **must not** be used when OFR returns a successful response that is malformed, has unrecognized headers, supplies an invalid/backwards date, lacks required history, or triggers an anomaly guard. Those conditions remain hard failures requiring owner review.
+If the stored OFR observation is more than 5 business days behind that freshness reference date, the updater must **fail closed**, write no updated reference file and create no data PR. A stale OFR observation may never be silently carried forward into a newly validated weekly snapshot.
 
-If the OFR availability exception is used, Carrowmont may still refresh the other validated automated fields and recompute the combined stress classification using the new GPR state plus the preserved validated OFR subscore. The production browser continues to read only the bundled reference snapshot.
+This exception **must not** be used when OFR returns a successful response that is malformed, has unrecognized headers, supplies an invalid/backwards or stale source date, lacks required history, or triggers an anomaly guard. Those conditions remain hard failures requiring owner review.
+
+If the OFR availability exception is used inside the permitted freshness window, Carrowmont may still refresh the other validated automated fields and recompute the combined stress classification using the new GPR state plus the preserved validated OFR subscore. The production browser continues to read only the bundled reference snapshot.
 
 The top-level `snapshotDate` is monotonic. A weekly automated refresh must set it to the later of the prior validated `snapshotDate` and the newest validated automated source date. It may advance or remain unchanged, but it must never move backwards merely because a reviewed/manual field was validated on a later date than the newest automated series.
 

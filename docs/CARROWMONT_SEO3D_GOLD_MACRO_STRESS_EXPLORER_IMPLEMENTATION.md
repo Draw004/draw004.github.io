@@ -167,17 +167,19 @@ Percentiles and rolling-state metrics are Carrowmont calculations from the under
 - the official Caldara-Iacoviello recent daily GPR workbook;
 - OFR Financial Stress Index CSV.
 
-For OFR, the updater sends browser-compatible, Carrowmont-identifying request headers and accepts both the current `ofr-fsi.csv` path and the same official site's `fsi.csv` filename as a fallback. The parser accepts ISO and U.S.-style source dates, but still rejects unrecognized headers or unusable rows.
+For OFR, the updater sends browser-compatible, Carrowmont-identifying request headers and tries the official current `data/fsi.csv` download path first, followed by the legacy `data/files/ofr-fsi.csv` and `data/files/fsi.csv` paths for source-compatibility. The parser accepts ISO and U.S.-style source dates, but still rejects unrecognized headers or unusable rows.
 
 The browser never calls these endpoints.
 
 The updater is fail-closed for Treasury, Broad Dollar, CPI and GPR. Those source groups must be fetched and validated normally before a new reference file can be proposed.
 
-OFR has one deliberately narrow **availability fallback**. If the official OFR CSV endpoint is blocked or temporarily unavailable to the GitHub runner (for example HTTP 403/429/5xx or a network fetch failure), the updater preserves the previously validated OFR four-week average, percentile and `ofrAsOf` date from the current reference snapshot. It then recomputes the combined stress score from the fresh GPR classification plus that preserved OFR subscore. The updater emits `sourceStatus.ofr.status = "preserved"` and a reason so the workflow log clearly identifies that OFR was not refreshed.
+OFR has one deliberately narrow **availability fallback**. If every approved official OFR CSV path is blocked or temporarily unavailable to the GitHub runner (for example HTTP 403/429/5xx or a network fetch failure), the updater may preserve the previously validated OFR four-week average, percentile and `ofrAsOf` date from the current reference snapshot **only while that observation is no more than 5 business days behind the freshest validated daily macro source among real yields, Broad Dollar and GPR**. It then recomputes the combined stress score from the fresh GPR classification plus that preserved OFR subscore. The updater emits `sourceStatus.ofr.status = "preserved"`, the preserved date, age, maximum permitted age and failure reason so both the workflow log and PR body clearly identify that OFR was not refreshed.
+
+If the preserved OFR observation is older than the 5-business-day ceiling, the updater fails closed, writes no new reference file and therefore creates no Gold Macro data PR. This prevents a temporarily inaccessible OFR endpoint from silently carrying a stale stress reading into a newly dated validated snapshot.
 
 The updater also preserves **monotonic reference freshness**: the top-level `snapshotDate` becomes the later of the existing validated snapshot date and the newest validated automated-source date. An automated run can therefore advance the reference date or leave it unchanged, but cannot regress it.
 
-The OFR fallback is not used for a successful-but-malformed response, unrecognized headers, invalid/backwards dates, insufficient history or anomaly-guard failures. Those remain hard failures. If the stored reference does not contain a valid prior OFR value/percentile/date, the updater also fails rather than inventing a replacement.
+The OFR fallback is not used for a successful-but-malformed response, unrecognized headers, invalid/backwards/stale dates, insufficient history or anomaly-guard failures. Those remain hard failures. If the stored reference does not contain a valid prior OFR value/percentile/date, the updater also fails rather than inventing a replacement.
 
 Central-bank demand and fiscal stress are explicitly preserved by the weekly updater. They can change only through deliberate reviewed maintenance.
 
@@ -202,7 +204,8 @@ Updater fixture QA covers:
 - valid newer data;
 - identical/no-change rerun;
 - malformed/missing OFR input without an approved fallback;
-- simulated OFR availability failure with preservation of the prior validated OFR component;
+- simulated OFR availability failure with preservation of a still-fresh prior validated OFR component;
+- simulated OFR availability failure with a stale prior OFR component, which must fail closed with no output file;
 - simulated non-OFR source failure;
 - anomaly rejection;
 - preservation of reviewed fields.
