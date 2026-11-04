@@ -94,6 +94,14 @@ jobs:
           console.log(`| Broad Dollar Index (5-day avg) | ${a.dollar.value} | ${a.dollar.asOf} | ${a.dollar.score} |`);
           console.log(`| CPI-U YoY | ${a.inflation.value}% | ${a.inflation.asOf} | ${a.inflation.score} |`);
           console.log(`| GPR / OFR stress | ${a.stress.gpr} / ${a.stress.ofr} | ${a.stress.asOf} | ${a.stress.score} |`);
+          const ofr=j.sourceStatus?.ofr||{};
+          if(ofr.status==='refreshed'){
+            console.log(`\n- OFR FSI: **Refreshed ✅** — source date ${ofr.asOf}; ${ofr.ageBusinessDays} business day(s) behind the freshest daily macro source.`);
+          }else{
+            console.log(`\n- OFR FSI: **Preserved ⚠️** — source date ${ofr.asOf}; ${ofr.ageBusinessDays}/${ofr.maxFallbackBusinessDays} permitted business days behind ${ofr.freshnessReferenceDate}.`);
+            console.log(`- OFR fallback reason: ${ofr.reason}`);
+          }
+          console.log('\n**Freshness guard:** a preserved OFR observation older than the permitted fallback window blocks the update and no data PR is created.');
           console.log('\nReviewed central-bank-demand and fiscal-stress fields were preserved unchanged.');
           console.log('\nThis workflow does not merge directly to `main`. Review source dates, values and classifications before merging.');
           NODE
