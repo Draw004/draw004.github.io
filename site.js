@@ -506,7 +506,7 @@
     { key: 'retirement', label: function () { return 'Retirement'; } },
     // Keep the top-level Learn taxonomy universal and stable. Country-aware
     // wording still applies inside calculators and housing Learn content.
-    { key: 'investment', label: function () { return 'SIP & Investing'; } },
+    { key: 'investment', label: function (region) { return region === 'IN' ? 'SIP & Investing' : 'Recurring Investing'; } },
     { key: 'assets', label: function () { return 'Assets & Investing'; } },
     { key: 'home', label: function (region, api) {
       if (api && typeof api.getMortgageTerms === 'function') return api.getMortgageTerms(region).learnCategory;
@@ -522,31 +522,30 @@
 
   function normalizePrimaryNavigation() {
     var path = window.location.pathname || '/';
-    // TOOLS-HUB1 and SEARCH1 deliberately retain a Home gateway. Other main
-    // pages keep Plan as the single home/planning entry to avoid duplication.
-    var keepCompatibilityHome = path === '/tools.html' || path === '/search.html';
 
     function normalizeNav(nav, mobile) {
       var plan = nav.querySelector('a[href="/#plan"]');
       var homes = Array.from(nav.querySelectorAll('a[href="/"]')).filter(function (link) {
         return (link.textContent || '').trim().toLowerCase() === 'home';
       });
-      if (keepCompatibilityHome) {
-        if (!homes.length) {
-          var home = document.createElement('a');
-          home.href = '/'; home.textContent = 'Home'; home.dataset.cmCompatibilityHome = '';
-          nav.appendChild(home); homes = [home];
-        }
-        homes.slice(1).forEach(function (link) { link.remove(); });
-      } else if (plan) {
-        homes.forEach(function (link) { link.remove(); });
+      // Home is the single, universal first navigation item. Reuse the old
+      // Plan node where possible so the change does not create a header flash.
+      var home = homes[0] || plan;
+      if (!home) {
+        home = document.createElement('a');
+        nav.appendChild(home);
       }
+      home.href = '/';
+      home.textContent = 'Home';
+      home.dataset.cmCanonicalHome = '';
+      if (path === '/' || path === '/index.html') home.setAttribute('aria-current', 'page');
+      else home.removeAttribute('aria-current');
+      Array.from(nav.querySelectorAll('a[href="/#plan"]')).forEach(function (link) { if (link !== home) link.remove(); });
+      Array.from(nav.querySelectorAll('a[href="/"]')).forEach(function (link) {
+        if (link !== home && (link.textContent || '').trim().toLowerCase() === 'home') link.remove();
+      });
 
-      var order = ['/#plan','/tools.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html'];
-      if (keepCompatibilityHome) {
-        order = order.slice();
-        order.splice(1, 0, '/');
-      }
+      var order = ['/','/tools.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html'];
       if (mobile) order = order.concat(['/contact.html']);
       order.forEach(function (href) {
         var node = nav.querySelector('a[href="' + href + '"]');
@@ -605,14 +604,15 @@
     var style = document.createElement('style');
     style.id = 'cmLearnTopicStyles';
     style.textContent = [
-      '.cm-learn-topic-nav{background:#f8fbfc;border-top:1px solid #e3edf2;border-bottom:1px solid #dbe8ee;color:#173b5d}',
-      '.cm-learn-topic-inner{display:flex;align-items:center;gap:0;min-height:46px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;padding:0 2px}',
-      '.cm-learn-topic-label{flex:0 0 auto;margin-right:14px;color:#647b90;font-size:12px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}',
-      '.cm-learn-topic-nav a{position:relative;flex:0 0 auto;padding:13px 12px;color:#173b5d;text-decoration:none;font-size:13.5px;font-weight:800}',
-      '.cm-learn-topic-nav a+a:before{content:"·";position:absolute;left:-2px;color:#9dafbc;font-weight:900}',
-      '.cm-learn-topic-nav a:hover,.cm-learn-topic-nav a:focus-visible{color:#08766e;text-decoration:underline;text-underline-offset:4px}',
-      '.cm-learn-topic-nav a:focus-visible{outline:2px solid rgba(8,118,110,.22);outline-offset:-3px;border-radius:6px}',
-      '@media(max-width:700px){.cm-learn-topic-inner{padding-left:2px;padding-right:12px}.cm-learn-topic-label{margin-right:8px}.cm-learn-topic-nav a{padding:12px 10px;font-size:13px}}'
+      '.cm-learn-topic-nav{background:transparent;color:#173b5d;padding:18px 0 0}',
+      '.cm-learn-topic-inner{display:block}',
+      '.cm-learn-topic-card{border:1px solid #cfe0e5;border-radius:18px;background:linear-gradient(135deg,#f4fbfa 0%,#ffffff 100%);box-shadow:0 7px 18px rgba(17,40,68,.035);padding:15px 18px 16px}',
+      '.cm-learn-topic-label{display:block;margin:0 0 9px;color:#0b766f;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}',
+      '.cm-learn-topic-links{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px}',
+      '.cm-learn-topic-nav a{display:inline-flex;align-items:center;min-height:34px;padding:7px 11px;border:1px solid #d4e5e8;border-radius:999px;background:#fff;color:#173b5d;text-decoration:none;font-size:13.5px;font-weight:800;line-height:1.2}',
+      '.cm-learn-topic-nav a:hover,.cm-learn-topic-nav a:focus-visible{border-color:#8fcac3;background:#eef9f7;color:#08766e}',
+      '.cm-learn-topic-nav a:focus-visible{outline:3px solid rgba(8,118,110,.2);outline-offset:2px}',
+      '@media(max-width:700px){.cm-learn-topic-nav{padding-top:14px}.cm-learn-topic-card{padding:13px 12px 14px;border-radius:15px}.cm-learn-topic-links{gap:7px}.cm-learn-topic-nav a{min-height:32px;padding:6px 9px;font-size:12.5px}}'
     ].join('');
     document.head.appendChild(style);
   }
@@ -632,7 +632,9 @@
     nav.dataset.cmLearnTopicNav = '';
     nav.setAttribute('aria-label', 'Explore Carrowmont Learn topics');
     var shell = document.createElement('div'); shell.className = 'shell cm-learn-topic-inner';
-    var label = document.createElement('span'); label.className = 'cm-learn-topic-label'; label.textContent = 'Topics'; shell.appendChild(label);
+    var card = document.createElement('div'); card.className = 'cm-learn-topic-card';
+    var label = document.createElement('span'); label.className = 'cm-learn-topic-label'; label.textContent = 'Explore by topic'; card.appendChild(label);
+    var links = document.createElement('div'); links.className = 'cm-learn-topic-links';
     TOPICS.forEach(function (topic) {
       // The mortgage Learn family has long-lived inbound links and browser QA
       // on #home-loans. Preserve that canonical anchor while using topic-* for
@@ -644,12 +646,16 @@
       a.href = document.body.dataset.cmPage === 'learn-hub' ? '#' + targetId : '/learn.html#' + targetId;
       a.dataset.cmLearnTopic = topic.key;
       a.textContent = topic.label(region, api);
-      shell.appendChild(a);
+      links.appendChild(a);
     });
+    card.appendChild(links);
+    shell.appendChild(card);
     nav.replaceChildren(shell);
-    if (!existing) {
-      var header = document.querySelector('.site-header');
-      if (header) header.insertAdjacentElement('afterend', nav);
+    var hero = document.querySelector('main .learn-page-hero');
+    if (hero) hero.insertAdjacentElement('afterend', nav);
+    else if (!existing) {
+      var main = document.querySelector('main');
+      if (main) main.insertAdjacentElement('afterbegin', nav);
       else document.body.insertAdjacentElement('afterbegin', nav);
     }
   }
@@ -755,15 +761,22 @@
       '@media(max-width:700px){',
       'html.mobile1-active body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}',
       'html.mobile1-active .site-header{position:sticky;top:0;z-index:95;box-shadow:0 5px 18px rgba(15,39,67,.08)}',
-      'html.mobile1-active .header-inner{min-height:64px!important;gap:8px!important;flex-wrap:nowrap!important}',
-      'html.mobile1-active .brand{min-width:0;gap:8px}',
-      'html.mobile1-active .brand-name{font-size:18px!important;letter-spacing:1.2px!important}',
+      'html.mobile1-active .header-inner{min-height:64px!important;display:grid!important;grid-template-columns:40px minmax(82px,1fr) 92px auto;align-items:center;gap:6px!important;flex-wrap:nowrap!important}',
+      'html.mobile1-active .mobile-nav{display:block!important;grid-column:1;margin:0!important;position:relative;justify-self:start}',
+      'html.mobile1-active .mobile-nav>summary{list-style:none;display:grid;place-items:center;width:40px;height:40px;border:1px solid #d2e0e8;border-radius:12px;background:#fff;color:#163a5b;font-size:0;cursor:pointer}',
+      'html.mobile1-active .mobile-nav>summary::-webkit-details-marker{display:none}',
+      'html.mobile1-active .mobile-nav>summary::before{content:"";width:18px;height:12px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;box-sizing:border-box}',
+      'html.mobile1-active .mobile-nav>summary::after{content:"";position:absolute;left:11px;top:19px;width:18px;border-top:2px solid currentColor}',
+      'html.mobile1-active .mobile-nav-panel,html.mobile1-active .mobile-nav-links{left:0!important;right:auto!important;top:48px!important;text-align:left}',
+      'html.mobile1-active .brand{grid-column:2;min-width:0;gap:0;overflow:hidden}',
+      'html.mobile1-active .brand-name{font-size:14px!important;letter-spacing:.7px!important;overflow:hidden;text-overflow:ellipsis}',
       'html.mobile1-active .brand-rule,html.mobile1-active .brand-tagline{display:none!important}',
-      'html.mobile1-active .mobile-nav{display:none!important}',
-      '.mobile1-header-search{display:grid;width:42px;height:42px;place-items:center;border:1px solid #d2e0e8;border-radius:13px;background:#fff;color:#163a5b;margin-left:auto;flex:0 0 auto}',
-      '.mobile1-header-search svg{width:21px;height:21px}',
-      'html.mobile1-active .locale-menu{margin-left:0!important;flex:0 0 auto}',
-      'html.mobile1-active .locale-summary{min-height:42px;padding:8px 10px!important;gap:6px!important}',
+      '.mobile1-header-search{grid-column:3;display:inline-flex;width:92px;height:40px;align-items:center;justify-content:center;gap:6px;border:1px solid #bfd4de;border-radius:999px;background:#f8fbfc;color:#163a5b;padding:0 12px;font-size:12px;font-weight:850;line-height:1;text-decoration:none;white-space:nowrap;justify-self:center}',
+      '.mobile1-header-search:hover{border-color:#70b9b1;background:#eef9f7;color:#0b6f69}',
+      '.mobile1-header-search svg{width:18px;height:18px;flex:0 0 auto}',
+      '.mobile1-header-search span{display:inline}',
+      'html.mobile1-active .locale-menu{grid-column:4;margin-left:0!important;flex:0 0 auto;justify-self:end}',
+      'html.mobile1-active .locale-summary{min-height:40px;padding:7px 9px!important;gap:5px!important}',
       'html.mobile1-active .locale-summary #localeCountryLabel,html.mobile1-active .locale-summary #localeCountryLabel+span{display:none!important}',
       'html.mobile1-active .locale-summary #localeCurrencyLabel{font-size:12px}',
       'html.mobile1-active .locale-summary .chevron{display:none!important}',
@@ -819,7 +832,7 @@
       'html.mobile1-active .about-preview{padding:48px 0!important}',
       'html.mobile1-active .social-follow-section{padding-bottom:40px!important}',
       '}',
-      '@media(max-width:360px){.mobile1-quick-grid{gap:3px}.mobile1-quick-icon{width:42px;height:42px}.mobile1-quick-tool span:last-child{font-size:10px}.mobile1-nav-item{font-size:10px}}'
+      '@media(max-width:360px){html.mobile1-active .header-inner{grid-template-columns:38px minmax(74px,1fr) 84px auto;gap:5px!important}html.mobile1-active .mobile-nav>summary{width:38px;height:38px}html.mobile1-active .mobile-nav>summary::after{left:10px;top:18px}.mobile1-header-search{width:84px;height:38px;padding:0 9px;font-size:11.5px}html.mobile1-active .brand-name{font-size:12.5px!important;letter-spacing:.5px!important}html.mobile1-active .locale-summary{min-height:38px;padding:6px 8px!important}.mobile1-quick-grid{gap:3px}.mobile1-quick-icon{width:42px;height:42px}.mobile1-quick-tool span:last-child{font-size:10px}.mobile1-nav-item{font-size:10px}}'
     ].join('');
     document.head.appendChild(style);
   }
@@ -841,7 +854,7 @@
       link.dataset.mobile1HeaderSearch = '';
       link.href = '/search.html';
       link.setAttribute('aria-label', 'Search Carrowmont');
-      link.innerHTML = ICONS.search;
+      link.innerHTML = ICONS.search + '<span>Search</span>';
       var locale = header.querySelector('.locale-menu');
       // Keep the desktop contract nav -> locale intact. The icon is mobile-only
       // and can safely sit immediately after the locale control in DOM order.
