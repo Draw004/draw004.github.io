@@ -445,21 +445,17 @@
 
   function insertSearchLinks() {
     document.querySelectorAll('.desktop-nav').forEach(function (nav) {
-      if (nav.querySelector('[data-cm-search-link], a[href="/search.html"]')) return;
-      var link = createSearchLink(true);
-      var learn = nav.querySelector('a[href="/learn.html"]');
-      if (learn && learn.nextSibling) nav.insertBefore(link, learn.nextSibling);
-      else if (learn) nav.appendChild(link);
-      else nav.appendChild(link);
+      var link = nav.querySelector('[data-cm-search-link], a[href="/search.html"]');
+      if (!link) link = createSearchLink(true);
+      // Search is the final desktop navigation action, immediately before the
+      // separate country/currency control in the header.
+      nav.appendChild(link);
     });
 
     document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (panel) {
-      if (panel.querySelector('[data-cm-search-link], a[href="/search.html"]')) return;
-      var link = createSearchLink(false);
-      var learn = panel.querySelector('a[href="/learn.html"]');
-      if (learn && learn.nextSibling) panel.insertBefore(link, learn.nextSibling);
-      else if (learn) panel.appendChild(link);
-      else panel.appendChild(link);
+      var link = panel.querySelector('[data-cm-search-link], a[href="/search.html"]');
+      if (!link) link = createSearchLink(false);
+      panel.appendChild(link);
     });
   }
 
@@ -487,18 +483,187 @@
       if (nav.querySelector('a[href="/research.html"]')) return;
       var link=document.createElement('a'); link.href='/research.html'; link.textContent='Research'; link.dataset.cmResearchLink='';
       if (window.location.pathname==='/research.html' || window.location.pathname.indexOf('/research/')===0) link.setAttribute('aria-current','page');
-      var search=nav.querySelector('a[href="/search.html"]');
-      if (search) nav.insertBefore(link,search); else { var learn=nav.querySelector('a[href="/learn.html"]'); if(learn&&learn.nextSibling) nav.insertBefore(link,learn.nextSibling); else nav.appendChild(link); }
+      var learn=nav.querySelector('a[href="/learn.html"]');
+      if(learn&&learn.nextSibling) nav.insertBefore(link,learn.nextSibling); else if(learn) nav.appendChild(link); else nav.appendChild(link);
     });
     document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (panel) {
       if (panel.querySelector('a[href="/research.html"]')) return;
       var link=document.createElement('a'); link.href='/research.html'; link.textContent='Research'; link.dataset.cmResearchLink='';
       if (window.location.pathname==='/research.html' || window.location.pathname.indexOf('/research/')===0) link.setAttribute('aria-current','page');
-      var search=panel.querySelector('a[href="/search.html"]');
-      if (search) panel.insertBefore(link,search); else { var learn=panel.querySelector('a[href="/learn.html"]'); if(learn&&learn.nextSibling) panel.insertBefore(link,learn.nextSibling); else panel.appendChild(link); }
+      var learn=panel.querySelector('a[href="/learn.html"]');
+      if(learn&&learn.nextSibling) panel.insertBefore(link,learn.nextSibling); else if(learn) panel.appendChild(link); else panel.appendChild(link);
     });
   }
   if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',addResearchLinks,{once:true}); else addResearchLinks();
+})();
+
+
+/* HYGIENE1: final shared navigation, Learn topic access and footer consistency. */
+(function () {
+  'use strict';
+
+  var TOPICS = [
+    { key: 'retirement', label: function () { return 'Retirement'; } },
+    // Keep the top-level Learn taxonomy universal and stable. Country-aware
+    // wording still applies inside calculators and housing Learn content.
+    { key: 'investment', label: function () { return 'SIP & Investing'; } },
+    { key: 'assets', label: function () { return 'Assets & Investing'; } },
+    { key: 'home', label: function (region, api) {
+      if (api && typeof api.getMortgageTerms === 'function') return api.getMortgageTerms(region).learnCategory;
+      return ['IN','AU','NZ'].indexOf(region) >= 0 ? 'Home Loans' : 'Mortgages';
+    } },
+    { key: 'loans', label: function () { return 'Credit, Loans & Debt'; } },
+    { key: 'budget', label: function () { return 'Budget & Cash Flow'; } },
+    { key: 'goals', label: function () { return 'Financial Goals'; } },
+    { key: 'fi', label: function () { return 'Financial Independence'; } },
+    { key: 'inflation', label: function () { return 'Inflation'; } },
+    { key: 'macro', label: function () { return 'Macro & Markets'; } }
+  ];
+
+  function normalizePrimaryNavigation() {
+    var path = window.location.pathname || '/';
+    // TOOLS-HUB1 and SEARCH1 deliberately retain a Home gateway. Other main
+    // pages keep Plan as the single home/planning entry to avoid duplication.
+    var keepCompatibilityHome = path === '/tools.html' || path === '/search.html';
+
+    function normalizeNav(nav, mobile) {
+      var plan = nav.querySelector('a[href="/#plan"]');
+      var homes = Array.from(nav.querySelectorAll('a[href="/"]')).filter(function (link) {
+        return (link.textContent || '').trim().toLowerCase() === 'home';
+      });
+      if (keepCompatibilityHome) {
+        if (!homes.length) {
+          var home = document.createElement('a');
+          home.href = '/'; home.textContent = 'Home'; home.dataset.cmCompatibilityHome = '';
+          nav.appendChild(home); homes = [home];
+        }
+        homes.slice(1).forEach(function (link) { link.remove(); });
+      } else if (plan) {
+        homes.forEach(function (link) { link.remove(); });
+      }
+
+      var order = ['/#plan','/tools.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html'];
+      if (keepCompatibilityHome) {
+        order = order.slice();
+        order.splice(1, 0, '/');
+      }
+      if (mobile) order = order.concat(['/contact.html']);
+      order.forEach(function (href) {
+        var node = nav.querySelector('a[href="' + href + '"]');
+        if (node) nav.appendChild(node);
+      });
+    }
+
+    document.querySelectorAll('.desktop-nav').forEach(function (nav) {
+      normalizeNav(nav, false);
+      var header = nav.closest('.header-inner');
+      var locale = header && header.querySelector(':scope > .locale-menu');
+      if (locale && nav.nextElementSibling !== locale) header.insertBefore(locale, nav.nextElementSibling);
+    });
+    document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (nav) { normalizeNav(nav, true); });
+  }
+
+  function synchronizeFooter() {
+    document.querySelectorAll('.site-footer').forEach(function (footer) {
+      var cols = Array.from(footer.querySelectorAll('.footer-col'));
+      var toolsCol = cols.find(function (col) { return /^tools$/i.test((col.querySelector('strong')?.textContent || '').trim()); });
+      var cmCol = cols.find(function (col) { return /^carrowmont$/i.test((col.querySelector('strong')?.textContent || '').trim()); });
+      if (toolsCol) {
+        var api = window.CarrowmontLocale || null;
+        var region = api && typeof api.getRegion === 'function' ? api.getRegion() : 'OTHER';
+        var investmentLabel = region === 'IN' ? 'SIP Calculator' : 'Recurring Investment Calculator';
+        var housingLabel = (region === 'IN' || region === 'AU' || region === 'NZ') ? 'Home Loan' :
+          ((region === 'US' || region === 'CA' || region === 'GB' || region === 'IE') ? 'Mortgage' : 'Mortgage & Home Loan');
+        // RETIRE1 permanently caps the shared footer at five gateway links.
+        // HYGIENE1 may normalize wording/order, but must not expand this list.
+        toolsCol.dataset.cmCompactTools = '1';
+        var heading = toolsCol.querySelector(':scope > strong');
+        if (heading) toolsCol.replaceChildren(heading); else toolsCol.querySelectorAll('a').forEach(function (a) { a.remove(); });
+        [
+          ['/tools.html','All financial tools','footer-all-tools'],
+          ['/sip-calculator/',investmentLabel,'footer-investment-link'],
+          ['/retirement-calculator/','Retirement Planner','footer-retirement-link'],
+          ['/mortgage-payoff-calculator/',housingLabel,'footer-housing-gateway'],
+          ['/budget-cash-flow-planner/','Budget & Cash Flow Planner','footer-budget-link']
+        ].forEach(function (item) {
+          var a = document.createElement('a'); a.href = item[0]; a.textContent = item[1]; a.className = item[2];
+          toolsCol.appendChild(a);
+        });
+      }
+      if (cmCol) {
+        cmCol.querySelectorAll('a').forEach(function (a) { a.remove(); });
+        [
+          ['/learn.html','Learn'], ['/research.html','Research'], ['/about.html','About'],
+          ['/methodology.html','Methodology'], ['/editorial-policy.html','Editorial policy'], ['/contact.html','Contact']
+        ].forEach(function (item) { var a=document.createElement('a'); a.href=item[0]; a.textContent=item[1]; cmCol.appendChild(a); });
+      }
+    });
+  }
+
+  function ensureTopicStyles() {
+    if (document.getElementById('cmLearnTopicStyles')) return;
+    var style = document.createElement('style');
+    style.id = 'cmLearnTopicStyles';
+    style.textContent = [
+      '.cm-learn-topic-nav{background:#f8fbfc;border-top:1px solid #e3edf2;border-bottom:1px solid #dbe8ee;color:#173b5d}',
+      '.cm-learn-topic-inner{display:flex;align-items:center;gap:0;min-height:46px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;padding:0 2px}',
+      '.cm-learn-topic-label{flex:0 0 auto;margin-right:14px;color:#647b90;font-size:12px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}',
+      '.cm-learn-topic-nav a{position:relative;flex:0 0 auto;padding:13px 12px;color:#173b5d;text-decoration:none;font-size:13.5px;font-weight:800}',
+      '.cm-learn-topic-nav a+a:before{content:"·";position:absolute;left:-2px;color:#9dafbc;font-weight:900}',
+      '.cm-learn-topic-nav a:hover,.cm-learn-topic-nav a:focus-visible{color:#08766e;text-decoration:underline;text-underline-offset:4px}',
+      '.cm-learn-topic-nav a:focus-visible{outline:2px solid rgba(8,118,110,.22);outline-offset:-3px;border-radius:6px}',
+      '@media(max-width:700px){.cm-learn-topic-inner{padding-left:2px;padding-right:12px}.cm-learn-topic-label{margin-right:8px}.cm-learn-topic-nav a{padding:12px 10px;font-size:13px}}'
+    ].join('');
+    document.head.appendChild(style);
+  }
+
+  function isLearnSurface() {
+    return document.body && (document.body.dataset.cmPage === 'learn-hub' || document.body.dataset.cmLearnArticle === '1');
+  }
+
+  function buildLearnTopicNav() {
+    if (!isLearnSurface()) return;
+    ensureTopicStyles();
+    var existing = document.querySelector('[data-cm-learn-topic-nav]');
+    var api = window.CarrowmontLocale || null;
+    var region = api && typeof api.getRegion === 'function' ? api.getRegion() : 'OTHER';
+    var nav = existing || document.createElement('nav');
+    nav.className = 'cm-learn-topic-nav';
+    nav.dataset.cmLearnTopicNav = '';
+    nav.setAttribute('aria-label', 'Explore Carrowmont Learn topics');
+    var shell = document.createElement('div'); shell.className = 'shell cm-learn-topic-inner';
+    var label = document.createElement('span'); label.className = 'cm-learn-topic-label'; label.textContent = 'Topics'; shell.appendChild(label);
+    TOPICS.forEach(function (topic) {
+      // The mortgage Learn family has long-lived inbound links and browser QA
+      // on #home-loans. Preserve that canonical anchor while using topic-* for
+      // the newer category families.
+      var targetId = topic.key === 'home' ? 'home-loans' : 'topic-' + topic.key;
+      var section = document.querySelector('.planning-categories [data-category="' + topic.key + '"]');
+      if (section) section.id = targetId;
+      var a = document.createElement('a');
+      a.href = document.body.dataset.cmPage === 'learn-hub' ? '#' + targetId : '/learn.html#' + targetId;
+      a.dataset.cmLearnTopic = topic.key;
+      a.textContent = topic.label(region, api);
+      shell.appendChild(a);
+    });
+    nav.replaceChildren(shell);
+    if (!existing) {
+      var header = document.querySelector('.site-header');
+      if (header) header.insertAdjacentElement('afterend', nav);
+      else document.body.insertAdjacentElement('afterbegin', nav);
+    }
+  }
+
+  function apply() {
+    normalizePrimaryNavigation();
+    synchronizeFooter();
+    buildLearnTopicNav();
+  }
+
+  function schedule() { apply(); if (window.requestAnimationFrame) window.requestAnimationFrame(apply); window.setTimeout(apply, 80); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, { once: true }); else schedule();
+  window.addEventListener('carrowmont:localechange', schedule);
+  window.addEventListener('pageshow', schedule);
 })();
 
 
@@ -678,7 +843,9 @@
       link.setAttribute('aria-label', 'Search Carrowmont');
       link.innerHTML = ICONS.search;
       var locale = header.querySelector('.locale-menu');
-      if (locale) header.insertBefore(link, locale);
+      // Keep the desktop contract nav -> locale intact. The icon is mobile-only
+      // and can safely sit immediately after the locale control in DOM order.
+      if (locale) locale.insertAdjacentElement('afterend', link);
       else header.appendChild(link);
     });
   }
