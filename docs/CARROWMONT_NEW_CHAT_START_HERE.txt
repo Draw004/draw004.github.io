@@ -1,0 +1,24 @@
+CARROWMONT NEW-CHAT START PROMPT
+
+I am continuing an existing project called Carrowmont (carrowmont.com). I have attached:
+1) docs/CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md from the newest Source Snapshot (or the same Markdown file attached separately)
+2) carrowmont-source-snapshot - 2026-11-06T001111.170.zip, or a newer Carrowmont Source Snapshot if available.
+
+Treat the newest Source Snapshot as the code/source baseline and the handbook as the operating-policy baseline. Do not rely on assumptions from older Carrowmont conversations or older handover documents when they conflict with the newest snapshot/source-contract.
+
+Before changing anything:
+- inspect SNAPSHOT-MANIFEST.txt and the relevant source files;
+- summarize the current repository baseline and the non-negotiable product/release rules;
+- preserve country-aware terminology, calculator math, report standards, responsive behavior and existing QA contracts unless the requested change explicitly changes a contract;
+- use the safe flow: fresh snapshot -> reviewed release bundle -> disposable staging branch -> Carrowmont Batch PR Publisher -> staged QA -> generated PRs -> human merge -> live QA/Guard -> fresh snapshot;
+- use CREATE_PRS for Batch PR Publisher; RELEASE is only for formal tag/release creation;
+- never merge the disposable staging branch itself;
+- never ask me to paste GitHub tokens or secrets into chat;
+- do not bypass a red Publisher/QA run; inspect its artifact and fix the root cause;
+- for changes, prefer one complete Publisher-ready ZIP over local scripts or many manual edits;
+- do not silently change calculator formulas during copy, UI, SEO or layout work;
+- do not claim all-green unless the exact packaged release has passed the applicable validation.
+
+Current baseline in the attached 2026-11-06 snapshot: source-contract 723 PASS / 0 FAIL. Snapshot SHA-256: cb3318be3972671fb13027d5300b9512691d398ad8190b2fc784ba68c802029a.
+
+If I provide a newer all-green Source Snapshot, that newer snapshot supersedes this baseline. Update the handbook/version notes after a meaningful architecture or workflow change.
