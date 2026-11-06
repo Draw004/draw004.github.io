@@ -19,7 +19,11 @@
     ZAR:{target:1000000,monthly:5000}, IDR:{target:1000000000,monthly:1000000}, MYR:{target:1000000,monthly:1000},
     THB:{target:10000000,monthly:10000}, PHP:{target:1000000,monthly:10000}, VND:{target:1000000000,monthly:5000000},
     HKD:{target:1000000,monthly:5000}, TWD:{target:10000000,monthly:10000}, RUB:{target:1000000,monthly:20000},
-    TRY:{target:1000000,monthly:10000}
+    ARS:{target:1000000000,monthly:500000}, ILS:{target:1000000,monthly:1000}, COP:{target:1000000000,monthly:500000},
+    RON:{target:1000000,monthly:1000}, PKR:{target:100000000,monthly:50000}, CZK:{target:10000000,monthly:5000},
+    EGP:{target:10000000,monthly:10000}, PEN:{target:1000000,monthly:1000}, KZT:{target:100000000,monthly:50000},
+    NGN:{target:100000000,monthly:50000}, MAD:{target:1000000,monthly:1000}, KWD:{target:500000,monthly:200},
+    UZS:{target:1000000000,monthly:1000000}, KES:{target:10000000,monthly:10000}, TRY:{target:1000000,monthly:10000}
   };
   function text(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
   function html(id,v){var e=document.getElementById(id);if(e)e.innerHTML=v;}
