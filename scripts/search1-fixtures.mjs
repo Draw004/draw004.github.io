@@ -91,6 +91,8 @@ const fixtures = [
   { name: 'gold vs Treasuries reserves finds the reserve-asset comparison', query: 'gold vs treasuries reserves', region: 'US', first: '/gold-vs-government-bonds-reserve-assets.html' },
   { name: 'mortgage affordability monitor finds the Research study', query: 'mortgage affordability monitor', region: 'US', first: '/research/mortgage-affordability-monitor.html' },
   { name: 'mortgage affordability calculator stays owned by the tool', query: 'mortgage affordability calculator', region: 'US', first: '/home-affordability-calculator.html' },
+  { name: 'emergency fund calculator finds the runway tool', query: 'emergency fund calculator', region: 'US', first: '/emergency-fund-runway-calculator.html' },
+  { name: 'financial runway calculator finds the runway tool', query: 'financial runway calculator', region: 'IN', first: '/emergency-fund-runway-calculator.html' },
   { name: 'emergency savings resilience report finds the Research study', query: 'emergency savings resilience report', region: 'US', first: '/research/emergency-savings-resilience.html' },
   { name: 'income loss runway research finds the Research study', query: 'income loss runway research', region: 'US', first: '/research/emergency-savings-resilience.html' },
   { name: 'inflation purchasing power monitor finds the Research study', query: 'inflation purchasing power monitor', region: 'US', first: '/research/inflation-purchasing-power-monitor.html' },
