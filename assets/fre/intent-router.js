@@ -23,8 +23,7 @@
   });
 
   const ROUTES = Object.freeze({
-    [INTENTS.EMERGENCY_RUNWAY]: Object.freeze({ priorityStage:'protect', engineIds:['budget-cash-flow'], requirements:[
-      { path:'cashFlow.monthlyIncome', label:'Monthly take-home income' },
+    [INTENTS.EMERGENCY_RUNWAY]: Object.freeze({ priorityStage:'protect', engineIds:['emergency-fund-runway'], requirements:[
       { path:'cashFlow.essentialExpenses', label:'Essential monthly expenses' },
       { path:'resilience.liquidSavings', label:'Emergency savings available now' }
     ]}),

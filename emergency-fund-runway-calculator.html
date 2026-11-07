@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Emergency Fund & Financial Runway Calculator | Carrowmont</title>
+  <meta name="description" content="Calculate how many months your emergency savings may cover, set your own runway target, estimate the funding gap and stress-test a one-time shock or partial income loss.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <meta name="author" content="Carrowmont">
+  <link rel="canonical" href="https://carrowmont.com/emergency-fund-runway-calculator.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="Emergency Fund & Financial Runway Calculator | Carrowmont">
+  <meta property="og:description" content="See how long your emergency savings may last, what your chosen target would require and how a financial shock could change your runway.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/emergency-fund-runway-calculator.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Emergency Fund & Financial Runway Calculator | Carrowmont">
+  <meta name="twitter:description" content="Calculate emergency-fund coverage, a target gap and a simple income-loss stress scenario.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <link rel="stylesheet" href="/carrowmont.css?v=20261020-learn3a-fix1">
+  <link rel="stylesheet" href="/emergency-fund-runway-calculator.css?v=20261107-fre2a1">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"Carrowmont Emergency Fund & Financial Runway Calculator",
+        "url":"https://carrowmont.com/emergency-fund-runway-calculator.html",
+        "applicationCategory":"FinanceApplication",
+        "operatingSystem":"Any",
+        "isAccessibleForFree":true,
+        "description":"Calculate emergency-fund coverage, a user-chosen target gap and a simple financial-runway stress scenario.",
+        "dateModified":"2026-11-07",
+        "publisher":{"@type":"Organization","name":"Carrowmont","url":"https://carrowmont.com/"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},
+          {"@type":"ListItem","position":2,"name":"Tools","item":"https://carrowmont.com/tools.html"},
+          {"@type":"ListItem","position":3,"name":"Emergency Fund & Financial Runway Calculator","item":"https://carrowmont.com/emergency-fund-runway-calculator.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-cm-page="emergency-fund-runway-calculator" data-carrowmont-tool="emergency-fund-runway">
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule" aria-hidden="true"></span><span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/search.html">Search</a></nav>
+    <details class="locale-menu" id="localeMenu">
+      <summary class="locale-summary" aria-label="Choose country and currency"><span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span><span id="localeCountryLabel">India</span><span>&middot;</span><span id="localeCurrencyLabel">INR</span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></svg></span></summary>
+      <div class="locale-panel"><strong>Country &amp; currency</strong><p>Choose the context that makes the numbers easiest to understand.</p><label for="regionSelect">Country / region</label><select id="regionSelect"></select><label for="currencySelect">Currency</label><select id="currencySelect"></select><p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert entered amounts using an exchange rate.</p><button type="button" class="small-button" id="localeDoneBtn">Done</button></div>
+    </details>
+    <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/search.html">Search</a></div></details>
+  </div>
+</header>
+<main>
+  <section class="ef-hero">
+    <div class="shell ef-hero-grid">
+      <div>
+        <p class="eyebrow">FINANCIAL RESILIENCE</p>
+        <h1>How long could your essential spending keep going if income changed suddenly?</h1>
+        <p>Measure your emergency-fund runway, choose your own planning target and see the gap. Then test what happens after a one-time shock or when some income continues during a disruption.</p>
+        <div class="ef-badges" aria-label="Calculator characteristics"><span>No login</span><span>Runs locally</span><span>No bank connection</span><span>Your target, not a universal rule</span></div>
+      </div>
+      <aside class="ef-hero-note"><strong>Runway, not a score</strong><p>Carrowmont starts with the essential costs you need to keep paying and the emergency-ready cash you choose to count. It does not treat investments, credit limits or a generic six-month rule as guaranteed protection.</p></aside>
+    </div>
+  </section>
+
+  <section class="ef-workspace" id="calculator">
+    <div class="shell ef-layout">
+      <aside class="ef-input-card" aria-labelledby="efInputsTitle">
+        <p class="ef-card-kicker">YOUR RESILIENCE PLAN</p>
+        <h2 id="efInputsTitle">Start with what must keep getting paid</h2>
+        <p class="ef-card-intro">Use monthly amounts. Estimates are fine if you do not know the exact number yet.</p>
+
+        <div class="ef-group">
+          <h3 class="ef-group-title">1. Essential monthly need</h3>
+          <div class="ef-grid">
+            <label class="ef-field ef-field-wide" for="essentialExpenses"><span>Essential monthly living costs</span><input id="essentialExpenses" type="number" min="0" step="100" value="60000"><small>Housing, food, utilities, transport, insurance and other costs you would still need during a disruption.</small><details class="ef-why"><summary>Why we ask</summary><p>Your runway is based on the money that must keep leaving the household, not on total lifestyle spending.</p></details></label>
+            <label class="ef-field" for="debtPayments"><span>Minimum debt payments</span><input id="debtPayments" type="number" min="0" step="100" value="10000"><small>Include only required payments not already counted above.</small></label>
+            <label class="ef-field" for="otherCommitments"><span>Other unavoidable commitments</span><input id="otherCommitments" type="number" min="0" step="100" value="5000"><small>For example, essential care or support commitments.</small></label>
+          </div>
+        </div>
+
+        <div class="ef-group">
+          <h3 class="ef-group-title">2. Emergency-ready cash</h3>
+          <div class="ef-grid">
+            <label class="ef-field" for="emergencySavings"><span>Emergency savings now</span><input id="emergencySavings" type="number" min="0" step="1000" value="300000"><details class="ef-why"><summary>Why we ask</summary><p>This is the reserve Carrowmont uses first when it measures how many months of essential costs are covered.</p></details></label>
+            <label class="ef-field" for="otherLiquidCash"><span>Other liquid cash</span><input id="otherLiquidCash" type="number" min="0" step="1000" value="0"><small>Optional cash you could access quickly without selling a volatile asset.</small></label>
+          </div>
+          <label class="ef-check"><input id="includeOtherLiquidCash" type="checkbox"><span>Count this other liquid cash as emergency-ready money in the calculation.</span></label>
+        </div>
+
+        <div class="ef-group">
+          <h3 class="ef-group-title">3. Your target and stress test</h3>
+          <div class="ef-grid">
+            <label class="ef-field" for="targetMonths"><span>Runway target I want to plan for</span><input id="targetMonths" type="number" min="1" max="24" step="1" value="6"><small>Choose the number that fits your situation. Carrowmont does not force a universal target.</small></label>
+            <label class="ef-field" for="monthlyContribution"><span>Monthly amount I can add</span><input id="monthlyContribution" type="number" min="0" step="100" value="15000"><small>Used only to estimate how long the funding gap may take to close.</small></label>
+            <label class="ef-field" for="shockCost"><span>One-time shock to test</span><input id="shockCost" type="number" min="0" step="1000" value="50000"><small>Optional: repair, medical excess, urgent travel or another sudden cost.</small></label>
+            <label class="ef-field" for="disruptionIncome"><span>Monthly income that would continue</span><input id="disruptionIncome" type="number" min="0" step="100" value="0"><small>Optional: second income, benefits or reliable income that continues in the stress scenario.</small></label>
+          </div>
+        </div>
+        <button class="ef-calc-btn" id="calculateBtn" type="button">Calculate my runway</button>
+      </aside>
+
+      <section class="ef-result-card" aria-live="polite">
+        <div class="ef-status" id="statusCard" data-tone="warn">
+          <span class="ef-status-label" id="statusLabel">YOUR CURRENT RUNWAY</span>
+          <h2 id="statusHeadline">Calculating...</h2>
+          <p id="statusText">Enter your household numbers to see what they mean.</p>
+        </div>
+
+        <div class="ef-metric-grid">
+          <div class="ef-metric"><span>Emergency-ready reserve</span><strong id="reserveValue">-</strong><small id="reserveNote">Cash counted in this plan</small></div>
+          <div class="ef-metric"><span>Essential monthly need</span><strong id="monthlyNeedValue">-</strong><small>Essentials + required debt + other unavoidable commitments</small></div>
+          <div class="ef-metric"><span>Gap to your target</span><strong id="targetGapValue">-</strong><small id="targetGapNote">Based on your chosen runway target</small></div>
+        </div>
+
+        <div class="ef-progress-wrap">
+          <div class="ef-progress-head"><strong id="progressTitle">Target progress</strong><span id="progressText">0%</span></div>
+          <div class="ef-progress" role="progressbar" aria-label="Emergency fund target progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
+        </div>
+
+        <div class="ef-two">
+          <div class="ef-panel"><h3>First useful buffer</h3><p>One month of essential need is a practical first milestone while you build toward a larger target.</p><strong class="ef-big" id="firstStageValue">-</strong><p id="firstStageText">-</p></div>
+          <div class="ef-panel"><h3>Stress runway</h3><p>After your one-time shock, this shows how long the remaining reserve may cover the monthly shortfall after continuing income.</p><strong class="ef-big" id="stressRunwayValue">-</strong><p id="stressRunwayText">-</p></div>
+        </div>
+
+        <div class="ef-reference"><strong>Reference point, not a rule</strong><p id="referenceText">Official consumer-finance guidance commonly uses roughly 3 to 6 months of regular expenses as a starting reference. Your useful target can be lower or higher depending on income stability, dependants, fixed commitments, insurance and how quickly income could recover.</p></div>
+
+        <div class="ef-warnings" id="warnings"></div>
+
+        <div class="ef-actions">
+          <button type="button" id="copySummaryBtn">Copy Summary</button>
+          <button type="button" id="downloadCsvBtn">Download CSV</button>
+          <button type="button" id="generateReportBtn" class="primary">Generate Runway Report</button>
+          <a href="/emergency-fund-how-much.html">Learn how to choose a target</a>
+        </div>
+        <p class="ef-action-message" id="actionMessage" aria-live="polite"></p>
+      </section>
+    </div>
+  </section>
+
+  <section class="ef-method" id="how-it-works">
+    <div class="shell ef-method-grid">
+      <div><p class="eyebrow">HOW IT WORKS</p><h2>Transparent arithmetic, not a hidden safety score</h2><p><strong>Current runway</strong> = emergency-ready reserve divided by essential monthly need. Your target amount is your essential monthly need multiplied by the number of months you choose.</p><p>The stress test subtracts the one-time shock from the reserve and then measures how long the remainder may cover the monthly shortfall after any continuing income you enter.</p></div>
+      <div><h3>What Carrowmont does not assume</h3><ul><li>It does not assume investments can always be sold safely at the value you expect.</li><li>It does not count unused credit as emergency savings.</li><li>It does not choose an exact emergency-fund target for you.</li><li>It does not model tax, benefits eligibility, insurance claims or country-specific support systems.</li><li>It does not send or store the financial amounts entered on this page.</li></ul><p>Continue with <a href="/emergency-savings.html">Emergency savings and liquidity</a>, <a href="/sinking-fund-vs-emergency-fund.html">Sinking Fund vs Emergency Fund</a>, or the <a href="/research/emergency-savings-resilience.html">Emergency Savings Resilience Report</a>.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="shell footer-grid"><div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning &mdash; practical calculators and educational resources for clearer financial decisions.</p></div><div class="footer-col"><strong>Tools</strong><a href="/tools.html">All financial tools</a><a href="/budget-cash-flow-planner/">Budget &amp; Cash Flow</a><a href="/emergency-fund-runway-calculator.html">Emergency Fund &amp; Runway</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/mortgage-payoff-calculator/">Mortgage / Home Loan</a></div><div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div><div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div>
+  <div class="shell footer-bottom"><span>&copy; 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div>
+</footer>
+<script src="/locale.js?v=20261107-global2"></script>
+<script src="/site.js?v=20261105-mobile2"></script>
+<script src="/emergency-fund-runway-core.js?v=20261107-fre2a1"></script>
+<script src="/emergency-fund-runway-pdf-export.js?v=20261107-fre2a1"></script>
+<script src="/emergency-fund-runway-pdf-renderer.js?v=20261107-fre2a1"></script>
+<script src="/emergency-fund-runway-calculator.js?v=20261107-fre2a1"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-10-23",
+  "reviewed_at": "2026-11-07",
   "entries": [
     {
       "url": "/",
@@ -618,6 +618,33 @@
         "months of expenses"
       ],
       "priority": 65
+    },
+    {
+      "url": "/emergency-fund-runway-calculator.html",
+      "title": "Emergency Fund & Financial Runway Calculator | Carrowmont",
+      "description": "Calculate how many months your emergency savings may cover, set your own runway target, estimate the funding gap and stress-test a one-time shock or partial income loss.",
+      "type": "tool",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "emergency fund calculator",
+        "financial runway calculator",
+        "emergency savings",
+        "months of expenses",
+        "income loss",
+        "job loss",
+        "cash buffer",
+        "emergency fund target",
+        "how long will my savings last"
+      ],
+      "aliases": [
+        "emergency fund calculator",
+        "runway calculator",
+        "cash runway",
+        "emergency savings calculator",
+        "how many months can my savings last",
+        "how much emergency fund do I need"
+      ],
+      "priority": 92
     },
     {
       "url": "/emergency-savings.html",

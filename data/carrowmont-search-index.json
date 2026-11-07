@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-23",
+  "generated_at": "2026-11-07",
   "entries": [
     {
       "url": "/",
@@ -618,6 +618,33 @@
         "rainy day fund target"
       ],
       "priority": 65
+    },
+    {
+      "url": "/emergency-fund-runway-calculator.html",
+      "title": "Emergency Fund & Financial Runway Calculator | Carrowmont",
+      "description": "Calculate how many months your emergency savings may cover, set your own runway target, estimate the funding gap and stress-test a one-time shock or partial income loss.",
+      "type": "tool",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "cash buffer",
+        "emergency fund calculator",
+        "emergency fund target",
+        "emergency savings",
+        "financial runway calculator",
+        "how long will my savings last",
+        "income loss",
+        "job loss",
+        "months of expenses"
+      ],
+      "aliases": [
+        "cash runway",
+        "emergency fund calculator",
+        "emergency savings calculator",
+        "how many months can my savings last",
+        "how much emergency fund do I need",
+        "runway calculator"
+      ],
+      "priority": 92
     },
     {
       "url": "/emergency-savings.html",
@@ -2095,16 +2122,16 @@
       "type": "guide",
       "category": "Research",
       "keywords": [
-        "inflation purchasing power monitor",
-        "US inflation research",
-        "inflation by household spending category",
         "CPI household spending groups",
+        "inflation by household spending category",
+        "inflation purchasing power monitor",
+        "personal inflation basket research",
         "purchasing power research",
-        "personal inflation basket research"
+        "US inflation research"
       ],
       "aliases": [
-        "inflation monitor",
         "household inflation research",
+        "inflation monitor",
         "personal inflation basket",
         "US CPI purchasing power"
       ],
