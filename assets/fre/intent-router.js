@@ -9,6 +9,7 @@
   const VERSION = 1;
   const INTENTS = Object.freeze({
     EMERGENCY_RUNWAY:'emergency-runway',
+    BORROWING_HEALTH:'borrowing-health',
     DEBT_VS_SAVINGS:'debt-vs-savings',
     CAR_AFFORDABILITY:'car-affordability',
     HOME_AFFORDABILITY:'home-affordability',
@@ -26,6 +27,10 @@
     [INTENTS.EMERGENCY_RUNWAY]: Object.freeze({ priorityStage:'protect', engineIds:['emergency-fund-runway'], requirements:[
       { path:'cashFlow.essentialExpenses', label:'Essential monthly expenses' },
       { path:'resilience.liquidSavings', label:'Emergency savings available now' }
+    ]}),
+    [INTENTS.BORROWING_HEALTH]: Object.freeze({ priorityStage:'reduce', engineIds:['debt-to-income-borrowing-health'], requirements:[
+      { path:'cashFlow.grossMonthlyIncome', label:'Gross monthly income' },
+      { path:'debt.monthlyPayments', label:'Required monthly debt payments' }
     ]}),
     [INTENTS.DEBT_VS_SAVINGS]: Object.freeze({ priorityStage:'reduce', engineIds:['budget-cash-flow','debt-payoff','compound-interest'], requirements:[
       { path:'cashFlow.monthlyIncome', label:'Monthly take-home income' },
@@ -87,6 +92,7 @@
   const RULES = Object.freeze([
     [INTENTS.DEBT_VS_SAVINGS, /\b(debt|loan|credit card).{0,40}\b(save|saving|invest)|\b(save|saving|invest).{0,40}\b(debt|loan|credit card)/i],
     [INTENTS.EMERGENCY_RUNWAY, /\b(emergency fund|runway|months? of expenses|without income|lose my job|job loss)\b/i],
+    [INTENTS.BORROWING_HEALTH, /\b(debt[- ]?to[- ]?income|dti|borrowing health|debt burden)\b|\b(afford|take on|add).{0,24}\b(another|new).{0,10}\b(loan|debt|payment)\b/i],
     [INTENTS.CAR_AFFORDABILITY, /\b(afford|buy|finance).{0,24}\b(car|vehicle|auto)\b|\b(car|vehicle|auto).{0,24}\bafford/i],
     [INTENTS.HOME_AFFORDABILITY, /\b(afford|buy).{0,24}\b(home|house|property)\b|\b(home|house|property).{0,24}\bafford/i],
     [INTENTS.MORTGAGE_PREPAY_VS_INVEST, /\b(mortgage|home loan).{0,40}\b(prepay|overpay|extra payment).{0,40}\binvest|\binvest.{0,40}\b(mortgage|home loan).{0,40}\b(prepay|overpay)/i],
