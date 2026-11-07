@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
-  const CATALOG_VERSION = 5;
+  const CATALOG_VERSION = 6;
   const ENGINES = Object.freeze([
     { id:'recurring-investment', api:'CarrowmontSIPCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'goal-planner', api:'CarrowmontGoalCore', status:'READY_WITH_ADAPTER', priority:'A' },
@@ -21,6 +21,7 @@
     { id:'compound-interest', api:'CarrowmontCompoundCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'loan', api:'CarrowmontLoanCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'debt-payoff', api:'CarrowmontDebtPayoffCore', status:'READY_WITH_ADAPTER', priority:'A' },
+    { id:'credit-card-payoff-comparison', api:'CarrowmontCreditCardPayoffCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'retirement-withdrawal', api:'CarrowmontWithdrawalCore', status:'READY_WITH_ADAPTER', priority:'B' },
     { id:'home-affordability', api:'CarrowmontHomeAffordabilityCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'rent-vs-buy', api:'CarrowmontRentVsBuyCore', status:'READY_WITH_ADAPTER', priority:'B' },

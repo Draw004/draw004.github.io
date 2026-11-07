@@ -15,6 +15,7 @@
     HOME_AFFORDABILITY:'home-affordability',
     MORTGAGE_PREPAY_VS_INVEST:'mortgage-prepay-vs-invest',
     DEBT_PAYOFF:'debt-payoff',
+    CREDIT_CARD_PAYOFF:'credit-card-payoff',
     RETIREMENT_READINESS:'retirement-readiness',
     GOAL_FUNDING:'goal-funding',
     LOAN_COST:'loan-cost',
@@ -57,6 +58,11 @@
       { path:'housing.extraCash', label:'Extra money available to allocate' },
       { path:'investing.expectedReturn', label:'Expected investment return', allowEstimate:true }
     ]}),
+    [INTENTS.CREDIT_CARD_PAYOFF]: Object.freeze({ priorityStage:'reduce', engineIds:['credit-card-payoff-comparison'], requirements:[
+      { path:'debt.creditCardBalance', label:'Credit-card balance' },
+      { path:'debt.highestApr', label:'Credit-card annual interest rate' },
+      { path:'debt.monthlyPayments', label:'Current minimum monthly payment' }
+    ]}),
     [INTENTS.DEBT_PAYOFF]: Object.freeze({ priorityStage:'reduce', engineIds:['debt-payoff'], requirements:[
       { path:'debt.totalBalance', label:'Debt balances' },
       { path:'debt.monthlyPayments', label:'Monthly debt payment budget' }
@@ -97,6 +103,7 @@
     [INTENTS.HOME_AFFORDABILITY, /\b(afford|buy).{0,24}\b(home|house|property)\b|\b(home|house|property).{0,24}\bafford/i],
     [INTENTS.MORTGAGE_PREPAY_VS_INVEST, /\b(mortgage|home loan).{0,40}\b(prepay|overpay|extra payment).{0,40}\binvest|\binvest.{0,40}\b(mortgage|home loan).{0,40}\b(prepay|overpay)/i],
     [INTENTS.RETIREMENT_READINESS, /\b(retire|retirement|retiring)\b/i],
+    [INTENTS.CREDIT_CARD_PAYOFF, /\b(credit card|card).{0,35}\b(pay off|payoff|repay|minimum payment|interest)\b|\b(pay off|payoff|repay).{0,35}\b(credit card|card)\b/i],
     [INTENTS.DEBT_PAYOFF, /\b(pay off|payoff|clear|repay).{0,30}\b(debt|loan|credit card)\b/i],
     [INTENTS.GOAL_FUNDING, /\b(goal|target).{0,30}\b(save|saving|fund|invest)|\bhow much.{0,20}\bsave.{0,20}\bfor\b/i],
     [INTENTS.INFLATION_IMPACT, /\b(inflation|purchasing power|future cost)\b/i],
