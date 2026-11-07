@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-11-07",
+  "reviewed_at": "2026-11-08",
   "entries": [
     {
       "url": "/",
@@ -242,6 +242,27 @@
       "priority": 100
     },
     {
+      "url": "/budget-cash-flow-planner/credit-card-payoff-calculator.html",
+      "title": "Credit Card Payoff Calculator | Minimum vs Higher Payment",
+      "description": "Compare a fixed minimum-payment credit-card payoff path with a higher monthly payment, estimate modeled interest and time saved, and solve for a target payoff period.",
+      "type": "tool",
+      "category": "Debt & Credit",
+      "keywords": [
+        "credit card payoff calculator",
+        "credit card interest",
+        "pay off credit card",
+        "minimum payment",
+        "higher monthly payment",
+        "target payoff"
+      ],
+      "aliases": [
+        "card payoff calculator",
+        "credit card repayment calculator",
+        "credit card interest payoff"
+      ],
+      "priority": 60
+    },
+    {
       "url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
       "title": "Debt Payoff Calculator | Compare Snowball vs Avalanche",
       "description": "See how long it could take to clear your debts. Compare paying the smallest debt first with paying the highest-interest debt first, and test an extra monthly payment.",
@@ -310,6 +331,36 @@
         "seasonal income budget"
       ],
       "priority": 65
+    },
+    {
+      "url": "/car-affordability-auto-decision-calculator.html",
+      "title": "Car Affordability & Auto Decision Calculator | Carrowmont",
+      "description": "See how a car purchase affects monthly cash room, debt-to-income, emergency runway and financing cost. Compare a lower price, more down payment or longer term without a universal affordability cutoff.",
+      "type": "tool",
+      "category": "Debt & Credit",
+      "keywords": [
+        "car affordability calculator",
+        "auto affordability calculator",
+        "vehicle affordability",
+        "can I afford a car",
+        "car payment affordability",
+        "car finance affordability",
+        "car loan affordability",
+        "monthly car cost",
+        "car running costs",
+        "car purchase decision",
+        "vehicle purchase budget"
+      ],
+      "aliases": [
+        "car affordability",
+        "auto affordability",
+        "vehicle affordability calculator",
+        "can i afford this car",
+        "how much car can i afford",
+        "car purchase calculator",
+        "car budget calculator"
+      ],
+      "priority": 96
     },
     {
       "url": "/cash-flow-vs-income.html",
@@ -3025,36 +3076,6 @@
         "zero sum budget"
       ],
       "priority": 65
-    },
-    {
-      "url": "/car-affordability-auto-decision-calculator.html",
-      "title": "Car Affordability & Auto Decision Calculator | Carrowmont",
-      "description": "See how a car purchase affects monthly cash room, debt-to-income, emergency runway and financing cost. Compare a lower price, more down payment or longer term without a universal affordability cutoff.",
-      "type": "tool",
-      "category": "Debt & Credit",
-      "keywords": [
-        "car affordability calculator",
-        "auto affordability calculator",
-        "vehicle affordability",
-        "can I afford a car",
-        "car payment affordability",
-        "car finance affordability",
-        "car loan affordability",
-        "monthly car cost",
-        "car running costs",
-        "car purchase decision",
-        "vehicle purchase budget"
-      ],
-      "aliases": [
-        "car affordability",
-        "auto affordability",
-        "vehicle affordability calculator",
-        "can i afford this car",
-        "how much car can i afford",
-        "car purchase calculator",
-        "car budget calculator"
-      ],
-      "priority": 96
     }
   ]
 }
