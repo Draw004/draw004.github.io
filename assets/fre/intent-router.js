@@ -114,7 +114,6 @@
   }
 
   function engineStatus(id) {
-    if (id === 'car-affordability') return 'PLANNED_ENGINE';
     return catalog?.get?.(id)?.status || 'UNKNOWN_ENGINE';
   }
 

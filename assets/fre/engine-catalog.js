@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
-  const CATALOG_VERSION = 4;
+  const CATALOG_VERSION = 5;
   const ENGINES = Object.freeze([
     { id:'recurring-investment', api:'CarrowmontSIPCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'goal-planner', api:'CarrowmontGoalCore', status:'READY_WITH_ADAPTER', priority:'A' },
@@ -16,6 +16,7 @@
     { id:'budget-cash-flow', api:'CarrowmontBudgetCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'emergency-fund-runway', api:'CarrowmontEmergencyFundCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'debt-to-income-borrowing-health', api:'CarrowmontBorrowingHealthCore', status:'READY_WITH_ADAPTER', priority:'A' },
+    { id:'car-affordability', api:'CarrowmontCarAffordabilityCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'mortgage-payoff', api:'CarrowmontMortgageCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'compound-interest', api:'CarrowmontCompoundCore', status:'READY_WITH_ADAPTER', priority:'A' },
     { id:'loan', api:'CarrowmontLoanCore', status:'READY_WITH_ADAPTER', priority:'A' },

@@ -94,6 +94,8 @@ const fixtures = [
   { name: 'emergency fund calculator finds the runway tool', query: 'emergency fund calculator', region: 'US', first: '/emergency-fund-runway-calculator.html' },
   { name: 'debt to income calculator finds borrowing health', query: 'debt to income calculator', region: 'US', first: '/debt-to-income-borrowing-health-calculator.html' },
   { name: 'DTI calculator finds borrowing health', query: 'dti calculator', region: 'IN', first: '/debt-to-income-borrowing-health-calculator.html' },
+  { name: 'car affordability calculator finds the auto decision tool', query: 'car affordability calculator', region: 'US', first: '/car-affordability-auto-decision-calculator.html' },
+  { name: 'can I afford this car finds the auto decision tool', query: 'can i afford this car', region: 'IN', first: '/car-affordability-auto-decision-calculator.html' },
   { name: 'financial runway calculator finds the runway tool', query: 'financial runway calculator', region: 'IN', first: '/emergency-fund-runway-calculator.html' },
   { name: 'emergency savings resilience report finds the Research study', query: 'emergency savings resilience report', region: 'US', first: '/research/emergency-savings-resilience.html' },
   { name: 'income loss runway research finds the Research study', query: 'income loss runway research', region: 'US', first: '/research/emergency-savings-resilience.html' },
