@@ -149,6 +149,12 @@
   function renderResult(result){
     stage('result');
     $('askResultSituation').textContent=result.situation||INTENT_COPY[result.intent]||'Your result';
+    const rec=result.recommendation||{};
+    $('askRecommendationHeadline').textContent=rec.headline||'Review the modeled result below.';
+    $('askRecommendationAction').textContent=rec.action||'';
+    $('askRecommendationRationale').textContent=rec.rationale?`Why: ${rec.rationale}`:'';
+    const confidence=result.confidence||{};
+    $('askConfidence').textContent=confidence.level?`Confidence: ${String(confidence.level).replace('_',' ').toLowerCase()} — ${confidence.basis||''}`:'';
     $('askDiagnosis').textContent=result.diagnosis||'';
     const metrics=$('askMetrics'); metrics.innerHTML='';
     for(const [key,value] of Object.entries(result.importantNumbers||{})){
@@ -173,6 +179,10 @@
       }
       alternatives.appendChild(card);
     }
+    const changes=$('askWhatCouldChange'); changes.innerHTML='';
+    const changeItems=Array.isArray(result.whatCouldChangeAnswer)?result.whatCouldChangeAnswer:[];
+    $('askChangeSection').hidden=changeItems.length===0;
+    for(const change of changeItems){ const li=document.createElement('li'); li.textContent=change; changes.appendChild(li); }
     const steps=$('askNextSteps'); steps.innerHTML='';
     for(const step of result.nextSteps||[]){ const li=document.createElement('li'); li.textContent=step; steps.appendChild(li); }
     const trace=$('askEngineTrace'); trace.innerHTML='';
