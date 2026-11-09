@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261110-fre3d1">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261110-fre4">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -103,18 +103,22 @@
             <div><span class="ask-step-label">A few details</span><h2 id="askQuestionsTitle">Help Carrowmont understand the numbers</h2></div>
             <button class="ask-text-button" type="button" data-ask-reset>Start over</button>
           </div>
+          <div class="ask-progress" id="askProgress" aria-label="Journey progress">
+            <div class="ask-progress-meta"><span id="askProgressText">Step 1</span><span>Only the details needed for this decision</span></div>
+            <div class="ask-progress-track" role="progressbar" aria-label="Information completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="askProgressBar"></span></div>
+          </div>
           <p id="askQuestionsIntro" class="ask-helper"></p>
           <form id="askQuestionsForm" novalidate>
             <div id="askQuestionFields" class="ask-question-fields"></div>
-            <div class="ask-action-row"><button class="button button-primary" type="submit">Continue</button></div>
+            <div class="ask-action-row ask-question-actions"><button class="ask-back-button" type="button" id="askBackBtn" data-ask-back hidden>← Previous</button><button class="button button-primary" type="submit">Continue</button></div>
           </form>
-          <div class="ask-message" id="askQuestionMessage" role="status" aria-live="polite"></div>
+          <div class="ask-message" id="askQuestionMessage" role="alert" aria-live="assertive"></div>
         </div>
 
         <div id="askResultStage" class="ask-stage" hidden>
           <div class="ask-stage-heading">
-            <div><span class="ask-step-label">Carrowmont result</span><h2 id="askResultSituation"></h2></div>
-            <button class="ask-text-button" type="button" data-ask-reset>Ask another question</button>
+            <div><span class="ask-step-label">Carrowmont result</span><h2 id="askResultSituation" tabindex="-1"></h2></div>
+            <div class="ask-stage-actions"><button class="ask-text-button" type="button" id="askReviewAnswers" data-ask-back hidden>Review answers</button><button class="ask-text-button" type="button" data-ask-reset>Ask another question</button></div>
           </div>
           <div class="ask-resolution-primary" id="askResolutionPrimary">
             <span class="ask-step-label">Carrowmont’s view</span>
@@ -174,7 +178,7 @@
 <script src="/assets/fre/engine-catalog.js"></script>
 <script src="/assets/fre/intent-router.js"></script>
 <script src="/assets/fre/ask-carrowmont-mvp.js"></script>
-<script src="/assets/ask/ask-carrowmont.js?v=20261110-fre3d1"></script>
+<script src="/assets/ask/ask-carrowmont.js?v=20261110-fre4"></script>
 <script src="/site.js?v=20261109-fre3c1"></script>
 </body>
 </html>

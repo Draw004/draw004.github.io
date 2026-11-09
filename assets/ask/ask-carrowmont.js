@@ -23,6 +23,28 @@
     monthlySurplus:'Enter the monthly amount you could direct to debt reduction or saving.',
     assumedSavingsReturnPct:'Enter an annual savings/investment return assumption. This is not a forecast.'
   };
+  const FIELD_META={
+    essentialExpenses:{why:'This sets the unavoidable monthly cost Carrowmont uses to measure emergency runway and cash resilience.'},
+    emergencySavings:{why:'Accessible emergency savings show how much financial shock you can absorb without new debt.'},
+    monthlyIncome:{why:'Take-home income is the starting point for measuring whether monthly spending fits inside available cash.'},
+    flexibleExpenses:{why:'Flexible spending shows how much of the monthly shortfall may be adjustable rather than unavoidable.'},
+    vehiclePrice:{why:'The vehicle price determines the amount that may need to be financed and the size of the affordability test.'},
+    takeHomeMonthlyIncome:{why:'Take-home income is used to test the car cost against the cash actually available each month.'},
+    essentialMonthlyExpenses:{why:'Essential household costs protect the affordability result from treating necessary spending as spare cash.'},
+    annualRate:{why:'The loan rate determines the modeled monthly payment and total borrowing cost.'},
+    termMonths:{why:'The loan term changes both the monthly payment and how long the borrowing lasts.'},
+    monthlyRunningCosts:{why:'Insurance, fuel or charging, maintenance and similar costs can make an affordable loan payment unaffordable in practice.'},
+    mortgageBalance:{why:'The outstanding balance is the amount on which future mortgage interest and prepayment savings are modeled.'},
+    mortgageRatePct:{why:'The contractual mortgage rate determines the interest saving created by prepayment.'},
+    remainingYears:{why:'The remaining term sets the common time horizon for comparing prepayment with investing.'},
+    extraAmount:{why:'This is the same money Carrowmont compares between mortgage prepayment and investing.'},
+    assumedInvestmentReturnPct:{why:'A return assumption is needed only to model the investment path. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
+    debtBalance:{why:'The outstanding debt balance determines how much debt remains to be repaid.'},
+    debtAprPct:{why:'The debt rate is compared with the modeled savings or investment return and drives interest cost.'},
+    debtMinimumPayment:{why:'The required payment is needed to model the debt payoff schedule before adding any extra amount.'},
+    monthlySurplus:{why:'This is the same monthly money Carrowmont compares between extra debt repayment and saving or investing.'},
+    assumedSavingsReturnPct:{why:'A return assumption is needed to model the savings or investment path. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'}
+  };
   const INTENT_COPY={
     'debt-vs-savings':'Debt or savings',
     'car-affordability':'Car affordability',
@@ -43,7 +65,7 @@
   const YEAR_KEY=/years/i;
 
   let api=null;
-  let state={intent:null,facts:{},questionText:''};
+  let state={intent:null,facts:{},questionText:'',estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
   const $=id=>document.getElementById(id);
 
   function getLocale(){
@@ -72,6 +94,25 @@
   function stage(name){
     $('askStart').hidden=name!=='start'; $('askQuestionsStage').hidden=name!=='questions'; $('askResultStage').hidden=name!=='result';
   }
+  function reducedMotion(){ return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches===true; }
+  function reveal(target,focusTarget){
+    if(!target) return;
+    if(focusTarget && typeof focusTarget.focus==='function'){
+      try{ focusTarget.focus({preventScroll:true}); }catch(_err){ focusTarget.focus(); }
+    }
+    requestAnimationFrame(()=>{
+      target.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});
+    });
+  }
+  function clearFieldError(input){
+    if(!input) return;
+    input.removeAttribute('aria-invalid');
+    input.closest('.ask-field')?.classList.remove('ask-field-invalid');
+  }
+  function updateBackControls(){
+    document.querySelectorAll('[data-ask-back]').forEach(btn=>{ btn.hidden=state.history.length===0; btn.disabled=state.history.length===0; });
+  }
+
   function hideUnsupported(){ const box=$('askUnsupported'); if(box) box.hidden=true; }
   function showUnsupported(text){
     $('askStartMessage').textContent='';
@@ -85,16 +126,16 @@
     requestAnimationFrame(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}));
   }
   function reset(){
-    state={intent:null,facts:{},questionText:''};
+    state={intent:null,facts:{},questionText:'',estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
     $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();
-    stage('start'); $('askQuestion').focus();
+    stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
   }
   function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
   function fieldStep(key){ return /termMonths|remainingYears/i.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
   function startIntent(intent,text=''){
     hideUnsupported();
     if(!api?.SUPPORTED?.some(x=>x.intent===intent)){ showUnsupported(text); return; }
-    state={intent,facts:{},questionText:text};
+    state={intent,facts:{},questionText:text,estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
     continueJourney();
   }
   function startFromText(){
@@ -105,6 +146,18 @@
     const classified=api.classify(text);
     if(!classified?.intent){ showUnsupported(text); return; }
     startIntent(classified.intent,text);
+  }
+  function updateProgress(){
+    const all=api?.QUESTION_SETS?.[state.intent]||[];
+    const answered=all.filter(q=>Object.prototype.hasOwnProperty.call(state.facts,q.key)).length;
+    const total=Math.max(1,all.length);
+    const step=Math.min(Math.floor(answered/3)+1,Math.ceil(total/3));
+    const steps=Math.max(1,Math.ceil(total/3));
+    const pct=Math.max(6,Math.min(100,Math.round((answered/total)*100)));
+    const text=$('askProgressText'); const bar=$('askProgressBar'); const shell=$('askProgress');
+    if(shell) shell.hidden=false;
+    if(text) text.textContent=`Step ${step} of ${steps} · ${answered} of ${total} details completed`;
+    if(bar){ bar.style.width=`${pct}%`; bar.parentElement?.setAttribute('aria-valuenow',String(Math.round((answered/total)*100))); }
   }
   function continueJourney(){
     const locale=getLocale();
@@ -117,20 +170,58 @@
   }
   function renderQuestions(questions){
     stage('questions');
+    updateProgress(); updateBackControls();
     $('askQuestionsTitle').textContent=INTENT_COPY[state.intent]||'A few details';
-    $('askQuestionsIntro').textContent=`Carrowmont needs ${questions.length===1?'one more detail':`${questions.length} details`} before it can run the next step. Amounts use ${getLocale().currency}; changing currency does not convert values.`;
+    $('askQuestionsIntro').textContent=`Carrowmont needs ${questions.length===1?'one more detail':`${questions.length} details`} for this step. Amounts use ${getLocale().currency}; changing currency does not convert values.`;
     const wrap=$('askQuestionFields'); wrap.innerHTML='';
     for(const q of questions){
       const group=document.createElement('div'); group.className='ask-field';
       const label=document.createElement('label'); label.htmlFor=`ask-field-${q.key}`; label.textContent=q.label;
       const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min='0'; input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
       if(PCT_KEY.test(q.key)) input.placeholder='e.g. 7.5'; else if(/termMonths/i.test(q.key)) input.placeholder='e.g. 60'; else input.placeholder=`Enter ${q.label.toLowerCase()}`;
+      const described=[];
       group.append(label,input);
-      const hint=QUESTION_HINTS[q.key]; if(hint){ const small=document.createElement('span'); small.className='ask-field-hint'; small.textContent=hint; group.appendChild(small); }
+      const hint=QUESTION_HINTS[q.key]; if(hint){ const small=document.createElement('span'); small.className='ask-field-hint'; small.id=`ask-hint-${q.key}`; small.textContent=hint; described.push(small.id); group.appendChild(small); }
+      const meta=FIELD_META[q.key]||{};
+      if(meta.why){
+        const why=document.createElement('details'); why.className='ask-why';
+        const summary=document.createElement('summary'); summary.textContent='Why we ask';
+        const body=document.createElement('p'); body.textContent=meta.why;
+        why.append(summary,body); group.appendChild(why);
+      }
+      if(described.length) input.setAttribute('aria-describedby',described.join(' '));
+      const cached=state.answerCache[q.key]; if(cached!==undefined&&cached!==null) input.value=String(cached);
+      const cachedEstimate=state.estimatedCache[q.key];
+      if(cachedEstimate && Number(input.value)===Number(cachedEstimate.value)){
+        state.estimatedFacts[q.key]={...cachedEstimate}; group.classList.add('ask-field-estimated');
+        const note=document.createElement('span'); note.className='ask-estimate-note'; note.textContent=`Using ${cachedEstimate.value}% as an illustration. You can replace it with your own assumption.`; group.appendChild(note);
+      }
+      input.addEventListener('input',()=>{
+        clearFieldError(input);
+        if($('askQuestionMessage').textContent) $('askQuestionMessage').textContent='';
+        const estimate=state.estimatedCache[q.key];
+        if(estimate && Number(input.value)!==Number(estimate.value)){
+          delete state.estimatedFacts[q.key]; delete state.estimatedCache[q.key];
+          group.classList.remove('ask-field-estimated'); group.querySelector('.ask-estimate-note')?.remove();
+        }
+      });
+      if(Number.isFinite(meta.unknownDefault)){
+        const unknown=document.createElement('button'); unknown.type='button'; unknown.className='ask-unknown-button'; unknown.dataset.askUnknown=q.key; unknown.textContent=meta.unknownLabel||'I don’t know';
+        unknown.addEventListener('click',()=>{
+          input.value=String(meta.unknownDefault);
+          const estimate={value:meta.unknownDefault,label:q.label}; state.estimatedFacts[q.key]=estimate; state.estimatedCache[q.key]={...estimate}; state.answerCache[q.key]=meta.unknownDefault;
+          clearFieldError(input); group.classList.add('ask-field-estimated');
+          let note=group.querySelector('.ask-estimate-note');
+          if(!note){ note=document.createElement('span'); note.className='ask-estimate-note'; group.appendChild(note); }
+          note.textContent=`Using ${meta.unknownDefault}% as an illustration. You can replace it with your own assumption.`;
+          input.focus();
+        });
+        group.appendChild(unknown);
+      }
       wrap.appendChild(group);
     }
     $('askQuestionMessage').textContent='';
-    requestAnimationFrame(()=>wrap.querySelector('input')?.focus());
+    reveal($('askQuestionsStage'),wrap.querySelector('input'));
   }
   function parseInput(input){
     const raw=input.value.trim().replace(/,/g,''); const n=Number(raw);
@@ -139,11 +230,30 @@
   function submitQuestions(event){
     event.preventDefault();
     const inputs=[...$('askQuestionFields').querySelectorAll('input')];
+    const pending={};
     for(const input of inputs){
       const value=parseInput(input);
-      if(value===null||value<0){ $('askQuestionMessage').textContent='Please enter a valid non-negative number for each field.'; input.focus(); return; }
+      if(value===null||value<0){
+        const field=input.closest('.ask-field'); const label=field?.querySelector('label')?.textContent||'this field';
+        $('askQuestionMessage').textContent=`Enter a valid non-negative number for ${label.toLowerCase()}. Use 0 only when the amount is genuinely zero.`;
+        field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true');
+        const desc=(input.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean); if(!desc.includes('askQuestionMessage')) desc.push('askQuestionMessage'); input.setAttribute('aria-describedby',desc.join(' '));
+        reveal(field,input); return;
+      }
+      pending[input.name]=value;
+    }
+    state.history.push({facts:{...state.facts},estimatedFacts:{...state.estimatedFacts}});
+    for(const input of inputs){
+      const value=pending[input.name]; clearFieldError(input); state.answerCache[input.name]=value;
+      const estimate=state.estimatedFacts[input.name];
+      if(estimate && Number(value)!==Number(estimate.value)){ delete state.estimatedFacts[input.name]; delete state.estimatedCache[input.name]; }
       state.facts[input.name]=value;
     }
+    $('askQuestionMessage').textContent=''; continueJourney();
+  }
+  function goBack(){
+    if(!state.history.length) return;
+    const previous=state.history.pop(); state.facts={...previous.facts}; state.estimatedFacts={...previous.estimatedFacts};
     $('askQuestionMessage').textContent=''; continueJourney();
   }
   function renderResult(result){
@@ -191,9 +301,13 @@
     const asum=Array.isArray(result.assumptions)?result.assumptions:[];
     $('askAssumptionsWrap').hidden=asum.length===0;
     for(const item of asum){ const li=document.createElement('li'); li.textContent=`${labelize(item.id)}: ${formatValue(item.id,item.value)}${item.note?` — ${item.note}`:''}`; assumptions.appendChild(li); }
+    for(const [key,item] of Object.entries(state.estimatedFacts||{})){
+      if(!Object.prototype.hasOwnProperty.call(state.facts,key)) continue;
+      const li=document.createElement('li'); li.className='ask-estimated-assumption'; li.textContent=`${item.label}: ${formatValue(key,item.value)} — Illustrative default used because you selected “I don’t know”.`; assumptions.appendChild(li); $('askAssumptionsWrap').hidden=false;
+    }
     const wrap=$('askDetailLinkWrap'); wrap.innerHTML=''; const link=DETAIL_LINKS[result.intent];
     if(link){ const a=document.createElement('a'); a.href=link[1]; a.textContent=`${link[0]} →`; wrap.appendChild(a); }
-    window.scrollTo({top:$('askWorkspace').getBoundingClientRect().top+window.scrollY-90,behavior:'smooth'});
+    updateBackControls(); reveal($('askResultStage'),$('askResultSituation'));
   }
   function init(){
     if(!window.CarrowmontAskMvp?.create){ $('askStartMessage').textContent='Ask Carrowmont is temporarily unavailable.'; return; }
@@ -201,6 +315,7 @@
     $('askStartBtn').addEventListener('click',startFromText);
     $('askQuestion').addEventListener('keydown',event=>{ if((event.ctrlKey||event.metaKey)&&event.key==='Enter') startFromText(); });
     $('askQuestionsForm').addEventListener('submit',submitQuestions);
+    document.querySelectorAll('[data-ask-back]').forEach(btn=>btn.addEventListener('click',goBack));
     document.querySelectorAll('[data-ask-reset]').forEach(btn=>btn.addEventListener('click',reset));
     document.querySelectorAll('[data-ask-intent]').forEach(btn=>btn.addEventListener('click',()=>startIntent(btn.dataset.askIntent,btn.textContent.trim())));
     window.addEventListener('carrowmont:localechange',()=>{ if(!$('askQuestionsStage').hidden) renderQuestions(api.missingQuestions(state.intent,state.facts,3)); });
