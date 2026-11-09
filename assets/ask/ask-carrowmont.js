@@ -72,25 +72,38 @@
   function stage(name){
     $('askStart').hidden=name!=='start'; $('askQuestionsStage').hidden=name!=='questions'; $('askResultStage').hidden=name!=='result';
   }
+  function hideUnsupported(){ const box=$('askUnsupported'); if(box) box.hidden=true; }
+  function showUnsupported(text){
+    $('askStartMessage').textContent='';
+    const box=$('askUnsupported');
+    if(!box) return;
+    const title=$('askUnsupportedTitle');
+    const detail=$('askUnsupportedText');
+    if(title) title.textContent='This guided resolution is not available yet';
+    if(detail) detail.textContent=`I can understand your question${text?` — “${text}”`:''}, but this guided resolution has not been built yet. Ask Carrowmont currently works through five controlled money decisions while we develop the fuller resolution experience.`;
+    box.hidden=false;
+    requestAnimationFrame(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}));
+  }
   function reset(){
     state={intent:null,facts:{},questionText:''};
-    $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent='';
+    $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();
     stage('start'); $('askQuestion').focus();
   }
   function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
   function fieldStep(key){ return /termMonths|remainingYears/i.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
   function startIntent(intent,text=''){
-    if(!api?.SUPPORTED?.some(x=>x.intent===intent)){
-      $('askStartMessage').textContent='This first Ask Carrowmont version does not support that question yet. Choose one of the five suggested journeys below.'; return;
-    }
+    hideUnsupported();
+    if(!api?.SUPPORTED?.some(x=>x.intent===intent)){ showUnsupported(text); return; }
     state={intent,facts:{},questionText:text};
     continueJourney();
   }
   function startFromText(){
     const text=$('askQuestion').value.trim();
+    hideUnsupported();
     if(!text){ $('askStartMessage').textContent='Tell Carrowmont what you are trying to solve, or choose one of the suggested questions.'; return; }
+    $('askStartMessage').textContent='';
     const classified=api.classify(text);
-    if(!classified?.intent){ $('askStartMessage').textContent='This first Ask Carrowmont version supports five controlled money decisions. Choose the closest option below.'; return; }
+    if(!classified?.intent){ showUnsupported(text); return; }
     startIntent(classified.intent,text);
   }
   function continueJourney(){
