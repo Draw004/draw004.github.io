@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "dataset": "Debt to the Penny",
-  "asOfDate": "2026-10-29",
-  "debtHeldByPublic": 32712190190967.42,
-  "totalPublicDebtOutstanding": 40593637262883.48,
+  "asOfDate": "2026-11-05",
+  "debtHeldByPublic": 32766722473715.61,
+  "totalPublicDebtOutstanding": 40556120784983.65,
   "sourceName": "U.S. Treasury FiscalData — Debt to the Penny",
   "sourceUrl": "https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/",
   "apiUrl": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page%5Bsize%5D=1",
-  "retrievedAt": "2026-11-02T16:10:15.605Z"
+  "retrievedAt": "2026-11-09T16:33:07.837Z"
 }
