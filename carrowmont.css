@@ -486,3 +486,8 @@ body.contact-page .contact-card{margin-top:22px}
 @media(max-width:980px){.social-follow-inner{grid-template-columns:1fr;gap:28px}.contact-social-panel{grid-template-columns:1fr}}
 @media(max-width:700px){.social-follow-section{padding:42px 0 48px}.social-follow-links{grid-template-columns:1fr}.contact-social-links{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-social-links a{min-width:0;padding:8px 9px}.contact-social-panel{padding:22px 18px}}
 @media(max-width:420px){.contact-social-links{grid-template-columns:1fr}}
+
+/* FRE3C: controlled Ask Carrowmont discovery entry on the homepage. */
+.home-ask-entry{display:inline-flex;align-items:center;gap:8px;margin-top:13px;padding:8px 12px;border:1px solid #cfe2df;border-radius:999px;background:rgba(255,255,255,.9);color:#315c59;text-decoration:none;font-size:13px;line-height:1.2;box-shadow:0 5px 14px rgba(23,54,76,.04)}
+.home-ask-entry:hover,.home-ask-entry:focus-visible{border-color:#7bbdb6;background:#eef9f7;color:#0b6f69}.home-ask-entry:focus-visible{outline:3px solid rgba(14,130,122,.15);outline-offset:2px}.home-ask-entry-label{color:#607386}.home-ask-entry strong{font-weight:900}.home-ask-entry>span:last-child{font-weight:900}
+@media(max-width:600px){.home-ask-entry{max-width:100%;flex-wrap:wrap;border-radius:14px}.home-ask-entry-label{flex-basis:100%}}
