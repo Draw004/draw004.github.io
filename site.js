@@ -474,7 +474,11 @@
   function addAskLinks() {
     document.querySelectorAll('.desktop-nav').forEach(function (nav) {
       var link = nav.querySelector('a[href="/ask-carrowmont.html"]');
-      if (!link) { link=document.createElement('a'); link.href='/ask-carrowmont.html'; link.textContent='Ask'; link.dataset.cmAskLink=''; }
+      if (!link) { link=document.createElement('a'); link.href='/ask-carrowmont.html'; }
+      link.dataset.cmAskLink='';
+      link.classList.add('site-ask-link');
+      link.setAttribute('aria-label','Ask Carrowmont');
+      link.innerHTML='<span class="site-ask-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.5h14v9.5H10l-5 4v-13.5z"></path><path d="M8.5 9h7M8.5 12h4.5"></path></svg></span><span>Ask</span>';
       if (window.location.pathname==='/ask-carrowmont.html') link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
       var tools=nav.querySelector('a[href="/tools.html"]');
       if (tools && tools.nextSibling) nav.insertBefore(link,tools.nextSibling); else if (tools) nav.appendChild(link); else nav.appendChild(link);
@@ -499,7 +503,7 @@
     if (document.getElementById('traffic1aResearchNavFit')) return;
     var style = document.createElement('style');
     style.id = 'traffic1aResearchNavFit';
-    style.textContent = '@media (min-width:981px) and (max-width:1560px){.header-inner{gap:14px}.header-inner .brand-tagline,.header-inner .brand-rule{display:none}.desktop-nav{gap:14px}.desktop-nav a{font-size:14px}.desktop-nav .site-search-link{padding:8px 10px}}';
+    style.textContent = '@media (min-width:981px) and (max-width:1560px){.header-inner{gap:18px}.header-inner .brand-tagline,.header-inner .brand-rule{display:none}.desktop-nav{gap:22px}.desktop-nav a{font-size:14px}.desktop-nav .site-search-link{padding:8px 10px}}';
     document.head.appendChild(style);
   }
 
@@ -571,8 +575,10 @@
         if (link !== home && (link.textContent || '').trim().toLowerCase() === 'home') link.remove();
       });
 
-      var order = ['/','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html'];
-      if (mobile) order = order.concat(['/contact.html']);
+      var methodology = nav.querySelector('a[href="/methodology.html"]');
+      if (!mobile && methodology) methodology.remove();
+      var order = ['/','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/about.html','/search.html'];
+      if (mobile) order = ['/','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html','/contact.html'];
       order.forEach(function (href) {
         var node = nav.querySelector('a[href="' + href + '"]');
         if (node) nav.appendChild(node);
