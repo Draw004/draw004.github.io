@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261109-fre3c2">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261110-fre3d1">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -116,9 +116,17 @@
             <div><span class="ask-step-label">Carrowmont result</span><h2 id="askResultSituation"></h2></div>
             <button class="ask-text-button" type="button" data-ask-reset>Ask another question</button>
           </div>
-          <div class="ask-diagnosis" id="askDiagnosis"></div>
+          <div class="ask-resolution-primary" id="askResolutionPrimary">
+            <span class="ask-step-label">Carrowmont’s view</span>
+            <h3 id="askRecommendationHeadline"></h3>
+            <p id="askRecommendationAction"></p>
+            <p class="ask-resolution-rationale" id="askRecommendationRationale"></p>
+            <div class="ask-confidence" id="askConfidence"></div>
+          </div>
+          <div class="ask-result-section ask-diagnosis-section"><h3>Diagnosis</h3><div class="ask-diagnosis" id="askDiagnosis"></div></div>
           <div class="ask-result-section"><h3>Important numbers</h3><div class="ask-metrics" id="askMetrics"></div></div>
           <div class="ask-result-section" id="askAlternativesSection"><h3>Paths compared</h3><div class="ask-alternatives" id="askAlternatives"></div></div>
+          <div class="ask-result-section" id="askChangeSection"><h3>What could change this answer</h3><ul class="ask-change-list" id="askWhatCouldChange"></ul></div>
           <div class="ask-result-section"><h3>Practical next steps</h3><ol class="ask-next-steps" id="askNextSteps"></ol></div>
           <div class="ask-detail-link" id="askDetailLinkWrap"></div>
           <details class="ask-method" id="askMethod">
@@ -166,7 +174,7 @@
 <script src="/assets/fre/engine-catalog.js"></script>
 <script src="/assets/fre/intent-router.js"></script>
 <script src="/assets/fre/ask-carrowmont-mvp.js"></script>
-<script src="/assets/ask/ask-carrowmont.js?v=20261109-fre3c2"></script>
+<script src="/assets/ask/ask-carrowmont.js?v=20261110-fre3d1"></script>
 <script src="/site.js?v=20261109-fre3c1"></script>
 </body>
 </html>

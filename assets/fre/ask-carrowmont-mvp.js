@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (root) {
   'use strict';
 
-  const VERSION = 'ask-carrowmont-mvp-v1.0';
+  const VERSION = 'ask-carrowmont-mvp-v1.1';
   const INTENTS = Object.freeze({
     DEBT_VS_SAVINGS:'debt-vs-savings',
     CAR_AFFORDABILITY:'car-affordability',
@@ -113,8 +113,15 @@
       : raw.classification === 'NO_BUFFER' ? 'The modeled reserve has no emergency buffer yet.'
       : raw.classification === 'FIRST_BUFFER' ? 'The modeled reserve is below one month of essential and unavoidable costs.'
       : 'The modeled reserve is building toward your chosen emergency-fund target.';
+    const recommendation = raw.targetGap <= 0
+      ? freeze({ headline:'Your modeled emergency fund meets the target you entered.', action:'Maintain the reserve and revisit the target when essential costs or household stability change.', rationale:'The deterministic runway calculation shows no remaining gap to your chosen target.' })
+      : (raw.fullLossRunwayMonths || 0) < 1
+        ? freeze({ headline:'Build a first cash buffer before taking more financial risk.', action:'Prioritize accessible emergency savings until you have at least some meaningful runway.', rationale:'The modeled reserve is below one month of unavoidable costs, so resilience is the immediate constraint.' })
+        : freeze({ headline:'Keep building the reserve toward your chosen target.', action:'Use a realistic monthly contribution while preserving essential cash flow.', rationale:'You have some modeled runway, but the deterministic engine still shows a gap to the target you selected.' });
     return freeze({
-      situation:'Emergency fund adequacy', diagnosis,
+      situation:'Emergency fund adequacy', diagnosis, recommendation,
+      confidence:freeze({ level:'HIGH', basis:'Runway and target-gap figures come directly from the Emergency Fund deterministic engine; the target month count remains your choice.' }),
+      whatCouldChangeAnswer:freeze(['A change in essential monthly expenses.', 'A different emergency-fund target.', 'A material change in income stability or access to other liquid cash.']),
       importantNumbers:freeze({ currency, monthlyNeed:raw.monthlyNeed, reserve:raw.reserve, runwayMonths:raw.fullLossRunwayMonths, targetMonths:raw.assumptions.targetMonths, targetGap:raw.targetGap, monthsToTarget:raw.monthsToTarget }),
       alternatives:freeze([
         freeze({ id:'current', label:'Current reserve', runwayMonths:raw.fullLossRunwayMonths }),
@@ -141,8 +148,15 @@
     const diagnosis = raw.remaining < 0 ? 'Your modeled monthly outgo is higher than your modeled take-home income.'
       : raw.remaining === 0 ? 'Your modeled monthly cash flow has no remaining margin.'
       : 'Your modeled monthly cash flow remains positive after the costs entered.';
+    const recommendation = raw.remaining < 0
+      ? freeze({ headline:'Your monthly plan is running a modeled deficit.', action:'Protect essential payments first, then reduce adjustable outgo before using new debt to bridge the gap.', rationale:'Entered monthly outgo exceeds entered take-home income in the Budget & Cash Flow engine.' })
+      : raw.remaining === 0
+        ? freeze({ headline:'Your monthly plan has no modeled safety margin.', action:'Create some recurring headroom before adding new commitments.', rationale:'The deterministic budget leaves no remaining amount for irregular costs or surprises.' })
+        : freeze({ headline:'Your monthly plan is positive on the numbers entered.', action:'Keep part of the remaining amount as a buffer for irregular costs before committing it elsewhere.', rationale:'The deterministic budget remains above zero after the entered costs and planned saving.' });
     return freeze({
-      situation:'Running short before payday', diagnosis,
+      situation:'Running short before payday', diagnosis, recommendation,
+      confidence:freeze({ level:'HIGH', basis:'The conclusion follows directly from entered monthly income and spending. Missing irregular expenses can materially change it.' }),
+      whatCouldChangeAnswer:freeze(['Irregular or annual expenses not included in the monthly inputs.', 'Changes in take-home income.', 'Changes in flexible spending or planned savings contributions.']),
       importantNumbers:freeze({ currency, income:raw.income, essential:raw.essential, flexible:raw.flexible, plannedSaving:raw.saving, remaining:raw.remaining, weeklyRoom:raw.weekly, dailyRoom:raw.daily }),
       alternatives:freeze([
         freeze({ id:'current', label:'Current modeled month', remaining:raw.remaining }),
@@ -172,8 +186,15 @@
       BUFFER_REDUCED:'The purchase remains cash-flow positive but uses some emergency savings.',
       CASH_ROOM_REMAINS:'The modeled purchase keeps monthly cash room positive and does not breach the chosen runway target.'
     };
+    const carRec = raw.classification === 'CASH_ROOM_REMAINS'
+      ? freeze({ headline:'This car is within the modeled affordability guardrails you entered.', action:'Treat it as affordable only if the remaining cash room and emergency runway also feel comfortable to you.', rationale:'The deterministic model keeps cash room positive without breaching the chosen emergency-runway target.' })
+      : raw.classification === 'BUFFER_REDUCED'
+        ? freeze({ headline:'The purchase is possible, but it weakens your cash buffer.', action:'Consider a lower vehicle price or delaying the purchase rather than consuming emergency savings.', rationale:'The model remains cash-flow positive, but the purchase uses part of the emergency reserve.' })
+        : freeze({ headline:'Carrowmont would not treat this purchase as comfortably affordable on the current inputs.', action:'Reduce the price, increase the down payment without harming emergency savings, or improve monthly cash room before proceeding.', rationale:'The model shows a base/stress shortfall or emergency runway below your chosen target.' });
     return freeze({
-      situation:'Car affordability', diagnosis:map[raw.classification] || 'Carrowmont modeled the purchase using household cash room, debt load and emergency runway.',
+      situation:'Car affordability', diagnosis:map[raw.classification] || 'Carrowmont modeled the purchase using household cash room, debt load and emergency runway.', recommendation:carRec,
+      confidence:freeze({ level:'MEDIUM_HIGH', basis:'Loan payment, cash-room, borrowing-health and runway figures are deterministic; real insurance, maintenance and future income can differ.' }),
+      whatCouldChangeAnswer:freeze(['A different vehicle price or down payment.', 'A different loan rate or term.', 'Changes in running costs, household expenses, existing debt, income or emergency savings.']),
       importantNumbers:freeze({ currency, loanAmount:raw.loanAmount, monthlyLoanPayment:raw.monthlyLoanPayment, allInMonthlyCarCost:raw.allInMonthlyCarCost, afterCashRoom:raw.afterCashRoom, stressCashRoom:raw.stressCashRoom, runwayAfterMonths:raw.runwayAfterMonths, afterGrossDtiPct:raw.afterGrossDtiPct }),
       alternatives:freeze(raw.comparisons || []),
       nextSteps:freeze(['Review the all-in monthly car cost, not only the loan payment.', 'Check whether the remaining emergency runway matches your own target.', 'Use lower price or higher down-payment scenarios when available.']),
@@ -195,8 +216,15 @@
     const diagnosis = higher === 'prepay' ? 'Under the return assumption entered, the modeled prepayment path finishes with the higher ending net value.'
       : higher === 'invest' ? 'Under the return assumption entered, the modeled investing path finishes with the higher ending value.'
       : 'Under the return assumption entered, the two modeled paths are approximately equal.';
+    const mortgageRec = higher === 'prepay'
+      ? freeze({ headline:'Prepaying is the stronger modeled path under the return assumption entered.', action:'Favor prepayment if you value the contractual interest saving and can preserve adequate liquidity.', rationale:'The deterministic comparison ends with the prepay path ahead on the common modeled horizon.' })
+      : higher === 'invest'
+        ? freeze({ headline:'Investing is the stronger modeled path under the return assumption entered.', action:'Only favor investing if you accept market risk and the assumed return is realistic for your horizon.', rationale:'The deterministic comparison ends with the investment path ahead on the common modeled horizon.' })
+        : freeze({ headline:'The two paths are approximately tied in the current model.', action:'Let liquidity, risk tolerance, taxes and peace of mind drive the choice rather than a small modeled difference.', rationale:'Neither path has a meaningful modeled advantage under the entered assumptions.' });
     return freeze({
-      situation:'Mortgage prepay or invest', diagnosis,
+      situation:'Mortgage prepay or invest', diagnosis, recommendation:mortgageRec,
+      confidence:freeze({ level:'MEDIUM', basis:'Mortgage interest savings are contractual-model outputs; investment returns are assumptions rather than forecasts.' }),
+      whatCouldChangeAnswer:freeze(['A different expected investment return.', 'Taxes or fees that change the net investment outcome.', 'Prepayment charges, refinancing plans, liquidity needs or a different remaining loan horizon.']),
       importantNumbers:freeze({ currency, interestAvoided:raw.prepay.interestAvoided, periodsSaved:raw.prepay.periodsSaved, pathDifference:raw.comparison.pathDifference, assumedReturnPct:raw.comparison.assumedReturnPct, breakEvenReturnPct:raw.comparison.breakEvenReturnPct }),
       alternatives:freeze([
         freeze({ id:'prepay', label:'Prepay', endingNetValue:raw.prepay.endingNetValue, payoffDate:raw.prepay.payoffDate }),
@@ -224,8 +252,14 @@
     if ((emergency.fullLossRunwayMonths || 0) < 1) diagnosis = 'Your modeled emergency reserve is below one month of unavoidable costs, so keeping a first cash buffer is the immediate resilience issue before directing all surplus elsewhere.';
     else if (debtApr > assumedReturn) diagnosis = 'The debt rate entered is higher than the savings or investment return assumption. Debt reduction therefore removes a higher contractual rate than the modeled return assumption, while liquidity still matters.';
     else diagnosis = 'The savings or investment return assumption is at least as high as the debt rate entered, so the modeled trade-off is sensitive to risk, taxes and liquidity rather than a simple rate comparison.';
+    let debtRec;
+    if ((emergency.fullLossRunwayMonths || 0) < 1) debtRec = freeze({ headline:'Keep a first emergency buffer before sending all surplus to debt or investing.', action:'Build accessible cash resilience first, then revisit the debt-versus-invest decision.', rationale:'The emergency-runway engine shows less than one month of unavoidable costs covered.' });
+    else if (debtApr > assumedReturn) debtRec = freeze({ headline:'Directing the surplus to debt is the stronger modeled starting point.', action:'Prioritize the high-cost debt while preserving the emergency buffer you need.', rationale:'The contractual debt rate is above the return assumption entered, and the debt-payoff engine shows measurable interest savings.' });
+    else debtRec = freeze({ headline:'The rate comparison alone does not give debt repayment a clear modeled advantage.', action:'Keep adequate liquidity and compare risk-adjusted, after-tax investment expectations before choosing where the surplus goes.', rationale:'The entered return assumption is at least as high as the debt rate, so uncertainty and liquidity become more important.' });
     return freeze({
-      situation:'Debt or savings', diagnosis,
+      situation:'Debt or savings', diagnosis, recommendation:debtRec,
+      confidence:freeze({ level:'MEDIUM', basis:'Debt cost and payoff math are deterministic; savings/investment growth is based on your return assumption and is not guaranteed.' }),
+      whatCouldChangeAnswer:freeze(['A lower or higher debt APR.', 'A different realistic after-tax investment return assumption.', 'A change in emergency savings, essential expenses, liquidity needs or debt-payment terms.']),
       importantNumbers:freeze({ currency, emergencyRunwayMonths:emergency.fullLossRunwayMonths, debtAprPct:debtApr, assumedSavingsReturnPct:assumedReturn, debtPayoffMonthsWithSurplus:debt.avalanche.months, debtInterestWithSurplus:debt.avalanche.totalInterest, debtInterestWithoutSurplus:debt.zeroExtra.avalanche.totalInterest, modeledInterestSaved:Math.max(0, debt.zeroExtra.avalanche.totalInterest - debt.avalanche.totalInterest), savingsProjectionYears:horizonYears, savingsProjectedValue:savings.ok ? savings.endingValue : null, savingsProjectedGrowth:savings.ok ? savings.growth : null }),
       alternatives:freeze([
         freeze({ id:'debt-first', label:'Direct monthly surplus to debt', payoffMonths:debt.avalanche.months, totalInterest:debt.avalanche.totalInterest }),
