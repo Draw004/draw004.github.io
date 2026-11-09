@@ -468,6 +468,28 @@
 })();
 
 
+/* FRE3C: expose Ask Carrowmont through shared desktop and mobile navigation. */
+(function () {
+  'use strict';
+  function addAskLinks() {
+    document.querySelectorAll('.desktop-nav').forEach(function (nav) {
+      var link = nav.querySelector('a[href="/ask-carrowmont.html"]');
+      if (!link) { link=document.createElement('a'); link.href='/ask-carrowmont.html'; link.textContent='Ask'; link.dataset.cmAskLink=''; }
+      if (window.location.pathname==='/ask-carrowmont.html') link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
+      var tools=nav.querySelector('a[href="/tools.html"]');
+      if (tools && tools.nextSibling) nav.insertBefore(link,tools.nextSibling); else if (tools) nav.appendChild(link); else nav.appendChild(link);
+    });
+    document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (nav) {
+      var link = nav.querySelector('a[href="/ask-carrowmont.html"]');
+      if (!link) { link=document.createElement('a'); link.href='/ask-carrowmont.html'; link.textContent='Ask'; link.dataset.cmAskLink=''; }
+      if (window.location.pathname==='/ask-carrowmont.html') link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
+      var tools=nav.querySelector('a[href="/tools.html"]');
+      if (tools && tools.nextSibling) nav.insertBefore(link,tools.nextSibling); else if (tools) nav.appendChild(link); else nav.appendChild(link);
+    });
+  }
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',addAskLinks,{once:true}); else addAskLinks();
+})();
+
 /* TRAFFIC1A: add Research to shared main-site navigation without rewriting every public page. */
 (function () {
   'use strict';
@@ -477,7 +499,7 @@
     if (document.getElementById('traffic1aResearchNavFit')) return;
     var style = document.createElement('style');
     style.id = 'traffic1aResearchNavFit';
-    style.textContent = '@media (min-width:1361px) and (max-width:1500px){.header-inner{gap:18px}.header-inner .brand-tagline,.header-inner .brand-rule{display:none}.desktop-nav{gap:20px}}';
+    style.textContent = '@media (min-width:981px) and (max-width:1560px){.header-inner{gap:14px}.header-inner .brand-tagline,.header-inner .brand-rule{display:none}.desktop-nav{gap:14px}.desktop-nav a{font-size:14px}.desktop-nav .site-search-link{padding:8px 10px}}';
     document.head.appendChild(style);
   }
 
@@ -549,7 +571,7 @@
         if (link !== home && (link.textContent || '').trim().toLowerCase() === 'home') link.remove();
       });
 
-      var order = ['/','/tools.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html'];
+      var order = ['/','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html'];
       if (mobile) order = order.concat(['/contact.html']);
       order.forEach(function (href) {
         var node = nav.querySelector('a[href="' + href + '"]');
@@ -743,6 +765,7 @@
     tools: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="2"/><rect x="14" y="4" width="7" height="7" rx="2"/><rect x="3" y="15" width="7" height="6" rx="2"/><rect x="14" y="15" width="7" height="6" rx="2"/></svg>',
     learn: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5c2.8-.8 5.4-.3 8 1.5v12c-2.6-1.8-5.2-2.3-8-1.5z"/><path d="M20 5.5c-2.8-.8-5.4-.3-8 1.5v12c2.6-1.8 5.2-2.3 8-1.5z"/></svg>',
     research: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 13v-3m3 3V7m3 6v-2"/></svg>',
+    ask: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H9l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>',
     more: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>',
     search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>',
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg>',
@@ -785,6 +808,9 @@
       '.mobile1-nav-item{min-width:0;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:#667e98;font:inherit;font-size:10.5px;font-weight:800;text-decoration:none;border-radius:12px;padding:4px 2px}',
       '.mobile1-nav-item svg{width:22px;height:22px;stroke-width:2}',
       '.mobile1-nav-item[aria-current="page"]{color:#08766e;background:#eaf7f5}',
+      '.mobile1-nav-item[data-mobile1-nav="ask"]{color:#08766e;font-weight:900}',
+      '.mobile1-nav-item[data-mobile1-nav="ask"] svg{width:24px;height:24px}',
+      '.mobile1-nav-item[data-mobile1-nav="ask"][aria-current="page"]{background:#dff4f1;color:#066c65}',
       '.mobile1-nav-item:focus-visible,.mobile1-header-search:focus-visible,.mobile1-more-link:focus-visible,.mobile1-quick-tool:focus-visible{outline:3px solid rgba(12,146,135,.28);outline-offset:2px}',
       '.mobile1-more-dialog{display:none}',
       '.mobile1-more-dialog[open]{display:block;position:fixed;inset:auto 0 0 0;width:100%;max-width:none;max-height:min(78%,650px);margin:0;border-radius:24px 24px 0 0;background:#fff;box-shadow:0 -18px 50px rgba(15,39,67,.18);overflow:auto;padding:0 0 calc(20px + env(safe-area-inset-bottom,0px));z-index:150}',
@@ -841,8 +867,9 @@
     var path = window.location.pathname || '/';
     if (path === '/' || path === '/index.html') return 'home';
     if (path === '/tools.html' || path.indexOf('/sip-calculator/') === 0 || path.indexOf('/retirement-calculator/') === 0 || path.indexOf('/goal-planner/') === 0 || path.indexOf('/financial-independence/') === 0 || path.indexOf('/inflation-calculator/') === 0 || path.indexOf('/budget-cash-flow-planner/') === 0 || path.indexOf('/mortgage-payoff-calculator/') === 0 || path.indexOf('/compound-interest-calculator/') === 0 || path.indexOf('/loan-calculator/') === 0) return 'tools';
+    if (path === '/ask-carrowmont.html') return 'ask';
     if (path === '/learn.html' || document.body.dataset.cmPage === 'learn-hub') return 'learn';
-    if (path === '/research.html' || path.indexOf('/research/') === 0) return 'research';
+    if (path === '/research.html' || path.indexOf('/research/') === 0 || path === '/about.html' || path === '/methodology.html' || path === '/contact.html') return 'more';
     return '';
   }
 
@@ -885,7 +912,7 @@
       '<div class="mobile1-more-head"><strong id="mobile1MoreTitle">More from Carrowmont</strong><button type="button" class="mobile1-more-close" aria-label="Close menu">&times;</button></div>' +
       '<div class="mobile1-more-body">' +
         '<div class="mobile1-more-grid">' +
-          '<a class="mobile1-more-link" href="/search.html">' + ICONS.search + '<span>Search</span></a>' +
+          '<a class="mobile1-more-link" href="/research.html">' + ICONS.research + '<span>Research</span></a>' +
           '<a class="mobile1-more-link" href="/about.html">' + ICONS.about + '<span>About</span></a>' +
           '<a class="mobile1-more-link" href="/methodology.html">' + ICONS.methodology + '<span>Methodology</span></a>' +
           '<a class="mobile1-more-link" href="/contact.html">' + ICONS.contact + '<span>Contact</span></a>' +
@@ -927,8 +954,8 @@
     [
       { key: 'home', label: 'Home', href: '/' },
       { key: 'tools', label: 'Tools', href: '/tools.html' },
+      { key: 'ask', label: 'Ask', href: '/ask-carrowmont.html' },
       { key: 'learn', label: 'Learn', href: '/learn.html' },
-      { key: 'research', label: 'Research', href: '/research.html' },
       { key: 'more', label: 'More', button: true }
     ].forEach(function (item) { nav.appendChild(createNavItem(item, active)); });
     document.body.appendChild(nav);

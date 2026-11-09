@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261109-fre3b1">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261109-fre3c1">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -61,33 +61,26 @@
 </header>
 
 <main>
-  <section class="ask-hero">
-    <div class="shell ask-hero-inner">
-      <span class="section-kicker">Ask Carrowmont</span>
-      <h1>What’s happening with your money?</h1>
-      <p>Describe one real-life money problem in ordinary language. Carrowmont will ask only for the details it needs, run the relevant tested calculators, and show the numbers behind the result.</p>
-      <div class="ask-trust-row" aria-label="How Ask Carrowmont works">
-        <span>Calculations use Carrowmont engines</span>
-        <span>No account required</span>
-        <span>Financial inputs are not saved</span>
+  <section class="ask-workspace-section">
+    <div class="shell ask-workspace-shell">
+      <div class="ask-intro">
+        <span class="section-kicker">Ask Carrowmont</span>
+        <h1>What are you trying to figure out?</h1>
+        <p>Tell us what is happening with your money. Carrowmont will ask only for the details it needs and use its tested calculators for the numbers.</p>
       </div>
-    </div>
-  </section>
 
-  <section class="ask-section">
-    <div class="shell ask-layout">
       <div class="ask-main-card" id="askWorkspace">
         <div id="askStart" class="ask-stage">
-          <label class="ask-label" for="askQuestion">Tell Carrowmont what you are trying to solve</label>
-          <textarea id="askQuestion" rows="4" placeholder="For example: I have some extra money. Should I pay down debt or keep saving it?"></textarea>
+          <label class="ask-label" for="askQuestion">Describe your situation</label>
+          <textarea id="askQuestion" rows="3" placeholder="For example: I have some extra money. Should I pay down debt or keep saving it?"></textarea>
           <div class="ask-action-row">
-            <button class="button button-primary" type="button" id="askStartBtn">Work through this</button>
+            <button class="button button-primary" type="button" id="askStartBtn">Work through this <span class="button-arrow">&rarr;</span></button>
           </div>
-          <p class="ask-helper">Start with one question at a time. This first version supports five controlled money decisions.</p>
+          <div class="ask-or"><span>Or start with a common question</span></div>
           <div class="ask-suggestions" aria-label="Suggested questions">
-            <button type="button" data-ask-intent="debt-vs-savings">Should I pay debt or save?</button>
+            <button type="button" data-ask-intent="debt-vs-savings">Pay debt or save?</button>
             <button type="button" data-ask-intent="car-affordability">Can I afford this car?</button>
-            <button type="button" data-ask-intent="mortgage-prepay-vs-invest">Prepay my mortgage or invest?</button>
+            <button type="button" data-ask-intent="mortgage-prepay-vs-invest">Prepay mortgage or invest?</button>
             <button type="button" data-ask-intent="emergency-runway">Is my emergency fund enough?</button>
             <button type="button" data-ask-intent="cash-flow-shortfall">Why do I run short before payday?</button>
           </div>
@@ -129,18 +122,12 @@
         </div>
       </div>
 
-      <aside class="ask-side-card" aria-label="About this Ask Carrowmont MVP">
-        <h2>What this version can help with</h2>
-        <ul>
-          <li>Debt versus saving</li>
-          <li>Car affordability</li>
-          <li>Mortgage prepayment versus investing</li>
-          <li>Emergency-fund adequacy</li>
-          <li>Monthly cash-flow shortfalls</li>
-        </ul>
-        <div class="ask-side-note"><strong>Privacy-first:</strong> the financial details entered in this guided session are used in the page to calculate the result and are not written to Carrowmont account storage.</div>
-        <p>For other questions, use the <a href="/tools.html">financial tools</a> or browse the <a href="/learn.html">Learn library</a>.</p>
-      </aside>
+      <div class="ask-trust-row" aria-label="How Ask Carrowmont works">
+        <span><strong>Tested engines</strong><small>Calculators do the mathematics</small></span>
+        <span><strong>No account required</strong><small>Start without signing in</small></span>
+        <span><strong>Inputs are not saved</strong><small>Your financial details stay in this session</small></span>
+      </div>
+      <p class="ask-other-paths">Need a different calculation? <a href="/tools.html">Browse all financial tools</a> or <a href="/learn.html">explore the Learn library</a>.</p>
     </div>
   </section>
 </main>
@@ -169,6 +156,6 @@
 <script src="/assets/fre/intent-router.js"></script>
 <script src="/assets/fre/ask-carrowmont-mvp.js"></script>
 <script src="/assets/ask/ask-carrowmont.js?v=20261109-fre3b1"></script>
-<script src="/site.js?v=20261105-mobile2"></script>
+<script src="/site.js?v=20261109-fre3c1"></script>
 </body>
 </html>
