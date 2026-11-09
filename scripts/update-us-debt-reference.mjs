@@ -50,7 +50,14 @@ export function validateStoredReference(reference) {
 }
 
 function percentChange(next, current) {
-  return current > 0 ? Math.abs(next - current) / current : Infinity;
+  return current > 0 ? (next - current) / current : Infinity;
+}
+
+function formatSignedPercent(change) {
+  if (!Number.isFinite(change)) return 'Infinity';
+  const pct = change * 100;
+  if (Math.abs(pct) < 0.00005) return '0.0000';
+  return `${pct > 0 ? '+' : ''}${pct.toFixed(4)}`;
 }
 
 async function loadPayload(apiUrl) {
@@ -88,7 +95,7 @@ async function main() {
 
   const publicChange = percentChange(next.debtHeldByPublic, stored.debtHeldByPublic);
   const totalChange = percentChange(next.totalPublicDebtOutstanding, stored.totalPublicDebtOutstanding);
-  const anomaly = publicChange > ANOMALY_THRESHOLD || totalChange > ANOMALY_THRESHOLD;
+  const anomaly = Math.abs(publicChange) > ANOMALY_THRESHOLD || Math.abs(totalChange) > ANOMALY_THRESHOLD;
 
   const updated = {
     schemaVersion: 1,
@@ -110,8 +117,8 @@ async function main() {
 
   output('changed', 'true');
   output('anomaly', anomaly ? 'true' : 'false');
-  output('public_change_pct', (publicChange * 100).toFixed(4));
-  output('total_change_pct', (totalChange * 100).toFixed(4));
+  output('public_change_pct', formatSignedPercent(publicChange));
+  output('total_change_pct', formatSignedPercent(totalChange));
   console.log(`Updated ${path.relative(process.cwd(), referencePath)} from ${stored.asOfDate} to ${next.asOfDate}.`);
   if (anomaly) console.log('ANOMALY FLAG: debt changed by more than 5% from the stored reference; manual review is required.');
 }
