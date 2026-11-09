@@ -491,3 +491,14 @@ body.contact-page .contact-card{margin-top:22px}
 .home-ask-entry{display:inline-flex;align-items:center;gap:8px;margin-top:13px;padding:8px 12px;border:1px solid #cfe2df;border-radius:999px;background:rgba(255,255,255,.9);color:#315c59;text-decoration:none;font-size:13px;line-height:1.2;box-shadow:0 5px 14px rgba(23,54,76,.04)}
 .home-ask-entry:hover,.home-ask-entry:focus-visible{border-color:#7bbdb6;background:#eef9f7;color:#0b6f69}.home-ask-entry:focus-visible{outline:3px solid rgba(14,130,122,.15);outline-offset:2px}.home-ask-entry-label{color:#607386}.home-ask-entry strong{font-weight:900}.home-ask-entry>span:last-child{font-weight:900}
 @media(max-width:600px){.home-ask-entry{max-width:100%;flex-wrap:wrap;border-radius:14px}.home-ask-entry-label{flex-basis:100%}}
+
+
+/* FRE3D-NAV: keep Ask visually distinct from Search and give the primary desktop navigation room to breathe. */
+.desktop-nav .site-ask-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal-dark);font-weight:900}
+.desktop-nav .site-ask-link:hover{color:var(--teal)}
+.desktop-nav .site-ask-link-icon{width:17px;height:17px;display:grid;place-items:center;flex:0 0 auto}
+.desktop-nav .site-ask-link-icon svg{width:17px;height:17px;stroke-width:2}
+.desktop-nav .site-ask-link[aria-current="page"]{color:var(--teal-dark)}
+@media (min-width:1561px){.desktop-nav{gap:30px}}
+
+@media(max-width:980px){html.mobile1-active .mobile1-nav-item[data-mobile1-nav="ask"]{background:#eef9f7;border:1px solid #d4eeea}html.mobile1-active .mobile1-nav-item[data-mobile1-nav="ask"][aria-current="page"]{background:#dff4f1;border-color:#bfe5df}}
