@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Ask Carrowmont a real-life money question about debt, savings, car affordability, mortgage prepayment, emergency funds or monthly cash flow. Carrowmont uses its tested calculators to work through the numbers.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e827a">
+  <link rel="canonical" href="https://carrowmont.com/ask-carrowmont.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="Carrowmont">
+  <meta property="og:title" content="Ask Carrowmont | Work Through a Money Decision">
+  <meta property="og:description" content="Explain a money problem in ordinary language. Carrowmont asks for the minimum details needed and uses its tested calculators to compare the numbers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carrowmont.com/ask-carrowmont.html">
+  <meta property="og:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ask Carrowmont | Work Through a Money Decision">
+  <meta name="twitter:description" content="Explain a money problem in ordinary language. Carrowmont asks for the minimum details needed and uses its tested calculators to compare the numbers.">
+  <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
+  <title>Ask Carrowmont | Work Through a Money Decision</title>
+  <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261109-fre3b1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
+</head>
+<body data-cm-page="ask-carrowmont">
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="Carrowmont home">
+      <span class="brand-name">CARROWMONT</span>
+      <span class="brand-rule" aria-hidden="true"></span>
+      <span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/tools.html">Tools</a>
+      <a href="/learn.html">Learn</a>
+      <a href="/methodology.html">Methodology</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <details class="locale-menu" id="localeMenu">
+      <summary class="locale-summary" aria-label="Choose country and currency">
+        <span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span>
+        <span id="localeCountryLabel">India</span><span>&middot;</span><span id="localeCurrencyLabel">INR</span>
+        <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></svg></span>
+      </summary>
+      <div class="locale-panel">
+        <strong>Country &amp; currency</strong>
+        <p>Choose the context that makes the numbers easiest to understand.</p>
+        <label for="regionSelect">Country / region</label><select id="regionSelect"></select>
+        <label for="currencySelect">Currency</label><select id="currencySelect"></select>
+        <p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert your entered amounts using an exchange rate.</p>
+        <button type="button" class="small-button" id="localeDoneBtn">Done</button>
+      </div>
+    </details>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">Menu</summary>
+      <div class="mobile-nav-panel"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <section class="ask-hero">
+    <div class="shell ask-hero-inner">
+      <span class="section-kicker">Ask Carrowmont</span>
+      <h1>What’s happening with your money?</h1>
+      <p>Describe one real-life money problem in ordinary language. Carrowmont will ask only for the details it needs, run the relevant tested calculators, and show the numbers behind the result.</p>
+      <div class="ask-trust-row" aria-label="How Ask Carrowmont works">
+        <span>Calculations use Carrowmont engines</span>
+        <span>No account required</span>
+        <span>Financial inputs are not saved</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ask-section">
+    <div class="shell ask-layout">
+      <div class="ask-main-card" id="askWorkspace">
+        <div id="askStart" class="ask-stage">
+          <label class="ask-label" for="askQuestion">Tell Carrowmont what you are trying to solve</label>
+          <textarea id="askQuestion" rows="4" placeholder="For example: I have some extra money. Should I pay down debt or keep saving it?"></textarea>
+          <div class="ask-action-row">
+            <button class="button button-primary" type="button" id="askStartBtn">Work through this</button>
+          </div>
+          <p class="ask-helper">Start with one question at a time. This first version supports five controlled money decisions.</p>
+          <div class="ask-suggestions" aria-label="Suggested questions">
+            <button type="button" data-ask-intent="debt-vs-savings">Should I pay debt or save?</button>
+            <button type="button" data-ask-intent="car-affordability">Can I afford this car?</button>
+            <button type="button" data-ask-intent="mortgage-prepay-vs-invest">Prepay my mortgage or invest?</button>
+            <button type="button" data-ask-intent="emergency-runway">Is my emergency fund enough?</button>
+            <button type="button" data-ask-intent="cash-flow-shortfall">Why do I run short before payday?</button>
+          </div>
+          <div class="ask-message" id="askStartMessage" role="status" aria-live="polite"></div>
+        </div>
+
+        <div id="askQuestionsStage" class="ask-stage" hidden>
+          <div class="ask-stage-heading">
+            <div><span class="ask-step-label">A few details</span><h2 id="askQuestionsTitle">Help Carrowmont understand the numbers</h2></div>
+            <button class="ask-text-button" type="button" data-ask-reset>Start over</button>
+          </div>
+          <p id="askQuestionsIntro" class="ask-helper"></p>
+          <form id="askQuestionsForm" novalidate>
+            <div id="askQuestionFields" class="ask-question-fields"></div>
+            <div class="ask-action-row"><button class="button button-primary" type="submit">Continue</button></div>
+          </form>
+          <div class="ask-message" id="askQuestionMessage" role="status" aria-live="polite"></div>
+        </div>
+
+        <div id="askResultStage" class="ask-stage" hidden>
+          <div class="ask-stage-heading">
+            <div><span class="ask-step-label">Carrowmont result</span><h2 id="askResultSituation"></h2></div>
+            <button class="ask-text-button" type="button" data-ask-reset>Ask another question</button>
+          </div>
+          <div class="ask-diagnosis" id="askDiagnosis"></div>
+          <div class="ask-result-section"><h3>Important numbers</h3><div class="ask-metrics" id="askMetrics"></div></div>
+          <div class="ask-result-section" id="askAlternativesSection"><h3>Paths compared</h3><div class="ask-alternatives" id="askAlternatives"></div></div>
+          <div class="ask-result-section"><h3>Practical next steps</h3><ol class="ask-next-steps" id="askNextSteps"></ol></div>
+          <div class="ask-detail-link" id="askDetailLinkWrap"></div>
+          <details class="ask-method" id="askMethod">
+            <summary>How Carrowmont reached this result</summary>
+            <div class="ask-method-body">
+              <p>Carrowmont used the following deterministic calculation engines. The conversational layer chooses the journey and explains the output; the calculators do the mathematics.</p>
+              <ul id="askEngineTrace"></ul>
+              <div id="askAssumptionsWrap"><h4>Assumptions</h4><ul id="askAssumptions"></ul></div>
+            </div>
+          </details>
+          <p class="ask-disclaimer">Educational and illustrative information only. This result is not individualized financial, investment, legal, tax or lending advice.</p>
+        </div>
+      </div>
+
+      <aside class="ask-side-card" aria-label="About this Ask Carrowmont MVP">
+        <h2>What this version can help with</h2>
+        <ul>
+          <li>Debt versus saving</li>
+          <li>Car affordability</li>
+          <li>Mortgage prepayment versus investing</li>
+          <li>Emergency-fund adequacy</li>
+          <li>Monthly cash-flow shortfalls</li>
+        </ul>
+        <div class="ask-side-note"><strong>Privacy-first:</strong> the financial details entered in this guided session are used in the page to calculate the result and are not written to Carrowmont account storage.</div>
+        <p>For other questions, use the <a href="/tools.html">financial tools</a> or browse the <a href="/learn.html">Learn library</a>.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning &mdash; practical calculators and educational resources for clearer financial decisions.</p></div>
+    <div class="footer-col"><strong>Tools</strong><a href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/tools.html">All tools</a></div>
+    <div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/editorial-policy.html">Editorial policy</a><a href="/contact.html">Contact</a></div>
+    <div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+  </div>
+  <div class="shell footer-bottom"><span>&copy; 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div>
+</footer>
+
+<script src="/locale.js?v=20260920-cleanup1"></script>
+<script src="/budget-cash-flow-planner/core.js"></script>
+<script src="/emergency-fund-runway-core.js"></script>
+<script src="/loan-calculator/core.js"></script>
+<script src="/debt-to-income-borrowing-health-core.js"></script>
+<script src="/car-affordability-auto-decision-core.js"></script>
+<script src="/budget-cash-flow-planner/debt-payoff-core.js"></script>
+<script src="/compound-interest-calculator/core.js"></script>
+<script src="/mortgage-payoff-calculator/core.js"></script>
+<script src="/mortgage-payoff-calculator/prepayment-vs-investing-core.js"></script>
+<script src="/assets/fre/engine-catalog.js"></script>
+<script src="/assets/fre/intent-router.js"></script>
+<script src="/assets/fre/ask-carrowmont-mvp.js"></script>
+<script src="/assets/ask/ask-carrowmont.js?v=20261109-fre3b1"></script>
+<script src="/site.js?v=20261105-mobile2"></script>
+</body>
+</html>

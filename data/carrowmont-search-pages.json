@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-11-08",
+  "reviewed_at": "2026-11-09",
   "entries": [
     {
       "url": "/",
@@ -175,6 +175,31 @@
         ]
       },
       "priority": 84
+    },
+    {
+      "url": "/ask-carrowmont.html",
+      "title": "Ask Carrowmont | Work Through a Money Decision",
+      "description": "Explain a real-life money problem in ordinary language. Carrowmont asks for the minimum details needed and uses its tested calculators to show the numbers behind five controlled decisions.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "ask carrowmont",
+        "money decision",
+        "debt or savings",
+        "car affordability",
+        "mortgage prepay or invest",
+        "emergency fund",
+        "cash flow shortfall"
+      ],
+      "aliases": [
+        "ask carrowmont",
+        "should i pay debt or save",
+        "can i afford a car",
+        "prepay mortgage or invest",
+        "is my emergency fund enough",
+        "running out of money before payday"
+      ],
+      "priority": 90
     },
     {
       "url": "/asset-allocation-explained.html",
