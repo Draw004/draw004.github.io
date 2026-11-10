@@ -53,3 +53,14 @@
 /* FRE4 closeout — correction, recovery, focus and accessibility safeguards */
 .ask-question-actions{justify-content:space-between}.ask-back-button{appearance:none;min-height:46px;padding:10px 14px;border:1px solid #b9d6d2;border-radius:11px;background:#fff;color:#0b736c;font:inherit;font-weight:850;cursor:pointer}.ask-back-button:hover{background:#f1f9f8;border-color:#82bbb5}.ask-back-button[hidden]{display:none!important}.ask-stage-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:14px}.ask-field-invalid{border-color:#c75f43!important;background:#fff8f5!important}.ask-field-invalid input{border-color:#bd563b!important;box-shadow:0 0 0 3px rgba(189,86,59,.1)!important}.ask-main-card .button:focus-visible,.ask-text-button:focus-visible,.ask-back-button:focus-visible{outline:3px solid rgba(14,130,122,.2);outline-offset:3px}.ask-result-stage-focus:focus{outline:none}
 @media(max-width:600px){.ask-question-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ask-question-actions .button,.ask-question-actions .ask-back-button{width:100%;justify-content:center}.ask-stage-actions{justify-content:flex-start;gap:12px}.ask-stage-actions .ask-text-button{margin-top:0}}
+
+/* FRE Batch 5 — Money Priorities */
+.ask-priority-move{background:#fbfdfd;border-color:#d8e9e7}
+.ask-priority-action{margin:0 0 9px;color:#20364a;font-weight:700;line-height:1.5}
+.ask-priority-meta{display:inline-flex;margin:0 0 9px;padding:5px 9px;border-radius:999px;background:#eef8f7;color:#0b736c;font-size:.76rem;font-weight:800}
+.ask-priority-rationale,.ask-priority-note{margin:0 0 10px;color:#5c6c7c;font-size:.86rem;line-height:1.5}
+.ask-priority-numbers{margin:10px 0;padding:10px 12px;border-radius:10px;background:#fff;border:1px solid #edf1f3}
+.ask-priority-numbers>strong{display:block;margin-bottom:3px;font-size:.78rem;color:#44576a}
+.ask-priority-change{margin-top:10px}
+.ask-priority-change ul{margin:8px 0 0;padding-left:18px;color:#52656d;line-height:1.5}
+@media(max-width:600px){.ask-priority-move{padding:15px}.ask-priority-action{font-size:.92rem}.ask-priority-rationale,.ask-priority-note{font-size:.82rem}}

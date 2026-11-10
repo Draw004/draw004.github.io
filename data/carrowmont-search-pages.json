@@ -179,7 +179,7 @@
     {
       "url": "/ask-carrowmont.html",
       "title": "Ask Carrowmont | Work Through a Money Decision",
-      "description": "Explain a real-life money problem in ordinary language. Carrowmont asks for the minimum details needed and uses its tested calculators to show the numbers behind five controlled decisions.",
+      "description": "Explain a real-life money problem in ordinary language. Carrowmont asks for the minimum details needed, works through six controlled decisions, and can rank your next three money priorities using tested calculators and deterministic rules.",
       "type": "carrowmont",
       "category": "Carrowmont",
       "keywords": [
@@ -189,7 +189,11 @@
         "car affordability",
         "mortgage prepay or invest",
         "emergency fund",
-        "cash flow shortfall"
+        "cash flow shortfall",
+        "money priorities",
+        "financial priorities",
+        "next three moves",
+        "what should i focus on first"
       ],
       "aliases": [
         "ask carrowmont",
@@ -197,7 +201,11 @@
         "can i afford a car",
         "prepay mortgage or invest",
         "is my emergency fund enough",
-        "running out of money before payday"
+        "running out of money before payday",
+        "what should i focus on first",
+        "what are my money priorities",
+        "what should i prioritize financially",
+        "my next financial move"
       ],
       "priority": 90
     },

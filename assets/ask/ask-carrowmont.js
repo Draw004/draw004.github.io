@@ -21,7 +21,17 @@
     debtAprPct:'Enter the debt annual percentage rate.',
     debtMinimumPayment:'Enter the required monthly payment on this debt.',
     monthlySurplus:'Enter the monthly amount you could direct to debt reduction or saving.',
-    assumedSavingsReturnPct:'Enter an annual savings/investment return assumption. This is not a forecast.'
+    assumedSavingsReturnPct:'Enter an annual savings/investment return assumption. This is not a forecast.',
+    monthlyDebtPayments:'Include required monthly payments across loans and cards. Enter 0 if you have none.',
+    emergencyTargetMonths:'Choose the number of months of unavoidable costs you want your reserve to cover.',
+    highestDebtAprPct:'Enter the highest annual interest rate among the debts included. Enter 0 if you have no debt.',
+    assumedLongTermReturnPct:'Use a long-term return assumption only for comparison. This is not a forecast.',
+    retirementSavings:'Enter retirement savings already accumulated. Enter 0 if none.',
+    retirementMonthlyContribution:'Enter the amount you currently contribute each month. Enter 0 if none or not applicable.',
+    goalTargetAmount:'Enter one current financial goal target. Use 0 if you do not want to assess a goal in this screen.',
+    goalCurrentSavings:'Enter savings already set aside specifically for that goal. Enter 0 if none.',
+    goalYearsAway:'Enter the number of years until the goal. Use 0 when no goal is being assessed.',
+    goalMonthlyContribution:'Enter the monthly amount currently directed to the goal. Enter 0 if none.'
   };
   const FIELD_META={
     essentialExpenses:{why:'This sets the unavoidable monthly cost Carrowmont uses to measure emergency runway and cash resilience.'},
@@ -43,23 +53,35 @@
     debtAprPct:{why:'The debt rate is compared with the modeled savings or investment return and drives interest cost.'},
     debtMinimumPayment:{why:'The required payment is needed to model the debt payoff schedule before adding any extra amount.'},
     monthlySurplus:{why:'This is the same monthly money Carrowmont compares between extra debt repayment and saving or investing.'},
-    assumedSavingsReturnPct:{why:'A return assumption is needed to model the savings or investment path. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'}
+    assumedSavingsReturnPct:{why:'A return assumption is needed to model the savings or investment path. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
+    monthlyDebtPayments:{why:'Required debt payments affect both monthly cash flow and the emergency reserve needed to cover unavoidable commitments.'},
+    emergencyTargetMonths:{why:'Money Priorities uses your chosen reserve target rather than imposing a universal emergency-fund rule.'},
+    highestDebtAprPct:{why:'The highest contractual debt rate is compared with the explicit long-term return assumption to decide whether debt reduction should outrank growth.'},
+    assumedLongTermReturnPct:{why:'This assumption is used only to screen debt-versus-growth and goal funding. It is not a forecast or guaranteed return.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
+    retirementSavings:{why:'Existing retirement savings show whether long-term accumulation has already started, without claiming that the amount is sufficient.'},
+    retirementMonthlyContribution:{why:'Money Priorities checks whether retirement saving is active. Full retirement adequacy remains the job of the Retirement Planner.'},
+    goalTargetAmount:{why:'A defined target lets Carrowmont decide whether a near- or medium-term goal should appear ahead of long-term growth.'},
+    goalCurrentSavings:{why:'Savings already earmarked for the goal reduce the amount that still needs to be funded.'},
+    goalYearsAway:{why:'The time remaining affects how strongly a goal should compete for current cash flow.'},
+    goalMonthlyContribution:{why:'The current contribution lets the Goal Planner project whether the entered goal is on track under the stated assumption.'}
   };
   const INTENT_COPY={
     'debt-vs-savings':'Debt or savings',
     'car-affordability':'Car affordability',
     'mortgage-prepay-vs-invest':'Mortgage prepay or invest',
     'emergency-runway':'Emergency fund adequacy',
-    'cash-flow-shortfall':'Monthly cash-flow shortfall'
+    'cash-flow-shortfall':'Monthly cash-flow shortfall',
+    'money-priorities':'Money priorities'
   };
   const DETAIL_LINKS={
     'debt-vs-savings':['Explore the detailed Debt Payoff tools','/budget-cash-flow-planner/#debt-payoff'],
     'car-affordability':['Open the full Car Affordability tool','/car-affordability-auto-decision-calculator.html'],
     'mortgage-prepay-vs-invest':['Open Mortgage Prepay vs Investing','/mortgage-payoff-calculator/prepayment-vs-investing.html'],
     'emergency-runway':['Open the Emergency Fund & Runway tool','/emergency-fund-runway-calculator.html'],
-    'cash-flow-shortfall':['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/']
+    'cash-flow-shortfall':['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/'],
+    'money-priorities':['Explore the detailed Carrowmont tools','/tools.html']
   };
-  const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|weeklyRoom|dailyRoom|projectedValue|projectedGrowth/i;
+  const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth/i;
   const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn/i;
   const MONTH_KEY=/months|runway/i;
   const YEAR_KEY=/years/i;
@@ -121,7 +143,7 @@
     const title=$('askUnsupportedTitle');
     const detail=$('askUnsupportedText');
     if(title) title.textContent='This guided resolution is not available yet';
-    if(detail) detail.textContent=`I can understand your question${text?` — “${text}”`:''}, but this guided resolution has not been built yet. Ask Carrowmont currently works through five controlled money decisions while we develop the fuller resolution experience.`;
+    if(detail) detail.textContent=`I can understand your question${text?` — “${text}”`:''}, but this guided resolution has not been built yet. Ask Carrowmont currently works through six controlled money decisions while we develop the fuller resolution experience.`;
     box.hidden=false;
     requestAnimationFrame(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}));
   }
@@ -166,7 +188,7 @@
     catch(err){ $('askQuestionMessage').textContent='Carrowmont could not run this calculation. Please review the numbers and try again.'; stage('questions'); return; }
     if(result.status==='NEEDS_INPUT'){ renderQuestions(result.questions); return; }
     if(result.status==='RESOLVED'){ renderResult(result); return; }
-    $('askStartMessage').textContent='Choose one of the five supported journeys to continue.'; stage('start');
+    $('askStartMessage').textContent='Choose one of the six supported journeys to continue.'; stage('start');
   }
   function renderQuestions(questions){
     stage('questions');
@@ -177,7 +199,7 @@
     for(const q of questions){
       const group=document.createElement('div'); group.className='ask-field';
       const label=document.createElement('label'); label.htmlFor=`ask-field-${q.key}`; label.textContent=q.label;
-      const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min='0'; input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
+      const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min=q.key==='emergencyTargetMonths'?'1':'0'; input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
       if(PCT_KEY.test(q.key)) input.placeholder='e.g. 7.5'; else if(/termMonths/i.test(q.key)) input.placeholder='e.g. 60'; else input.placeholder=`Enter ${q.label.toLowerCase()}`;
       const described=[];
       group.append(label,input);
@@ -275,19 +297,42 @@
       item.append(label,strong); metrics.appendChild(item);
     }
     const alternatives=$('askAlternatives'); alternatives.innerHTML='';
+    const priorityMoves=Array.isArray(result.priorityMoves)?result.priorityMoves:[];
     const altItems=Array.isArray(result.alternatives)?result.alternatives:[];
-    $('askAlternativesSection').hidden=altItems.length===0;
-    for(const alt of altItems.slice(0,4)){
-      const card=document.createElement('div'); card.className='ask-alternative';
-      const title=document.createElement('h4'); title.textContent=alt.label||labelize(alt.id||'Option'); card.appendChild(title);
-      for(const [key,value] of Object.entries(alt)){
-        if(['id','label'].includes(key)||value===null||typeof value==='object') continue;
-        const row=document.createElement('div'); row.className='ask-alt-row';
-        const name=document.createElement('span'); name.textContent=labelize(key);
-        const val=document.createElement('strong'); val.textContent=formatValue(key,value);
-        row.append(name,val); card.appendChild(row);
+    const altHeading=$('askAlternativesHeading');
+    if(altHeading) altHeading.textContent=priorityMoves.length?'Your next three moves':'Paths compared';
+    $('askAlternativesSection').hidden=priorityMoves.length===0&&altItems.length===0;
+    if(priorityMoves.length){
+      priorityMoves.slice(0,3).forEach((move,index)=>{
+        const card=document.createElement('div'); card.className='ask-alternative ask-priority-move';
+        const title=document.createElement('h4'); title.textContent=`${index+1}. ${move.stageLabel}: ${move.headline}`; card.appendChild(title);
+        const action=document.createElement('p'); action.className='ask-priority-action'; action.textContent=move.action; card.appendChild(action);
+        const meta=document.createElement('div'); meta.className='ask-priority-meta'; meta.textContent=`Impact: ${move.impact}`; card.appendChild(meta);
+        const rationale=document.createElement('p'); rationale.className='ask-priority-rationale'; rationale.textContent=`Why: ${move.rationale}`; card.appendChild(rationale);
+        const numbers=Object.entries(move.numbersUsed||{}).filter(([,value])=>value!==null&&value!==undefined&&typeof value!=='object');
+        if(numbers.length){
+          const box=document.createElement('div'); box.className='ask-priority-numbers';
+          const label=document.createElement('strong'); label.textContent='Numbers used'; box.appendChild(label);
+          for(const [key,value] of numbers){ const row=document.createElement('div'); row.className='ask-alt-row'; const name=document.createElement('span'); name.textContent=labelize(key); const val=document.createElement('strong'); val.textContent=formatValue(key,value); row.append(name,val); box.appendChild(row); }
+          card.appendChild(box);
+        }
+        if(move.assumptions?.length){ const note=document.createElement('p'); note.className='ask-priority-note'; note.textContent=`Assumption: ${move.assumptions.map(item=>`${labelize(item.id)} ${formatValue(item.id,item.value)}`).join('; ')}`; card.appendChild(note); }
+        if(move.whatCouldChange?.length){ const detail=document.createElement('details'); detail.className='ask-why ask-priority-change'; const summary=document.createElement('summary'); summary.textContent='What could change this move'; const list=document.createElement('ul'); move.whatCouldChange.forEach(text=>{ const li=document.createElement('li'); li.textContent=text; list.appendChild(li); }); detail.append(summary,list); card.appendChild(detail); }
+        alternatives.appendChild(card);
+      });
+    }else{
+      for(const alt of altItems.slice(0,4)){
+        const card=document.createElement('div'); card.className='ask-alternative';
+        const title=document.createElement('h4'); title.textContent=alt.label||labelize(alt.id||'Option'); card.appendChild(title);
+        for(const [key,value] of Object.entries(alt)){
+          if(['id','label'].includes(key)||value===null||typeof value==='object') continue;
+          const row=document.createElement('div'); row.className='ask-alt-row';
+          const name=document.createElement('span'); name.textContent=labelize(key);
+          const val=document.createElement('strong'); val.textContent=formatValue(key,value);
+          row.append(name,val); card.appendChild(row);
+        }
+        alternatives.appendChild(card);
       }
-      alternatives.appendChild(card);
     }
     const changes=$('askWhatCouldChange'); changes.innerHTML='';
     const changeItems=Array.isArray(result.whatCouldChangeAnswer)?result.whatCouldChangeAnswer:[];
