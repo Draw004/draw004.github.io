@@ -41,6 +41,23 @@
       </div>
       <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
 
+      <section class="mycm-account" id="mycmAccount" aria-labelledby="mycmAccountTitle" hidden>
+        <div class="mycm-account-head"><div><span class="mycm-kicker">Optional account</span><h2 id="mycmAccountTitle">Save My Carrowmont for later</h2><p>Guest mode stays available without login. When account saving is enabled, Carrowmont can securely keep your chosen planning profile so you can return without starting over.</p></div></div>
+        <div class="mycm-account-status" id="mycmAccountStatus" role="status" aria-live="polite" hidden></div>
+        <div id="mycmAccountSignedOut">
+          <form class="mycm-account-form" id="mycmAccountForm">
+            <label for="mycmAccountEmail">Email address</label>
+            <div class="mycm-account-row"><input id="mycmAccountEmail" type="email" autocomplete="email" required placeholder="you@example.com"><button class="mycm-button mycm-button-primary" type="submit">Email me a secure sign-in link</button></div>
+            <label class="mycm-account-carry"><input id="mycmCarryGuest" type="checkbox" checked><span>After sign-in, offer to save the My Carrowmont values currently in this browser. Nothing is uploaded until I explicitly choose to save.</span></label>
+          </form>
+        </div>
+        <div id="mycmAccountSignedIn" hidden>
+          <div class="mycm-account-signed"><div><strong id="mycmAccountCurrentEmail">Signed-in account</strong><p id="mycmCloudSummary">Checking your saved profile…</p></div><button class="mycm-button" id="mycmSignOut" type="button">Sign out</button></div>
+          <div class="mycm-account-actions"><button class="mycm-button mycm-button-primary" id="mycmSaveCloud" type="button">Save this browser profile to account</button><button class="mycm-button" id="mycmLoadCloud" type="button">Load saved profile</button><button class="mycm-button" id="mycmExportCloud" type="button">Export account data</button><button class="mycm-button mycm-button-danger" id="mycmDeleteCloud" type="button">Delete saved cloud profile</button></div>
+          <p class="mycm-account-note">Carrowmont never auto-merges browser and account profiles. You choose which direction to copy. Deleting the saved cloud profile does not delete the browser-local dashboard or your sign-in account.</p>
+        </div>
+      </section>
+
       <div class="mycm-grid" id="mycmCards" aria-live="polite">
         <article class="mycm-card" id="mycmCashFlowCard"></article>
         <article class="mycm-card" id="mycmEmergencyCard"></article>
@@ -80,7 +97,10 @@
 <script src="/assets/fre/priority-framework.js"></script>
 <script src="/assets/fre/money-priorities.js"></script>
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
+<script src="/assets/account/supabase-config.js?v=20261111-fre7a"></script>
+<script src="/assets/account/carrowmont-account.js?v=20261111-fre7a"></script>
 <script src="/assets/dashboard/my-carrowmont.js?v=20261110-fre6"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261111-fre7a"></script>
 <script src="/site.js?v=20261109-fre3c1"></script>
 </body>
 </html>
