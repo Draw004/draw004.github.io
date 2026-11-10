@@ -6,13 +6,14 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (root) {
   'use strict';
 
-  const VERSION = 'ask-carrowmont-mvp-v1.1';
+  const VERSION = 'ask-carrowmont-mvp-v1.2';
   const INTENTS = Object.freeze({
     DEBT_VS_SAVINGS:'debt-vs-savings',
     CAR_AFFORDABILITY:'car-affordability',
     MORTGAGE_PREPAY_VS_INVEST:'mortgage-prepay-vs-invest',
     EMERGENCY_RUNWAY:'emergency-runway',
-    CASH_FLOW_SHORTFALL:'cash-flow-shortfall'
+    CASH_FLOW_SHORTFALL:'cash-flow-shortfall',
+    MONEY_PRIORITIES:'money-priorities'
   });
 
   const QUESTION_SETS = Object.freeze({
@@ -49,6 +50,23 @@
       { key:'emergencySavings', label:'Emergency savings available now' },
       { key:'essentialExpenses', label:'Essential monthly expenses' },
       { key:'assumedSavingsReturnPct', label:'Assumed annual savings or investment return' }
+    ]),
+    [INTENTS.MONEY_PRIORITIES]: Object.freeze([
+      { key:'monthlyIncome', label:'Monthly take-home income' },
+      { key:'essentialExpenses', label:'Essential monthly expenses' },
+      { key:'flexibleExpenses', label:'Flexible monthly spending' },
+      { key:'monthlyDebtPayments', label:'Required monthly debt payments' },
+      { key:'emergencySavings', label:'Emergency savings available now' },
+      { key:'emergencyTargetMonths', label:'Emergency-fund target in months' },
+      { key:'debtBalance', label:'Interest-bearing debt balance' },
+      { key:'highestDebtAprPct', label:'Highest debt annual interest rate' },
+      { key:'assumedLongTermReturnPct', label:'Illustrative long-term return assumption' },
+      { key:'retirementSavings', label:'Retirement savings already built' },
+      { key:'retirementMonthlyContribution', label:'Monthly retirement contribution' },
+      { key:'goalTargetAmount', label:'Goal target amount (enter 0 if none)' },
+      { key:'goalCurrentSavings', label:'Savings already set aside for that goal' },
+      { key:'goalYearsAway', label:'Years until that goal' },
+      { key:'goalMonthlyContribution', label:'Monthly contribution toward that goal' }
     ])
   });
 
@@ -57,7 +75,8 @@
     Object.freeze({ intent:INTENTS.CAR_AFFORDABILITY, label:'Car affordability' }),
     Object.freeze({ intent:INTENTS.MORTGAGE_PREPAY_VS_INVEST, label:'Mortgage prepay or invest' }),
     Object.freeze({ intent:INTENTS.EMERGENCY_RUNWAY, label:'Emergency fund adequacy' }),
-    Object.freeze({ intent:INTENTS.CASH_FLOW_SHORTFALL, label:'Running short before payday' })
+    Object.freeze({ intent:INTENTS.CASH_FLOW_SHORTFALL, label:'Running short before payday' }),
+    Object.freeze({ intent:INTENTS.MONEY_PRIORITIES, label:'Money priorities' })
   ]);
 
   const finite = value => Number.isFinite(Number(value));
@@ -68,6 +87,9 @@
 
   function classify(text, router) {
     const value = typeof text === 'string' ? text.trim() : '';
+    if (/\b(money|financial)\s+priorit(?:y|ies)\b|\bwhat\s+should\s+i\s+(?:do|focus\s+on|prioriti[sz]e)\s+first\b|\bmy\s+next\s+(?:financial|money)\s+move\b|\bwhere\s+should\s+i\s+put\s+my\s+money\b/i.test(value)) {
+      return freeze({ intent:INTENTS.MONEY_PRIORITIES, matchedRule:'money-priorities' });
+    }
     if (/\b(run|running|ran)\s+(out|short)\b.{0,30}\b(money|cash)\b|\b(before|until)\s+(payday|pay day|salary|paycheck)\b|\bmonth\s+ends?\b.{0,25}\bmoney\b/i.test(value)) {
       return freeze({ intent:INTENTS.CASH_FLOW_SHORTFALL, matchedRule:'cash-flow-shortfall' });
     }
@@ -91,7 +113,10 @@
       borrowing: overrides.borrowing || root.CarrowmontBorrowingHealthCore,
       debtPayoff: overrides.debtPayoff || root.CarrowmontDebtPayoffCore,
       compound: overrides.compound || root.CarrowmontCompoundCore,
-      mortgagePrepay: overrides.mortgagePrepay || root.CarrowmontMdc1aCore
+      mortgagePrepay: overrides.mortgagePrepay || root.CarrowmontMdc1aCore,
+      moneyPriorities: overrides.moneyPriorities || root.CarrowmontMoneyPriorities,
+      priorityFramework: overrides.priorityFramework || root.CarrowmontFrePriorityFramework,
+      goal: overrides.goal || root.CarrowmontGoalCore
     };
   }
 
@@ -271,6 +296,12 @@
     });
   }
 
+  function moneyPrioritiesJourney(facts, deps, currency) {
+    if (!deps.moneyPriorities?.create) throw new Error('Money Priorities deterministic rule engine is unavailable.');
+    const priorities = deps.moneyPriorities.create({ budget:deps.budget, emergency:deps.emergency, goal:deps.goal, priority:deps.priorityFramework });
+    return priorities.evaluate(facts, { currency });
+  }
+
   function create(overrides = {}) {
     const deps = resolveDependencies(overrides);
     function resolve(input = {}) {
@@ -286,6 +317,7 @@
       else if (intent === INTENTS.CASH_FLOW_SHORTFALL) result = cashFlowJourney(facts, deps, input.currency);
       else if (intent === INTENTS.CAR_AFFORDABILITY) result = carJourney(facts, deps, input.currency);
       else if (intent === INTENTS.MORTGAGE_PREPAY_VS_INVEST) result = mortgageJourney(facts, deps, input.currency, input.country, input.startDate);
+      else if (intent === INTENTS.MONEY_PRIORITIES) result = moneyPrioritiesJourney(facts, deps, input.currency);
       else result = debtVsSavingsJourney(facts, deps, input.currency);
       return freeze({ version:VERSION, status:'RESOLVED', intent, ...result });
     }
