@@ -81,6 +81,8 @@
     'cash-flow-shortfall':['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/'],
     'money-priorities':['Explore the detailed Carrowmont tools','/tools.html']
   };
+  const CAR_AFFORDABILITY_HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
+  const CAR_AFFORDABILITY_HANDOFF_MAX_AGE_MS=15*60*1000;
   const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth/i;
   const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn/i;
   const MONTH_KEY=/months|runway/i;
@@ -278,6 +280,15 @@
     const previous=state.history.pop(); state.facts={...previous.facts}; state.estimatedFacts={...previous.estimatedFacts};
     $('askQuestionMessage').textContent=''; continueJourney();
   }
+  function writeCarAffordabilityHandoff(result){
+    if(result?.intent!=='car-affordability') return false;
+    const trace=(result.trace||[]).find(item=>item?.engineId==='car-affordability');
+    if(!trace?.input) return false;
+    const locale=getLocale();
+    const payload={version:1,createdAt:Date.now(),expiresAt:Date.now()+CAR_AFFORDABILITY_HANDOFF_MAX_AGE_MS,country:locale.country,currency:locale.currency,input:{...trace.input}};
+    try{ sessionStorage.setItem(CAR_AFFORDABILITY_HANDOFF_KEY,JSON.stringify(payload)); return true; }catch(_err){ return false; }
+  }
+
   function renderResult(result){
     stage('result');
     $('askResultSituation').textContent=result.situation||INTENT_COPY[result.intent]||'Your result';
@@ -351,7 +362,14 @@
       const li=document.createElement('li'); li.className='ask-estimated-assumption'; li.textContent=`${item.label}: ${formatValue(key,item.value)} — Illustrative default used because you selected “I don’t know”.`; assumptions.appendChild(li); $('askAssumptionsWrap').hidden=false;
     }
     const wrap=$('askDetailLinkWrap'); wrap.innerHTML=''; const link=DETAIL_LINKS[result.intent];
-    if(link){ const a=document.createElement('a'); a.href=link[1]; a.textContent=`${link[0]} →`; wrap.appendChild(a); }
+    if(link){
+      const a=document.createElement('a'); a.href=link[1]; a.textContent=`${link[0]} →`;
+      if(result.intent==='car-affordability'){
+        a.dataset.askCarAffordabilityHandoff='1';
+        a.addEventListener('click',()=>writeCarAffordabilityHandoff(result));
+      }
+      wrap.appendChild(a);
+    }
     updateBackControls(); reveal($('askResultStage'),$('askResultSituation'));
   }
   function init(){

@@ -9,7 +9,13 @@
 
   const byId = id => document.getElementById(id);
   const ids = ['vehiclePrice','downPayment','tradeInCredit','upfrontTaxesFees','annualRate','termMonths','grossMonthlyIncome','takeHomeMonthlyIncome','essentialMonthlyExpenses','existingMonthlyDebtPayments','monthlyRunningCosts','emergencySavings','emergencySavingsUsedForPurchase','emergencyTargetMonths','rateStressIncreasePctPoints','runningCostStressPct','alternativeVehiclePrice','extraDownPaymentScenario','longerTermMonthsScenario'];
+  const monetaryIds=['vehiclePrice','downPayment','tradeInCredit','upfrontTaxesFees','grossMonthlyIncome','takeHomeMonthlyIncome','essentialMonthlyExpenses','existingMonthlyDebtPayments','monthlyRunningCosts','emergencySavings','emergencySavingsUsedForPurchase','alternativeVehiclePrice','extraDownPaymentScenario'];
+  const HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
+  const STARTER_MONTHLY={INR:10000,USD:500,CAD:500,GBP:500,AUD:500,NZD:500,EUR:500,CNY:3000,JPY:50000,KRW:500000,SGD:500,AED:2000,SAR:2000,CHF:500,BRL:1000,MXN:5000,ZAR:5000,IDR:1000000,MYR:1000,THB:10000,PHP:10000,VND:5000000,HKD:5000,TWD:10000,RUB:20000,ARS:500000,ILS:1000,COP:500000,RON:1000,PKR:50000,CZK:5000,EGP:10000,PEN:1000,KZT:50000,NGN:50000,MAD:1000,KWD:200,UZS:1000000,KES:10000,TRY:10000,BDT:50000,CLP:500000,DKK:3000,OMR:200,QAR:2000,NOK:5000,PLN:1000,SEK:5000};
   let lastResult = null;
+  let usingStarterValues = false;
+  let applyingProgrammaticValues = false;
+  let contextualActionMessageActive = false;
   const value = id => { const n = Number(byId(id)?.value); return Number.isFinite(n) ? n : 0; };
   const state = () => Object.fromEntries(ids.map(id => [id, value(id)]));
   const engines = () => ({ loan, borrowingHealth, emergencyFund });
@@ -17,6 +23,44 @@
   const pct = n => n == null || !Number.isFinite(n) ? 'Not available' : `${n.toFixed(n >= 10 ? 1 : 2).replace(/\.0$/,'')}%`;
   const months = n => n == null || !Number.isFinite(n) ? 'Not available' : `${n.toFixed(n >= 10 ? 1 : 2).replace(/\.0$/,'')} months`;
   const setText = (id,text) => { const el=byId(id); if(el) el.textContent=text; };
+  const roundStarter=(value,unit)=>{ const step=Math.max(1,unit); return Math.round(value/step)*step; };
+  function starterDefaults(currency=locale.getCurrency()){
+    const m=STARTER_MONTHLY[currency]||STARTER_MONTHLY.USD;
+    return {
+      vehiclePrice:roundStarter(m*60,m), downPayment:roundStarter(m*12,m), tradeInCredit:0, upfrontTaxesFees:roundStarter(m*3,m),
+      annualRate:9, termMonths:60, grossMonthlyIncome:roundStarter(m*13,m), takeHomeMonthlyIncome:roundStarter(m*10,m), essentialMonthlyExpenses:roundStarter(m*5,m),
+      existingMonthlyDebtPayments:roundStarter(m,m), monthlyRunningCosts:roundStarter(m,m), emergencySavings:roundStarter(m*30,m), emergencySavingsUsedForPurchase:0, emergencyTargetMonths:6,
+      rateStressIncreasePctPoints:2, runningCostStressPct:20, alternativeVehiclePrice:roundStarter(m*50,m), extraDownPaymentScenario:roundStarter(m*6,m), longerTermMonthsScenario:72
+    };
+  }
+  function applyValues(values){
+    applyingProgrammaticValues=true;
+    try{
+      for(const id of ids){
+        if(!Object.prototype.hasOwnProperty.call(values,id)) continue;
+        const n=Number(values[id]); if(!Number.isFinite(n)||n<0) continue;
+        const el=byId(id); if(el) el.value=String(n);
+      }
+    }finally{ applyingProgrammaticValues=false; }
+  }
+  function applyStarterDefaults(message=true){
+    applyValues(starterDefaults()); usingStarterValues=true;
+    if(message){ contextualActionMessageActive=true; setText('actionMessage',`Illustrative starter values updated for ${locale.getCurrency()}. They are round examples, not exchange-rate conversions.`); }
+  }
+  function consumeAskHandoff(){
+    let raw=null; try{ raw=sessionStorage.getItem(HANDOFF_KEY); if(raw) sessionStorage.removeItem(HANDOFF_KEY); }catch(_err){}
+    if(!raw) return false;
+    let payload; try{ payload=JSON.parse(raw); }catch(_err){ return false; }
+    const now=Date.now();
+    if(payload?.version!==1||!payload.input||!Number.isFinite(Number(payload.createdAt))||now-Number(payload.createdAt)>15*60*1000||Number(payload.expiresAt||0)<now) return false;
+    if(payload.country&&payload.currency&&typeof locale.setLocale==='function'&&(locale.getRegion()!==payload.country||locale.getCurrency()!==payload.currency)){
+      locale.setLocale(payload.country,payload.currency);
+    }
+    applyValues(payload.input); usingStarterValues=false;
+    contextualActionMessageActive=true;
+    setText('actionMessage','Values carried over from Ask Carrowmont. Review or edit any assumption before relying on the result.');
+    return true;
+  }
 
   function statusCopy(r){
     if(!r.ok) return {tone:'risk',label:'CHECK THE INPUTS',headline:'This purchase cannot be modeled yet.',text:(r.errors||[])[0]||'Add the required purchase and household figures.'};
@@ -65,7 +109,7 @@
     const warnings=byId('warnings'); if(warnings){warnings.replaceChildren(...r.warnings.map(message=>{const div=document.createElement('div');div.className='car-warning';div.textContent=message;return div;}));}
   }
 
-  function calculate(){ try{render(core.calculate(state(),engines()));setText('actionMessage','');}catch(error){console.error(error);render({ok:false,errors:['A required Carrowmont engine could not be loaded.'],warnings:[]});} }
+  function calculate(){ try{render(core.calculate(state(),engines()));if(!contextualActionMessageActive)setText('actionMessage','');}catch(error){console.error(error);render({ok:false,errors:['A required Carrowmont engine could not be loaded.'],warnings:[]});} }
   function summaryText(){
     if(!lastResult||!lastResult.ok)return''; const r=lastResult;
     return ['Carrowmont Car Affordability & Auto Decision result',`Vehicle price: ${money(r.vehiclePrice)}`,`Loan amount: ${money(r.loanAmount)}`,`Monthly loan payment: ${money(r.monthlyLoanPayment)}`,`Monthly running costs: ${money(r.monthlyRunningCosts)}`,`All-in monthly car cost: ${money(r.allInMonthlyCarCost)}`,`Monthly cash room before car: ${money(r.currentCashRoom)}`,`Monthly cash room after car: ${money(r.afterCashRoom)}`,`Current gross-income DTI: ${pct(r.currentGrossDtiPct)}`,`Gross-income DTI after car loan: ${pct(r.afterGrossDtiPct)}`,`Emergency runway before purchase: ${months(r.runwayBeforeMonths)}`,`Emergency runway after purchase: ${months(r.runwayAfterMonths)}`,`Stress monthly cash room: ${money(r.stressCashRoom)}`,'No universal car-affordability cutoff or lender-approval prediction is applied.',`Methodology version: ${r.methodologyVersion}`].join('\n');
@@ -75,5 +119,11 @@
   function downloadCsv(){ if(!lastResult||!lastResult.ok)return; const r=lastResult,a=r.assumptions; const rows=[['Carrowmont Car Affordability & Auto Decision'],['Methodology version',r.methodologyVersion],['Currency',locale.getCurrency()],['Vehicle price',r.vehiclePrice],['Down payment',a.downPayment],['Trade-in credit',a.tradeInCredit],['Upfront taxes / fees',a.upfrontTaxesFees],['Loan amount',r.loanAmount],['Annual rate %',a.annualRate],['Term months',a.termMonths],['Monthly loan payment',r.monthlyLoanPayment],['Monthly running costs',r.monthlyRunningCosts],['All-in monthly car cost',r.allInMonthlyCarCost],['Take-home monthly income',a.takeHomeMonthlyIncome],['Essential monthly expenses',a.essentialMonthlyExpenses],['Existing monthly debt payments',a.existingMonthlyDebtPayments],['Monthly cash room before car',r.currentCashRoom],['Monthly cash room after car',r.afterCashRoom],['Gross-income DTI before %',r.currentGrossDtiPct??''],['Gross-income DTI after %',r.afterGrossDtiPct??''],['Emergency savings before',a.emergencySavings],['Emergency savings used for purchase',a.emergencySavingsUsedForPurchase],['Emergency reserve after purchase',r.reserveAfterPurchase],['Emergency runway before months',r.runwayBeforeMonths??''],['Emergency runway after months',r.runwayAfterMonths??''],['Chosen runway target months',r.runwayTargetMonths],['Stress interest rate %',r.stressedRate],['Stress running costs',r.stressedRunningCosts],['Stress monthly cash room',r.stressCashRoom],['Important','No universal affordability cutoff or lender-approval prediction']]; const blob=new Blob([rows.map(row=>row.map(csvCell).join(',')).join('\n')+'\n'],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='carrowmont-car-affordability-auto-decision.csv';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);setText('actionMessage','CSV has been downloaded.'); }
   async function generateReport(){if(!lastResult?.ok||!window.CarrowmontCarAffordabilityPdfRenderer)return;try{setText('actionMessage','Preparing report...');await window.CarrowmontCarAffordabilityPdfRenderer.generate({result:lastResult,currency:locale.getCurrency(),locale:locale.getLocale()});setText('actionMessage','Report has been downloaded.');}catch(error){console.error(error);setText('actionMessage','The report could not be generated.');}}
 
-  byId('calculateBtn')?.addEventListener('click',calculate); ids.forEach(id=>byId(id)?.addEventListener('input',calculate)); byId('copySummaryBtn')?.addEventListener('click',copySummary); byId('downloadCsvBtn')?.addEventListener('click',downloadCsv); byId('generateReportBtn')?.addEventListener('click',generateReport); window.addEventListener('carrowmont:localechange',()=>render(core.calculate(state(),engines()))); calculate();
+  byId('calculateBtn')?.addEventListener('click',()=>{ contextualActionMessageActive=false; calculate(); });
+  ids.forEach(id=>byId(id)?.addEventListener('input',()=>{ if(!applyingProgrammaticValues){ if(monetaryIds.includes(id)) usingStarterValues=false; contextualActionMessageActive=false; } calculate(); }));
+  byId('copySummaryBtn')?.addEventListener('click',copySummary); byId('downloadCsvBtn')?.addEventListener('click',downloadCsv); byId('generateReportBtn')?.addEventListener('click',generateReport);
+  const usedHandoff=consumeAskHandoff();
+  if(!usedHandoff) applyStarterDefaults(false);
+  window.addEventListener('carrowmont:localechange',()=>{ if(usingStarterValues) applyStarterDefaults(true); calculate(); });
+  calculate();
 })();
