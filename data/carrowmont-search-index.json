@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-09T00:00:00Z",
+  "generated_at": "2026-11-10",
   "entries": [
     {
       "url": "/",
@@ -184,28 +184,28 @@
       "category": "Carrowmont",
       "keywords": [
         "ask carrowmont",
-        "money decision",
-        "debt or savings",
         "car affordability",
-        "mortgage prepay or invest",
-        "emergency fund",
         "cash flow shortfall",
-        "money priorities",
+        "debt or savings",
+        "emergency fund",
         "financial priorities",
+        "money decision",
+        "money priorities",
+        "mortgage prepay or invest",
         "next three moves",
         "what should i focus on first"
       ],
       "aliases": [
         "ask carrowmont",
-        "should i pay debt or save",
         "can i afford a car",
-        "prepay mortgage or invest",
         "is my emergency fund enough",
+        "my next financial move",
+        "prepay mortgage or invest",
         "running out of money before payday",
-        "what should i focus on first",
+        "should i pay debt or save",
         "what are my money priorities",
-        "what should i prioritize financially",
-        "my next financial move"
+        "what should i focus on first",
+        "what should i prioritize financially"
       ],
       "priority": 90
     },
@@ -281,17 +281,17 @@
       "type": "tool",
       "category": "Debt & Credit",
       "keywords": [
-        "credit card payoff calculator",
         "credit card interest",
-        "pay off credit card",
-        "minimum payment",
+        "credit card payoff calculator",
         "higher monthly payment",
+        "minimum payment",
+        "pay off credit card",
         "target payoff"
       ],
       "aliases": [
         "card payoff calculator",
-        "credit card repayment calculator",
-        "credit card interest payoff"
+        "credit card interest payoff",
+        "credit card repayment calculator"
       ],
       "priority": 60
     },
@@ -1957,6 +1957,29 @@
       "priority": 65
     },
     {
+      "url": "/my-carrowmont.html",
+      "title": "My Carrowmont — Guest Financial Dashboard",
+      "description": "Bring cash flow, emergency runway, debt, retirement saving, goals, financial independence and Money Priorities into one private guest-first planning dashboard.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "financial dashboard",
+        "financial planning dashboard",
+        "money dashboard",
+        "money priorities",
+        "my carrowmont",
+        "personal finance dashboard"
+      ],
+      "aliases": [
+        "financial overview",
+        "money overview",
+        "my dashboard",
+        "my financial plan",
+        "what carrowmont knows about me"
+      ],
+      "priority": 94
+    },
+    {
       "url": "/one-extra-mortgage-payment-a-year.html",
       "title": "One Extra Mortgage Payment a Year",
       "description": "See how one extra mortgage or home-loan payment each year can change payoff time and interest, with transparent 25-year examples and lender-rule caveats.",
@@ -3110,6 +3133,5 @@
       ],
       "priority": 65
     }
-  ],
-  "reviewed_at": "2026-11-09"
+  ]
 }

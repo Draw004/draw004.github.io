@@ -575,10 +575,23 @@
         if (link !== home && (link.textContent || '').trim().toLowerCase() === 'home') link.remove();
       });
 
+      var myCarrowmont = nav.querySelector('a[href="/my-carrowmont.html"]');
+      if (!myCarrowmont) {
+        myCarrowmont = document.createElement('a');
+        myCarrowmont.href = '/my-carrowmont.html';
+        myCarrowmont.textContent = 'My Carrowmont';
+        myCarrowmont.dataset.cmMyCarrowmontLink = '';
+        nav.appendChild(myCarrowmont);
+      }
+      if (path === '/my-carrowmont.html') myCarrowmont.setAttribute('aria-current', 'page');
+      else myCarrowmont.removeAttribute('aria-current');
+
       var methodology = nav.querySelector('a[href="/methodology.html"]');
+      var about = nav.querySelector('a[href="/about.html"]');
       if (!mobile && methodology) methodology.remove();
-      var order = ['/','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/about.html','/search.html'];
-      if (mobile) order = ['/','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html','/contact.html'];
+      if (!mobile && about) about.remove();
+      var order = ['/','/my-carrowmont.html','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/search.html'];
+      if (mobile) order = ['/','/my-carrowmont.html','/ask-carrowmont.html','/tools.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html','/contact.html'];
       order.forEach(function (href) {
         var node = nav.querySelector('a[href="' + href + '"]');
         if (node) nav.appendChild(node);
@@ -624,7 +637,7 @@
       if (cmCol) {
         cmCol.querySelectorAll('a').forEach(function (a) { a.remove(); });
         [
-          ['/learn.html','Learn'], ['/research.html','Research'], ['/about.html','About'],
+          ['/my-carrowmont.html','My Carrowmont'], ['/learn.html','Learn'], ['/research.html','Research'], ['/about.html','About'],
           ['/methodology.html','Methodology'], ['/editorial-policy.html','Editorial policy'], ['/contact.html','Contact']
         ].forEach(function (item) { var a=document.createElement('a'); a.href=item[0]; a.textContent=item[1]; cmCol.appendChild(a); });
       }
@@ -768,10 +781,12 @@
 
   var ICONS = {
     home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5M9.5 20v-6h5v6"/></svg>',
+    my: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="8" height="7" rx="2"/><rect x="13" y="4" width="8" height="4" rx="2"/><rect x="13" y="10" width="8" height="10" rx="2"/><rect x="3" y="13" width="8" height="7" rx="2"/></svg>',
     tools: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="2"/><rect x="14" y="4" width="7" height="7" rx="2"/><rect x="3" y="15" width="7" height="6" rx="2"/><rect x="14" y="15" width="7" height="6" rx="2"/></svg>',
     learn: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5c2.8-.8 5.4-.3 8 1.5v12c-2.6-1.8-5.2-2.3-8-1.5z"/><path d="M20 5.5c-2.8-.8-5.4-.3-8 1.5v12c2.6-1.8 5.2-2.3 8-1.5z"/></svg>',
     research: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 13v-3m3 3V7m3 6v-2"/></svg>',
     ask: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H9l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>',
+    dashboard: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="8" height="7" rx="2"/><rect x="13" y="4" width="8" height="4" rx="2"/><rect x="13" y="10" width="8" height="10" rx="2"/><rect x="3" y="13" width="8" height="7" rx="2"/></svg>',
     more: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>',
     search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>',
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg>',
@@ -874,8 +889,8 @@
     if (path === '/' || path === '/index.html') return 'home';
     if (path === '/tools.html' || path.indexOf('/sip-calculator/') === 0 || path.indexOf('/retirement-calculator/') === 0 || path.indexOf('/goal-planner/') === 0 || path.indexOf('/financial-independence/') === 0 || path.indexOf('/inflation-calculator/') === 0 || path.indexOf('/budget-cash-flow-planner/') === 0 || path.indexOf('/mortgage-payoff-calculator/') === 0 || path.indexOf('/compound-interest-calculator/') === 0 || path.indexOf('/loan-calculator/') === 0) return 'tools';
     if (path === '/ask-carrowmont.html') return 'ask';
-    if (path === '/learn.html' || document.body.dataset.cmPage === 'learn-hub') return 'learn';
-    if (path === '/research.html' || path.indexOf('/research/') === 0 || path === '/about.html' || path === '/methodology.html' || path === '/contact.html') return 'more';
+    if (path === '/my-carrowmont.html') return 'my';
+    if (path === '/learn.html' || document.body.dataset.cmPage === 'learn-hub' || path === '/research.html' || path.indexOf('/research/') === 0 || path === '/about.html' || path === '/methodology.html' || path === '/contact.html') return 'more';
     return '';
   }
 
@@ -918,6 +933,7 @@
       '<div class="mobile1-more-head"><strong id="mobile1MoreTitle">More from Carrowmont</strong><button type="button" class="mobile1-more-close" aria-label="Close menu">&times;</button></div>' +
       '<div class="mobile1-more-body">' +
         '<div class="mobile1-more-grid">' +
+          '<a class="mobile1-more-link" href="/learn.html">' + ICONS.learn + '<span>Learn</span></a>' +
           '<a class="mobile1-more-link" href="/research.html">' + ICONS.research + '<span>Research</span></a>' +
           '<a class="mobile1-more-link" href="/about.html">' + ICONS.about + '<span>About</span></a>' +
           '<a class="mobile1-more-link" href="/methodology.html">' + ICONS.methodology + '<span>Methodology</span></a>' +
@@ -959,9 +975,9 @@
     nav.setAttribute('aria-label', 'Mobile primary navigation');
     [
       { key: 'home', label: 'Home', href: '/' },
-      { key: 'tools', label: 'Tools', href: '/tools.html' },
+      { key: 'my', label: 'My Money', href: '/my-carrowmont.html' },
       { key: 'ask', label: 'Ask', href: '/ask-carrowmont.html' },
-      { key: 'learn', label: 'Learn', href: '/learn.html' },
+      { key: 'tools', label: 'Tools', href: '/tools.html' },
       { key: 'more', label: 'More', button: true }
     ].forEach(function (item) { nav.appendChild(createNavItem(item, active)); });
     document.body.appendChild(nav);

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Carrowmont | Guest Financial Dashboard</title>
+  <meta name="description" content="Summarize your cash flow, emergency runway, debt, retirement saving, goals, financial independence and Money Priorities in a private guest-first Carrowmont dashboard.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://carrowmont.com/my-carrowmont.html">
+  <meta property="og:title" content="My Carrowmont | Guest Financial Dashboard">
+  <meta property="og:description" content="A private guest-first dashboard for your financial planning context and next priorities.">
+  <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
+  <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261110-fre6">
+</head>
+<body data-cm-page="my-carrowmont">
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule"></span><span class="brand-tagline">Plan today. <strong>Build a brighter tomorrow.</strong></span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a></nav>
+    <details class="locale-menu" id="localeMenu"><summary class="locale-summary"><span class="globe">◎</span><span id="localeCountryLabel">Country</span><span>·</span><span id="localeCurrencyLabel">USD</span><span class="chevron">⌄</span></summary><div class="locale-panel"><label>Country<select id="regionSelect"></select></label><label>Currency<select id="currencySelect"></select></label><button id="localeDoneBtn" type="button">Done</button></div></details>
+    <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div></details>
+  </div>
+</header>
+
+<main>
+  <section class="mycm-hero">
+    <div class="shell">
+      <span class="mycm-kicker">My Carrowmont</span>
+      <h1>See what matters without tracking every transaction.</h1>
+      <p>Bring your planning context together in one place: cash flow, emergency runway, debt, retirement saving, goals, financial independence and your next Money Priorities.</p>
+      <div class="mycm-privacy-badges"><span>No account required</span><span>Session-only by default</span><span>No bank connection</span><span>You control every saved value</span></div>
+    </div>
+  </section>
+
+  <section class="mycm-main">
+    <div class="shell">
+      <div class="mycm-toolbar">
+        <label class="mycm-mode"><input id="mycmRemember" type="checkbox"><span><strong>Remember on this device</strong><small>Off keeps this dashboard in the current browser session only. Turn it on only if you want these values stored in this browser until you clear them.</small></span></label>
+        <div class="mycm-toolbar-actions"><button class="mycm-button" id="mycmEditAll" type="button">Add or edit details</button><button class="mycm-button" id="mycmKnowBtn" type="button">What Carrowmont knows</button><button class="mycm-button mycm-button-danger" id="mycmClear" type="button">Clear dashboard</button></div>
+      </div>
+      <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
+
+      <div class="mycm-grid" id="mycmCards" aria-live="polite">
+        <article class="mycm-card" id="mycmCashFlowCard"></article>
+        <article class="mycm-card" id="mycmEmergencyCard"></article>
+        <article class="mycm-card" id="mycmDebtCard"></article>
+        <article class="mycm-card" id="mycmBorrowingCard"></article>
+        <article class="mycm-card" id="mycmRetirementCard"></article>
+        <article class="mycm-card" id="mycmGoalCard"></article>
+        <article class="mycm-card" id="mycmFiCard"></article>
+        <article class="mycm-card" id="mycmPrioritiesCard"></article>
+      </div>
+
+      <section class="mycm-knows" id="mycmKnows">
+        <div class="mycm-knows-head"><div><h2>What Carrowmont knows about you</h2><p>Only values you explicitly added or chose to carry into My Carrowmont appear here. Ignore, edit or remove any value at any time.</p></div></div>
+        <div class="mycm-facts" id="mycmFacts"></div>
+      </section>
+      <p class="mycm-note">My Carrowmont is a planning summary, not a transaction tracker. It does not connect to banks, monitor spending, or send your financial inputs to Carrowmont servers. Calculations remain educational and illustrative, not individualized financial, investment, tax, legal or lending advice.</p>
+    </div>
+  </section>
+</main>
+
+<dialog class="mycm-dialog" id="mycmEditDialog" aria-labelledby="mycmEditTitle">
+  <div class="mycm-dialog-head"><div><h2 id="mycmEditTitle">Add or edit your planning details</h2><p>Leave a field blank if you do not want to add it. Use “What Carrowmont knows” to remove an existing value.</p></div><button class="mycm-dialog-close" id="mycmEditClose" type="button" aria-label="Close">×</button></div>
+  <form id="mycmEditForm">
+    <div class="mycm-dialog-body" id="mycmEditFields"></div>
+    <div class="mycm-dialog-actions"><button class="mycm-button" id="mycmEditCancel" type="button">Cancel</button><button class="mycm-button mycm-button-primary" type="submit">Save details</button></div>
+  </form>
+</dialog>
+
+<footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div><div class="footer-col"><strong>Tools</strong><a href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/tools.html">All tools</a></div><div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/editorial-policy.html">Editorial policy</a><a href="/contact.html">Contact</a></div><div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><div class="shell footer-bottom"><span>&copy; 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div></footer>
+
+<script src="/locale.js?v=20260920-cleanup1"></script>
+<script src="/budget-cash-flow-planner/core.js"></script>
+<script src="/emergency-fund-runway-core.js"></script>
+<script src="/debt-to-income-borrowing-health-core.js"></script>
+<script src="/goal-planner/core.js"></script>
+<script src="/financial-independence/core.js"></script>
+<script src="/assets/fre/priority-framework.js"></script>
+<script src="/assets/fre/money-priorities.js"></script>
+<script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
+<script src="/assets/dashboard/my-carrowmont.js?v=20261110-fre6"></script>
+<script src="/site.js?v=20261109-fre3c1"></script>
+</body>
+</html>

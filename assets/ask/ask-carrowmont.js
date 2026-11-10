@@ -89,6 +89,7 @@
   const YEAR_KEY=/years/i;
 
   let api=null;
+  let lastResult=null;
   let state={intent:null,facts:{},questionText:'',estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
   const $=id=>document.getElementById(id);
 
@@ -150,6 +151,9 @@
     requestAnimationFrame(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}));
   }
   function reset(){
+    lastResult=null;
+    const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=true;
+    const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
     state={intent:null,facts:{},questionText:'',estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
     $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();
     stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
@@ -290,6 +294,7 @@
   }
 
   function renderResult(result){
+    lastResult=result;
     stage('result');
     $('askResultSituation').textContent=result.situation||INTENT_COPY[result.intent]||'Your result';
     const rec=result.recommendation||{};
@@ -370,7 +375,22 @@
       }
       wrap.appendChild(a);
     }
+    const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=false;
+    const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
     updateBackControls(); reveal($('askResultStage'),$('askResultSituation'));
+  }
+  function saveToDashboard(){
+    const Store=window.CarrowmontDashboardStore;
+    const browser=Store?.createBrowserStore?.(window);
+    const status=$('askDashboardSaveStatus');
+    if(!Store||!browser||!lastResult){ if(status)status.textContent='My Carrowmont is unavailable in this browser.'; return; }
+    try{
+      const current=browser.load();
+      const locale=getLocale();
+      const next=Store.captureAskJourney(current,lastResult.intent,state.facts,{locale:{region:locale.country,currency:locale.currency},currency:locale.currency});
+      browser.save(next,current.mode||'session');
+      if(status) status.innerHTML='Saved to this browser. <a href="/my-carrowmont.html">Open My Carrowmont →</a>';
+    }catch(_err){ if(status)status.textContent='Carrowmont could not save this dashboard snapshot in this browser.'; }
   }
   function init(){
     if(!window.CarrowmontAskMvp?.create){ $('askStartMessage').textContent='Ask Carrowmont is temporarily unavailable.'; return; }
@@ -378,6 +398,7 @@
     $('askStartBtn').addEventListener('click',startFromText);
     $('askQuestion').addEventListener('keydown',event=>{ if((event.ctrlKey||event.metaKey)&&event.key==='Enter') startFromText(); });
     $('askQuestionsForm').addEventListener('submit',submitQuestions);
+    $('askDashboardSaveBtn')?.addEventListener('click',saveToDashboard);
     document.querySelectorAll('[data-ask-back]').forEach(btn=>btn.addEventListener('click',goBack));
     document.querySelectorAll('[data-ask-reset]').forEach(btn=>btn.addEventListener('click',reset));
     document.querySelectorAll('[data-ask-intent]').forEach(btn=>btn.addEventListener('click',()=>startIntent(btn.dataset.askIntent,btn.textContent.trim())));
