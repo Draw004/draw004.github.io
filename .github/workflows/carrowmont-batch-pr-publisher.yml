@@ -250,6 +250,25 @@ jobs:
           cd "$QA_DIR"
           npm install --package-lock=false
 
+          # Playwright video-on-failure requires its bundled FFmpeg binary even
+          # when Google Chrome itself comes from the GitHub runner image.
+          # Install only FFmpeg here; do not invoke browser/system apt dependencies.
+          ffmpeg_ready=0
+          for attempt in 1 2 3; do
+            echo "Playwright FFmpeg install attempt ${attempt}/3"
+            if npx playwright install ffmpeg; then
+              ffmpeg_ready=1
+              break
+            fi
+            if [[ "$attempt" != "3" ]]; then
+              sleep $((attempt * 5))
+            fi
+          done
+          if [[ "$ffmpeg_ready" != "1" ]]; then
+            echo "PUBLISHER INFRASTRUCTURE FAILURE: Playwright FFmpeg could not be installed after 3 attempts."
+            exit 1
+          fi
+
           # The pinned GitHub ubuntu-24.04 runner includes stable Google Chrome.
           # Carrowmont's chrome-desktop project already targets channel: 'chrome',
           # so verify and use that runner-provided browser instead of invoking apt.
