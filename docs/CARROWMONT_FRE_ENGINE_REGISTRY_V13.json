@@ -690,5 +690,27 @@
     "new_public_url": null,
     "new_calculator_engine": false,
     "activation_gate": "Create free Supabase project, apply RLS schema, configure allowed redirect URL, enable public config, then pass Publisher, Automated QA, Multi-Repo Guard and fresh Source Snapshot."
+  },
+  "fre_batch7b": {
+    "parent_batch": "Batch 7 — Optional Login & Saved Financial Profile",
+    "sub_batch": "Batch 7B — live optional login & saved profile activation",
+    "status": "LIVE_OPTIONAL_LOGIN_ENABLED",
+    "public_url": "/my-carrowmont.html",
+    "auth_provider": "Supabase Auth passwordless email magic link",
+    "project_region": "South Asia (Mumbai)",
+    "email_delivery": "Brevo custom SMTP using authenticated carrowmont.com sender",
+    "cloud_profile_adapter": "/assets/account/carrowmont-account.js",
+    "account_ui": "/assets/account/my-carrowmont-account.js",
+    "config": "/assets/account/supabase-config.js",
+    "guest_policy": "Guest/local My Carrowmont remains fully usable without login.",
+    "migration_policy": "No automatic upload or merge; user explicitly chooses browser-to-cloud save or cloud-to-browser load.",
+    "storage_policy": "Signed-in cloud persistence is optional and uses owner-only Supabase RLS rows; frontend contains only the publishable key, never a service-role/secret key.",
+    "auth_boot_policy": "Signed-out visitors do not load the Supabase SDK until they request a magic link; returning sessions/auth callbacks initialize it automatically.",
+    "homepage_trust_copy": "Account optional",
+    "public_tool_count": 23,
+    "search_public_page_count": 138,
+    "new_public_url": null,
+    "new_calculator_engine": false,
+    "release_gate": "Publisher, Automated QA, Multi-Repo Guard, live magic-link test, and fresh Source Snapshot."
   }
 }
