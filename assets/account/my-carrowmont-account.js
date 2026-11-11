@@ -25,6 +25,23 @@
     status.hidden=false;
   }
   function hasFacts(profile){return Boolean(profile&&Object.keys(profile.facts||{}).length);}
+
+  function hasPersistedAuthSession(){
+    try{
+      for(let i=0;i<localStorage.length;i+=1){
+        const key=localStorage.key(i)||'';
+        if(/^sb-.*-auth-token$/.test(key)&&localStorage.getItem(key)) return true;
+      }
+    }catch(_){}
+    return false;
+  }
+  function hasAuthReturnInUrl(){
+    try{
+      const hash=String(location.hash||'');
+      const search=new URLSearchParams(location.search||'');
+      return /(?:^|[&#])access_token=/.test(hash)||/(?:^|[&#])refresh_token=/.test(hash)||search.has('code');
+    }catch(_){return false;}
+  }
   function downloadJson(data,name){
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
@@ -102,6 +119,10 @@
     catch(error){say(error.message||'Sign out failed.','error');}
   });
 
-  Account.onAuthStateChange(()=>refresh());
-  refresh();
+  if(hasPersistedAuthSession()||hasAuthReturnInUrl()){
+    Account.onAuthStateChange(()=>refresh());
+    refresh();
+  }else{
+    renderCloudState();
+  }
 })();
