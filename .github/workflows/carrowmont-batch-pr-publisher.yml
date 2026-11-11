@@ -249,7 +249,30 @@ jobs:
 
           cd "$QA_DIR"
           npm install --package-lock=false
-          npx playwright install --with-deps chrome
+
+          # The pinned GitHub ubuntu-24.04 runner includes stable Google Chrome.
+          # Carrowmont's chrome-desktop project already targets channel: 'chrome',
+          # so verify and use that runner-provided browser instead of invoking apt.
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || true)"
+          if [[ -z "$CHROME_BIN" ]]; then
+            echo "PUBLISHER INFRASTRUCTURE FAILURE: Google Chrome is not available on the ubuntu-24.04 runner."
+            exit 1
+          fi
+
+          echo "Publisher browser: $CHROME_BIN"
+          "$CHROME_BIN" --version
+          npx playwright --version
+
+          if ! node --input-type=module <<'NODE'
+          import { chromium } from '@playwright/test';
+          const browser = await chromium.launch({ channel: 'chrome', headless: true });
+          console.log(`Playwright Chrome launch verified: ${await browser.version()}`);
+          await browser.close();
+          NODE
+          then
+            echo "PUBLISHER INFRASTRUCTURE FAILURE: Playwright could not launch the runner-provided Google Chrome."
+            exit 1
+          fi
 
           python3 -m http.server 4173 --bind 127.0.0.1 --directory "$GITHUB_WORKSPACE/staged-site" > "$GITHUB_WORKSPACE/staged-http-server.log" 2>&1 &
           SERVER_PID=$!
