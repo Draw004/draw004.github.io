@@ -16,6 +16,7 @@
   let usingStarterValues = false;
   let applyingProgrammaticValues = false;
   let contextualActionMessageActive = false;
+  let mycmTouched = false;
   const value = id => { const n = Number(byId(id)?.value); return Number.isFinite(n) ? n : 0; };
   const state = () => Object.fromEntries(ids.map(id => [id, value(id)]));
   const engines = () => ({ loan, borrowingHealth, emergencyFund });
@@ -56,10 +57,23 @@
     if(payload.country&&payload.currency&&typeof locale.setLocale==='function'&&(locale.getRegion()!==payload.country||locale.getCurrency()!==payload.currency)){
       locale.setLocale(payload.country,payload.currency);
     }
-    applyValues(payload.input); usingStarterValues=false;
+    applyValues(payload.input); usingStarterValues=false; mycmTouched=true;
     contextualActionMessageActive=true;
     setText('actionMessage','Values carried over from Ask Carrowmont. Review or edit any assumption before relying on the result.');
     return true;
+  }
+
+  function applyMyCarrowmontPlan(input){
+    if(!input||typeof input!=='object')return;
+    if(input.region&&input.currency&&typeof locale.setLocale==='function')locale.setLocale(input.region,input.currency);
+    applyValues(input.values||input);usingStarterValues=false;mycmTouched=true;calculate();
+  }
+  function configureMyCarrowmontSave(){
+    const bridge=window.CarrowmontPlanSave;if(!bridge?.register)return;
+    bridge.register({journey:'car-affordability',toolPath:'/car-affordability-auto-decision-calculator.html',anchor:'#statusCard',
+      getPlan(){if(!mycmTouched||usingStarterValues||!lastResult?.ok)return null;const s=state(),a=lastResult.assumptions||{};return {label:'Car affordability plan',scenario:{input:{values:s,region:locale.getRegion(),currency:locale.getCurrency()},summary:{vehiclePrice:lastResult.vehiclePrice,loanAmount:lastResult.loanAmount,monthlyLoanPayment:lastResult.monthlyLoanPayment,afterCashRoom:lastResult.afterCashRoom}},profileFacts:{'cashFlow.takeHomeIncome':{value:a.takeHomeMonthlyIncome||0,unit:locale.getCurrency(),source:'Car Affordability'},'cashFlow.essentialExpenses':{value:a.essentialMonthlyExpenses||0,unit:locale.getCurrency(),source:'Car Affordability'},'resilience.emergencySavings':{value:a.emergencySavings||0,unit:locale.getCurrency(),source:'Car Affordability'},'resilience.targetMonths':{value:a.emergencyTargetMonths||0,unit:'months',source:'Car Affordability'}}};},
+      applyPlan:scenario=>applyMyCarrowmontPlan(scenario?.input)
+    });
   }
 
   function statusCopy(r){
@@ -107,6 +121,7 @@
       else comparisonList.replaceChildren(...r.comparisons.map(item=>{const div=document.createElement('div');div.className='car-warning';div.textContent=comparisonText(item);return div;}));
     }
     const warnings=byId('warnings'); if(warnings){warnings.replaceChildren(...r.warnings.map(message=>{const div=document.createElement('div');div.className='car-warning';div.textContent=message;return div;}));}
+    if(mycmTouched&&!usingStarterValues)window.CarrowmontPlanSave?.offer?.('car-affordability');
   }
 
   function calculate(){ try{render(core.calculate(state(),engines()));if(!contextualActionMessageActive)setText('actionMessage','');}catch(error){console.error(error);render({ok:false,errors:['A required Carrowmont engine could not be loaded.'],warnings:[]});} }
@@ -119,9 +134,10 @@
   function downloadCsv(){ if(!lastResult||!lastResult.ok)return; const r=lastResult,a=r.assumptions; const rows=[['Carrowmont Car Affordability & Auto Decision'],['Methodology version',r.methodologyVersion],['Currency',locale.getCurrency()],['Vehicle price',r.vehiclePrice],['Down payment',a.downPayment],['Trade-in credit',a.tradeInCredit],['Upfront taxes / fees',a.upfrontTaxesFees],['Loan amount',r.loanAmount],['Annual rate %',a.annualRate],['Term months',a.termMonths],['Monthly loan payment',r.monthlyLoanPayment],['Monthly running costs',r.monthlyRunningCosts],['All-in monthly car cost',r.allInMonthlyCarCost],['Take-home monthly income',a.takeHomeMonthlyIncome],['Essential monthly expenses',a.essentialMonthlyExpenses],['Existing monthly debt payments',a.existingMonthlyDebtPayments],['Monthly cash room before car',r.currentCashRoom],['Monthly cash room after car',r.afterCashRoom],['Gross-income DTI before %',r.currentGrossDtiPct??''],['Gross-income DTI after %',r.afterGrossDtiPct??''],['Emergency savings before',a.emergencySavings],['Emergency savings used for purchase',a.emergencySavingsUsedForPurchase],['Emergency reserve after purchase',r.reserveAfterPurchase],['Emergency runway before months',r.runwayBeforeMonths??''],['Emergency runway after months',r.runwayAfterMonths??''],['Chosen runway target months',r.runwayTargetMonths],['Stress interest rate %',r.stressedRate],['Stress running costs',r.stressedRunningCosts],['Stress monthly cash room',r.stressCashRoom],['Important','No universal affordability cutoff or lender-approval prediction']]; const blob=new Blob([rows.map(row=>row.map(csvCell).join(',')).join('\n')+'\n'],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='carrowmont-car-affordability-auto-decision.csv';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);setText('actionMessage','CSV has been downloaded.'); }
   async function generateReport(){if(!lastResult?.ok||!window.CarrowmontCarAffordabilityPdfRenderer)return;try{setText('actionMessage','Preparing report...');await window.CarrowmontCarAffordabilityPdfRenderer.generate({result:lastResult,currency:locale.getCurrency(),locale:locale.getLocale()});setText('actionMessage','Report has been downloaded.');}catch(error){console.error(error);setText('actionMessage','The report could not be generated.');}}
 
-  byId('calculateBtn')?.addEventListener('click',()=>{ contextualActionMessageActive=false; calculate(); });
-  ids.forEach(id=>byId(id)?.addEventListener('input',()=>{ if(!applyingProgrammaticValues){ if(monetaryIds.includes(id)) usingStarterValues=false; contextualActionMessageActive=false; } calculate(); }));
+  byId('calculateBtn')?.addEventListener('click',()=>{ contextualActionMessageActive=false; if(!usingStarterValues)mycmTouched=true; calculate(); });
+  ids.forEach(id=>byId(id)?.addEventListener('input',()=>{ if(!applyingProgrammaticValues){ mycmTouched=true; if(monetaryIds.includes(id)) usingStarterValues=false; contextualActionMessageActive=false; } calculate(); }));
   byId('copySummaryBtn')?.addEventListener('click',copySummary); byId('downloadCsvBtn')?.addEventListener('click',downloadCsv); byId('generateReportBtn')?.addEventListener('click',generateReport);
+  configureMyCarrowmontSave();
   const usedHandoff=consumeAskHandoff();
   if(!usedHandoff) applyStarterDefaults(false);
   window.addEventListener('carrowmont:localechange',()=>{ if(usingStarterValues) applyStarterDefaults(true); calculate(); });

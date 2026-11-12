@@ -8,6 +8,7 @@
   const byId = id => document.getElementById(id);
   const ids = ['essentialExpenses','debtPayments','otherCommitments','emergencySavings','otherLiquidCash','targetMonths','monthlyContribution','shockCost','disruptionIncome'];
   let lastResult = null;
+  let mycmTouched = false;
 
   function value(id) {
     const n = Number(byId(id)?.value);
@@ -103,6 +104,7 @@
 
   function calculate() {
     render(core.calculate(inputState()));
+    if (mycmTouched) window.CarrowmontPlanSave?.offer?.('emergency-runway');
     setText('actionMessage', '');
   }
 
@@ -195,13 +197,46 @@
     }
   }
 
-  byId('calculateBtn')?.addEventListener('click', calculate);
-  ids.forEach(id => byId(id)?.addEventListener('input', calculate));
-  byId('includeOtherLiquidCash')?.addEventListener('change', calculate);
+
+  function applyMyCarrowmontPlan(scenario) {
+    const input = scenario?.input;
+    if (!input || typeof input !== 'object') return;
+    ids.forEach(id => { if (input[id] !== undefined && byId(id)) byId(id).value = input[id]; });
+    if (input.includeOtherLiquidCash !== undefined && byId('includeOtherLiquidCash')) byId('includeOtherLiquidCash').checked = Boolean(input.includeOtherLiquidCash);
+    mycmTouched = false;
+    calculate();
+  }
+
+  function configureMyCarrowmontSave() {
+    const bridge = window.CarrowmontPlanSave;
+    if (!bridge?.register) return;
+    bridge.register({
+      journey:'emergency-runway',
+      label:'Emergency fund & runway plan',
+      toolPath:'/emergency-fund-runway-calculator.html',
+      anchor:'#statusCard',
+      getPlan:()=>{
+        if (!mycmTouched || !lastResult || lastResult.monthlyNeed <= 0) return null;
+        const a=lastResult.assumptions||{};
+        return {journey:'emergency-runway',label:'Emergency fund & runway plan',toolPath:'/emergency-fund-runway-calculator.html',scenario:{input:inputState(),summary:{reserve:lastResult.reserve,monthlyNeed:lastResult.monthlyNeed,runwayMonths:lastResult.fullLossRunwayMonths,targetMonths:a.targetMonths,targetGap:lastResult.targetGap}},profileFacts:{
+          'cashFlow.essentialExpenses':{value:Number(a.essentialExpenses||0),unit:locale.getCurrency(),source:'Emergency Fund & Runway'},
+          'debt.monthlyPayments':{value:Number(a.debtPayments||0),unit:locale.getCurrency(),source:'Emergency Fund & Runway'},
+          'resilience.emergencySavings':{value:Number(a.emergencySavings||0),unit:locale.getCurrency(),source:'Emergency Fund & Runway'},
+          'resilience.targetMonths':{value:Number(a.targetMonths||0),unit:'months',source:'Emergency Fund & Runway'}
+        }};
+      },
+      applyPlan:applyMyCarrowmontPlan
+    });
+  }
+
+  byId('calculateBtn')?.addEventListener('click', () => { mycmTouched = true; calculate(); });
+  ids.forEach(id => byId(id)?.addEventListener('input', () => { mycmTouched = true; calculate(); }));
+  byId('includeOtherLiquidCash')?.addEventListener('change', () => { mycmTouched = true; calculate(); });
   byId('copySummaryBtn')?.addEventListener('click', copySummary);
   byId('downloadCsvBtn')?.addEventListener('click', downloadCsv);
   byId('generateReportBtn')?.addEventListener('click', generateReport);
   window.addEventListener('carrowmont:localechange', () => render(core.calculate(inputState())));
 
+  configureMyCarrowmontSave();
   calculate();
 })();
