@@ -148,7 +148,7 @@
   function stageGuestProfile(profile){
     if(!root.localStorage) return false;
     const normalized=root.CarrowmontDashboardStore?.normalize?root.CarrowmontDashboardStore.normalize(profile):profile;
-    root.localStorage.setItem(PENDING_GUEST_KEY,JSON.stringify({profile:normalized,stagedAt:new Date().toISOString()}));
+    root.localStorage.setItem(PENDING_GUEST_KEY,JSON.stringify({profile:normalized,stagedAt:new Date().toISOString(),explicit:true}));
     return true;
   }
   function readStagedGuestProfile(){

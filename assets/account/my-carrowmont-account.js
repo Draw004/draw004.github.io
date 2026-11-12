@@ -6,18 +6,18 @@
   const root=document.getElementById('mycmAccount');
   if(!root||!Account.isConfigured()) return;
 
-  root.hidden=false;
   const browserStore=Store.createBrowserStore(window);
   const $=id=>document.getElementById(id);
   const status=$('mycmAccountStatus');
   const signedOut=$('mycmAccountSignedOut');
   const signedIn=$('mycmAccountSignedIn');
+  const dashboard=$('mycmDashboardShell');
   const emailInput=$('mycmAccountEmail');
-  const carry=$('mycmCarryGuest');
   const accountEmail=$('mycmAccountCurrentEmail');
   const cloudSummary=$('mycmCloudSummary');
   let cloudProfile=null;
   let currentUser=null;
+  let saveTimer=null;
 
   function say(message,kind='info'){
     status.textContent=message;
@@ -25,82 +25,71 @@
     status.hidden=false;
   }
   function hasFacts(profile){return Boolean(profile&&Object.keys(profile.facts||{}).length);}
-
+  function normalized(profile){return Store.setMode(Store.normalize(profile||Store.create()),'session');}
+  function mergeProfiles(base,incoming){
+    const a=normalized(base),b=normalized(incoming);
+    return normalized({...a,locale:b.locale||a.locale,facts:{...(a.facts||{}),...(b.facts||{})},lastImport:b.lastImport||a.lastImport,updatedAt:new Date().toISOString()});
+  }
   function hasPersistedAuthSession(){
-    try{
-      for(let i=0;i<localStorage.length;i+=1){
-        const key=localStorage.key(i)||'';
-        if(/^sb-.*-auth-token$/.test(key)&&localStorage.getItem(key)) return true;
-      }
-    }catch(_){}
+    try{for(let i=0;i<localStorage.length;i+=1){const key=localStorage.key(i)||'';if(/^sb-.*-auth-token$/.test(key)&&localStorage.getItem(key))return true;}}catch(_){}
     return false;
   }
   function hasAuthReturnInUrl(){
-    try{
-      const hash=String(location.hash||'');
-      const search=new URLSearchParams(location.search||'');
-      return /(?:^|[&#])access_token=/.test(hash)||/(?:^|[&#])refresh_token=/.test(hash)||search.has('code');
-    }catch(_){return false;}
+    try{const hash=String(location.hash||'');const search=new URLSearchParams(location.search||'');return /(?:^|[&#])access_token=/.test(hash)||/(?:^|[&#])refresh_token=/.test(hash)||search.has('code');}catch(_){return false;}
   }
   function downloadJson(data,name){
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
   }
-  function renderCloudState(){
-    if(!currentUser){signedOut.hidden=false;signedIn.hidden=true;return;}
-    signedOut.hidden=true;signedIn.hidden=false;
-    accountEmail.textContent=currentUser.email||'Signed-in account';
-    if(cloudProfile?.profile){
-      const count=Object.keys(cloudProfile.profile.facts||{}).length;
-      cloudSummary.textContent=`Saved account profile: ${count} planning value${count===1?'':'s'}, last updated ${new Date(cloudProfile.updated_at).toLocaleString()}. Nothing is copied into this browser unless you choose Load saved profile.`;
-    }else{
-      cloudSummary.textContent='No saved My Carrowmont profile exists in this account yet.';
-    }
+  function showSignedOut(){signedOut.hidden=false;signedIn.hidden=true;dashboard.hidden=true;}
+  function showSignedIn(profile){
+    signedOut.hidden=true;signedIn.hidden=false;dashboard.hidden=false;
+    accountEmail.textContent=currentUser?.email||'Signed-in account';
+    const count=Object.keys(profile?.facts||{}).length;
+    cloudSummary.textContent=count?`Your saved profile is loaded with ${count} planning value${count===1?'':'s'}. Updates made here are saved to My Carrowmont.`:'No planning values are saved yet. Add details here or save a supported Carrowmont plan to start your profile.';
+    window.dispatchEvent(new CustomEvent('carrowmont:mycm-account-ready',{detail:{profile:normalized(profile)}}));
+  }
+  async function applyStagedChoice(baseProfile){
+    const stagedEntry=Account.readStagedGuestProfile();
+    if(stagedEntry && stagedEntry.explicit!==true){Account.clearStagedGuestProfile();return {profile:baseProfile,changed:false};}
+    const staged=stagedEntry?.profile;
+    if(!hasFacts(staged)) return {profile:baseProfile,changed:false};
+    const merged=mergeProfiles(baseProfile,staged);
+    const saved=await Account.saveCloudProfile(merged);
+    Account.clearStagedGuestProfile();
+    return {profile:saved.profile,changed:true};
   }
   async function refresh(){
     try{
       currentUser=await Account.getUser();
-      cloudProfile=currentUser?await Account.loadCloudProfile():null;
-      renderCloudState();
-      const staged=Account.readStagedGuestProfile();
-      if(currentUser&&staged?.profile&&hasFacts(staged.profile)) say('You signed in successfully. Your guest dashboard is ready to save, but it has not been uploaded yet. Choose “Save this browser profile to account” if you want to keep it.','success');
-    }catch(error){say(error.message||'Account status could not be loaded.','error');}
+      if(!currentUser){showSignedOut();return;}
+      cloudProfile=await Account.loadCloudProfile();
+      let profile=cloudProfile?.profile?normalized(cloudProfile.profile):normalized(Store.create());
+      const applied=await applyStagedChoice(profile);
+      profile=applied.profile;
+      if(applied.changed) cloudProfile=await Account.loadCloudProfile();
+      browserStore?.save(profile,'session');
+      showSignedIn(profile);
+      if(applied.changed) say('Your selected plan has been saved to My Carrowmont.','success');
+    }catch(error){showSignedOut();say(error.message||'Account status could not be loaded.','error');}
   }
 
   $('mycmAccountForm').addEventListener('submit',async event=>{
     event.preventDefault();
     try{
-      const profile=browserStore?.load();
-      if(carry.checked&&hasFacts(profile)) Account.stageGuestProfile(profile);
-      else Account.clearStagedGuestProfile();
       await Account.sendMagicLink(emailInput.value,`${location.origin}/my-carrowmont.html`);
-      say('Check your email for the secure Carrowmont sign-in link. Your financial profile has not been uploaded.','success');
+      say('Check your email for your secure one-time Carrowmont sign-in link.','success');
     }catch(error){say(error.message||'The sign-in link could not be sent.','error');}
   });
 
-  $('mycmSaveCloud').addEventListener('click',async()=>{
-    try{
-      const staged=Account.readStagedGuestProfile()?.profile;
-      const current=browserStore?.load();
-      const chosen=hasFacts(staged)?staged:current;
-      if(!hasFacts(chosen)){say('There are no browser planning values to save yet.','error');return;}
-      cloudProfile=await Account.saveCloudProfile(chosen);
-      Account.clearStagedGuestProfile();
-      renderCloudState();
-      say('My Carrowmont was saved to your account.','success');
-    }catch(error){say(error.message||'My Carrowmont could not be saved.','error');}
-  });
-
-  $('mycmLoadCloud').addEventListener('click',async()=>{
-    try{
-      cloudProfile=await Account.loadCloudProfile();
-      if(!cloudProfile?.profile){say('There is no saved account profile to load.','error');return;}
-      const mode=browserStore?.load()?.mode||'session';
-      browserStore?.save(cloudProfile.profile,mode);
-      Account.clearStagedGuestProfile();
-      say('Saved account profile loaded into this browser.','success');
-      window.setTimeout(()=>location.reload(),120);
-    }catch(error){say(error.message||'Saved profile could not be loaded.','error');}
+  window.addEventListener('carrowmont:mycm-profile-change',event=>{
+    if(!currentUser||!event.detail?.profile) return;
+    clearTimeout(saveTimer);
+    const profile=normalized(event.detail.profile);
+    saveTimer=window.setTimeout(async()=>{
+      try{cloudProfile=await Account.saveCloudProfile(profile);cloudSummary.textContent='Your latest My Carrowmont changes are saved.';}
+      catch(error){say(error.message||'Your latest changes could not be saved.','error');}
+    },250);
   });
 
   $('mycmExportCloud').addEventListener('click',async()=>{
@@ -109,20 +98,21 @@
   });
 
   $('mycmDeleteCloud').addEventListener('click',async()=>{
-    if(!window.confirm('Delete the saved My Carrowmont cloud profile and saved scenarios from this account? Your account itself will remain active.'))return;
-    try{await Account.deleteCloudProfile();cloudProfile=null;renderCloudState();say('Saved cloud profile deleted. Browser-local My Carrowmont data was not changed.','success');}
-    catch(error){say(error.message||'Saved cloud profile could not be deleted.','error');}
+    if(!window.confirm('Delete the saved My Carrowmont profile and saved scenarios from this account? Your sign-in account will remain active.'))return;
+    try{
+      await Account.deleteCloudProfile();cloudProfile=null;browserStore?.clear();
+      const empty=normalized(Store.create());browserStore?.save(empty,'session');showSignedIn(empty);
+      say('Saved My Carrowmont profile deleted.','success');
+    }catch(error){say(error.message||'Saved profile could not be deleted.','error');}
   });
 
   $('mycmSignOut').addEventListener('click',async()=>{
-    try{await Account.signOut();currentUser=null;cloudProfile=null;Account.clearStagedGuestProfile();renderCloudState();say('Signed out. Your browser-local My Carrowmont data remains under your existing guest settings.','success');}
+    try{await Account.signOut();currentUser=null;cloudProfile=null;Account.clearStagedGuestProfile();browserStore?.clear();location.replace('/my-carrowmont.html');}
     catch(error){say(error.message||'Sign out failed.','error');}
   });
 
   if(hasPersistedAuthSession()||hasAuthReturnInUrl()){
     Account.onAuthStateChange(()=>refresh());
     refresh();
-  }else{
-    renderCloudState();
-  }
+  }else showSignedOut();
 })();
