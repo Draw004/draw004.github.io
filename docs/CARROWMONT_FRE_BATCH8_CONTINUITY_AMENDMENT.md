@@ -15,7 +15,8 @@ Financial Resolution Engine → Money Priorities → useful guest experience →
 ## Batch 8 subdivision
 - **8A — COMPLETE:** Account Continuity Foundation + homepage My Carrowmont/newsletter placement.
 - **8B — COMPLETE:** Selective Save/Update to My Carrowmont across the account-backed planning set, saved scenario reopening, logged-in experiment-vs-commit protection, compact benefit-led hero, and removal of stale guest-persistence messaging where it conflicts with the account-backed model.
-- **8C — THIS RELEASE:** Persistent Plans & Progress Tracking using explicitly saved plan versions, plain-language needs-attention detection and simple corrective next steps. No live account monitoring or automatic plan changes.
+- **8C — COMPLETE:** Persistent Plans & Progress Tracking using explicitly saved plan versions, plain-language change detection and simple next steps. No live account monitoring or automatic plan changes.
+- **8D — THIS RELEASE:** Plan Baseline & On-Track Intelligence. Separates current details, saved target, what-if calculations and progress history; adds plan freshness, target-based status and quantified corrective scenarios where existing deterministic planner outputs support them.
 
 ## Batch 8B continuity rules
 - Account-backed planning journeys: Budget & Cash Flow; Emergency Fund & Runway; Debt Payoff; Credit Card Payoff; Loan/EMI; Mortgage/Home Loan; Retirement; Goals; Financial Independence; SIP/Recurring Investment; Retirement Withdrawal/Drawdown.
@@ -30,7 +31,7 @@ Financial Resolution Engine → Money Priorities → useful guest experience →
 - Saved scenarios can be reopened without re-entering the same assumptions.
 - Budget guest month comparisons remain browser-session only; long-term history/progress belongs to the account-backed 8C model.
 
-Batch 9 Trust Contract, Batch 10 Country-Aware Intelligence, Batch 11 Homepage & Product Transformation, Batch 12 Wider Resolution Library and Batch 13 Connected Financial Data remain sequenced later as originally planned.
+The revised roadmap continues with 8E Product Story & Mobile-First Foundation, then Trust/Plan Transparency, Your Financial Plan, Country-Aware Intelligence, account-aware Ask Carrowmont, later homepage transformation, the wider Opportunity Engine, optional connected data, and a native-app decision gate.
 
 ## Batch 8C continuity rules
 - Progress compares only plan versions the user explicitly chose to save/update.
@@ -40,5 +41,19 @@ Batch 9 Trust Contract, Batch 10 Country-Aware Intelligence, Batch 11 Homepage &
 - User-facing progress stays plain: `On track`, `Improving`, `Needs attention`, `Needs review`, `Steady`, or `Ready to track`.
 - Needs-attention cards point back to the existing deterministic planner for a corrective scenario; My Carrowmont never changes a plan automatically.
 - Car Affordability stays a saved decision scenario and is excluded from the ongoing progress feed.
-- Batch 8 is now complete at the foundation level: account continuity (8A), selective save/update (8B), and saved-plan progress tracking (8C).
+- Batch 8C completed the saved-version comparison foundation. Batch 8D now adds the missing distinction between change over time and whether the saved plan itself is on track.
 
+
+
+## Batch 8D continuity rules
+- `Current details` are the latest account values the user chose to save.
+- `Saved plan` is the target/path the user chose to keep.
+- `What-if calculation` stays separate until the user explicitly updates My Carrowmont.
+- `Progress history` contains only prior versions the user explicitly saved.
+- A plan can be improving and still need attention; trend and target status are separate.
+- My Carrowmont shows when a plan was last reviewed and uses a simple review cadence so old information is not presented as current.
+- Target status is based on saved deterministic planner outputs: funding target, runway target, payoff target, FI target age, investment target or withdrawal horizon where supported.
+- Corrective text uses values already produced by deterministic Carrowmont engines where available (for example a contribution gap or emergency-fund gap). It never changes the plan automatically.
+- For payoff plans where a precise new payment is not already saved, Carrowmont quantifies how far the current payoff estimate is from the saved target and sends the user back to the existing planner to test the payment change.
+- No bank connection, transaction monitoring, background financial inference or new financial formula is introduced in 8D.
+- Car Affordability remains a saved decision scenario outside the ongoing progress/on-track feed.
