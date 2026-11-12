@@ -18,3 +18,15 @@
 .mycm-toolbar>div>small{display:block;margin-top:4px;color:#6b7f94;line-height:1.45}
 .mycm-account-helper{margin:10px 0 0;color:#60768c;font-size:12.5px;line-height:1.5}
 .mycm-account-note strong{color:#173b5d}
+
+/* FRE Batch 8B - compact value-led hero + saved-plan library */
+.mycm-hero-trust{margin:14px 0 0;color:#35566f;font-size:14px;line-height:1.5}
+.mycm-saved-plans{margin:0 0 20px;padding:20px;border:1px solid #c9dce3;border-radius:18px;background:#fff}
+.mycm-saved-plans-head h2{margin:4px 0 6px;font-size:24px;color:#123657}.mycm-saved-plans-head p{margin:0;color:#5b7184;line-height:1.55;max-width:850px}
+.mycm-saved-plans-list{display:grid;gap:10px;margin-top:16px}.mycm-saved-plan{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 15px;border:1px solid #d8e4e8;border-radius:14px;background:#f8fbfb}.mycm-saved-plan-copy strong{display:block;color:#173d5c;font-size:15px}.mycm-saved-plan-copy span{display:block;margin-top:4px;color:#6a7e90;font-size:12px;text-transform:capitalize}.mycm-saved-plan-actions{display:flex;gap:8px;flex-wrap:wrap}.mycm-saved-empty{margin:0;color:#5b7184}
+@media(max-width:720px){.mycm-hero p{max-width:none}.mycm-privacy-badges{gap:7px}.mycm-saved-plan{align-items:stretch;flex-direction:column}.mycm-saved-plan-actions{width:100%}.mycm-saved-plan-actions .mycm-button{flex:1}}
+
+/* FRE Batch 8B - use hero space efficiently */
+.mycm-hero{padding:42px 0 22px}.mycm-hero h1{max-width:920px;font-size:clamp(36px,4.2vw,54px)}.mycm-hero p{max-width:1080px;margin-top:12px;font-size:17px;line-height:1.55}.mycm-privacy-badges{margin-top:14px}.mycm-hero-trust{margin-top:10px!important}
+@media(max-width:800px){.mycm-hero{padding:30px 0 18px}.mycm-hero h1{font-size:36px}.mycm-hero p{font-size:16px}.mycm-privacy-badges span{min-height:32px;padding:6px 10px}}
+@media(max-width:420px){.mycm-hero h1{font-size:32px}}

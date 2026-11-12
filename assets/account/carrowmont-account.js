@@ -9,6 +9,8 @@
   const VERSION='carrowmont-account-v1.0';
   const SDK_SRC='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
   const PENDING_GUEST_KEY='carrowmont_pending_cloud_profile_v1';
+  const PENDING_PLAN_KEY='carrowmont_pending_saved_plan_v1';
+  const OPEN_PLAN_KEY='carrowmont_open_saved_plan_v1';
   let clientPromise=null;
 
   const clean=v=>typeof v==='string'?v.trim():'';
@@ -155,6 +157,15 @@
     try{return JSON.parse(root.localStorage?.getItem(PENDING_GUEST_KEY)||'null');}catch(_){return null;}
   }
   function clearStagedGuestProfile(){root.localStorage?.removeItem(PENDING_GUEST_KEY);}
+  function readStagedPlan(){try{return JSON.parse(root.localStorage?.getItem(PENDING_PLAN_KEY)||'null');}catch(_){return null;}}
+  function clearStagedPlan(){root.localStorage?.removeItem(PENDING_PLAN_KEY);}
+  function stageOpenPlan(row){
+    if(!root.sessionStorage||!row||typeof row!=='object') return false;
+    const scenario=row.scenario&&typeof row.scenario==='object'?row.scenario:{};
+    const plan={journey:clean(row.journey)||clean(scenario.journey)||'unknown',label:clean(row.label)||clean(scenario.label)||'Saved plan',toolPath:clean(scenario.toolPath)||'/',scenario};
+    root.sessionStorage.setItem(OPEN_PLAN_KEY,JSON.stringify({explicit:true,stagedAt:new Date().toISOString(),plan}));
+    return true;
+  }
   async function exportAccountData(){
     const user=await getUser();
     if(!user) throw new Error('Sign in before exporting account data.');
@@ -169,5 +180,5 @@
     getClient().then(client=>{if(client)client.auth.onAuthStateChange((event,session)=>callback?.(event,session));}).catch(()=>{});
   }
 
-  return Object.freeze({VERSION,SDK_SRC,PENDING_GUEST_KEY,config,isConfigured,getClient,getUser,sendMagicLink,signOut,loadCloudProfile,saveCloudProfile,deleteCloudProfile,listScenarios,saveScenario,deleteScenario,stageGuestProfile,readStagedGuestProfile,clearStagedGuestProfile,exportAccountData,onAuthStateChange});
+  return Object.freeze({VERSION,SDK_SRC,PENDING_GUEST_KEY,PENDING_PLAN_KEY,OPEN_PLAN_KEY,config,isConfigured,getClient,getUser,sendMagicLink,signOut,loadCloudProfile,saveCloudProfile,deleteCloudProfile,listScenarios,saveScenario,deleteScenario,stageGuestProfile,readStagedGuestProfile,clearStagedGuestProfile,readStagedPlan,clearStagedPlan,stageOpenPlan,exportAccountData,onAuthStateChange});
 });

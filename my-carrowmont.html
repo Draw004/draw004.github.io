@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>My Carrowmont | Saved Financial Planning Dashboard</title>
-  <meta name="description" content="Keep meaningful financial plans together, revisit them later and access your saved My Carrowmont profile across devices.">
+  <title>My Carrowmont | Save Financial Plans &amp; Planning Insights</title>
+  <meta name="description" content="Save retirement, goals, debt, loan and other financial plans in My Carrowmont, access them across devices and see deeper planning insights over time.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://carrowmont.com/my-carrowmont.html">
-  <meta property="og:title" content="My Carrowmont | Saved Financial Planning Dashboard">
-  <meta property="og:description" content="An account-backed planning dashboard for saved financial context, progress and next priorities.">
+  <meta property="og:title" content="My Carrowmont | Save Financial Plans &amp; Planning Insights">
+  <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
   <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261112-fre8a">
@@ -27,9 +27,10 @@
   <section class="mycm-hero">
     <div class="shell">
       <span class="mycm-kicker">My Carrowmont</span>
-      <h1>Keep your financial planning together.</h1>
-      <p>Use Carrowmont freely without an account. Sign in to My Carrowmont when you want to keep meaningful plans, return to them later and access them across devices.</p>
-      <div class="mycm-privacy-badges"><span>Account optional</span><span>Cross-device access</span><span>No bank connection</span><span>You control saved plans</span></div>
+      <h1>Keep your financial plans connected.</h1>
+      <p>Save your retirement, goals, debt, loans and other financial plans, return to them later, update them as life changes, access them across devices and see deeper insights — without starting over each time.</p>
+      <div class="mycm-privacy-badges"><span>Save plans</span><span>Access anywhere</span><span>Update anytime</span><span>See deeper insights</span></div>
+      <p class="mycm-hero-trust"><strong>Only the plans you choose to keep become part of My Carrowmont.</strong></p>
     </div>
   </section>
 
@@ -49,10 +50,14 @@
           <div class="mycm-account-signed"><div><strong id="mycmAccountCurrentEmail">Signed-in account</strong><p id="mycmCloudSummary">Loading your saved My Carrowmont profile…</p></div><button class="mycm-button" id="mycmSignOut" type="button">Sign out</button></div>
           <div class="mycm-account-actions"><button class="mycm-button" id="mycmExportCloud" type="button">Export account data</button><button class="mycm-button mycm-button-danger" id="mycmDeleteCloud" type="button">Delete saved profile</button></div>
         </div>
-        <p class="mycm-account-note"><strong>Only the plans you choose to keep become part of My Carrowmont.</strong> Saved planning data is used to provide your My Carrowmont experience; it is not sold or used for advertising.</p>
+        <p class="mycm-account-note">Saved planning data is used to provide your My Carrowmont experience; it is not sold or used for advertising.</p>
       </section>
 
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
+        <section class="mycm-saved-plans" id="mycmSavedPlansSection" hidden>
+          <div class="mycm-saved-plans-head"><div><span class="mycm-kicker">Saved plans</span><h2>Plans you chose to keep</h2><p>Reopen a saved plan without entering the same assumptions again. Saved plans also provide the foundation for deeper planning insights.</p></div></div>
+          <div class="mycm-saved-plans-list" id="mycmSavedPlansList"></div>
+        </section>
         <div class="mycm-toolbar">
           <div><strong class="mycm-toolbar-title">Your saved planning profile</strong><small>Changes you make here are saved to My Carrowmont while you are signed in.</small></div>
           <div class="mycm-toolbar-actions"><button class="mycm-button" id="mycmEditAll" type="button">Add or edit details</button><button class="mycm-button" id="mycmKnowBtn" type="button">What Carrowmont knows</button></div>
