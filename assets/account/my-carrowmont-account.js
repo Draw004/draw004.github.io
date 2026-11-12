@@ -50,18 +50,21 @@
   function renderProgress(rows){
     if(!progressSection||!progressList||!progressSummary||!currentUser||!Progress){if(progressSection)progressSection.hidden=true;return;}
     const currency=window.CarrowmontLocale?.getCurrency?.()||cloudProfile?.profile?.locale?.currency||'USD';
-    const items=Progress.analyze(rows,currency);
+    const items=Progress.evaluateAll?Progress.evaluateAll(rows,currency):Progress.analyze(rows,currency);
     progressList.innerHTML='';
     if(!items.length){progressSection.hidden=true;return;}
     progressSection.hidden=false;
     const attention=items.filter(item=>item.tone==='bad').length;
-    const improving=items.filter(item=>item.tone==='good').length;
+    const review=items.filter(item=>item.status==='Needs review').length;
+    const healthy=items.filter(item=>item.status==='On track'||item.status==='Ahead').length;
     const ready=items.filter(item=>item.status==='Ready to track').length;
-    const parts=[];if(improving)parts.push(`${improving} improving`);if(attention)parts.push(`${attention} need${attention===1?'s':''} attention`);if(ready)parts.push(`${ready} ready to track`);
+    const parts=[];if(healthy)parts.push(`${healthy} on track`);if(attention)parts.push(`${attention} need${attention===1?'s':''} attention`);if(review)parts.push(`${review} need${review===1?'s':''} review`);if(ready)parts.push(`${ready} ready to track`);
     progressSummary.textContent=parts.length?parts.join(' · '):'Your saved plans are ready to review.';
     items.forEach(item=>{
+      const trend=item.trend||item;
+      const showTrendStatus=trend?.status&&trend.status!==item.status;
       const card=document.createElement('article');card.className='mycm-progress-card';
-      card.innerHTML=`<div class="mycm-progress-head"><strong>${esc(item.label)}</strong><span class="mycm-progress-status" data-tone="${progressTone(item.tone)}">${esc(item.status)}</span></div><h3>${esc(item.headline)}</h3><p>${esc(item.detail)}</p>${item.next?`<div class="mycm-progress-next"><strong>What you can do next</strong><span>${esc(item.next)}</span></div>`:''}<div class="mycm-progress-actions"><button type="button" class="mycm-button" data-progress-open="${esc(item.journey)}">Open plan</button></div>`;
+      card.innerHTML=`<div class="mycm-progress-head"><strong>${esc(item.label)}</strong><span class="mycm-progress-status" data-tone="${progressTone(item.tone)}">${esc(item.status)}</span></div><div class="mycm-progress-meta"><span>${esc(item.freshness?.label||'')}</span>${item.target?`<span>${esc(item.target)}</span>`:''}</div><h3>${esc(item.headline)}</h3><div class="mycm-progress-change"><div><strong>Since last save</strong>${showTrendStatus?`<span class="mycm-progress-trend" data-tone="${progressTone(trend.tone)}">${esc(trend.status)}</span>`:''}</div><p>${esc(trend.headline||'')}</p><small>${esc(trend.detail||'')}</small></div>${item.correction?`<div class="mycm-progress-next"><strong>What could help</strong><span>${esc(item.correction)}</span></div>`:''}<div class="mycm-progress-actions"><button type="button" class="mycm-button" data-progress-open="${esc(item.journey)}">Open plan</button></div>`;
       card.querySelector('[data-progress-open]').addEventListener('click',()=>{const row=(rows||[]).find(candidate=>candidate?.journey===item.journey);if(row&&Account.stageOpenPlan(row))location.href=planRoute(row);});
       progressList.appendChild(card);
     });

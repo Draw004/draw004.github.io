@@ -5,7 +5,7 @@
   else root.CarrowmontProgress=api;
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  const VERSION='carrowmont-progress-v1.0';
+  const VERSION='carrowmont-progress-v2.0';
   const MAX_HISTORY=12;
   const n=value=>{const x=Number(value);return Number.isFinite(x)?x:null;};
   const obj=value=>value&&typeof value==='object'?value:{};
@@ -56,6 +56,50 @@
     return {savedAt:clean(row.updated_at||row.created_at)||new Date().toISOString(),snapshot:snap};
   }
 
+  const REVIEW_MONTHS=Object.freeze({
+    'budget-cash-flow':1,'emergency-runway':3,'debt-payoff':3,'credit-card-payoff':1,
+    'loan-emi':6,'mortgage-payoff':6,'retirement':6,'goal':6,'financial-independence':6,
+    'recurring-investment':6,'retirement-withdrawal':3
+  });
+  function reviewEveryMonths(journey){return REVIEW_MONTHS[clean(journey)]||6;}
+  function addMonthsIso(value,monthsToAdd){
+    const t=Date.parse(value||'');const m=n(monthsToAdd);if(!Number.isFinite(t)||m===null)return '';
+    const d=new Date(t);d.setUTCMonth(d.getUTCMonth()+Math.round(m));return d.toISOString();
+  }
+  function targetFrom(journey,scenario,startedAt){
+    const j=clean(journey||scenario?.journey),s=summary(scenario),i=input(scenario);
+    if(j==='budget-cash-flow')return {kind:'monthly-room',value:0};
+    if(j==='emergency-runway'){const v=n(s.targetMonths);return v===null?null:{kind:'runway-months',value:v};}
+    if(['debt-payoff','credit-card-payoff','loan-emi'].includes(j)){const m=first(s.payoffMonths,s.avalancheMonths,s.snowballMonths,s.totalMonths);return m===null?null:{kind:'payoff-date',at:addMonthsIso(startedAt,m)};}
+    if(j==='mortgage-payoff'){const at=clean(s.scenarioPayoff||s.baselinePayoff);return at?{kind:'payoff-date',at}:null;}
+    if(j==='retirement'){
+      const age=first(s.retirementAge,i.retirementAge),current=first(i.currentAge);
+      return {kind:'funding-pct',value:100,age,at:age!==null&&current!==null?addMonthsIso(startedAt,(age-current)*12):''};
+    }
+    if(j==='goal'){const years=first(i.years);return {kind:'funding-pct',value:100,at:years!==null?addMonthsIso(startedAt,years*12):''};}
+    if(j==='financial-independence'){
+      const age=first(s.targetAge,i.targetAge),current=first(i.currentAge);
+      return age===null?null:{kind:'fi-age',value:age,at:current!==null?addMonthsIso(startedAt,(age-current)*12):''};
+    }
+    if(j==='recurring-investment'){
+      const value=first(s.target),years=first(i.years),monthsToTarget=first(s.months);
+      if(value===null||value<=0)return null;
+      return {kind:'investment-target',value,at:years!==null?addMonthsIso(startedAt,years*12):(monthsToTarget!==null?addMonthsIso(startedAt,monthsToTarget):'')};
+    }
+    if(j==='retirement-withdrawal'){
+      const monthsTarget=first(s.targetMonths,i.targetMonths);
+      return monthsTarget===null||monthsTarget<=0?null:{kind:'runway-months',value:monthsTarget,at:addMonthsIso(startedAt,monthsTarget)};
+    }
+    return null;
+  }
+  function planMeta(existing,nextScenario,savedAt){
+    const previous=obj(existing?.scenario?.planMeta),journey=clean(existing?.journey||nextScenario?.journey);
+    const startedAt=clean(previous.startedAt||existing?.created_at)||savedAt;
+    const baseline=previous.baseline&&typeof previous.baseline==='object'?previous.baseline:(existing?snapshot(existing.journey,existing.scenario):snapshot(journey,nextScenario));
+    const target=previous.target&&typeof previous.target==='object'?previous.target:targetFrom(journey,existing?.scenario||nextScenario,startedAt);
+    return {version:1,startedAt,lastReviewedAt:savedAt,reviewEveryMonths:reviewEveryMonths(journey),baseline,target};
+  }
+
   function scenarioWithHistory(existing,nextScenario){
     const next=obj(nextScenario),existingScenario=obj(existing?.scenario);
     const old=Array.isArray(existingScenario.progressHistory)?existingScenario.progressHistory.filter(x=>x&&typeof x==='object'&&x.snapshot):[];
@@ -67,7 +111,8 @@
       if(!seen.has(key))history.push(prior);
     }
     history=history.slice(-MAX_HISTORY);
-    return {...next,progressHistory:history,progressVersion:1};
+    const savedAt=new Date().toISOString();
+    return {...next,progressHistory:history,progressVersion:2,planMeta:planMeta(existing,next,savedAt)};
   }
 
   function money(value,currency){
@@ -142,6 +187,80 @@
     return result;
   }
 
+
+  function frequencyWords(value){
+    const key=clean(value).toLowerCase();return ({weekly:'each week',biweekly:'every 2 weeks',semimonthly:'twice a month',fourweekly:'every 4 weeks',monthly:'each month',quarterly:'each quarter',annual:'each year',yearly:'each year'})[key]||'each month';
+  }
+  function freshness(row,now){
+    const scenario=obj(row?.scenario),meta=obj(scenario.planMeta),last=clean(meta.lastReviewedAt||row?.updated_at||row?.created_at);
+    const cadence=n(meta.reviewEveryMonths)??reviewEveryMonths(row?.journey),nowIso=typeof now==='string'?now:new Date(now||Date.now()).toISOString();
+    const age=monthDiff(last,nowIso),stale=age!==null&&age>cadence+0.05;
+    return {lastReviewedAt:last,reviewEveryMonths:cadence,ageMonths:age,stale,label:last?`Last reviewed ${dateLabel(last)}`:'Not reviewed yet'};
+  }
+  function targetText(target,currency){
+    if(!target||typeof target!=='object')return '';
+    if(target.kind==='monthly-room')return 'Keep the monthly plan at or above break-even.';
+    if(target.kind==='runway-months')return `Saved target: ${months(target.value)} of runway.`;
+    if(target.kind==='payoff-date')return target.at?`Saved payoff target: ${dateLabel(target.at)}.`:'';
+    if(target.kind==='funding-pct')return target.age!==null&&target.age!==undefined?`Saved target: fully fund the plan by age ${number(target.age,0)}.`:'Saved target: fully fund the plan.';
+    if(target.kind==='fi-age')return `Saved target: reach financial independence by age ${number(target.value,0)}.`;
+    if(target.kind==='investment-target')return `Saved target: ${money(target.value,currency)}${target.at?` by ${dateLabel(target.at)}`:''}.`;
+    return '';
+  }
+  function currentPayoffAt(row,current){
+    const reviewed=clean(row?.scenario?.planMeta?.lastReviewedAt||row?.updated_at||row?.created_at);
+    return current.payoffMonths!==null&&current.payoffMonths!==undefined?addMonthsIso(reviewed,current.payoffMonths):'';
+  }
+  function evaluate(row,currency,now){
+    const scenario=obj(row?.scenario),current=snapshot(row?.journey,scenario),trend=compare(row,currency),j=current.journey;
+    const meta=obj(scenario.planMeta),target=meta.target&&typeof meta.target==='object'?meta.target:targetFrom(j,scenario,clean(meta.startedAt||row?.created_at||row?.updated_at));
+    const fresh=freshness(row,now),result={journey:j,label:clean(row?.label)||'Saved plan',route:clean(scenario.toolPath)||'/my-carrowmont.html',status:'Ready to track',tone:'neutral',headline:'Your saved plan is ready to review.',target:targetText(target,currency),freshness:fresh,trend,correction:'',startedAt:clean(meta.startedAt||row?.created_at||row?.updated_at)};
+    const set=(status,tone,headline,correction='')=>{result.status=status;result.tone=tone;result.headline=headline;result.correction=correction;};
+    if(j==='budget-cash-flow'){
+      const room=n(current.remaining);
+      if(room!==null&&room<0)set('Needs attention','bad',`Your saved budget is short by ${money(Math.abs(room),currency)} per month.`,`Create about ${money(Math.abs(room),currency)} more monthly room by reducing spending, increasing income or changing the saving amount.`);
+      else if(room!==null)set('On track','good',`Your saved budget leaves ${money(room,currency)} per month after the amounts entered.`);
+    }else if(j==='emergency-runway'){
+      const run=n(current.runwayMonths),targetMonths=n(target?.value),gap=n(current.targetGap);
+      if(run!==null&&targetMonths!==null&&run>=targetMonths+1)set('Ahead','good',`Emergency runway is ${months(run)}, above the saved target.`);
+      else if(run!==null&&targetMonths!==null&&run>=targetMonths)set('On track','good',`Emergency runway meets the saved ${number(targetMonths,1)}-month target.`);
+      else if(run!==null&&targetMonths!==null)set('Needs attention','bad',`Emergency runway is ${months(run)} against a saved ${number(targetMonths,1)}-month target.`,gap!==null&&gap>0?`Add about ${money(gap,currency)} to emergency savings to reach the saved runway target.`:'Open Emergency Fund & Runway and calculate the amount needed for the saved target.');
+    }else if(['debt-payoff','credit-card-payoff','loan-emi'].includes(j)){
+      const targetAt=clean(target?.at),currentAt=currentPayoffAt(row,current),late=targetAt&&currentAt?monthDiff(targetAt,currentAt):null;
+      if(late!==null&&late<-1)set('Ahead','good',`Estimated payoff is about ${months(Math.abs(late))} ahead of the saved target.`);
+      else if(late!==null&&late>0.5)set('Needs attention','bad',`Estimated payoff is about ${months(late)} later than the saved target.`,`To keep the original target, open the plan and test a higher payment. If you keep the current payment, move the target by about ${months(late)}.`);
+      else if(late!==null)set('On track','good','The current payoff estimate is in line with the saved target.');
+    }else if(j==='mortgage-payoff'){
+      const targetAt=clean(target?.at),currentAt=clean(current.payoffDate),late=targetAt&&currentAt?monthDiff(targetAt,currentAt):null;
+      if(late!==null&&late<-1)set('Ahead','good',`Estimated home-loan payoff is about ${months(Math.abs(late))} ahead of the saved target.`);
+      else if(late!==null&&late>0.5)set('Needs attention','bad',`Estimated home-loan payoff is about ${months(late)} later than the saved target.`,`To keep the original target, open the home-loan plan and test a higher repayment or extra payment. If you keep the current plan, move the target by about ${months(late)}.`);
+      else if(late!==null)set('On track','good','The current home-loan payoff estimate is in line with the saved target.');
+    }else if(['retirement','goal'].includes(j)){
+      const funded=n(current.fundedPct),add=n(summary(scenario).additionalContribution);
+      if(funded!==null&&funded>=110)set('Ahead','good',`The current saved model is ${number(funded,1)}% funded.`);
+      else if(funded!==null&&funded>=100)set('On track','good',`The current saved model is ${number(funded,1)}% funded.`);
+      else if(funded!==null)set('Needs attention','bad',`The current saved model is ${number(funded,1)}% funded.`,add!==null&&add>1?`Test about ${money(add,currency)} more ${frequencyWords(summary(scenario).contributionFrequency)} to close the modeled gap under the saved assumptions.`:`Open the ${j==='retirement'?'Retirement':'Goal'} Planner to calculate the contribution change needed for the saved target.`);
+    }else if(j==='financial-independence'){
+      const s=summary(scenario),age=n(s.modelledFIAge),targetAge=n(target?.value),add=n(s.additionalContribution);
+      if(age!==null&&targetAge!==null&&age<targetAge-0.1)set('Ahead','good',`The current saved model reaches financial independence around age ${number(age,1)}, ahead of age ${number(targetAge,0)}.`);
+      else if(age!==null&&targetAge!==null&&age<=targetAge+0.1)set('On track','good',`The current saved model reaches financial independence around the saved target age ${number(targetAge,0)}.`);
+      else if(age!==null&&targetAge!==null)set('Needs attention','bad',`The current saved model reaches financial independence around age ${number(age,1)}, later than the saved age ${number(targetAge,0)}.`,add!==null&&add>1?`Test about ${money(add,currency)} more ${frequencyWords(s.investmentFrequency)} under the saved assumptions.`:'Open Financial Independence to calculate the contribution or target-age change needed.');
+    }else if(j==='recurring-investment'){
+      const s=summary(scenario),targetValue=n(target?.value),projected=n(current.projectedValue),add=n(s.additionalContribution);
+      if(targetValue!==null&&projected!==null&&projected>=targetValue*1.1)set('Ahead','good',`The saved projection is above the target by about ${money(projected-targetValue,currency)}.`);
+      else if(targetValue!==null&&projected!==null&&projected>=targetValue)set('On track','good','The saved projection meets the investment target under the current assumptions.');
+      else if(targetValue!==null&&projected!==null)set('Needs attention','bad',`The saved projection is about ${money(targetValue-projected,currency)} below the target.`,add!==null&&add>1?`Test about ${money(add,currency)} more ${frequencyWords(s.contributionFrequency)} under the saved assumptions.`:'Open the investment plan to calculate the contribution change needed for the saved target.');
+      else set('Ready to track','neutral','This saved investment plan does not have a target amount to measure against yet.');
+    }else if(j==='retirement-withdrawal'){
+      const run=n(current.runwayMonths),targetMonths=n(target?.value),short=targetMonths!==null&&run!==null?targetMonths-run:null;
+      if(short!==null&&short<=-1)set('Ahead','good',`The saved withdrawal plan lasts about ${months(Math.abs(short))} beyond the saved horizon.`);
+      else if(short!==null&&short<=0)set('On track','good','The saved withdrawal plan reaches the saved horizon under the current assumptions.');
+      else if(short!==null)set('Needs attention','bad',`The saved withdrawal plan is about ${months(short)} short of the saved horizon.`,`Open Retirement Withdrawal and solve a lower starting withdrawal for the saved horizon.`);
+    }
+    if(fresh.stale&&result.tone!=='bad')set('Needs review','warn',`${fresh.label}. The plan may no longer reflect your current situation.`,result.correction||'Open the plan and confirm the saved details still reflect your situation.');
+    return result;
+  }
+  function evaluateAll(rows,currency,now){return (Array.isArray(rows)?rows:[]).filter(row=>clean(row?.journey)!=='car-affordability').map(row=>evaluate(row,currency,now));}
   function analyze(rows,currency){return (Array.isArray(rows)?rows:[]).filter(row=>clean(row?.journey)!=='car-affordability').map(row=>compare(row,currency));}
-  return Object.freeze({VERSION,MAX_HISTORY,snapshot,historyEntry,scenarioWithHistory,compare,analyze});
+  return Object.freeze({VERSION,MAX_HISTORY,snapshot,historyEntry,scenarioWithHistory,compare,analyze,reviewEveryMonths,targetFrom,planMeta,freshness,evaluate,evaluateAll});
 });

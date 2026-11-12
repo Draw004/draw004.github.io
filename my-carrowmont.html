@@ -11,7 +11,7 @@
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261112-fre8c">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261113-fre8d">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -54,9 +54,18 @@
       </section>
 
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
+        <section class="mycm-plan-model" aria-labelledby="mycmPlanModelTitle">
+          <div><span class="mycm-kicker">How your plan works</span><h2 id="mycmPlanModelTitle">Know what is saved — and what is only a what-if.</h2></div>
+          <div class="mycm-plan-model-grid">
+            <article><strong>Current details</strong><span>The latest account values you chose to save.</span></article>
+            <article><strong>Saved plan</strong><span>The target or path you chose to keep.</span></article>
+            <article><strong>What-if calculation</strong><span>Stays separate until you choose to update My Carrowmont.</span></article>
+            <article><strong>Progress history</strong><span>Previous saved versions used to show what changed.</span></article>
+          </div>
+        </section>
         <section class="mycm-progress" id="mycmProgressSection" hidden>
           <div class="mycm-progress-section-head">
-            <div><span class="mycm-kicker">Your progress</span><h2>See what changed since you last saved.</h2><p>My Carrowmont compares only the plan versions you choose to save. Your saved plan changes only when you choose to update it.</p></div>
+            <div><span class="mycm-kicker">Your progress</span><h2>See whether your saved plans are on track.</h2><p>Carrowmont checks the target you chose to keep, when the plan was last reviewed, and what changed since the previous saved version.</p></div>
             <strong class="mycm-progress-summary" id="mycmProgressSummary">Your saved plans are ready to review.</strong>
           </div>
           <div class="mycm-progress-list" id="mycmProgressList"></div>
@@ -113,9 +122,9 @@
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
-<script src="/assets/account/carrowmont-progress.js?v=20261112-fre8c"></script>
+<script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
 <script src="/assets/dashboard/my-carrowmont.js?v=20261112-fre8a"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261112-fre8c"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261113-fre8d"></script>
 <script src="/site.js?v=20261112-fre8a"></script>
 </body>
 </html>
