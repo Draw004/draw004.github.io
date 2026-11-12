@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>My Carrowmont | Guest Financial Dashboard</title>
-  <meta name="description" content="Summarize your cash flow, emergency runway, debt, retirement saving, goals, financial independence and Money Priorities in a private guest-first Carrowmont dashboard.">
+  <title>My Carrowmont | Saved Financial Planning Dashboard</title>
+  <meta name="description" content="Keep meaningful financial plans together, revisit them later and access your saved My Carrowmont profile across devices.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://carrowmont.com/my-carrowmont.html">
-  <meta property="og:title" content="My Carrowmont | Guest Financial Dashboard">
-  <meta property="og:description" content="A private guest-first dashboard for your financial planning context and next priorities.">
+  <meta property="og:title" content="My Carrowmont | Saved Financial Planning Dashboard">
+  <meta property="og:description" content="An account-backed planning dashboard for saved financial context, progress and next priorities.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261110-fre6">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261112-fre8a">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -27,53 +27,55 @@
   <section class="mycm-hero">
     <div class="shell">
       <span class="mycm-kicker">My Carrowmont</span>
-      <h1>See what matters without tracking every transaction.</h1>
-      <p>Bring your planning context together in one place: cash flow, emergency runway, debt, retirement saving, goals, financial independence and your next Money Priorities.</p>
-      <div class="mycm-privacy-badges"><span>Account optional</span><span>Session-only by default</span><span>No bank connection</span><span>You control every saved value</span></div>
+      <h1>Keep your financial planning together.</h1>
+      <p>Use Carrowmont freely without an account. Sign in to My Carrowmont when you want to keep meaningful plans, return to them later and access them across devices.</p>
+      <div class="mycm-privacy-badges"><span>Account optional</span><span>Cross-device access</span><span>No bank connection</span><span>You control saved plans</span></div>
     </div>
   </section>
 
   <section class="mycm-main">
     <div class="shell">
-      <div class="mycm-toolbar">
-        <label class="mycm-mode"><input id="mycmRemember" type="checkbox"><span><strong>Remember on this device</strong><small>Off keeps this dashboard in the current browser session only. Turn it on only if you want these values stored in this browser until you clear them.</small></span></label>
-        <div class="mycm-toolbar-actions"><button class="mycm-button" id="mycmEditAll" type="button">Add or edit details</button><button class="mycm-button" id="mycmKnowBtn" type="button">What Carrowmont knows</button><button class="mycm-button mycm-button-danger" id="mycmClear" type="button">Clear dashboard</button></div>
-      </div>
-      <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
-
-      <section class="mycm-account" id="mycmAccount" aria-labelledby="mycmAccountTitle" hidden>
-        <div class="mycm-account-head"><div><span class="mycm-kicker">Optional account</span><h2 id="mycmAccountTitle">Save My Carrowmont for later</h2><p>Guest mode stays available without login. Sign in with a secure email link only if you want Carrowmont to keep a chosen planning profile so you can return later or use another device.</p></div></div>
+      <section class="mycm-account" id="mycmAccount" aria-labelledby="mycmAccountTitle">
+        <div class="mycm-account-head"><div><span class="mycm-kicker">My Carrowmont account</span><h2 id="mycmAccountTitle">Sign in to My Carrowmont</h2><p>Use your email to access the planning profile you choose to keep. Carrowmont calculators and basic financial help remain available without signing in.</p></div></div>
         <div class="mycm-account-status" id="mycmAccountStatus" role="status" aria-live="polite" hidden></div>
         <div id="mycmAccountSignedOut">
           <form class="mycm-account-form" id="mycmAccountForm">
             <label for="mycmAccountEmail">Email address</label>
-            <div class="mycm-account-row"><input id="mycmAccountEmail" type="email" autocomplete="email" required placeholder="you@example.com"><button class="mycm-button mycm-button-primary" type="submit">Email me a secure sign-in link</button></div>
-            <label class="mycm-account-carry"><input id="mycmCarryGuest" type="checkbox" checked><span>After sign-in, offer to save the My Carrowmont values currently in this browser. Nothing is uploaded until I explicitly choose to save.</span></label>
+            <div class="mycm-account-row"><input id="mycmAccountEmail" type="email" autocomplete="email" required placeholder="you@example.com"><button class="mycm-button mycm-button-primary" type="submit">Continue with email</button></div>
+            <p class="mycm-account-helper">We’ll send you a secure one-time sign-in link. No password required.</p>
           </form>
         </div>
         <div id="mycmAccountSignedIn" hidden>
-          <div class="mycm-account-signed"><div><strong id="mycmAccountCurrentEmail">Signed-in account</strong><p id="mycmCloudSummary">Checking your saved profile…</p></div><button class="mycm-button" id="mycmSignOut" type="button">Sign out</button></div>
-          <div class="mycm-account-actions"><button class="mycm-button mycm-button-primary" id="mycmSaveCloud" type="button">Save this browser profile to account</button><button class="mycm-button" id="mycmLoadCloud" type="button">Load saved profile</button><button class="mycm-button" id="mycmExportCloud" type="button">Export account data</button><button class="mycm-button mycm-button-danger" id="mycmDeleteCloud" type="button">Delete saved cloud profile</button></div>
-          <p class="mycm-account-note">Carrowmont never auto-merges browser and account profiles. You choose which direction to copy. Deleting the saved cloud profile does not delete the browser-local dashboard or your sign-in account.</p>
+          <div class="mycm-account-signed"><div><strong id="mycmAccountCurrentEmail">Signed-in account</strong><p id="mycmCloudSummary">Loading your saved My Carrowmont profile…</p></div><button class="mycm-button" id="mycmSignOut" type="button">Sign out</button></div>
+          <div class="mycm-account-actions"><button class="mycm-button" id="mycmExportCloud" type="button">Export account data</button><button class="mycm-button mycm-button-danger" id="mycmDeleteCloud" type="button">Delete saved profile</button></div>
         </div>
+        <p class="mycm-account-note"><strong>Only the plans you choose to keep become part of My Carrowmont.</strong> Saved planning data is used to provide your My Carrowmont experience; it is not sold or used for advertising.</p>
       </section>
 
-      <div class="mycm-grid" id="mycmCards" aria-live="polite">
-        <article class="mycm-card" id="mycmCashFlowCard"></article>
-        <article class="mycm-card" id="mycmEmergencyCard"></article>
-        <article class="mycm-card" id="mycmDebtCard"></article>
-        <article class="mycm-card" id="mycmBorrowingCard"></article>
-        <article class="mycm-card" id="mycmRetirementCard"></article>
-        <article class="mycm-card" id="mycmGoalCard"></article>
-        <article class="mycm-card" id="mycmFiCard"></article>
-        <article class="mycm-card" id="mycmPrioritiesCard"></article>
+      <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
+        <div class="mycm-toolbar">
+          <div><strong class="mycm-toolbar-title">Your saved planning profile</strong><small>Changes you make here are saved to My Carrowmont while you are signed in.</small></div>
+          <div class="mycm-toolbar-actions"><button class="mycm-button" id="mycmEditAll" type="button">Add or edit details</button><button class="mycm-button" id="mycmKnowBtn" type="button">What Carrowmont knows</button></div>
+        </div>
+        <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
+
+        <div class="mycm-grid" id="mycmCards" aria-live="polite">
+          <article class="mycm-card" id="mycmCashFlowCard"></article>
+          <article class="mycm-card" id="mycmEmergencyCard"></article>
+          <article class="mycm-card" id="mycmDebtCard"></article>
+          <article class="mycm-card" id="mycmBorrowingCard"></article>
+          <article class="mycm-card" id="mycmRetirementCard"></article>
+          <article class="mycm-card" id="mycmGoalCard"></article>
+          <article class="mycm-card" id="mycmFiCard"></article>
+          <article class="mycm-card" id="mycmPrioritiesCard"></article>
+        </div>
+
+        <section class="mycm-knows" id="mycmKnows">
+          <div class="mycm-knows-head"><div><h2>What Carrowmont knows about you</h2><p>Only values in your saved My Carrowmont profile appear here. Ignore, edit or remove any value at any time.</p></div></div>
+          <div class="mycm-facts" id="mycmFacts"></div>
+        </section>
+        <p class="mycm-note">My Carrowmont is a planning summary, not a transaction tracker. It does not connect to banks or monitor spending. Sign out to remove your account-backed dashboard from this browser view; sign in again to retrieve it. Calculations remain educational and illustrative, not individualized financial, investment, tax, legal or lending advice.</p>
       </div>
-
-      <section class="mycm-knows" id="mycmKnows">
-        <div class="mycm-knows-head"><div><h2>What Carrowmont knows about you</h2><p>Only values you explicitly added or chose to carry into My Carrowmont appear here. Ignore, edit or remove any value at any time.</p></div></div>
-        <div class="mycm-facts" id="mycmFacts"></div>
-      </section>
-      <p class="mycm-note">My Carrowmont is a planning summary, not a transaction tracker. Guest mode stays in your browser. If you sign in and explicitly choose “Save this browser profile to account,” the selected planning profile is stored in Carrowmont’s Supabase account database so you can load it later. Carrowmont does not connect to banks or monitor spending. Calculations remain educational and illustrative, not individualized financial, investment, tax, legal or lending advice.</p>
     </div>
   </section>
 </main>
@@ -99,8 +101,8 @@
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
-<script src="/assets/dashboard/my-carrowmont.js?v=20261110-fre6"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261111-fre7b"></script>
-<script src="/site.js?v=20261109-fre3c1"></script>
+<script src="/assets/dashboard/my-carrowmont.js?v=20261112-fre8a"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261112-fre8a"></script>
+<script src="/site.js?v=20261112-fre8a"></script>
 </body>
 </html>

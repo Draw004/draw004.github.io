@@ -39,10 +39,11 @@
   const $=id=>document.getElementById(id);
   const Store=window.CarrowmontDashboardStore;
   const browserStore=Store?.createBrowserStore?.(window);
-  let profile=browserStore?.load?.()||Store.create();
+  let profile=Store.create();
+  let initialized=false;
 
   function locale(){const L=window.CarrowmontLocale;return{region:L?.getRegion?.()||'OTHER',currency:L?.getCurrency?.()||profile.locale.currency||'USD'};}
-  function syncLocale(){profile=Store.setLocale(profile,locale()); persist(false);}
+  function syncLocale(){if(!initialized)return;profile=Store.setLocale(profile,locale());persist(false);}
   function fact(path,includeExcluded=false){return Store.getFact(profile,path,{includeExcluded});}
   function value(path,fallback=null){const f=fact(path);return f?f.value:fallback;}
   function has(path){return Store.hasFact(profile,path);}
@@ -54,7 +55,7 @@
   function number(v,d=1){return new Intl.NumberFormat(undefined,{maximumFractionDigits:d}).format(num(v));}
   function tone(status){return status==='good'?'good':status==='bad'?'bad':'warn';}
   function statusLabel(status){return status==='good'?'On track':status==='bad'?'Needs attention':'Needs details';}
-  function persist(render=true){if(browserStore) profile=browserStore.save(profile,profile.mode||'session'); if(render) renderAll();}
+  function persist(render=true){if(!initialized)return;if(browserStore) profile=browserStore.save(profile,'session');window.dispatchEvent(new CustomEvent('carrowmont:mycm-profile-change',{detail:{profile:Store.normalize(profile)}}));if(render)renderAll();}
   function showBanner(text){const el=$('mycmBanner');el.textContent=text;el.hidden=false;window.setTimeout(()=>{if(el.textContent===text)el.hidden=true;},4500);}
   function derivedDebtPayments(){
     if(has('debt.monthlyPayments')) return num(value('debt.monthlyPayments'));
@@ -147,14 +148,11 @@
   }
   function renderFacts(){
     const wrap=$('mycmFacts'),entries=Object.entries(profile.facts||{}).sort((a,b)=>a[0].localeCompare(b[0]));
-    if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No financial values have been added yet. Use “Add or edit details” here, or choose “Use these answers in My Carrowmont” after an Ask Carrowmont result.</div>';return;}
+    if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No planning values are saved yet. Use “Add or edit details” here, or save a supported Carrowmont plan to My Carrowmont.</div>';return;}
     wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included in dashboard calculations'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}</div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Edit</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
   }
 
-  function renderAll(){
-    $('mycmRemember').checked=profile.mode==='local';
-    renderCashFlow();renderEmergency();renderDebt();renderBorrowing();renderRetirement();renderGoal();renderFi();renderPriorities();renderFacts();
-  }
+  function renderAll(){renderCashFlow();renderEmergency();renderDebt();renderBorrowing();renderRetirement();renderGoal();renderFi();renderPriorities();renderFacts();}
 
   function buildEditor(){
     const wrap=$('mycmEditFields'),groups=[...new Set(FIELD_DEFS.map(x=>x.group))];
@@ -165,7 +163,7 @@
   function saveEditor(){
     let next=profile;
     document.querySelectorAll('[data-mycm-path]').forEach(input=>{if(input.value==='')return;const path=input.dataset.mycmPath;next=Store.setFact(next,path,num(input.value),{origin:'user',source:'My Carrowmont',unit:LABELS[path]?.kind==='money'?locale().currency:LABELS[path]?.kind||null});});
-    profile=Store.setLocale(next,locale());persist();closeEditor();showBanner('My Carrowmont details updated.');
+    profile=Store.setLocale(next,locale());persist();closeEditor();showBanner('Changes saved to My Carrowmont.');
   }
 
   document.addEventListener('click',event=>{
@@ -175,12 +173,15 @@
   document.addEventListener('change',event=>{
     const toggle=event.target.closest('[data-mycm-influence]'); if(toggle){profile=Store.setExcluded(profile,toggle.dataset.mycmInfluence,!toggle.checked);persist();showBanner(toggle.checked?'Value included in dashboard recommendations.':'Value ignored by dashboard recommendations.');}
   });
-  $('mycmRemember').addEventListener('change',e=>{profile=Store.setMode(profile,e.target.checked?'local':'session');persist();showBanner(e.target.checked?'My Carrowmont will stay on this browser until you clear it.':'My Carrowmont is now session-only; the persistent copy was removed.');});
   $('mycmEditAll').addEventListener('click',()=>openEditor(''));
   $('mycmKnowBtn').addEventListener('click',()=>{$('mycmKnows').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
-  $('mycmClear').addEventListener('click',()=>{if(!window.confirm('Clear all My Carrowmont financial values from this browser?'))return;browserStore?.clear?.();profile=Store.create({...locale(),mode:'session'});persist();showBanner('My Carrowmont has been cleared.');});
   $('mycmEditClose').addEventListener('click',closeEditor);$('mycmEditCancel').addEventListener('click',closeEditor);$('mycmEditForm').addEventListener('submit',e=>{e.preventDefault();saveEditor();});
-  window.addEventListener('carrowmont:localechange',()=>{syncLocale();renderAll();});
-
-  profile=Store.setLocale(profile,locale());persist(false);renderAll();
+  window.addEventListener('carrowmont:localechange',()=>{if(initialized){syncLocale();renderAll();}});
+  window.addEventListener('carrowmont:mycm-account-ready',event=>{
+    profile=Store.normalize(event.detail?.profile||Store.create({...locale(),mode:'session'}));
+    profile=Store.setMode(Store.setLocale(profile,locale()),'session');
+    if(browserStore)browserStore.save(profile,'session');
+    initialized=true;
+    renderAll();
+  });
 })();

@@ -381,16 +381,16 @@
   }
   function saveToDashboard(){
     const Store=window.CarrowmontDashboardStore;
-    const browser=Store?.createBrowserStore?.(window);
+    const Account=window.CarrowmontAccount;
     const status=$('askDashboardSaveStatus');
-    if(!Store||!browser||!lastResult){ if(status)status.textContent='My Carrowmont is unavailable in this browser.'; return; }
+    if(!Store||!Account||!lastResult){if(status)status.textContent='My Carrowmont is temporarily unavailable.';return;}
     try{
-      const current=browser.load();
       const locale=getLocale();
-      const next=Store.captureAskJourney(current,lastResult.intent,state.facts,{locale:{region:locale.country,currency:locale.currency},currency:locale.currency});
-      browser.save(next,current.mode||'session');
-      if(status) status.innerHTML='Saved to this browser. <a href="/my-carrowmont.html">Open My Carrowmont →</a>';
-    }catch(_err){ if(status)status.textContent='Carrowmont could not save this dashboard snapshot in this browser.'; }
+      const next=Store.captureAskJourney(Store.create({region:locale.country,currency:locale.currency}),lastResult.intent,state.facts,{locale:{region:locale.country,currency:locale.currency},currency:locale.currency});
+      Account.stageGuestProfile(next);
+      if(status)status.textContent='Opening My Carrowmont…';
+      location.href='/my-carrowmont.html?save=ask';
+    }catch(_err){if(status)status.textContent='Carrowmont could not prepare this plan for My Carrowmont.';}
   }
   function init(){
     if(!window.CarrowmontAskMvp?.create){ $('askStartMessage').textContent='Ask Carrowmont is temporarily unavailable.'; return; }
