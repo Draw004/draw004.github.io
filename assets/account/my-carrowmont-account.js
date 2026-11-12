@@ -2,6 +2,7 @@
   'use strict';
   const Account=window.CarrowmontAccount;
   const Store=window.CarrowmontDashboardStore;
+  const Progress=window.CarrowmontProgress;
   if(!Account||!Store) return;
   const root=document.getElementById('mycmAccount');
   if(!root||!Account.isConfigured()) return;
@@ -17,6 +18,9 @@
   const cloudSummary=$('mycmCloudSummary');
   const savedPlansSection=$('mycmSavedPlansSection');
   const savedPlansList=$('mycmSavedPlansList');
+  const progressSection=$('mycmProgressSection');
+  const progressSummary=$('mycmProgressSummary');
+  const progressList=$('mycmProgressList');
   let cloudProfile=null;
   let currentUser=null;
   let saveTimer=null;
@@ -41,10 +45,31 @@
     return out;
   }
   function fmtDate(value){try{return new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric'}).format(new Date(value));}catch(_){return 'Saved plan';}}
+  function esc(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+  function progressTone(tone){return ['good','warn','bad'].includes(tone)?tone:'neutral';}
+  function renderProgress(rows){
+    if(!progressSection||!progressList||!progressSummary||!currentUser||!Progress){if(progressSection)progressSection.hidden=true;return;}
+    const currency=window.CarrowmontLocale?.getCurrency?.()||cloudProfile?.profile?.locale?.currency||'USD';
+    const items=Progress.analyze(rows,currency);
+    progressList.innerHTML='';
+    if(!items.length){progressSection.hidden=true;return;}
+    progressSection.hidden=false;
+    const attention=items.filter(item=>item.tone==='bad').length;
+    const improving=items.filter(item=>item.tone==='good').length;
+    const ready=items.filter(item=>item.status==='Ready to track').length;
+    const parts=[];if(improving)parts.push(`${improving} improving`);if(attention)parts.push(`${attention} need${attention===1?'s':''} attention`);if(ready)parts.push(`${ready} ready to track`);
+    progressSummary.textContent=parts.length?parts.join(' · '):'Your saved plans are ready to review.';
+    items.forEach(item=>{
+      const card=document.createElement('article');card.className='mycm-progress-card';
+      card.innerHTML=`<div class="mycm-progress-head"><strong>${esc(item.label)}</strong><span class="mycm-progress-status" data-tone="${progressTone(item.tone)}">${esc(item.status)}</span></div><h3>${esc(item.headline)}</h3><p>${esc(item.detail)}</p>${item.next?`<div class="mycm-progress-next"><strong>What you can do next</strong><span>${esc(item.next)}</span></div>`:''}<div class="mycm-progress-actions"><button type="button" class="mycm-button" data-progress-open="${esc(item.journey)}">Open plan</button></div>`;
+      card.querySelector('[data-progress-open]').addEventListener('click',()=>{const row=(rows||[]).find(candidate=>candidate?.journey===item.journey);if(row&&Account.stageOpenPlan(row))location.href=planRoute(row);});
+      progressList.appendChild(card);
+    });
+  }
   function planRoute(row){const path=row?.scenario?.toolPath;return typeof path==='string'&&path.startsWith('/')?path:'/my-carrowmont.html';}
   async function renderSavedPlans(){
     if(!savedPlansSection||!savedPlansList||!currentUser){if(savedPlansSection)savedPlansSection.hidden=true;return;}
-    const rows=await Account.listScenarios();savedPlansList.innerHTML='';savedPlansSection.hidden=false;
+    const rows=await Account.listScenarios();renderProgress(rows);savedPlansList.innerHTML='';savedPlansSection.hidden=false;
     if(!rows.length){savedPlansList.innerHTML='<p class="mycm-saved-empty">No saved plans yet. Use a supported Carrowmont planner and choose <strong>Save to My Carrowmont</strong> when you want to keep one.</p>';return;}
     rows.forEach(row=>{
       const card=document.createElement('article');card.className='mycm-saved-plan';
@@ -92,7 +117,9 @@
     const plan=entry.plan;let profile=mergePlanFacts(baseProfile,plan);
     if(hasFacts(profile)) profile=(await Account.saveCloudProfile(profile)).profile;
     const existing=(await Account.listScenarios()).find(row=>row?.journey===plan.journey)||null;
-    await Account.saveScenario({id:existing?.id,journey:plan.journey,label:plan.label,scenario:{...plan.scenario,journey:plan.journey,label:plan.label,toolPath:plan.toolPath,capturedAt:plan.capturedAt||entry.stagedAt}});
+    const nextScenario={...plan.scenario,journey:plan.journey,label:plan.label,toolPath:plan.toolPath,capturedAt:plan.capturedAt||entry.stagedAt};
+    const scenario=Progress?.scenarioWithHistory?Progress.scenarioWithHistory(existing,nextScenario):nextScenario;
+    await Account.saveScenario({id:existing?.id,journey:plan.journey,label:plan.label,scenario});
     Account.clearStagedPlan();
     return {profile,changed:true,label:plan.label||'Selected plan',updated:Boolean(existing)};
   }
@@ -143,6 +170,7 @@
     try{
       await Account.deleteCloudProfile();cloudProfile=null;browserStore?.clear();Account.clearStagedPlan();
       const empty=normalized(Store.create());browserStore?.save(empty,'session');showSignedIn(empty);
+      await renderSavedPlans();
       say('Saved My Carrowmont profile deleted.','success');
     }catch(error){say(error.message||'Saved profile could not be deleted.','error');}
   });

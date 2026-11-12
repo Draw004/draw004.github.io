@@ -11,7 +11,7 @@
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261112-fre8a">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261112-fre8c">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -54,6 +54,13 @@
       </section>
 
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
+        <section class="mycm-progress" id="mycmProgressSection" hidden>
+          <div class="mycm-progress-section-head">
+            <div><span class="mycm-kicker">Your progress</span><h2>See what changed since you last saved.</h2><p>My Carrowmont compares only the plan versions you choose to save. Your saved plan changes only when you choose to update it.</p></div>
+            <strong class="mycm-progress-summary" id="mycmProgressSummary">Your saved plans are ready to review.</strong>
+          </div>
+          <div class="mycm-progress-list" id="mycmProgressList"></div>
+        </section>
         <section class="mycm-saved-plans" id="mycmSavedPlansSection" hidden>
           <div class="mycm-saved-plans-head"><div><span class="mycm-kicker">Saved plans</span><h2>Plans you chose to keep</h2><p>Reopen a saved plan without entering the same assumptions again. Saved plans also provide the foundation for deeper planning insights.</p></div></div>
           <div class="mycm-saved-plans-list" id="mycmSavedPlansList"></div>
@@ -106,8 +113,9 @@
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
+<script src="/assets/account/carrowmont-progress.js?v=20261112-fre8c"></script>
 <script src="/assets/dashboard/my-carrowmont.js?v=20261112-fre8a"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261112-fre8a"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261112-fre8c"></script>
 <script src="/site.js?v=20261112-fre8a"></script>
 </body>
 </html>
