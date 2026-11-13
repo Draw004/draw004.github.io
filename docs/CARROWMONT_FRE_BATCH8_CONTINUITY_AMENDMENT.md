@@ -16,7 +16,9 @@ Financial Resolution Engine → Money Priorities → useful guest experience →
 - **8A — COMPLETE:** Account Continuity Foundation + homepage My Carrowmont/newsletter placement.
 - **8B — COMPLETE:** Selective Save/Update to My Carrowmont across the account-backed planning set, saved scenario reopening, logged-in experiment-vs-commit protection, compact benefit-led hero, and removal of stale guest-persistence messaging where it conflicts with the account-backed model.
 - **8C — COMPLETE:** Persistent Plans & Progress Tracking using explicitly saved plan versions, plain-language change detection and simple next steps. No live account monitoring or automatic plan changes.
-- **8D — THIS RELEASE:** Plan Baseline & On-Track Intelligence. Separates current details, saved target, what-if calculations and progress history; adds plan freshness, target-based status and quantified corrective scenarios where existing deterministic planner outputs support them.
+- **8D — COMPLETE:** Plan Baseline & On-Track Intelligence. Separates current details, saved target, what-if calculations and progress history; adds plan freshness, target-based status and quantified corrective scenarios where existing deterministic planner outputs support them.
+- **8E — COMPLETE:** Product Story & Mobile-First Foundation, including the connected Plan / Keep / Track / Understand journey, one My Carrowmont homepage showcase, PWA foundation and the canonical shared-header lock.
+- **8F — THIS RELEASE:** UX Simplification, Routing & Performance Cleanup. Removes remaining public clutter, makes Ask the traffic controller across guided decisions/content/Search, improves Search result reveal, reframes Research as a global-ready library, layers Privacy detail and optimizes the approved hero image delivery.
 
 ## Batch 8B continuity rules
 - Account-backed planning journeys: Budget & Cash Flow; Emergency Fund & Runway; Debt Payoff; Credit Card Payoff; Loan/EMI; Mortgage/Home Loan; Retirement; Goals; Financial Independence; SIP/Recurring Investment; Retirement Withdrawal/Drawdown.
@@ -31,7 +33,7 @@ Financial Resolution Engine → Money Priorities → useful guest experience →
 - Saved scenarios can be reopened without re-entering the same assumptions.
 - Budget guest month comparisons remain browser-session only; long-term history/progress belongs to the account-backed 8C model.
 
-The revised roadmap continues with 8E Product Story & Mobile-First Foundation, then Trust/Plan Transparency, Your Financial Plan, Country-Aware Intelligence, account-aware Ask Carrowmont, later homepage transformation, the wider Opportunity Engine, optional connected data, and a native-app decision gate.
+After 8F stabilizes the public experience, the revised roadmap continues with Batch 9 Trust/Plan Transparency, Your Financial Plan, Country-Aware Intelligence, account-aware Ask Carrowmont, the later homepage transformation, the wider Opportunity Engine, optional connected data, and a native-app decision gate.
 
 ## Batch 8C continuity rules
 - Progress compares only plan versions the user explicitly chose to save/update.
@@ -69,3 +71,16 @@ The revised roadmap continues with 8E Product Story & Mobile-First Foundation, t
 - Shared-header rule is locked: the Country/Currency control must reuse the canonical globe SVG + country + middle dot + currency + SVG chevron implementation; page-specific legacy glyph versions are not allowed.
 - Installation is an access convenience only; it does not change account storage or introduce offline financial-data caching.
 - The later Batch 11 Ask-first homepage transformation remains deferred until Ask Carrowmont is account-aware and dependable.
+
+## Batch 8F — UX Simplification, Routing & Performance Cleanup
+- Public product copy follows the rule: say each important idea once, in its strongest location. The redundant homepage `Explore freely` strip is removed while the connected Plan / Keep / Track / Understand journey remains.
+- Mobile primary navigation keeps the established label `My Money`; shared Country/Currency remains the locked canonical component from Batch 8E.
+- Ask Carrowmont is the traffic controller: supported decisions keep their deterministic guided journeys; other questions surface the best matching Learn, Tool or Research pages and can continue into full Search.
+- Ask-to-Search query handoff is private and temporary: the question is passed in same-tab session storage, is consumed once, expires quickly, is not put in the URL and is not stored as search history.
+- Search remains the fast direct-retrieval utility. Explicit Search submission shows `Results for ...` and moves the results into view; live typing does not force the viewport to jump.
+- Research is framed as a multi-market library without relabelling evidence. Current U.S. studies remain explicitly scoped to the United States.
+- Privacy keeps all substantive account/search disclosures but presents common points in short summaries with technical My Carrowmont processing behind an expandable detail control.
+- The approved couple hero remains visually unchanged; responsive WebP assets are lighter and load with responsive preload plus eager/high-priority fetching.
+- No calculator formula, deterministic engine, saved-plan calculation, Supabase schema, bank connection, native-app behavior or public URL changes in 8F.
+- No manual indexing action is required for 8F.
+
