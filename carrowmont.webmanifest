@@ -1,0 +1,68 @@
+{
+  "id": "/my-carrowmont.html",
+  "name": "Carrowmont",
+  "short_name": "Carrowmont",
+  "description": "Financial planning tools, saved plans and progress tracking in My Carrowmont.",
+  "start_url": "/my-carrowmont.html?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fbfc",
+  "theme_color": "#0e827a",
+  "prefer_related_applications": false,
+  "categories": [
+    "finance",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/assets/pwa/carrowmont-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa/carrowmont-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "My Carrowmont",
+      "short_name": "My Carrowmont",
+      "url": "/my-carrowmont.html",
+      "icons": [
+        {
+          "src": "/assets/pwa/carrowmont-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Ask Carrowmont",
+      "short_name": "Ask",
+      "url": "/ask-carrowmont.html",
+      "icons": [
+        {
+          "src": "/assets/pwa/carrowmont-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "All Tools",
+      "short_name": "Tools",
+      "url": "/tools.html",
+      "icons": [
+        {
+          "src": "/assets/pwa/carrowmont-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

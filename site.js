@@ -1163,9 +1163,9 @@
         '<div class="shell cm-home-relationship-grid">',
           '<article class="cm-home-relationship-card cm-home-account-card" data-cm-home-mycarrowmont>',
             '<p class="eyebrow">MY CARROWMONT</p>',
-            '<h2>Keep your plans together.</h2>',
-            '<p>Save meaningful planning work, return to it later and access your My Carrowmont profile across devices.</p>',
-            '<div class="cm-home-account-points"><span>Saved planning profile</span><span>Cross-device access</span><span>Account-backed insights</span></div>',
+            '<h2>Keep your financial plans connected.</h2>',
+            '<p>Save the plans that matter, return to them later, track what changed and access My Carrowmont across devices.</p>',
+            '<div class="cm-home-account-points"><span>Saved plans</span><span>Progress tracking</span><span>Cross-device access</span></div>',
             '<div class="cm-home-account-actions"><a href="/my-carrowmont.html">Open My Carrowmont →</a><small>Account optional. Carrowmont tools remain available without sign-in.</small></div>',
           '</article>',
           '<article class="cm-home-relationship-card cm-home-newsletter-card">',
@@ -1219,8 +1219,10 @@
     ensureNewsletterStyles();
     var section = buildSection(context);
     if (context === 'home') {
+      var productPreview = main.querySelector('.cm-product-preview-section');
       var authority = main.querySelector('.authority-tools-section');
-      if (authority) main.insertBefore(section, authority);
+      if (productPreview) main.insertBefore(section, productPreview);
+      else if (authority) main.insertBefore(section, authority);
       else main.appendChild(section);
     } else {
       main.appendChild(section);
@@ -1230,4 +1232,36 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountNewsletter, { once: true });
   else mountNewsletter();
+})();
+
+
+/* FRE Batch 8E - installable web-app foundation. No offline financial-data cache. */
+(function(){
+  function ensureLink(rel, href, attrs){
+    if(document.querySelector('link[rel="'+rel+'"][href="'+href+'"]')) return;
+    var link=document.createElement('link');link.rel=rel;link.href=href;
+    if(attrs) Object.keys(attrs).forEach(function(k){link.setAttribute(k,attrs[k]);});
+    document.head.appendChild(link);
+  }
+  ensureLink('manifest','/carrowmont.webmanifest');
+  ensureLink('apple-touch-icon','/assets/pwa/carrowmont-192.png');
+  var deferredPrompt=null;
+  var button=document.getElementById('cmPwaInstallButton');
+  var hint=document.getElementById('cmPwaInstallHint');
+  var card=document.querySelector('[data-cm-pwa-card]');
+  function standalone(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;}
+  function markInstalled(){if(card) card.hidden=true;}
+  if(standalone()) markInstalled();
+  window.addEventListener('beforeinstallprompt',function(event){
+    if(!button) return;
+    event.preventDefault();deferredPrompt=event;button.hidden=false;
+    if(hint) hint.textContent='Install Carrowmont for quicker access from this device.';
+  });
+  if(button){button.addEventListener('click',async function(){
+    if(!deferredPrompt) return;button.disabled=true;
+    try{deferredPrompt.prompt();await deferredPrompt.userChoice;}catch(e){}
+    deferredPrompt=null;button.hidden=true;button.disabled=false;
+    if(hint) hint.textContent='Carrowmont can also be added from your browser menu.';
+  });}
+  window.addEventListener('appinstalled',markInstalled);
 })();
