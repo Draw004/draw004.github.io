@@ -61,7 +61,11 @@ The revised roadmap continues with 8E Product Story & Mobile-First Foundation, t
 
 ## Batch 8E — Product Story & Mobile-First Foundation
 - Carrowmont is presented publicly as a planning system powered by calculators, not only as a calculator directory.
-- Homepage story is Plan → Keep → Track → Understand.
+- Homepage story is a single connected Plan / Keep / Track / Understand journey; numbered feature cards are not used.
 - My Carrowmont has phone-first quick access and an installable web-app foundation.
+- The illustrative See Carrowmont in action section is the single homepage My Carrowmont showcase; the duplicate promotional card is removed.
+- Carrowmont Money in Real Life is a separate newsletter section after the product preview and before decision-support tools.
+- The duplicate four-benefit trust ribbon is removed; the lower Why Carrowmont area is limited to three distinct principles.
+- Shared-header rule is locked: the Country/Currency control must reuse the canonical globe SVG + country + middle dot + currency + SVG chevron implementation; page-specific legacy glyph versions are not allowed.
 - Installation is an access convenience only; it does not change account storage or introduce offline financial-data caching.
 - The later Batch 11 Ask-first homepage transformation remains deferred until Ask Carrowmont is account-aware and dependable.

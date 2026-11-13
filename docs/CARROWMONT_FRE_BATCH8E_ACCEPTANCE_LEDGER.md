@@ -3,18 +3,21 @@
 | Requirement | Result |
 |---|---|
 | Homepage explains Carrowmont as a planning product before the core tool grid | PASS |
-| Product story uses simple Plan / Keep / Track / Understand language | PASS |
+| Plan / Keep / Track / Understand is one connected visual journey, not four numbered cards | PASS |
+| Connected journey becomes a clear vertical path on narrow screens | PASS |
 | Existing calculators remain visible and usable | PASS |
 | Batch 11 Ask-first homepage transformation is not pulled forward | PASS |
-| Homepage includes an explicitly labelled illustrative My Carrowmont product preview | PASS |
-| My Carrowmont + Newsletter relationship section remains directly after the core tool grid | PASS |
-| My Carrowmont gains phone quick access to Progress, Saved plans, Financial picture and Saved details | PASS |
+| Homepage includes one explicitly labelled illustrative My Carrowmont product showcase | PASS |
+| Duplicate homepage My Carrowmont promotional card is removed | PASS |
+| Newsletter is independent and placed after the My Carrowmont preview and before decision-support tools | PASS |
+| Duplicate four-benefit trust ribbon is removed | PASS |
+| Lower Why Carrowmont content is consolidated to three distinct principles | PASS |
+| My Carrowmont uses the exact canonical globe / country / currency / chevron control | PASS |
+| Legacy Country/Currency text glyphs are removed from My Carrowmont | PASS |
+| My Carrowmont retains phone quick access to Progress, Saved plans, Financial picture and Saved details | PASS |
 | Web app manifest includes name, icons, start URL, standalone display and shortcuts | PASS |
-| 192 px and 512 px brand icons are present | PASS |
 | No service worker or offline financial-data cache is introduced | PASS |
 | Install messaging explains that installation does not change saved account data | PASS |
-| About page describes Carrowmont as a planning system rather than only calculators | PASS |
 | No calculator formula changes | PASS |
 | No bank connection or new financial-data collection | PASS |
 | No new indexable public content URL | PASS |
-| Desktop, tablet and mobile layouts remain free of horizontal overflow | PASS |

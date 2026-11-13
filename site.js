@@ -1106,22 +1106,10 @@
       '.cm-newsletter-fineprint{margin:12px 0 0;color:#667f90;font-size:12px;line-height:1.55}',
       '.cm-newsletter-fineprint a{color:#08766e;font-weight:800}',
       '.cm-newsletter-section[data-cm-newsletter-context="home"]{padding:48px 0 54px;background:linear-gradient(180deg,#f4faf9 0%,#fbfcfd 100%)}',
-      '.cm-home-relationship-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}',
-      '.cm-home-relationship-card{padding:28px;border:1px solid #cfe1e6;border-radius:22px;background:#fff;box-shadow:0 12px 30px rgba(15,39,67,.055)}',
-      '.cm-home-account-card{background:linear-gradient(145deg,#eef9f7 0%,#fff 72%)}',
-      '.cm-home-relationship-card h2{margin:7px 0 12px;color:var(--navy,#0f2743);font-size:clamp(27px,2.5vw,36px);line-height:1.08}',
-      '.cm-home-relationship-card>p{margin:0;color:var(--muted,#587184);font-size:15.5px;line-height:1.65}',
-      '.cm-home-account-points{display:flex;flex-wrap:wrap;gap:9px 16px;margin:20px 0;color:#294762;font-size:13.5px;font-weight:800}',
-      '.cm-home-account-points span:before{content:"✓";margin-right:7px;color:#0e827a}',
-      '.cm-home-account-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px}',
-      '.cm-home-account-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 17px;border-radius:999px;background:#10395d;color:#fff;text-decoration:none;font-weight:850}',
-      '.cm-home-account-actions small{color:#667f90;line-height:1.45}',
-      '.cm-home-newsletter-card .cm-newsletter-promise{margin-top:18px;gap:10px 18px;font-size:13px}',
-      '.cm-home-newsletter-card .cm-newsletter-signup{margin-top:20px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}',
-      '.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:34px;padding:40px 0 44px}',
+                                                                              '.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:34px;padding:40px 0 44px}',
       '.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner{grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:30px}',
       '.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-copy h2{font-size:clamp(27px,2.5vw,35px)}',
-      '@media(max-width:900px){.cm-newsletter-inner,.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner,.cm-home-relationship-grid{grid-template-columns:1fr;gap:18px}.cm-newsletter-signup{max-width:700px}}',
+      '@media(max-width:900px){.cm-newsletter-inner,.cm-newsletter-section[data-cm-newsletter-context="article"] .cm-newsletter-inner{grid-template-columns:1fr;gap:18px}.cm-newsletter-signup{max-width:700px}}',
       '@media(max-width:700px){.cm-newsletter-section{padding:40px 0 44px}.cm-newsletter-section[data-cm-newsletter-context="article"]{margin-top:26px;padding:34px 0 38px}.cm-newsletter-inner{gap:20px}.cm-newsletter-copy h2{font-size:30px}.cm-newsletter-copy>p{font-size:15px}.cm-newsletter-promise{display:grid;gap:10px;font-size:13.5px}.cm-newsletter-promise-item{white-space:normal}.cm-newsletter-promise-icon,.cm-newsletter-promise-icon svg{width:18px;height:18px}.cm-newsletter-signup{padding:18px 16px;border-radius:17px;overflow:hidden}.cm-newsletter-form{min-height:74px;overflow:hidden}}'
     ].join('');
     document.head.appendChild(style);
@@ -1158,17 +1146,10 @@
     section.dataset.cmNewsletter = 'carrowmont-money-in-real-life';
     section.dataset.cmNewsletterContext = context;
     if (context === 'home') {
-      section.setAttribute('aria-label', 'My Carrowmont and Carrowmont Money in Real Life');
+      section.setAttribute('aria-labelledby', 'cmNewsletterHeading');
       section.innerHTML = [
-        '<div class="shell cm-home-relationship-grid">',
-          '<article class="cm-home-relationship-card cm-home-account-card" data-cm-home-mycarrowmont>',
-            '<p class="eyebrow">MY CARROWMONT</p>',
-            '<h2>Keep your financial plans connected.</h2>',
-            '<p>Save the plans that matter, return to them later, track what changed and access My Carrowmont across devices.</p>',
-            '<div class="cm-home-account-points"><span>Saved plans</span><span>Progress tracking</span><span>Cross-device access</span></div>',
-            '<div class="cm-home-account-actions"><a href="/my-carrowmont.html">Open My Carrowmont →</a><small>Account optional. Carrowmont tools remain available without sign-in.</small></div>',
-          '</article>',
-          '<article class="cm-home-relationship-card cm-home-newsletter-card">',
+        '<div class="shell cm-newsletter-inner">',
+          '<div class="cm-newsletter-copy">',
             '<p class="eyebrow">CARROWMONT MONEY IN REAL LIFE</p>',
             '<h2 id="cmNewsletterHeading">Money explained for real life — once a week.</h2>',
             '<p>Get one clear weekly briefing connecting financial developments to everyday money decisions.</p>',
@@ -1177,8 +1158,8 @@
               '<span class="cm-newsletter-promise-item"><i class="cm-newsletter-promise-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/></svg></i>Real-life impact</span>',
               '<span class="cm-newsletter-promise-item"><i class="cm-newsletter-promise-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m4 6 1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg></i>Practical next steps</span>',
             '</div>',
-            '<div class="cm-newsletter-signup"><p class="cm-newsletter-signup-label">Get the weekly money briefing</p><div class="cm-newsletter-form" data-cm-kit-form></div><p class="cm-newsletter-fineprint">No Carrowmont account required. By subscribing, you agree to receive Carrowmont Money in Real Life by email. Unsubscribe anytime. <a href="/privacy.html">Privacy</a>.</p></div>',
-          '</article>',
+          '</div>',
+          '<div class="cm-newsletter-signup"><p class="cm-newsletter-signup-label">Get the weekly money briefing</p><div class="cm-newsletter-form" data-cm-kit-form></div><p class="cm-newsletter-fineprint">No Carrowmont account required. By subscribing, you agree to receive Carrowmont Money in Real Life by email. Unsubscribe anytime. <a href="/privacy.html">Privacy</a>.</p></div>',
         '</div>'
       ].join('');
       return section;
@@ -1221,8 +1202,8 @@
     if (context === 'home') {
       var productPreview = main.querySelector('.cm-product-preview-section');
       var authority = main.querySelector('.authority-tools-section');
-      if (productPreview) main.insertBefore(section, productPreview);
-      else if (authority) main.insertBefore(section, authority);
+      if (authority) main.insertBefore(section, authority);
+      else if (productPreview && productPreview.nextSibling) main.insertBefore(section, productPreview.nextSibling);
       else main.appendChild(section);
     } else {
       main.appendChild(section);
