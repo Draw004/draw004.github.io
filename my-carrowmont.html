@@ -7,11 +7,13 @@
   <meta name="description" content="Save retirement, goals, debt, loan and other financial plans in My Carrowmont, access them across devices and see deeper planning insights over time.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://carrowmont.com/my-carrowmont.html">
+  <link rel="manifest" href="/carrowmont.webmanifest">
+  <link rel="apple-touch-icon" href="/assets/pwa/carrowmont-192.png">
   <meta property="og:title" content="My Carrowmont | Save Financial Plans &amp; Planning Insights">
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261113-fre8d">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261113-fre8e">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -53,6 +55,11 @@
         <p class="mycm-account-note">Saved planning data is used to provide your My Carrowmont experience; it is not sold or used for advertising.</p>
       </section>
 
+      <section class="mycm-app-access" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle">
+        <div><span class="mycm-kicker">On your phone</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away.</h2><p>Add Carrowmont to your home screen for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
+        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>Install Carrowmont</button><small id="cmPwaInstallHint">Use your browser's <strong>Add to Home Screen</strong> or <strong>Install App</strong> option.</small></div>
+      </section>
+
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
         <section class="mycm-plan-model" aria-labelledby="mycmPlanModelTitle">
           <div><span class="mycm-kicker">How your plan works</span><h2 id="mycmPlanModelTitle">Know what is saved — and what is only a what-if.</h2></div>
@@ -63,6 +70,9 @@
             <article><strong>Progress history</strong><span>Previous saved versions used to show what changed.</span></article>
           </div>
         </section>
+        <nav class="mycm-mobile-quick" aria-label="My Carrowmont quick access">
+          <a href="#mycmProgressSection">Progress</a><a href="#mycmSavedPlansSection">Saved plans</a><a href="#mycmCards">Financial picture</a><a href="#mycmKnows">Saved details</a>
+        </nav>
         <section class="mycm-progress" id="mycmProgressSection" hidden>
           <div class="mycm-progress-section-head">
             <div><span class="mycm-kicker">Your progress</span><h2>See whether your saved plans are on track.</h2><p>Carrowmont checks the target you chose to keep, when the plan was last reviewed, and what changed since the previous saved version.</p></div>
@@ -125,6 +135,6 @@
 <script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
 <script src="/assets/dashboard/my-carrowmont.js?v=20261112-fre8a"></script>
 <script src="/assets/account/my-carrowmont-account.js?v=20261113-fre8d"></script>
-<script src="/site.js?v=20261112-fre8a"></script>
+<script src="/site.js?v=20261113-fre8e"></script>
 </body>
 </html>

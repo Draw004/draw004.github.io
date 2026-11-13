@@ -57,3 +57,11 @@ The revised roadmap continues with 8E Product Story & Mobile-First Foundation, t
 - For payoff plans where a precise new payment is not already saved, Carrowmont quantifies how far the current payoff estimate is from the saved target and sends the user back to the existing planner to test the payment change.
 - No bank connection, transaction monitoring, background financial inference or new financial formula is introduced in 8D.
 - Car Affordability remains a saved decision scenario outside the ongoing progress/on-track feed.
+
+
+## Batch 8E — Product Story & Mobile-First Foundation
+- Carrowmont is presented publicly as a planning system powered by calculators, not only as a calculator directory.
+- Homepage story is Plan → Keep → Track → Understand.
+- My Carrowmont has phone-first quick access and an installable web-app foundation.
+- Installation is an access convenience only; it does not change account storage or introduce offline financial-data caching.
+- The later Batch 11 Ask-first homepage transformation remains deferred until Ask Carrowmont is account-aware and dependable.
