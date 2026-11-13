@@ -157,6 +157,14 @@
     if(!currentUser||!event.detail?.profile) return;
     clearTimeout(saveTimer);
     const profile=normalized(event.detail.profile);
+    if(event.detail.saveImmediately===true){
+      saveTimer=null;
+      void (async()=>{
+        try{cloudProfile=await Account.saveCloudProfile(profile);cloudSummary.textContent='Your latest My Carrowmont changes are saved.';}
+        catch(error){say(error.message||'Your latest changes could not be saved.','error');}
+      })();
+      return;
+    }
     saveTimer=window.setTimeout(async()=>{
       try{cloudProfile=await Account.saveCloudProfile(profile);cloudSummary.textContent='Your latest My Carrowmont changes are saved.';}
       catch(error){say(error.message||'Your latest changes could not be saved.','error');}

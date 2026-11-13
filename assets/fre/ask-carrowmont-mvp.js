@@ -46,10 +46,10 @@
       { key:'debtBalance', label:'Debt balance' },
       { key:'debtAprPct', label:'Debt annual interest rate' },
       { key:'debtMinimumPayment', label:'Required monthly debt payment' },
-      { key:'monthlySurplus', label:'Monthly amount available for debt reduction or saving' },
+      { key:'monthlySurplus', label:'Extra money available each month' },
       { key:'emergencySavings', label:'Emergency savings available now' },
       { key:'essentialExpenses', label:'Essential monthly expenses' },
-      { key:'assumedSavingsReturnPct', label:'Assumed annual savings or investment return' }
+      { key:'assumedSavingsReturnPct', label:'Expected annual investment return' }
     ]),
     [INTENTS.MONEY_PRIORITIES]: Object.freeze([
       { key:'monthlyIncome', label:'Monthly take-home income' },
@@ -71,7 +71,7 @@
   });
 
   const SUPPORTED = Object.freeze([
-    Object.freeze({ intent:INTENTS.DEBT_VS_SAVINGS, label:'Debt or savings' }),
+    Object.freeze({ intent:INTENTS.DEBT_VS_SAVINGS, label:'Pay debt or invest?' }),
     Object.freeze({ intent:INTENTS.CAR_AFFORDABILITY, label:'Car affordability' }),
     Object.freeze({ intent:INTENTS.MORTGAGE_PREPAY_VS_INVEST, label:'Mortgage prepay or invest' }),
     Object.freeze({ intent:INTENTS.EMERGENCY_RUNWAY, label:'Emergency fund adequacy' }),
@@ -261,38 +261,83 @@
     });
   }
 
+  function compareDebtVsInvestPaths(debt, monthlySurplus, assumedReturnPct) {
+    const debtFirst = debt.avalanche;
+    const investFirst = debt.zeroExtra.avalanche;
+    const horizonMonths = Math.max(1, investFirst.monthly.length || investFirst.months || 1);
+    const totalMonthlyOutflow = Math.max(0, debt.totalMonthlyBudget);
+    const monthlyRate = number(assumedReturnPct) / 100 / 12;
+    function project(strategy) {
+      let investment = 0;
+      let previousPaid = 0;
+      for (let month = 0; month < horizonMonths; month += 1) {
+        const record = strategy.monthly[month] || null;
+        const cumulativePaid = record ? record.cumulativePaid : strategy.totalPaid;
+        const debtPaid = Math.max(0, cumulativePaid - previousPaid);
+        previousPaid = cumulativePaid;
+        const contribution = Math.max(0, totalMonthlyOutflow - debtPaid);
+        investment = investment * (1 + monthlyRate) + contribution;
+      }
+      const last = strategy.monthly[Math.min(horizonMonths, strategy.monthly.length) - 1] || null;
+      const remainingDebt = last ? Math.max(0, last.closingBalance) : 0;
+      return freeze({ investmentValue:investment, remainingDebt, netPosition:investment - remainingDebt });
+    }
+    const debtPath = project(debtFirst);
+    const investPath = project(investFirst);
+    return freeze({
+      horizonMonths,
+      monthlySurplus:nonNegative(monthlySurplus),
+      totalMonthlyOutflow,
+      assumedReturnPct:number(assumedReturnPct),
+      debtFirst:debtPath,
+      investFirst:investPath,
+      pathDifference:debtPath.netPosition - investPath.netPosition
+    });
+  }
+
   function debtVsSavingsJourney(facts, deps, currency) {
-    if (!deps.emergency?.calculate || !deps.debtPayoff?.comparePlans || !deps.compound?.calculate) throw new Error('Debt-versus-savings deterministic dependencies are unavailable.');
-    const emergencyInput = { essentialExpenses:nonNegative(facts.essentialExpenses), debtPayments:nonNegative(facts.debtMinimumPayment), emergencySavings:nonNegative(facts.emergencySavings), targetMonths:nonNegative(facts.targetMonths, 3) || 3, monthlyContribution:0 };
+    if (!deps.emergency?.calculate || !deps.debtPayoff?.comparePlans || !deps.compound?.calculate) throw new Error('Debt-versus-invest deterministic dependencies are unavailable.');
+    const emergencyInput = { essentialExpenses:nonNegative(facts.essentialExpenses), debtPayments:nonNegative(facts.debtMinimumPayment), emergencySavings:nonNegative(facts.emergencySavings), targetMonths:6, monthlyContribution:0 };
     const emergency = deps.emergency.calculate(emergencyInput);
     const debts = [{ id:'focus-debt', label:'Debt', balance:nonNegative(facts.debtBalance), annualRatePct:nonNegative(facts.debtAprPct), minimumPayment:nonNegative(facts.debtMinimumPayment) }];
-    const debt = deps.debtPayoff.comparePlans(debts, nonNegative(facts.monthlySurplus));
-    const baselineMonths = debt.zeroExtra.avalanche.status === 'paid_off' ? debt.zeroExtra.avalanche.months : 60;
-    const horizonYears = Math.max(1, Math.min(60, Math.ceil(baselineMonths / 12)));
-    const savingsState = { principal:0, annualRate:number(facts.assumedSavingsReturnPct), years:horizonYears, compounding:'monthly', contributionEnabled:true, contribution:nonNegative(facts.monthlySurplus), contributionFrequency:'monthly', contributionTiming:'end', inflationEnabled:false, inflation:0 };
-    const savings = deps.compound.calculate(savingsState);
-    const debtApr = nonNegative(facts.debtAprPct);
+    const monthlySurplus = nonNegative(facts.monthlySurplus);
+    const debt = deps.debtPayoff.comparePlans(debts, monthlySurplus);
     const assumedReturn = number(facts.assumedSavingsReturnPct);
+    const comparison = compareDebtVsInvestPaths(debt, monthlySurplus, assumedReturn);
+    const horizonYears = comparison.horizonMonths / 12;
+    const investmentReferenceState = { principal:0, annualRate:assumedReturn, years:horizonYears, compounding:'monthly', contributionEnabled:true, contribution:monthlySurplus, contributionFrequency:'monthly', contributionTiming:'end', inflationEnabled:false, inflation:0 };
+    const investmentReference = deps.compound.calculate(investmentReferenceState);
+    const modeledInterestSaved = debt.avalanche.status==='paid_off' && debt.zeroExtra.avalanche.status==='paid_off'
+      ? Math.max(0, debt.zeroExtra.avalanche.totalInterest - debt.avalanche.totalInterest) : null;
+    const lowBuffer = (emergency.fullLossRunwayMonths || 0) < 1;
+    const closeDifference = Math.abs(comparison.pathDifference) <= Math.max(1, Math.abs(comparison.investFirst.netPosition) * 0.005);
     let diagnosis;
-    if ((emergency.fullLossRunwayMonths || 0) < 1) diagnosis = 'Your modeled emergency reserve is below one month of unavoidable costs, so keeping a first cash buffer is the immediate resilience issue before directing all surplus elsewhere.';
-    else if (debtApr > assumedReturn) diagnosis = 'The debt rate entered is higher than the savings or investment return assumption. Debt reduction therefore removes a higher contractual rate than the modeled return assumption, while liquidity still matters.';
-    else diagnosis = 'The savings or investment return assumption is at least as high as the debt rate entered, so the modeled trade-off is sensitive to risk, taxes and liquidity rather than a simple rate comparison.';
-    let debtRec;
-    if ((emergency.fullLossRunwayMonths || 0) < 1) debtRec = freeze({ headline:'Keep a first emergency buffer before sending all surplus to debt or investing.', action:'Build accessible cash resilience first, then revisit the debt-versus-invest decision.', rationale:'The emergency-runway engine shows less than one month of unavoidable costs covered.' });
-    else if (debtApr > assumedReturn) debtRec = freeze({ headline:'Directing the surplus to debt is the stronger modeled starting point.', action:'Prioritize the high-cost debt while preserving the emergency buffer you need.', rationale:'The contractual debt rate is above the return assumption entered, and the debt-payoff engine shows measurable interest savings.' });
-    else debtRec = freeze({ headline:'The rate comparison alone does not give debt repayment a clear modeled advantage.', action:'Keep adequate liquidity and compare risk-adjusted, after-tax investment expectations before choosing where the surplus goes.', rationale:'The entered return assumption is at least as high as the debt rate, so uncertainty and liquidity become more important.' });
+    let recommendation;
+    if (lowBuffer) {
+      diagnosis='Your emergency savings cover less than one month of essential expenses and required debt payments. That liquidity gap matters before committing all extra money to either path.';
+      recommendation=freeze({ headline:'Build a first emergency buffer before committing all extra money.', action:'Keep accessible cash for unexpected essential costs, then compare debt repayment with investing again.', rationale:'The emergency-runway calculation shows less than one month of essential commitments covered.' });
+    } else if (closeDifference) {
+      diagnosis='The two paths finish very close together on the same modeled horizon. Investment returns are uncertain, while debt interest avoided is more predictable.';
+      recommendation=freeze({ headline:'The two paths are approximately tied under your assumptions.', action:'Let liquidity, investment risk, taxes and peace of mind guide the choice rather than a small modeled difference.', rationale:'Using the same monthly outflow and the same ending month produces no meaningful modeled advantage.' });
+    } else if (comparison.pathDifference > 0) {
+      diagnosis='Using the extra money to repay debt first leaves the higher modeled net position on the same ending date. After the debt is cleared, the freed monthly payment is invested for the rest of the comparison period.';
+      recommendation=freeze({ headline:'Paying debt faster is the stronger modeled path.', action:'Direct the extra monthly money to debt while preserving the emergency savings you need.', rationale:'On the same cash-flow and time horizon, the debt-first path finishes ahead under the investment return assumption entered.' });
+    } else {
+      diagnosis='Investing the extra money while continuing the required debt payment leaves the higher modeled net position on the same ending date under the return assumption entered.';
+      recommendation=freeze({ headline:'Investing is the stronger modeled path under your return assumption.', action:'Only prefer this path if you accept investment risk and the assumed return is realistic for your horizon.', rationale:'On the same cash-flow and time horizon, the invest-first path finishes ahead in the model. The return is assumed, not guaranteed.' });
+    }
     return freeze({
-      situation:'Debt or savings', diagnosis, recommendation:debtRec,
-      confidence:freeze({ level:'MEDIUM', basis:'Debt cost and payoff math are deterministic; savings/investment growth is based on your return assumption and is not guaranteed.' }),
-      whatCouldChangeAnswer:freeze(['A lower or higher debt APR.', 'A different realistic after-tax investment return assumption.', 'A change in emergency savings, essential expenses, liquidity needs or debt-payment terms.']),
-      importantNumbers:freeze({ currency, emergencyRunwayMonths:emergency.fullLossRunwayMonths, debtAprPct:debtApr, assumedSavingsReturnPct:assumedReturn, debtPayoffMonthsWithSurplus:debt.avalanche.months, debtInterestWithSurplus:debt.avalanche.totalInterest, debtInterestWithoutSurplus:debt.zeroExtra.avalanche.totalInterest, modeledInterestSaved:Math.max(0, debt.zeroExtra.avalanche.totalInterest - debt.avalanche.totalInterest), savingsProjectionYears:horizonYears, savingsProjectedValue:savings.ok ? savings.endingValue : null, savingsProjectedGrowth:savings.ok ? savings.growth : null }),
+      situation:'Pay debt or invest?', diagnosis, recommendation,
+      confidence:freeze({ level:'MEDIUM', basis:'Debt payoff and interest math are deterministic; investment growth uses your return assumption and is not guaranteed.' }),
+      whatCouldChangeAnswer:freeze(['A different debt interest rate or required payment.', 'A different realistic after-tax investment return assumption.', 'Taxes, fees, investment volatility or changes in emergency savings and liquidity needs.']),
+      importantNumbers:freeze({ currency, emergencyRunwayMonths:emergency.fullLossRunwayMonths, debtAprPct:nonNegative(facts.debtAprPct), assumedInvestmentReturnPct:assumedReturn, comparisonHorizonMonths:comparison.horizonMonths, debtPayoffMonthsWithSurplus:debt.avalanche.months, modeledInterestSaved, debtFirstEndingInvestment:comparison.debtFirst.investmentValue, investFirstEndingInvestment:comparison.investFirst.investmentValue, debtFirstRemainingDebt:comparison.debtFirst.remainingDebt, investFirstRemainingDebt:comparison.investFirst.remainingDebt, debtFirstNetPosition:comparison.debtFirst.netPosition, investFirstNetPosition:comparison.investFirst.netPosition, modeledPathDifference:comparison.pathDifference }),
       alternatives:freeze([
-        freeze({ id:'debt-first', label:'Direct monthly surplus to debt', payoffMonths:debt.avalanche.months, totalInterest:debt.avalanche.totalInterest }),
-        freeze({ id:'save-first', label:'Direct monthly surplus to savings/investment', horizonYears, projectedValue:savings.ok ? savings.endingValue : null, projectedGrowth:savings.ok ? savings.growth : null })
+        freeze({ id:'debt-first', label:'Pay debt faster', endingInvestmentValue:comparison.debtFirst.investmentValue, remainingDebt:comparison.debtFirst.remainingDebt, endingNetPosition:comparison.debtFirst.netPosition, payoffMonths:debt.avalanche.months }),
+        freeze({ id:'invest-first', label:'Invest the extra money', endingInvestmentValue:comparison.investFirst.investmentValue, remainingDebt:comparison.investFirst.remainingDebt, endingNetPosition:comparison.investFirst.netPosition, payoffMonths:debt.zeroExtra.avalanche.months })
       ]),
-      nextSteps:freeze(['Protect a first emergency buffer before sacrificing all liquidity.', 'Compare contractual debt cost with a realistic—not guaranteed—return assumption.', 'Use the detailed Debt Payoff and Compound Interest tools for deeper scenario testing.']),
-      assumptions:freeze([{ id:'savingsReturnPct', value:assumedReturn, note:'User-entered growth assumption; not a forecast.' }, { id:'projectionHorizonYears', value:horizonYears, note:'Rounded up from the minimum-payment debt payoff horizon for a simple common planning window.' }]),
-      trace:freeze([engineTrace('emergency-fund-runway', emergencyInput, emergency), engineTrace('debt-payoff', { debts, extraMonthlyPayment:nonNegative(facts.monthlySurplus) }, debt), engineTrace('compound-interest', savingsState, savings)])
+      nextSteps:freeze(['Keep enough accessible emergency savings for essential commitments.', 'Treat the investment return as an assumption, not a forecast or guarantee.', 'Use the detailed Debt Payoff and Compound Interest tools for deeper scenario testing.']),
+      assumptions:freeze([{ id:'investmentReturnPct', value:assumedReturn, note:'User-entered investment growth assumption; not a forecast.' }, { id:'comparisonHorizonMonths', value:comparison.horizonMonths, note:'Both paths use the same total monthly outflow and the same ending month. Money freed after debt payoff is invested for the remaining months.' }, { id:'emergencyBufferContext', value:6, note:'Six months is shown only as a starting reference here; My Carrowmont can store your own selected emergency-savings target.' }]),
+      trace:freeze([engineTrace('emergency-fund-runway', emergencyInput, emergency), engineTrace('debt-payoff', { debts, extraMonthlyPayment:monthlySurplus }, debt), engineTrace('compound-interest', investmentReferenceState, investmentReference)])
     });
   }
 
