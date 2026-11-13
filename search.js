@@ -5,6 +5,8 @@
   var ALIASES_URL = '/data/carrowmont-search-aliases.json';
   var MIN_QUERY_LENGTH = 2;
   var DEFAULT_LIMIT = 12;
+  var ASK_SEARCH_HANDOFF_KEY = 'carrowmont_search_handoff_v1';
+  var ASK_SEARCH_HANDOFF_MAX_AGE_MS = 5 * 60 * 1000;
   var dataPromise = null;
   var widgets = [];
 
@@ -50,9 +52,10 @@
     while (node && node.firstChild) node.removeChild(node.firstChild);
   }
 
-  function resultTypeLabel(type) {
-    if (type === 'tool') return 'Tool';
-    if (type === 'guide') return 'Guide';
+  function resultTypeLabel(entry) {
+    if (entry && String(entry.category || '').toLowerCase() === 'research') return 'Research';
+    if (entry && entry.type === 'tool') return 'Tool';
+    if (entry && entry.type === 'guide') return 'Learn';
     return 'Carrowmont';
   }
 
@@ -64,7 +67,7 @@
 
     var meta = document.createElement('div');
     meta.className = 'cm-search-result-meta';
-    meta.appendChild(textElement('span', 'cm-search-result-type', resultTypeLabel(entry.type)));
+    meta.appendChild(textElement('span', 'cm-search-result-type', resultTypeLabel(entry)));
     meta.appendChild(textElement('span', 'cm-search-result-category', entry.category));
 
     var heading = document.createElement('h3');
@@ -132,8 +135,27 @@
     widget.root.dataset.searchState = 'empty';
   }
 
+  function reducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function revealResults(widget) {
+    if (!widget || !widget.results) return;
+    var heading = widget.results.querySelector('[data-cm-search-results-heading]') || widget.results;
+    var header = document.querySelector('.site-header');
+    var offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+    var top = heading.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: reducedMotion() ? 'auto' : 'smooth' });
+  }
+
   function renderResults(widget, results) {
     clearNode(widget.results);
+    var heading = document.createElement('div');
+    heading.className = 'cm-search-results-heading';
+    heading.dataset.cmSearchResultsHeading = '';
+    heading.appendChild(textElement('strong', '', 'Results for "' + widget.query + '"'));
+    heading.appendChild(textElement('span', '', results.length === 1 ? '1 match' : results.length + ' matches'));
+    widget.results.appendChild(heading);
     var fragment = document.createDocumentFragment();
     results.forEach(function (entry) { fragment.appendChild(resultCard(entry)); });
     widget.results.appendChild(fragment);
@@ -142,7 +164,8 @@
     widget.root.dataset.searchState = 'results';
   }
 
-  function runWidgetSearch(widget, value) {
+  function runWidgetSearch(widget, value, options) {
+    var opts = options || {};
     var query = String(value == null ? '' : value).trim();
     widget.query = query;
     if (!query) {
@@ -168,9 +191,10 @@
       if (widget.query !== query) return results;
       if (results.length) renderResults(widget, results);
       else showEmpty(widget);
+      if (opts.reveal) requestAnimationFrame(function () { revealResults(widget); });
       return results;
     }).catch(function () {
-      if (widget.query === query) showError(widget);
+      if (widget.query === query) { showError(widget); if (opts.reveal) requestAnimationFrame(function () { revealResults(widget); }); }
       return [];
     }).finally(function () {
       if (widget.query === query) setBusy(widget, false);
@@ -208,7 +232,7 @@
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      runWidgetSearch(widget, input.value);
+      runWidgetSearch(widget, input.value, { reveal: true });
     });
     input.addEventListener('input', runDebounced);
     input.addEventListener('keydown', function (event) {
@@ -225,11 +249,22 @@
           var suggestion = button.getAttribute('data-search-suggestion') || button.textContent || '';
           input.value = suggestion.trim();
           input.focus();
-          runWidgetSearch(widget, input.value);
+          runWidgetSearch(widget, input.value, { reveal: true });
         });
       });
     }
     resetWidget(widget);
+    try {
+      var raw = sessionStorage.getItem(ASK_SEARCH_HANDOFF_KEY);
+      if (raw) {
+        sessionStorage.removeItem(ASK_SEARCH_HANDOFF_KEY);
+        var handoff = JSON.parse(raw);
+        if (handoff && handoff.query && Date.now() - Number(handoff.createdAt || 0) <= ASK_SEARCH_HANDOFF_MAX_AGE_MS) {
+          input.value = String(handoff.query);
+          runWidgetSearch(widget, input.value, { reveal: true });
+        }
+      }
+    } catch (_) {}
     return widget;
   }
 

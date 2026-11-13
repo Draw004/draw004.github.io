@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261110-fre5">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261113-fre8f">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -76,7 +76,7 @@
           <div class="ask-action-row">
             <button class="button button-primary" type="button" id="askStartBtn">Work through this <span class="button-arrow">&rarr;</span></button>
           </div>
-          <div class="ask-or"><span>Or start with a common question</span></div>
+          <div class="ask-or"><span>Or choose a guided money decision</span></div>
           <div class="ask-suggestions" aria-label="Suggested questions">
             <button type="button" data-ask-intent="debt-vs-savings">Pay debt or save?</button>
             <button type="button" data-ask-intent="car-affordability">Can I afford this car?</button>
@@ -87,12 +87,12 @@
           </div>
           <div class="ask-message" id="askStartMessage" role="status" aria-live="polite"></div>
           <div class="ask-unsupported" id="askUnsupported" role="status" aria-live="polite" hidden>
-            <span class="ask-step-label">Ask Carrowmont is still growing</span>
-            <h2 id="askUnsupportedTitle">This guided resolution is not available yet</h2>
-            <p id="askUnsupportedText">I can understand what you are asking, but this guided resolution has not been built yet. Ask Carrowmont currently works through six controlled money decisions while we develop the fuller resolution experience.</p>
-            <p class="ask-unsupported-supported"><strong>Available now:</strong> debt vs savings, car affordability, mortgage prepay vs invest, emergency fund adequacy, running short before payday, and Money Priorities.</p>
+            <span class="ask-step-label">Best Carrowmont matches</span>
+            <h2 id="askUnsupportedTitle">Here is a good place to start</h2>
+            <p id="askUnsupportedText">Carrowmont found pages that may help with your question.</p>
+            <div class="ask-route-results" id="askUnsupportedMatches"></div>
             <div class="ask-unsupported-links" aria-label="Other Carrowmont paths">
-              <a href="/search.html">Search Carrowmont</a>
+              <a href="/search.html" id="askSearchAll">See all search results</a>
               <a href="/tools.html">Browse Tools</a>
               <a href="/learn.html">Explore Learn</a>
             </div>
@@ -186,7 +186,9 @@
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
-<script src="/assets/ask/ask-carrowmont.js?v=20261112-fre8a"></script>
+<script src="/search-core.js?v=20261113-fre8f"></script>
+  <script src="/search.js?v=20261113-fre8f"></script>
+  <script src="/assets/ask/ask-carrowmont.js?v=20261113-fre8f"></script>
 <script src="/site.js?v=20261112-fre8a"></script>
 </body>
 </html>

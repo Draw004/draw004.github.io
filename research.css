@@ -56,3 +56,6 @@
   .basket-preset{min-width:0;width:100%;white-space:normal}
   .research-downloads a{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 }
+
+/* FRE Batch 8F: research market scope is explicit without dominating the library. */
+.research-study-card>.research-kicker{display:inline-flex;margin-bottom:10px;padding:5px 9px;border:1px solid #cfe4e1;border-radius:999px;background:#f2faf8;color:#0b746d;font-size:10px;letter-spacing:.09em}

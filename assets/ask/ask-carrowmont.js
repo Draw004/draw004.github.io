@@ -82,6 +82,7 @@
     'money-priorities':['Explore the detailed Carrowmont tools','/tools.html']
   };
   const CAR_AFFORDABILITY_HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
+  const SEARCH_HANDOFF_KEY='carrowmont_search_handoff_v1';
   const CAR_AFFORDABILITY_HANDOFF_MAX_AGE_MS=15*60*1000;
   const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth/i;
   const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn/i;
@@ -139,16 +140,50 @@
   }
 
   function hideUnsupported(){ const box=$('askUnsupported'); if(box) box.hidden=true; }
+  function resultType(entry){
+    if(String(entry?.category||'').toLowerCase()==='research') return 'Research';
+    if(entry?.type==='tool') return 'Tool';
+    if(entry?.type==='guide') return 'Learn';
+    return 'Carrowmont';
+  }
+  function writeSearchHandoff(text){
+    try{ sessionStorage.setItem(SEARCH_HANDOFF_KEY,JSON.stringify({query:text,createdAt:Date.now(),source:'ask'})); return true; }catch(_err){ return false; }
+  }
+  function renderRouteMatches(text,results){
+    const box=$('askUnsupported'); if(!box) return;
+    const title=$('askUnsupportedTitle'); const detail=$('askUnsupportedText'); const wrap=$('askUnsupportedMatches');
+    if(title) title.textContent=results.length?'Here is a good place to start':'Search Carrowmont for a close match';
+    if(detail) detail.textContent=results.length?`These Carrowmont pages are the closest matches for “${text}”.`:`Carrowmont did not find a close direct match for “${text}”. Try the wider search or browse Learn and Tools.`;
+    if(wrap){
+      wrap.innerHTML='';
+      results.slice(0,3).forEach(entry=>{
+        const a=document.createElement('a'); a.className='ask-route-result'; a.href=entry.url;
+        const meta=document.createElement('span'); meta.className='ask-route-type'; meta.textContent=resultType(entry);
+        const strong=document.createElement('strong'); strong.textContent=entry.title;
+        const small=document.createElement('small'); small.textContent=entry.description||entry.category||'';
+        a.append(meta,strong,small); wrap.appendChild(a);
+      });
+    }
+    const all=$('askSearchAll');
+    if(all){
+      all.onclick=(event)=>{
+        writeSearchHandoff(text);
+        if(event && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && event.button===0){
+          event.preventDefault();
+          window.location.assign(all.getAttribute('href')||'/search.html');
+        }
+      };
+    }
+    box.hidden=false; requestAnimationFrame(()=>box.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'nearest'}));
+  }
   function showUnsupported(text){
     $('askStartMessage').textContent='';
-    const box=$('askUnsupported');
-    if(!box) return;
-    const title=$('askUnsupportedTitle');
-    const detail=$('askUnsupportedText');
-    if(title) title.textContent='This guided resolution is not available yet';
-    if(detail) detail.textContent=`I can understand your question${text?` — “${text}”`:''}, but this guided resolution has not been built yet. Ask Carrowmont currently works through six controlled money decisions while we develop the fuller resolution experience.`;
-    box.hidden=false;
-    requestAnimationFrame(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}));
+    const query=String(text||'').trim();
+    if(window.CarrowmontSearch?.search && query){
+      window.CarrowmontSearch.search(query,{limit:4}).then(results=>renderRouteMatches(query,results||[])).catch(()=>renderRouteMatches(query,[]));
+      return;
+    }
+    renderRouteMatches(query,[]);
   }
   function reset(){
     lastResult=null;
@@ -194,7 +229,7 @@
     catch(err){ $('askQuestionMessage').textContent='Carrowmont could not run this calculation. Please review the numbers and try again.'; stage('questions'); return; }
     if(result.status==='NEEDS_INPUT'){ renderQuestions(result.questions); return; }
     if(result.status==='RESOLVED'){ renderResult(result); return; }
-    $('askStartMessage').textContent='Choose one of the six supported journeys to continue.'; stage('start');
+    showUnsupported(state.questionText||'this money question'); stage('start');
   }
   function renderQuestions(questions){
     stage('questions');

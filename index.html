@@ -10,6 +10,9 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/carrowmont.webmanifest">
   <link rel="apple-touch-icon" href="/assets/pwa/carrowmont-192.png">
+  <link rel="preload" as="image" href="/carrowmont-hero-mobile.webp?v=20261113-hero4" media="(max-width: 980px)">
+  <link rel="preload" as="image" href="/carrowmont-hero-laptop.webp?v=20261113-hero4" media="(min-width: 981px) and (max-width: 1649px)">
+  <link rel="preload" as="image" href="/carrowmont-hero.webp?v=20261113-hero4" media="(min-width: 1650px)">
   <meta property="og:site_name" content="Carrowmont">
   <meta property="og:title" content="Carrowmont | Financial Planning, Tools &amp; Learning">
   <meta property="og:description" content="Carrowmont helps you plan retirement, goals, debt, cash flow and other financial decisions, keep meaningful plans in My Carrowmont and track progress over time.">
@@ -21,7 +24,7 @@
   <meta name="twitter:description" content="Carrowmont helps you plan retirement, goals, debt, cash flow and other financial decisions, keep meaningful plans in My Carrowmont and track progress over time.">
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Carrowmont | Financial Planning, Tools &amp; Learning</title>
-  <link rel="stylesheet" href="carrowmont.css?v=20261113-fre8e-v3">
+  <link rel="stylesheet" href="carrowmont.css?v=20261113-fre8f">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://carrowmont.com/#website","name":"Carrowmont","alternateName":"carrowmont.com","url":"https://carrowmont.com/","description":"Financial planning tools and educational resources for budgeting, cash flow, investing, retirement, inflation and major life goals.","publisher":{"@id":"https://carrowmont.com/#organization"},"inLanguage":"en"},{"@type":"Organization","@id":"https://carrowmont.com/#organization","name":"Carrowmont","url":"https://carrowmont.com/","description":"Carrowmont publishes educational financial planning calculators, scenario tools, independent research and learning resources.","email":"contact@carrowmont.com","sameAs":["https://www.linkedin.com/company/carrowmont/","https://www.facebook.com/carrowmont","https://www.instagram.com/carrowmont.finance/","https://www.youtube.com/@carrowmontfinance"]}]}</script>
 
@@ -136,9 +139,9 @@
     <section class="hero" id="plan">
       <div class="hero-visual" aria-hidden="true">
         <picture>
-          <source media="(max-width: 980px)" srcset="carrowmont-hero-mobile.webp?v=20260927-hero-asset3">
-          <source media="(max-width: 1649px)" srcset="carrowmont-hero-laptop.webp?v=20260927-hero-asset3">
-          <img src="carrowmont-hero.webp?v=20260927-hero-asset3" alt="Illustration of a financial planning journey from saving and investing to achieving goals and retirement.">
+          <source media="(max-width: 980px)" srcset="carrowmont-hero-mobile.webp?v=20261113-hero4">
+          <source media="(max-width: 1649px)" srcset="carrowmont-hero-laptop.webp?v=20261113-hero4">
+          <img src="carrowmont-hero.webp?v=20261113-hero4" alt="Illustration of a financial planning journey from saving and investing to achieving goals and retirement." loading="eager" fetchpriority="high" decoding="async" width="1819" height="865">
         </picture>
       </div>
       <p class="sr-only">The hero illustration represents a financial journey from building good habits and saving, through growing wealth and achieving goals, toward retirement and a brighter tomorrow.</p>
@@ -222,7 +225,6 @@
             <div><h3>Understand</h3><p>See why something needs attention and open the right planner to test a change.</p></div>
           </article>
         </div>
-        <div class="cm-product-story-rule"><strong>Explore freely.</strong><span>What-if calculations stay separate until you choose to update My Carrowmont.</span></div>
       </div>
     </section>
 

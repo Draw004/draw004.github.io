@@ -75,3 +75,6 @@
   .cm-search-input,.cm-search-submit{transition:none}
   .cm-search-submit:hover{transform:none}
 }
+
+/* FRE Batch 8F: search is a fast utility; submitted results are immediately visible. */
+.cm-search-results-heading{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:3px 0 2px;padding:0 2px}.cm-search-results-heading strong{color:#153d5c;font-size:18px}.cm-search-results-heading span{color:#6a8193;font-size:12px;font-weight:750}.content-layout-refined .search-discovery-section .cm-search-widget[data-search-variant="embedded"]{padding:18px 20px}.content-layout-refined .search-discovery-section .cm-search-heading{margin-bottom:10px}.content-layout-refined .search-discovery-section .cm-search-heading h2{font-size:23px}.content-layout-refined .search-discovery-section .cm-search-heading p{font-size:14px}.content-layout-refined .search-discovery-section .cm-search-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}@media(max-width:760px){.cm-search-results-heading{display:block}.cm-search-results-heading span{display:block;margin-top:3px}}
