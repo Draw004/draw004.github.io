@@ -13,7 +13,7 @@
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261113-fre8e">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261114-fre8g">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -75,50 +75,54 @@
       </section>
 
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
-        <section class="mycm-plan-model" aria-labelledby="mycmPlanModelTitle">
-          <div><span class="mycm-kicker">How your plan works</span><h2 id="mycmPlanModelTitle">Know what is saved — and what is only a what-if.</h2></div>
+        <details class="mycm-plan-model" open>
+          <summary><span class="mycm-kicker">How saved plans work</span><strong>Current details, saved plans and what-if calculations stay separate.</strong></summary>
           <div class="mycm-plan-model-grid">
             <article><strong>Current details</strong><span>The latest account values you chose to save.</span></article>
             <article><strong>Saved plan</strong><span>The target or path you chose to keep.</span></article>
             <article><strong>What-if calculation</strong><span>Stays separate until you choose to update My Carrowmont.</span></article>
             <article><strong>Progress history</strong><span>Previous saved versions used to show what changed.</span></article>
           </div>
-        </section>
+        </details>
+
         <nav class="mycm-mobile-quick" aria-label="My Carrowmont quick access">
-          <a href="#mycmProgressSection">Progress</a><a href="#mycmSavedPlansSection">Saved plans</a><a href="#mycmCards">Financial picture</a><a href="#mycmKnows">Saved details</a>
+          <a href="#mycmCashFlowCard">Monthly money</a><a href="#mycmEmergencyCard">Emergency savings</a><a href="#mycmDebtCard">Debt &amp; loans</a><a href="#mycmSavedPlansSection">Saved plans</a>
         </nav>
+
+        <div class="mycm-toolbar">
+          <div><strong class="mycm-toolbar-title">Your money at a glance</strong><small>Update only the section you need. My Carrowmont keeps the rest of your saved details unchanged.</small></div>
+        </div>
+        <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
+
+        <div class="mycm-grid mycm-primary-grid" id="mycmCards" aria-live="polite">
+          <article class="mycm-card" id="mycmCashFlowCard"></article>
+          <article class="mycm-card" id="mycmEmergencyCard"></article>
+          <article class="mycm-card" id="mycmDebtCard"></article>
+        </div>
+
+        <section class="mycm-saved-plans" id="mycmSavedPlansSection" hidden>
+          <div class="mycm-saved-plans-head"><div><span class="mycm-kicker">Saved plans</span><h2>Plans you chose to keep</h2><p>Reopen a saved plan when you want to review or update it. Your saved plan stays separate from unsaved what-if calculations.</p></div></div>
+          <div class="mycm-saved-plans-list" id="mycmSavedPlansList"></div>
+        </section>
+
+        <section class="mycm-decisions" aria-labelledby="mycmDecisionsTitle">
+          <div class="mycm-decisions-head"><span class="mycm-kicker">Decisions</span><h2 id="mycmDecisionsTitle">Use your numbers for the next decision.</h2><p>These guided comparisons do not change your saved details unless you choose to save something later.</p></div>
+          <a class="mycm-decision-card" href="/ask-carrowmont.html?decision=debt-vs-savings"><strong>Pay debt or invest?</strong><span>Compare using the same extra monthly money to repay debt faster or invest it. Investment returns are assumptions, not guarantees.</span><b>Compare the two paths →</b></a>
+        </section>
+
         <section class="mycm-progress" id="mycmProgressSection" hidden>
           <div class="mycm-progress-section-head">
-            <div><span class="mycm-kicker">Your progress</span><h2>See whether your saved plans are on track.</h2><p>Carrowmont checks the target you chose to keep, when the plan was last reviewed, and what changed since the previous saved version.</p></div>
+            <div><span class="mycm-kicker">Your progress</span><h2>See what changed in your saved plans.</h2><p>Progress uses plans you chose to keep and stays separate from unsaved what-if calculations.</p></div>
             <strong class="mycm-progress-summary" id="mycmProgressSummary">Your saved plans are ready to review.</strong>
           </div>
           <div class="mycm-progress-list" id="mycmProgressList"></div>
         </section>
-        <section class="mycm-saved-plans" id="mycmSavedPlansSection" hidden>
-          <div class="mycm-saved-plans-head"><div><span class="mycm-kicker">Saved plans</span><h2>Plans you chose to keep</h2><p>Reopen a saved plan without entering the same assumptions again. Saved plans also provide the foundation for deeper planning insights.</p></div></div>
-          <div class="mycm-saved-plans-list" id="mycmSavedPlansList"></div>
-        </section>
-        <div class="mycm-toolbar">
-          <div><strong class="mycm-toolbar-title">Your saved planning profile</strong><small>Changes you make here are saved to My Carrowmont while you are signed in.</small></div>
-          <div class="mycm-toolbar-actions"><button class="mycm-button" id="mycmEditAll" type="button">Add or edit details</button><button class="mycm-button" id="mycmKnowBtn" type="button">What Carrowmont knows</button></div>
-        </div>
-        <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
 
-        <div class="mycm-grid" id="mycmCards" aria-live="polite">
-          <article class="mycm-card" id="mycmCashFlowCard"></article>
-          <article class="mycm-card" id="mycmEmergencyCard"></article>
-          <article class="mycm-card" id="mycmDebtCard"></article>
-          <article class="mycm-card" id="mycmBorrowingCard"></article>
-          <article class="mycm-card" id="mycmRetirementCard"></article>
-          <article class="mycm-card" id="mycmGoalCard"></article>
-          <article class="mycm-card" id="mycmFiCard"></article>
-          <article class="mycm-card" id="mycmPrioritiesCard"></article>
-        </div>
-
-        <section class="mycm-knows" id="mycmKnows">
-          <div class="mycm-knows-head"><div><h2>What Carrowmont knows about you</h2><p>Only values in your saved My Carrowmont profile appear here. Ignore, edit or remove any value at any time.</p></div></div>
+        <details class="mycm-knows" id="mycmKnows">
+          <summary><strong>Review all saved details</strong><span>Advanced view for values brought in from compatible Carrowmont planners.</span></summary>
+          <div class="mycm-knows-head"><div><h2>Saved details</h2><p>Change, remove or ignore an individual saved value here. The main dashboard uses only the values that fit each section.</p></div></div>
           <div class="mycm-facts" id="mycmFacts"></div>
-        </section>
+        </details>
         <p class="mycm-note">My Carrowmont is a planning summary, not a transaction tracker. It does not connect to banks or monitor spending. Sign out to remove your account-backed dashboard from this browser view; sign in again to retrieve it. Calculations remain educational and illustrative, not individualized financial, investment, tax, legal or lending advice.</p>
       </div>
     </div>
@@ -126,7 +130,7 @@
 </main>
 
 <dialog class="mycm-dialog" id="mycmEditDialog" aria-labelledby="mycmEditTitle">
-  <div class="mycm-dialog-head"><div><h2 id="mycmEditTitle">Add or edit your planning details</h2><p>Leave a field blank if you do not want to add it. Use “What Carrowmont knows” to remove an existing value.</p></div><button class="mycm-dialog-close" id="mycmEditClose" type="button" aria-label="Close">×</button></div>
+  <div class="mycm-dialog-head"><div><h2 id="mycmEditTitle">Update saved details</h2><p id="mycmEditIntro">Update only the section you need. Use Remove when you want to delete a saved value.</p></div><button class="mycm-dialog-close" id="mycmEditClose" type="button" aria-label="Close">×</button></div>
   <form id="mycmEditForm">
     <div class="mycm-dialog-body" id="mycmEditFields"></div>
     <div class="mycm-dialog-actions"><button class="mycm-button" id="mycmEditCancel" type="button">Cancel</button><button class="mycm-button mycm-button-primary" type="submit">Save details</button></div>
@@ -147,7 +151,7 @@
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
-<script src="/assets/dashboard/my-carrowmont.js?v=20261112-fre8a"></script>
+<script src="/assets/dashboard/my-carrowmont.js?v=20261114-fre8g"></script>
 <script src="/assets/account/my-carrowmont-account.js?v=20261113-fre8d"></script>
 <script src="/site.js?v=20261113-fre8e"></script>
 </body>

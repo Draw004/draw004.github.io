@@ -45,3 +45,30 @@
 /* FRE Batch 8E - phone-first My Carrowmont access */
 .mycm-app-access{display:flex;align-items:center;justify-content:space-between;gap:22px;margin:0 0 18px;padding:17px 20px;border:1px solid #d6e4e8;border-radius:18px;background:#fff}.mycm-app-access h2{margin:3px 0 5px;color:#143552;font-size:21px}.mycm-app-access p{max-width:760px;margin:0;color:#63798c;font-size:13px;line-height:1.5}.mycm-app-access-actions{display:flex;align-items:center;gap:10px;flex:0 0 auto}.mycm-app-access-actions small{max-width:260px;color:#6b8092;font-size:11.5px;line-height:1.4}.mycm-mobile-quick{display:none}.mycm-progress,.mycm-saved-plans,.mycm-grid,.mycm-knows{scroll-margin-top:82px}
 @media(max-width:800px){.mycm-app-access{align-items:flex-start;flex-direction:column;padding:15px}.mycm-app-access-actions{align-items:stretch;flex-direction:column;width:100%}.mycm-app-access-actions .mycm-button{width:100%}.mycm-app-access-actions small{max-width:none}.mycm-mobile-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 16px}.mycm-mobile-quick a{display:flex;align-items:center;justify-content:center;min-height:42px;padding:8px 10px;border:1px solid #d3e1e5;border-radius:12px;background:#fff;color:#173b5d;text-decoration:none;font-size:12px;font-weight:850;text-align:center}.mycm-mobile-quick a:focus-visible,.mycm-mobile-quick a:hover{border-color:#62afa7;background:#eef9f7;color:#0b7068}}
+
+/* FRE Batch 8G - simplified My Carrowmont dashboard */
+.mycm-primary-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:20px}
+.mycm-primary-grid .mycm-card{min-width:0}
+.mycm-big-label{display:block;margin-bottom:5px;color:#647b90;font-size:12px;font-weight:850}
+.mycm-metrics-compact{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mycm-missing-list{margin:13px 0 0;padding-left:19px;color:#5f7589;font-size:13px;line-height:1.6}
+.mycm-plan-model>summary,.mycm-knows>summary{display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;list-style:none}
+.mycm-plan-model>summary::-webkit-details-marker,.mycm-knows>summary::-webkit-details-marker{display:none}
+.mycm-plan-model>summary::after,.mycm-knows>summary::after{content:'+';display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border:1px solid #d2e0e5;border-radius:50%;color:#31536d;font-size:20px;font-weight:500}
+.mycm-plan-model[open]>summary::after,.mycm-knows[open]>summary::after{content:'−'}
+.mycm-plan-model>summary>strong{color:#173b5d;font-size:14px;line-height:1.4}
+.mycm-plan-model>summary .mycm-kicker{margin:0 10px 0 0;white-space:nowrap}
+.mycm-knows>summary strong{color:#173b5d;font-size:16px}.mycm-knows>summary span{flex:1;color:#6b8092;font-size:12.5px;line-height:1.45}
+.mycm-knows[open] .mycm-knows-head{margin-top:18px}
+.mycm-decisions{margin:0 0 20px;padding:20px;border:1px solid #d6e4e8;border-radius:18px;background:#fff}
+.mycm-decisions-head h2{margin:4px 0 6px;color:#123657;font-size:24px}.mycm-decisions-head p{max-width:850px;margin:0;color:#5b7184;line-height:1.55}
+.mycm-decision-card{display:grid;gap:5px;margin-top:14px;padding:15px 16px;border:1px solid #d4e4e7;border-radius:14px;background:#f5fbfa;color:#173b5d;text-decoration:none}
+.mycm-decision-card strong{font-size:16px}.mycm-decision-card span{color:#5f7589;font-size:13px;line-height:1.5}.mycm-decision-card b{margin-top:3px;color:#08766e;font-size:12.5px}.mycm-decision-card:hover,.mycm-decision-card:focus-visible{border-color:#70b8b0;background:#eef9f7}
+.mycm-field-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}.mycm-field-head label,.mycm-field-label{margin:0!important;color:#173b5d;font-size:12px;font-weight:850}
+.mycm-field-remove{padding:0;border:0;background:transparent;color:#9a3427;font:inherit;font-size:11.5px;font-weight:850;cursor:pointer;text-decoration:underline;text-underline-offset:2px}.mycm-field-remove:hover,.mycm-field-remove:focus-visible{color:#7b241a}
+.mycm-target-field{grid-column:1/-1}.mycm-target-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0;padding:0;border:0}.mycm-target-options legend{width:100%;margin:0 0 8px;color:#63798c;font-size:12px;line-height:1.45}.mycm-target-options label{margin:0}.mycm-target-options input{position:absolute;opacity:0;pointer-events:none}.mycm-target-options span{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 10px;border:1px solid #bfd1da;border-radius:11px;background:#fff;color:#173b5d;font-size:12px;font-weight:800;text-align:center;cursor:pointer}.mycm-target-options input:checked+span{border-color:#0f8077;background:#eaf8f5;color:#0b6f68;box-shadow:0 0 0 2px rgba(15,128,119,.1)}.mycm-target-options input:focus-visible+span{outline:3px solid rgba(8,118,110,.16);outline-offset:1px}
+.mycm-custom-target{margin-top:9px}.mycm-custom-target[hidden]{display:none}
+.mycm-editor-context{margin:0 0 16px;padding:13px 14px;border:1px solid #d9e6e9;border-radius:13px;background:#f6fafb}.mycm-editor-context strong{display:block;color:#173b5d}.mycm-editor-context p{margin:5px 0 0;color:#61778a;font-size:12.5px;line-height:1.5}.mycm-editor-context .mycm-button{margin:10px 6px 0 0}
+.mycm-card,.mycm-metric,.mycm-fact,.mycm-card-main{min-width:0;overflow-wrap:anywhere}
+@media(max-width:980px){.mycm-primary-grid{grid-template-columns:1fr}.mycm-primary-grid .mycm-card{min-height:0}.mycm-plan-model>summary{align-items:flex-start;flex-wrap:wrap}.mycm-plan-model>summary>strong{flex:1;min-width:220px}}
+@media(max-width:620px){.mycm-metrics-compact{grid-template-columns:1fr}.mycm-target-options{grid-template-columns:repeat(2,minmax(0,1fr))}.mycm-decisions{padding:16px}.mycm-plan-model>summary .mycm-kicker{width:100%;margin:0}.mycm-knows>summary{align-items:flex-start;flex-wrap:wrap}.mycm-knows>summary span{flex-basis:calc(100% - 44px)}}

@@ -2,45 +2,53 @@
   'use strict';
 
   const FIELD_DEFS=[
-    {group:'Cash flow',path:'cashFlow.takeHomeIncome',label:'Monthly take-home income',kind:'money'},
-    {group:'Cash flow',path:'cashFlow.grossIncome',label:'Gross monthly income',kind:'money',help:'Used only for debt-to-income context.'},
-    {group:'Cash flow',path:'cashFlow.essentialExpenses',label:'Essential monthly expenses',kind:'money'},
-    {group:'Cash flow',path:'cashFlow.flexibleExpenses',label:'Flexible monthly spending',kind:'money'},
-    {group:'Protection & debt',path:'debt.monthlyPayments',label:'Required monthly debt payments',kind:'money'},
-    {group:'Protection & debt',path:'resilience.emergencySavings',label:'Emergency savings',kind:'money'},
-    {group:'Protection & debt',path:'resilience.targetMonths',label:'Emergency-fund target (months)',kind:'months'},
-    {group:'Protection & debt',path:'debt.balance',label:'Interest-bearing debt balance',kind:'money'},
-    {group:'Protection & debt',path:'debt.highestAprPct',label:'Highest debt APR',kind:'pct'},
-    {group:'Mortgage & loans',path:'debt.housingPayment',label:'Monthly mortgage / home-loan payment',kind:'money'},
-    {group:'Mortgage & loans',path:'debt.otherLoanPayments',label:'Other monthly loan payments',kind:'money'},
-    {group:'Mortgage & loans',path:'debt.creditCardMinimums',label:'Monthly credit-card minimums',kind:'money'},
-    {group:'Mortgage & loans',path:'debt.otherDebtPayments',label:'Other monthly debt payments',kind:'money'},
-    {group:'Mortgage & loans',path:'debt.mortgageBalance',label:'Mortgage / home-loan balance',kind:'money'},
-    {group:'Mortgage & loans',path:'debt.mortgageRatePct',label:'Mortgage / home-loan rate',kind:'pct'},
-    {group:'Retirement',path:'retirement.currentSavings',label:'Retirement savings',kind:'money'},
-    {group:'Retirement',path:'retirement.monthlyContribution',label:'Monthly retirement contribution',kind:'money'},
-    {group:'Goal',path:'goal.targetAmount',label:'Goal target amount',kind:'money'},
-    {group:'Goal',path:'goal.currentSavings',label:'Savings already set aside for goal',kind:'money'},
-    {group:'Goal',path:'goal.yearsAway',label:'Years until goal',kind:'years'},
-    {group:'Goal',path:'goal.monthlyContribution',label:'Monthly goal contribution',kind:'money'},
-    {group:'Goal',path:'assumptions.longTermReturnPct',label:'Illustrative long-term return assumption',kind:'pct',help:'Used for goal and priority illustrations only. Not a forecast.'},
-    {group:'Financial independence',path:'fi.currentAge',label:'Current age',kind:'number'},
-    {group:'Financial independence',path:'fi.targetAge',label:'Target financial-independence age',kind:'number'},
-    {group:'Financial independence',path:'fi.monthlySpending',label:'Monthly spending for FI planning',kind:'money'},
-    {group:'Financial independence',path:'fi.monthlyPassiveIncome',label:'Monthly income expected after FI',kind:'money'},
-    {group:'Financial independence',path:'fi.withdrawalRatePct',label:'Withdrawal-rate assumption',kind:'pct'},
-    {group:'Financial independence',path:'fi.inflationPct',label:'Inflation assumption',kind:'pct'},
-    {group:'Financial independence',path:'fi.currentAssets',label:'Current invested assets',kind:'money'},
-    {group:'Financial independence',path:'fi.monthlyContribution',label:'Monthly investment contribution',kind:'money'},
-    {group:'Financial independence',path:'fi.annualReturnPct',label:'Annual return assumption',kind:'pct'},
-    {group:'Financial independence',path:'fi.annualStepUpPct',label:'Annual contribution increase',kind:'pct'}
+    {group:'Monthly money',path:'cashFlow.takeHomeIncome',label:'Monthly income you receive',kind:'money',help:'The amount you normally receive after tax and other deductions.'},
+    {group:'Saved details',path:'cashFlow.grossIncome',label:'Income before tax',kind:'money',help:'Kept for calculators that need a lender-style gross-income ratio. It is not required for the main dashboard.'},
+    {group:'Monthly money',path:'cashFlow.essentialExpenses',label:'Essential monthly expenses',kind:'money',help:'Costs that must continue and cannot reasonably be reduced or skipped.'},
+    {group:'Monthly money',path:'cashFlow.flexibleExpenses',label:'Other monthly spending',kind:'money',help:'Spending that could be reduced, postponed or stopped if needed.'},
+    {group:'Debt & loans',path:'debt.monthlyPayments',label:'Monthly debt payments',kind:'money',help:'Required monthly payments across loans, cards and other debt.'},
+    {group:'Emergency savings',path:'resilience.emergencySavings',label:'Current emergency savings',kind:'money',help:'Accessible money you keep for unexpected essential costs.'},
+    {group:'Emergency savings',path:'resilience.targetMonths',label:'Emergency savings target',kind:'months',help:'Choose how many months of essential commitments you want your emergency savings to cover.'},
+    {group:'Debt & loans',path:'debt.balance',label:'Debt remaining',kind:'money'},
+    {group:'Debt & loans',path:'debt.highestAprPct',label:'Highest debt interest rate',kind:'pct'},
+    {group:'Saved details',path:'debt.housingPayment',label:'Monthly mortgage / home-loan payment',kind:'money'},
+    {group:'Saved details',path:'debt.otherLoanPayments',label:'Other monthly loan payments',kind:'money'},
+    {group:'Saved details',path:'debt.creditCardMinimums',label:'Monthly credit-card minimums',kind:'money'},
+    {group:'Saved details',path:'debt.otherDebtPayments',label:'Other monthly debt payments',kind:'money'},
+    {group:'Saved details',path:'debt.mortgageBalance',label:'Mortgage / home-loan balance',kind:'money'},
+    {group:'Saved details',path:'debt.mortgageRatePct',label:'Mortgage / home-loan rate',kind:'pct'},
+    {group:'Saved details',path:'retirement.currentSavings',label:'Retirement savings',kind:'money'},
+    {group:'Saved details',path:'retirement.monthlyContribution',label:'Monthly retirement contribution',kind:'money'},
+    {group:'Saved details',path:'goal.targetAmount',label:'Goal target amount',kind:'money'},
+    {group:'Saved details',path:'goal.currentSavings',label:'Savings already set aside for goal',kind:'money'},
+    {group:'Saved details',path:'goal.yearsAway',label:'Years until goal',kind:'years'},
+    {group:'Saved details',path:'goal.monthlyContribution',label:'Monthly goal contribution',kind:'money'},
+    {group:'Saved details',path:'assumptions.longTermReturnPct',label:'Illustrative long-term return assumption',kind:'pct',help:'Used for planning illustrations only. It is not a forecast.'},
+    {group:'Saved details',path:'fi.currentAge',label:'Current age',kind:'number'},
+    {group:'Saved details',path:'fi.targetAge',label:'Target financial-independence age',kind:'number'},
+    {group:'Saved details',path:'fi.monthlySpending',label:'Monthly spending for FI planning',kind:'money'},
+    {group:'Saved details',path:'fi.monthlyPassiveIncome',label:'Monthly income expected after FI',kind:'money'},
+    {group:'Saved details',path:'fi.withdrawalRatePct',label:'Withdrawal-rate assumption',kind:'pct'},
+    {group:'Saved details',path:'fi.inflationPct',label:'Inflation assumption',kind:'pct'},
+    {group:'Saved details',path:'fi.currentAssets',label:'Current invested assets',kind:'money'},
+    {group:'Saved details',path:'fi.monthlyContribution',label:'Monthly investment contribution',kind:'money'},
+    {group:'Saved details',path:'fi.annualReturnPct',label:'Annual return assumption',kind:'pct'},
+    {group:'Saved details',path:'fi.annualStepUpPct',label:'Annual contribution increase',kind:'pct'}
   ];
   const LABELS=Object.fromEntries(FIELD_DEFS.map(x=>[x.path,x]));
+  const PRIMARY_SECTIONS={
+    monthly:{title:'Update monthly money',intro:'Use the amounts you normally receive and spend each month.',paths:['cashFlow.takeHomeIncome','cashFlow.essentialExpenses','cashFlow.flexibleExpenses']},
+    emergency:{title:'Update emergency savings',intro:'Set how much emergency savings you have and the number of months you want it to cover.',paths:['resilience.emergencySavings','resilience.targetMonths']},
+    debt:{title:'Update debt & loans',intro:'Use the combined debt figures you want My Carrowmont to show.',paths:['debt.balance','debt.monthlyPayments','debt.highestAprPct']}
+  };
+  const PATH_TO_SECTION=Object.fromEntries(Object.entries(PRIMARY_SECTIONS).flatMap(([key,section])=>section.paths.map(path=>[path,key])));
   const $=id=>document.getElementById(id);
   const Store=window.CarrowmontDashboardStore;
   const browserStore=Store?.createBrowserStore?.(window);
   let profile=Store.create();
   let initialized=false;
+  let activeEditTarget='';
+  let editOpener=null;
 
   function locale(){const L=window.CarrowmontLocale;return{region:L?.getRegion?.()||'OTHER',currency:L?.getCurrency?.()||profile.locale.currency||'USD'};}
   function syncLocale(){if(!initialized)return;profile=Store.setLocale(profile,locale());persist(false);}
@@ -53,135 +61,159 @@
   function money(v){const L=window.CarrowmontLocale;return L?.formatMoney?L.formatMoney(num(v),{maximumFractionDigits:0}):new Intl.NumberFormat(undefined,{style:'currency',currency:locale().currency,maximumFractionDigits:0}).format(num(v));}
   function pct(v){return `${new Intl.NumberFormat(undefined,{maximumFractionDigits:1}).format(num(v))}%`;}
   function number(v,d=1){return new Intl.NumberFormat(undefined,{maximumFractionDigits:d}).format(num(v));}
-  function tone(status){return status==='good'?'good':status==='bad'?'bad':'warn';}
-  function statusLabel(status){return status==='good'?'On track':status==='bad'?'Needs attention':'Needs details';}
-  function persist(render=true){if(!initialized)return;if(browserStore) profile=browserStore.save(profile,'session');window.dispatchEvent(new CustomEvent('carrowmont:mycm-profile-change',{detail:{profile:Store.normalize(profile)}}));if(render)renderAll();}
-  function showBanner(text){const el=$('mycmBanner');el.textContent=text;el.hidden=false;window.setTimeout(()=>{if(el.textContent===text)el.hidden=true;},4500);}
-  function derivedDebtPayments(){
-    if(has('debt.monthlyPayments')) return num(value('debt.monthlyPayments'));
-    return ['debt.housingPayment','debt.otherLoanPayments','debt.creditCardMinimums','debt.otherDebtPayments'].reduce((s,p)=>s+(has(p)?num(value(p)):0),0);
-  }
-  function card(title,status,body,actions=''){
-    return `<div class="mycm-card-head"><h2>${esc(title)}</h2><span class="mycm-status" data-tone="${tone(status)}">${statusLabel(status)}</span></div><div class="mycm-card-main">${body}</div>${actions?`<div class="mycm-card-actions">${actions}</div>`:''}`;
-  }
+  function tone(status){return status==='ready'?'good':status==='review'?'bad':'warn';}
+  function statusLabel(status){return status==='ready'?'Ready':status==='review'?'Review':'Add details';}
+  function persist(render=true,saveImmediately=false){if(!initialized)return;if(browserStore)profile=browserStore.save(profile,'session');window.dispatchEvent(new CustomEvent('carrowmont:mycm-profile-change',{detail:{profile:Store.normalize(profile),saveImmediately:Boolean(saveImmediately)}}));if(render)renderAll();}
+  function showBanner(text){const el=$('mycmBanner');if(!el)return;el.textContent=text;el.hidden=false;window.setTimeout(()=>{if(el.textContent===text)el.hidden=true;},4500);}
   function metric(label,val){return `<div class="mycm-metric"><span>${esc(label)}</span><strong>${esc(val)}</strong></div>`;}
-  function addAction(label,focus){return `<button class="mycm-button" type="button" data-mycm-edit="${esc(focus||'')}">${esc(label)}</button>`;}
+  function action(label,target,primary=false){return `<button class="mycm-button${primary?' mycm-button-primary':''}" type="button" data-mycm-edit="${esc(target)}">${esc(label)}</button>`;}
+  function missingList(items){return `<ul class="mycm-missing-list">${items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`;}
+  function card(title,status,body,actions=''){return `<div class="mycm-card-head"><h2>${esc(title)}</h2><span class="mycm-status" data-tone="${tone(status)}">${statusLabel(status)}</span></div><div class="mycm-card-main">${body}</div>${actions?`<div class="mycm-card-actions">${actions}</div>`:''}`;}
 
-  function renderCashFlow(){
-    const el=$('mycmCashFlowCard');
-    if(!has('cashFlow.takeHomeIncome')||!has('cashFlow.essentialExpenses')){el.innerHTML=card('Cash-flow health','missing','<p>Add take-home income and essential expenses to see monthly breathing room.</p>',addAction('Add cash-flow details','cashFlow.takeHomeIncome'));return;}
-    const debt=derivedDebtPayments(), retirement=has('retirement.monthlyContribution')?num(value('retirement.monthlyContribution')):0, goal=has('goal.monthlyContribution')?num(value('goal.monthlyContribution')):0;
-    const r=window.CarrowmontBudgetCore.calculate({incomes:[{amount:num(value('cashFlow.takeHomeIncome')),frequency:'monthly'}],essential:[{amount:num(value('cashFlow.essentialExpenses')),frequency:'monthly'},{amount:debt,frequency:'monthly'}],flexible:[{amount:has('cashFlow.flexibleExpenses')?num(value('cashFlow.flexibleExpenses')):0,frequency:'monthly'}],savings:[{amount:retirement+goal,frequency:'monthly'}],primaryPayFrequency:'monthly'});
-    const st=r.remaining<0?'bad':'good';
-    el.innerHTML=card('Cash-flow health',st,`<strong class="mycm-big">${money(r.remaining)} / month</strong><p>${r.remaining<0?'Entered monthly commitments are above entered take-home income.':'Modeled monthly room remains after the costs and planned contributions currently included.'}</p><div class="mycm-metrics">${metric('Take-home income',money(r.income))}${metric('Modeled outgo',money(r.essential+r.flexible+r.saving))}</div>`,addAction('Edit cash flow','cashFlow.takeHomeIncome'));
+  function debtPaymentsState(){
+    return has('debt.monthlyPayments')?{known:true,value:num(value('debt.monthlyPayments'))}:{known:false,value:0};
+  }
+  function debtBalanceState(){
+    return has('debt.balance')?{known:true,value:num(value('debt.balance')),source:'Debt remaining'}:{known:false,value:0,source:'Debt remaining'};
+  }
+
+  function renderMonthlyMoney(){
+    const el=$('mycmCashFlowCard'); if(!el)return;
+    const debt=debtPaymentsState();
+    const required=[
+      ['cashFlow.takeHomeIncome','Monthly income you receive'],
+      ['cashFlow.essentialExpenses','Essential monthly expenses'],
+      ['cashFlow.flexibleExpenses','Other monthly spending']
+    ];
+    const missing=required.filter(([path])=>!has(path)).map(([,label])=>label);
+    if(!debt.known)missing.push('Monthly debt payments (enter 0 if you have none)');
+    if(missing.length){
+      el.innerHTML=card('Monthly money','missing',`<strong class="mycm-big">Add details to calculate</strong><p>Carrowmont needs these monthly amounts before it can show money left accurately.</p>${missingList(missing)}`,action('Update monthly money','monthly',true));
+      return;
+    }
+    const income=num(value('cashFlow.takeHomeIncome')),essential=num(value('cashFlow.essentialExpenses')),flexible=num(value('cashFlow.flexibleExpenses'));
+    const r=window.CarrowmontBudgetCore.calculate({incomes:[{amount:income,frequency:'monthly'}],essential:[{amount:essential,frequency:'monthly'},{amount:debt.value,frequency:'monthly'}],flexible:[{amount:flexible,frequency:'monthly'}],savings:[],primaryPayFrequency:'monthly'});
+    const status=r.remaining<0?'review':'ready';
+    el.innerHTML=card('Monthly money',status,`<span class="mycm-big-label">Money left each month</span><strong class="mycm-big">${money(r.remaining)}</strong><p>${r.remaining<0?'Your entered monthly commitments are above the income you receive.':'This is what remains after the monthly amounts currently saved below.'}</p><div class="mycm-metrics mycm-metrics-compact">${metric('Monthly income',money(income))}${metric('Essential expenses',money(essential))}${metric('Other spending',money(flexible))}${metric('Debt payments',money(debt.value))}</div>`,action('Update monthly money','monthly',true));
   }
 
   function renderEmergency(){
-    const el=$('mycmEmergencyCard');
-    if(!has('cashFlow.essentialExpenses')||!has('resilience.emergencySavings')){el.innerHTML=card('Emergency runway','missing','<p>Add essential expenses and emergency savings to estimate how many months of unavoidable costs your reserve covers.</p>',addAction('Add emergency details','resilience.emergencySavings'));return;}
-    const r=window.CarrowmontEmergencyFundCore.calculate({essentialExpenses:num(value('cashFlow.essentialExpenses')),debtPayments:derivedDebtPayments(),emergencySavings:num(value('resilience.emergencySavings')),targetMonths:has('resilience.targetMonths')?num(value('resilience.targetMonths')):6});
-    const st=r.targetGap>0?'bad':'good';
-    el.innerHTML=card('Emergency runway',st,`<strong class="mycm-big">${number(r.fullLossRunwayMonths,1)} months</strong><p>${r.targetGap>0?`There is a modeled gap of ${money(r.targetGap)} to the target currently used.`:'The entered reserve covers the current target in this model.'}</p><div class="mycm-metrics">${metric('Reserve',money(r.reserve))}${metric('Monthly need',money(r.monthlyNeed))}</div>`,addAction('Edit protection','resilience.emergencySavings')+'<a class="mycm-button" href="/emergency-fund-runway-calculator.html">Open full tool</a>');
+    const el=$('mycmEmergencyCard'); if(!el)return;
+    const debt=debtPaymentsState();
+    const missing=[];
+    if(!has('cashFlow.essentialExpenses'))missing.push('Essential monthly expenses');
+    if(!debt.known)missing.push('Monthly debt payments (enter 0 if you have none)');
+    if(!has('resilience.emergencySavings'))missing.push('Current emergency savings');
+    if(missing.length){
+      el.innerHTML=card('Emergency savings','missing',`<strong class="mycm-big">Add details to calculate</strong><p>Your target is based on essential monthly expenses plus required debt payments.</p>${missingList(missing)}`,action('Update savings','emergency',true));
+      return;
+    }
+    const selected=has('resilience.targetMonths');
+    const targetMonths=selected?num(value('resilience.targetMonths')):6;
+    const r=window.CarrowmontEmergencyFundCore.calculate({essentialExpenses:num(value('cashFlow.essentialExpenses')),debtPayments:debt.value,emergencySavings:num(value('resilience.emergencySavings')),targetMonths});
+    const status=!selected?'missing':r.targetGap>0?'review':'ready';
+    const targetText=selected?`${number(targetMonths,1)} months`:'6 months (starting suggestion)';
+    const intro=selected?(r.targetGap>0?`You are ${money(r.targetGap)} below the target you selected.`:'Your current emergency savings cover the target you selected.'):'Six months is shown as a starting suggestion until you choose your own target.';
+    el.innerHTML=card('Emergency savings',status,`<span class="mycm-big-label">Current emergency savings</span><strong class="mycm-big">${money(r.reserve)}</strong><p>${esc(intro)}</p><div class="mycm-metrics mycm-metrics-compact">${metric('Essential commitments',money(r.monthlyNeed))}${metric('Coverage now',r.fullLossRunwayMonths==null?'—':`${number(r.fullLossRunwayMonths,1)} months`)}${metric('Selected target',targetText)}${metric('Target amount',money(r.targetAmount))}</div>`,action('Update savings','emergency',true)+action(selected?'Change target':'Set target','emergency'));
   }
 
   function renderDebt(){
-    const el=$('mycmDebtCard');
-    if(!has('debt.balance')&&!has('debt.monthlyPayments')){el.innerHTML=card('Debt position','missing','<p>No current debt position has been added to My Carrowmont yet.</p>',addAction('Add debt details','debt.balance'));return;}
-    const bal=has('debt.balance')?num(value('debt.balance')):0, apr=has('debt.highestAprPct')?num(value('debt.highestAprPct')):null, pay=derivedDebtPayments();
-    const st=bal>0&&apr!=null&&apr>=10?'bad':'good';
-    el.innerHTML=card('Debt position',st,`<strong class="mycm-big">${money(bal)}</strong><p>${apr==null?'Add the highest debt rate to improve prioritization.':`Highest entered APR: ${pct(apr)}.`}</p><div class="mycm-metrics">${metric('Monthly debt payments',money(pay))}${metric('Highest APR',apr==null?'Not added':pct(apr))}</div>`,addAction('Edit debt','debt.balance')+'<a class="mycm-button" href="/budget-cash-flow-planner/debt-payoff-calculator.html">Open payoff tool</a>');
-  }
-
-  function renderBorrowing(){
-    const el=$('mycmBorrowingCard');
-    const payments=derivedDebtPayments();
-    if(!has('cashFlow.grossIncome')||payments<=0){el.innerHTML=card('Mortgage & loan burden','missing','<p>Add gross monthly income and your current required debt payments to calculate borrowing-health context.</p>',addAction('Add borrowing details','cashFlow.grossIncome'));return;}
-    const r=window.CarrowmontBorrowingHealthCore.calculate({grossMonthlyIncome:num(value('cashFlow.grossIncome')),takeHomeMonthlyIncome:has('cashFlow.takeHomeIncome')?num(value('cashFlow.takeHomeIncome')):0,essentialNonDebtExpenses:has('cashFlow.essentialExpenses')?num(value('cashFlow.essentialExpenses')):0,housingDebtPayment:has('debt.housingPayment')?num(value('debt.housingPayment')):0,otherLoanPayments:has('debt.otherLoanPayments')?num(value('debt.otherLoanPayments')):0,creditCardMinimums:has('debt.creditCardMinimums')?num(value('debt.creditCardMinimums')):0,otherDebtPayments:has('debt.otherDebtPayments')?num(value('debt.otherDebtPayments')):((has('debt.housingPayment')||has('debt.otherLoanPayments')||has('debt.creditCardMinimums'))?0:(has('debt.monthlyPayments')?num(value('debt.monthlyPayments')):0)),proposedNewDebtPayment:0,incomeDropPct:10});
-    const ratio=r.currentGrossDtiPct;
-    const st=r.currentCashRoom!=null&&r.currentCashRoom<0?'bad':'good';
-    el.innerHTML=card('Mortgage & loan burden',st,`<strong class="mycm-big">${ratio==null?'—':pct(ratio)}</strong><p>${ratio==null?'Gross DTI could not be calculated.':'Current gross debt-to-income context from the debt payments entered.'}</p><div class="mycm-metrics">${metric('Debt payments',money(r.currentDebtPayments))}${metric('Cash room',r.currentCashRoom==null?'Not available':money(r.currentCashRoom))}</div>`,addAction('Edit borrowing details','debt.housingPayment')+'<a class="mycm-button" href="/debt-to-income-borrowing-health-calculator.html">Open full tool</a>');
-  }
-
-  function renderRetirement(){
-    const el=$('mycmRetirementCard');
-    if(!has('retirement.currentSavings')&&!has('retirement.monthlyContribution')){el.innerHTML=card('Retirement progress','missing','<p>Add retirement savings or a current monthly contribution. My Carrowmont will not claim adequacy from these two numbers alone.</p>',addAction('Add retirement details','retirement.currentSavings')+'<a class="mycm-button" href="/retirement-calculator/">Open Retirement Planner</a>');return;}
-    const savings=has('retirement.currentSavings')?num(value('retirement.currentSavings')):0, contrib=has('retirement.monthlyContribution')?num(value('retirement.monthlyContribution')):0;
-    const st=contrib>0?'good':'bad';
-    el.innerHTML=card('Retirement progress',st,`<strong class="mycm-big">${money(savings)}</strong><p>${contrib>0?'Retirement saving is active in the details entered. Full readiness still belongs in the Retirement Planner.':'No current monthly retirement contribution is entered. This is not the same as saying retirement is off track.'}</p><div class="mycm-metrics">${metric('Monthly contribution',money(contrib))}${metric('Adequacy','Use full planner')}</div>`,addAction('Edit retirement','retirement.currentSavings')+'<a class="mycm-button" href="/retirement-calculator/">Open Retirement Planner</a>');
-  }
-
-  function renderGoal(){
-    const el=$('mycmGoalCard');
-    if(!has('goal.targetAmount')||num(value('goal.targetAmount'))<=0||!has('goal.yearsAway')||num(value('goal.yearsAway'))<=0){el.innerHTML=card('Goals','missing','<p>Add a target amount and time horizon to see whether the entered goal is currently funded on the modeled path.</p>',addAction('Add a goal','goal.targetAmount')+'<a class="mycm-button" href="/goal-planner/">Open Goal Planner</a>');return;}
-    const assumed=has('assumptions.longTermReturnPct')?num(value('assumptions.longTermReturnPct')):5;
-    const r=window.CarrowmontGoalCore.calculate({today:num(value('goal.targetAmount')),inflation:0,years:num(value('goal.yearsAway')),existing:has('goal.currentSavings')?num(value('goal.currentSavings')):0,ret:assumed/100,monthly:has('goal.monthlyContribution')?num(value('goal.monthlyContribution')):0,contributionFrequency:'monthly',futureLump:0,futureLumpYear:0});
-    const funding=Math.max(0,r.funding*100),st=funding>=100?'good':'bad';
-    el.innerHTML=card('Goals',st,`<strong class="mycm-big">${number(funding,0)}% modeled funding</strong><p>${funding>=100?'The entered path reaches the target under the current illustration.':`The model shows a remaining gap of ${money(r.gap)}.`}</p><div class="mycm-metrics">${metric('Goal target',money(r.futureCost))}${metric('Return illustration',pct(assumed))}</div>`,addAction('Edit goal','goal.targetAmount')+'<a class="mycm-button" href="/goal-planner/">Open Goal Planner</a>');
-  }
-
-  function renderFi(){
-    const el=$('mycmFiCard');
-    const req=['fi.currentAge','fi.targetAge','fi.monthlySpending','fi.currentAssets','fi.monthlyContribution'];
-    if(!req.every(has)){el.innerHTML=card('Financial independence','missing','<p>Add a small FI snapshot to compare your current invested assets with an illustrative independence target.</p>',addAction('Add FI details','fi.currentAge')+'<a class="mycm-button" href="/financial-independence/">Open FI Planner</a>');return;}
-    const raw={currentAge:num(value('fi.currentAge')),targetAge:num(value('fi.targetAge')),planningMode:'sustainable',planUntilAge:95,monthlySpending:num(value('fi.monthlySpending')),spendingPct:100,monthlyIncome:has('fi.monthlyPassiveIncome')?num(value('fi.monthlyPassiveIncome')):0,withdrawalRate:has('fi.withdrawalRatePct')?num(value('fi.withdrawalRatePct')):4,inflation:has('fi.inflationPct')?num(value('fi.inflationPct')):3,currentAssets:num(value('fi.currentAssets')),monthlyContribution:num(value('fi.monthlyContribution')),investmentFrequency:'monthly',payFrequency:'monthly',annualReturn:has('fi.annualReturnPct')?num(value('fi.annualReturnPct')):5,annualStepUp:has('fi.annualStepUpPct')?num(value('fi.annualStepUpPct')):0};
-    const r=window.CarrowmontFICore.result(raw),target=r.fiToday,assets=r.state.currentAssets,funding=target>0?assets/target*100:100,st=funding>=100?'good':'bad';
-    el.innerHTML=card('Financial independence',st,`<strong class="mycm-big">${number(funding,0)}% of today’s modeled target</strong><p>${r.modelledFI.reached?`The current model reaches the target around age ${number(r.modelledFI.age,1)}.`:'The current modeled path has not yet reached the selected target within the planner horizon.'}</p><div class="mycm-metrics">${metric('Current assets',money(assets))}${metric('Modeled target today',money(target))}</div>`,addAction('Edit FI details','fi.currentAge')+'<a class="mycm-button" href="/financial-independence/">Open FI Planner</a>');
-  }
-
-  const PRIORITY_PATHS=['cashFlow.takeHomeIncome','cashFlow.essentialExpenses','cashFlow.flexibleExpenses','debt.monthlyPayments','resilience.emergencySavings','resilience.targetMonths','debt.balance','debt.highestAprPct','assumptions.longTermReturnPct','retirement.currentSavings','retirement.monthlyContribution','goal.targetAmount','goal.currentSavings','goal.yearsAway','goal.monthlyContribution'];
-  function renderPriorities(){
-    const el=$('mycmPrioritiesCard');
-    if(!PRIORITY_PATHS.every(p=>stored(p)&&!fact(p,true).excluded)){el.innerHTML=card('Money Priorities','missing','<p>Complete the Money Priorities journey or add all priority facts here to generate a ranked next-three-moves summary.</p>','<a class="mycm-button" href="/ask-carrowmont.html">Open Ask Carrowmont</a>');return;}
-    const facts={monthlyIncome:num(value('cashFlow.takeHomeIncome')),essentialExpenses:num(value('cashFlow.essentialExpenses')),flexibleExpenses:num(value('cashFlow.flexibleExpenses')),monthlyDebtPayments:num(value('debt.monthlyPayments')),emergencySavings:num(value('resilience.emergencySavings')),emergencyTargetMonths:num(value('resilience.targetMonths')),debtBalance:num(value('debt.balance')),highestDebtAprPct:num(value('debt.highestAprPct')),assumedLongTermReturnPct:num(value('assumptions.longTermReturnPct')),retirementSavings:num(value('retirement.currentSavings')),retirementMonthlyContribution:num(value('retirement.monthlyContribution')),goalTargetAmount:num(value('goal.targetAmount')),goalCurrentSavings:num(value('goal.currentSavings')),goalYearsAway:num(value('goal.yearsAway')),goalMonthlyContribution:num(value('goal.monthlyContribution'))};
-    const r=window.CarrowmontMoneyPriorities.create().evaluate(facts,{currency:locale().currency});
-    const items=r.priorityMoves.slice(0,3).map((m,i)=>`<div class="mycm-priority"><strong>${i+1}. ${esc(m.stageLabel)} — ${esc(m.headline)}</strong><small>${esc(m.action)}</small></div>`).join('');
-    el.innerHTML=card('Money Priorities','good',`<p>${esc(r.diagnosis)}</p><div class="mycm-priority-list">${items}</div>`,'<a class="mycm-button" href="/ask-carrowmont.html">Review in Ask Carrowmont</a>');
+    const el=$('mycmDebtCard'); if(!el)return;
+    const balance=debtBalanceState(),payments=debtPaymentsState(),apr=has('debt.highestAprPct')?num(value('debt.highestAprPct')):null;
+    if(!balance.known&&!payments.known&&apr==null){
+      el.innerHTML=card('Debt & loans','missing','<strong class="mycm-big">No debt details added</strong><p>Add your combined debt figures if you want My Carrowmont to show debt and loan context.</p>',action('Add debt details','debt',true));
+      return;
+    }
+    const income=has('cashFlow.takeHomeIncome')?num(value('cashFlow.takeHomeIncome')):null;
+    const ratio=income!=null&&income>0&&payments.known?(payments.value/income)*100:null;
+    const ratioText=ratio==null?'Add monthly income to see how much of it goes toward debt payments.':`${pct(ratio)} of your monthly income goes toward debt payments.`;
+    el.innerHTML=card('Debt & loans','ready',`<span class="mycm-big-label">${esc(balance.source)}</span><strong class="mycm-big">${balance.known?money(balance.value):'Not set'}</strong><p>${esc(ratioText)}</p><div class="mycm-metrics mycm-metrics-compact">${metric('Monthly debt payments',payments.known?money(payments.value):'Not set')}${metric('Highest interest rate',apr==null?'Not set':pct(apr))}</div>`,action('Update debt','debt',true)+'<a class="mycm-button" href="/budget-cash-flow-planner/debt-payoff-calculator.html">Open debt payoff calculator</a>');
   }
 
   function formatFact(path,f){
     const def=LABELS[path]||{kind:'number'};
-    if(def.kind==='money') return money(f.value);
-    if(def.kind==='pct') return pct(f.value);
-    if(def.kind==='months') return `${number(f.value,1)} months`;
-    if(def.kind==='years') return `${number(f.value,1)} years`;
+    if(def.kind==='money')return money(f.value);
+    if(def.kind==='pct')return pct(f.value);
+    if(def.kind==='months')return `${number(f.value,1)} months`;
+    if(def.kind==='years')return `${number(f.value,1)} years`;
     return number(f.value,2);
   }
   function renderFacts(){
-    const wrap=$('mycmFacts'),entries=Object.entries(profile.facts||{}).sort((a,b)=>a[0].localeCompare(b[0]));
-    if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No planning values are saved yet. Use “Add or edit details” here, or save a supported Carrowmont plan to My Carrowmont.</div>';return;}
-    wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included in dashboard calculations'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}</div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Edit</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
+    const wrap=$('mycmFacts');if(!wrap)return;
+    const entries=Object.entries(profile.facts||{}).sort((a,b)=>a[0].localeCompare(b[0]));
+    if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No additional planning details are saved yet.</div>';return;}
+    wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included where compatible'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}</div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Change</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-saved-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
   }
+  function renderAll(){renderMonthlyMoney();renderEmergency();renderDebt();renderFacts();}
 
-  function renderAll(){renderCashFlow();renderEmergency();renderDebt();renderBorrowing();renderRetirement();renderGoal();renderFi();renderPriorities();renderFacts();}
-
-  function buildEditor(){
-    const wrap=$('mycmEditFields'),groups=[...new Set(FIELD_DEFS.map(x=>x.group))];
-    wrap.innerHTML=groups.map(group=>`<section class="mycm-edit-group"><h3>${esc(group)}</h3><div class="mycm-edit-grid">${FIELD_DEFS.filter(x=>x.group===group).map(def=>{const f=fact(def.path,true);return `<div class="mycm-field"><label for="mycm-${esc(def.path)}">${esc(def.label)}</label><input id="mycm-${esc(def.path)}" data-mycm-path="${esc(def.path)}" type="number" step="any" min="0" value="${f?esc(f.value):''}">${def.help?`<small>${esc(def.help)}</small>`:''}</div>`;}).join('')}</div></section>`).join('');
+  function fieldHtml(def){
+    const f=fact(def.path,true); const remove=f?`<button class="mycm-field-remove" type="button" data-mycm-remove="${esc(def.path)}">Remove</button>`:'';
+    return `<div class="mycm-field"><div class="mycm-field-head"><label for="mycm-${esc(def.path)}">${esc(def.label)}</label>${remove}</div><input id="mycm-${esc(def.path)}" data-mycm-path="${esc(def.path)}" type="number" step="any" min="0" value="${f?esc(f.value):''}">${def.help?`<small>${esc(def.help)}</small>`:''}</div>`;
   }
-  function openEditor(path){buildEditor();const d=$('mycmEditDialog');if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');if(path){window.setTimeout(()=>document.querySelector(`[data-mycm-path="${CSS.escape(path)}"]`)?.focus(),0);}}
-  function closeEditor(){const d=$('mycmEditDialog');if(typeof d.close==='function')d.close();else d.removeAttribute('open');}
+  function emergencyTargetHtml(){
+    const f=fact('resilience.targetMonths',true); const current=f?num(f.value):null; const preset=f?([2,3,6].includes(current)?String(current):'custom'):'';
+    const remove=f?'<button class="mycm-field-remove" type="button" data-mycm-remove="resilience.targetMonths">Remove</button>':'';
+    return `<div class="mycm-field mycm-target-field"><div class="mycm-field-head"><span class="mycm-field-label">Emergency savings target</span>${remove}</div><fieldset class="mycm-target-options"><legend>How many months of essential commitments do you want to cover? Six months is a starting suggestion, not an automatic selection.</legend>${[2,3,6].map(m=>`<label><input type="radio" name="mycmTargetMonths" value="${m}" ${preset===String(m)?'checked':''}><span>${m} months${m===6?' · starting suggestion':''}</span></label>`).join('')}<label><input type="radio" name="mycmTargetMonths" value="custom" ${preset==='custom'?'checked':''}><span>Custom</span></label></fieldset><input class="mycm-custom-target" id="mycmCustomTargetMonths" type="number" min="1" max="24" step="1" value="${preset==='custom'?esc(current):''}" placeholder="Enter months" ${preset==='custom'?'':'hidden'}><small>Target amount = essential monthly expenses + required debt payments, multiplied by the months you select. Other monthly spending is not included.</small></div>`;
+  }
+  function editorContext(sectionKey){
+    if(sectionKey!=='emergency')return'';
+    const debt=debtPaymentsState();
+    if(!has('cashFlow.essentialExpenses')||!debt.known)return '<div class="mycm-editor-context"><strong>Target needs monthly commitments</strong><p>Add essential monthly expenses and monthly debt payments first. Enter 0 for debt payments if you have none.</p><button class="mycm-button" type="button" data-mycm-edit="monthly">Update monthly money</button><button class="mycm-button" type="button" data-mycm-edit="debt">Update debt</button></div>';
+    const essential=num(value('cashFlow.essentialExpenses')),need=essential+debt.value;
+    return `<div class="mycm-editor-context"><strong>Essential monthly commitments: ${esc(money(need))}</strong><p>${esc(money(essential))} essential expenses + ${esc(money(debt.value))} required debt payments.</p></div>`;
+  }
+  function buildEditor(target){
+    const wrap=$('mycmEditFields'); if(!wrap)return;
+    const sectionKey=PRIMARY_SECTIONS[target]?target:PATH_TO_SECTION[target];
+    const title=$('mycmEditTitle'),intro=$('mycmEditIntro');
+    if(sectionKey){
+      const section=PRIMARY_SECTIONS[sectionKey]; title.textContent=section.title; intro.textContent=section.intro;
+      const fields=section.paths.map(path=>path==='resilience.targetMonths'?emergencyTargetHtml():fieldHtml(LABELS[path])).join('');
+      wrap.innerHTML=`${editorContext(sectionKey)}<section class="mycm-edit-group"><div class="mycm-edit-grid">${fields}</div></section>`;
+      return;
+    }
+    const def=LABELS[target];
+    if(def){title.textContent=`Change ${def.label.toLowerCase()}`;intro.textContent='Update this saved value, or remove it if you no longer want My Carrowmont to use it.';wrap.innerHTML=`<section class="mycm-edit-group"><div class="mycm-edit-grid">${fieldHtml(def)}</div></section>`;return;}
+    title.textContent='Update saved details'; intro.textContent='Choose a section from the dashboard to make a focused update.'; wrap.innerHTML='<div class="mycm-editor-context"><p>Use Monthly money, Emergency savings or Debt & loans for the main dashboard. Additional saved values can be changed from Saved details.</p></div>';
+  }
+  function openEditor(target,opener){activeEditTarget=target||'';editOpener=opener||document.activeElement;buildEditor(activeEditTarget);const d=$('mycmEditDialog');if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');const focusPath=PRIMARY_SECTIONS[activeEditTarget]?.paths?.[0]||activeEditTarget;if(focusPath)window.setTimeout(()=>document.querySelector(`[data-mycm-path="${CSS.escape(focusPath)}"]`)?.focus(),0);}
+  function closeEditor(){const d=$('mycmEditDialog');if(typeof d.close==='function')d.close();else d.removeAttribute('open');const back=editOpener;editOpener=null;if(back&&typeof back.focus==='function')window.setTimeout(()=>back.focus(),0);}
+  function selectedTargetMonths(){
+    const selected=document.querySelector('input[name="mycmTargetMonths"]:checked');if(!selected)return null;
+    if(selected.value!=='custom')return num(selected.value);
+    const custom=$('mycmCustomTargetMonths');const n=custom?Number(custom.value):NaN;return Number.isFinite(n)&&n>=1&&n<=24?n:null;
+  }
   function saveEditor(){
     let next=profile;
-    document.querySelectorAll('[data-mycm-path]').forEach(input=>{if(input.value==='')return;const path=input.dataset.mycmPath;next=Store.setFact(next,path,num(input.value),{origin:'user',source:'My Carrowmont',unit:LABELS[path]?.kind==='money'?locale().currency:LABELS[path]?.kind||null});});
+    document.querySelectorAll('#mycmEditFields [data-mycm-path]').forEach(input=>{if(input.value==='')return;const path=input.dataset.mycmPath;next=Store.setFact(next,path,num(input.value),{origin:'user',source:'My Carrowmont',unit:LABELS[path]?.kind==='money'?locale().currency:LABELS[path]?.kind||null});});
+    const targetChoice=document.querySelector('input[name="mycmTargetMonths"]:checked');
+    if(targetChoice){const target=selectedTargetMonths();if(target==null){showBanner('Enter a target between 1 and 24 months.');return;}next=Store.setFact(next,'resilience.targetMonths',target,{origin:'user',source:'My Carrowmont',unit:'months'});}
     profile=Store.setLocale(next,locale());persist();closeEditor();showBanner('Changes saved to My Carrowmont.');
+  }
+  function removePath(path){
+    if(!stored(path))return;
+    const def=LABELS[path]||{label:'this value'};
+    if(!window.confirm(`Remove ${def.label.toLowerCase()} from My Carrowmont?`))return;
+    profile=Store.removeFact(profile,path);persist(true,true);
+    if($('mycmEditDialog')?.open){buildEditor(activeEditTarget);}
+    showBanner(`${def.label} removed from My Carrowmont.`);
   }
 
   document.addEventListener('click',event=>{
-    const edit=event.target.closest('[data-mycm-edit]'); if(edit){openEditor(edit.dataset.mycmEdit||'');return;}
-    const remove=event.target.closest('[data-mycm-remove]'); if(remove){profile=Store.removeFact(profile,remove.dataset.mycmRemove);persist();showBanner('Value removed from My Carrowmont.');return;}
+    const edit=event.target.closest('[data-mycm-edit]');if(edit){openEditor(edit.dataset.mycmEdit||'',edit);return;}
+    const remove=event.target.closest('[data-mycm-remove]');if(remove){removePath(remove.dataset.mycmRemove);return;}
+    const savedRemove=event.target.closest('[data-mycm-saved-remove]');if(savedRemove){removePath(savedRemove.dataset.mycmSavedRemove);return;}
   });
   document.addEventListener('change',event=>{
-    const toggle=event.target.closest('[data-mycm-influence]'); if(toggle){profile=Store.setExcluded(profile,toggle.dataset.mycmInfluence,!toggle.checked);persist();showBanner(toggle.checked?'Value included in dashboard recommendations.':'Value ignored by dashboard recommendations.');}
+    const toggle=event.target.closest('[data-mycm-influence]');if(toggle){profile=Store.setExcluded(profile,toggle.dataset.mycmInfluence,!toggle.checked);persist();showBanner(toggle.checked?'Value included where compatible.':'Value ignored by dashboard recommendations.');return;}
+    const target=event.target.closest('input[name="mycmTargetMonths"]');if(target){const custom=$('mycmCustomTargetMonths');if(custom){custom.hidden=target.value!=='custom';if(target.value==='custom')custom.focus();}}
   });
-  $('mycmEditAll').addEventListener('click',()=>openEditor(''));
-  $('mycmKnowBtn').addEventListener('click',()=>{$('mycmKnows').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
-  $('mycmEditClose').addEventListener('click',closeEditor);$('mycmEditCancel').addEventListener('click',closeEditor);$('mycmEditForm').addEventListener('submit',e=>{e.preventDefault();saveEditor();});
+  $('mycmEditClose')?.addEventListener('click',closeEditor);$('mycmEditCancel')?.addEventListener('click',closeEditor);$('mycmEditForm')?.addEventListener('submit',e=>{e.preventDefault();saveEditor();});
   window.addEventListener('carrowmont:localechange',()=>{if(initialized){syncLocale();renderAll();}});
   window.addEventListener('carrowmont:mycm-account-ready',event=>{
     profile=Store.normalize(event.detail?.profile||Store.create({...locale(),mode:'session'}));
     profile=Store.setMode(Store.setLocale(profile,locale()),'session');
     if(browserStore)browserStore.save(profile,'session');
-    initialized=true;
-    renderAll();
+    initialized=true;renderAll();
   });
 })();

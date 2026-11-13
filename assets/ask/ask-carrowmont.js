@@ -20,8 +20,8 @@
     debtBalance:'Enter the debt balance you are deciding whether to pay down.',
     debtAprPct:'Enter the debt annual percentage rate.',
     debtMinimumPayment:'Enter the required monthly payment on this debt.',
-    monthlySurplus:'Enter the monthly amount you could direct to debt reduction or saving.',
-    assumedSavingsReturnPct:'Enter an annual savings/investment return assumption. This is not a forecast.',
+    monthlySurplus:'Enter the extra monthly amount you could direct to debt repayment or investing.',
+    assumedSavingsReturnPct:'Enter an expected annual investment return. This is an assumption, not a forecast.',
     monthlyDebtPayments:'Include required monthly payments across loans and cards. Enter 0 if you have none.',
     emergencyTargetMonths:'Choose the number of months of unavoidable costs you want your reserve to cover.',
     highestDebtAprPct:'Enter the highest annual interest rate among the debts included. Enter 0 if you have no debt.',
@@ -50,10 +50,10 @@
     extraAmount:{why:'This is the same money Carrowmont compares between mortgage prepayment and investing.'},
     assumedInvestmentReturnPct:{why:'A return assumption is needed only to model the investment path. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
     debtBalance:{why:'The outstanding debt balance determines how much debt remains to be repaid.'},
-    debtAprPct:{why:'The debt rate is compared with the modeled savings or investment return and drives interest cost.'},
+    debtAprPct:{why:'The debt rate drives the contractual interest cost used in the comparison.'},
     debtMinimumPayment:{why:'The required payment is needed to model the debt payoff schedule before adding any extra amount.'},
-    monthlySurplus:{why:'This is the same monthly money Carrowmont compares between extra debt repayment and saving or investing.'},
-    assumedSavingsReturnPct:{why:'A return assumption is needed to model the savings or investment path. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
+    monthlySurplus:{why:'This is the same extra monthly money Carrowmont compares between faster debt repayment and investing.'},
+    assumedSavingsReturnPct:{why:'A return assumption is needed to model the investment path. It is not a forecast or guarantee.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
     monthlyDebtPayments:{why:'Required debt payments affect both monthly cash flow and the emergency reserve needed to cover unavoidable commitments.'},
     emergencyTargetMonths:{why:'Money Priorities uses your chosen reserve target rather than imposing a universal emergency-fund rule.'},
     highestDebtAprPct:{why:'The highest contractual debt rate is compared with the explicit long-term return assumption to decide whether debt reduction should outrank growth.'},
@@ -66,7 +66,7 @@
     goalMonthlyContribution:{why:'The current contribution lets the Goal Planner project whether the entered goal is on track under the stated assumption.'}
   };
   const INTENT_COPY={
-    'debt-vs-savings':'Debt or savings',
+    'debt-vs-savings':'Pay debt or invest?',
     'car-affordability':'Car affordability',
     'mortgage-prepay-vs-invest':'Mortgage prepay or invest',
     'emergency-runway':'Emergency fund adequacy',
@@ -437,6 +437,8 @@
     document.querySelectorAll('[data-ask-back]').forEach(btn=>btn.addEventListener('click',goBack));
     document.querySelectorAll('[data-ask-reset]').forEach(btn=>btn.addEventListener('click',reset));
     document.querySelectorAll('[data-ask-intent]').forEach(btn=>btn.addEventListener('click',()=>startIntent(btn.dataset.askIntent,btn.textContent.trim())));
+    const decision=new URL(window.location.href).searchParams.get('decision');
+    if(decision && INTENT_COPY[decision]) startIntent(decision,INTENT_COPY[decision]);
     window.addEventListener('carrowmont:localechange',()=>{ if(!$('askQuestionsStage').hidden) renderQuestions(api.missingQuestions(state.intent,state.facts,3)); });
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
