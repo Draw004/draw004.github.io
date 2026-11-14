@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var INDEX_URL = '/data/carrowmont-search-index.json';
-  var ALIASES_URL = '/data/carrowmont-search-aliases.json';
+  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261114-fre8i';
+  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261114-fre8i';
   var MIN_QUERY_LENGTH = 2;
   var DEFAULT_LIMIT = 12;
   var ASK_SEARCH_HANDOFF_KEY = 'carrowmont_search_handoff_v1';
@@ -277,7 +277,10 @@
   function publicSearch(query, options) {
     var opts = options || {};
     return loadData().then(function (data) {
-      return window.CarrowmontSearchCore.search(data.index.entries, data.aliases, query, {
+      var runner = opts.mode === 'ask' && typeof window.CarrowmontSearchCore.searchForAsk === 'function'
+        ? window.CarrowmontSearchCore.searchForAsk
+        : window.CarrowmontSearchCore.search;
+      return runner(data.index.entries, data.aliases, query, {
         region: opts.region || regionCode(),
         limit: opts.limit || DEFAULT_LIMIT
       });
@@ -285,7 +288,7 @@
   }
 
   window.CarrowmontSearch = Object.freeze({
-    version: '1.0.0',
+    version: '1.1.0',
     search: publicSearch,
     ready: loadData,
     indexUrl: INDEX_URL,

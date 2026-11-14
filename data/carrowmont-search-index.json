@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-10",
+  "generated_at": "2026-11-14",
   "entries": [
     {
       "url": "/",
@@ -20,7 +20,39 @@
         "financial planning website",
         "money tools and guides"
       ],
-      "priority": 85
+      "priority": 85,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        },
+        {
+          "id": "retirement",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/10000-sip-returns.html",
@@ -48,7 +80,26 @@
         "recurring investment growth",
         "sip return examples"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "compound-growth",
+          "strength": 5
+        },
+        {
+          "id": "recurring-investing",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": []
     },
     {
       "url": "/4-percent-rule-retirement.html",
@@ -71,7 +122,27 @@
         "retirement 4 percent rule",
         "what is the 4 percent rule"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "withdrawals",
+          "strength": 5
+        },
+        {
+          "id": "retirement",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/4-percent-rule-stress-test.html",
@@ -95,7 +166,35 @@
         "retirement withdrawal stress test",
         "safe withdrawal rate"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "withdrawals",
+          "strength": 5
+        },
+        {
+          "id": "inflation",
+          "strength": 4
+        },
+        {
+          "id": "retirement",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        },
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/50-30-20-budget-rule.html",
@@ -116,7 +215,27 @@
         "budget percentage rule",
         "needs wants savings budget"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 4
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/about.html",
@@ -132,7 +251,35 @@
         "about Carrowmont",
         "who is Carrowmont"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 4
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        },
+        {
+          "id": "start",
+          "strength": 4
+        },
+        {
+          "id": "calculate",
+          "strength": 1
+        },
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/apr-vs-interest-rate.html",
@@ -174,7 +321,35 @@
           "annual percentage rate",
           "APR"
         ]
-      }
+      },
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        },
+        {
+          "id": "markets-macro",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/ask-carrowmont.html",
@@ -207,7 +382,55 @@
         "what should i focus on first",
         "what should i prioritize financially"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 5
+        },
+        {
+          "id": "car",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 5
+        },
+        {
+          "id": "emergency-savings",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 5
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/asset-allocation-explained.html",
@@ -228,7 +451,27 @@
         "portfolio mix",
         "what is asset allocation"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "bonds",
+          "strength": 1
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/biweekly-fortnightly-mortgage-payments.html",
@@ -250,7 +493,31 @@
         "every two weeks mortgage",
         "fortnightly home loan repayments"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/budget-cash-flow-planner/",
@@ -272,7 +539,35 @@
         "household budget",
         "monthly budget planner"
       ],
-      "priority": 100
+      "priority": 100,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 3
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/budget-cash-flow-planner/credit-card-payoff-calculator.html",
@@ -293,7 +588,44 @@
         "credit card interest payoff",
         "credit card repayment calculator"
       ],
-      "priority": 60
+      "priority": 60,
+      "topics": [
+        "credit-card",
+        "debt"
+      ],
+      "intents": [
+        "calculate",
+        "payoff",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "credit-card",
+          "strength": 6
+        },
+        {
+          "id": "debt",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "payoff",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
@@ -319,7 +651,47 @@
         "debt snowball calculator",
         "pay off debt"
       ],
-      "priority": 90
+      "priority": 90,
+      "topics": [
+        "debt"
+      ],
+      "intents": [
+        "calculate",
+        "payoff",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "debt",
+          "strength": 6
+        },
+        {
+          "id": "budgeting",
+          "strength": 4
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "payoff",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/budgeting-by-pay-frequency.html",
@@ -342,7 +714,19 @@
         "payday budget",
         "three paycheck month"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/budgeting-with-irregular-income.html",
@@ -363,7 +747,19 @@
         "seasonal income budget",
         "variable earnings budget"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/car-affordability-auto-decision-calculator.html",
@@ -393,7 +789,47 @@
         "how much car can i afford",
         "vehicle affordability calculator"
       ],
-      "priority": 96
+      "priority": 96,
+      "topics": [
+        "car",
+        "loans"
+      ],
+      "intents": [
+        "afford",
+        "calculate"
+      ],
+      "semantic_topics": [
+        {
+          "id": "car",
+          "strength": 6
+        },
+        {
+          "id": "loans",
+          "strength": 6
+        },
+        {
+          "id": "budgeting",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 6
+        },
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/cash-flow-vs-income.html",
@@ -414,7 +850,27 @@
         "income is not cash flow",
         "why salary does not equal savings"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/coast-fire-explained.html",
@@ -435,7 +891,31 @@
         "coast fire number",
         "what is coast fire"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "financial-independence",
+          "strength": 3
+        },
+        {
+          "id": "compound-growth",
+          "strength": 1
+        },
+        {
+          "id": "retirement",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/compound-interest-calculator/",
@@ -455,7 +935,38 @@
         "investment growth calculator",
         "savings growth calculator"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "compound-growth",
+        "investing"
+      ],
+      "intents": [
+        "calculate"
+      ],
+      "semantic_topics": [
+        {
+          "id": "compound-growth",
+          "strength": 6
+        },
+        {
+          "id": "investing",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        },
+        {
+          "id": "start",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/compound-interest-monthly-contributions.html",
@@ -477,7 +988,27 @@
         "compound interest recurring contributions",
         "monthly contribution compounding"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "compound-growth",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/compounding-and-time.html",
@@ -497,7 +1028,31 @@
         "how compounding works",
         "time and compounding"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "compound-growth",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/contact.html",
@@ -514,7 +1069,14 @@
         "corrections",
         "feedback"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": []
     },
     {
       "url": "/credit-score-explained.html",
@@ -556,7 +1118,31 @@
           "credit report",
           "credit score"
         ]
-      }
+      },
+      "semantic_topics": [
+        {
+          "id": "credit-profile",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "research",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/de-dollarisation-explained.html",
@@ -578,7 +1164,31 @@
         "dollar diversification",
         "moving away from us dollar"
       ],
-      "priority": 88
+      "priority": 88,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 5
+        },
+        {
+          "id": "sovereign-debt-reserves",
+          "strength": 5
+        },
+        {
+          "id": "stocks",
+          "strength": 4
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/debt-consolidation-explained.html",
@@ -601,7 +1211,43 @@
         "loan consolidation",
         "what is debt consolidation"
       ],
-      "priority": 84
+      "priority": 84,
+      "semantic_topics": [
+        {
+          "id": "credit-card",
+          "strength": 5
+        },
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        },
+        {
+          "id": "markets-macro",
+          "strength": 1
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/debt-snowball-vs-avalanche.html",
@@ -621,7 +1267,23 @@
         "debt snowball",
         "snowball method"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/debt-to-income-borrowing-health-calculator.html",
@@ -648,7 +1310,31 @@
         "debt income ratio calculator",
         "dti calculator"
       ],
-      "priority": 92
+      "priority": 92,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "afford",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/disclaimer.html",
@@ -664,7 +1350,19 @@
         "educational information",
         "financial disclaimer"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/diversification-across-asset-classes.html",
@@ -687,7 +1385,19 @@
         "portfolio diversification",
         "what is diversification"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/editorial-policy.html",
@@ -707,7 +1417,19 @@
         "editorial policy",
         "review policy"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/emergency-fund-how-much.html",
@@ -728,7 +1450,27 @@
         "months of expenses",
         "rainy day fund target"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "emergency-savings",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/emergency-fund-runway-calculator.html",
@@ -755,7 +1497,38 @@
         "how much emergency fund do I need",
         "runway calculator"
       ],
-      "priority": 92
+      "priority": 92,
+      "topics": [
+        "emergency-savings"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "emergency-savings",
+          "strength": 6
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/emergency-savings.html",
@@ -777,7 +1550,27 @@
         "liquid savings",
         "rainy day fund"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "emergency-savings",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 1
+        },
+        {
+          "id": "timing",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/extra-mortgage-payments-early-vs-late.html",
@@ -799,7 +1592,35 @@
         "mortgage prepayment early vs late",
         "pay mortgage extra early"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/financial-independence-number-by-spending.html",
@@ -821,7 +1642,35 @@
         "financial independence number",
         "fire number"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "financial-independence",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        },
+        {
+          "id": "withdrawals",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/financial-independence-number.html",
@@ -841,7 +1690,27 @@
         "financial freedom number",
         "how much money for financial independence"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "financial-independence",
+          "strength": 3
+        },
+        {
+          "id": "withdrawals",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/financial-independence/",
@@ -862,7 +1731,51 @@
         "financial independence calculator",
         "fire calculator"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "financial-independence"
+      ],
+      "intents": [
+        "calculate",
+        "plan",
+        "start"
+      ],
+      "semantic_topics": [
+        {
+          "id": "financial-independence",
+          "strength": 6
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        },
+        {
+          "id": "timing",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/future-cost-of-expenses.html",
@@ -883,7 +1796,19 @@
         "inflation future cost",
         "what will expenses cost in future"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/goal-planner/",
@@ -903,7 +1828,35 @@
         "goal savings planner",
         "savings goal calculator"
       ],
-      "priority": 100
+      "priority": 100,
+      "semantic_topics": [
+        {
+          "id": "saving-goals",
+          "strength": 3
+        },
+        {
+          "id": "car",
+          "strength": 1
+        },
+        {
+          "id": "emergency-savings",
+          "strength": 1
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/gold-and-inflation.html",
@@ -920,7 +1873,23 @@
         "protect"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "inflation",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/gold-as-an-investment.html",
@@ -937,7 +1906,51 @@
         "role"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "topics": [
+        "gold",
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "start"
+      ],
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 6
+        },
+        {
+          "id": "investing",
+          "strength": 6
+        },
+        {
+          "id": "financial-planning",
+          "strength": 4
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/gold-macro-stress-explorer.html",
@@ -959,7 +1972,26 @@
         "gold stress explorer",
         "what moves gold"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": []
     },
     {
       "url": "/gold-vs-government-bonds-reserve-assets.html",
@@ -979,7 +2011,35 @@
         "gold vs treasuries reserves",
         "reserve asset comparison"
       ],
-      "priority": 87
+      "priority": 87,
+      "semantic_topics": [
+        {
+          "id": "bonds",
+          "strength": 5
+        },
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/gold-vs-stocks.html",
@@ -997,7 +2057,35 @@
         "stocks"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "stocks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/home-affordability-calculator.html",
@@ -1055,7 +2143,48 @@
           "down payment",
           "mortgage affordability"
         ]
-      }
+      },
+      "topics": [
+        "home-mortgage",
+        "property"
+      ],
+      "intents": [
+        "afford",
+        "calculate",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 6
+        },
+        {
+          "id": "property",
+          "strength": 6
+        },
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 4
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 6
+        },
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        }
+      ]
     },
     {
       "url": "/how-credit-card-interest-works.html",
@@ -1079,7 +2208,31 @@
         "how is credit card interest calculated",
         "minimum credit card payment"
       ],
-      "priority": 84
+      "priority": 84,
+      "semantic_topics": [
+        {
+          "id": "credit-card",
+          "strength": 5
+        },
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/how-deposit-and-interest-rates-affect-home-affordability.html",
@@ -1098,7 +2251,35 @@
         "rates"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/how-is-loan-emi-calculated.html",
@@ -1119,7 +2300,27 @@
         "monthly loan payment formula",
         "what is emi"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/how-long-will-retirement-savings-last.html",
@@ -1141,7 +2342,35 @@
         "how long will my retirement money last",
         "retirement savings runway"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "withdrawals",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/how-much-home-can-i-afford.html",
@@ -1157,7 +2386,35 @@
         "much"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 3
+        }
+      ]
     },
     {
       "url": "/how-much-money-do-i-need-to-retire.html",
@@ -1174,7 +2431,31 @@
         "you"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 5
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 3
+        }
+      ]
     },
     {
       "url": "/how-much-should-i-invest-each-month.html",
@@ -1198,7 +2479,35 @@
         "investment amount per month",
         "monthly investment required"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 5
+        },
+        {
+          "id": "recurring-investing",
+          "strength": 5
+        },
+        {
+          "id": "saving-goals",
+          "strength": 4
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 3
+        }
+      ]
     },
     {
       "url": "/how-much-should-i-save-each-month.html",
@@ -1216,7 +2525,27 @@
         "you"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "saving-goals",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/how-oil-prices-affect-inflation.html",
@@ -1232,7 +2561,19 @@
         "prices"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/how-to-make-a-budget.html",
@@ -1256,7 +2597,31 @@
         "make a budget",
         "monthly budget"
       ],
-      "priority": 84
+      "priority": 84,
+      "semantic_topics": [
+        {
+          "id": "emergency-savings",
+          "strength": 4
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "start",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/index-funds-explained.html",
@@ -1279,7 +2644,23 @@
         "passive fund",
         "what is an index fund"
       ],
-      "priority": 84
+      "priority": 84,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 4
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/inflation-and-retirement-planning.html",
@@ -1298,7 +2679,23 @@
         "inflation in retirement planning",
         "retirement inflation"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 5
+        },
+        {
+          "id": "retirement",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/inflation-calculator/",
@@ -1319,7 +2716,29 @@
         "purchasing power calculator",
         "value of money"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "inflation"
+      ],
+      "intents": [
+        "calculate"
+      ],
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/inflation-calculator/methodology.html",
@@ -1334,7 +2753,27 @@
         "Simple mathematics. Explicit assumptions."
       ],
       "aliases": [],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 5
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/inflation-purchasing-power-savings.html",
@@ -1358,7 +2797,27 @@
         "real value of savings",
         "savings vs inflation"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/inflation-purchasing-power.html",
@@ -1380,7 +2839,31 @@
         "what does purchasing power mean",
         "what is purchasing power"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 3
+        },
+        {
+          "id": "compound-growth",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "afford",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/inflation-value-of-money-over-time.html",
@@ -1404,7 +2887,27 @@
         "money worth in 20 years",
         "value of money after inflation"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "compound-growth",
+          "strength": 5
+        },
+        {
+          "id": "inflation",
+          "strength": 3
+        },
+        {
+          "id": "financial-planning",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/investing-for-beginners.html",
@@ -1428,7 +2931,38 @@
         "investment guide for beginners",
         "start investing"
       ],
-      "priority": 84
+      "priority": 84,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "start"
+      ],
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 6
+        },
+        {
+          "id": "bonds",
+          "strength": 1
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 6
+        }
+      ]
     },
     {
       "url": "/investment-time-to-target.html",
@@ -1452,7 +2986,27 @@
         "how long to reach investment goal",
         "investment target time"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/learn.html",
@@ -1474,7 +3028,55 @@
         "learn finance",
         "money guides"
       ],
-      "priority": 85
+      "priority": 85,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        },
+        {
+          "id": "financial-independence",
+          "strength": 1
+        },
+        {
+          "id": "gold",
+          "strength": 1
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        },
+        {
+          "id": "property",
+          "strength": 1
+        },
+        {
+          "id": "retirement",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/lifestyle-inflation.html",
@@ -1493,7 +3095,18 @@
         "lifestyle creep",
         "spending after a raise"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": []
     },
     {
       "url": "/loan-calculator/",
@@ -1543,7 +3156,27 @@
           "installment",
           "monthly payment"
         ]
-      }
+      },
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/loan-interest-rate-vs-term.html",
@@ -1565,7 +3198,31 @@
         "loan rate vs term",
         "monthly payment vs total interest"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/longevity-risk-retirement.html",
@@ -1587,7 +3244,31 @@
         "planning for a longer retirement",
         "retirement longevity risk"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/lump-sum-vs-monthly-investing.html",
@@ -1610,7 +3291,19 @@
         "lump sum vs regular investing",
         "lump sum vs staged investing"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/market-chain-reaction-explorer.html",
@@ -1634,7 +3327,47 @@
         "market chain reaction",
         "what happens when markets change"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "bonds",
+          "strength": 1
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        },
+        {
+          "id": "gold",
+          "strength": 1
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 1
+        },
+        {
+          "id": "silver",
+          "strength": 1
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/methodology.html",
@@ -1651,7 +3384,27 @@
         "calculator methodology",
         "how calculations work"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/monthly-extra-vs-annual-lump-sum-mortgage.html",
@@ -1674,7 +3427,31 @@
         "monthly extra payment vs lump sum mortgage",
         "mortgage lump sum vs monthly extra"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        },
+        {
+          "id": "payoff",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/mortgage-affordability-vs-lender-approval.html",
@@ -1691,7 +3468,35 @@
         "Mortgage affordability vs lender approval: what is the difference?"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/",
@@ -1747,7 +3552,39 @@
           "extra principal",
           "mortgage payoff"
         ]
-      }
+      },
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/decision-centre.html",
@@ -1768,7 +3605,39 @@
         "What are you trying to decide?"
       ],
       "aliases": [],
-      "priority": 75
+      "priority": 75,
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 5
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "payoff",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/prepayment-vs-investing.html",
@@ -1789,7 +3658,35 @@
         "pay mortgage or invest",
         "prepay home loan or invest"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 5
+        },
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/rate-rise-stress-test.html",
@@ -1813,7 +3710,43 @@
         "mortgage payment stress test",
         "mortgage rate rise calculator"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        },
+        {
+          "id": "markets-macro",
+          "strength": 1
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/refinance-break-even.html",
@@ -1862,7 +3795,43 @@
         "US": [
           "refinance"
         ]
-      }
+      },
+      "topics": [
+        "home-mortgage",
+        "loans"
+      ],
+      "intents": [
+        "calculate",
+        "compare"
+      ],
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 6
+        },
+        {
+          "id": "loans",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 6
+        },
+        {
+          "id": "payoff",
+          "strength": 4
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/rent-vs-buy-calculator.html",
@@ -1886,7 +3855,52 @@
         "rent or buy calculator",
         "rent vs buy calculator"
       ],
-      "priority": 90
+      "priority": 90,
+      "topics": [
+        "home-mortgage",
+        "property"
+      ],
+      "intents": [
+        "afford",
+        "calculate",
+        "compare"
+      ],
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 6
+        },
+        {
+          "id": "property",
+          "strength": 6
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 6
+        },
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
+          "strength": 6
+        },
+        {
+          "id": "payoff",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/mortgage-prepayment-vs-investing.html",
@@ -1907,7 +3921,31 @@
         "pay off mortgage or invest",
         "prepay home loan or invest"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 5
+        },
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/mortgage-rate-rise-payment-stress.html",
@@ -1930,7 +3968,27 @@
         "higher mortgage payment",
         "what happens if mortgage rates rise"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        },
+        {
+          "id": "budgeting",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/mortgage-refinance-break-even.html",
@@ -1954,7 +4012,27 @@
         "remortgage break even",
         "when does refinancing break even"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/my-carrowmont.html",
@@ -1977,7 +4055,31 @@
         "my financial plan",
         "what carrowmont knows about me"
       ],
-      "priority": 94
+      "priority": 94,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "debt",
+          "strength": 1
+        },
+        {
+          "id": "loans",
+          "strength": 1
+        },
+        {
+          "id": "retirement",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/one-extra-mortgage-payment-a-year.html",
@@ -1999,7 +4101,27 @@
         "extra home loan payment yearly",
         "one additional mortgage payment per year"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "payoff",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/pay-off-mortgage-five-years-early.html",
@@ -2023,7 +4145,47 @@
         "mortgage payoff target five years",
         "pay mortgage off 5 years early"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "loans",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "payoff",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "afford",
+          "strength": 1
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/pay-yourself-first-budgeting.html",
@@ -2043,7 +4205,23 @@
         "pay yourself first rule",
         "save first budget"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/physical-gold-vs-gold-etf.html",
@@ -2063,7 +4241,27 @@
         "gold fund",
         "physical gold vs etf"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/planning-life-goals.html",
@@ -2079,7 +4277,27 @@
         "planning life goals"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "saving-goals",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/privacy.html",
@@ -2097,7 +4315,23 @@
         "data privacy",
         "privacy policy"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "research",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/real-estate-vs-stocks.html",
@@ -2121,7 +4355,35 @@
         "real estate vs equities",
         "real estate vs stocks"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "property",
+          "strength": 5
+        },
+        {
+          "id": "stocks",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 4
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/real-yields-explained.html",
@@ -2143,7 +4405,39 @@
         "real yield",
         "real yield explained"
       ],
-      "priority": 86
+      "priority": 86,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "bonds",
+          "strength": 1
+        },
+        {
+          "id": "gold",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/reit-vs-direct-property.html",
@@ -2166,7 +4460,35 @@
         "reit vs direct property",
         "reit vs rental property"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "property",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/rent-vs-buy-home.html",
@@ -2188,7 +4510,31 @@
         "renting vs buying a home",
         "should i rent or buy"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "property",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/rental-yield-explained.html",
@@ -2210,7 +4556,31 @@
         "rental yield formula",
         "what is rental yield"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "property",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/research.html",
@@ -2228,7 +4598,23 @@
         "Carrowmont data studies",
         "financial research"
       ],
-      "priority": 80
+      "priority": 80,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "research",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/research/emergency-savings-resilience.html",
@@ -2247,7 +4633,27 @@
         "emergency savings report",
         "income interruption savings research"
       ],
-      "priority": 88
+      "priority": 88,
+      "semantic_topics": [
+        {
+          "id": "emergency-savings",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "research",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/research/inflation-purchasing-power-monitor.html",
@@ -2269,7 +4675,27 @@
         "personal inflation basket",
         "US CPI purchasing power"
       ],
-      "priority": 89
+      "priority": 89,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "research",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/research/mortgage-affordability-monitor.html",
@@ -2288,7 +4714,27 @@
         "mortgage payment research",
         "US mortgage affordability data"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        },
+        {
+          "id": "research",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/retirement-calculator/",
@@ -2307,7 +4753,43 @@
         "retirement corpus calculator",
         "retirement planner"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "retirement"
+      ],
+      "intents": [
+        "calculate",
+        "plan",
+        "start"
+      ],
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 6
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 6
+        }
+      ]
     },
     {
       "url": "/retirement-calculator/faq.html",
@@ -2322,7 +4804,31 @@
         "retirement calculator faq"
       ],
       "aliases": [],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 5
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/retirement-calculator/how-it-works.html",
@@ -2339,7 +4845,35 @@
         "works"
       ],
       "aliases": [],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 4
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/retirement-calculator/methodology.html",
@@ -2356,7 +4890,35 @@
         "Understand the calculation before you trust the number."
       ],
       "aliases": [],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 5
+        },
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/retirement-calculator/planner.html",
@@ -2374,7 +4936,42 @@
         "detailed retirement planner",
         "expense aware retirement plan"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "retirement"
+      ],
+      "intents": [
+        "plan",
+        "start"
+      ],
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 6
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 6
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/retirement-calculator/withdrawal-calculator.html",
@@ -2426,7 +5023,43 @@
         "US": [
           "retirement withdrawal"
         ]
-      }
+      },
+      "topics": [
+        "retirement",
+        "withdrawals"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 6
+        },
+        {
+          "id": "withdrawals",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "start",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/retirement-expenses.html",
@@ -2446,7 +5079,35 @@
         "expenses after retirement",
         "retirement expense checklist"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 4
+        },
+        {
+          "id": "inflation",
+          "strength": 4
+        },
+        {
+          "id": "retirement",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 1
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        },
+        {
+          "id": "timing",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/retirement-monthly-income-needed.html",
@@ -2466,7 +5127,23 @@
         "income needed in retirement",
         "retirement monthly income"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/retirement-savings-by-age.html",
@@ -2485,7 +5162,27 @@
         "how much retirement savings by age",
         "retirement savings benchmark by age"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/savings-goal-planning.html",
@@ -2505,7 +5202,23 @@
         "how to save for a goal",
         "savings target"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 4
+        },
+        {
+          "id": "saving-goals",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/sequence-of-returns-risk.html",
@@ -2527,7 +5240,27 @@
         "sequence of returns",
         "sequence risk"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "retirement",
+          "strength": 3
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 4
+        },
+        {
+          "id": "timing",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/silver-supply-demand-macro-stress-explorer.html",
@@ -2550,7 +5283,31 @@
         "silver supply and demand",
         "what moves silver"
       ],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "silver",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/silver-vs-gold.html",
@@ -2567,7 +5324,44 @@
         "Silver vs gold: is silver a good alternative to gold?"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "topics": [
+        "gold",
+        "investing",
+        "silver"
+      ],
+      "intents": [
+        "compare",
+        "explain"
+      ],
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 6
+        },
+        {
+          "id": "investing",
+          "strength": 6
+        },
+        {
+          "id": "silver",
+          "strength": 6
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 6
+        },
+        {
+          "id": "explain",
+          "strength": 6
+        }
+      ]
     },
     {
       "url": "/sinking-fund-vs-emergency-fund.html",
@@ -2586,7 +5380,23 @@
         "known future expense",
         "sinking fund"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "emergency-savings",
+          "strength": 5
+        },
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/sip-calculator/",
@@ -2629,7 +5439,43 @@
         "US": [
           "recurring investment"
         ]
-      }
+      },
+      "topics": [
+        "investing",
+        "recurring-investing"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 6
+        },
+        {
+          "id": "recurring-investing",
+          "strength": 6
+        },
+        {
+          "id": "compound-growth",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "timing",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/sip-during-market-fall.html",
@@ -2656,7 +5502,35 @@
         "investing during downturn",
         "sip during market fall"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 5
+        },
+        {
+          "id": "recurring-investing",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 4
+        },
+        {
+          "id": "timing",
+          "strength": 4
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/sip-for-1-crore.html",
@@ -2682,7 +5556,27 @@
         "monthly investment target",
         "sip for long term goal"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "recurring-investing",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "plan",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/starting-investing-earlier.html",
@@ -2708,7 +5602,43 @@
         "start investing early",
         "time in the market"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "compound-growth",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "start",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 4
+        },
+        {
+          "id": "compare",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/step-up-sip-vs-regular-sip.html",
@@ -2735,7 +5665,27 @@
         "increasing recurring investment",
         "step up sip vs regular sip"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "recurring-investing",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "afford",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/stocks-vs-bonds.html",
@@ -2756,7 +5706,35 @@
         "stocks or bonds",
         "stocks vs fixed income"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "bonds",
+          "strength": 5
+        },
+        {
+          "id": "stocks",
+          "strength": 5
+        },
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/terms.html",
@@ -2772,7 +5750,23 @@
       "aliases": [
         "terms of use"
       ],
-      "priority": 40
+      "priority": 40,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 1
+        },
+        {
+          "id": "plan",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/todays-money-vs-future-money.html",
@@ -2793,7 +5787,27 @@
         "today money future money",
         "today's money vs nominal money"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "inflation",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 1
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/tools.html",
@@ -2815,7 +5829,31 @@
         "financial calculators",
         "money calculators"
       ],
-      "priority": 85
+      "priority": 85,
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 3
+        },
+        {
+          "id": "markets-macro",
+          "strength": 1
+        },
+        {
+          "id": "retirement",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/treasury-bills-vs-notes-vs-bonds.html",
@@ -2837,7 +5875,27 @@
         "Treasury bond maturity",
         "Treasury maturity"
       ],
-      "priority": 86
+      "priority": 86,
+      "semantic_topics": [
+        {
+          "id": "bonds",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/us-debt-interest-cost-calculator.html",
@@ -2853,7 +5911,23 @@
         "us debt interest cost calculator"
       ],
       "aliases": [],
-      "priority": 90
+      "priority": 90,
+      "semantic_topics": [
+        {
+          "id": "sovereign-debt-reserves",
+          "strength": 5
+        },
+        {
+          "id": "debt",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "calculate",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/what-happens-to-gold-when-dollar-rises.html",
@@ -2871,7 +5945,27 @@
         "when"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/what-happens-to-gold-when-interest-rates-rise.html",
@@ -2889,7 +5983,35 @@
         "when"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "inflation",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/what-happens-when-bond-yields-rise.html",
@@ -2906,7 +6028,39 @@
         "yields"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "bonds",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "gold",
+          "strength": 1
+        },
+        {
+          "id": "loans",
+          "strength": 1
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/what-happens-when-dollar-strengthens.html",
@@ -2922,7 +6076,31 @@
         "when"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "gold",
+          "strength": 1
+        },
+        {
+          "id": "silver",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/what-happens-when-fed-cuts-interest-rates.html",
@@ -2940,7 +6118,43 @@
         "when"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "bonds",
+          "strength": 1
+        },
+        {
+          "id": "gold",
+          "strength": 1
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 1
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/what-is-a-reit.html",
@@ -2960,7 +6174,31 @@
         "reit meaning",
         "what is a reit"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 5
+        },
+        {
+          "id": "property",
+          "strength": 5
+        },
+        {
+          "id": "home-mortgage",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/what-is-an-etf.html",
@@ -2984,7 +6222,31 @@
         "exchange-traded fund",
         "how etfs work"
       ],
-      "priority": 84
+      "priority": 84,
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 3
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "start",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 4
+        }
+      ]
     },
     {
       "url": "/what-is-swp-systematic-withdrawal-plan.html",
@@ -3005,7 +6267,27 @@
         "systematic withdrawal plan explained",
         "what is swp"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "withdrawals",
+          "strength": 5
+        },
+        {
+          "id": "retirement",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/what-makes-a-global-reserve-currency.html",
@@ -3027,7 +6309,23 @@
         "reserve currency explained",
         "what makes a currency reserve currency"
       ],
-      "priority": 86
+      "priority": 86,
+      "semantic_topics": [
+        {
+          "id": "sovereign-debt-reserves",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/when-can-i-reach-financial-independence.html",
@@ -3050,7 +6348,23 @@
         "time to financial independence",
         "when will i reach fi"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "financial-independence",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "timing",
+          "strength": 5
+        },
+        {
+          "id": "calculate",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/why-central-banks-buy-gold.html",
@@ -3070,7 +6384,39 @@
         "official gold reserves",
         "why central banks buy gold"
       ],
-      "priority": 88
+      "priority": 88,
+      "semantic_topics": [
+        {
+          "id": "gold",
+          "strength": 5
+        },
+        {
+          "id": "rates-central-banks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "investing",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "research",
+          "strength": 1
+        }
+      ]
     },
     {
       "url": "/why-do-stocks-fall-when-bond-yields-rise.html",
@@ -3089,7 +6435,35 @@
         "yields"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "bonds",
+          "strength": 5
+        },
+        {
+          "id": "stocks",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/why-us-debt-interest-costs-matter.html",
@@ -3111,7 +6485,31 @@
         "us government interest bill",
         "why debt interest costs rise"
       ],
-      "priority": 86
+      "priority": 86,
+      "semantic_topics": [
+        {
+          "id": "debt",
+          "strength": 5
+        },
+        {
+          "id": "sovereign-debt-reserves",
+          "strength": 5
+        },
+        {
+          "id": "markets-macro",
+          "strength": 3
+        },
+        {
+          "id": "loans",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 5
+        }
+      ]
     },
     {
       "url": "/zero-based-budgeting.html",
@@ -3131,7 +6529,19 @@
         "zero based budget",
         "zero sum budget"
       ],
-      "priority": 65
+      "priority": 65,
+      "semantic_topics": [
+        {
+          "id": "budgeting",
+          "strength": 3
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 1
+        }
+      ]
     }
   ]
 }
