@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-11-10",
+  "reviewed_at": "2026-11-14",
   "entries": [
     {
       "url": "/",
@@ -293,7 +293,16 @@
         "credit card repayment calculator",
         "credit card interest payoff"
       ],
-      "priority": 60
+      "priority": 60,
+      "topics": [
+        "credit-card",
+        "debt"
+      ],
+      "intents": [
+        "payoff",
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
@@ -319,7 +328,15 @@
         "debt avalanche calculator",
         "pay off debt"
       ],
-      "priority": 90
+      "priority": 90,
+      "topics": [
+        "debt"
+      ],
+      "intents": [
+        "payoff",
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/budgeting-by-pay-frequency.html",
@@ -393,7 +410,15 @@
         "car purchase calculator",
         "car budget calculator"
       ],
-      "priority": 96
+      "priority": 96,
+      "topics": [
+        "car",
+        "loans"
+      ],
+      "intents": [
+        "afford",
+        "calculate"
+      ]
     },
     {
       "url": "/cash-flow-vs-income.html",
@@ -455,7 +480,14 @@
         "investment growth calculator",
         "savings growth calculator"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "compound-growth",
+        "investing"
+      ],
+      "intents": [
+        "calculate"
+      ]
     },
     {
       "url": "/compound-interest-monthly-contributions.html",
@@ -755,7 +787,14 @@
         "how many months can my savings last",
         "how much emergency fund do I need"
       ],
-      "priority": 92
+      "priority": 92,
+      "topics": [
+        "emergency-savings"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/emergency-savings.html",
@@ -862,7 +901,15 @@
         "fi planner",
         "financial freedom calculator"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "financial-independence"
+      ],
+      "intents": [
+        "start",
+        "plan",
+        "calculate"
+      ]
     },
     {
       "url": "/future-cost-of-expenses.html",
@@ -937,7 +984,15 @@
         "role"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "topics": [
+        "gold",
+        "investing"
+      ],
+      "intents": [
+        "start",
+        "explain"
+      ]
     },
     {
       "url": "/gold-macro-stress-explorer.html",
@@ -1055,7 +1110,16 @@
           "home affordability"
         ]
       },
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "home-mortgage",
+        "property"
+      ],
+      "intents": [
+        "afford",
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/how-credit-card-interest-works.html",
@@ -1319,7 +1383,13 @@
         "future cost calculator",
         "value of money"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "inflation"
+      ],
+      "intents": [
+        "calculate"
+      ]
     },
     {
       "url": "/inflation-calculator/methodology.html",
@@ -1428,7 +1498,14 @@
         "investing basics",
         "investment guide for beginners"
       ],
-      "priority": 84
+      "priority": 84,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "start",
+        "explain"
+      ]
     },
     {
       "url": "/investment-time-to-target.html",
@@ -1862,7 +1939,15 @@
           "refinance"
         ]
       },
-      "priority": 90
+      "priority": 90,
+      "topics": [
+        "home-mortgage",
+        "loans"
+      ],
+      "intents": [
+        "compare",
+        "calculate"
+      ]
     },
     {
       "url": "/mortgage-payoff-calculator/rent-vs-buy-calculator.html",
@@ -1886,7 +1971,16 @@
         "rent or buy calculator",
         "buying vs renting"
       ],
-      "priority": 90
+      "priority": 90,
+      "topics": [
+        "property",
+        "home-mortgage"
+      ],
+      "intents": [
+        "compare",
+        "afford",
+        "calculate"
+      ]
     },
     {
       "url": "/mortgage-prepayment-vs-investing.html",
@@ -2284,7 +2378,15 @@
         "retirement corpus calculator",
         "how much do i need to retire"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "retirement"
+      ],
+      "intents": [
+        "start",
+        "plan",
+        "calculate"
+      ]
     },
     {
       "url": "/retirement-calculator/faq.html",
@@ -2351,7 +2453,14 @@
         "detailed retirement planner",
         "expense aware retirement plan"
       ],
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "retirement"
+      ],
+      "intents": [
+        "start",
+        "plan"
+      ]
     },
     {
       "url": "/retirement-calculator/withdrawal-calculator.html",
@@ -2403,7 +2512,15 @@
           "drawdown"
         ]
       },
-      "priority": 90
+      "priority": 90,
+      "topics": [
+        "retirement",
+        "withdrawals"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/retirement-expenses.html",
@@ -2544,7 +2661,16 @@
         "alternative"
       ],
       "aliases": [],
-      "priority": 65
+      "priority": 65,
+      "topics": [
+        "silver",
+        "gold",
+        "investing"
+      ],
+      "intents": [
+        "compare",
+        "explain"
+      ]
     },
     {
       "url": "/sinking-fund-vs-emergency-fund.html",
@@ -2606,7 +2732,15 @@
           "recurring investment"
         ]
       },
-      "priority": 100
+      "priority": 100,
+      "topics": [
+        "recurring-investing",
+        "investing"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/sip-during-market-fall.html",

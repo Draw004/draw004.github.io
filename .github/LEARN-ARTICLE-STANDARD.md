@@ -1,7 +1,7 @@
 # Carrowmont Learn Article Standard
 
-**Version:** 2.1  
-**Effective:** 20 October 2026
+**Version:** 2.2  
+**Effective:** 14 November 2026
 
 This is the required structure and editorial-depth standard for every indexable Carrowmont Learn article. It exists so future guides inherit the same layout, trust signals, SEO treatment, tool journey and content quality without repeating one-off page work.
 
@@ -46,6 +46,22 @@ The shared JavaScript reuses the top relevant-tool link to create the consistent
 - one H1
 - current article URL in `sitemap.xml`
 - current article linked from `learn.html`
+
+### Ask & Search relevance metadata
+
+Every new Learn article must also be added to `data/carrowmont-search-pages.json`. Search relevance is semantic and content-driven rather than a list of one-off query exceptions. The inventory entry must therefore describe the page clearly enough for the shared taxonomy to understand both **what the page is about** and, when useful, **what the reader is trying to do**.
+
+Required for every new Learn search entry:
+
+- accurate `category`;
+- concise `description` written in plain language;
+- specific `keywords` that name the actual subject, not generic SEO filler;
+- useful `aliases` for genuinely equivalent phrases or familiar wording;
+- optional `topics` and `intents` only when the automatic taxonomy needs an explicit signal for an ambiguous or especially important destination.
+
+The reviewed taxonomy lives in `data/carrowmont-search-aliases.json`. The search-index builder precomputes semantic topic/intent signals for each page and **fails a new guide/tool build if it maps to no recognized topic**. If Carrowmont expands into a genuinely new subject, add or extend one reviewed taxonomy definition instead of hard-coding a special query in `search-core.js`. Existing topics, nearby wording and locale aliases should be reused whenever they already describe the new page.
+
+Near-equivalent reader wording should keep the same core destination set. For example, `how to invest in gold`, `how to start investing in gold` and `gold investing for beginners` may rank supporting pages differently, but a direct gold-investment guide should not disappear merely because the reader added `start` or `beginners`. The same rule applies across retirement, debt, budgeting, emergency savings, mortgages, inflation, FI, goals, cars, investing, assets and Research.
 
 Current QA keeps titles at 25–70 characters and descriptions at 100–170 characters as a Carrowmont editorial guardrail. This is not a claim that search engines impose fixed character limits.
 

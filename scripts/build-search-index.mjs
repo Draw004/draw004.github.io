@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -10,6 +11,7 @@ const sourcePath = path.join(dataDir, 'carrowmont-search-pages.json');
 const aliasesPath = path.join(dataDir, 'carrowmont-search-aliases.json');
 const outputPath = path.join(dataDir, 'carrowmont-search-index.json');
 const sitemapPath = path.join(repoRoot, 'sitemap.xml');
+const searchCorePath = path.join(repoRoot, 'search-core.js');
 const checkOnly = process.argv.includes('--check');
 const siteRoot = process.env.SEARCH_SITE_ROOT ? path.resolve(process.env.SEARCH_SITE_ROOT) : null;
 
@@ -85,6 +87,33 @@ const aliases = readJson(aliasesPath);
 if (source.schema_version !== 1 || !Array.isArray(source.entries)) fail('page inventory must use schema_version 1 with an entries array');
 if (aliases.schema_version !== 1 || !Array.isArray(aliases.groups)) fail('alias library must use schema_version 1 with a groups array');
 
+const semanticIds = {};
+for (const key of ['topics', 'intents']) {
+  const defs = Array.isArray(aliases[key]) ? aliases[key] : [];
+  if (!defs.length) fail(`alias library must define a non-empty ${key} taxonomy`);
+  const ids = new Set();
+  for (const def of defs) {
+    const id = cleanText(def.id, 'id', `${key} taxonomy`);
+    if (ids.has(id)) fail(`duplicate ${key} taxonomy id: ${id}`);
+    ids.add(id);
+    if (key === 'topics') {
+      const specificity = Number(def.specificity);
+      if (!Number.isInteger(specificity) || specificity < 1 || specificity > 3) fail(`${key} ${id}: specificity must be 1, 2 or 3`);
+      cleanStringArray(def.categories, 'categories', `${key} ${id}`);
+    }
+    if (cleanStringArray(def.terms, 'terms', `${key} ${id}`).length < 1) fail(`${key} ${id}: must contain at least one reviewed term`);
+  }
+  semanticIds[key] = ids;
+}
+
+const searchCoreSource = fs.readFileSync(searchCorePath, 'utf8');
+const sandbox = {};
+sandbox.globalThis = sandbox;
+vm.createContext(sandbox);
+vm.runInContext(searchCoreSource, sandbox, { filename: 'search-core.js' });
+const searchCore = sandbox.CarrowmontSearchCore;
+if (!searchCore || typeof searchCore.inferEntrySignals !== 'function') fail('search-core must expose inferEntrySignals for taxonomy validation');
+
 const aliasIds = new Set();
 for (const group of aliases.groups) {
   const id = cleanText(group.id, 'id', 'alias group');
@@ -119,6 +148,15 @@ const entries = source.entries.map(raw => {
   };
   const localeAliases = cleanLocaleAliases(raw.locale_aliases, url);
   if (localeAliases && Object.keys(localeAliases).length) entry.locale_aliases = localeAliases;
+  for (const key of ['topics', 'intents']) {
+    const values = cleanStringArray(raw[key], key, url);
+    for (const value of values) if (!semanticIds[key].has(value)) fail(`${url}: unknown ${key} id ${value}`);
+    if (values.length) entry[key] = values;
+  }
+  const inferred = searchCore.inferEntrySignals(entry, aliases, { region: 'OTHER' });
+  if (raw.type !== 'carrowmont' && !inferred.topics.length) fail(`${url}: guide/tool must map to at least one reviewed search topic; add metadata or taxonomy coverage`);
+  entry.semantic_topics = inferred.topics.map(signal => ({ id: signal.id, strength: signal.strength }));
+  entry.semantic_intents = inferred.intents.map(signal => ({ id: signal.id, strength: signal.strength }));
 
   if (siteRoot) {
     const filePath = sourceFileForPublicUrl(url);

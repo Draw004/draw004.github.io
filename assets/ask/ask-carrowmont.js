@@ -152,8 +152,8 @@
   function renderRouteMatches(text,results){
     const box=$('askUnsupported'); if(!box) return;
     const title=$('askUnsupportedTitle'); const detail=$('askUnsupportedText'); const wrap=$('askUnsupportedMatches');
-    if(title) title.textContent=results.length?'Here is a good place to start':'Search Carrowmont for a close match';
-    if(detail) detail.textContent=results.length?`These Carrowmont pages are the closest matches for “${text}”.`:`Carrowmont did not find a close direct match for “${text}”. Try the wider search or browse Learn and Tools.`;
+    if(title) title.textContent=results.length?'Start here':'Search Carrowmont for a close match';
+    if(detail) detail.textContent=results.length?`These are the strongest Carrowmont matches for “${text}”, based on the topic and what you appear to be trying to do.`:`Carrowmont did not find a close direct match for “${text}”. Try the wider search or browse Learn and Tools.`;
     if(wrap){
       wrap.innerHTML='';
       results.slice(0,3).forEach(entry=>{
@@ -180,7 +180,7 @@
     $('askStartMessage').textContent='';
     const query=String(text||'').trim();
     if(window.CarrowmontSearch?.search && query){
-      window.CarrowmontSearch.search(query,{limit:4}).then(results=>renderRouteMatches(query,results||[])).catch(()=>renderRouteMatches(query,[]));
+      window.CarrowmontSearch.search(query,{limit:6,mode:'ask'}).then(results=>renderRouteMatches(query,results||[])).catch(()=>renderRouteMatches(query,[]));
       return;
     }
     renderRouteMatches(query,[]);

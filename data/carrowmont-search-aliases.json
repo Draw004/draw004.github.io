@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-10-20",
+  "reviewed_at": "2026-11-14",
   "groups": [
     {
       "id": "regular-investing",
@@ -396,6 +396,555 @@
         "minimum payment",
         "revolving balance",
         "credit card apr"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "financial-planning",
+      "label": "Financial planning",
+      "specificity": 1,
+      "categories": [
+        "Carrowmont",
+        "Financial Planning"
+      ],
+      "terms": [
+        "financial planning",
+        "personal finance",
+        "money planning",
+        "financial plan",
+        "money decision"
+      ]
+    },
+    {
+      "id": "investing",
+      "label": "Investing",
+      "specificity": 1,
+      "categories": [
+        "Investing"
+      ],
+      "terms": [
+        "invest",
+        "investing",
+        "investment",
+        "investor",
+        "portfolio",
+        "asset allocation",
+        "diversification",
+        "investment return"
+      ]
+    },
+    {
+      "id": "recurring-investing",
+      "label": "Recurring investing",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "sip",
+        "systematic investment plan",
+        "recurring investment",
+        "regular investment",
+        "monthly investment",
+        "step up sip",
+        "step-up sip"
+      ]
+    },
+    {
+      "id": "compound-growth",
+      "label": "Compounding and growth",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "compound interest",
+        "compounding",
+        "compound growth",
+        "future value",
+        "investment growth",
+        "growth over time"
+      ]
+    },
+    {
+      "id": "gold",
+      "label": "Gold",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "gold",
+        "gold investment",
+        "investing in gold",
+        "gold investing",
+        "bullion",
+        "gold exposure",
+        "gold reserves"
+      ]
+    },
+    {
+      "id": "silver",
+      "label": "Silver",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "silver",
+        "silver investment",
+        "investing in silver",
+        "silver investing",
+        "silver exposure"
+      ]
+    },
+    {
+      "id": "stocks",
+      "label": "Stocks and equities",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "stock",
+        "stocks",
+        "equity",
+        "equities",
+        "shares",
+        "share market"
+      ]
+    },
+    {
+      "id": "bonds",
+      "label": "Bonds and fixed income",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "bond",
+        "bonds",
+        "fixed income",
+        "treasury bill",
+        "treasury bills",
+        "treasury note",
+        "treasury notes",
+        "treasury bond",
+        "treasuries"
+      ]
+    },
+    {
+      "id": "retirement",
+      "label": "Retirement",
+      "specificity": 2,
+      "categories": [
+        "Retirement"
+      ],
+      "terms": [
+        "retirement",
+        "retire",
+        "retirement planning",
+        "retirement savings",
+        "retirement income",
+        "retirement fund",
+        "retirement corpus",
+        "pension"
+      ]
+    },
+    {
+      "id": "withdrawals",
+      "label": "Retirement withdrawals",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "withdrawal",
+        "withdrawals",
+        "drawdown",
+        "swp",
+        "systematic withdrawal plan",
+        "safe withdrawal rate",
+        "4 percent rule",
+        "4% rule"
+      ]
+    },
+    {
+      "id": "financial-independence",
+      "label": "Financial independence",
+      "specificity": 3,
+      "categories": [
+        "Financial Independence"
+      ],
+      "terms": [
+        "financial independence",
+        "financial freedom",
+        "fire",
+        "fi number",
+        "coast fire",
+        "coast fi"
+      ]
+    },
+    {
+      "id": "inflation",
+      "label": "Inflation and purchasing power",
+      "specificity": 2,
+      "categories": [
+        "Inflation & Purchasing Power"
+      ],
+      "terms": [
+        "inflation",
+        "purchasing power",
+        "future cost",
+        "cost of living",
+        "real terms",
+        "nominal terms",
+        "price level"
+      ]
+    },
+    {
+      "id": "budgeting",
+      "label": "Budgeting and cash flow",
+      "specificity": 1,
+      "categories": [
+        "Budgeting & Saving"
+      ],
+      "terms": [
+        "budget",
+        "budgeting",
+        "cash flow",
+        "spending plan",
+        "monthly budget",
+        "payday",
+        "pay cycle",
+        "income and expenses"
+      ]
+    },
+    {
+      "id": "emergency-savings",
+      "label": "Emergency savings",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "emergency fund",
+        "emergency savings",
+        "financial runway",
+        "income loss runway",
+        "rainy day fund",
+        "emergency reserve"
+      ]
+    },
+    {
+      "id": "saving-goals",
+      "label": "Savings and goals",
+      "specificity": 2,
+      "categories": [
+        "Goals & Saving"
+      ],
+      "terms": [
+        "savings goal",
+        "saving goal",
+        "goal planning",
+        "financial goal",
+        "target amount",
+        "save each month",
+        "saving each month"
+      ]
+    },
+    {
+      "id": "debt",
+      "label": "Debt payoff",
+      "specificity": 2,
+      "categories": [
+        "Debt & Credit",
+        "Credit & Debt"
+      ],
+      "terms": [
+        "debt",
+        "debt payoff",
+        "pay off debt",
+        "paying debt",
+        "debt repayment",
+        "debt snowball",
+        "debt avalanche",
+        "debt consolidation"
+      ]
+    },
+    {
+      "id": "credit-card",
+      "label": "Credit cards",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "credit card",
+        "credit cards",
+        "card debt",
+        "credit card debt",
+        "credit card balance",
+        "revolving debt",
+        "minimum payment"
+      ]
+    },
+    {
+      "id": "credit-profile",
+      "label": "Credit profile",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "credit score",
+        "credit report",
+        "credit rating",
+        "credit history",
+        "credit file",
+        "cibil score"
+      ]
+    },
+    {
+      "id": "loans",
+      "label": "Loans and borrowing",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "loan",
+        "loans",
+        "emi",
+        "loan payment",
+        "loan repayment",
+        "borrowing",
+        "debt to income",
+        "dti",
+        "apr",
+        "annual percentage rate"
+      ]
+    },
+    {
+      "id": "home-mortgage",
+      "label": "Home loans and mortgages",
+      "specificity": 2,
+      "categories": [
+        "Home & Loans"
+      ],
+      "terms": [
+        "mortgage",
+        "home loan",
+        "housing loan",
+        "mortgage payment",
+        "home affordability",
+        "mortgage affordability",
+        "home loan affordability",
+        "prepayment",
+        "overpayment",
+        "refinance",
+        "remortgage"
+      ]
+    },
+    {
+      "id": "property",
+      "label": "Property and home buying",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "property",
+        "real estate",
+        "rental property",
+        "rental yield",
+        "reit",
+        "home buying",
+        "buying a home",
+        "buy a house",
+        "buying a house",
+        "rent vs buy",
+        "house"
+      ]
+    },
+    {
+      "id": "car",
+      "label": "Car affordability",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "car",
+        "cars",
+        "auto",
+        "vehicle",
+        "car affordability",
+        "auto decision",
+        "car loan",
+        "auto loan"
+      ]
+    },
+    {
+      "id": "markets-macro",
+      "label": "Markets and macro",
+      "specificity": 1,
+      "categories": [
+        "Markets & Macro",
+        "Research"
+      ],
+      "terms": [
+        "markets",
+        "macro",
+        "macroeconomics",
+        "interest rates",
+        "central bank",
+        "monetary policy",
+        "bond yields",
+        "reserve currency",
+        "research"
+      ]
+    },
+    {
+      "id": "rates-central-banks",
+      "label": "Rates and central banks",
+      "specificity": 2,
+      "categories": [],
+      "terms": [
+        "interest rate",
+        "interest rates",
+        "central bank",
+        "central banks",
+        "federal reserve",
+        "fed",
+        "rate hike",
+        "rate cut",
+        "monetary policy",
+        "real yield",
+        "real yields"
+      ]
+    },
+    {
+      "id": "sovereign-debt-reserves",
+      "label": "Sovereign debt and reserves",
+      "specificity": 3,
+      "categories": [],
+      "terms": [
+        "us debt",
+        "government debt",
+        "debt interest cost",
+        "reserve currency",
+        "foreign reserves",
+        "official reserves",
+        "dedollarization",
+        "de dollarisation",
+        "de-dollarisation"
+      ]
+    }
+  ],
+  "intents": [
+    {
+      "id": "start",
+      "label": "Getting started",
+      "terms": [
+        "start",
+        "starting",
+        "get started",
+        "getting started",
+        "beginner",
+        "beginners",
+        "first time",
+        "basics",
+        "simple starting guide"
+      ]
+    },
+    {
+      "id": "calculate",
+      "label": "Calculate or estimate",
+      "terms": [
+        "calculator",
+        "calculate",
+        "calculation",
+        "estimate",
+        "estimator",
+        "how much",
+        "how long",
+        "projection",
+        "projected"
+      ]
+    },
+    {
+      "id": "compare",
+      "label": "Compare options",
+      "terms": [
+        "compare",
+        "comparison",
+        "versus",
+        "vs",
+        "better",
+        "alternative",
+        "trade off",
+        "trade-off"
+      ]
+    },
+    {
+      "id": "plan",
+      "label": "Plan",
+      "terms": [
+        "plan",
+        "planning",
+        "planner",
+        "prepare",
+        "strategy",
+        "target"
+      ]
+    },
+    {
+      "id": "explain",
+      "label": "Understand",
+      "terms": [
+        "what is",
+        "what are",
+        "why",
+        "meaning",
+        "explained",
+        "explain",
+        "understand",
+        "guide"
+      ]
+    },
+    {
+      "id": "payoff",
+      "label": "Pay off or repay",
+      "terms": [
+        "pay off",
+        "payoff",
+        "repay",
+        "repayment",
+        "reduce debt",
+        "pay debt",
+        "prepay",
+        "prepayment",
+        "overpay",
+        "overpayment",
+        "reduce credit card debt",
+        "reduce my debt",
+        "get out of debt"
+      ]
+    },
+    {
+      "id": "afford",
+      "label": "Afford or buy",
+      "terms": [
+        "afford",
+        "affordability",
+        "can i afford",
+        "buy",
+        "buying",
+        "purchase",
+        "borrowing power"
+      ]
+    },
+    {
+      "id": "timing",
+      "label": "Timing",
+      "terms": [
+        "when",
+        "how long",
+        "time to",
+        "earlier",
+        "later",
+        "early",
+        "timeline"
+      ]
+    },
+    {
+      "id": "research",
+      "label": "Research and trends",
+      "terms": [
+        "research",
+        "report",
+        "monitor",
+        "study",
+        "data",
+        "trend",
+        "trends",
+        "recent data"
       ]
     }
   ]
