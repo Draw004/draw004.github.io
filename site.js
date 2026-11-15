@@ -1231,18 +1231,22 @@
   var hint=document.getElementById('cmPwaInstallHint');
   var card=document.querySelector('[data-cm-pwa-card]');
   function standalone(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;}
-  function markInstalled(){if(card) card.hidden=true;}
+  function hideInstallCard(){if(card) card.hidden=true;if(button) button.hidden=true;}
+  function showInstallCard(){if(card&&!standalone()) card.hidden=false;}
+  function markInstalled(){deferredPrompt=null;hideInstallCard();}
+  hideInstallCard();
   if(standalone()) markInstalled();
   window.addEventListener('beforeinstallprompt',function(event){
-    if(!button) return;
-    event.preventDefault();deferredPrompt=event;button.hidden=false;
-    if(hint) hint.textContent='Install Carrowmont for quicker access from this device.';
+    if(!button||standalone()) return;
+    event.preventDefault();deferredPrompt=event;showInstallCard();button.hidden=false;
+    if(hint) hint.textContent='Install Carrowmont in this browser. Already installed elsewhere? Open that app instead to avoid a second browser-specific install.';
   });
   if(button){button.addEventListener('click',async function(){
-    if(!deferredPrompt) return;button.disabled=true;
-    try{deferredPrompt.prompt();await deferredPrompt.userChoice;}catch(e){}
-    deferredPrompt=null;button.hidden=true;button.disabled=false;
-    if(hint) hint.textContent='Carrowmont can also be added from your browser menu.';
+    if(!deferredPrompt) return;button.disabled=true;var choice=null;
+    try{deferredPrompt.prompt();choice=await deferredPrompt.userChoice;}catch(e){}
+    deferredPrompt=null;button.disabled=false;
+    if(choice&&choice.outcome==='accepted') markInstalled();
+    else hideInstallCard();
   });}
   window.addEventListener('appinstalled',markInstalled);
 })();
