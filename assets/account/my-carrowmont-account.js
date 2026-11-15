@@ -72,7 +72,9 @@
   function planRoute(row){const path=row?.scenario?.toolPath;return typeof path==='string'&&path.startsWith('/')?path:'/my-carrowmont.html';}
   async function renderSavedPlans(){
     if(!savedPlansSection||!savedPlansList||!currentUser){if(savedPlansSection)savedPlansSection.hidden=true;return;}
-    const rows=await Account.listScenarios();renderProgress(rows);savedPlansList.innerHTML='';savedPlansSection.hidden=false;
+    const rows=await Account.listScenarios();
+    window.dispatchEvent(new CustomEvent('carrowmont:mycm-scenarios-ready',{detail:{journeys:rows.map(row=>row?.journey).filter(Boolean)}}));
+    renderProgress(rows);savedPlansList.innerHTML='';savedPlansSection.hidden=false;
     if(!rows.length){savedPlansList.innerHTML='<p class="mycm-saved-empty">No saved plans yet. Use a supported Carrowmont planner and choose <strong>Save to My Carrowmont</strong> when you want to keep one.</p>';return;}
     rows.forEach(row=>{
       const card=document.createElement('article');card.className='mycm-saved-plan';
@@ -94,9 +96,10 @@
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
   }
-  function showSignedOut(){signedOut.hidden=false;signedIn.hidden=true;dashboard.hidden=true;}
+  function setAuthenticated(flag){document.body.classList.toggle('mycm-authenticated',Boolean(flag));}
+  function showSignedOut(){setAuthenticated(false);signedOut.hidden=false;signedIn.hidden=true;dashboard.hidden=true;}
   function showSignedIn(profile){
-    signedOut.hidden=true;signedIn.hidden=false;dashboard.hidden=false;
+    setAuthenticated(true);signedOut.hidden=true;signedIn.hidden=false;if('open' in signedIn)signedIn.open=false;dashboard.hidden=false;
     accountEmail.textContent=currentUser?.email||'Signed-in account';
     const count=Object.keys(profile?.facts||{}).length;
     cloudSummary.textContent=count?`Your saved profile is loaded with ${count} planning value${count===1?'':'s'}. Updates made here are saved to My Carrowmont.`:'No planning values are saved yet. Add details here or save a supported Carrowmont plan to start your profile.';

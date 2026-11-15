@@ -13,7 +13,7 @@
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261114-fre8g">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261115-fre8jv3">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -53,7 +53,7 @@
   <section class="mycm-main">
     <div class="shell">
       <section class="mycm-account" id="mycmAccount" aria-labelledby="mycmAccountTitle">
-        <div class="mycm-account-head"><div><span class="mycm-kicker">My Carrowmont account</span><h2 id="mycmAccountTitle">Sign in to My Carrowmont</h2><p>Use your email to access the planning profile you choose to keep. Carrowmont calculators and basic financial help remain available without signing in.</p></div></div>
+        <div class="mycm-account-head mycm-account-intro"><div><span class="mycm-kicker">My Carrowmont account</span><h2 id="mycmAccountTitle">Sign in to My Carrowmont</h2><p>Use your email to access the planning profile you choose to keep. Carrowmont calculators and basic financial help remain available without signing in.</p></div></div>
         <div class="mycm-account-status" id="mycmAccountStatus" role="status" aria-live="polite" hidden></div>
         <div id="mycmAccountSignedOut">
           <form class="mycm-account-form" id="mycmAccountForm">
@@ -62,35 +62,27 @@
             <p class="mycm-account-helper">We’ll send you a secure one-time sign-in link. No password required.</p>
           </form>
         </div>
-        <div id="mycmAccountSignedIn" hidden>
-          <div class="mycm-account-signed"><div><strong id="mycmAccountCurrentEmail">Signed-in account</strong><p id="mycmCloudSummary">Loading your saved My Carrowmont profile…</p></div><button class="mycm-button" id="mycmSignOut" type="button">Sign out</button></div>
-          <div class="mycm-account-actions"><button class="mycm-button" id="mycmExportCloud" type="button">Export account data</button><button class="mycm-button mycm-button-danger" id="mycmDeleteCloud" type="button">Delete saved profile</button></div>
-        </div>
+        <details id="mycmAccountSignedIn" class="mycm-account-signed-details" hidden>
+          <summary><span><strong id="mycmAccountCurrentEmail">Signed-in account</strong><small id="mycmCloudSummary">Loading your saved My Carrowmont profile…</small></span><b>Account &amp; data</b></summary>
+          <div class="mycm-account-signed-body">
+            <p>Manage this account, export the saved planning data or remove the saved profile. These controls do not change unsaved calculator what-if results.</p>
+            <div class="mycm-account-actions"><button class="mycm-button" id="mycmSignOut" type="button">Sign out</button><button class="mycm-button" id="mycmExportCloud" type="button">Export account data</button><button class="mycm-button mycm-button-danger" id="mycmDeleteCloud" type="button">Delete saved profile</button></div>
+          </div>
+        </details>
         <p class="mycm-account-note">Saved planning data is used to provide your My Carrowmont experience; it is not sold or used for advertising.</p>
       </section>
 
-      <section class="mycm-app-access" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle">
-        <div><span class="mycm-kicker">On your phone</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away.</h2><p>Add Carrowmont to your home screen for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
-        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>Install Carrowmont</button><small id="cmPwaInstallHint">Use your browser's <strong>Add to Home Screen</strong> or <strong>Install App</strong> option.</small></div>
-      </section>
-
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
-        <details class="mycm-plan-model" open>
-          <summary><span class="mycm-kicker">How saved plans work</span><strong>Current details, saved plans and what-if calculations stay separate.</strong></summary>
-          <div class="mycm-plan-model-grid">
-            <article><strong>Current details</strong><span>The latest account values you chose to save.</span></article>
-            <article><strong>Saved plan</strong><span>The target or path you chose to keep.</span></article>
-            <article><strong>What-if calculation</strong><span>Stays separate until you choose to update My Carrowmont.</span></article>
-            <article><strong>Progress history</strong><span>Previous saved versions used to show what changed.</span></article>
-          </div>
-        </details>
-
+        <section class="mycm-visual-overview" id="mycmVisualOverview" aria-labelledby="mycmVisualOverviewTitle">
+          <div class="mycm-visual-head"><div><span class="mycm-kicker">Your money at a glance</span><h2 id="mycmVisualOverviewTitle">See the shape of your money in seconds.</h2><p>These visuals use only the planning values you chose to save. Colour shows progress only when you have a real target.</p></div></div>
+          <div class="mycm-visual-grid" id="mycmVisualGrid" aria-live="polite"></div>
+        </section>
         <nav class="mycm-mobile-quick" aria-label="My Carrowmont quick access">
           <a href="#mycmCashFlowCard">Monthly money</a><a href="#mycmEmergencyCard">Emergency savings</a><a href="#mycmDebtCard">Debt &amp; loans</a><a href="#mycmSavedPlansSection">Saved plans</a>
         </nav>
 
         <div class="mycm-toolbar">
-          <div><strong class="mycm-toolbar-title">Your money at a glance</strong><small>Update only the section you need. My Carrowmont keeps the rest of your saved details unchanged.</small></div>
+          <div><strong class="mycm-toolbar-title">Your saved details</strong><small>Update only the section you need. My Carrowmont keeps the rest of your saved details unchanged.</small></div>
         </div>
         <div class="mycm-banner" id="mycmBanner" role="status" aria-live="polite" hidden></div>
 
@@ -100,9 +92,35 @@
           <article class="mycm-card" id="mycmDebtCard"></article>
         </div>
 
+        <details class="mycm-plan-model">
+          <summary>
+            <span class="mycm-kicker">How saved plans work</span>
+            <span class="mycm-plan-model-summary">
+              <strong>Current details, saved plans and what-if calculations stay separate.</strong>
+              <span class="mycm-plan-model-concepts" aria-label="Planning concepts">
+                <span data-mycm-plan-concept="current-details">Current details</span>
+                <span data-mycm-plan-concept="saved-plan">Saved plan</span>
+                <span data-mycm-plan-concept="what-if">What-if calculation</span>
+                <span data-mycm-plan-concept="progress-history">Progress history</span>
+              </span>
+            </span>
+          </summary>
+          <div class="mycm-plan-model-grid">
+            <article><strong>Latest account values</strong><span>The latest account values you chose to save.</span></article>
+            <article><strong>Plan you chose to keep</strong><span>The target or path you chose to keep.</span></article>
+            <article><strong>Unsaved what-if</strong><span>Stays separate until you choose to update My Carrowmont.</span></article>
+            <article><strong>Previous saved versions</strong><span>Previous saved versions used to show what changed.</span></article>
+          </div>
+        </details>
+
         <section class="mycm-saved-plans" id="mycmSavedPlansSection" hidden>
           <div class="mycm-saved-plans-head"><div><span class="mycm-kicker">Saved plans</span><h2>Plans you chose to keep</h2><p>Reopen a saved plan when you want to review or update it. Your saved plan stays separate from unsaved what-if calculations.</p></div></div>
           <div class="mycm-saved-plans-list" id="mycmSavedPlansList"></div>
+        </section>
+
+        <section class="mycm-add-planning" id="mycmAddPlanning" aria-labelledby="mycmAddPlanningTitle">
+          <div class="mycm-add-planning-head"><div><span class="mycm-kicker">Add to My Carrowmont</span><h2 id="mycmAddPlanningTitle">Build out your planning picture.</h2><p>Open a planner, explore your numbers and save the plan only when you choose. Areas you have already saved are kept out of this list.</p></div><a class="mycm-link" href="/tools.html">All tools →</a></div>
+          <div class="mycm-add-grid" id="mycmAddPlanningGrid"></div>
         </section>
 
         <section class="mycm-decisions" aria-labelledby="mycmDecisionsTitle">
@@ -125,6 +143,11 @@
         </details>
         <p class="mycm-note">My Carrowmont is a planning summary, not a transaction tracker. It does not connect to banks or monitor spending. Sign out to remove your account-backed dashboard from this browser view; sign in again to retrieve it. Calculations remain educational and illustrative, not individualized financial, investment, tax, legal or lending advice.</p>
       </div>
+
+      <section class="mycm-app-access" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle" hidden>
+        <div><span class="mycm-kicker">Use as an app</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away.</h2><p>Install Carrowmont in this browser for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
+        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>Install Carrowmont</button><small id="cmPwaInstallHint">Already installed? Open Carrowmont from your apps, Start menu or taskbar instead.</small></div>
+      </section>
     </div>
   </section>
 </main>
@@ -151,8 +174,8 @@
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
-<script src="/assets/dashboard/my-carrowmont.js?v=20261114-fre8g"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261113-fre8d"></script>
-<script src="/site.js?v=20261113-fre8e"></script>
+<script src="/assets/dashboard/my-carrowmont.js?v=20261115-fre8jv3"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261115-fre8jv3"></script>
+<script src="/site.js?v=20261115-fre8jv3"></script>
 </body>
 </html>

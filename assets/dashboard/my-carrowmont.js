@@ -42,6 +42,20 @@
     debt:{title:'Update debt & loans',intro:'Use the combined debt figures you want My Carrowmont to show.',paths:['debt.balance','debt.monthlyPayments','debt.highestAprPct']}
   };
   const PATH_TO_SECTION=Object.fromEntries(Object.entries(PRIMARY_SECTIONS).flatMap(([key,section])=>section.paths.map(path=>[path,key])));
+  const PLANNING_AREAS=[
+    {journey:'retirement',label:'Retirement',detail:'Build a retirement plan around the expenses and age you expect.',route:'/retirement-calculator/planner.html#planner',priority:1},
+    {journey:'goal',label:'Goals',detail:'Set a target, timeline and contribution plan for a financial goal.',route:'/goal-planner/',priority:2},
+    {journey:'recurring-investment',label:'Investing',detail:'Model a recurring investment or SIP plan and keep the scenario.',route:'/sip-calculator/',priority:3},
+    {journey:'debt-payoff',label:'Debt payoff',detail:'Compare payoff order and keep a debt-repayment plan.',route:'/budget-cash-flow-planner/debt-payoff-calculator.html',priority:4},
+    {journey:'mortgage-payoff',label:'Mortgage payoff',detail:'Explore mortgage prepayment and keep the plan you want to revisit.',route:'/mortgage-payoff-calculator/',priority:5},
+    {journey:'financial-independence',label:'Financial independence',detail:'Model your FI target and the path toward it.',route:'/financial-independence/',priority:6},
+    {journey:'budget-cash-flow',label:'Budget & cash flow',detail:'Build a cash-flow plan and keep the version that matters.',route:'/budget-cash-flow-planner/',priority:7},
+    {journey:'emergency-runway',label:'Emergency fund',detail:'Model emergency-savings runway and keep a target plan.',route:'/emergency-fund-runway-calculator.html',priority:8},
+    {journey:'credit-card-payoff',label:'Credit card payoff',detail:'Test a card payoff plan and save it for later review.',route:'/budget-cash-flow-planner/credit-card-payoff-calculator.html',priority:9},
+    {journey:'loan-emi',label:'Loan / EMI',detail:'Keep a loan repayment scenario without turning it into current debt automatically.',route:'/loan-calculator/',priority:10},
+    {journey:'retirement-withdrawal',label:'Retirement withdrawals',detail:'Model retirement withdrawals and keep the drawdown scenario.',route:'/retirement-calculator/withdrawal-calculator.html',priority:11},
+    {journey:'car-affordability',label:'Car affordability',detail:'Keep a car-affordability decision scenario without changing current debt.',route:'/car-affordability-auto-decision-calculator.html',priority:12}
+  ];
   const $=id=>document.getElementById(id);
   const Store=window.CarrowmontDashboardStore;
   const browserStore=Store?.createBrowserStore?.(window);
@@ -49,6 +63,8 @@
   let initialized=false;
   let activeEditTarget='';
   let editOpener=null;
+  let savedJourneys=new Set();
+  let scenariosReady=false;
 
   function locale(){const L=window.CarrowmontLocale;return{region:L?.getRegion?.()||'OTHER',currency:L?.getCurrency?.()||profile.locale.currency||'USD'};}
   function syncLocale(){if(!initialized)return;profile=Store.setLocale(profile,locale());persist(false);}
@@ -69,6 +85,50 @@
   function action(label,target,primary=false){return `<button class="mycm-button${primary?' mycm-button-primary':''}" type="button" data-mycm-edit="${esc(target)}">${esc(label)}</button>`;}
   function missingList(items){return `<ul class="mycm-missing-list">${items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`;}
   function card(title,status,body,actions=''){return `<div class="mycm-card-head"><h2>${esc(title)}</h2><span class="mycm-status" data-tone="${tone(status)}">${statusLabel(status)}</span></div><div class="mycm-card-main">${body}</div>${actions?`<div class="mycm-card-actions">${actions}</div>`:''}`;}
+  function clamp(v,min,max){return Math.min(max,Math.max(min,num(v)));}
+  function moneyWheel(income,essential,flexible,debt,remaining){
+    if(!(income>0))return '<div class="mycm-wheel mycm-wheel-empty"><div><strong>Add income</strong><span>to unlock the monthly money wheel</span></div></div>';
+    if(remaining<0)return `<div class="mycm-wheel mycm-wheel-over" aria-label="Monthly commitments are above income by ${esc(money(Math.abs(remaining)))}"><div><strong>${esc(money(Math.abs(remaining)))}</strong><span>over monthly income</span></div></div>`;
+    const ep=clamp((essential/income)*100,0,100),fp=clamp((flexible/income)*100,0,100),dp=clamp((debt/income)*100,0,100);
+    const e2=ep,f2=clamp(ep+fp,0,100),d2=clamp(ep+fp+dp,0,100);
+    const bg=`conic-gradient(#315f7d 0 ${e2}%,#d5a44a ${e2}% ${f2}%,#c56a5b ${f2}% ${d2}%,#159184 ${d2}% 100%)`;
+    return `<div class="mycm-wheel" style="background:${bg}" aria-label="Monthly income split: ${number(ep,1)} percent essential expenses, ${number(fp,1)} percent other spending, ${number(dp,1)} percent debt payments, ${number(clamp((remaining/income)*100,0,100),1)} percent left"><div><strong>${esc(money(remaining))}</strong><span>left this month</span></div></div>`;
+  }
+  function progressRing(progress,toneName,main,sub,label){const p=clamp(progress,0,100);return `<div class="mycm-ring" data-tone="${esc(toneName)}" style="--mycm-ring:${p}" role="img" aria-label="${esc(label)}"><div><strong>${esc(main)}</strong><span>${esc(sub)}</span></div></div>`;}
+  function renderVisualOverview(){
+    const wrap=$('mycmVisualGrid');if(!wrap)return;
+    const debt=debtPaymentsState();
+    const monthlyReady=has('cashFlow.takeHomeIncome')&&has('cashFlow.essentialExpenses')&&has('cashFlow.flexibleExpenses')&&debt.known;
+    let monthly='<article class="mycm-visual-card mycm-visual-card-main"><div class="mycm-visual-copy"><span class="mycm-visual-label">Monthly money</span><h3>Add monthly details to unlock your money wheel.</h3><p>The wheel will show how the income you receive is split between essentials, other spending, debt and money left.</p></div>'+moneyWheel(0,0,0,0,0)+'</article>';
+    if(monthlyReady){
+      const income=num(value('cashFlow.takeHomeIncome')),essential=num(value('cashFlow.essentialExpenses')),flexible=num(value('cashFlow.flexibleExpenses'));
+      const remaining=income-essential-flexible-debt.value;
+      monthly=`<article class="mycm-visual-card mycm-visual-card-main"><div class="mycm-visual-copy"><span class="mycm-visual-label">Monthly money</span><h3>${remaining>=0?`${esc(money(remaining))} left after saved monthly commitments`:`${esc(money(Math.abs(remaining)))} above the income you receive`}</h3><p>${remaining>=0?'See where the income you receive is going without reading every number first.':'Review your saved monthly amounts; the entered commitments currently exceed income.'}</p><div class="mycm-wheel-legend"><span data-kind="essential">Essentials ${esc(money(essential))}</span><span data-kind="flexible">Other ${esc(money(flexible))}</span><span data-kind="debt">Debt ${esc(money(debt.value))}</span><span data-kind="left">Left ${esc(money(remaining))}</span></div></div>${moneyWheel(income,essential,flexible,debt.value,remaining)}</article>`;
+    }
+    let emergency='<article class="mycm-visual-card"><span class="mycm-visual-label">Emergency savings</span>'+progressRing(0,'neutral','—','set a target','Emergency savings target is not ready')+'<h3>Add savings and essential commitments</h3><p>Once a target is selected, this ring shows progress against your own target.</p></article>';
+    if(has('cashFlow.essentialExpenses')&&debt.known&&has('resilience.emergencySavings')){
+      const reserve=num(value('resilience.emergencySavings')),need=num(value('cashFlow.essentialExpenses'))+debt.value,coverage=need>0?reserve/need:null,selected=has('resilience.targetMonths');
+      if(selected){
+        const months=num(value('resilience.targetMonths')),target=need*months,raw=target>0?(reserve/target)*100:100,gap=Math.max(0,target-reserve),toneName=raw>=100?'good':raw>=75?'near':'review';
+        emergency=`<article class="mycm-visual-card"><span class="mycm-visual-label">Emergency savings</span>${progressRing(raw,toneName,`${number(raw,0)}%`,'of target',`Emergency savings are ${number(raw,0)} percent of the selected target`)}<h3>${raw>=100?'Selected target reached':`${esc(money(gap))} to reach your target`}</h3><p>${esc(money(reserve))} saved against ${esc(money(target))} for ${number(months,1)} months of essential commitments.</p></article>`;
+      }else{
+        emergency=`<article class="mycm-visual-card"><span class="mycm-visual-label">Emergency savings</span>${progressRing(0,'neutral',coverage==null?'—':`${number(coverage,1)} mo`,'covered','Emergency savings coverage shown without a selected target')}<h3>No target selected yet</h3><p>You have ${esc(money(reserve))} in emergency savings. Choose a target to turn this into progress tracking.</p></article>`;
+      }
+    }
+    const payments=debtPaymentsState(),income=has('cashFlow.takeHomeIncome')?num(value('cashFlow.takeHomeIncome')):null,balance=debtBalanceState();
+    const ratio=income&&income>0&&payments.known?(payments.value/income)*100:null;
+    const debtCard=`<article class="mycm-visual-card"><span class="mycm-visual-label">Debt & loans</span>${progressRing(ratio==null?0:ratio,'neutral',ratio==null?'—':pct(ratio),ratio==null?'add income':'of income',ratio==null?'Debt-payment share is not available':'Debt payments use '+number(ratio,1)+' percent of monthly income')}<h3>${balance.known?`${esc(money(balance.value))} remaining`:'Add debt remaining if you want to track it'}</h3><p>${ratio==null?'This indicator stays neutral until both monthly income and debt payments are known.':'This is context, not a good/bad score. Colour is not used to judge the debt ratio.'}</p></article>`;
+    wrap.innerHTML=monthly+emergency+debtCard;
+  }
+  function planningCard(area){return `<a class="mycm-add-card" data-mycm-journey="${esc(area.journey)}" href="${esc(area.route)}"><span class="mycm-add-state">Not added yet</span><strong>${esc(area.label)}</strong><small>${esc(area.detail)}</small><b>Open planner →</b></a>`;}
+  function renderPlanningDiscovery(){
+    const wrap=$('mycmAddPlanningGrid');if(!wrap)return;
+    if(!scenariosReady){wrap.innerHTML='<div class="mycm-empty">Checking which planning areas you already saved…</div>';return;}
+    const missing=PLANNING_AREAS.filter(area=>!savedJourneys.has(area.journey)).sort((a,b)=>a.priority-b.priority);
+    if(!missing.length){wrap.innerHTML='<div class="mycm-empty">All supported planning areas already have a saved plan in My Carrowmont.</div>';return;}
+    const first=missing.slice(0,6),rest=missing.slice(6);
+    wrap.innerHTML=`<div class="mycm-add-grid-primary">${first.map(planningCard).join('')}</div>${rest.length?`<details class="mycm-add-more"><summary>See ${rest.length} more planning areas</summary><div class="mycm-add-grid-more">${rest.map(planningCard).join('')}</div></details>`:''}`;
+  }
 
   function debtPaymentsState(){
     return has('debt.monthlyPayments')?{known:true,value:num(value('debt.monthlyPayments'))}:{known:false,value:0};
@@ -144,7 +204,7 @@
     if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No additional planning details are saved yet.</div>';return;}
     wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included where compatible'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}</div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Change</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-saved-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
   }
-  function renderAll(){renderMonthlyMoney();renderEmergency();renderDebt();renderFacts();}
+  function renderAll(){renderVisualOverview();renderMonthlyMoney();renderEmergency();renderDebt();renderPlanningDiscovery();renderFacts();}
 
   function fieldHtml(def){
     const f=fact(def.path,true); const remove=f?`<button class="mycm-field-remove" type="button" data-mycm-remove="${esc(def.path)}">Remove</button>`:'';
@@ -210,6 +270,7 @@
   });
   $('mycmEditClose')?.addEventListener('click',closeEditor);$('mycmEditCancel')?.addEventListener('click',closeEditor);$('mycmEditForm')?.addEventListener('submit',e=>{e.preventDefault();saveEditor();});
   window.addEventListener('carrowmont:localechange',()=>{if(initialized){syncLocale();renderAll();}});
+  window.addEventListener('carrowmont:mycm-scenarios-ready',event=>{scenariosReady=true;savedJourneys=new Set(Array.isArray(event.detail?.journeys)?event.detail.journeys.filter(Boolean):[]);if(initialized)renderPlanningDiscovery();});
   window.addEventListener('carrowmont:mycm-account-ready',event=>{
     profile=Store.normalize(event.detail?.profile||Store.create({...locale(),mode:'session'}));
     profile=Store.setMode(Store.setLocale(profile,locale()),'session');
