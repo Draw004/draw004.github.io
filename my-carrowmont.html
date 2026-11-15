@@ -13,7 +13,7 @@
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261115-fre8jv3">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261115-fre8k4">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -53,14 +53,19 @@
   <section class="mycm-main">
     <div class="shell">
       <section class="mycm-account" id="mycmAccount" aria-labelledby="mycmAccountTitle">
-        <div class="mycm-account-head mycm-account-intro"><div><span class="mycm-kicker">My Carrowmont account</span><h2 id="mycmAccountTitle">Sign in to My Carrowmont</h2><p>Use your email to access the planning profile you choose to keep. Carrowmont calculators and basic financial help remain available without signing in.</p></div></div>
+        <div class="mycm-account-head mycm-account-intro"><div><span class="mycm-kicker">My Carrowmont account</span><h2 id="mycmAccountTitle">Sign in to My Carrowmont</h2><p>Sign in with Google or email to access the planning profile you choose to keep. Carrowmont calculators and basic financial help remain available without signing in.</p></div></div>
         <div class="mycm-account-status" id="mycmAccountStatus" role="status" aria-live="polite" hidden></div>
         <div id="mycmAccountSignedOut">
+          <div class="mycm-social-auth">
+            <button class="mycm-google-button" id="mycmGoogleSignIn" type="button" aria-label="Continue with Google"><span aria-hidden="true" class="mycm-google-mark">G</span><span>Continue with Google</span></button>
+            <div class="mycm-auth-divider" role="separator"><span>or use email</span></div>
+          </div>
           <form class="mycm-account-form" id="mycmAccountForm">
             <label for="mycmAccountEmail">Email address</label>
             <div class="mycm-account-row"><input id="mycmAccountEmail" type="email" autocomplete="email" required placeholder="you@example.com"><button class="mycm-button mycm-button-primary" type="submit">Continue with email</button></div>
             <p class="mycm-account-helper">We’ll send you a secure one-time sign-in link. No password required.</p>
           </form>
+          <p class="mycm-account-helper">Google sign-in is used only to authenticate your My Carrowmont account. Carrowmont does not request access to Gmail, Google Drive or your Google password.</p>
         </div>
         <details id="mycmAccountSignedIn" class="mycm-account-signed-details" hidden>
           <summary><span><strong id="mycmAccountCurrentEmail">Signed-in account</strong><small id="mycmCloudSummary">Loading your saved My Carrowmont profile…</small></span><b>Account &amp; data</b></summary>
@@ -172,10 +177,10 @@
 <script src="/assets/fre/money-priorities.js"></script>
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
-<script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
+<script src="/assets/account/carrowmont-account.js?v=20261115-fre8k"></script>
 <script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
-<script src="/assets/dashboard/my-carrowmont.js?v=20261115-fre8jv3"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261115-fre8jv3"></script>
+<script src="/assets/dashboard/my-carrowmont.js?v=20261115-fre8k"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261115-fre8k"></script>
 <script src="/site.js?v=20261115-fre8jv3"></script>
 </body>
 </html>

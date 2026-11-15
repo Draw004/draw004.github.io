@@ -26,3 +26,7 @@
 @media(max-width:420px){.usdc-hero h1{font-size:35px}.usdc-reference-card strong{font-size:24px}.usdc-summary-card>strong{font-size:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.usdc-button,.usdc-next-grid a{transition:none!important}.usdc-button:hover,.usdc-next-grid a:hover{transform:none}}
 @media print{.site-header,.site-footer,.usdc-actions,.usdc-primary-action,.usdc-advanced{display:none!important}.usdc-section,.usdc-workspace{break-inside:avoid}.usdc-input-card{position:static}.usdc-layout{display:block}}
+
+/* FRE8K: prefix/suffix controls share the same outside height as plain inputs. */
+.usdc-input-suffix,.usdc-input-prefix{height:44px;min-height:44px}
+.usdc-input-suffix input,.usdc-input-prefix input{height:42px;min-height:42px}

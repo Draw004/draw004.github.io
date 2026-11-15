@@ -178,3 +178,14 @@ body{background:#fff;color:var(--fiq-ink)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fiq-button,.fiq-next-grid a{transition:none!important}.fiq-button:hover,.fiq-next-grid a:hover{transform:none}}
 @media print{.no-print,.site-header,.site-footer{display:none!important}.fiq-section,.fiq-workspace{break-inside:avoid}.fiq-input-card{position:static}.fiq-layout{display:block}}
+
+/* FRE8K: suffix controls share the same outside height as plain inputs. */
+.fiq-input-suffix{height:46px;min-height:46px}
+.fiq-input-suffix input{height:44px;min-height:44px}
+
+/* FRE8K V3: switch this long calculator header to the compact navigation before it can widen 1024px laptop/tablet viewports. */
+@media (min-width:981px) and (max-width:1180px){
+  body[data-cm-page="fi-number-by-spending"] .desktop-nav{display:none}
+  body[data-cm-page="fi-number-by-spending"] .mobile-nav{display:block}
+  body[data-cm-page="fi-number-by-spending"] .locale-menu{margin-left:auto}
+}

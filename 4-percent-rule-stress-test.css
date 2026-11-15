@@ -211,3 +211,9 @@ body{background:#fff;color:var(--stress-ink)}
 }
 
 @media print{.no-print,.site-header,.site-footer{display:none!important}.stress-section,.stress-workspace{break-inside:avoid}.stress-input-card{position:static}.stress-layout{display:block}.stress-results{margin-top:24px}}
+
+/* FRE8K: suffix controls share the same outside height as plain inputs. */
+.stress-input-suffix{height:46px;min-height:46px}
+.stress-input-suffix input{height:44px;min-height:44px}
+/* FRE8K V2: grid children must be allowed to shrink on narrow mobile viewports. */
+.stress-results,.stress-result-panel,.stress-sequence-grid,.stress-sequence-note{min-width:0;max-width:100%}

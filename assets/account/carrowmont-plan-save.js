@@ -13,8 +13,8 @@
     if(document.getElementById('cm-mycm-save-style'))return;
     const s=document.createElement('style');s.id='cm-mycm-save-style';s.textContent=`
       .cm-mycm-save-card{margin:18px 0;padding:16px 18px;border:1px solid #bedbd7;border-radius:16px;background:#f3faf8;color:#102945;display:flex;align-items:center;justify-content:space-between;gap:18px;box-sizing:border-box}
-      .cm-mycm-save-card[hidden]{display:none!important}.cm-mycm-save-copy strong{display:block;font:800 16px/1.3 Inter,ui-sans-serif,system-ui,sans-serif;margin-bottom:5px}.cm-mycm-save-copy span{display:block;color:#536b80;font:500 13px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;max-width:760px}.cm-mycm-save-actions{display:flex;gap:8px;flex-wrap:wrap}.cm-mycm-save-actions button{min-height:42px;border-radius:11px;padding:0 15px;border:1px solid #b9d8d3;background:#fff;color:#0c716a;font:800 13px/1.15 Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer}.cm-mycm-save-actions button.primary{background:#103b5c;color:#fff;border-color:#103b5c}.cm-mycm-save-status{margin-top:6px;color:#0c716a;font:700 12px/1.4 Inter,ui-sans-serif,system-ui,sans-serif}
-      @media(max-width:720px){.cm-mycm-save-card{flex-direction:column;align-items:stretch;margin:14px 0}.cm-mycm-save-actions{width:100%}.cm-mycm-save-actions button{flex:1;white-space:normal}}
+      .cm-mycm-save-card[hidden]{display:none!important}.cm-mycm-save-copy strong{display:block;font:800 16px/1.3 Inter,ui-sans-serif,system-ui,sans-serif;margin-bottom:5px}.cm-mycm-save-copy span{display:block;color:#536b80;font:500 13px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;max-width:760px}.cm-mycm-save-actions{display:grid;grid-template-columns:1fr;gap:8px;width:min(100%,220px);flex:0 0 min(220px,100%)}.cm-mycm-save-actions button{width:100%;min-height:42px;border-radius:11px;padding:8px 15px;border:1px solid #b9d8d3;background:#fff;color:#0c716a;font:800 13px/1.2 Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:normal;text-align:center}.cm-mycm-save-actions button.primary{background:#103b5c;color:#fff;border-color:#103b5c}.cm-mycm-save-status{margin-top:6px;color:#0c716a;font:700 12px/1.4 Inter,ui-sans-serif,system-ui,sans-serif}
+      @media(max-width:720px){.cm-mycm-save-card{flex-direction:column;align-items:stretch;margin:14px 0}.cm-mycm-save-actions{width:100%;max-width:none;flex-basis:auto}}
     `;document.head.appendChild(s);
   }
   function normalizePlan(plan,adapter){
@@ -82,12 +82,12 @@
     }else if(signedIn){
       title.textContent='Keep this plan in My Carrowmont';
       copy.textContent='Save this plan so you can return to it later and keep it connected with your other planning.';
-      primary.textContent=adapter.signedInPrimaryLabel||'Save this plan to My Carrowmont';
+      primary.textContent=adapter.signedInPrimaryLabel||'Save to My Carrowmont';
       secondary.textContent='Not now';
     }else{
       title.textContent='Keep this plan for later';
       copy.textContent='Save it to My Carrowmont so you can return to it later, update it and access it across devices.';
-      primary.textContent=adapter.signedOutPrimaryLabel||'Save this plan to My Carrowmont';
+      primary.textContent=adapter.signedOutPrimaryLabel||'Save to My Carrowmont';
       secondary.textContent='Not now';
     }
     if(plan&&adapter.accountState?.existing&&planInputFingerprint(plan)===savedInputFingerprint(adapter.accountState.existing))card.hidden=true;
@@ -97,7 +97,7 @@
     let card=document.getElementById(`cmMycmSave-${adapter.journey}`);
     if(card){adapter.card=card;return card;}
     card=document.createElement('aside');card.id=`cmMycmSave-${adapter.journey}`;card.className='cm-mycm-save-card';card.hidden=true;card.setAttribute('aria-live','polite');
-    card.innerHTML='<div class="cm-mycm-save-copy"><strong data-cm-save-title>Keep this plan for later</strong><span data-cm-save-copy>Save it to My Carrowmont so you can return to it later, update it and access it across devices.</span><div class="cm-mycm-save-status" data-cm-save-status></div></div><div class="cm-mycm-save-actions"><button type="button" class="primary" data-cm-save>Save this plan to My Carrowmont</button><button type="button" data-cm-dismiss>Not now</button></div>';
+    card.innerHTML='<div class="cm-mycm-save-copy"><strong data-cm-save-title>Keep this plan for later</strong><span data-cm-save-copy>Save it to My Carrowmont so you can return to it later, update it and access it across devices.</span><div class="cm-mycm-save-status" data-cm-save-status></div></div><div class="cm-mycm-save-actions"><button type="button" class="primary" data-cm-save>Save to My Carrowmont</button><button type="button" data-cm-dismiss>Not now</button></div>';
     const anchor=findAnchor(adapter);
     if(anchor.parentNode)anchor.parentNode.insertBefore(card,anchor.nextSibling);else document.body.appendChild(card);
     card.querySelector('[data-cm-save]').addEventListener('click',()=>{
