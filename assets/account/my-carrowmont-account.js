@@ -24,6 +24,7 @@
   let cloudProfile=null;
   let currentUser=null;
   let saveTimer=null;
+  let refreshPromise=null;
 
   function say(message,kind='info'){
     status.textContent=message;
@@ -97,9 +98,9 @@
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
   }
   function setAuthenticated(flag){document.body.classList.toggle('mycm-authenticated',Boolean(flag));}
-  function showSignedOut(){setAuthenticated(false);signedOut.hidden=false;signedIn.hidden=true;dashboard.hidden=true;}
+  function showSignedOut(){setAuthenticated(false);signedOut.hidden=false;signedIn.hidden=true;dashboard.hidden=true;dashboard.inert=false;dashboard.removeAttribute('aria-busy');}
   function showSignedIn(profile){
-    setAuthenticated(true);signedOut.hidden=true;signedIn.hidden=false;if('open' in signedIn)signedIn.open=false;dashboard.hidden=false;
+    setAuthenticated(true);signedOut.hidden=true;signedIn.hidden=false;if('open' in signedIn)signedIn.open=false;dashboard.hidden=false;dashboard.inert=false;dashboard.removeAttribute('aria-busy');
     accountEmail.textContent=currentUser?.email||'Signed-in account';
     const count=Object.keys(profile?.facts||{}).length;
     cloudSummary.textContent=count?`Your saved profile is loaded with ${count} planning value${count===1?'':'s'}. Updates made here are saved to My Carrowmont.`:'No planning values are saved yet. Add details here or save a supported Carrowmont plan to start your profile.';
@@ -129,7 +130,18 @@
     Account.clearStagedPlan();
     return {profile,changed:true,label:plan.label||'Selected plan',updated:Boolean(existing)};
   }
+  function showCachedDashboard(){
+    if(!hasPersistedAuthSession()||hasAuthReturnInUrl())return false;
+    const cached=browserStore?.load?.();
+    if(!cached)return false;
+    setAuthenticated(true);signedOut.hidden=true;signedIn.hidden=false;if('open' in signedIn)signedIn.open=false;dashboard.hidden=false;dashboard.inert=true;dashboard.setAttribute('aria-busy','true');
+    accountEmail.textContent='Signed-in account';cloudSummary.textContent='Showing your latest saved dashboard while Carrowmont syncs…';
+    window.dispatchEvent(new CustomEvent('carrowmont:mycm-account-ready',{detail:{profile:normalized(cached),cached:true}}));
+    return true;
+  }
   async function refresh(){
+    if(refreshPromise)return refreshPromise;
+    refreshPromise=(async()=>{
     try{
       currentUser=await Account.getUser();
       if(!currentUser){showSignedOut();return;}
@@ -146,7 +158,19 @@
       if(planApplied.changed) say(planApplied.updated?`${planApplied.label} has been updated in My Carrowmont.`:`${planApplied.label} has been saved to My Carrowmont. You can reopen it from Saved plans.`,'success');
       else if(applied.changed) say('Your selected plan has been saved to My Carrowmont.','success');
     }catch(error){showSignedOut();say(error.message||'Account status could not be loaded.','error');}
+    })();
+    try{return await refreshPromise;}finally{refreshPromise=null;}
   }
+
+  $('mycmGoogleSignIn')?.addEventListener('click',async()=>{
+    try{
+      say('Opening Google sign-in…');
+      await Account.signInWithGoogle(`${location.origin}/my-carrowmont.html`);
+    }catch(error){
+      const raw=String(error?.message||'');
+      say(/provider|oauth|google/i.test(raw)?'Google sign-in is not available yet. Use email sign-in instead.':(raw||'Google sign-in could not be started.'),'error');
+    }
+  });
 
   $('mycmAccountForm').addEventListener('submit',async event=>{
     event.preventDefault();
@@ -195,6 +219,7 @@
   });
 
   if(hasPersistedAuthSession()||hasAuthReturnInUrl()){
+    showCachedDashboard();
     Account.onAuthStateChange(()=>refresh());
     refresh();
   }else showSignedOut();

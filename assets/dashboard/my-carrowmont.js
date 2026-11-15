@@ -45,14 +45,14 @@
   const PLANNING_AREAS=[
     {journey:'retirement',label:'Retirement',detail:'Build a retirement plan around the expenses and age you expect.',route:'/retirement-calculator/planner.html#planner',priority:1},
     {journey:'goal',label:'Goals',detail:'Set a target, timeline and contribution plan for a financial goal.',route:'/goal-planner/',priority:2},
-    {journey:'recurring-investment',label:'Investing',detail:'Model a recurring investment or SIP plan and keep the scenario.',route:'/sip-calculator/',priority:3},
+    {journey:'recurring-investment',label:'Recurring investing',detail:'Model a recurring investment plan and keep the scenario.',route:'/sip-calculator/',priority:3},
     {journey:'debt-payoff',label:'Debt payoff',detail:'Compare payoff order and keep a debt-repayment plan.',route:'/budget-cash-flow-planner/debt-payoff-calculator.html',priority:4},
-    {journey:'mortgage-payoff',label:'Mortgage payoff',detail:'Explore mortgage prepayment and keep the plan you want to revisit.',route:'/mortgage-payoff-calculator/',priority:5},
+    {journey:'mortgage-payoff',label:'Housing-loan prepayment',detail:'Explore extra housing-loan repayments and keep the plan you want to revisit.',route:'/mortgage-payoff-calculator/',priority:5},
     {journey:'financial-independence',label:'Financial independence',detail:'Model your FI target and the path toward it.',route:'/financial-independence/',priority:6},
     {journey:'budget-cash-flow',label:'Budget & cash flow',detail:'Build a cash-flow plan and keep the version that matters.',route:'/budget-cash-flow-planner/',priority:7},
     {journey:'emergency-runway',label:'Emergency fund',detail:'Model emergency-savings runway and keep a target plan.',route:'/emergency-fund-runway-calculator.html',priority:8},
     {journey:'credit-card-payoff',label:'Credit card payoff',detail:'Test a card payoff plan and save it for later review.',route:'/budget-cash-flow-planner/credit-card-payoff-calculator.html',priority:9},
-    {journey:'loan-emi',label:'Loan / EMI',detail:'Keep a loan repayment scenario without turning it into current debt automatically.',route:'/loan-calculator/',priority:10},
+    {journey:'loan-emi',label:'Loan repayment',detail:'Keep a loan repayment scenario without turning it into current debt automatically.',route:'/loan-calculator/',priority:10},
     {journey:'retirement-withdrawal',label:'Retirement withdrawals',detail:'Model retirement withdrawals and keep the drawdown scenario.',route:'/retirement-calculator/withdrawal-calculator.html',priority:11},
     {journey:'car-affordability',label:'Car affordability',detail:'Keep a car-affordability decision scenario without changing current debt.',route:'/car-affordability-auto-decision-calculator.html',priority:12}
   ];
@@ -120,7 +120,19 @@
     const debtCard=`<article class="mycm-visual-card"><span class="mycm-visual-label">Debt & loans</span>${progressRing(ratio==null?0:ratio,'neutral',ratio==null?'—':pct(ratio),ratio==null?'add income':'of income',ratio==null?'Debt-payment share is not available':'Debt payments use '+number(ratio,1)+' percent of monthly income')}<h3>${balance.known?`${esc(money(balance.value))} remaining`:'Add debt remaining if you want to track it'}</h3><p>${ratio==null?'This indicator stays neutral until both monthly income and debt payments are known.':'This is context, not a good/bad score. Colour is not used to judge the debt ratio.'}</p></article>`;
     wrap.innerHTML=monthly+emergency+debtCard;
   }
-  function planningCard(area){return `<a class="mycm-add-card" data-mycm-journey="${esc(area.journey)}" href="${esc(area.route)}"><span class="mycm-add-state">Not added yet</span><strong>${esc(area.label)}</strong><small>${esc(area.detail)}</small><b>Open planner →</b></a>`;}
+  function titleCase(text){return String(text||'').replace(/(^|\s|\/)([a-z])/g,(_,a,b)=>a+b.toUpperCase());}
+  function planningPresentation(area){
+    const region=locale().region,L=window.CarrowmontLocale;
+    if(area.journey==='mortgage-payoff'){
+      const terms=L?.getMortgageTerms?.(region)||{};
+      const raw=terms.prepayLabel||'mortgage / home loan prepayment';
+      return {...area,label:titleCase(raw),detail:`Explore ${raw} and keep the plan you want to revisit.`};
+    }
+    if(area.journey==='recurring-investment')return region==='IN'?{...area,label:'SIP / investing',detail:'Model a SIP or recurring investment plan and keep the scenario.'}:{...area,label:'Recurring investing',detail:'Model a recurring investment plan and keep the scenario.'};
+    if(area.journey==='loan-emi')return region==='IN'?{...area,label:'Loan / EMI',detail:'Keep a loan or EMI repayment scenario without turning it into current debt automatically.'}:{...area,label:'Loan repayment',detail:'Keep a loan repayment scenario without turning it into current debt automatically.'};
+    return area;
+  }
+  function planningCard(area){const shown=planningPresentation(area);return `<a class="mycm-add-card" data-mycm-journey="${esc(shown.journey)}" href="${esc(shown.route)}"><span class="mycm-add-state">Not added yet</span><strong>${esc(shown.label)}</strong><small>${esc(shown.detail)}</small><b>Open planner →</b></a>`;}
   function renderPlanningDiscovery(){
     const wrap=$('mycmAddPlanningGrid');if(!wrap)return;
     if(!scenariosReady){wrap.innerHTML='<div class="mycm-empty">Checking which planning areas you already saved…</div>';return;}

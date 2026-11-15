@@ -12,6 +12,9 @@
   const PENDING_PLAN_KEY='carrowmont_pending_saved_plan_v1';
   const OPEN_PLAN_KEY='carrowmont_open_saved_plan_v1';
   let clientPromise=null;
+  let userCacheKnown=false;
+  let userCache=null;
+  let userPromise=null;
 
   const clean=v=>typeof v==='string'?v.trim():'';
   function config(){
@@ -58,12 +61,19 @@
     }
     return clientPromise;
   }
-  async function getUser(){
-    const client=await getClient();
-    if(!client) return null;
-    const {data,error}=await client.auth.getUser();
-    if(error) throw error;
-    return data?.user||null;
+  async function getUser(options={}){
+    const force=options?.force===true;
+    if(!force&&userCacheKnown) return userCache;
+    if(!force&&userPromise) return userPromise;
+    const run=(async()=>{
+      const client=await getClient();
+      if(!client){userCacheKnown=true;userCache=null;return null;}
+      const {data,error}=await client.auth.getUser();
+      if(error) throw error;
+      userCache=data?.user||null;userCacheKnown=true;return userCache;
+    })();
+    if(!force) userPromise=run;
+    try{return await run;}finally{if(!force&&userPromise===run)userPromise=null;}
   }
   async function sendMagicLink(email,redirectTo){
     const client=await getClient();
@@ -76,11 +86,21 @@
     if(error) throw error;
     return true;
   }
+  async function signInWithGoogle(redirectTo){
+    const client=await getClient();
+    if(!client) throw new Error('Carrowmont account saving is not configured yet.');
+    const c=config();
+    const target=redirectTo||(`${root.location?.origin||''}${c.authRedirectPath}`);
+    const {data,error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:target}});
+    if(error) throw error;
+    return data||true;
+  }
   async function signOut(){
     const client=await getClient();
     if(!client) return;
     const {error}=await client.auth.signOut();
     if(error) throw error;
+    userCacheKnown=true;userCache=null;userPromise=null;
   }
   async function loadCloudProfile(){
     const client=await getClient();
@@ -177,8 +197,8 @@
     };
   }
   function onAuthStateChange(callback){
-    getClient().then(client=>{if(client)client.auth.onAuthStateChange((event,session)=>callback?.(event,session));}).catch(()=>{});
+    getClient().then(client=>{if(client)client.auth.onAuthStateChange((event,session)=>{userCacheKnown=true;userCache=session?.user||null;userPromise=null;callback?.(event,session);});}).catch(()=>{});
   }
 
-  return Object.freeze({VERSION,SDK_SRC,PENDING_GUEST_KEY,PENDING_PLAN_KEY,OPEN_PLAN_KEY,config,isConfigured,getClient,getUser,sendMagicLink,signOut,loadCloudProfile,saveCloudProfile,deleteCloudProfile,listScenarios,saveScenario,deleteScenario,stageGuestProfile,readStagedGuestProfile,clearStagedGuestProfile,readStagedPlan,clearStagedPlan,stageOpenPlan,exportAccountData,onAuthStateChange});
+  return Object.freeze({VERSION,SDK_SRC,PENDING_GUEST_KEY,PENDING_PLAN_KEY,OPEN_PLAN_KEY,config,isConfigured,getClient,getUser,sendMagicLink,signInWithGoogle,signOut,loadCloudProfile,saveCloudProfile,deleteCloudProfile,listScenarios,saveScenario,deleteScenario,stageGuestProfile,readStagedGuestProfile,clearStagedGuestProfile,readStagedPlan,clearStagedPlan,stageOpenPlan,exportAccountData,onAuthStateChange});
 });
