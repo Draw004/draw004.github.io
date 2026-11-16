@@ -64,7 +64,9 @@
   let activeEditTarget='';
   let editOpener=null;
   let savedJourneys=new Set();
+  let scenarioRows=[];
   let scenariosReady=false;
+  let financialPlanModel=null;
 
   function locale(){const L=window.CarrowmontLocale;return{region:L?.getRegion?.()||'OTHER',currency:L?.getCurrency?.()||profile.locale.currency||'USD'};}
   function syncLocale(){if(!initialized)return;profile=Store.setLocale(profile,locale());persist(false);}
@@ -217,7 +219,16 @@
     if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No additional planning details are saved yet.</div>';return;}
     wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included where compatible'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}<small>Last updated ${esc(factDate(f.lastUpdated||f.updatedAt||profile.updatedAt))}</small></div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Change</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-saved-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
   }
-  function renderAll(){renderVisualOverview();renderMonthlyMoney();renderEmergency();renderDebt();renderPlanningDiscovery();renderFacts();}
+  async function downloadFinancialPlanReport(model){
+    const Report=window.CarrowmontPlanReport;if(!Report?.generate)throw new Error('My Carrowmont Plan Report is unavailable.');
+    await Report.generate(model);showBanner('My Carrowmont Plan Report downloaded.');
+  }
+  function renderFinancialPlan(){
+    const section=$('mycmFinancialPlan'),Plan=window.CarrowmontFinancialPlan;if(!section||!Plan?.build||!Plan?.render||!scenariosReady){if(section)section.hidden=true;return;}
+    financialPlanModel=Plan.build(profile,scenarioRows,{currency:locale().currency});
+    Plan.render(section,financialPlanModel,{onReport:async model=>{try{await downloadFinancialPlanReport(model);}catch(error){showBanner(error?.message||'The plan report could not be generated.');}}});
+  }
+  function renderAll(){renderFinancialPlan();renderVisualOverview();renderMonthlyMoney();renderEmergency();renderDebt();renderPlanningDiscovery();renderFacts();}
 
   function fieldHtml(def){
     const f=fact(def.path,true); const remove=f?`<button class="mycm-field-remove" type="button" data-mycm-remove="${esc(def.path)}">Remove</button>`:'';
@@ -283,7 +294,7 @@
   });
   $('mycmEditClose')?.addEventListener('click',closeEditor);$('mycmEditCancel')?.addEventListener('click',closeEditor);$('mycmEditForm')?.addEventListener('submit',e=>{e.preventDefault();saveEditor();});
   window.addEventListener('carrowmont:localechange',()=>{if(initialized){syncLocale();renderAll();}});
-  window.addEventListener('carrowmont:mycm-scenarios-ready',event=>{scenariosReady=true;savedJourneys=new Set(Array.isArray(event.detail?.journeys)?event.detail.journeys.filter(Boolean):[]);if(initialized)renderPlanningDiscovery();});
+  window.addEventListener('carrowmont:mycm-scenarios-ready',event=>{scenariosReady=true;scenarioRows=Array.isArray(event.detail?.rows)?event.detail.rows:[];savedJourneys=new Set(Array.isArray(event.detail?.journeys)?event.detail.journeys.filter(Boolean):[]);if(initialized){renderPlanningDiscovery();renderFinancialPlan();}});
   window.addEventListener('carrowmont:mycm-account-ready',event=>{
     profile=Store.normalize(event.detail?.profile||Store.create({...locale(),mode:'session'}));
     profile=Store.setMode(Store.setLocale(profile,locale()),'session');

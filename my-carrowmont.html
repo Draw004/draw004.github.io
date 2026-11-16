@@ -13,7 +13,7 @@
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261116-fre9">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261116-fre9b">
 </head>
 <body data-cm-page="my-carrowmont">
 <header class="site-header">
@@ -78,12 +78,13 @@
       </section>
 
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
+        <section class="mycm-financial-plan" id="mycmFinancialPlan" aria-label="Your Financial Plan" hidden></section>
         <section class="mycm-visual-overview" id="mycmVisualOverview" aria-labelledby="mycmVisualOverviewTitle">
           <div class="mycm-visual-head"><div><span class="mycm-kicker">Your money at a glance</span><h2 id="mycmVisualOverviewTitle">See the shape of your money in seconds.</h2><p>These visuals use only the planning values you chose to save. Colour shows progress only when you have a real target.</p></div></div>
           <div class="mycm-visual-grid" id="mycmVisualGrid" aria-live="polite"></div>
         </section>
         <nav class="mycm-mobile-quick" aria-label="My Carrowmont quick access">
-          <a href="#mycmCashFlowCard">Monthly money</a><a href="#mycmEmergencyCard">Emergency savings</a><a href="#mycmDebtCard">Debt &amp; loans</a><a href="#mycmSavedPlansSection">Saved plans</a>
+          <a href="#mycmFinancialPlan">Plan summary</a><a href="#mycmCashFlowCard">Monthly money</a><a href="#mycmEmergencyCard">Emergency savings</a><a href="#mycmDebtCard">Debt &amp; loans</a><a href="#mycmSavedPlansSection">Saved plans</a>
         </nav>
 
         <div class="mycm-toolbar">
@@ -194,8 +195,11 @@
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261115-fre8k"></script>
 <script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
-<script src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261116-fre9"></script>
+<script src="/assets/report/carrowmont-pdf-export.js?v=20261116-fre9b"></script>
+<script src="/assets/account/carrowmont-financial-plan.js?v=20261116-fre9b"></script>
+<script src="/assets/account/carrowmont-plan-report.js?v=20261116-fre9b"></script>
+<script src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
+<script src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
 <script src="/site.js?v=20261115-fre8jv3"></script>
 </body>
 </html>
