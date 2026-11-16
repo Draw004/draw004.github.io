@@ -391,6 +391,11 @@
     for(const change of changeItems){ const li=document.createElement('li'); li.textContent=change; changes.appendChild(li); }
     const steps=$('askNextSteps'); steps.innerHTML='';
     for(const step of result.nextSteps||[]){ const li=document.createElement('li'); li.textContent=step; steps.appendChild(li); }
+    const trustWhy=$('askTrustWhy'); if(trustWhy) trustWhy.textContent=rec.rationale||result.diagnosis||'This result follows from the values entered in this Ask Carrowmont journey and the tested calculation path selected for the question.';
+    const trustValues=$('askTrustValues'); if(trustValues){trustValues.innerHTML='';const factRows=Object.entries(state.facts||{}).filter(([,value])=>value!==null&&value!==undefined&&typeof value!=='object').slice(0,12);if(!factRows.length){const li=document.createElement('li');li.textContent='No additional entered values were required for this result.';trustValues.appendChild(li);}else{for(const [key,value] of factRows){const li=document.createElement('li');li.textContent=`${labelize(key)}: ${formatValue(key,value)}`;trustValues.appendChild(li);}}}
+    const trustFreshness=$('askTrustFreshness'); if(trustFreshness){let when='this session';try{when=new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date());}catch(_err){}trustFreshness.textContent=`Calculated from the values in this Ask session on ${when}. Saved My Carrowmont details are only used when the journey explicitly carries them in.`;}
+    const trustChange=$('askTrustChange'); if(trustChange) trustChange.textContent=changeItems.length?changeItems.join(' '):'Changing an entered value, assumption or scenario can change the modeled result.';
+    const trustBoundary=$('askTrustBoundary'); if(trustBoundary) trustBoundary.innerHTML='<strong>Save boundary:</strong> this Ask result does not change My Carrowmont by itself. It becomes account data only when you explicitly choose Save this plan to My Carrowmont or update an existing saved plan.';
     const trace=$('askEngineTrace'); trace.innerHTML='';
     for(const item of result.trace||[]){ const li=document.createElement('li'); li.textContent=labelize(item.engineId); trace.appendChild(li); }
     const assumptions=$('askAssumptions'); assumptions.innerHTML='';

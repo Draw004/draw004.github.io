@@ -210,11 +210,12 @@
     if(def.kind==='years')return `${number(f.value,1)} years`;
     return number(f.value,2);
   }
+  function factDate(value){try{return new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric'}).format(new Date(value));}catch(_){return 'Date unavailable';}}
   function renderFacts(){
     const wrap=$('mycmFacts');if(!wrap)return;
     const entries=Object.entries(profile.facts||{}).sort((a,b)=>a[0].localeCompare(b[0]));
     if(!entries.length){wrap.innerHTML='<div class="mycm-empty">No additional planning details are saved yet.</div>';return;}
-    wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included where compatible'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}</div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Change</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-saved-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
+    wrap.innerHTML=entries.map(([path,f])=>{const def=LABELS[path]||{label:path};return `<div class="mycm-fact"><div class="mycm-fact-label"><strong>${esc(def.label)}</strong><small>${f.excluded?'Ignored by recommendations':'Included where compatible'}</small></div><div class="mycm-fact-value">${esc(formatFact(path,f))}</div><div class="mycm-fact-source">${esc(f.source||f.origin||'User')}<small>Last updated ${esc(factDate(f.lastUpdated||f.updatedAt||profile.updatedAt))}</small></div><div class="mycm-fact-actions"><label class="mycm-toggle"><input type="checkbox" data-mycm-influence="${esc(path)}" ${f.excluded?'':'checked'}> Use</label><button class="mycm-button" type="button" data-mycm-edit="${esc(path)}">Change</button><button class="mycm-button mycm-button-danger" type="button" data-mycm-saved-remove="${esc(path)}">Remove</button></div></div>`;}).join('');
   }
   function renderAll(){renderVisualOverview();renderMonthlyMoney();renderEmergency();renderDebt();renderPlanningDiscovery();renderFacts();}
 
