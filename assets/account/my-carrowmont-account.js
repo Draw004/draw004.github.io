@@ -94,7 +94,7 @@
   async function renderSavedPlans(){
     if(!savedPlansSection||!savedPlansList||!currentUser){if(savedPlansSection)savedPlansSection.hidden=true;return;}
     const rows=await Account.listScenarios();
-    window.dispatchEvent(new CustomEvent('carrowmont:mycm-scenarios-ready',{detail:{journeys:rows.map(row=>row?.journey).filter(Boolean)}}));
+    window.dispatchEvent(new CustomEvent('carrowmont:mycm-scenarios-ready',{detail:{journeys:rows.map(row=>row?.journey).filter(Boolean),rows}}));
     renderProgress(rows);savedPlansList.innerHTML='';savedPlansSection.hidden=false;
     if(!rows.length){savedPlansList.innerHTML='<p class="mycm-saved-empty">No saved plans yet. Use a supported Carrowmont planner and choose <strong>Save to My Carrowmont</strong> when you want to keep one.</p>';return;}
     rows.forEach(row=>{
