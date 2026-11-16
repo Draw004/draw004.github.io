@@ -57,3 +57,72 @@
   root.CarrowmontTrust=Object.freeze({VERSION,attachTool,refresh:render});
   if(document.currentScript?.dataset?.cmTrustAuto!==undefined){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',attachTool,{once:true});else setTimeout(attachTool,0);}
 })(window);
+
+(function(root){
+  'use strict';
+  const current=document.currentScript;
+  const wantsAuto=Boolean(current?.dataset?.cmCountryContextAuto!==undefined);
+  if(root.CarrowmontCountryIntelligence){
+    if(wantsAuto){
+      const run=()=>root.CarrowmontCountryIntelligence?.attach?.();
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else setTimeout(run,0);
+    }
+    return;
+  }
+  const VERSION='carrowmont-country-intelligence-v1.1-trust-runtime';
+  const REFERENCE={"schemaVersion":1,"version":"2026-11-17","reviewedAt":"2026-11-17","scope":"Priority-market official monetary-policy reference points for Carrowmont planning context. These references never replace user-entered calculator assumptions or lender/product-specific rates.","markets":{"IN":{"country":"India","centralBank":"Reserve Bank of India","policyRate":{"label":"Policy repo rate","display":"5.50%","valuePct":5.5,"asOf":"2026-11-16","sourceTitle":"Reserve Bank of India - Current Rates","sourceUrl":"https://www.rbi.org.in/"},"inflationReference":{"label":"CPI inflation target","display":"4% target; 2%-6% tolerance band","targetPct":4,"rangeMinPct":2,"rangeMaxPct":6,"effectiveFrom":"2026-04-01","effectiveTo":"2031-03-31","sourceTitle":"Reserve Bank of India - Second review of the flexible inflation targeting framework","sourceUrl":"https://www.rbi.org.in/scripts/AnnualReportPublications.aspx?Id=1463"}},"US":{"country":"United States","centralBank":"Federal Reserve","policyRate":{"label":"Federal funds target range","display":"3.75%-4.00%","rangeMinPct":3.75,"rangeMaxPct":4,"asOf":"2026-10-29","sourceTitle":"Federal Reserve - Economy at a Glance: Policy Rate","sourceUrl":"https://www.federalreserve.gov/economy-at-a-glance-policy-rate.htm"},"inflationReference":{"label":"Longer-run PCE inflation goal","display":"2%","targetPct":2,"effectiveFrom":"2026-01-27","sourceTitle":"Federal Reserve - Statement on Longer-Run Goals and Monetary Policy Strategy","sourceUrl":"https://www.federalreserve.gov/monetarypolicy/files/FOMC_LongerRunGoals.pdf"}},"GB":{"country":"United Kingdom","centralBank":"Bank of England","policyRate":{"label":"Bank Rate","display":"4.00%","valuePct":4,"asOf":"2026-11-05","sourceTitle":"Bank of England - Latest Bank Rate decision","sourceUrl":"https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate"},"inflationReference":{"label":"CPI inflation target","display":"2%","targetPct":2,"sourceTitle":"Bank of England - Inflation target and Bank Rate","sourceUrl":"https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate"}},"CA":{"country":"Canada","centralBank":"Bank of Canada","policyRate":{"label":"Target for the overnight rate","display":"2.50%","valuePct":2.5,"asOf":"2026-10-28","sourceTitle":"Bank of Canada - Policy interest rate","sourceUrl":"https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/"},"inflationReference":{"label":"CPI inflation-control target","display":"2% target; 1%-3% control range","targetPct":2,"rangeMinPct":1,"rangeMaxPct":3,"sourceTitle":"Bank of Canada - Inflation","sourceUrl":"https://www.bankofcanada.ca/core-functions/monetary-policy/inflation/"}},"AU":{"country":"Australia","centralBank":"Reserve Bank of Australia","policyRate":{"label":"Cash rate target","display":"4.85%","valuePct":4.85,"asOf":"2026-11-04","sourceTitle":"Reserve Bank of Australia - Cash Rate Target Overview","sourceUrl":"https://www.rba.gov.au/cash-rate-target-overview.html"},"inflationReference":{"label":"CPI inflation target","display":"2%-3%","rangeMinPct":2,"rangeMaxPct":3,"sourceTitle":"Reserve Bank of Australia - Australia's Inflation Target","sourceUrl":"https://www.rba.gov.au/education/resources/explainers/australias-inflation-target.html"}}}};
+  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  let attached=false;
+  function ensureCss(){
+    if(document.querySelector('link[data-cm-country-style]'))return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='/assets/trust/carrowmont-trust.css?v=20261117-fre10b';
+    link.dataset.cmCountryStyle='1';
+    document.head.appendChild(link);
+  }
+  function loadReference(){return Promise.resolve(REFERENCE);}
+  function dateLabel(value){
+    const raw=String(value||'');
+    const match=/^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+    const date=match?new Date(Number(match[1]),Number(match[2])-1,Number(match[3])):new Date(raw);
+    if(!Number.isFinite(date.getTime()))return 'date not supplied';
+    try{return new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric'}).format(date);}catch(_){return raw;}
+  }
+  function inferRole(){
+    const path=(location.pathname||'').toLowerCase();
+    if(path.includes('inflation-calculator'))return'inflation';
+    if(/mortgage|home-affordability|loan-calculator|debt-to-income|car-affordability|rent-vs-buy|refinance/.test(path))return'borrowing';
+    if(/budget-cash-flow|emergency-fund/.test(path))return'cash-flow';
+    if(/retirement|financial-independence|goal-planner|sip-calculator|compound-interest|investment/.test(path))return'planning';
+    return'general';
+  }
+  function roleCopy(role,country){
+    if(role==='borrowing')return`The central-bank policy rate helps describe the wider interest-rate environment in ${country}, but it is not your lender's mortgage, home-loan, card or personal-loan rate. Keep using the actual rate you want to model.`;
+    if(role==='inflation')return`The official inflation target is a policy objective, not today's inflation and not a forecast. This calculator continues to use the inflation rate you enter.`;
+    if(role==='cash-flow')return`Inflation and policy rates can affect household costs and borrowing conditions, but this planner continues to use the income, spending and debt amounts you enter.`;
+    if(role==='planning')return`The official inflation target can be a useful benchmark when you sanity-check a long-term assumption, but it is not a forecast. Your entered return, inflation and contribution assumptions remain in control.`;
+    return`These official reference points describe part of the current financial-policy backdrop in ${country}. They are context only and do not replace the values you enter.`;
+  }
+  function mountPoint(){return document.querySelector('#cmTrustContractTool')||document.querySelector('#methodology,.methodology,#how-it-works,.how,.explain-section,.car-method')||document.querySelector('footer');}
+  function sourceLink(item){if(!item?.sourceUrl)return'';return`<a href="${esc(item.sourceUrl)}" target="_blank" rel="noopener">${esc(item.sourceTitle||'Official source')}</a>`;}
+  function renderReference(data){
+    const L=root.CarrowmontLocale;if(!L)return null;
+    const region=L.getRegion?.()||'';const market=data?.markets?.[region];
+    let host=document.getElementById('cmCountryContext');
+    if(!market){if(host)host.hidden=true;return host;}
+    ensureCss();
+    if(!host){host=document.createElement('details');host.id='cmCountryContext';host.className='cm-country-context';const anchor=mountPoint();if(anchor?.parentNode)anchor.parentNode.insertBefore(host,anchor);else(document.querySelector('main')||document.body).appendChild(host);}
+    host.hidden=false;host.dataset.cmCountryRegion=region;
+    const policy=market.policyRate||{};const inflation=market.inflationReference||{};
+    const policyAsOf=policy.asOf?`As of ${dateLabel(policy.asOf)}`:'Official reference';
+    const inflationPeriod=inflation.effectiveTo?`Framework through ${dateLabel(inflation.effectiveTo)}`:'Official policy objective';
+    host.innerHTML=`<summary><span><span class="cm-country-kicker">Country context</span><span class="cm-country-title">Official reference points for ${esc(market.country)}</span><span class="cm-country-sub">Useful context from ${esc(market.centralBank)}. These values do not change your calculation.</span></span></summary><div class="cm-country-body"><div class="cm-country-grid"><article><strong>${esc(policy.label||'Policy rate')}</strong><b>${esc(policy.display||'Not available')}</b><small>${esc(policyAsOf)}</small><span>${sourceLink(policy)}</span></article><article><strong>${esc(inflation.label||'Inflation target')}</strong><b>${esc(inflation.display||'Not available')}</b><small>${esc(inflationPeriod)}</small><span>${sourceLink(inflation)}</span></article></div><div class="cm-country-why"><strong>Why this matters here</strong><p>${esc(roleCopy(inferRole(),market.country))}</p></div><p class="cm-country-boundary"><strong>Carrowmont boundary:</strong> official country references are shown for context only. Carrowmont does not automatically replace an entered interest rate, inflation assumption, return assumption, contribution, target or saved plan. Product-specific rates, taxes, eligibility rules and lender terms can differ.</p><p class="cm-country-reviewed">Reference set reviewed ${esc(dateLabel(data.reviewedAt))}. If a source is newer, the official source takes precedence.</p></div>`;
+    return host;
+  }
+  function render(){return loadReference().then(renderReference).catch(()=>{const host=document.getElementById('cmCountryContext');if(host)host.hidden=true;return null;});}
+  function attach(){ensureCss();render();if(!attached){root.addEventListener('carrowmont:localechange',render);attached=true;}return true;}
+  async function getReference(region){return REFERENCE?.markets?.[region]||null;}
+  root.CarrowmontCountryIntelligence=Object.freeze({VERSION,loadReference,getReference,render,attach});
+  if(wantsAuto){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',attach,{once:true});else setTimeout(attach,0);}
+})(window);

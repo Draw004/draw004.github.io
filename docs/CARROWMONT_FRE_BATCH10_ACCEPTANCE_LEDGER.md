@@ -6,11 +6,11 @@ Status: Implemented for Publisher validation.
 |---|---|
 | Existing localization remains authoritative for country labels, currency and terminology | PASS — Batch 10 reads `CarrowmontLocale`; it does not replace it. |
 | Move beyond labels only where reliable country context exists | PASS — v1 is intentionally limited to India, United States, United Kingdom, Canada and Australia. |
-| Verified reference model exists | PASS — `/data/country-financial-reference.json`. |
+| Verified reference model exists | PASS — `/data/country-financial-reference.json` is retained as the reviewed source record and the runtime embeds the same verified values. |
 | Official policy-rate reference is sourced | PASS — each supported market has an official central-bank source. |
 | Official inflation target/control range is sourced | PASS — each supported market has an official source. |
 | Reference freshness/review date is visible | PASS — data set has `reviewedAt`; policy-rate entries carry an as-of date. |
-| Country context is explainable | PASS — panel states why the reference matters and links the official source. |
+| Country context is explainable | PASS — panel states why the reference matters and links the official source; runtime delivery uses the established Trust asset path. |
 | Policy rate is not presented as lender/product rate | PASS — borrowing copy explicitly separates the central-bank rate from user/lender rates. |
 | Inflation target is not presented as forecast/current inflation | PASS — planning/inflation copy explicitly states the distinction. |
 | User-entered assumptions remain authoritative | PASS — Country Context never writes calculator inputs. |

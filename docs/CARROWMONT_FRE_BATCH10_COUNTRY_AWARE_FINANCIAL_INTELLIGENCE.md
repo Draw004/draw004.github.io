@@ -32,7 +32,7 @@ Initial reference set reviewed: **17 November 2026**.
 
 ### 2. Country Context panel on relevant tools
 
-A shared `/assets/country-intelligence/carrowmont-country-context.js` component reads the existing `CarrowmontLocale` region and displays a collapsed **Country context** panel on selected core planning, borrowing, inflation and cash-flow tools.
+The country-context runtime is delivered through the already-proven `/assets/trust/carrowmont-trust.js` public asset. It reads the existing `CarrowmontLocale` region and displays a collapsed **Country context** panel on selected core planning, borrowing, inflation and cash-flow tools. The reviewed JSON reference file remains the release/source record; the browser runtime carries a verified embedded copy so a newly introduced public asset path cannot become a single deployment dependency.
 
 The panel explains:
 
