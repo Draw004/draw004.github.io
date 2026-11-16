@@ -1,7 +1,7 @@
 # Carrowmont Financial Resolution Engine — Batch 9B
 ## Your Financial Plan View & Report
 
-Status: Implemented for Publisher validation.
+Status: Completed / All green.
 
 ## Purpose
 Batch 9B turns the signed-in My Carrowmont experience into one coherent financial-plan view instead of requiring the user to interpret separate saved cards on their own. The new view summarizes only information the user explicitly chose to keep and reuses the target-based progress, freshness, Trust Contract and deterministic planning rules already established in Batches 5, 8D and 9.
@@ -72,7 +72,7 @@ Unsaved calculator what-if results remain outside My Carrowmont until the user e
 Batch 9B adds a shared consolidated-plan model and report renderer to the main Carrowmont repository. It does not change calculator formulas, Supabase schema, account ownership, OAuth configuration, localization engines or public URLs.
 
 ## Exit gate
-Batch 9B is ready to close only when:
+Batch 9B was eligible for closeout only when:
 
 - the screen and PDF reconcile with the same saved-plan model;
 - every area summary can be traced to saved profile facts and/or saved plans;
@@ -80,3 +80,15 @@ Batch 9B is ready to close only when:
 - next moves use existing deterministic progress/Money Priorities logic;
 - unsaved what-if calculations remain excluded; and
 - desktop/mobile QA, Publisher validation, Multi-Repo Guard and the new authoritative snapshot are all green.
+
+## Release closeout
+Batch 9B passed the full Carrowmont release sequence and is formally closed.
+
+- Batch PR Publisher: PASS
+- Automated QA: PASS
+- Multi-Repo Guard: PASS
+- Authoritative Source Snapshot: `carrowmont-source-snapshot - 2026-11-16T233235.312.zip`
+- Snapshot SHA-256: `38891f3dc4251fc236d394dce49d8cbae7bf39e3bad3a77264f573a6ed7f0735`
+
+The 2026-11-12 U.S. Debt reference update was merged and the full QA / Multi-Repo Guard / snapshot sequence was rerun successfully before this closeout snapshot was created. No Batch 9B product logic, formulas, account behavior or storage model changed during closeout.
+
