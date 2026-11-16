@@ -1,6 +1,6 @@
 # FRE Batch 9B — Acceptance Ledger
 
-Status: Implementation complete; release gates pending.
+Status: Completed / All green.
 
 | Requirement | Outcome |
 |---|---|
@@ -40,3 +40,15 @@ Status: Implementation complete; release gates pending.
 | SEO | No new public URL or indexable page. |
 | QA | New source contract and browser regression coverage. |
 | Architecture | Adds a derived view/report layer only; existing engines, account and save contracts remain authoritative. |
+## Release gate closeout
+
+| Gate | Final outcome |
+|---|---|
+| Batch PR Publisher | PASS |
+| Automated QA | PASS |
+| Multi-Repo Guard | PASS |
+| Authoritative Source Snapshot | `carrowmont-source-snapshot - 2026-11-16T233235.312.zip` |
+| Snapshot SHA-256 | `38891f3dc4251fc236d394dce49d8cbae7bf39e3bad3a77264f573a6ed7f0735` |
+
+Batch 9B is formally closed. The subsequent 2026-11-12 U.S. Debt reference PR was merged, the complete QA / Multi-Repo Guard sequence remained green, and the snapshot above is the authoritative post-Batch-9B baseline for the next roadmap stage.
+
