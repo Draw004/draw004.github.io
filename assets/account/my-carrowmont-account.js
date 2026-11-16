@@ -48,6 +48,25 @@
   function fmtDate(value){try{return new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric'}).format(new Date(value));}catch(_){return 'Saved plan';}}
   function esc(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
   function progressTone(tone){return ['good','warn','bad'].includes(tone)?tone:'neutral';}
+  function trustLabel(key){return String(key||'value').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/[_-]+/g,' ').replace(/\b\w/g,ch=>ch.toUpperCase());}
+  function trustPrimitiveRows(value,prefix='',out=[]){
+    if(out.length>=12||value==null)return out;
+    if(typeof value==='number'||typeof value==='string'||typeof value==='boolean'){if(String(value).trim()!=='')out.push([prefix,value]);return out;}
+    if(Array.isArray(value))return out;
+    if(typeof value==='object'){for(const [key,item] of Object.entries(value)){if(['planMeta','history'].includes(key))continue;trustPrimitiveRows(item,prefix?`${prefix}.${key}`:key,out);if(out.length>=12)break;}}
+    return out;
+  }
+  function trustValue(value){if(typeof value==='boolean')return value?'Yes':'No';if(typeof value==='number')return Number.isInteger(value)?String(value):String(Math.round(value*100)/100);return String(value??'');}
+  function trustAssumptionKey(key){return /return|inflation|growth|step.?up|withdrawal|forecast|assum|appreciation/i.test(key);}
+  function progressTrustHtml(row,item){
+    const all=trustPrimitiveRows(row?.scenario?.input||{});
+    const assumptions=all.filter(([key])=>trustAssumptionKey(key));
+    const entered=(all.length?all:trustPrimitiveRows(row?.scenario?.summary||{})).slice(0,6);
+    const enteredText=entered.length?entered.map(([key,value])=>`${trustLabel(key.split('.').pop())}: ${trustValue(value)}`).join(' | '):'Open the saved plan to review the values used.';
+    const assumptionText=assumptions.length?assumptions.slice(0,5).map(([key,value])=>`${trustLabel(key.split('.').pop())}: ${trustValue(value)}`).join(' | '):'No forecast-style assumption is marked in the saved inputs shown here.';
+    const change=item.correction||'Changing a saved input, assumption, target or review date can change this status. Open the plan to test a new scenario.';
+    return `<details class="mycm-progress-trust"><summary>Carrowmont Trust Check</summary><div class="mycm-progress-trust-body"><div class="mycm-progress-trust-row"><strong>Why am I seeing this?</strong>${esc(item.headline)}${item.target?` ${esc(item.target)}`:''}</div><div class="mycm-progress-trust-row"><strong>Values you entered / numbers used</strong>${esc(enteredText)}</div><div class="mycm-progress-trust-row"><strong>Assumptions</strong>${esc(assumptionText)}</div><div class="mycm-progress-trust-row"><strong>Freshness</strong>${esc(item.freshness?.label||'Review date is not available.')}</div><div class="mycm-progress-trust-row"><strong>What could change this?</strong>${esc(change)}</div><div class="mycm-progress-trust-row"><strong>Save boundary</strong>This insight uses the saved plan only. An unsaved calculator what-if does not change My Carrowmont until you explicitly save or update it.</div></div></details>`;
+  }
   function renderProgress(rows){
     if(!progressSection||!progressList||!progressSummary||!currentUser||!Progress){if(progressSection)progressSection.hidden=true;return;}
     const currency=window.CarrowmontLocale?.getCurrency?.()||cloudProfile?.profile?.locale?.currency||'USD';
@@ -64,9 +83,10 @@
     items.forEach(item=>{
       const trend=item.trend||item;
       const showTrendStatus=trend?.status&&trend.status!==item.status;
+      const row=(rows||[]).find(candidate=>candidate?.journey===item.journey);
       const card=document.createElement('article');card.className='mycm-progress-card';
-      card.innerHTML=`<div class="mycm-progress-head"><strong>${esc(item.label)}</strong><span class="mycm-progress-status" data-tone="${progressTone(item.tone)}">${esc(item.status)}</span></div><div class="mycm-progress-meta"><span>${esc(item.freshness?.label||'')}</span>${item.target?`<span>${esc(item.target)}</span>`:''}</div><h3>${esc(item.headline)}</h3><div class="mycm-progress-change"><div><strong>Since last save</strong>${showTrendStatus?`<span class="mycm-progress-trend" data-tone="${progressTone(trend.tone)}">${esc(trend.status)}</span>`:''}</div><p>${esc(trend.headline||'')}</p><small>${esc(trend.detail||'')}</small></div>${item.correction?`<div class="mycm-progress-next"><strong>What could help</strong><span>${esc(item.correction)}</span></div>`:''}<div class="mycm-progress-actions"><button type="button" class="mycm-button" data-progress-open="${esc(item.journey)}">Open plan</button></div>`;
-      card.querySelector('[data-progress-open]').addEventListener('click',()=>{const row=(rows||[]).find(candidate=>candidate?.journey===item.journey);if(row&&Account.stageOpenPlan(row))location.href=planRoute(row);});
+      card.innerHTML=`<div class="mycm-progress-head"><strong>${esc(item.label)}</strong><span class="mycm-progress-status" data-tone="${progressTone(item.tone)}">${esc(item.status)}</span></div><div class="mycm-progress-meta"><span>${esc(item.freshness?.label||'')}</span>${item.target?`<span>${esc(item.target)}</span>`:''}</div><h3>${esc(item.headline)}</h3><div class="mycm-progress-change"><div><strong>Since last save</strong>${showTrendStatus?`<span class="mycm-progress-trend" data-tone="${progressTone(trend.tone)}">${esc(trend.status)}</span>`:''}</div><p>${esc(trend.headline||'')}</p><small>${esc(trend.detail||'')}</small></div>${item.correction?`<div class="mycm-progress-next"><strong>What could help</strong><span>${esc(item.correction)}</span></div>`:''}${progressTrustHtml(row,item)}<div class="mycm-progress-actions"><button type="button" class="mycm-button" data-progress-open="${esc(item.journey)}">Open plan</button></div>`;
+      card.querySelector('[data-progress-open]').addEventListener('click',()=>{if(row&&Account.stageOpenPlan(row))location.href=planRoute(row);});
       progressList.appendChild(card);
     });
   }

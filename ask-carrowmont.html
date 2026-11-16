@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261113-fre8f">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261116-fre9">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -135,12 +135,18 @@
           <div class="ask-result-section"><h3>Practical next steps</h3><ol class="ask-next-steps" id="askNextSteps"></ol></div>
           <div class="ask-detail-link" id="askDetailLinkWrap"></div>
           <div class="ask-dashboard-save" id="askDashboardSaveWrap" hidden><button class="button button-secondary" id="askDashboardSaveBtn" type="button">Save this plan to My Carrowmont</button><span id="askDashboardSaveStatus" role="status" aria-live="polite"></span></div>
-          <details class="ask-method" id="askMethod">
-            <summary>How Carrowmont reached this result</summary>
+          <details class="ask-method ask-trust-check" id="askMethod">
+            <summary>Carrowmont Trust Check - verify this result</summary>
             <div class="ask-method-body">
-              <p>Carrowmont used the following deterministic calculation engines. The conversational layer chooses the journey and explains the output; the calculators do the mathematics.</p>
-              <ul id="askEngineTrace"></ul>
-              <div id="askAssumptionsWrap"><h4>Assumptions</h4><ul id="askAssumptions"></ul></div>
+              <div class="ask-trust-check-grid">
+                <div><h4>Why am I seeing this?</h4><p id="askTrustWhy"></p></div>
+                <div><h4>Values you entered / numbers used</h4><ul id="askTrustValues"></ul></div>
+                <div><h4>Calculation engines used</h4><p>Carrowmont uses tested calculation engines; the calculators do the mathematics, while the conversational layer chooses the journey and explains the output.</p><ul id="askEngineTrace"></ul></div>
+                <div id="askAssumptionsWrap"><h4>Assumptions</h4><ul id="askAssumptions"></ul></div>
+                <div><h4>When was this updated?</h4><p id="askTrustFreshness"></p></div>
+                <div><h4>What could change the result?</h4><p id="askTrustChange"></p></div>
+              </div>
+              <p class="ask-trust-boundary" id="askTrustBoundary"></p>
             </div>
           </details>
           <p class="ask-disclaimer">Educational and illustrative information only. This result is not individualized financial, investment, legal, tax or lending advice.</p>
@@ -188,7 +194,7 @@
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
 <script src="/search-core.js?v=20261114-fre8i"></script>
   <script src="/search.js?v=20261114-fre8i"></script>
-  <script src="/assets/ask/ask-carrowmont.js?v=20261114-fre8i"></script>
+  <script src="/assets/ask/ask-carrowmont.js?v=20261116-fre9"></script>
 <script src="/site.js?v=20261112-fre8a"></script>
 </body>
 </html>

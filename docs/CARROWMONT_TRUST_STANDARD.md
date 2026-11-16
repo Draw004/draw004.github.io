@@ -392,3 +392,28 @@ Our credibility should come from explaining uncertainty clearly — not hiding i
 
 **Real questions. Clearer answers.**  
 **Financial Planning for Real Life.**
+
+---
+
+# 12. Carrowmont Trust Contract - Batch 9
+
+For important calculator results, My Carrowmont insights and Ask Carrowmont results, Carrowmont should make the following explanation available in plain language without making the main result harder to read:
+
+- **Why am I seeing this?** Identify the deterministic calculation, saved-plan status or rule behind the insight.
+- **What numbers were used?** Show the relevant current, entered or saved values.
+- **When were they last updated?** Distinguish current-session calculations from saved/reviewed account data.
+- **Which values did I enter?** Keep user-provided facts separate from defaults and explanatory text.
+- **Which values are assumptions?** Label forecast-style values such as returns, inflation, growth, step-up rates and withdrawal assumptions.
+- **What could change the result?** Explain which inputs, assumptions, targets or dates materially affect the outcome.
+
+## Progressive disclosure
+
+The answer comes first. The Trust Check is normally collapsed and opens only when the user wants to verify the reasoning or inputs. This keeps transparency available without turning every page into a technical report.
+
+## Account and scenario boundary
+
+`Current details`, `Saved plan`, `What-if calculation` and `Progress history` are different concepts and must remain visibly separate. An unsaved calculation is exploration and must not silently become My Carrowmont account data. A plan becomes account data only after an explicit Save or Update action.
+
+## AI and deterministic calculations
+
+AI/conversational wording may help route and explain a situation, but tested Carrowmont engines remain authoritative for financial calculations. Carrowmont should never rely on an unexplained "AI said so" recommendation where the numbers, assumptions and change drivers cannot be inspected.

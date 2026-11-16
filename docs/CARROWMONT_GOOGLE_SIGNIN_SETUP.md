@@ -25,3 +25,15 @@ Batch 8K adds frontend support for Google OAuth **alongside** the existing passw
 
 ## PWA check
 Test both normal browser and installed Carrowmont PWA. The OAuth flow may temporarily use the browser, but the resulting same-browser Carrowmont session must be available when My Carrowmont is reopened.
+
+## Production state - November 2026
+- Google OAuth support identity: `contact@carrowmont.com`.
+- Carrowmont domain ownership was verified with Google using the domain-verification TXT record.
+- `contact@carrowmont.com` is a Google-managed Carrowmont identity and is granted access to the existing Carrowmont Google Cloud project; the personal administrator account can remain a private backup owner.
+- Google Auth Platform branding uses the Carrowmont app name, Carrowmont logo, Carrowmont homepage, Privacy Policy and Terms of Service.
+- Branding verification is complete, published and being shown to users.
+- The OAuth application is External and In production.
+- Data-access verification is not required because the application does not request sensitive or restricted Google scopes.
+- Production validation passed for normal-browser Google sign-in, private/incognito sign-in, sign-out then sign-in again, return to My Carrowmont, and the existing email magic-link path.
+- The My Carrowmont Google button uses a multicolor Google G for recognition; this is presentation only and does not change OAuth behavior.
+- Keep the domain-verification TXT record and existing working OAuth/Supabase provider configuration unless a verified failure requires a change.
