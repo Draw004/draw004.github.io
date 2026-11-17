@@ -1,6 +1,6 @@
 # Carrowmont FRE Batch 10 — Country-Aware Financial Intelligence
 
-Status: Expansion implemented for Publisher validation.
+Status: **COMPLETE — all Batch 10 release gates green.**
 
 ## Purpose
 
@@ -182,3 +182,17 @@ Batch 10 is complete only when:
 8. responsive browser QA is green;
 9. Publisher and Multi-Repo Guard are green; and
 10. a new authoritative Source Snapshot is generated.
+
+## Release evidence
+
+Batch 10 is formally closed against the authoritative post-expansion Source Snapshot:
+
+- **Publisher:** PASS
+- **Automated QA / responsive browser QA:** PASS
+- **Multi-Repo Guard:** PASS
+- **Source contract:** 1254 PASS / 0 FAIL
+- **Authoritative Source Snapshot:** `carrowmont-source-snapshot - 2026-11-17T163512.278.zip`
+- **Snapshot SHA-256:** `f807c30249db47e5df0943d62cea73904bd78aee25aa925d81144c72eea68add`
+
+The released country-reference layer supports India, United States, United Kingdom, Canada, Australia, Japan, South Korea, France and Italy. France and Italy share the ECB / Euro Area monetary-policy jurisdiction. China remains intentionally unsupported by the automated reference layer.
+

@@ -1,6 +1,6 @@
 # Carrowmont FRE Batch 10 — Acceptance Ledger
 
-Status: Expansion implemented for Publisher validation.
+Status: **COMPLETE — all Batch 10 release gates green.**
 
 | Requirement | Outcome |
 |---|---|
@@ -33,6 +33,7 @@ Status: Expansion implemented for Publisher validation.
 | No calculator formula or deterministic engine changed | PASS. |
 | No Supabase schema, Google OAuth or account-ownership change | PASS. |
 | No new public URL or sitemap/indexing impact | PASS. |
-| Browser QA covers all nine supported country profiles, NZ/CN unsupported fallback and no-overwrite boundary | PENDING Publisher browser validation. |
+| Browser QA covers all nine supported country profiles, NZ/CN unsupported fallback and no-overwrite boundary | PASS — all-green Automated QA after the V4 country-reference expansion. |
 | Source contract | PASS — reconstructed authoritative snapshot run: 1254 PASS / 0 FAIL. |
-| Publisher / Automated QA / Multi-Repo Guard | PENDING release gates. |
+| Publisher / Automated QA / Multi-Repo Guard | PASS — all release gates green. |
+| Authoritative Source Snapshot | PASS — `carrowmont-source-snapshot - 2026-11-17T163512.278.zip` (`f807c30249db47e5df0943d62cea73904bd78aee25aa925d81144c72eea68add`). |
