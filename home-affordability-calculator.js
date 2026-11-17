@@ -17,14 +17,62 @@
     copy:$('copySummaryBtn'), csv:$('downloadCsvBtn'), report:$('generateReportBtn'), message:$('actionMessage')
   };
 
-  const defaults = Object.freeze({
-    mode:'budget', takeHomeIncome:150000, essentialSpending:60000, existingDebt:10000, protectedSavings:20000,
-    freeBuffer:15000, deposit:2000000, targetHomePrice:6000000, annualRate:8.5, termYears:20, ownershipCosts:8000,
-    grossAnnualIncome:0, higherRateEnabled:true, higherRate:10.5
+  const STARTER_UNIT = Object.freeze({
+    INR:10000,USD:500,CAD:1000,GBP:500,AUD:1000,NZD:1000,EUR:500,CNY:5000,JPY:50000,KRW:500000,SGD:1000,AED:2000,SAR:2000,CHF:500,
+    BRL:1000,MXN:5000,ZAR:5000,IDR:1000000,MYR:1000,THB:10000,PHP:10000,VND:5000000,HKD:5000,TWD:10000,RUB:20000,ARS:500000,ILS:1000,
+    COP:500000,RON:1000,PKR:50000,CZK:5000,EGP:10000,PEN:1000,KZT:50000,NGN:50000,MAD:1000,KWD:200,UZS:1000000,KES:10000,TRY:10000,
+    BDT:50000,CLP:500000,DKK:3000,OMR:200,QAR:2000,NOK:5000,PLN:1000,SEK:5000
   });
 
   let lastResult = null;
   let higherRateUserEdited = false;
+  let usingStarterValues = false;
+  let applyingProgrammaticValues = false;
+  let contextualActionMessageActive = false;
+
+  function roundStarter(value, unit) { const step=Math.max(1,Number(unit)||1); return Math.round(value/step)*step; }
+  function starterRateTerms(region = Locale.getRegion()) {
+    if (region === 'IN') return { annualRate:8.5, termYears:20, higherRate:10.5 };
+    if (region === 'US') return { annualRate:6.5, termYears:30, higherRate:8.5 };
+    if (region === 'CA') return { annualRate:5.5, termYears:25, higherRate:7.5 };
+    if (region === 'GB' || region === 'IE') return { annualRate:5, termYears:25, higherRate:7 };
+    if (region === 'AU' || region === 'NZ') return { annualRate:6, termYears:30, higherRate:8 };
+    return { annualRate:6, termYears:25, higherRate:8 };
+  }
+  function starterDefaults(currency = Locale.getCurrency(), region = Locale.getRegion()) {
+    const unit=STARTER_UNIT[currency]||STARTER_UNIT.USD;
+    const rates=starterRateTerms(region);
+    return {
+      mode:'budget',
+      takeHomeIncome:roundStarter(unit*12,unit),
+      essentialSpending:roundStarter(unit*4,unit),
+      existingDebt:roundStarter(unit*0.5,Math.max(1,unit/2)),
+      protectedSavings:roundStarter(unit,unit),
+      freeBuffer:roundStarter(unit,unit),
+      deposit:roundStarter(unit*200,unit),
+      targetHomePrice:roundStarter(unit*1000,unit),
+      annualRate:rates.annualRate,
+      termYears:rates.termYears,
+      ownershipCosts:roundStarter(unit,unit),
+      grossAnnualIncome:0,
+      higherRateEnabled:true,
+      higherRate:rates.higherRate
+    };
+  }
+  function applyStarterDefaults(message=true) {
+    const values=starterDefaults();
+    applyingProgrammaticValues=true;
+    try {
+      document.querySelector(`input[name="home1Mode"][value="${values.mode}"]`).checked=true;
+      els.income.value=values.takeHomeIncome; els.essentials.value=values.essentialSpending; els.debt.value=values.existingDebt; els.savings.value=values.protectedSavings;
+      els.buffer.value=values.freeBuffer; els.deposit.value=values.deposit; els.target.value=values.targetHomePrice; els.rate.value=values.annualRate; els.term.value=values.termYears;
+      els.ownership.value=values.ownershipCosts; els.gross.value=values.grossAnnualIncome; els.higherEnabled.checked=values.higherRateEnabled; els.higherRate.value=values.higherRate;
+      higherRateUserEdited=false; usingStarterValues=true;
+    } finally { applyingProgrammaticValues=false; }
+    els.higherRate.disabled=!els.higherEnabled.checked;
+    if(message){contextualActionMessageActive=true;els.message.textContent=`Illustrative starter values updated for ${Locale.getCurrency()}. They are round examples, not market averages or exchange-rate conversions.`;}
+    syncMode();
+  }
 
   function identity(region = Locale.getRegion()) {
     const common = { income:'Monthly take-home household income' };
@@ -172,13 +220,7 @@
     render();
   }
 
-  function setDefaults() {
-    document.querySelector(`input[name="home1Mode"][value="${defaults.mode}"]`).checked = true;
-    els.income.value=defaults.takeHomeIncome; els.essentials.value=defaults.essentialSpending; els.debt.value=defaults.existingDebt; els.savings.value=defaults.protectedSavings;
-    els.buffer.value=defaults.freeBuffer; els.deposit.value=defaults.deposit; els.target.value=defaults.targetHomePrice; els.rate.value=defaults.annualRate; els.term.value=defaults.termYears;
-    els.ownership.value=defaults.ownershipCosts; els.gross.value=defaults.grossAnnualIncome; els.higherEnabled.checked=defaults.higherRateEnabled; els.higherRate.value=defaults.higherRate;
-    higherRateUserEdited=false; syncMode();
-  }
+  function setDefaults() { applyStarterDefaults(true); }
 
   function summaryText() {
     if (!lastResult) return '';
@@ -242,13 +284,14 @@
     }
   }
 
-  document.querySelectorAll('input[name="home1Mode"]').forEach(el=>el.addEventListener('change',syncMode));
-  [els.income,els.essentials,els.debt,els.savings,els.buffer,els.deposit,els.target,els.term,els.ownership,els.gross].forEach(el=>el.addEventListener('input',render));
-  els.rate.addEventListener('input',()=>{ if(!higherRateUserEdited){const v=Number(els.rate.value);if(Number.isFinite(v))els.higherRate.value=(v+2).toFixed(2).replace(/\.00$/,'');} render(); });
-  els.higherEnabled.addEventListener('change',()=>{els.higherRate.disabled=!els.higherEnabled.checked;render();});
-  els.higherRate.addEventListener('input',()=>{higherRateUserEdited=true;render();});
-  els.calculate.addEventListener('click',render); els.reset.addEventListener('click',setDefaults); els.copy.addEventListener('click',copySummary); els.csv.addEventListener('click',downloadCsv); els.report.addEventListener('click',generateReport);
-  window.addEventListener('carrowmont:localechange',()=>{applyIdentity();render();});
+  function markUserEdited(){if(!applyingProgrammaticValues){usingStarterValues=false;contextualActionMessageActive=false;els.message.textContent='';}}
+  document.querySelectorAll('input[name="home1Mode"]').forEach(el=>el.addEventListener('change',()=>{markUserEdited();syncMode();}));
+  [els.income,els.essentials,els.debt,els.savings,els.buffer,els.deposit,els.target,els.term,els.ownership,els.gross].forEach(el=>el.addEventListener('input',()=>{markUserEdited();render();}));
+  els.rate.addEventListener('input',()=>{markUserEdited();if(!higherRateUserEdited){const v=Number(els.rate.value);if(Number.isFinite(v))els.higherRate.value=(v+2).toFixed(2).replace(/\.00$/,'');}render();});
+  els.higherEnabled.addEventListener('change',()=>{markUserEdited();els.higherRate.disabled=!els.higherEnabled.checked;render();});
+  els.higherRate.addEventListener('input',()=>{markUserEdited();higherRateUserEdited=true;render();});
+  els.calculate.addEventListener('click',()=>{if(!contextualActionMessageActive)els.message.textContent='';render();}); els.reset.addEventListener('click',setDefaults); els.copy.addEventListener('click',copySummary); els.csv.addEventListener('click',downloadCsv); els.report.addEventListener('click',generateReport);
+  window.addEventListener('carrowmont:localechange',()=>{applyIdentity();if(usingStarterValues)applyStarterDefaults(true);else render();});
 
-  applyIdentity(); els.higherRate.disabled=!els.higherEnabled.checked; syncMode();
+  applyIdentity(); applyStarterDefaults(false);
 })();

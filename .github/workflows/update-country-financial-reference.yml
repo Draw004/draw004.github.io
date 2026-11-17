@@ -1,0 +1,133 @@
+name: Update Country Financial References
+
+on:
+  schedule:
+    - cron: "35 22 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: carrowmont-country-financial-reference
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Check official central-bank policy rates and prepare a protected PR
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check for an existing country-reference PR
+        id: existing
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing repository secret CARROWMONT_REPO_TOKEN."
+            exit 1
+          fi
+          existing_url="$(gh pr list --repo Draw004/draw004.github.io --state open --json headRefName,url --jq '[.[] | select(.headRefName | startswith("automation/country-financial-reference-"))][0].url // ""')"
+          if [[ -n "$existing_url" ]]; then
+            echo "An automated country-reference PR is already open: $existing_url"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch and validate official policy-rate references
+        if: steps.existing.outputs.skip != 'true'
+        id: refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          before_json="$(sha256sum data/country-financial-reference.json | awk '{print $1}')"
+          before_runtime="$(sha256sum assets/trust/carrowmont-trust.js | awk '{print $1}')"
+          node scripts/update-country-financial-reference.mjs > /tmp/country-reference-update.json
+          cat /tmp/country-reference-update.json
+          after_json="$(sha256sum data/country-financial-reference.json | awk '{print $1}')"
+          after_runtime="$(sha256sum assets/trust/carrowmont-trust.js | awk '{print $1}')"
+          if [[ "$before_json" = "$after_json" && "$before_runtime" = "$after_runtime" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [[ "$before_json" != "$after_json" && "$before_runtime" != "$after_runtime" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Country-reference sync guard failed: canonical JSON and embedded runtime did not change together."
+            exit 1
+          fi
+
+      - name: Stop when official policy rates have no material change
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed != 'true'
+        shell: bash
+        run: echo "No validated policy-rate change; main remains unchanged."
+
+      - name: Build protected review summary
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed == 'true'
+        shell: bash
+        run: |
+          node - <<'NODE' > /tmp/country-reference-pr.md
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync('/tmp/country-reference-update.json','utf8'));
+          console.log('## Carrowmont Country Financial Reference Update\n');
+          console.log(`Official policy-rate check: **${j.checkedDate}**\n`);
+          console.log('| Market | Stored | Proposed | Change | Source as of |');
+          console.log('|---|---:|---:|---|---|');
+          for(const c of j.changes){
+            console.log(`| ${c.country} | ${c.oldDisplay} | ${c.newDisplay} | ${c.changeText} | ${c.newAsOf} |`);
+          }
+          console.log('\n**Sign convention:** change = proposed minus stored. `+` means the policy rate increased; `-` means it decreased. Changes are shown in **percentage points (pp)**, not relative percent change.');
+          console.log('\n**Freshness / anomaly guards:** a changed observation older than the stored reference, unexpectedly future-dated, more than 120 days old, or moving by more than 2.00 percentage points is blocked and no automated PR is created.');
+          console.log('\nInflation-target/framework references are preserved unchanged by this weekday updater. They change much less often and remain subject to explicit official-framework review rather than being inferred from monthly inflation data.');
+          console.log('\nThe canonical JSON and the embedded Batch 10 runtime reference are updated together and must match exactly. This workflow never writes directly to protected `main`.');
+          console.log('\n### Official sources');
+          for(const c of j.changes) console.log(`- ${c.country}: ${c.sourceUrl}`);
+          console.log('\nReview the direction, source date and official source before merging.');
+          NODE
+          cat /tmp/country-reference-pr.md
+
+      - name: Create protected synchronized pull request
+        if: steps.existing.outputs.skip != 'true' && steps.refresh.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CARROWMONT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing repository secret CARROWMONT_REPO_TOKEN."
+            exit 1
+          fi
+          checked_date="$(node -e "const j=require('/tmp/country-reference-update.json');process.stdout.write(j.checkedDate)")"
+          branch="automation/country-financial-reference-${checked_date}-${GITHUB_RUN_ID}"
+          git config user.name "Carrowmont Release Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/country-financial-reference.json assets/trust/carrowmont-trust.js
+          changed_files="$(git diff --cached --name-only | sort | tr '\n' ' ')"
+          expected_files="assets/trust/carrowmont-trust.js data/country-financial-reference.json "
+          if [[ "$changed_files" != "$expected_files" ]]; then
+            echo "Unexpected synchronized file set: $changed_files"
+            exit 1
+          fi
+          git commit -m "chore: update country policy-rate references"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/Draw004/draw004.github.io.git"
+          git push origin "HEAD:${branch}"
+          gh pr create \
+            --repo Draw004/draw004.github.io \
+            --base main \
+            --head "$branch" \
+            --title "Data: update country policy-rate references" \
+            --body-file /tmp/country-reference-pr.md

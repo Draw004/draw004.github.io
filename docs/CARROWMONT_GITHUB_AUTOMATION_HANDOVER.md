@@ -199,9 +199,14 @@ The controller repository currently exposes these important workflows in GitHub 
 3. Carrowmont Multi-Repo Guard
 4. Carrowmont Repository Access Check
 5. Carrowmont Source Snapshot
-6. GitHub Pages deployment (`pages-build-deployment`)
+6. Update US Debt Reference
+7. Update Gold Macro Reference
+8. Update Country Financial References
+9. GitHub Pages deployment (`pages-build-deployment`)
 
-The next sections explain each workflow.
+The three **Update ... Reference** workflows are protected data-maintenance automations. They check official sources, create human-review PRs only when validated data changes, and never auto-merge to `main`. The Country Financial References workflow checks the five Batch 10 central-bank policy-rate sources on weekdays and updates the canonical JSON plus its embedded runtime copy together. Its review summary uses explicit signed **percentage-point** movement (`+` increase / `-` decrease) and blocks stale, future-dated or unusually large automated moves.
+
+The next sections explain the core controller workflows.
 
 ---
 
@@ -1113,6 +1118,9 @@ This was a one-time verification that GitHub contained the intended QA version. 
 | Run manual read-only five-tool source contract | `draw004.github.io` | Carrowmont Multi-Repo Dry Run | None |
 | Monitor five-tool source-contract drift | `draw004.github.io` | Carrowmont Multi-Repo Guard | None |
 | Publish reviewed multi-repo code changes as PRs | `draw004.github.io` | Carrowmont Batch PR Publisher | `CREATE_PRS` |
+| Refresh U.S. Treasury debt reference when validated data changes | `draw004.github.io` | Update US Debt Reference | None; review PR manually |
+| Refresh Gold Macro automated reference fields | `draw004.github.io` | Update Gold Macro Reference | None; review PR manually |
+| Refresh Batch 10 country policy-rate references | `draw004.github.io` | Update Country Financial References | None; review PR manually |
 | Test the live site in browser/regression QA | `carrowmont-qa` | Carrowmont Automated QA | None |
 | Create formal GitHub version/tag releases | `carrowmont-qa` | Carrowmont Release | `RELEASE` |
 
