@@ -1067,6 +1067,45 @@
 })();
 
 
+/* FRE Batch 11 - homepage problem-first handoff to Ask Carrowmont. */
+(function(){
+  'use strict';
+  var KEY='carrowmont_home_ask_handoff_v1';
+  var MAX_AGE_MS=15*60*1000;
+  function homeOnly(){return document.body&&document.body.dataset.cmPage==='home';}
+  function writeHandoff(query){
+    try{
+      sessionStorage.setItem(KEY,JSON.stringify({version:1,query:query,createdAt:Date.now(),expiresAt:Date.now()+MAX_AGE_MS,source:'home'}));
+      return true;
+    }catch(_err){return false;}
+  }
+  function init(){
+    if(!homeOnly())return;
+    var form=document.querySelector('[data-home-decision-entry]');
+    var input=document.getElementById('homeDecisionQuestion');
+    var status=document.querySelector('[data-home-decision-status]');
+    if(!form||!input)return;
+    form.addEventListener('submit',function(event){
+      event.preventDefault();
+      var query=String(input.value||'').trim();
+      if(!query){
+        if(status)status.textContent='Tell Carrowmont what you are trying to solve, or choose one of the suggested questions.';
+        input.focus();
+        return;
+      }
+      if(status)status.textContent='';
+      if(!writeHandoff(query)){
+        if(status)status.textContent='Your browser blocked the private handoff. Open Ask Carrowmont and enter the question there.';
+        return;
+      }
+      window.location.assign('/ask-carrowmont.html');
+    });
+    input.addEventListener('input',function(){if(status&&status.textContent)status.textContent='';});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+
+
 /* NEWSLETTER1: optional Carrowmont Money in Real Life signup on Home, Learn articles and Research studies. */
 (function () {
   'use strict';
@@ -1201,9 +1240,8 @@
     var section = buildSection(context);
     if (context === 'home') {
       var productPreview = main.querySelector('.cm-product-preview-section');
-      var authority = main.querySelector('.authority-tools-section');
-      if (authority) main.insertBefore(section, authority);
-      else if (productPreview && productPreview.nextSibling) main.insertBefore(section, productPreview.nextSibling);
+      if (productPreview && productPreview.nextSibling) main.insertBefore(section, productPreview.nextSibling);
+      else if (productPreview) main.appendChild(section);
       else main.appendChild(section);
     } else {
       main.appendChild(section);

@@ -83,6 +83,8 @@
   };
   const CAR_AFFORDABILITY_HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
   const SEARCH_HANDOFF_KEY='carrowmont_search_handoff_v1';
+  const HOME_ASK_HANDOFF_KEY='carrowmont_home_ask_handoff_v1';
+  const HOME_ASK_HANDOFF_MAX_AGE_MS=15*60*1000;
   const CAR_AFFORDABILITY_HANDOFF_MAX_AGE_MS=15*60*1000;
   const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth/i;
   const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn/i;
@@ -279,6 +281,26 @@
     if(state.intent!==intent)return;
     $('askStartMessage').textContent='';
     continueJourney();
+  }
+
+  function readHomeAskHandoff(){
+    try{
+      const raw=sessionStorage.getItem(HOME_ASK_HANDOFF_KEY);
+      if(!raw)return null;
+      sessionStorage.removeItem(HOME_ASK_HANDOFF_KEY);
+      const payload=JSON.parse(raw);
+      const query=String(payload?.query||'').trim();
+      const createdAt=Number(payload?.createdAt||0);
+      const expiresAt=Number(payload?.expiresAt||0);
+      if(!query||!createdAt)return null;
+      const now=Date.now();
+      if(now-createdAt>HOME_ASK_HANDOFF_MAX_AGE_MS)return null;
+      if(expiresAt&&now>expiresAt)return null;
+      return {query,source:'home'};
+    }catch(_err){
+      try{sessionStorage.removeItem(HOME_ASK_HANDOFF_KEY);}catch(_ignore){}
+      return null;
+    }
   }
   function startFromText(){
     const text=$('askQuestion').value.trim();
@@ -567,6 +589,13 @@
     document.querySelectorAll('[data-ask-intent]').forEach(btn=>btn.addEventListener('click',()=>startIntent(btn.dataset.askIntent,btn.textContent.trim())));
     const decision=new URL(window.location.href).searchParams.get('decision');
     if(decision && INTENT_COPY[decision]) startIntent(decision,INTENT_COPY[decision]);
+    else {
+      const homeHandoff=readHomeAskHandoff();
+      if(homeHandoff){
+        $('askQuestion').value=homeHandoff.query;
+        startFromText();
+      }
+    }
     window.addEventListener('carrowmont:localechange',()=>{void refreshContextForLocale();});
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
