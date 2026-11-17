@@ -21,6 +21,13 @@ Status: Implemented for Publisher validation.
 | No tax/regulatory engine is invented | PASS — v1 contains monetary-policy reference context only. |
 | Methodology explains scope and limitations | PASS — public Methodology page updated. |
 | Future Ask can reuse the same verified model | PASS — shared `getReference(region)` API exposed. |
+| Policy-rate references have a protected refresh path | PASS — weekday updater checks official RBI, Federal Reserve, Bank of England, Bank of Canada and RBA sources and opens a review PR only on validated change. |
+| Update direction cannot repeat the earlier sign bug | PASS — change is numeric `proposed - stored`, rendered as explicit `+`/`-` percentage-point movement; dedicated unit checks cover positive, negative and zero. |
+| Stale / implausible automated updates fail closed | PASS — older-than-stored, future-dated, >120-day-old changed observations and >2.00pp moves are blocked. |
+| Canonical and embedded references cannot drift during an automated update | PASS — both files are changed together and exact equality is verified before and after write. |
+| Inflation target frameworks are not confused with monthly inflation | PASS — weekday automation preserves the reviewed framework fields unchanged. |
+| Home Affordability starter magnitudes follow currency scale | PASS — NZD uses round thousands/million-scale examples rather than India-scale raw defaults; other currencies use the same currency-aware starter pattern. |
+| Locale changes do not overwrite edited Home Affordability inputs | PASS — automatic starter refresh stops as soon as the user edits an input; Reset intentionally reloads current-locale starters. |
 | No calculator formula or deterministic engine changed | PASS. |
 | No Supabase schema, Google OAuth or account-ownership change | PASS. |
 | No new public URL or sitemap/indexing impact | PASS. |

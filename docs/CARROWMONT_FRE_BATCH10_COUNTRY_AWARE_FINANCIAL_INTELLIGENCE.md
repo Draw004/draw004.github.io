@@ -57,6 +57,30 @@ Examples:
 
 The public Methodology page now explains the country-aware reference layer, supported first-release markets and the rule that unsupported markets retain the existing terminology/currency localization until verified country-specific support is available.
 
+### 5. Protected country-reference maintenance updater
+
+Batch 10 now includes a protected weekday maintenance workflow for policy-rate references. It checks official central-bank sources for India, the United States, the United Kingdom, Canada and Australia and creates a human-review pull request only when a validated policy-rate value changes.
+
+The updater deliberately incorporates the lessons from the earlier Gold Macro and U.S. Debt automations:
+
+- change direction is calculated numerically as **proposed minus stored**;
+- `+` always means the policy rate increased and `-` always means it decreased;
+- changes are shown in **percentage points (pp)** rather than relative percent change;
+- a changed observation older than the stored reference is blocked;
+- unexpectedly future-dated observations are blocked;
+- a changed source older than 120 days is blocked;
+- an automated move larger than 2.00 percentage points is blocked for manual review;
+- the workflow never auto-merges; and
+- `/data/country-financial-reference.json` and the embedded copy in `/assets/trust/carrowmont-trust.js` must change together and match exactly.
+
+The weekday updater only automates policy-rate references. Inflation targets and control frameworks are preserved until an official framework change is explicitly reviewed; monthly inflation readings are not substituted for those policy objectives.
+
+### 6. Currency-aware Home Affordability starter values
+
+The Home Affordability tool now uses round, currency-aware starter magnitudes instead of carrying India-scale raw numbers into every currency. For example, an untouched New Zealand / NZD scenario starts around **NZ$12,000 monthly after-tax household income, NZ$200,000 deposit and NZ$1,000,000 target home price**, with a round illustrative rate/term profile.
+
+These starter values are examples, **not market averages and not FX conversions**. If the user edits any input, later country/currency changes do not silently convert or replace those user-entered values. Resetting the tool intentionally reloads the starter profile for the currently selected locale.
+
 ## Initial official references
 
 ### India
@@ -130,7 +154,9 @@ Batch 10 is complete only when:
 2. supported-country panels follow the selected locale correctly;
 3. unsupported countries do not receive invented context;
 4. no reference silently overwrites calculator or account data;
-5. source-contract QA is green;
-6. responsive browser QA is green;
-7. Publisher and Multi-Repo Guard are green; and
-8. a new authoritative Source Snapshot is generated.
+5. the protected country-reference updater passes sign, freshness, anomaly and synchronization checks;
+6. Home Affordability starter values remain realistic in scale across currencies without overwriting edited inputs;
+7. source-contract QA is green;
+8. responsive browser QA is green;
+9. Publisher and Multi-Repo Guard are green; and
+10. a new authoritative Source Snapshot is generated.
