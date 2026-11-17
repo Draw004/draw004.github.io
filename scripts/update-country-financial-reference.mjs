@@ -11,15 +11,21 @@ const MAX_CHANGED_SOURCE_AGE_DAYS = 120;
 const REFERENCE_BEGIN = '/* COUNTRY_REFERENCE_BEGIN */';
 const REFERENCE_END = '/* COUNTRY_REFERENCE_END */';
 
+// SOURCES are monetary-policy jurisdictions, not always one-to-one with countries.
+// EA is intentionally shared by France and Italy so one ECB observation updates both.
 const SOURCES = Object.freeze({
-  IN: { name:'Reserve Bank of India', url:'https://www.rbi.org.in/', domain:'rbi.org.in', parser:'rbi' },
-  US: { name:'Federal Reserve', url:'https://www.federalreserve.gov/monetarypolicy/openmarket.htm', domain:'federalreserve.gov', parser:'fed' },
-  GB: { name:'Bank of England', url:'https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp', domain:'bankofengland.co.uk', parser:'boe' },
-  CA: { name:'Bank of Canada', url:'https://www.bankofcanada.ca/valet/observations/V39079/json?recent=10', domain:'bankofcanada.ca', parser:'boc' },
-  AU: { name:'Reserve Bank of Australia', url:'https://www.rba.gov.au/statistics/cash-rate/', domain:'rba.gov.au', parser:'rba' }
+  IN: { markets:['IN'], name:'Reserve Bank of India', url:'https://www.rbi.org.in/', domain:'rbi.org.in', parser:'rbi' },
+  US: { markets:['US'], name:'Federal Reserve', url:'https://www.federalreserve.gov/monetarypolicy/openmarket.htm', domain:'federalreserve.gov', parser:'fed' },
+  GB: { markets:['GB'], name:'Bank of England', url:'https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp', domain:'bankofengland.co.uk', parser:'boe' },
+  CA: { markets:['CA'], name:'Bank of Canada', url:'https://www.bankofcanada.ca/valet/observations/V39079/json?recent=10', domain:'bankofcanada.ca', parser:'boc' },
+  AU: { markets:['AU'], name:'Reserve Bank of Australia', url:'https://www.rba.gov.au/statistics/cash-rate/', domain:'rba.gov.au', parser:'rba' },
+  JP: { markets:['JP'], name:'Bank of Japan', url:'https://www.boj.or.jp/en/', domain:'boj.or.jp', parser:'boj' },
+  KR: { markets:['KR'], name:'Bank of Korea', url:'https://www.bok.or.kr/portal/singl/baseRate/list.do?menuNo=200656', domain:'bok.or.kr', parser:'bok' },
+  EA: { markets:['FR','IT'], name:'European Central Bank', url:'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html', domain:'ecb.europa.eu', parser:'ecb' }
 });
 
 const MONTHS = Object.freeze({jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12});
+const SUPPORTED_MARKETS = Object.freeze([...new Set(Object.values(SOURCES).flatMap(source=>source.markets))]);
 
 function githubOutput(name,value){
   if(!process.env.GITHUB_OUTPUT)return;
@@ -55,8 +61,9 @@ function stripHtml(html){
     .replace(/<[^>]+>/g,' ')
     .replace(/&nbsp;|&#160;/gi,' ')
     .replace(/&amp;/gi,'&')
-    .replace(/&ndash;|&#8211;/gi,'–')
-    .replace(/&mdash;|&#8212;/gi,'—')
+    .replace(/&ndash;|&#8211;/gi,'-')
+    .replace(/&mdash;|&#8212;/gi,'-')
+    .replace(/\u2212/g,'-')
     .replace(/\s+/g,' ')
     .trim();
 }
@@ -81,10 +88,6 @@ export function parseRbi(html,checkedDate){
   const text=stripHtml(html);
   const match=/Policy\s*Repo\s*Rate\s*:?\s*(-?\d+(?:\.\d+)?)\s*%/i.exec(text);
   if(!match)throw new Error('RBI current-rates page did not expose the expected Policy Repo Rate field.');
-  // RBI's home page does not publish a policy-decision date beside the repo rate.
-  // Use the page's own visible "As at" date as a freshness timestamp when available
-  // rather than blindly stamping the workflow run date. This prevents a stale/cached
-  // RBI page from masquerading as a fresh changed observation.
   const asAt=/As\s+at\s+(?:\d{1,2}(?:[.:]\d{2})?\s*(?:am|pm)\s+of\s+)?(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),\s+(\d{4})/i.exec(text);
   const asOf=asAt?isoFromParts(asAt[3],parseMonth(asAt[1]),asAt[2]):checkedDate;
   return singleObservation(match[1],asOf,'RBI');
@@ -121,24 +124,54 @@ export function parseRba(html){
   const text=stripHtml(html);
   const marker=text.search(/Effective\s+Date\s+Change.*Cash\s+rate\s+target/i);
   const section=marker>=0?text.slice(marker,marker+5000):text;
-  const row=/(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\s+(\d{4})\s+[+−-]?\d+(?:\.\d+)?\s+(-?\d+(?:\.\d+)?)/i.exec(section);
+  const row=/(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\s+(\d{4})\s+[+\-]?\d+(?:\.\d+)?\s+(-?\d+(?:\.\d+)?)/i.exec(section);
   if(!row)throw new Error('RBA cash-rate page did not expose the expected latest decision row.');
   return singleObservation(row[4],isoFromParts(row[3],parseMonth(row[2]),row[1]),'RBA');
+}
+export function parseBoj(html){
+  const text=stripHtml(html);
+  const guideline=/The\s+Bank\s+will\s+encourage\s+the\s+uncollateralized\s+overnight\s+call\s+rate\s+to\s+remain\s+at\s+around\s+(-?\d+(?:\.\d+)?)\s+percent/i.exec(text);
+  const facility=/Interest\s+Rate\s+Applied\s+to\s+the\s+Complementary\s+Deposit\s+Facility\s+(-?\d+(?:\.\d+)?)\s*%\s+since\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),\s+(\d{4})/i.exec(text);
+  if(!guideline||!facility)throw new Error('Bank of Japan page did not expose both the overnight-call guideline and complementary-deposit effective date.');
+  const guidelineRate=finiteRate(guideline[1],'Bank of Japan overnight-call guideline');
+  const facilityRate=finiteRate(facility[1],'Bank of Japan complementary-deposit rate');
+  if(Math.abs(guidelineRate-facilityRate)>1e-9)throw new Error(`Bank of Japan guideline ${guidelineRate} does not match complementary-deposit rate ${facilityRate}; manual review required.`);
+  return singleObservation(guidelineRate,isoFromParts(facility[4],parseMonth(facility[2]),facility[3]),'Bank of Japan');
+}
+export function parseBok(html){
+  const text=stripHtml(html);
+  const marker=text.indexOf('변경일자');
+  const section=marker>=0?text.slice(marker,marker+5000):text;
+  const row=/(\d{4})\s+(\d{1,2})월\s+(\d{1,2})일\s+(-?\d+(?:\.\d+)?)/.exec(section);
+  if(!row)throw new Error('Bank of Korea Base Rate history did not expose the latest change row.');
+  return singleObservation(row[4],isoFromParts(row[1],row[2],row[3]),'Bank of Korea');
+}
+export function parseEcb(html){
+  const text=stripHtml(html);
+  const marker=text.search(/Date\s*\(with\s+effect\s+from\)/i);
+  const section=marker>=0?text.slice(marker,marker+6000):text;
+  const row=/(\d{4})\s+(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.?\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+-\s+(-?\d+(?:\.\d+)?)/i.exec(section);
+  if(!row)throw new Error('ECB key-interest-rate table did not expose the latest effective-rate row.');
+  // Since March 2024 the ECB states that the monetary-policy stance is steered through the deposit facility rate.
+  return singleObservation(row[4],isoFromParts(row[1],parseMonth(row[3]),row[2]),'European Central Bank');
 }
 
 async function fetchWithTimeout(url,expectJson=false){
   const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),20000);
   try{
-    const response=await fetch(url,{signal:controller.signal,headers:{accept:expectJson?'application/json':'text/html,application/xhtml+xml','user-agent':'Carrowmont-Country-Reference-Updater/1.0'}});
+    const response=await fetch(url,{signal:controller.signal,headers:{accept:expectJson?'application/json':'text/html,application/xhtml+xml','user-agent':'Carrowmont-Country-Reference-Updater/1.1'}});
     if(!response.ok)throw new Error(`Official source ${url} returned HTTP ${response.status}.`);
     return expectJson?response.json():response.text();
   }finally{clearTimeout(timer);}
 }
 async function loadLiveObservations(reference,checkedDate){
   const currentYear=Number(checkedDate.slice(0,4));
-  const entries=await Promise.all(Object.entries(SOURCES).map(async([code,source])=>{
+  const entries=await Promise.all(Object.entries(SOURCES).map(async([jurisdiction,source])=>{
     sourceHostAllowed(source.url,source.domain);
-    if(!reference?.markets?.[code])throw new Error(`Stored country reference is missing ${code}.`);
+    for(const code of source.markets){
+      if(!reference?.markets?.[code])throw new Error(`Stored country reference is missing ${code} for jurisdiction ${jurisdiction}.`);
+      if((reference.markets[code].monetaryPolicyJurisdiction||code)!==jurisdiction)throw new Error(`Stored ${code} jurisdiction does not match updater jurisdiction ${jurisdiction}.`);
+    }
     const payload=await fetchWithTimeout(source.url,source.parser==='boc');
     let observation;
     if(source.parser==='rbi')observation=parseRbi(payload,checkedDate);
@@ -146,18 +179,21 @@ async function loadLiveObservations(reference,checkedDate){
     else if(source.parser==='boe')observation=parseBoe(payload);
     else if(source.parser==='boc')observation=parseBoc(payload);
     else if(source.parser==='rba')observation=parseRba(payload);
+    else if(source.parser==='boj')observation=parseBoj(payload);
+    else if(source.parser==='bok')observation=parseBok(payload);
+    else if(source.parser==='ecb')observation=parseEcb(payload);
     else throw new Error(`Unsupported parser ${source.parser}.`);
-    return [code,{...observation,sourceName:source.name,sourceUrl:source.url}];
+    return [jurisdiction,{...observation,sourceName:source.name,sourceUrl:source.url}];
   }));
   return Object.fromEntries(entries);
 }
 function loadFixtureObservations(fixturePath){
   const data=JSON.parse(fs.readFileSync(path.resolve(fixturePath),'utf8'));
   const out={};
-  for(const code of Object.keys(SOURCES)){
-    const item=data?.[code];if(!item)throw new Error(`Fixture missing ${code}.`);
-    out[code]=item.kind==='range'?rangeObservation(item.rangeMinPct,item.rangeMaxPct,item.asOf,`fixture ${code}`):singleObservation(item.valuePct,item.asOf,`fixture ${code}`);
-    out[code].sourceName=`Fixture ${code}`;out[code].sourceUrl=SOURCES[code].url;
+  for(const jurisdiction of Object.keys(SOURCES)){
+    const item=data?.[jurisdiction];if(!item)throw new Error(`Fixture missing ${jurisdiction}.`);
+    out[jurisdiction]=item.kind==='range'?rangeObservation(item.rangeMinPct,item.rangeMaxPct,item.asOf,`fixture ${jurisdiction}`):singleObservation(item.valuePct,item.asOf,`fixture ${jurisdiction}`);
+    out[jurisdiction].sourceName=`Fixture ${jurisdiction}`;out[jurisdiction].sourceUrl=SOURCES[jurisdiction].url;
   }
   return out;
 }
@@ -165,6 +201,11 @@ function storedShape(policy,code){
   if(Number.isFinite(Number(policy?.valuePct)))return singleObservation(policy.valuePct,policy.asOf,`stored ${code}`);
   if(Number.isFinite(Number(policy?.rangeMinPct))&&Number.isFinite(Number(policy?.rangeMaxPct)))return rangeObservation(policy.rangeMinPct,policy.rangeMaxPct,policy.asOf,`stored ${code}`);
   throw new Error(`Stored ${code} policy-rate shape is invalid.`);
+}
+function samePolicyShape(a,b){
+  if(a.kind!==b.kind||a.asOf!==b.asOf)return false;
+  if(a.kind==='single')return Math.abs(a.valuePct-b.valuePct)<1e-9;
+  return Math.abs(a.rangeMinPct-b.rangeMinPct)<1e-9&&Math.abs(a.rangeMaxPct-b.rangeMaxPct)<1e-9;
 }
 export function formatSignedPp(value){
   const n=Number(value);if(!Number.isFinite(n))throw new Error('Signed percentage-point change must be finite.');
@@ -205,14 +246,17 @@ function applyObservedPolicy(policy,observed){
 export function applyObservations(reference,observations,checkedDate){
   if(reference?.schemaVersion!==1||!reference?.markets)throw new Error('Country financial reference schema is invalid.');
   const next=JSON.parse(JSON.stringify(reference));const changes=[];
-  for(const code of Object.keys(SOURCES)){
-    const stored=storedShape(reference.markets[code]?.policyRate,code),observed=observations[code];
-    if(!observed)throw new Error(`Missing observation for ${code}.`);
+  for(const [jurisdiction,source] of Object.entries(SOURCES)){
+    const storedByMarket=source.markets.map(code=>storedShape(reference.markets[code]?.policyRate,code));
+    const stored=storedByMarket[0];
+    for(let i=1;i<storedByMarket.length;i++)if(!samePolicyShape(stored,storedByMarket[i]))throw new Error(`Shared jurisdiction ${jurisdiction} stored market references are out of sync; manual review required.`);
+    const observed=observations[jurisdiction];if(!observed)throw new Error(`Missing observation for ${jurisdiction}.`);
     const comparison=comparePolicy(stored,observed);
-    validateChangedFreshness(stored,observed,checkedDate,comparison,code);
+    validateChangedFreshness(stored,observed,checkedDate,comparison,jurisdiction);
     if(!comparison.changed)continue;
-    next.markets[code].policyRate=applyObservedPolicy(reference.markets[code].policyRate,observed);
-    changes.push({code,country:reference.markets[code].country,centralBank:reference.markets[code].centralBank,oldDisplay:comparison.oldDisplay,newDisplay:comparison.newDisplay,changeText:comparison.changeText,oldAsOf:stored.asOf,newAsOf:observed.asOf,sourceName:observed.sourceName||SOURCES[code].name,sourceUrl:observed.sourceUrl||SOURCES[code].url});
+    for(const code of source.markets)next.markets[code].policyRate=applyObservedPolicy(reference.markets[code].policyRate,observed);
+    const countryLabel=source.markets.length===1?reference.markets[source.markets[0]].country:`Euro Area (${source.markets.map(code=>reference.markets[code].country).join(', ')})`;
+    changes.push({code:jurisdiction,markets:[...source.markets],country:countryLabel,centralBank:source.name,oldDisplay:comparison.oldDisplay,newDisplay:comparison.newDisplay,changeText:comparison.changeText,oldAsOf:stored.asOf,newAsOf:observed.asOf,sourceName:observed.sourceName||source.name,sourceUrl:observed.sourceUrl||source.url});
   }
   if(changes.length){next.version=checkedDate;next.reviewedAt=checkedDate;}
   return {next,changes};
@@ -258,7 +302,7 @@ async function main(){
   const fixture=String(process.env.COUNTRY_REFERENCE_FIXTURE_PATH||'').trim();
   const observations=fixture?loadFixtureObservations(fixture):await loadLiveObservations(reference,checkedDate);
   const {next,changes}=applyObservations(reference,observations,checkedDate);
-  const result={ok:true,changed:changes.length>0,checkedDate,changeCount:changes.length,changes,inflationFrameworksPreserved:Object.keys(SOURCES).every(code=>JSON.stringify(next.markets[code].inflationReference)===JSON.stringify(reference.markets[code].inflationReference)),signConvention:'proposed minus stored; positive means rate increase; negative means rate decrease; changes shown in percentage points'};
+  const result={ok:true,changed:changes.length>0,checkedDate,changeCount:changes.length,changes,inflationFrameworksPreserved:SUPPORTED_MARKETS.every(code=>JSON.stringify(next.markets[code].inflationReference)===JSON.stringify(reference.markets[code].inflationReference)),signConvention:'proposed minus stored; positive means rate increase; negative means rate decrease; changes shown in percentage points'};
   if(changes.length){
     const nextRuntime=replaceEmbeddedReference(runtime,next);
     const extracted=extractEmbeddedReference(nextRuntime);
@@ -276,4 +320,4 @@ if(invokedPath===import.meta.url){
   try{await main();}catch(error){githubOutput('changed','false');console.error(JSON.stringify({ok:false,changed:false,error:String(error?.message||error)},null,2));process.exitCode=1;}
 }
 
-export { SOURCES, MAX_AUTOMATED_MOVE_PP, MAX_CHANGED_SOURCE_AGE_DAYS };
+export { SOURCES, SUPPORTED_MARKETS, MAX_AUTOMATED_MOVE_PP, MAX_CHANGED_SOURCE_AGE_DAYS };

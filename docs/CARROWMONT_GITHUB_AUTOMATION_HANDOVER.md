@@ -204,7 +204,7 @@ The controller repository currently exposes these important workflows in GitHub 
 8. Update Country Financial References
 9. GitHub Pages deployment (`pages-build-deployment`)
 
-The three **Update ... Reference** workflows are protected data-maintenance automations. They check official sources, create human-review PRs only when validated data changes, and never auto-merge to `main`. The Country Financial References workflow checks the five Batch 10 central-bank policy-rate sources on weekdays and updates the canonical JSON plus its embedded runtime copy together. Its review summary uses explicit signed **percentage-point** movement (`+` increase / `-` decrease) and blocks stale, future-dated or unusually large automated moves.
+The three **Update ... Reference** workflows are protected data-maintenance automations. They check official sources, create human-review PRs only when validated data changes, and never auto-merge to `main`. The Country Financial References workflow checks eight monetary-policy jurisdictions on weekdays: RBI, Federal Reserve, Bank of England, Bank of Canada, RBA, Bank of Japan, Bank of Korea and ECB. France and Italy share the same ECB observation and are updated together. The workflow updates the canonical JSON plus its embedded runtime copy together. Its review summary uses explicit signed **percentage-point** movement (`+` increase / `-` decrease) and blocks stale, future-dated or unusually large automated moves. China is not part of the automated country-reference layer in this release.
 
 The next sections explain the core controller workflows.
 

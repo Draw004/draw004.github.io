@@ -1,18 +1,24 @@
 # Carrowmont FRE Batch 10 — Country-Aware Financial Intelligence
 
-Status: Implemented for Publisher validation.
+Status: Expansion implemented for Publisher validation.
 
 ## Purpose
 
 Batch 10 moves Carrowmont beyond country-aware labels and currency formatting by adding a small, verified financial-reference layer where country context materially helps interpretation.
 
-The first release supports five priority markets already strongly represented in Carrowmont's localization system:
+The verified country-context layer now supports nine country profiles across eight monetary-policy jurisdictions:
 
-- India
-- United States
-- United Kingdom
-- Canada
-- Australia
+- India — Reserve Bank of India
+- United States — Federal Reserve
+- United Kingdom — Bank of England
+- Canada — Bank of Canada
+- Australia — Reserve Bank of Australia
+- Japan — Bank of Japan
+- South Korea — Bank of Korea
+- France — Euro Area / European Central Bank
+- Italy — Euro Area / European Central Bank
+
+France and Italy intentionally share one ECB monetary-policy jurisdiction. China remains unsupported by this automated reference layer in this release; Carrowmont shows no invented policy benchmark for unsupported markets.
 
 This release deliberately does **not** attempt tax, pension, benefit, lender-eligibility or regulatory engines for every country.
 
@@ -55,11 +61,11 @@ Examples:
 
 ### 4. Methodology transparency
 
-The public Methodology page now explains the country-aware reference layer, supported first-release markets and the rule that unsupported markets retain the existing terminology/currency localization until verified country-specific support is available.
+The public Methodology page now explains the country-aware reference layer, the supported markets, the shared ECB jurisdiction for France and Italy, and the rule that unsupported markets retain the existing terminology/currency localization until verified country-specific support is available.
 
 ### 5. Protected country-reference maintenance updater
 
-Batch 10 now includes a protected weekday maintenance workflow for policy-rate references. It checks official central-bank sources for India, the United States, the United Kingdom, Canada and Australia and creates a human-review pull request only when a validated policy-rate value changes.
+Batch 10 includes a protected weekday maintenance workflow for policy-rate references. It now checks eight official monetary-policy jurisdictions: RBI, Federal Reserve, Bank of England, Bank of Canada, RBA, Bank of Japan, Bank of Korea and the ECB. France and Italy are updated from the same validated ECB observation. The workflow creates a human-review pull request only when a validated policy-rate value changes.
 
 The updater deliberately incorporates the lessons from the earlier Gold Macro and U.S. Debt automations:
 
@@ -107,6 +113,22 @@ These starter values are examples, **not market averages and not FX conversions*
 
 - Cash rate target: 4.85%, effective 4 Nov 2026 — Reserve Bank of Australia.
 - CPI inflation target: 2%-3% — Reserve Bank of Australia.
+
+### Japan
+
+- Uncollateralized overnight call rate guideline: around 1.25%; Carrowmont stores 1.25% as the numeric policy reference, with the Bank of Japan page showing the matching complementary-deposit rate effective 24 Sep 2026.
+- CPI price-stability target: 2% — Bank of Japan.
+
+### South Korea
+
+- Bank of Korea Base Rate: 3.00%, latest change effective 27 Aug 2026 — Bank of Korea official Base Rate history.
+- CPI inflation target: 2% over the medium term — Bank of Korea.
+
+### France and Italy — Euro Area / ECB
+
+- ECB deposit facility rate: 2.50%, effective 16 Sep 2026 — European Central Bank. The ECB states that the monetary-policy stance is steered through this rate.
+- HICP inflation target: 2% over the medium term — European Central Bank.
+- France and Italy intentionally share this single ECB reference and update path; Carrowmont does not invent separate Banque de France or Banca d'Italia policy rates.
 
 ## Tool coverage
 
