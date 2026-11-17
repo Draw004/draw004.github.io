@@ -91,7 +91,9 @@
 
   let api=null;
   let lastResult=null;
-  let state={intent:null,facts:{},questionText:'',estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
+  function emptyContext(){return {signedIn:false,loaded:false,unavailable:false,currencyMismatch:false,profileCurrency:null,currentCurrency:null,ignored:false,items:[]};}
+  function newState(intent=null,questionText=''){return {intent,facts:{},questionText,estimatedFacts:{},history:[],answerCache:{},estimatedCache:{},factMeta:{},context:emptyContext()};}
+  let state=newState();
   const $=id=>document.getElementById(id);
 
   function getLocale(){
@@ -116,6 +118,78 @@
     if(YEAR_KEY.test(key)) return `${number(value,1)} years`;
     if(MONEY_KEY.test(key)) return money(value);
     return number(value,2);
+  }
+  function formatSavedDate(value){
+    if(!value) return 'date not available';
+    try{return new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric'}).format(new Date(value));}catch(_err){return 'date not available';}
+  }
+  function contextItem(key){return (state.context?.items||[]).find(item=>item.key===key)||null;}
+  function sourceSuffix(key){
+    const meta=state.factMeta?.[key]||{};
+    if(meta.kind==='saved') return ' — My Carrowmont saved value';
+    if(meta.kind==='saved-confirmed') return ' — My Carrowmont value confirmed in this Ask session';
+    if(meta.kind==='temporary-override') return ' — temporary what-if override for this Ask only';
+    if(meta.kind==='session') return ' — entered in this Ask session';
+    return '';
+  }
+  function renderAccountContext(){
+    const box=$('askAccountContext');if(!box)return;
+    const title=$('askAccountContextTitle'),summary=$('askAccountContextSummary'),details=$('askAccountContextDetails'),detailsSummary=$('askAccountContextDetailsSummary'),list=$('askAccountContextList'),actions=$('askAccountContextActions');
+    box.classList.remove('is-warning','is-muted');
+    if(!state.context?.loaded||!state.context?.signedIn){box.hidden=true;return;}
+    box.hidden=false;
+    if(state.context.unavailable){
+      box.classList.add('is-muted');if(title)title.textContent='My Carrowmont details are temporarily unavailable';if(summary)summary.textContent='Continue with this Ask question normally. No saved account values will be used.';if(details)details.hidden=true;if(actions)actions.hidden=true;return;
+    }
+    if(state.context.currencyMismatch){
+      box.classList.add('is-warning');if(title)title.textContent='Saved amounts were not reused';if(summary)summary.textContent=`My Carrowmont is saved in ${state.context.profileCurrency||'another currency'} while this Ask question is using ${state.context.currentCurrency||'the selected currency'}. Carrowmont does not automatically convert saved financial amounts.`;if(details)details.hidden=true;if(actions)actions.hidden=true;return;
+    }
+    if(state.context.ignored){
+      box.classList.add('is-muted');if(title)title.textContent='Saved details ignored for this question';if(summary)summary.textContent='This Ask journey will use only the values you enter here. My Carrowmont has not been changed.';if(details)details.hidden=true;if(actions)actions.hidden=true;return;
+    }
+    const items=state.context.items||[];const fresh=items.filter(item=>!item.stale);const stale=items.filter(item=>item.stale);
+    if(!items.length){box.hidden=true;return;}
+    if(title)title.textContent=fresh.length?'Using relevant saved details':'Saved details need confirmation';
+    if(summary){
+      const parts=[];if(fresh.length)parts.push(`${fresh.length} current saved detail${fresh.length===1?'':'s'} can be reused`);if(stale.length)parts.push(`${stale.length} older saved detail${stale.length===1?' needs':'s need'} confirmation`);summary.textContent=`${parts.join(' · ')}. You can change or ignore them for this question without changing My Carrowmont.`;
+    }
+    if(details){details.hidden=false;details.open=false;}if(actions)actions.hidden=false;if(detailsSummary)detailsSummary.textContent=`Review saved details (${items.length})`;
+    if(list){
+      list.innerHTML='';for(const item of items){
+        const li=document.createElement('li');const copy=document.createElement('div');copy.className='ask-account-context-item-copy';const strong=document.createElement('strong');strong.textContent=`${labelize(item.key)}: ${formatValue(item.key,item.value)}`;const meta=document.createElement('span');meta.textContent=`${item.source||'My Carrowmont'} · updated ${formatSavedDate(item.lastUpdated)}`;copy.append(strong,meta);
+        if(item.stale){const staleNote=document.createElement('em');staleNote.textContent='Older saved value — Carrowmont will ask you to confirm it.';copy.appendChild(staleNote);}
+        li.appendChild(copy);
+        if(!item.stale){const edit=document.createElement('button');edit.type='button';edit.className='ask-account-context-edit';edit.dataset.askContextEdit=item.key;edit.textContent='Change for this question';edit.addEventListener('click',()=>editContextKey(item.key));li.appendChild(edit);}
+        list.appendChild(li);
+      }
+    }
+  }
+  function editContextKey(key){
+    const item=contextItem(key);if(!item)return;
+    delete state.facts[key];state.answerCache[key]=item.value;state.factMeta[key]={kind:'saved-review',savedValue:item.value,source:item.source,lastUpdated:item.lastUpdated,stale:item.stale};
+    continueJourney();
+  }
+  function ignoreAccountContext(){
+    if(!state.context?.signedIn)return;
+    for(const item of state.context.items||[]){
+      const meta=state.factMeta[item.key];
+      if(meta?.kind==='temporary-override'||meta?.kind==='session')continue;
+      if(meta?.kind==='saved'||meta?.kind==='saved-confirmed'||meta?.kind==='saved-review'||meta?.kind==='stale-saved'){delete state.facts[item.key];delete state.answerCache[item.key];delete state.factMeta[item.key];}
+    }
+    state.context.ignored=true;renderAccountContext();continueJourney();
+  }
+  function applyAccountContext(context){
+    const c=context||{};state.context={...emptyContext(),...c,loaded:true,items:Array.isArray(c.items)?c.items.map(item=>({...item})):[]};
+    if(!c.signedIn||c.unavailable||c.currencyMismatch)return;
+    for(const item of c.fresh||[]){state.facts[item.key]=item.value;state.answerCache[item.key]=item.value;state.factMeta[item.key]={kind:'saved',savedValue:item.value,source:item.source,lastUpdated:item.lastUpdated,stale:false};}
+    for(const item of c.stale||[]){if(Object.prototype.hasOwnProperty.call(state.facts,item.key))continue;state.answerCache[item.key]=item.value;state.factMeta[item.key]={kind:'stale-saved',savedValue:item.value,source:item.source,lastUpdated:item.lastUpdated,stale:true};}
+  }
+  async function loadAccountContext(){
+    const loader=window.CarrowmontAskContext;if(!loader?.load)return;
+    const expectedIntent=state.intent;
+    const context=await loader.load(expectedIntent,{locale:getLocale()});
+    if(state.intent!==expectedIntent)return;
+    applyAccountContext(context);renderAccountContext();
   }
   function stage(name){
     $('askStart').hidden=name!=='start'; $('askQuestionsStage').hidden=name!=='questions'; $('askResultStage').hidden=name!=='result';
@@ -189,16 +263,21 @@
     lastResult=null;
     const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=true;
     const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
-    state={intent:null,facts:{},questionText:'',estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
-    $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();
+    state=newState();
+    $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();renderAccountContext();
     stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
   }
   function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
   function fieldStep(key){ return /termMonths|remainingYears/i.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
-  function startIntent(intent,text=''){
+  async function startIntent(intent,text=''){
     hideUnsupported();
     if(!api?.SUPPORTED?.some(x=>x.intent===intent)){ showUnsupported(text); return; }
-    state={intent,facts:{},questionText:text,estimatedFacts:{},history:[],answerCache:{},estimatedCache:{}};
+    state=newState(intent,text);renderAccountContext();
+    const contextApi=window.CarrowmontAskContext;
+    if(contextApi?.hasPersistedAuthSession?.())$('askStartMessage').textContent='Checking My Carrowmont for relevant saved details…';
+    await loadAccountContext();
+    if(state.intent!==intent)return;
+    $('askStartMessage').textContent='';
     continueJourney();
   }
   function startFromText(){
@@ -232,10 +311,13 @@
     showUnsupported(state.questionText||'this money question'); stage('start');
   }
   function renderQuestions(questions){
-    stage('questions');
+    const guardedQuestions=api.missingQuestions(state.intent,state.facts,3);if(Array.isArray(questions)&&questions.length>3)questions=guardedQuestions;
+    stage('questions');renderAccountContext();
     updateProgress(); updateBackControls();
     $('askQuestionsTitle').textContent=INTENT_COPY[state.intent]||'A few details';
-    $('askQuestionsIntro').textContent=`Carrowmont needs ${questions.length===1?'one more detail':`${questions.length} details`} for this step. Amounts use ${getLocale().currency}; changing currency does not convert values.`;
+    const reused=Object.values(state.factMeta||{}).filter(meta=>meta?.kind==='saved').length;
+    const contextLead=reused?`${reused} current My Carrowmont detail${reused===1?' is':'s are'} already being reused. `:'';
+    $('askQuestionsIntro').textContent=`${contextLead}Carrowmont needs ${questions.length===1?'one more detail':`${questions.length} details`} for this step. Amounts use ${getLocale().currency}; changing currency does not convert values.`;
     const wrap=$('askQuestionFields'); wrap.innerHTML='';
     for(const q of questions){
       const group=document.createElement('div'); group.className='ask-field';
@@ -254,6 +336,13 @@
       }
       if(described.length) input.setAttribute('aria-describedby',described.join(' '));
       const cached=state.answerCache[q.key]; if(cached!==undefined&&cached!==null) input.value=String(cached);
+      const savedMeta=state.factMeta?.[q.key];
+      if(savedMeta&&['stale-saved','saved-review'].includes(savedMeta.kind)){
+        group.classList.add(savedMeta.stale?'ask-field-stale':'ask-field-saved');
+        const note=document.createElement('span');note.className=`ask-saved-note${savedMeta.stale?' is-stale':''}`;
+        note.textContent=savedMeta.stale?`Saved in My Carrowmont by ${savedMeta.source||'a saved plan'} and last updated ${formatSavedDate(savedMeta.lastUpdated)}. Please confirm or replace it for this Ask question.`:`Saved in My Carrowmont by ${savedMeta.source||'a saved plan'} and updated ${formatSavedDate(savedMeta.lastUpdated)}. Change it here only for this Ask question.`;
+        group.appendChild(note);
+      }
       const cachedEstimate=state.estimatedCache[q.key];
       if(cachedEstimate && Number(input.value)===Number(cachedEstimate.value)){
         state.estimatedFacts[q.key]={...cachedEstimate}; group.classList.add('ask-field-estimated');
@@ -266,6 +355,12 @@
         if(estimate && Number(input.value)!==Number(estimate.value)){
           delete state.estimatedFacts[q.key]; delete state.estimatedCache[q.key];
           group.classList.remove('ask-field-estimated'); group.querySelector('.ask-estimate-note')?.remove();
+        }
+        const meta=state.factMeta?.[q.key];
+        if(meta&&['stale-saved','saved-review'].includes(meta.kind)&&Number(input.value)!==Number(meta.savedValue)){
+          group.classList.remove('ask-field-saved','ask-field-stale');
+          let note=group.querySelector('.ask-saved-note');if(!note){note=document.createElement('span');note.className='ask-saved-note';group.appendChild(note);}
+          note.className='ask-saved-note is-override';note.textContent='Temporary what-if override for this Ask question. My Carrowmont will not be changed unless you explicitly save or update.';
         }
       });
       if(Number.isFinite(meta.unknownDefault)){
@@ -305,18 +400,26 @@
       }
       pending[input.name]=value;
     }
-    state.history.push({facts:{...state.facts},estimatedFacts:{...state.estimatedFacts}});
+    state.history.push({facts:{...state.facts},estimatedFacts:{...state.estimatedFacts},factMeta:JSON.parse(JSON.stringify(state.factMeta||{}))});
     for(const input of inputs){
       const value=pending[input.name]; clearFieldError(input); state.answerCache[input.name]=value;
       const estimate=state.estimatedFacts[input.name];
       if(estimate && Number(value)!==Number(estimate.value)){ delete state.estimatedFacts[input.name]; delete state.estimatedCache[input.name]; }
+      const prior=state.factMeta?.[input.name];
+      if(prior&&['stale-saved','saved-review'].includes(prior.kind)){
+        state.factMeta[input.name]={...prior,kind:Number(value)===Number(prior.savedValue)?'saved-confirmed':'temporary-override'};
+      }else if(estimate&&Number(value)===Number(estimate.value)){
+        state.factMeta[input.name]={kind:'estimate'};
+      }else{
+        state.factMeta[input.name]={kind:'session'};
+      }
       state.facts[input.name]=value;
     }
     $('askQuestionMessage').textContent=''; continueJourney();
   }
   function goBack(){
     if(!state.history.length) return;
-    const previous=state.history.pop(); state.facts={...previous.facts}; state.estimatedFacts={...previous.estimatedFacts};
+    const previous=state.history.pop(); state.facts={...previous.facts}; state.estimatedFacts={...previous.estimatedFacts};state.factMeta=JSON.parse(JSON.stringify(previous.factMeta||{}));
     $('askQuestionMessage').textContent=''; continueJourney();
   }
   function writeCarAffordabilityHandoff(result){
@@ -330,7 +433,7 @@
 
   function renderResult(result){
     lastResult=result;
-    stage('result');
+    stage('result');renderAccountContext();
     $('askResultSituation').textContent=result.situation||INTENT_COPY[result.intent]||'Your result';
     const rec=result.recommendation||{};
     $('askRecommendationHeadline').textContent=rec.headline||'Review the modeled result below.';
@@ -392,10 +495,19 @@
     const steps=$('askNextSteps'); steps.innerHTML='';
     for(const step of result.nextSteps||[]){ const li=document.createElement('li'); li.textContent=step; steps.appendChild(li); }
     const trustWhy=$('askTrustWhy'); if(trustWhy) trustWhy.textContent=rec.rationale||result.diagnosis||'This result follows from the values entered in this Ask Carrowmont journey and the tested calculation path selected for the question.';
-    const trustValues=$('askTrustValues'); if(trustValues){trustValues.innerHTML='';const factRows=Object.entries(state.facts||{}).filter(([,value])=>value!==null&&value!==undefined&&typeof value!=='object').slice(0,12);if(!factRows.length){const li=document.createElement('li');li.textContent='No additional entered values were required for this result.';trustValues.appendChild(li);}else{for(const [key,value] of factRows){const li=document.createElement('li');li.textContent=`${labelize(key)}: ${formatValue(key,value)}`;trustValues.appendChild(li);}}}
-    const trustFreshness=$('askTrustFreshness'); if(trustFreshness){let when='this session';try{when=new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date());}catch(_err){}trustFreshness.textContent=`Calculated from the values in this Ask session on ${when}. Saved My Carrowmont details are only used when the journey explicitly carries them in.`;}
+    const trustValues=$('askTrustValues'); if(trustValues){trustValues.innerHTML='';const factRows=Object.entries(state.facts||{}).filter(([,value])=>value!==null&&value!==undefined&&typeof value!=='object').slice(0,12);if(!factRows.length){const li=document.createElement('li');li.textContent='No additional entered values were required for this result.';trustValues.appendChild(li);}else{for(const [key,value] of factRows){const li=document.createElement('li');li.textContent=`${labelize(key)}: ${formatValue(key,value)}${sourceSuffix(key)}`;trustValues.appendChild(li);}}}
+    const trustFreshness=$('askTrustFreshness'); if(trustFreshness){
+      let when='this session';try{when=new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date());}catch(_err){}
+      const used=Object.entries(state.factMeta||{}).filter(([key,meta])=>Object.prototype.hasOwnProperty.call(state.facts,key)&&['saved','saved-confirmed'].includes(meta?.kind));
+      const confirmedOlder=used.filter(([,meta])=>meta?.stale).length;const overrides=Object.values(state.factMeta||{}).filter(meta=>meta?.kind==='temporary-override').length;
+      const dates=used.map(([,meta])=>meta.lastUpdated).filter(Boolean).sort((a,b)=>Date.parse(a)-Date.parse(b));
+      const savedText=used.length?` ${used.length} saved My Carrowmont detail${used.length===1?' was':'s were'} reused${dates.length?`, last updated ${formatSavedDate(dates[0])}${dates.length>1?` to ${formatSavedDate(dates[dates.length-1])}`:''}`:''}.`:' No saved My Carrowmont value was used in this result.';
+      const staleText=confirmedOlder?` ${confirmedOlder} older saved detail${confirmedOlder===1?' was':'s were'} explicitly confirmed in this Ask session.`:'';
+      const overrideText=overrides?` ${overrides} saved detail${overrides===1?' has':'s have'} a temporary what-if override for this result.`:'';
+      trustFreshness.textContent=`Calculated from the values in this Ask session on ${when}.${savedText}${staleText}${overrideText}`;
+    }
     const trustChange=$('askTrustChange'); if(trustChange) trustChange.textContent=changeItems.length?changeItems.join(' '):'Changing an entered value, assumption or scenario can change the modeled result.';
-    const trustBoundary=$('askTrustBoundary'); if(trustBoundary) trustBoundary.innerHTML='<strong>Save boundary:</strong> this Ask result does not change My Carrowmont by itself. It becomes account data only when you explicitly choose Save this plan to My Carrowmont or update an existing saved plan.';
+    const trustBoundary=$('askTrustBoundary'); if(trustBoundary) trustBoundary.innerHTML='<strong>Save boundary:</strong> this Ask result does not change My Carrowmont by itself. Saved details are read-only here, and temporary what-if overrides stay in this Ask session unless you explicitly choose Save this plan to My Carrowmont or update an existing saved plan.';
     const trace=$('askEngineTrace'); trace.innerHTML='';
     for(const item of result.trace||[]){ const li=document.createElement('li'); li.textContent=labelize(item.engineId); trace.appendChild(li); }
     const assumptions=$('askAssumptions'); assumptions.innerHTML='';
@@ -419,6 +531,16 @@
     const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
     updateBackControls(); reveal($('askResultStage'),$('askResultSituation'));
   }
+  async function refreshContextForLocale(){
+    if(!state.intent)return;
+    for(const [key,meta] of Object.entries(state.factMeta||{})){
+      if(['saved','saved-confirmed','saved-review','stale-saved'].includes(meta?.kind)){delete state.facts[key];delete state.answerCache[key];delete state.factMeta[key];}
+    }
+    state.context=emptyContext();renderAccountContext();
+    await loadAccountContext();
+    if(state.intent)continueJourney();
+  }
+
   function saveToDashboard(){
     const Store=window.CarrowmontDashboardStore;
     const Account=window.CarrowmontAccount;
@@ -439,12 +561,13 @@
     $('askQuestion').addEventListener('keydown',event=>{ if((event.ctrlKey||event.metaKey)&&event.key==='Enter') startFromText(); });
     $('askQuestionsForm').addEventListener('submit',submitQuestions);
     $('askDashboardSaveBtn')?.addEventListener('click',saveToDashboard);
+    $('askContextIgnoreBtn')?.addEventListener('click',ignoreAccountContext);
     document.querySelectorAll('[data-ask-back]').forEach(btn=>btn.addEventListener('click',goBack));
     document.querySelectorAll('[data-ask-reset]').forEach(btn=>btn.addEventListener('click',reset));
     document.querySelectorAll('[data-ask-intent]').forEach(btn=>btn.addEventListener('click',()=>startIntent(btn.dataset.askIntent,btn.textContent.trim())));
     const decision=new URL(window.location.href).searchParams.get('decision');
     if(decision && INTENT_COPY[decision]) startIntent(decision,INTENT_COPY[decision]);
-    window.addEventListener('carrowmont:localechange',()=>{ if(!$('askQuestionsStage').hidden) renderQuestions(api.missingQuestions(state.intent,state.facts,3)); });
+    window.addEventListener('carrowmont:localechange',()=>{void refreshContextForLocale();});
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();

@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261028-social1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261116-fre9">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261117-fre10b">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain five controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -66,10 +66,24 @@
       <div class="ask-intro">
         <span class="section-kicker">Ask Carrowmont</span>
         <h1>What are you trying to figure out?</h1>
-        <p>Tell us what is happening with your money. Carrowmont will ask only for the details it needs and use its tested calculators for the numbers.</p>
+        <p>Tell us what is happening with your money. Carrowmont will ask only for the details it needs and use its tested calculators for the numbers. If you are signed in, relevant current My Carrowmont details can be reused so you do not have to enter them again.</p>
       </div>
 
       <div class="ask-main-card" id="askWorkspace">
+        <aside class="ask-account-context" id="askAccountContext" aria-live="polite" hidden>
+          <div class="ask-account-context-copy">
+            <span class="ask-step-label">My Carrowmont context</span>
+            <strong id="askAccountContextTitle">Using relevant saved details</strong>
+            <p id="askAccountContextSummary"></p>
+            <details id="askAccountContextDetails">
+              <summary id="askAccountContextDetailsSummary">Review saved details</summary>
+              <ul id="askAccountContextList"></ul>
+            </details>
+          </div>
+          <div class="ask-account-context-actions" id="askAccountContextActions">
+            <button class="ask-text-button" type="button" id="askContextIgnoreBtn">Ignore saved details for this question</button>
+          </div>
+        </aside>
         <div id="askStart" class="ask-stage">
           <label class="ask-label" for="askQuestion">Describe your situation</label>
           <textarea id="askQuestion" rows="3" placeholder="For example: I have some extra money. Should I pay down debt or invest it?"></textarea>
@@ -192,9 +206,10 @@
 <script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
+<script src="/assets/account/carrowmont-ask-context.js?v=20261117-fre10b"></script>
 <script src="/search-core.js?v=20261114-fre8i"></script>
   <script src="/search.js?v=20261114-fre8i"></script>
-  <script src="/assets/ask/ask-carrowmont.js?v=20261116-fre9"></script>
+  <script src="/assets/ask/ask-carrowmont.js?v=20261117-fre10b"></script>
 <script src="/site.js?v=20261112-fre8a"></script>
 </body>
 </html>
