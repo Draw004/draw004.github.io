@@ -150,29 +150,11 @@
           <p class="eyebrow">FINANCIAL PLANNING FOR REAL LIFE</p>
           <h1><span>Tell Carrowmont what you are trying to solve.</span><span class="accent-line">Work through the decision.</span></h1>
           <p class="hero-lede">Start with a real-life money question. Carrowmont asks only for the details that matter, uses its tested calculators for the numbers, and lets you keep a plan only if you choose.</p>
-          <form class="home-decision-entry" data-home-decision-entry novalidate>
-            <div class="home-decision-entry-head">
-              <label for="homeDecisionQuestion">What are you trying to figure out?</label>
-              <a href="/ask-carrowmont.html" data-home-ask-entry>Open Ask Carrowmont <span aria-hidden="true">&rarr;</span></a>
-            </div>
-            <div class="home-decision-input-row">
-              <textarea id="homeDecisionQuestion" rows="2" maxlength="500" placeholder="For example: I have some extra money. Should I pay down debt or invest it?"></textarea>
-              <button class="button button-primary" type="submit"><span>Ask Carrowmont</span><span class="button-arrow" aria-hidden="true">&rarr;</span></button>
-            </div>
-            <p class="home-decision-status" data-home-decision-status role="status" aria-live="polite"></p>
-            <div class="home-decision-suggestions" aria-label="Suggested money questions">
-              <a href="/ask-carrowmont.html?decision=debt-vs-savings">Pay debt or invest?</a>
-              <a href="/ask-carrowmont.html?decision=car-affordability">Can I afford this car?</a>
-              <a href="/ask-carrowmont.html?decision=mortgage-prepay-vs-invest">Prepay mortgage or invest?</a>
-              <a href="/ask-carrowmont.html?decision=emergency-runway">Is my emergency fund enough?</a>
-              <a href="/ask-carrowmont.html?decision=cash-flow-shortfall">Why do I run short before payday?</a>
-              <a href="/ask-carrowmont.html?decision=money-priorities">What should I focus on first?</a>
-            </div>
-            <div class="home-decision-foot">
-              <span>No account required. Signed in? Relevant current My Carrowmont details can be reused.</span>
-              <a href="/tools.html" data-home-tools-fallback>Prefer to calculate yourself? <strong>Explore Tools &rarr;</strong></a>
-            </div>
-          </form>
+          <a class="home-ask-entry" data-home-ask-entry href="/ask-carrowmont.html">
+            <span class="home-ask-entry-label">Not sure which tool to use?</span>
+            <strong>Ask Carrowmont</strong>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
           <a class="india-sip-quickline" href="/sip-calculator/" aria-label="Explore the Carrowmont SIP Calculator">
             <span class="popular-pill">Popular in India</span>
             <span>SIP Future Value &middot; Goal SIP &middot; Step-up SIP &middot; Time to Target &rarr;</span>
@@ -486,7 +468,7 @@
 </footer>
 
   <script src="locale.js?v=20261010-tools-hub1"></script>
-  <script src="site.js?v=20261117-fre11"></script>
+  <script src="site.js?v=20261118-fre12"></script>
 
 
 </body>

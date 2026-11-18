@@ -86,7 +86,8 @@
         </aside>
         <div id="askStart" class="ask-stage">
           <label class="ask-label" for="askQuestion">Describe your situation</label>
-          <textarea id="askQuestion" rows="3" placeholder="For example: I have some extra money. Should I pay down debt or invest it?"></textarea>
+          <textarea id="askQuestion" rows="3" placeholder="For example: I have some extra money. Should I pay down debt or invest it?" spellcheck="true" autocapitalize="sentences" autocorrect="on" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="askPredictive"></textarea>
+          <div class="ask-predictive" id="askPredictive" role="listbox" aria-label="Suggested Carrowmont searches" hidden></div>
           <div class="ask-action-row">
             <button class="button button-primary" type="button" id="askStartBtn">Work through this <span class="button-arrow">&rarr;</span></button>
           </div>
@@ -207,9 +208,9 @@
 <script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
 <script src="/assets/account/carrowmont-ask-context.js?v=20261117-fre10b"></script>
-<script src="/search-core.js?v=20261114-fre8i"></script>
-  <script src="/search.js?v=20261114-fre8i"></script>
-  <script src="/assets/ask/ask-carrowmont.js?v=20261117-fre11"></script>
-<script src="/site.js?v=20261112-fre8a"></script>
+<script src="/search-core.js?v=20261118-fre12"></script>
+  <script src="/search.js?v=20261118-fre12"></script>
+  <script src="/assets/ask/ask-carrowmont.js?v=20261118-fre12"></script>
+<script src="/site.js?v=20261118-fre12"></script>
 </body>
 </html>

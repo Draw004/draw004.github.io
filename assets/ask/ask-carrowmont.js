@@ -252,6 +252,10 @@
     }
     box.hidden=false; requestAnimationFrame(()=>box.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'nearest'}));
   }
+  let askPredictTimer=null;
+  function hideAskPredictive(){const box=$('askPredictive');if(!box)return;box.hidden=true;box.innerHTML='';$('askQuestion')?.setAttribute('aria-expanded','false');}
+  function renderAskPredictive(items){const box=$('askPredictive');if(!box)return;box.innerHTML='';if(!items?.length){hideAskPredictive();return;}const label=document.createElement('span');label.className='ask-predictive-label';label.textContent='Suggestions';box.appendChild(label);items.slice(0,5).forEach(item=>{const button=document.createElement('button');button.type='button';button.className='ask-predictive-option';button.setAttribute('role','option');const text=document.createElement('span');text.textContent=item.text;button.appendChild(text);if(item.type==='correction'){const small=document.createElement('small');small.textContent='Spelling suggestion';button.appendChild(small);}button.addEventListener('click',()=>{$('askQuestion').value=item.text;hideAskPredictive();$('askQuestion').focus();});box.appendChild(button);});box.hidden=false;$('askQuestion')?.setAttribute('aria-expanded','true');}
+  function updateAskPredictive(){const input=$('askQuestion');const query=String(input?.value||'').trim();window.clearTimeout(askPredictTimer);if(query.length<2||!window.CarrowmontSearch?.suggest){hideAskPredictive();return;}askPredictTimer=window.setTimeout(()=>{window.CarrowmontSearch.suggest(query,{limit:5}).then(items=>{if(String(input.value||'').trim()===query)renderAskPredictive(items||[]);}).catch(()=>hideAskPredictive());},150);}
   function showUnsupported(text){
     $('askStartMessage').textContent='';
     const query=String(text||'').trim();
@@ -266,7 +270,7 @@
     const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=true;
     const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
     state=newState();
-    $('askQuestion').value=''; $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();renderAccountContext();
+    $('askQuestion').value=''; hideAskPredictive(); $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();renderAccountContext();
     stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
   }
   function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
@@ -302,14 +306,17 @@
       return null;
     }
   }
-  function startFromText(){
-    const text=$('askQuestion').value.trim();
-    hideUnsupported();
+  async function startFromText(){
+    const input=$('askQuestion');const text=input.value.trim();
+    hideUnsupported();hideAskPredictive();
     if(!text){ $('askStartMessage').textContent='Tell Carrowmont what you are trying to solve, or choose one of the suggested questions.'; return; }
     $('askStartMessage').textContent='';
-    const classified=api.classify(text);
-    if(!classified?.intent){ showUnsupported(text); return; }
-    startIntent(classified.intent,text);
+    let understood=text;let classified=api.classify(understood);
+    if(!classified?.intent&&window.CarrowmontSearch?.correct){
+      try{const correction=await window.CarrowmontSearch.correct(text);if(correction?.corrected&&correction.query){understood=correction.query;classified=api.classify(understood);if(classified?.intent){input.value=understood;$('askStartMessage').textContent=`I understood that as “${understood}”.`;}}}catch(_err){}
+    }
+    if(!classified?.intent){ showUnsupported(understood); return; }
+    startIntent(classified.intent,understood);
   }
   function updateProgress(){
     const all=api?.QUESTION_SETS?.[state.intent]||[];
@@ -580,7 +587,8 @@
     if(!window.CarrowmontAskMvp?.create){ $('askStartMessage').textContent='Ask Carrowmont is temporarily unavailable.'; return; }
     api=window.CarrowmontAskMvp.create();
     $('askStartBtn').addEventListener('click',startFromText);
-    $('askQuestion').addEventListener('keydown',event=>{ if((event.ctrlKey||event.metaKey)&&event.key==='Enter') startFromText(); });
+    $('askQuestion').addEventListener('input',updateAskPredictive);
+    $('askQuestion').addEventListener('keydown',event=>{ if(event.key==='Escape')hideAskPredictive(); if((event.ctrlKey||event.metaKey)&&event.key==='Enter') startFromText(); });
     $('askQuestionsForm').addEventListener('submit',submitQuestions);
     $('askDashboardSaveBtn')?.addEventListener('click',saveToDashboard);
     $('askContextIgnoreBtn')?.addEventListener('click',ignoreAccountContext);
