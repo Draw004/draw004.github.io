@@ -1,9 +1,10 @@
 (function () {
   'use strict';
 
-  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261114-fre8i';
-  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261114-fre8i';
-  var MIN_QUERY_LENGTH = 2;
+  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261118-fre12';
+  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261118-fre12';
+  var MIN_QUERY_LENGTH = 3;
+  var MIN_SUGGEST_LENGTH = 2;
   var DEFAULT_LIMIT = 12;
   var ASK_SEARCH_HANDOFF_KEY = 'carrowmont_search_handoff_v1';
   var ASK_SEARCH_HANDOFF_MAX_AGE_MS = 5 * 60 * 1000;
@@ -148,57 +149,102 @@
     window.scrollTo({ top: Math.max(0, top), behavior: reducedMotion() ? 'auto' : 'smooth' });
   }
 
-  function renderResults(widget, results) {
+  function renderResults(widget, results, correction) {
     clearNode(widget.results);
     var heading = document.createElement('div');
     heading.className = 'cm-search-results-heading';
     heading.dataset.cmSearchResultsHeading = '';
-    heading.appendChild(textElement('strong', '', 'Results for "' + widget.query + '"'));
+    var shownQuery = correction && correction.corrected ? correction.query : widget.query;
+    heading.appendChild(textElement('strong', '', 'Results for "' + shownQuery + '"'));
     heading.appendChild(textElement('span', '', results.length === 1 ? '1 match' : results.length + ' matches'));
     widget.results.appendChild(heading);
+    if (correction && correction.corrected) {
+      var note = document.createElement('p');
+      note.className = 'cm-search-correction-note';
+      note.appendChild(document.createTextNode('We interpreted your search as '));
+      var button = document.createElement('button'); button.type = 'button'; button.textContent = correction.query;
+      button.addEventListener('click', function () { widget.input.value = correction.query; runWidgetSearch(widget, correction.query, { reveal: true }); });
+      note.appendChild(button); note.appendChild(document.createTextNode('.'));
+      widget.results.appendChild(note);
+    }
     var fragment = document.createDocumentFragment();
     results.forEach(function (entry) { fragment.appendChild(resultCard(entry)); });
     widget.results.appendChild(fragment);
     setStatus(widget, results.length === 1 ? '1 result found.' : results.length + ' results found.');
     showSuggestions(widget, false);
+    hideTypeahead(widget);
     widget.root.dataset.searchState = 'results';
+  }
+
+  function hideTypeahead(widget) {
+    if (!widget || !widget.typeahead) return;
+    widget.typeahead.hidden = true;
+    clearNode(widget.typeahead);
+    widget.input.setAttribute('aria-expanded', 'false');
+  }
+
+  function renderTypeahead(widget, suggestions) {
+    if (!widget.typeahead) return;
+    clearNode(widget.typeahead);
+    if (!suggestions || !suggestions.length) { hideTypeahead(widget); return; }
+    var label = textElement('div', 'cm-search-typeahead-label', 'Suggestions');
+    widget.typeahead.appendChild(label);
+    suggestions.forEach(function (suggestion) {
+      var button = document.createElement('button');
+      button.type = 'button'; button.className = 'cm-search-typeahead-option'; button.setAttribute('role', 'option');
+      var text = textElement('span', '', suggestion.text); button.appendChild(text);
+      if (suggestion.type === 'correction') button.appendChild(textElement('small', '', 'Spelling suggestion'));
+      else if (suggestion.type === 'page') button.appendChild(textElement('small', '', 'Carrowmont result'));
+      button.addEventListener('click', function () {
+        widget.input.value = suggestion.text; widget.input.focus(); hideTypeahead(widget);
+        runWidgetSearch(widget, suggestion.text, { reveal: true });
+      });
+      widget.typeahead.appendChild(button);
+    });
+    widget.typeahead.hidden = false;
+    widget.input.setAttribute('aria-expanded', 'true');
+  }
+
+  function updateTypeahead(widget, value) {
+    var query = String(value == null ? '' : value).trim();
+    var normalized = window.CarrowmontSearchCore.normalize(query);
+    if (normalized.length < MIN_SUGGEST_LENGTH) { hideTypeahead(widget); return Promise.resolve([]); }
+    return loadData().then(function (data) {
+      if (widget.input.value.trim() !== query) return [];
+      var suggestions = window.CarrowmontSearchCore.suggest(data.index.entries, data.aliases, query, { region: regionCode(), limit: 6 });
+      renderTypeahead(widget, suggestions); return suggestions;
+    }).catch(function () { hideTypeahead(widget); return []; });
   }
 
   function runWidgetSearch(widget, value, options) {
     var opts = options || {};
     var query = String(value == null ? '' : value).trim();
     widget.query = query;
-    if (!query) {
-      resetWidget(widget);
-      return Promise.resolve([]);
-    }
-    if (window.CarrowmontSearchCore.normalize(query).length < MIN_QUERY_LENGTH) {
+    if (!query) { resetWidget(widget); hideTypeahead(widget); return Promise.resolve([]); }
+    var normalized = window.CarrowmontSearchCore.normalize(query);
+    if (normalized.length < MIN_QUERY_LENGTH) {
       clearNode(widget.results);
-      setStatus(widget, 'Type at least two meaningful characters.');
-      showSuggestions(widget, true);
-      widget.root.dataset.searchState = 'short';
+      setStatus(widget, normalized.length >= MIN_SUGGEST_LENGTH ? 'Keep typing, or choose a suggestion.' : 'Keep typing to search Carrowmont.');
+      showSuggestions(widget, true); widget.root.dataset.searchState = 'short';
+      updateTypeahead(widget, query);
       return Promise.resolve([]);
     }
 
-    setBusy(widget, true);
-    widget.root.dataset.searchState = 'loading';
-    setStatus(widget, 'Searching Carrowmont…');
+    setBusy(widget, true); widget.root.dataset.searchState = 'loading'; setStatus(widget, 'Searching Carrowmont…');
     return loadData().then(function (data) {
-      var results = window.CarrowmontSearchCore.search(data.index.entries, data.aliases, query, {
-        region: regionCode(),
-        limit: Number(widget.root.dataset.searchLimit) || DEFAULT_LIMIT
-      });
+      var core = window.CarrowmontSearchCore;
+      var correction = typeof core.correctQuery === 'function' ? core.correctQuery(data.index.entries, data.aliases, query, { region: regionCode() }) : { query: query, corrected: false };
+      var results = core.search(data.index.entries, data.aliases, query, { region: regionCode(), limit: Number(widget.root.dataset.searchLimit) || DEFAULT_LIMIT });
+      if (!results.length && correction.corrected) results = core.search(data.index.entries, data.aliases, correction.query, { region: regionCode(), limit: Number(widget.root.dataset.searchLimit) || DEFAULT_LIMIT });
       if (widget.query !== query) return results;
-      if (results.length) renderResults(widget, results);
-      else showEmpty(widget);
+      if (results.length) renderResults(widget, results, correction);
+      else { showEmpty(widget); updateTypeahead(widget, query); }
       if (opts.reveal) requestAnimationFrame(function () { revealResults(widget); });
       return results;
     }).catch(function () {
       if (widget.query === query) { showError(widget); if (opts.reveal) requestAnimationFrame(function () { revealResults(widget); }); }
       return [];
-    }).finally(function () {
-      if (widget.query === query) setBusy(widget, false);
-    });
+    }).finally(function () { if (widget.query === query) setBusy(widget, false); });
   }
 
   function debounce(fn, delay) {
@@ -224,11 +270,17 @@
     if (label) label.setAttribute('for', input.id);
     input.removeAttribute('name');
     input.setAttribute('autocomplete', 'off');
-    input.setAttribute('autocapitalize', 'none');
-    input.setAttribute('spellcheck', 'false');
+    input.setAttribute('autocapitalize', 'sentences');
+    input.setAttribute('autocorrect', 'on');
+    input.setAttribute('spellcheck', 'true');
+    input.setAttribute('aria-autocomplete', 'list');
+    input.setAttribute('aria-expanded', 'false');
+    var typeahead = document.createElement('div');
+    typeahead.className = 'cm-search-typeahead'; typeahead.hidden = true; typeahead.setAttribute('role', 'listbox');
+    typeahead.id = input.id + 'Suggestions'; input.setAttribute('aria-controls', typeahead.id); form.insertAdjacentElement('afterend', typeahead);
 
-    var widget = { root: root, form: form, input: input, submit: submit, results: results, status: status, suggestions: suggestions, query: '' };
-    var runDebounced = debounce(function () { runWidgetSearch(widget, input.value); }, 130);
+    var widget = { root: root, form: form, input: input, submit: submit, results: results, status: status, suggestions: suggestions, typeahead: typeahead, query: '' };
+    var runDebounced = debounce(function () { updateTypeahead(widget, input.value); runWidgetSearch(widget, input.value); }, 150);
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -240,6 +292,7 @@
         input.value = '';
         widget.query = '';
         resetWidget(widget);
+        hideTypeahead(widget);
         input.focus();
       }
     });
@@ -288,8 +341,10 @@
   }
 
   window.CarrowmontSearch = Object.freeze({
-    version: '1.1.0',
+    version: '1.2.0',
     search: publicSearch,
+    suggest: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.suggest(data.index.entries, data.aliases, query, { region: opts.region || regionCode(), limit: opts.limit || 6 }); }); },
+    correct: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.correctQuery(data.index.entries, data.aliases, query, { region: opts.region || regionCode() }); }); },
     ready: loadData,
     indexUrl: INDEX_URL,
     aliasesUrl: ALIASES_URL

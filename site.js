@@ -829,9 +829,6 @@
       '.mobile1-nav-item{min-width:0;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:#667e98;font:inherit;font-size:10.5px;font-weight:800;text-decoration:none;border-radius:12px;padding:4px 2px}',
       '.mobile1-nav-item svg{width:22px;height:22px;stroke-width:2}',
       '.mobile1-nav-item[aria-current="page"]{color:#08766e;background:#eaf7f5}',
-      '.mobile1-nav-item[data-mobile1-nav="ask"]{color:#08766e;font-weight:900}',
-      '.mobile1-nav-item[data-mobile1-nav="ask"] svg{width:24px;height:24px}',
-      '.mobile1-nav-item[data-mobile1-nav="ask"][aria-current="page"]{background:#dff4f1;color:#066c65}',
       '.mobile1-nav-item:focus-visible,.mobile1-header-search:focus-visible,.mobile1-more-link:focus-visible,.mobile1-quick-tool:focus-visible{outline:3px solid rgba(12,146,135,.28);outline-offset:2px}',
       '.mobile1-more-dialog{display:none}',
       '.mobile1-more-dialog[open]{display:block;position:fixed;inset:auto 0 0 0;width:100%;max-width:none;max-height:min(78%,650px);margin:0;border-radius:24px 24px 0 0;background:#fff;box-shadow:0 -18px 50px rgba(15,39,67,.18);overflow:auto;padding:0 0 calc(20px + env(safe-area-inset-bottom,0px));z-index:150}',
@@ -1064,45 +1061,6 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();
-})();
-
-
-/* FRE Batch 11 - homepage problem-first handoff to Ask Carrowmont. */
-(function(){
-  'use strict';
-  var KEY='carrowmont_home_ask_handoff_v1';
-  var MAX_AGE_MS=15*60*1000;
-  function homeOnly(){return document.body&&document.body.dataset.cmPage==='home';}
-  function writeHandoff(query){
-    try{
-      sessionStorage.setItem(KEY,JSON.stringify({version:1,query:query,createdAt:Date.now(),expiresAt:Date.now()+MAX_AGE_MS,source:'home'}));
-      return true;
-    }catch(_err){return false;}
-  }
-  function init(){
-    if(!homeOnly())return;
-    var form=document.querySelector('[data-home-decision-entry]');
-    var input=document.getElementById('homeDecisionQuestion');
-    var status=document.querySelector('[data-home-decision-status]');
-    if(!form||!input)return;
-    form.addEventListener('submit',function(event){
-      event.preventDefault();
-      var query=String(input.value||'').trim();
-      if(!query){
-        if(status)status.textContent='Tell Carrowmont what you are trying to solve, or choose one of the suggested questions.';
-        input.focus();
-        return;
-      }
-      if(status)status.textContent='';
-      if(!writeHandoff(query)){
-        if(status)status.textContent='Your browser blocked the private handoff. Open Ask Carrowmont and enter the question there.';
-        return;
-      }
-      window.location.assign('/ask-carrowmont.html');
-    });
-    input.addEventListener('input',function(){if(status&&status.textContent)status.textContent='';});
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 
 

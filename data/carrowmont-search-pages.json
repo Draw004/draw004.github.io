@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-11-14",
+  "reviewed_at": "2026-11-18",
   "entries": [
     {
       "url": "/",
@@ -229,6 +229,38 @@
         "what is asset allocation"
       ],
       "priority": 65
+    },
+    {
+      "url": "/balance-transfer-credit-card.html",
+      "title": "Credit Card Balance Transfer: When Is It Worth It?",
+      "description": "Understand transfer fees, promotional rates, repayment timelines and the post-promotion rate before moving credit-card debt to a balance-transfer offer.",
+      "type": "guide",
+      "category": "Debt & Credit",
+      "keywords": [
+        "credit card balance transfer",
+        "balance transfer credit card",
+        "balance transfer fee",
+        "0 percent balance transfer",
+        "promotional interest rate",
+        "credit card debt transfer",
+        "balance transfer break even"
+      ],
+      "aliases": [
+        "is a balance transfer worth it",
+        "move credit card debt",
+        "transfer card balance",
+        "0 apr balance transfer",
+        "zero interest balance transfer"
+      ],
+      "priority": 84,
+      "topics": [
+        "credit-card",
+        "debt"
+      ],
+      "intents": [
+        "compare",
+        "explain"
+      ]
     },
     {
       "url": "/biweekly-fortnightly-mortgage-payments.html",
@@ -720,6 +752,39 @@
         "what is diversification"
       ],
       "priority": 65
+    },
+    {
+      "url": "/early-retirement-planning.html",
+      "title": "Early Retirement: What Changes if You Retire 5 or 10 Years Earlier?",
+      "description": "See how fewer saving years, more withdrawal years, healthcare, pension timing, inflation and sequence risk can change an early-retirement plan.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "early retirement planning",
+        "retire early",
+        "retire 5 years earlier",
+        "retire 10 years earlier",
+        "early retirement savings",
+        "early retirement risk",
+        "bridge to pension"
+      ],
+      "aliases": [
+        "what changes if i retire early",
+        "can i retire earlier",
+        "planning to retire early",
+        "retirement age scenario",
+        "early retirement costs"
+      ],
+      "priority": 84,
+      "topics": [
+        "retirement",
+        "financial-independence"
+      ],
+      "intents": [
+        "timing",
+        "plan",
+        "compare"
+      ]
     },
     {
       "url": "/editorial-policy.html",
@@ -1239,6 +1304,34 @@
       ],
       "aliases": [],
       "priority": 65
+    },
+    {
+      "url": "/how-much-save-for-retirement-each-month.html",
+      "title": "How Much Should You Save for Retirement Each Month?",
+      "description": "Work backward from future spending, current retirement assets, time and planning assumptions to estimate a monthly retirement contribution.",
+      "type": "guide",
+      "category": "Retirement",
+      "keywords": [
+        "how much save for retirement each month",
+        "monthly retirement savings",
+        "retirement contribution per month",
+        "how much should i save for retirement",
+        "retirement monthly contribution"
+      ],
+      "aliases": [
+        "how much should i put away for retirement",
+        "retirement savings per month",
+        "monthly pension saving",
+        "how much to invest for retirement monthly"
+      ],
+      "priority": 86,
+      "topics": [
+        "retirement"
+      ],
+      "intents": [
+        "calculate",
+        "plan"
+      ]
     },
     {
       "url": "/how-much-should-i-invest-each-month.html",
@@ -2051,6 +2144,64 @@
       "priority": 65
     },
     {
+      "url": "/mutual-funds-explained.html",
+      "title": "Mutual Funds Explained: How They Work, Costs and Risks",
+      "description": "Understand how mutual funds work, how NAV is calculated, what fees and portfolio overlap can change, and how to compare funds without chasing past returns.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "mutual funds explained",
+        "mutual fund",
+        "mutual funds",
+        "mutual fund nav",
+        "mutual fund fees",
+        "active mutual fund",
+        "passive mutual fund",
+        "how to choose a mutual fund",
+        "mutual fund diversification"
+      ],
+      "aliases": [
+        "what is a mutual fund",
+        "how do mutual funds work",
+        "mutual fund costs",
+        "mutual fund risks",
+        "mutual fund vs etf",
+        "managed fund"
+      ],
+      "priority": 84,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "compare",
+        "start"
+      ]
+    },
+    {
+      "url": "/my-carrowmont.html",
+      "title": "My Carrowmont — Save Financial Plans & Planning Insights",
+      "description": "Save retirement, goals, debt, loan and other financial plans, access them across devices and see deeper planning insights over time.",
+      "type": "carrowmont",
+      "category": "Carrowmont",
+      "keywords": [
+        "my carrowmont",
+        "financial dashboard",
+        "money dashboard",
+        "financial planning dashboard",
+        "money priorities",
+        "personal finance dashboard"
+      ],
+      "aliases": [
+        "my dashboard",
+        "my financial plan",
+        "financial overview",
+        "money overview",
+        "what carrowmont knows about me"
+      ],
+      "priority": 94
+    },
+    {
       "url": "/one-extra-mortgage-payment-a-year.html",
       "title": "One Extra Mortgage Payment a Year",
       "description": "See how one extra mortgage or home-loan payment each year can change payoff time and interest, with transparent 25-year examples and lender-rule caveats.",
@@ -2071,6 +2222,38 @@
         "extra home loan payment yearly"
       ],
       "priority": 65
+    },
+    {
+      "url": "/pay-off-debt-or-invest.html",
+      "title": "Pay Off Debt or Invest? A Practical Decision Framework",
+      "description": "Compare guaranteed debt savings with uncertain investment returns, emergency liquidity, taxes, risk and flexibility before deciding where extra money should go.",
+      "type": "guide",
+      "category": "Debt & Credit",
+      "keywords": [
+        "pay off debt or invest",
+        "pay debt vs invest",
+        "invest or pay off debt",
+        "debt interest vs investment return",
+        "extra money debt or invest",
+        "debt payoff investing"
+      ],
+      "aliases": [
+        "should i pay off debt or invest",
+        "pay loan or invest",
+        "pay credit card or invest",
+        "invest or repay debt",
+        "debt versus investing"
+      ],
+      "priority": 86,
+      "topics": [
+        "debt",
+        "investing"
+      ],
+      "intents": [
+        "compare",
+        "payoff",
+        "plan"
+      ]
     },
     {
       "url": "/pay-off-mortgage-five-years-early.html",
@@ -2139,7 +2322,7 @@
     {
       "url": "/planning-life-goals.html",
       "title": "Planning for life goals",
-      "description": "Turn education, a home, travel, a career change or another future milestone into clearer assumptions about cost, timing, inflation and available resources.",
+      "description": "Plan and prioritize multiple financial goals using cost, timing, consequence, flexibility, funding floors and available monthly surplus.",
       "type": "guide",
       "category": "Goals & Saving",
       "keywords": [
@@ -2147,10 +2330,28 @@
         "A future goal becomes easier to plan when you separate the assumptions.",
         "planning",
         "life",
-        "goals"
+        "goals",
+        "prioritize financial goals",
+        "multiple financial goals",
+        "competing financial goals",
+        "goal priority",
+        "funding priorities",
+        "financial goal trade offs"
       ],
-      "aliases": [],
-      "priority": 65
+      "aliases": [
+        "how to prioritize financial goals",
+        "which financial goal first",
+        "how to fund multiple goals",
+        "prioritize savings goals"
+      ],
+      "priority": 82,
+      "topics": [
+        "saving-goals"
+      ],
+      "intents": [
+        "plan",
+        "compare"
+      ]
     },
     {
       "url": "/privacy.html",
@@ -3141,6 +3342,39 @@
       "priority": 86
     },
     {
+      "url": "/what-to-do-with-a-lump-sum.html",
+      "title": "What to Do With a Lump Sum of Money",
+      "description": "Use a practical sequence for emergency resilience, expensive debt, near-term goals and long-term investing before deciding how to allocate a lump sum.",
+      "type": "guide",
+      "category": "Goals & Saving",
+      "keywords": [
+        "what to do with a lump sum",
+        "lump sum money",
+        "windfall money",
+        "allocate lump sum",
+        "invest lump sum",
+        "pay debt with lump sum",
+        "cash windfall"
+      ],
+      "aliases": [
+        "what should i do with extra money",
+        "what to do with a windfall",
+        "received a lump sum",
+        "how to allocate extra cash",
+        "bonus money what to do"
+      ],
+      "priority": 84,
+      "topics": [
+        "saving-goals",
+        "investing",
+        "debt"
+      ],
+      "intents": [
+        "plan",
+        "compare"
+      ]
+    },
+    {
       "url": "/when-can-i-reach-financial-independence.html",
       "title": "When could you reach financial independence?",
       "description": "Estimate how the path to financial independence changes with spending, existing assets, monthly contributions and return assumptions.",
@@ -3162,6 +3396,42 @@
         "when will i reach fi"
       ],
       "priority": 65
+    },
+    {
+      "url": "/where-to-keep-short-term-savings.html",
+      "title": "Where to Keep Short-Term Savings",
+      "description": "Compare savings accounts, term deposits or CDs, money market options and short government bills by liquidity, capital stability, maturity and time horizon.",
+      "type": "guide",
+      "category": "Budgeting & Saving",
+      "keywords": [
+        "short term savings",
+        "where to keep short term savings",
+        "cash savings",
+        "savings account",
+        "term deposit",
+        "certificate of deposit",
+        "cd",
+        "money market",
+        "treasury bills",
+        "short government bills"
+      ],
+      "aliases": [
+        "where should i keep cash",
+        "best place for short term money",
+        "short term cash options",
+        "near term savings",
+        "safe place for savings"
+      ],
+      "priority": 82,
+      "topics": [
+        "budgeting",
+        "saving-goals"
+      ],
+      "intents": [
+        "compare",
+        "plan",
+        "explain"
+      ]
     },
     {
       "url": "/why-central-banks-buy-gold.html",
@@ -3243,29 +3513,6 @@
         "zero sum budget"
       ],
       "priority": 65
-    },
-    {
-      "url": "/my-carrowmont.html",
-      "title": "My Carrowmont — Save Financial Plans & Planning Insights",
-      "description": "Save retirement, goals, debt, loan and other financial plans, access them across devices and see deeper planning insights over time.",
-      "type": "carrowmont",
-      "category": "Carrowmont",
-      "keywords": [
-        "my carrowmont",
-        "financial dashboard",
-        "money dashboard",
-        "financial planning dashboard",
-        "money priorities",
-        "personal finance dashboard"
-      ],
-      "aliases": [
-        "my dashboard",
-        "my financial plan",
-        "financial overview",
-        "money overview",
-        "what carrowmont knows about me"
-      ],
-      "priority": 94
     }
   ]
 }

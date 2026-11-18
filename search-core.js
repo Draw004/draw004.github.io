@@ -49,6 +49,37 @@
     return ['ed','er','ers','ing','ment','ments','ion','ions','al','ally','able','ability','ible','ity','ities','or','ors'].includes(suffix);
   }
 
+  function editDistance(a, b, maxDistance) {
+    var left = String(a || '');
+    var right = String(b || '');
+    var cap = Number.isFinite(maxDistance) ? maxDistance : Math.max(left.length, right.length);
+    if (Math.abs(left.length - right.length) > cap) return cap + 1;
+    var previous = Array.from({ length: right.length + 1 }, function (_, i) { return i; });
+    for (var i = 1; i <= left.length; i += 1) {
+      var current = [i];
+      var rowBest = i;
+      for (var j = 1; j <= right.length; j += 1) {
+        var cost = left[i - 1] === right[j - 1] ? 0 : 1;
+        var value = Math.min(current[j - 1] + 1, previous[j] + 1, previous[j - 1] + cost);
+        if (i > 1 && j > 1 && left[i - 1] === right[j - 2] && left[i - 2] === right[j - 1]) {
+          value = Math.min(value, (i > 2 ? previous[j - 2] : j - 2) + 1);
+        }
+        current[j] = value;
+        rowBest = Math.min(rowBest, value);
+      }
+      if (rowBest > cap) return cap + 1;
+      previous = current;
+    }
+    return previous[right.length];
+  }
+
+  function fuzzyToken(token, candidate) {
+    if (!token || !candidate || token.length < 4 || candidate.length < 4) return false;
+    if (token[0] !== candidate[0] || Math.abs(token.length - candidate.length) > 2) return false;
+    var maxDistance = Math.max(token.length, candidate.length) >= 8 ? 2 : 1;
+    return editDistance(token, candidate, maxDistance) <= maxDistance;
+  }
+
   function tokenMatch(token, haystackTokens) {
     var forms = tokenForms(token);
     for (var i = 0; i < forms.length; i += 1) {
@@ -59,6 +90,8 @@
           var candidate = candidateForms[k];
           if (candidate === form) return 2;
           if (safeDerivedToken(form, candidate) || safeDerivedToken(candidate, form)) return 1;
+          if (form.length >= 3 && candidate.length >= 5 && candidate.startsWith(form)) return 1;
+          if (fuzzyToken(form, candidate)) return 1;
         }
       }
     }
@@ -328,6 +361,83 @@
     return score >= minimumScore ? score : 0;
   }
 
+
+  function vocabulary(entries, aliasLibrary, region) {
+    var phrases = [];
+    var words = new Set();
+    function add(value) {
+      var normalized = normalize(value);
+      if (!normalized) return;
+      phrases.push(normalized);
+      tokenize(normalized, { meaningful: false }).forEach(function (word) { if (word.length >= 3) words.add(word); });
+    }
+    list(entries).forEach(function (entry) {
+      add(entry.title); list(entry.aliases).forEach(add); localeAliasList(entry, region).forEach(add); list(entry.keywords).forEach(add);
+    });
+    ['topics','intents'].forEach(function (key) { taxonomyDefinitions(aliasLibrary, key).forEach(function (def) { taxonomyTerms(def, region).forEach(add); }); });
+    list(aliasLibrary && aliasLibrary.groups).forEach(function (group) {
+      list(group.terms).forEach(add);
+      var localeMap = group.locale_terms && typeof group.locale_terms === 'object' ? group.locale_terms : {};
+      list(localeMap[region]).concat(region === 'OTHER' ? [] : list(localeMap.OTHER)).forEach(add);
+    });
+    return { phrases: Array.from(new Set(phrases)), words: Array.from(words) };
+  }
+
+  function correctQuery(entries, aliasLibrary, query, options) {
+    var opts = options || {};
+    var region = opts.region || 'OTHER';
+    var normalized = normalize(query);
+    if (!normalized) return { query: '', corrected: false, changes: [] };
+    var vocab = vocabulary(entries, aliasLibrary, region);
+    var changes = [];
+    var correctedTokens = normalized.split(' ').map(function (token) {
+      if (token.length < 4 || QUESTION_STOP_WORDS.has(token) || vocab.words.includes(token)) return token;
+      var best = null;
+      var bestDistance = Infinity;
+      vocab.words.forEach(function (candidate) {
+        if (candidate[0] !== token[0] || Math.abs(candidate.length - token.length) > 2) return;
+        var cap = Math.max(token.length, candidate.length) >= 8 ? 2 : 1;
+        var distance = editDistance(token, candidate, cap);
+        if (distance <= cap && (distance < bestDistance || (distance === bestDistance && candidate.length < (best || '').length))) {
+          best = candidate; bestDistance = distance;
+        }
+      });
+      if (best && best !== token) { changes.push({ from: token, to: best }); return best; }
+      return token;
+    });
+    var corrected = correctedTokens.join(' ');
+    return { query: corrected, corrected: corrected !== normalized, changes: changes };
+  }
+
+  function suggest(entries, aliasLibrary, query, options) {
+    var opts = options || {};
+    var region = opts.region || 'OTHER';
+    var limit = Math.max(1, Math.min(10, Number(opts.limit) || 6));
+    var normalized = normalize(query);
+    if (normalized.length < 2) return [];
+    var suggestions = [];
+    var seen = new Set();
+    function add(text, type, url, score) {
+      var label = String(text || '').trim(); var key = normalize(label);
+      if (!key || seen.has(key)) return;
+      seen.add(key); suggestions.push({ text: label, type: type || 'suggestion', url: url || '', score: score || 0 });
+    }
+    var correction = correctQuery(entries, aliasLibrary, query, { region: region });
+    if (correction.corrected) add(correction.query, 'correction', '', 2000);
+    list(entries).forEach(function (entry) {
+      var title = String(entry.title || '').trim(); var titleNorm = normalize(title);
+      var priority = Math.max(0, Math.min(100, Number(entry.priority) || 0));
+      if (titleNorm.startsWith(normalized)) add(title, 'page', entry.url, 1500 + priority * 5 - titleNorm.length);
+      else if (titleNorm.split(' ').some(function (word) { return word.startsWith(normalized); })) add(title, 'page', entry.url, 1150 + priority * 4 - titleNorm.length);
+      list(entry.aliases).concat(localeAliasList(entry, region)).forEach(function (alias) {
+        var a = normalize(alias); if (a.startsWith(normalized)) add(alias, 'phrase', entry.url, 1000 - a.length);
+      });
+    });
+    var ranked = search(entries, aliasLibrary, correction.corrected ? correction.query : query, { region: region, limit: Math.max(limit, 8) });
+    ranked.forEach(function (entry, index) { add(entry.title, 'page', entry.url, 900 - index * 10); });
+    return suggestions.sort(function (a, b) { return b.score - a.score || a.text.localeCompare(b.text, 'en', { sensitivity: 'base' }); }).slice(0, limit).map(function (item) { return { text: item.text, type: item.type, url: item.url }; });
+  }
+
   function search(entries, aliasLibrary, query, options) {
     var opts = options || {};
     var limit = Math.max(1, Math.min(30, Number(opts.limit) || 12));
@@ -414,9 +524,12 @@
   }
 
   return Object.freeze({
-    version: '1.1.0',
+    version: '1.2.0',
     normalize: normalize,
     tokenize: tokenize,
+    editDistance: editDistance,
+    correctQuery: correctQuery,
+    suggest: suggest,
     analyzeQuery: analyzeQuery,
     inferEntrySignals: inferEntrySignals,
     scoreEntry: scoreEntry,

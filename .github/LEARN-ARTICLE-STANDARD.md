@@ -1,7 +1,7 @@
 # Carrowmont Learn Article Standard
 
-**Version:** 2.2  
-**Effective:** 14 November 2026
+**Version:** 2.3  
+**Effective:** 18 November 2026
 
 This is the required structure and editorial-depth standard for every indexable Carrowmont Learn article. It exists so future guides inherit the same layout, trust signals, SEO treatment, tool journey and content quality without repeating one-off page work.
 
@@ -10,7 +10,7 @@ This is the required structure and editorial-depth standard for every indexable 
 Every Learn Article page must include:
 
 - `data-cm-learn-article="1"` on `<body>`
-- `learn-article.css?v=20260928-standard2` after legacy/page-specific styles
+- `learn-article.css?v=20261022-presentation2` after legacy/page-specific styles
 - `learn-article.js?v=20260928-standard2` before `</body>`
 
 The shared CSS owns the compact article hero, responsive H1 sizing, top/bottom relevant-tool actions, rich-answer blocks, formulas, worked examples, tables, notes, source treatment, compact educational disclaimer and related-guide presentation.
@@ -103,6 +103,23 @@ The standard deliberately does **not** impose one universal word count. A focuse
 
 For the current 83-guide library, automated QA also uses **1,000 words of visible guide text as a regression floor** so an accidental rollback to the previous thin-page state fails staged QA. This is a floor, not a writing target: a future focused guide may justify an exception only through an intentional QA/standard review rather than by silently weakening content.
 
+### Understanding-first editorial rule
+
+Carrowmont Learn exists to build understanding, not merely to provide a short answer to a search query. A reader should finish a guide able to explain the core idea, recognize the main trade-offs and test the concept against their own situation with more confidence than when they arrived.
+
+For every substantive topic, the editorial review should be able to answer these questions clearly:
+
+1. **What is it?** Define the concept in plain language without assuming specialist knowledge.
+2. **How does it work?** Explain the mechanics, moving parts and relationships that produce the result.
+3. **Why does it matter?** Connect the concept to a real planning decision or consequence.
+4. **What changes the outcome?** Identify the assumptions, inputs or circumstances that materially alter the answer.
+5. **What can go wrong?** Cover limitations, risks, common mistakes and situations in which the usual rule of thumb can mislead.
+6. **How should the reader think about the decision?** Give a practical framework, not a universal prescription.
+
+When numbers or assumptions materially affect the decision, prefer the learning sequence **concept -> worked example -> change an assumption -> explain the effect**. The purpose is to develop intuition, not simply display a calculation.
+
+The relevant Carrowmont tool is the next part of the lesson, not a generic promotional button. Teach the concept first, then link the reader to the calculator or planner at the point where testing their own assumptions becomes useful.
+
 ## 5. Evidence and sourcing standard
 
 Prefer primary or high-authority sources where available, including regulators, investor-education bodies, central banks/international institutions, recognized research organizations and original researchers.
@@ -141,14 +158,26 @@ Sources and the educational disclaimer must remain present but visually secondar
 
 A new Learn article is not complete merely because an HTML file exists. Before release it must:
 
-1. use the shared article assets and structure;
-2. satisfy the depth standard above;
-3. be added to the Learn hub and sitemap;
-4. link to an appropriate Carrowmont tool and related guides;
-5. include Article + Breadcrumb structured data and self-canonical metadata;
-6. include authoritative sources;
-7. pass source-contract and browser QA;
-8. be reviewed for mobile/desktop readability and factual accuracy.
+1. pass the existing-library/content-collision review below;
+2. use the shared article assets and structure;
+3. satisfy the depth and understanding-first standards above;
+4. be added to the Learn hub and sitemap;
+5. link to an appropriate Carrowmont tool and related guides;
+6. include Article + Breadcrumb structured data and self-canonical metadata;
+7. include authoritative sources;
+8. pass source-contract and browser QA;
+9. be reviewed for mobile/desktop readability and factual accuracy.
+
+### Existing-library and content-collision review
+
+Before creating a new public Learn URL, review the current Carrowmont Learn library, relevant Research pages, applicable tool explanations and the local Search inventory. Map the proposed article's primary reader problem and search intent against those existing destinations.
+
+- If an existing page already owns the same intent, **improve that page rather than create a competing URL**.
+- Create a new URL only when it solves a distinct reader problem or serves a genuinely distinct search intent.
+- When two subjects are close neighbours, document why the new destination is meaningfully different and define the internal-link relationship between them.
+- Check the new page's Learn cluster, inbound contextual links, related-guide links and relevant tool path before publication.
+- Use Search Console/search evidence to prioritize useful opportunities, but do not create overlapping pages merely because a new keyword variation appears.
+- Preserve Carrowmont's established Learn layout, tone, educational approach and country-aware terminology unless an intentional design/editorial change is separately approved.
 
 ## 9. Release rule
 
