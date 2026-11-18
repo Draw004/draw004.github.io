@@ -132,22 +132,31 @@ body.mycm-authenticated .mycm-plan-model{margin-top:0}
 @media(max-width:980px){.mycm-plan-area-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mycm-plan-support-grid{grid-template-columns:1fr}.mycm-plan-head{align-items:stretch}.mycm-plan-head .mycm-button{max-width:250px}}
 @media(max-width:660px){.mycm-financial-plan{padding:16px}.mycm-plan-head{flex-direction:column}.mycm-plan-head h2{font-size:24px}.mycm-plan-head .mycm-button{max-width:none;width:100%}.mycm-plan-overview{align-items:stretch;flex-direction:column}.mycm-plan-overview>small{text-align:left}.mycm-plan-overview-links{min-width:0;width:100%}.mycm-plan-area-grid{grid-template-columns:1fr}.mycm-plan-area-actions{align-items:flex-start;flex-direction:column}.mycm-plan-source ul{left:0;right:auto}.mycm-plan-support-grid{grid-template-columns:1fr}}
 
-/* PWA startup: approved Draw the C. Android's system splash is static; this follows on first page paint. */
+/* Draw the C, corrected: full logo travels from top to bottom only on mobile app-icon launch. */
 .cm-pwa-boot{display:none}
 .cm-pwa-launching .cm-pwa-boot,.cm-pwa-launched .cm-pwa-boot{
-  position:fixed;z-index:10000;inset:0;display:grid;place-items:center;
+  position:fixed;z-index:10000;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;
   background:#f8fbfc;pointer-events:none;opacity:1;
 }
-.cm-pwa-boot-mark{width:100px;height:100px;filter:drop-shadow(0 8px 18px rgba(12,63,68,.12))}
-.cm-pwa-boot-mark svg{display:block;width:100%;height:100%;border-radius:19px}
-.cm-pwa-draw-stroke{stroke-dasharray:1;stroke-dashoffset:1;animation:cm-pwa-draw-c 850ms cubic-bezier(.26,.08,.22,1) forwards}
-.cm-pwa-draw-finish{opacity:0;animation:cm-pwa-complete-c 850ms linear forwards}
-@keyframes cm-pwa-draw-c{0%{stroke-dashoffset:1}82%,100%{stroke-dashoffset:0}}
-@keyframes cm-pwa-complete-c{0%,91%{opacity:0}100%{opacity:1}}
-.cm-pwa-launched .cm-pwa-boot{opacity:0;transition:opacity 210ms ease-out}
+.cm-pwa-boot-mark{width:112px;height:112px;filter:drop-shadow(0 8px 18px rgba(12,63,68,.12))}
+.cm-pwa-boot-mark svg{display:block;width:100%;height:100%;border-radius:21px}
+.cm-pwa-draw-stroke{stroke-dasharray:1;stroke-dashoffset:1;animation:cm-pwa-draw-c 750ms cubic-bezier(.26,.08,.22,1) forwards}
+.cm-pwa-draw-finish{opacity:0;animation:cm-pwa-complete-c 750ms linear forwards}
+.cm-pwa-boot-tagline{margin:0;color:#32495b;font-size:13px;font-weight:750;letter-spacing:.01em;text-align:center;opacity:0;animation:cm-pwa-tagline 750ms ease-out forwards}
+@keyframes cm-pwa-draw-c{0%{stroke-dashoffset:1}100%{stroke-dashoffset:0}}
+@keyframes cm-pwa-complete-c{0%,94%{opacity:0}100%{opacity:1}}
+@keyframes cm-pwa-tagline{0%,49%{opacity:0;transform:translateY(3px)}70%,100%{opacity:1;transform:translateY(0)}}
+.cm-pwa-launched .cm-pwa-boot{opacity:0;transition:opacity 180ms ease-out}
+/* Desktop installed-app opening: no screen overlay or navigation delay. */
+.cm-pwa-desktop-entry .site-header .brand-name{animation:cm-pwa-desktop-brand 300ms ease-out both}
+@keyframes cm-pwa-desktop-brand{from{opacity:.68;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+.mycm-install-shortcut{margin:8px 0 0;font-size:12px;font-weight:750}
+.mycm-install-shortcut a{color:#08766e;text-underline-offset:3px}
+.mycm-install-shortcut[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){
-  .cm-pwa-draw-stroke,.cm-pwa-draw-finish{animation:none}
+  .cm-pwa-draw-stroke,.cm-pwa-draw-finish,.cm-pwa-boot-tagline,.cm-pwa-desktop-entry .site-header .brand-name{animation:none!important}
   .cm-pwa-draw-stroke{stroke-dashoffset:0}
-  .cm-pwa-draw-finish{opacity:1}
-  .cm-pwa-launched .cm-pwa-boot{transition:opacity 70ms linear}
+  .cm-pwa-draw-finish,.cm-pwa-boot-tagline{opacity:1}
+  .cm-pwa-launched .cm-pwa-boot{transition:none}
 }

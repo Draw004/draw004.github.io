@@ -24,7 +24,7 @@
   <meta name="twitter:description" content="Carrowmont helps you plan retirement, goals, debt, cash flow and other financial decisions, keep meaningful plans in My Carrowmont and track progress over time.">
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Carrowmont | Financial Planning, Tools &amp; Learning</title>
-  <link rel="stylesheet" href="carrowmont.css?v=20261117-fre11">
+  <link rel="stylesheet" href="carrowmont.css?v=20261119-app-behavior-v5">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://carrowmont.com/#website","name":"Carrowmont","alternateName":"carrowmont.com","url":"https://carrowmont.com/","description":"Financial planning tools and educational resources for budgeting, cash flow, investing, retirement, inflation and major life goals.","publisher":{"@id":"https://carrowmont.com/#organization"},"inLanguage":"en"},{"@type":"Organization","@id":"https://carrowmont.com/#organization","name":"Carrowmont","url":"https://carrowmont.com/","description":"Carrowmont publishes educational financial planning calculators, scenario tools, independent research and learning resources.","email":"contact@carrowmont.com","sameAs":["https://www.linkedin.com/company/carrowmont/","https://www.facebook.com/carrowmont","https://www.instagram.com/carrowmont.finance/","https://www.youtube.com/@carrowmontfinance"]}]}</script>
 
@@ -95,8 +95,45 @@
     }
   </style>
 
+  <link rel="stylesheet" href="/assets/pwa/carrowmont-launch.css?v=20261119-v5">
+  <script>
+  (function(){
+    try {
+      var launch = new URL(window.location.href).searchParams.get('source') === 'pwa';
+      var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+      if (!launch || !standalone) return;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
+      if (mobile && !reduced) {
+        var iconPreload = document.createElement('link');
+        iconPreload.rel = 'preload'; iconPreload.as = 'image'; iconPreload.href = '/assets/pwa/carrowmont-512.png';
+        document.head.appendChild(iconPreload);
+        document.documentElement.classList.add('cm-home-pwa-launch');
+        window.__cmHomePwaLaunchStart = performance.now();
+      } else if (!mobile && !reduced) {
+        document.documentElement.classList.add('cm-home-pwa-desktop');
+      }
+    } catch (_) { /* Startup effects must never prevent normal navigation. */ }
+  })();
+  </script>
 </head>
 <body data-cm-page="home">
+<div class="cm-home-pwa-boot" aria-hidden="true">
+  <div class="cm-home-pwa-boot-mark">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+      <defs>
+        <mask id="cmHomePwaCReveal" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+          <path class="cm-home-pwa-c-stroke" pathLength="1" d="M355 164 C306 109 246 95 188 126 C137 153 109 204 110 263 C111 328 139 383 204 404 C253 422 306 412 356 361" fill="none" stroke="white" stroke-width="93" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="cm-home-pwa-c-finish" x="0" y="0" width="512" height="512" fill="white"/>
+        </mask>
+      </defs>
+      <rect width="512" height="512" rx="96" fill="#0c9287"/>
+      <image href="/assets/pwa/carrowmont-512.png" width="512" height="512" mask="url(#cmHomePwaCReveal)"/>
+    </svg>
+  </div>
+  <p class="cm-home-pwa-tagline">Plan today. Build tomorrow.</p>
+</div>
+
   <header class="site-header">
   <div class="shell header-inner">
     <a class="brand" href="/" aria-label="Carrowmont home">
@@ -468,8 +505,32 @@
 </footer>
 
   <script src="locale.js?v=20261010-tools-hub1"></script>
-  <script src="site.js?v=20261118-fre12"></script>
+  <script src="site.js?v=20261119-app-behavior-v5"></script>
 
 
+<script>
+(function(){
+  var root = document.documentElement;
+  if (root.classList.contains('cm-home-pwa-desktop')) {
+    window.setTimeout(function(){ root.classList.remove('cm-home-pwa-desktop'); }, 350);
+  }
+  if (!root.classList.contains('cm-home-pwa-launch')) return;
+  var released = false;
+  function finish(){
+    if (released) return;
+    released = true;
+    var elapsed = performance.now() - (window.__cmHomePwaLaunchStart || performance.now());
+    // Only the installed mobile app ICON launch has this brief intro.
+    window.setTimeout(function(){
+      root.classList.remove('cm-home-pwa-launch');
+      root.classList.add('cm-home-pwa-dismissing');
+      window.setTimeout(function(){ root.classList.remove('cm-home-pwa-dismissing'); }, 210);
+    }, Math.max(0, 875 - elapsed));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', finish, {once:true});
+  else requestAnimationFrame(finish);
+  window.setTimeout(finish, 1200);
+})();
+</script>
 </body>
 </html>

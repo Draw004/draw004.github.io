@@ -518,3 +518,17 @@ body[data-cm-page="home"] .hero-copy h1{font-size:clamp(42px,3vw,56px);line-heig
 body[data-cm-page="home"] .hero-copy h1 span{white-space:normal}
 body[data-cm-page="home"] .hero-lede{margin-bottom:0;max-width:620px;font-size:17.5px;line-height:1.55}
 
+
+/* Carrowmont app/web behaviour v1: desktop active navigation is route-driven only. */
+.desktop-nav>a:not(.site-search-link){position:relative;color:var(--navy)}
+.desktop-nav>a.site-ask-link:not([aria-current="page"]){color:var(--navy)}
+.desktop-nav>a[aria-current="page"]:not(.site-search-link){color:var(--teal-dark)}
+.desktop-nav>a[aria-current="page"]:not(.site-search-link)::after{
+  content:"";position:absolute;left:0;right:0;bottom:-8px;height:3px;
+  background:var(--teal);border-radius:10px;
+}
+.desktop-nav>a:not(.site-search-link):hover{color:var(--teal-dark)}
+.desktop-nav>a:focus-visible{outline:3px solid rgba(12,146,135,.23);outline-offset:4px;border-radius:4px}
+
+/* Mobile Search is its own navigation action; no bottom-tab proxy is selected. */
+.mobile1-header-search[aria-current="page"]{border-color:#0e827a!important;background:#e8f7f5!important;color:#0b6f69!important}
