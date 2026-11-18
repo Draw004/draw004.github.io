@@ -34,6 +34,10 @@ The shared JavaScript reuses the top relevant-tool link to create the consistent
 13. `Back to all learning guides`
 14. Three related-guide cards where practical
 
+### Display-heading punctuation
+
+For all Learn H1–H6 headings, omit the trailing full stop. Preserve questions, meaningful abbreviations and punctuation in regular sentences, explanations, worked examples and source notes. This is a display typography rule, not permission to rewrite article content or change SEO intent. It also applies to any dynamically generated visible heading.
+
 ## 3. Required search/editorial metadata
 
 - self-canonical URL

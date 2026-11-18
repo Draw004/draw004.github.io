@@ -62,6 +62,12 @@ The approved `CARROWMONT_CORE7_HOME_LOAN_MORTGAGE_PAYOFF_SPEC.md` expands the pr
 
 ---
 
+### Display headline punctuation rule — 18 November 2026
+
+Carrowmont uses **no terminal full stop on display headings** (`h1`–`h6`, large hero messages and standalone section titles). A two-line headline must not place a trailing full stop after either visual line. Do not rewrite the heading, strip meaningful question marks/exclamation marks, or change existing layout and emphasis to enforce this rule.
+
+Normal sentences in introductions, descriptions, Learn paragraphs, warnings, informational status messages, citations, SEO descriptions, legal text and brand/tagline microcopy retain ordinary punctuation. Ellipses such as `Calculating...`, abbreviations and decimal numbers are not decorative full stops and must be preserved. Apply the rule to headings created by JavaScript as well as static HTML, including across the tool repositories. Check it in source QA before publishing.
+
 ## 3. Non-negotiable UI principles
 
 1. **One ecosystem, one shell.** Shared header, country/currency controls, footer, and navigation patterns should be visually and behaviorally consistent.
