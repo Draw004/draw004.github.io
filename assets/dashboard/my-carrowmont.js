@@ -101,7 +101,7 @@
     const wrap=$('mycmVisualGrid');if(!wrap)return;
     const debt=debtPaymentsState();
     const monthlyReady=has('cashFlow.takeHomeIncome')&&has('cashFlow.essentialExpenses')&&has('cashFlow.flexibleExpenses')&&debt.known;
-    let monthly='<article class="mycm-visual-card mycm-visual-card-main"><div class="mycm-visual-copy"><span class="mycm-visual-label">Monthly money</span><h3>Add monthly details to unlock your money wheel.</h3><p>The wheel will show how the income you receive is split between essentials, other spending, debt and money left.</p></div>'+moneyWheel(0,0,0,0,0)+'</article>';
+    let monthly='<article class="mycm-visual-card mycm-visual-card-main"><div class="mycm-visual-copy"><span class="mycm-visual-label">Monthly money</span><h3>Add monthly details to unlock your money wheel</h3><p>The wheel will show how the income you receive is split between essentials, other spending, debt and money left.</p></div>'+moneyWheel(0,0,0,0,0)+'</article>';
     if(monthlyReady){
       const income=num(value('cashFlow.takeHomeIncome')),essential=num(value('cashFlow.essentialExpenses')),flexible=num(value('cashFlow.flexibleExpenses'));
       const remaining=income-essential-flexible-debt.value;

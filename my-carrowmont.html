@@ -14,10 +14,26 @@
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
   <script>(function(){try{var standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true||new URL(window.location.href).searchParams.get('source')==='pwa';if(standalone)document.documentElement.classList.add('cm-pwa-launching');}catch(_){}})();</script>
   <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261118-fre12">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261118-drawc1">
 </head>
 <body data-cm-page="my-carrowmont">
-<div class="cm-pwa-boot" aria-hidden="true"><div class="cm-pwa-boot-mark"><strong>C</strong><span></span><span></span><span></span></div></div>
+<!-- Browser/Android system splash is static; this brand animation begins after the document starts painting. -->
+<div class="cm-pwa-boot" aria-hidden="true">
+  <div class="cm-pwa-boot-mark">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+      <defs>
+        <mask id="cmPwaCReveal" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+          <path class="cm-pwa-draw-stroke" pathLength="1"
+                d="M356 361 C306 412 253 422 204 404 C139 383 111 328 110 263 C109 204 137 153 188 126 C246 95 306 109 355 164"
+                fill="none" stroke="white" stroke-width="93" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="cm-pwa-draw-finish" x="0" y="0" width="512" height="512" fill="white"/>
+        </mask>
+      </defs>
+      <rect width="512" height="512" rx="96" fill="#0c9287"/>
+      <image href="/assets/pwa/carrowmont-512.png" width="512" height="512" mask="url(#cmPwaCReveal)"/>
+    </svg>
+  </div>
+</div>
 <header class="site-header">
   <div class="shell header-inner">
     <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule"></span><span class="brand-tagline">Plan today. <strong>Build a brighter tomorrow.</strong></span></a>
@@ -45,7 +61,7 @@
   <section class="mycm-hero">
     <div class="shell">
       <span class="mycm-kicker">My Carrowmont</span>
-      <h1>Keep your financial plans connected.</h1>
+      <h1>Keep your financial plans connected</h1>
       <p>Save your retirement, goals, debt, loans and other financial plans, return to them later, update them as life changes, access them across devices and see deeper insights — without starting over each time.</p>
       <div class="mycm-privacy-badges"><span>Save plans</span><span>Access anywhere</span><span>Update anytime</span><span>See deeper insights</span></div>
       <p class="mycm-hero-trust"><strong>Only the plans you choose to keep become part of My Carrowmont.</strong></p>
@@ -82,7 +98,7 @@
       <div class="mycm-dashboard-shell" id="mycmDashboardShell" hidden>
         <section class="mycm-financial-plan" id="mycmFinancialPlan" aria-label="Your Financial Plan" hidden></section>
         <section class="mycm-visual-overview" id="mycmVisualOverview" aria-labelledby="mycmVisualOverviewTitle">
-          <div class="mycm-visual-head"><div><span class="mycm-kicker">Your money at a glance</span><h2 id="mycmVisualOverviewTitle">See the shape of your money in seconds.</h2><p>These visuals use only the planning values you chose to save. Colour shows progress only when you have a real target.</p></div></div>
+          <div class="mycm-visual-head"><div><span class="mycm-kicker">Your money at a glance</span><h2 id="mycmVisualOverviewTitle">See the shape of your money in seconds</h2><p>These visuals use only the planning values you chose to save. Colour shows progress only when you have a real target.</p></div></div>
           <div class="mycm-visual-grid" id="mycmVisualGrid" aria-live="polite"></div>
         </section>
         <nav class="mycm-mobile-quick" aria-label="My Carrowmont quick access">
@@ -142,18 +158,18 @@
         </section>
 
         <section class="mycm-add-planning" id="mycmAddPlanning" aria-labelledby="mycmAddPlanningTitle">
-          <div class="mycm-add-planning-head"><div><span class="mycm-kicker">Add to My Carrowmont</span><h2 id="mycmAddPlanningTitle">Build out your planning picture.</h2><p>Open a planner, explore your numbers and save the plan only when you choose. Areas you have already saved are kept out of this list.</p></div><a class="mycm-link" href="/tools.html">All tools →</a></div>
+          <div class="mycm-add-planning-head"><div><span class="mycm-kicker">Add to My Carrowmont</span><h2 id="mycmAddPlanningTitle">Build out your planning picture</h2><p>Open a planner, explore your numbers and save the plan only when you choose. Areas you have already saved are kept out of this list.</p></div><a class="mycm-link" href="/tools.html">All tools →</a></div>
           <div class="mycm-add-grid" id="mycmAddPlanningGrid"></div>
         </section>
 
         <section class="mycm-decisions" aria-labelledby="mycmDecisionsTitle">
-          <div class="mycm-decisions-head"><span class="mycm-kicker">Decisions</span><h2 id="mycmDecisionsTitle">Use your numbers for the next decision.</h2><p>These guided comparisons do not change your saved details unless you choose to save something later.</p></div>
+          <div class="mycm-decisions-head"><span class="mycm-kicker">Decisions</span><h2 id="mycmDecisionsTitle">Use your numbers for the next decision</h2><p>These guided comparisons do not change your saved details unless you choose to save something later.</p></div>
           <a class="mycm-decision-card" href="/ask-carrowmont.html?decision=debt-vs-savings"><strong>Pay debt or invest?</strong><span>Compare using the same extra monthly money to repay debt faster or invest it. Investment returns are assumptions, not guarantees.</span><b>Compare the two paths →</b></a>
         </section>
 
         <section class="mycm-progress" id="mycmProgressSection" hidden>
           <div class="mycm-progress-section-head">
-            <div><span class="mycm-kicker">Your progress</span><h2>See what changed in your saved plans.</h2><p>Progress uses plans you chose to keep and stays separate from unsaved what-if calculations.</p></div>
+            <div><span class="mycm-kicker">Your progress</span><h2>See what changed in your saved plans</h2><p>Progress uses plans you chose to keep and stays separate from unsaved what-if calculations.</p></div>
             <strong class="mycm-progress-summary" id="mycmProgressSummary">Your saved plans are ready to review.</strong>
           </div>
           <div class="mycm-progress-list" id="mycmProgressList"></div>
@@ -168,7 +184,7 @@
       </div>
 
       <section class="mycm-app-access" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle" hidden>
-        <div><span class="mycm-kicker">Use as an app</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away.</h2><p>Install Carrowmont in this browser for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
+        <div><span class="mycm-kicker">Use as an app</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away</h2><p>Install Carrowmont in this browser for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
         <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>Install Carrowmont</button><small id="cmPwaInstallHint">Already installed? Open Carrowmont from your apps, Start menu or taskbar instead.</small></div>
       </section>
     </div>
@@ -202,7 +218,26 @@
 <script src="/assets/account/carrowmont-plan-report.js?v=20261116-fre9b"></script>
 <script src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
 <script src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
-<script>(function(){var root=document.documentElement;if(!root.classList.contains('cm-pwa-launching'))return;var release=function(){root.classList.remove('cm-pwa-launching');root.classList.add('cm-pwa-launched');window.setTimeout(function(){root.classList.remove('cm-pwa-launched');},260);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(release);},{once:true});else requestAnimationFrame(release);window.setTimeout(release,900);})();</script>
+<script>(function(){
+  var root=document.documentElement;
+  if(!root.classList.contains('cm-pwa-launching'))return;
+  var reduced=false;
+  try{reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){}
+  var started=performance.now(),released=false;
+  // The page remains interactive behind a pointer-events:none overlay; we only show a short brand reveal.
+  function release(){
+    if(released)return;
+    released=true;
+    var remaining=reduced?0:Math.max(0,880-(performance.now()-started));
+    window.setTimeout(function(){
+      root.classList.remove('cm-pwa-launching');root.classList.add('cm-pwa-launched');
+      window.setTimeout(function(){root.classList.remove('cm-pwa-launched');},280);
+    },remaining);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(release);},{once:true});
+  else requestAnimationFrame(release);
+  window.setTimeout(release,1600);
+})();</script>
 <script src="/site.js?v=20261118-fre12"></script>
 </body>
 </html>
