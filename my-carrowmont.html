@@ -12,9 +12,29 @@
   <meta property="og:title" content="My Carrowmont | Save Financial Plans &amp; Planning Insights">
   <meta property="og:description" content="Keep financial plans connected, reopen them across devices and see deeper planning context in My Carrowmont.">
   <meta property="og:url" content="https://carrowmont.com/my-carrowmont.html">
-  <script>(function(){try{var standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true||new URL(window.location.href).searchParams.get('source')==='pwa';if(standalone)document.documentElement.classList.add('cm-pwa-launching');}catch(_){}})();</script>
-  <link rel="stylesheet" href="/carrowmont.css?v=20261109-fre3c1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261118-drawc1">
+  <script>(function(){
+  // Only a genuine app-icon launch may play the intro. Never replay on Home -> My Money navigation.
+  try {
+    var launch = new URL(window.location.href).searchParams.get('source') === 'pwa';
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+    // Compatibility: previously installed apps may still launch the old My Money URL.
+    // Redirect only an installed app icon launch; normal My Money visits never redirect.
+    if (launch && standalone) { window.location.replace('/?source=pwa'); return; }
+    if (!launch || !standalone || sessionStorage.getItem('cm-pwa-intro-seen') === '1') return;
+    sessionStorage.setItem('cm-pwa-intro-seen', '1');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    var mobileLayout = window.matchMedia && window.matchMedia('(max-width: 800px)').matches;
+    document.documentElement.classList.add(mobileLayout ? 'cm-pwa-launching' : 'cm-pwa-desktop-entry');
+    window.__cmPwaIntroStartedAt = performance.now();
+  } catch (_) { /* Never interrupt the page if app-launch detection fails. */ }
+})();
+// Capture Chromium's one-shot install event even when account scripts load later.
+window.addEventListener('beforeinstallprompt', function(event){
+  event.preventDefault(); window.__cmPwaEarlyInstallPrompt = event;
+});</script>
+  <link rel="stylesheet" href="/carrowmont.css?v=20261119-app-behavior-v5">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261119-drawc2">
 </head>
 <body data-cm-page="my-carrowmont">
 <!-- Browser/Android system splash is static; this brand animation begins after the document starts painting. -->
@@ -24,7 +44,7 @@
       <defs>
         <mask id="cmPwaCReveal" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
           <path class="cm-pwa-draw-stroke" pathLength="1"
-                d="M356 361 C306 412 253 422 204 404 C139 383 111 328 110 263 C109 204 137 153 188 126 C246 95 306 109 355 164"
+                d="M355 164 C306 109 246 95 188 126 C137 153 109 204 110 263 C111 328 139 383 204 404 C253 422 306 412 356 361"
                 fill="none" stroke="white" stroke-width="93" stroke-linecap="round" stroke-linejoin="round"/>
           <rect class="cm-pwa-draw-finish" x="0" y="0" width="512" height="512" fill="white"/>
         </mask>
@@ -33,6 +53,7 @@
       <image href="/assets/pwa/carrowmont-512.png" width="512" height="512" mask="url(#cmPwaCReveal)"/>
     </svg>
   </div>
+  <p class="cm-pwa-boot-tagline">Plan today. Build tomorrow.</p>
 </div>
 <header class="site-header">
   <div class="shell header-inner">
@@ -65,6 +86,7 @@
       <p>Save your retirement, goals, debt, loans and other financial plans, return to them later, update them as life changes, access them across devices and see deeper insights — without starting over each time.</p>
       <div class="mycm-privacy-badges"><span>Save plans</span><span>Access anywhere</span><span>Update anytime</span><span>See deeper insights</span></div>
       <p class="mycm-hero-trust"><strong>Only the plans you choose to keep become part of My Carrowmont.</strong></p>
+      <p class="mycm-install-shortcut" id="cmPwaInstallShortcut" hidden><a href="#cmPwaInstallCard">Use Carrowmont as an app</a></p>
     </div>
   </section>
 
@@ -183,9 +205,9 @@
         <p class="mycm-note">My Carrowmont is a planning summary, not a transaction tracker. It does not connect to banks or monitor spending. Sign out to remove your account-backed dashboard from this browser view; sign in again to retrieve it. Calculations remain educational and illustrative, not individualized financial, investment, tax, legal or lending advice.</p>
       </div>
 
-      <section class="mycm-app-access" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle" hidden>
+      <section class="mycm-app-access" id="cmPwaInstallCard" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle" hidden>
         <div><span class="mycm-kicker">Use as an app</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away</h2><p>Install Carrowmont in this browser for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
-        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>Install Carrowmont</button><small id="cmPwaInstallHint">Already installed? Open Carrowmont from your apps, Start menu or taskbar instead.</small></div>
+        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>How to install</button><small id="cmPwaInstallHint">Already installed? Open Carrowmont from your apps, Start menu or taskbar instead.</small></div>
       </section>
     </div>
   </section>
@@ -219,25 +241,30 @@
 <script src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
 <script src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
 <script>(function(){
-  var root=document.documentElement;
-  if(!root.classList.contains('cm-pwa-launching'))return;
-  var reduced=false;
-  try{reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){}
-  var started=performance.now(),released=false;
-  // The page remains interactive behind a pointer-events:none overlay; we only show a short brand reveal.
-  function release(){
-    if(released)return;
-    released=true;
-    var remaining=reduced?0:Math.max(0,880-(performance.now()-started));
-    window.setTimeout(function(){
-      root.classList.remove('cm-pwa-launching');root.classList.add('cm-pwa-launched');
-      window.setTimeout(function(){root.classList.remove('cm-pwa-launched');},280);
-    },remaining);
+  var root = document.documentElement;
+  // Desktop starts showing the actual page immediately, with only a tiny non-blocking brand fade.
+  if (root.classList.contains('cm-pwa-desktop-entry')) {
+    window.setTimeout(function(){ root.classList.remove('cm-pwa-desktop-entry'); }, 360);
+    return;
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(release);},{once:true});
-  else requestAnimationFrame(release);
-  window.setTimeout(release,1600);
+  if (!root.classList.contains('cm-pwa-launching')) return;
+  var released = false;
+  function revealPage(){
+    if (released) return;
+    released = true;
+    var sinceLaunch = performance.now() - (window.__cmPwaIntroStartedAt || performance.now());
+    // Only the actual mobile app-icon launch gets this brief Draw-the-C moment.
+    // No minimum delay exists on normal browser visits or page-to-page navigation.
+    window.setTimeout(function(){
+      root.classList.remove('cm-pwa-launching');
+      root.classList.add('cm-pwa-launched');
+      window.setTimeout(function(){ root.classList.remove('cm-pwa-launched'); }, 200);
+    }, Math.max(0, 880 - sinceLaunch));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', revealPage, {once:true});
+  else requestAnimationFrame(revealPage);
+  window.setTimeout(revealPage, 1350);
 })();</script>
-<script src="/site.js?v=20261118-fre12"></script>
+<script src="/site.js?v=20261119-app-behavior-v5"></script>
 </body>
 </html>

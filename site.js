@@ -596,6 +596,21 @@
         var node = nav.querySelector('a[href="' + href + '"]');
         if (node) nav.appendChild(node);
       });
+      // One active destination. Never leave Ask permanently highlighted.
+      var activeHref = null;
+      if (path === '/' || path === '/index.html') activeHref = '/';
+      else if (path === '/my-carrowmont.html') activeHref = '/my-carrowmont.html';
+      else if (path === '/ask-carrowmont.html') activeHref = '/ask-carrowmont.html';
+      else if (path === '/search.html') activeHref = '/search.html';
+      else if (path === '/research.html' || path.indexOf('/research/') === 0) activeHref = '/research.html';
+      else if (path === '/learn.html' || document.body.hasAttribute('data-cm-learn-article')) activeHref = '/learn.html';
+      else if (path === '/tools.html' || /^\/(sip-calculator|retirement-calculator|goal-planner|financial-independence|inflation-calculator|budget-cash-flow-planner|mortgage-payoff-calculator|compound-interest-calculator|loan-calculator)\//.test(path)) activeHref = '/tools.html';
+      else if (mobile && (path === '/about.html' || path === '/methodology.html' || path === '/contact.html')) activeHref = path;
+      nav.querySelectorAll('a[aria-current="page"]').forEach(function (link) { link.removeAttribute('aria-current'); });
+      if (activeHref) {
+        var activeLink = nav.querySelector('a[href="' + activeHref + '"]');
+        if (activeLink) activeLink.setAttribute('aria-current', 'page');
+      }
     }
 
     document.querySelectorAll('.desktop-nav').forEach(function (nav) {
@@ -893,8 +908,9 @@
     if (path === '/tools.html' || path.indexOf('/sip-calculator/') === 0 || path.indexOf('/retirement-calculator/') === 0 || path.indexOf('/goal-planner/') === 0 || path.indexOf('/financial-independence/') === 0 || path.indexOf('/inflation-calculator/') === 0 || path.indexOf('/budget-cash-flow-planner/') === 0 || path.indexOf('/mortgage-payoff-calculator/') === 0 || path.indexOf('/compound-interest-calculator/') === 0 || path.indexOf('/loan-calculator/') === 0) return 'tools';
     if (path === '/ask-carrowmont.html') return 'ask';
     if (path === '/my-carrowmont.html') return 'my';
-    if (path === '/learn.html' || document.body.dataset.cmPage === 'learn-hub' || path === '/research.html' || path.indexOf('/research/') === 0 || path === '/about.html' || path === '/methodology.html' || path === '/contact.html') return 'more';
-    return '';
+    if (path === '/search.html') return ''; // Search has its own header highlight, not a bottom-tab alias.
+    if (path === '/learn.html' || document.body.dataset.cmPage === 'learn-hub' || document.body.hasAttribute('data-cm-learn-article') || path === '/research.html' || path.indexOf('/research/') === 0 || path === '/about.html' || path === '/methodology.html' || path === '/contact.html') return 'more';
+    return 'more'; // Secondary site pages live under More, never under Ask.
   }
 
   function addHeaderSearch() {
@@ -905,6 +921,7 @@
       link.dataset.mobile1HeaderSearch = '';
       link.href = '/search.html';
       link.setAttribute('aria-label', 'Search Carrowmont');
+      if (window.location.pathname === '/search.html') link.setAttribute('aria-current', 'page');
       link.innerHTML = ICONS.search + '<span>Search</span>';
       var locale = header.querySelector('.locale-menu');
       // Keep the desktop contract nav -> locale intact. The icon is mobile-only
@@ -1212,37 +1229,50 @@
 })();
 
 
-/* FRE Batch 8E - installable web-app foundation. No offline financial-data cache. */
+/* FRE PWA: installation guidance stays discoverable even without an automatic browser prompt. */
 (function(){
-  function ensureLink(rel, href, attrs){
-    if(document.querySelector('link[rel="'+rel+'"][href="'+href+'"]')) return;
-    var link=document.createElement('link');link.rel=rel;link.href=href;
-    if(attrs) Object.keys(attrs).forEach(function(k){link.setAttribute(k,attrs[k]);});
-    document.head.appendChild(link);
+  function ensureLink(rel, href){
+    if(document.querySelector('link[rel="'+rel+'"][href="'+href+'"]'))return;
+    var link=document.createElement('link');link.rel=rel;link.href=href;document.head.appendChild(link);
   }
   ensureLink('manifest','/carrowmont.webmanifest');
   ensureLink('apple-touch-icon','/assets/pwa/carrowmont-192.png');
-  var deferredPrompt=null;
+  var deferredPrompt=window.__cmPwaEarlyInstallPrompt||null;
+  var installedThisVisit=false;
+  window.__cmPwaEarlyInstallPrompt=null;
   var button=document.getElementById('cmPwaInstallButton');
   var hint=document.getElementById('cmPwaInstallHint');
   var card=document.querySelector('[data-cm-pwa-card]');
-  function standalone(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;}
-  function hideInstallCard(){if(card) card.hidden=true;if(button) button.hidden=true;}
-  function showInstallCard(){if(card&&!standalone()) card.hidden=false;}
-  function markInstalled(){deferredPrompt=null;hideInstallCard();}
-  hideInstallCard();
-  if(standalone()) markInstalled();
+  var shortcut=document.getElementById('cmPwaInstallShortcut');
+  function standalone(){return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;}
+  function instructions(){
+    var agent=navigator.userAgent||'';
+    if(/iPhone|iPad|iPod/i.test(agent))return 'On iPhone or iPad: open Carrowmont in Safari, tap Share, then Add to Home Screen.';
+    if(/Android/i.test(agent))return 'On Android: open Chrome’s menu (⋮), then choose Install app or Add to Home screen if offered.';
+    return 'On a laptop or desktop: look for the Install icon in Chrome or Edge’s address bar, or use the browser menu. Installation availability depends on your browser.';
+  }
+  function update(){
+    var isInstalled=standalone()||installedThisVisit;
+    if(card)card.hidden=isInstalled;
+    if(shortcut)shortcut.hidden=isInstalled;
+    if(button){button.hidden=isInstalled;button.textContent=deferredPrompt?'Install Carrowmont':'How to install';}
+    if(hint)hint.textContent=hint.dataset.installed==='true'?'Carrowmont was added. Open it from your device’s apps.':(deferredPrompt?'Install the Carrowmont app from this browser. You can continue using the website without installing.':'Carrowmont is also available as an installable web app. Select How to install for your device.');
+  }
+  update();
   window.addEventListener('beforeinstallprompt',function(event){
-    if(!button||standalone()) return;
-    event.preventDefault();deferredPrompt=event;showInstallCard();button.hidden=false;
-    if(hint) hint.textContent='Install Carrowmont in this browser. Already installed elsewhere? Open that app instead to avoid a second browser-specific install.';
+    if(standalone())return;
+    event.preventDefault();deferredPrompt=event;update();
   });
-  if(button){button.addEventListener('click',async function(){
-    if(!deferredPrompt) return;button.disabled=true;var choice=null;
-    try{deferredPrompt.prompt();choice=await deferredPrompt.userChoice;}catch(e){}
-    deferredPrompt=null;button.disabled=false;
-    if(choice&&choice.outcome==='accepted') markInstalled();
-    else hideInstallCard();
-  });}
-  window.addEventListener('appinstalled',markInstalled);
+  if(button)button.addEventListener('click',async function(){
+    if(!deferredPrompt){if(hint)hint.textContent=instructions();return;}
+    var prompt=deferredPrompt;deferredPrompt=null;button.disabled=true;
+    try {
+      await prompt.prompt();
+      var result=await prompt.userChoice;
+      if(result&&result.outcome==='accepted') { installedThisVisit=true; if(hint)hint.dataset.installed='true'; }
+      else if(hint)hint.textContent=instructions();
+    }catch(_){if(hint)hint.textContent=instructions();}
+    button.disabled=false;update();
+  });
+  window.addEventListener('appinstalled',function(){deferredPrompt=null;installedThisVisit=true;update();});
 })();
