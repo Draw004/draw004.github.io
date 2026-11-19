@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "baseline_snapshot": "carrowmont-source-snapshot - 2026-11-20T004453.791.zip",
-  "policy": "Documentation of known pre-existing differences, not permission to recreate them. Gate fails if an excepted HTML page changes without correcting the difference.",
+  "policy": "Documentation of known pre-existing differences, not permission to recreate them. Gate fails if an excepted HTML page changes without correcting the difference. Global header layout is mandatory for all changed tool pages; untouched legacy headers remain tracked.",
   "exceptions": [
     {
       "repository": "retirement-calculator",
@@ -35,6 +35,143 @@
         "locale_fields"
       ],
       "reason": "Legacy informational-page header predates approved locale component; correct on next page change."
+    }
+  ],
+  "global_header_exceptions": [
+    {
+      "repository": "budget-cash-flow-planner",
+      "path": "debt-payoff-calculator.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "budget-cash-flow-planner",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "compound-interest-calculator",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "financial-independence",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "goal-planner",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "inflation-calculator",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "inflation-calculator",
+      "path": "methodology.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "loan-calculator",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "mortgage-payoff-calculator",
+      "path": "decision-centre.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "mortgage-payoff-calculator",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "mortgage-payoff-calculator",
+      "path": "prepayment-vs-investing.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "mortgage-payoff-calculator",
+      "path": "rate-rise-stress-test.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "mortgage-payoff-calculator",
+      "path": "refinance-break-even.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "mortgage-payoff-calculator",
+      "path": "rent-vs-buy-calculator.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "404.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "about.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "contact.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "disclaimer.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "faq.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "how-it-works.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "methodology.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "planner.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "privacy.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "terms.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "retirement-calculator",
+      "path": "withdrawal-calculator.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
+    },
+    {
+      "repository": "sip-calculator",
+      "path": "index.html",
+      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
     }
   ]
 }

@@ -1,11 +1,13 @@
+> **Global navigation amendment (20 November 2026):** The approved global primary header is now the main-site navigation: Home, My Carrowmont, Tools, Ask, Learn, Research, Search, plus the shared country/currency selector. On tool pages, Tools is the only active primary destination. Calculator and Methodology are contextual within page content, not replacements for the global header. Section 4 below describes the historical tool-specific shell and is retained for legacy-migration reference; it is superseded for new or changed pages. Use `/assets/ui/carrowmont-global-header.css` and the reviewed static header template in the Credit Card Decisions tool until a sitewide component can be adopted safely. The Standards Gate enforces this on modified pages and records 27 untouched legacy tool headers for controlled migration.
+
 > **Current-source notice (19 Nov 2026):** Approved canonical UI rules remain authoritative. The November 2026 standards gate in `carrowmont-qa/scripts/development-standards-gate.mjs` enforces new/changed work, and `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` inventories historical exceptions for correction on their next edit. Older tool inventory and Snapshot 43 commits in this file are historical, not the newest baseline.
 
 # Carrowmont Shared UI Standard
 
 **Document:** `CARROWMONT_SHARED_UI_STANDARD.md`  
-**Version:** 1.1  
+**Version:** 1.2  
 **Status:** Approved baseline for implementation  
-**Date:** 11 October 2026  
+**Date:** 20 November 2026 (updated; older content retains historical baseline)  
 **Scope:** Main Carrowmont website and all active Carrowmont planning tools  
 **Current implementation baseline:** Carrowmont Source Snapshot 43, generated `2026-10-11T04:24:07Z`
 

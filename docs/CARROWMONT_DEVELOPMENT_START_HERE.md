@@ -1,7 +1,7 @@
 # Carrowmont - development start here
 
 **Status:** mandatory first-read entry point for all developers, AI assistants and new ChatGPT accounts.
-**Last reviewed:** 19 November 2026.
+**Last reviewed:** 20 November 2026.
 **Project:** https://carrowmont.com | **GitHub owner:** Draw004.
 
 ## First five minutes in a new account
@@ -25,8 +25,8 @@
 - Deterministic tested calculators produce numbers. AI may explain or route but may not invent local regulations, rates or calculations.
 - Approved universal core + country-specific labels (e.g. SIP in India, recurring investment elsewhere), no unauthorized currency conversion.
 - Preserve product nav, active tab, selected locale, apps/PWA start, account auth, reports, link journeys, existing URLs, Learn intent and SEO unless intentionally changed.
-- Reuse the approved locale pill (globe, country and currency, chevron), correct header, footer, responsive behaviour and accessibility.
-- Every changed calculator page must pass the new UI standards gate. Known older exceptions are inventoried and must be corrected if that page is modified.
+- Reuse the approved global seven-link header and one-current-tab rule from `CARROWMONT_SHARED_UI_STANDARD.md` v1.2. Tool-specific Calculator/Methodology links belong in the page, not in place of the main navigation. Use `/assets/ui/carrowmont-global-header.css` and its paired JS for migrated tool pages. Preserve the approved locale control, footer, mobile navigation and accessibility.
+- Every changed calculator page must pass the new UI standards gate. Known older exceptions, including 27 unmigrated tool headers, are inventoried and must be corrected if that page is modified.
 - Never publish credentials, actual account finance data, API keys or tokens in public GitHub or handover packages.
 - A source-test pass does **not** equal a green Publisher/browser suite or live-device acceptance.
 
