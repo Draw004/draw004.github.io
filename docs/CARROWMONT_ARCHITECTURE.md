@@ -1,3 +1,5 @@
+> **Current-source notice (19 Nov 2026):** This document contains historical tool inventory sections. For the latest 11 repositories, current product stage and development gates, first read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md`, and `CARROWMONT_STANDARDS_INDEX.md`. Preserve its architectural and deterministic-engine principles.
+
 # CARROWMONT ARCHITECTURE
 
 ## 1. Purpose of This Document

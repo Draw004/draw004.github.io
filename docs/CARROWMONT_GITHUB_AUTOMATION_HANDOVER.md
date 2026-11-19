@@ -1,3 +1,5 @@
+> **Current-source notice (19 Nov 2026):** Current release procedure and baseline are governed by `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md`, and the checked-in `.github/workflows/` files. This handover contains important automation history; do not treat its September 2026 repository counts as current.
+
 # Carrowmont GitHub Automation & QA Handover
 
 **Project:** Carrowmont  

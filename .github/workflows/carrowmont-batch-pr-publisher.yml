@@ -207,6 +207,17 @@ jobs:
             done
           done
 
+      - name: Run Carrowmont standards preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Run before expensive full source/browser tests. This checks staged
+          # changed HTML against the approved shared UI and link hygiene.
+          node staging/carrowmont-qa/scripts/development-standards-gate.mjs \
+            --root "$GITHUB_WORKSPACE/staging" \
+            --manifest "$MANIFEST" \
+            | tee staged-standards-gate.txt
+
       - name: Syntax-check changed JavaScript
         shell: bash
         run: |
@@ -386,6 +397,7 @@ jobs:
               echo "### Safeguards"
               echo "- Reviewed base-file hashes were verified before any branch was created."
               echo "- Changed JavaScript passed syntax validation."
+              echo "- The staged development standards preflight passed."
               echo "- The staged multi-repo source contract passed."
               echo "- Staged Chrome browser/PDF QA passed before publication."
               echo "- The working-tree diff was checked against the release allow-list."
@@ -410,6 +422,7 @@ jobs:
           path: |
             publisher-validation.txt
             staged-source-contract.txt
+            staged-standards-gate.txt
             staged-browser-qa.txt
             staged-http-server.log
             publisher-qa-artifacts/
