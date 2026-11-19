@@ -1,0 +1,10 @@
+/* Optional first-visit PWA invitation. Never blocks the page or traps focus. */
+.cm-pwa-offer{position:fixed;z-index:45;right:18px;bottom:18px;width:min(360px,calc(100vw - 36px));padding:17px 18px 16px;border:1px solid #cfe3e5;border-radius:18px;background:#fff;color:#12314d;box-shadow:0 12px 38px rgba(15,38,59,.13);font-family:inherit}
+.cm-pwa-offer strong{display:block;margin-right:30px;font-size:17px;line-height:1.3}
+.cm-pwa-offer p{margin:7px 0 10px;font-size:13px;line-height:1.5;color:#586f82}
+.cm-pwa-offer .cm-pwa-offer-status{margin:8px 0 0;font-size:12px;line-height:1.5}
+.cm-pwa-offer-close{position:absolute;top:8px;right:10px;min-height:34px;min-width:34px;padding:0;border:0;border-radius:50%;background:transparent;color:#455e73;font-size:20px;cursor:pointer}
+.cm-pwa-offer-action{min-height:38px;padding:9px 16px;border:0;border-radius:999px;background:#0e827a;color:#fff;font-size:14px;font-weight:700;line-height:1.25;font-family:inherit;cursor:pointer}
+.cm-pwa-offer-action:hover,.cm-pwa-offer-action:focus-visible{background:#075f59}
+.cm-pwa-offer button:focus-visible{outline:3px solid #e4b549;outline-offset:2px}
+@media(max-width:800px){.cm-pwa-offer{right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));width:min(360px,calc(100vw - 24px));padding:14px 16px}.cm-pwa-offer strong{font-size:15px}.cm-pwa-offer p{font-size:12px}}

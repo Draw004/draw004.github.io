@@ -1229,9 +1229,10 @@
 })();
 
 
-/* FRE PWA: installation guidance stays discoverable even without an automatic browser prompt. */
+/* Carrowmont PWA installation: one-step native prompt where available, clear fallback otherwise.
+   A website cannot force cross-browser app launching or inspect every installed app. */
 (function(){
-  function ensureLink(rel, href){
+  function ensureLink(rel,href){
     if(document.querySelector('link[rel="'+rel+'"][href="'+href+'"]'))return;
     var link=document.createElement('link');link.rel=rel;link.href=href;document.head.appendChild(link);
   }
@@ -1239,40 +1240,149 @@
   ensureLink('apple-touch-icon','/assets/pwa/carrowmont-192.png');
   var deferredPrompt=window.__cmPwaEarlyInstallPrompt||null;
   var installedThisVisit=false;
+  var installedRelated=false;
+  var offeredThisVisit=false;
   window.__cmPwaEarlyInstallPrompt=null;
   var button=document.getElementById('cmPwaInstallButton');
   var hint=document.getElementById('cmPwaInstallHint');
   var card=document.querySelector('[data-cm-pwa-card]');
   var shortcut=document.getElementById('cmPwaInstallShortcut');
-  function standalone(){return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;}
+  var home=/^\/(?:index\.html)?$/.test(window.location.pathname);
+  var myMoney=!!card;
+  var offer=null;
+  var offerButton=null;
+  var offerStatus=null;
+  var feedback=null;
+  var SEEN_KEY='cm-pwa-install-offer-seen-v1';
+  function standalone(){
+    return (window.matchMedia&&(
+      window.matchMedia('(display-mode: standalone)').matches||
+      window.matchMedia('(display-mode: fullscreen)').matches))||
+      window.navigator.standalone===true;
+  }
+  function installed(){return standalone()||installedThisVisit||installedRelated;}
+  function hasNativePrompt(){return !!deferredPrompt&&typeof deferredPrompt.prompt==='function';}
+  function seen(){try{return localStorage.getItem(SEEN_KEY)==='1';}catch(_){return offeredThisVisit;}}
+  function markSeen(){offeredThisVisit=true;try{localStorage.setItem(SEEN_KEY,'1');}catch(_){}}
   function instructions(){
     var agent=navigator.userAgent||'';
-    if(/iPhone|iPad|iPod/i.test(agent))return 'On iPhone or iPad: open Carrowmont in Safari, tap Share, then Add to Home Screen.';
-    if(/Android/i.test(agent))return 'On Android: open Chrome’s menu (⋮), then choose Install app or Add to Home screen if offered.';
-    return 'On a laptop or desktop: look for the Install icon in Chrome or Edge’s address bar, or use the browser menu. Installation availability depends on your browser.';
+    if(/iPhone|iPad|iPod/i.test(agent))return 'On iPhone or iPad: open Carrowmont in Safari, tap Share, then choose Add to Home Screen.';
+    if(/Android/i.test(agent))return 'On Android: open Chrome\'s menu, then choose Install app or Add to Home screen if available. If using a private tab, open a normal tab.';
+    return 'On a laptop or desktop: use the Install icon in Chrome or Edge\'s address bar, or the browser menu. If using a private window, reopen a normal window. Installation depends on your browser.';
+  }
+  function setStatus(value){
+    feedback=value;
+    if(hint)hint.textContent=value;
+    if(offerStatus)offerStatus.textContent=value;
+  }
+  function mountOffer(){
+    if(!home||offer||installed()||seen())return;
+    ensureLink('stylesheet','/assets/pwa/carrowmont-install.css?v=20261119-install-v6');
+    var region=document.createElement('aside');
+    region.className='cm-pwa-offer';
+    region.id='cmPwaInstallOffer';
+    region.setAttribute('aria-label','Use Carrowmont as an app');
+    var close=document.createElement('button');
+    close.className='cm-pwa-offer-close';
+    close.type='button';
+    close.setAttribute('aria-label','Dismiss app installation invitation');
+    close.textContent='x';
+    close.addEventListener('click',function(){markSeen();region.remove();offer=null;});
+    var heading=document.createElement('strong');
+    heading.textContent='Keep Carrowmont one tap away';
+    var detail=document.createElement('p');
+    detail.textContent='Use Carrowmont as an app. No account required.';
+    var action=document.createElement('button');
+    action.type='button';
+    action.className='cm-pwa-offer-action';
+    action.id='cmPwaOfferButton';
+    action.addEventListener('click',installOrExplain);
+    var status=document.createElement('p');
+    status.className='cm-pwa-offer-status';
+    status.id='cmPwaOfferStatus';
+    status.setAttribute('role','status');
+    region.append(close,heading,detail,action,status);
+    document.body.appendChild(region);
+    offer=region;
+    offerButton=action;
+    offerStatus=status;
+    markSeen(); // a first-visit offer only; never interrupt returning visitors repeatedly
   }
   function update(){
-    var isInstalled=standalone()||installedThisVisit;
+    var isInstalled=installed();
     if(card)card.hidden=isInstalled;
     if(shortcut)shortcut.hidden=isInstalled;
-    if(button){button.hidden=isInstalled;button.textContent=deferredPrompt?'Install Carrowmont':'How to install';}
-    if(hint)hint.textContent=hint.dataset.installed==='true'?'Carrowmont was added. Open it from your device’s apps.':(deferredPrompt?'Install the Carrowmont app from this browser. You can continue using the website without installing.':'Carrowmont is also available as an installable web app. Select How to install for your device.');
+    if(button){
+      button.hidden=isInstalled;
+      button.textContent=deferredPrompt?'Install Carrowmont':'How to install';
+    }
+    if(hint&&!isInstalled){
+      hint.textContent=feedback||(deferredPrompt?'Install directly in this browser. Your plans remain optional.':
+        'Installation depends on the browser. Choose How to install for device-specific instructions.');
+    }
+    if(isInstalled&&offer){offer.remove();offer=null;offerButton=null;offerStatus=null;}
+    if(offerButton)offerButton.textContent=deferredPrompt?'Install Carrowmont':'How to install';
   }
-  update();
-  window.addEventListener('beforeinstallprompt',function(event){
-    if(standalone())return;
-    event.preventDefault();deferredPrompt=event;update();
-  });
-  if(button)button.addEventListener('click',async function(){
-    if(!deferredPrompt){if(hint)hint.textContent=instructions();return;}
-    var prompt=deferredPrompt;deferredPrompt=null;button.disabled=true;
-    try {
+  async function installOrExplain(){
+    if(installed())return;
+    if(!hasNativePrompt()){
+      setStatus(instructions());
+      return;
+    }
+    var prompt=deferredPrompt;
+    deferredPrompt=null;
+    if(button)button.disabled=true;
+    if(offerButton)offerButton.disabled=true;
+    try{
+      // prompt() must be invoked directly from the user's button click.
       await prompt.prompt();
       var result=await prompt.userChoice;
-      if(result&&result.outcome==='accepted') { installedThisVisit=true; if(hint)hint.dataset.installed='true'; }
-      else if(hint)hint.textContent=instructions();
-    }catch(_){if(hint)hint.textContent=instructions();}
-    button.disabled=false;update();
+      if(result&&result.outcome==='accepted'){
+        installedThisVisit=true;
+        setStatus('Carrowmont was added. Open it from your apps.');
+      }else{
+        setStatus('Installation was not completed. You can continue using Carrowmont in your browser.');
+      }
+    }catch(_){setStatus(instructions());}
+    if(button)button.disabled=false;
+    if(offerButton)offerButton.disabled=false;
+    update();
+  }
+  if(button)button.addEventListener('click',installOrExplain);
+  window.addEventListener('beforeinstallprompt',function(event){
+    if(!(home||myMoney)||installed())return;
+    event.preventDefault();
+    deferredPrompt=event;
+    feedback=null;
+    update();
   });
-  window.addEventListener('appinstalled',function(){deferredPrompt=null;installedThisVisit=true;update();});
+  window.addEventListener('appinstalled',function(){
+    deferredPrompt=null;
+    installedThisVisit=true;
+    update();
+  });
+  // Feature-detect same-scope PWA installations. This is not universal cross-browser detection.
+  function checkInstalledRelated(){
+    if(standalone()||typeof navigator.getInstalledRelatedApps!=='function')return Promise.resolve();
+    return Promise.resolve().then(function(){return navigator.getInstalledRelatedApps();}).then(function(apps){
+      installedRelated=Array.isArray(apps)&&apps.some(function(app){
+        return app&&app.platform==='webapp'&&(
+          app.id==='https://carrowmont.com/my-carrowmont.html'||
+          app.id==='/my-carrowmont.html');
+      });
+    }).catch(function(){/* Unknown is not the same as not installed. */}).then(function(){
+      update();
+    });
+  }
+  update();
+  if(home&&!seen()&&!standalone()){
+    checkInstalledRelated().then(function(){
+      if(!installed()&&!seen()){
+        mountOffer();
+        update();
+      }
+    });
+  }else{
+    checkInstalledRelated();
+  }
 })();

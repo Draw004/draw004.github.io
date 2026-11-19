@@ -64,5 +64,12 @@
         }
       ]
     }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "/carrowmont.webmanifest",
+      "id": "https://carrowmont.com/my-carrowmont.html"
+    }
   ]
 }
