@@ -33,7 +33,7 @@
   <meta name="twitter:description" content="Carrowmont helps you plan retirement, goals, debt, cash flow and other financial decisions, keep meaningful plans in My Carrowmont and track progress over time.">
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Carrowmont | Financial Planning, Tools &amp; Learning</title>
-  <link rel="stylesheet" href="carrowmont.css?v=20261119-nav-stable-v6b">
+  <link rel="stylesheet" href="carrowmont.css?v=20261119-startup-nav-perf1">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://carrowmont.com/#website","name":"Carrowmont","alternateName":"carrowmont.com","url":"https://carrowmont.com/","description":"Financial planning tools and educational resources for budgeting, cash flow, investing, retirement, inflation and major life goals.","publisher":{"@id":"https://carrowmont.com/#organization"},"inLanguage":"en"},{"@type":"Organization","@id":"https://carrowmont.com/#organization","name":"Carrowmont","url":"https://carrowmont.com/","description":"Carrowmont publishes educational financial planning calculators, scenario tools, independent research and learning resources.","email":"contact@carrowmont.com","sameAs":["https://www.linkedin.com/company/carrowmont/","https://www.facebook.com/carrowmont","https://www.instagram.com/carrowmont.finance/","https://www.youtube.com/@carrowmontfinance"]}]}</script>
 
@@ -104,7 +104,7 @@
     }
   </style>
 
-  <link rel="stylesheet" href="/assets/pwa/carrowmont-launch.css?v=20261119-v6b">
+  <link rel="stylesheet" href="/assets/pwa/carrowmont-launch.css?v=20261119-startup-perf1">
   <script>
   (function(){
     try {
@@ -119,8 +119,6 @@
         document.head.appendChild(iconPreload);
         document.documentElement.classList.add('cm-home-pwa-launch');
         window.__cmHomePwaLaunchStart = performance.now();
-      } else if (!mobile && !reduced) {
-        document.documentElement.classList.add('cm-home-pwa-desktop');
       }
     } catch (_) { /* Startup effects must never prevent normal navigation. */ }
   })();
@@ -144,19 +142,13 @@
 </div>
 
   <header class="site-header">
-  <div class="shell header-inner">
+  <div class="shell header-inner" data-cm-static-mobile-header>
     <a class="brand" href="/" aria-label="Carrowmont home">
       <span class="brand-name">CARROWMONT</span>
       <span class="brand-rule" aria-hidden="true"></span>
       <span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span>
     </a>
-    <nav class="desktop-nav" aria-label="Primary navigation">
-      <a href="/#plan">Plan</a>
-      <a href="/tools.html">Tools</a>
-      <a href="/learn.html">Learn</a>
-      <a href="/methodology.html">Methodology</a>
-      <a href="/about.html">About</a>
-    </nav>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/" aria-current="page">Home</a><a href="/my-carrowmont.html">My Carrowmont</a><a href="/tools.html">Tools</a><a href="/ask-carrowmont.html" class="site-ask-link" data-cm-ask-link aria-label="Ask Carrowmont"><span class="site-ask-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.5h14v9.5H10l-5 4v-13.5z"></path><path d="M8.5 9h7M8.5 12h4.5"></path></svg></span><span>Ask</span></a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/search.html" class="site-search-link" data-cm-search-link><span class="site-search-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg></span>Search</a></nav>
     <details class="locale-menu" id="localeMenu">
       <summary class="locale-summary" aria-label="Choose country and currency">
         <span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span>
@@ -172,6 +164,7 @@
         <button type="button" class="small-button" id="localeDoneBtn">Done</button>
       </div>
     </details>
+    <a class="mobile1-header-search" data-mobile1-header-search href="/search.html" aria-label="Search Carrowmont"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><span>Search</span></a>
     <details class="mobile-nav">
       <summary aria-label="Open navigation">Menu</summary>
       <div class="mobile-nav-panel">
@@ -513,32 +506,32 @@
   <div class="shell footer-bottom"><span>&copy; 2026 Carrowmont</span><span>Illustrative estimates, not financial advice.</span></div>
 </footer>
 
-  <script src="locale.js?v=20261010-tools-hub1"></script>
-  <script src="site.js?v=20261119-pwa-install-v6"></script>
+  <script defer src="locale.js?v=20261010-tools-hub1"></script>
+  <script defer src="site.js?v=20261119-startup-nav-perf1"></script>
 
 
 <script>
+/* PERF1: a genuine installed-mobile launch waits only for the approved C
+   animation and document readiness. No fixed post-load holding period. */
 (function(){
-  var root = document.documentElement;
-  if (root.classList.contains('cm-home-pwa-desktop')) {
-    window.setTimeout(function(){ root.classList.remove('cm-home-pwa-desktop'); }, 350);
-  }
+  var root=document.documentElement;
   if (!root.classList.contains('cm-home-pwa-launch')) return;
-  var released = false;
-  function finish(){
-    if (released) return;
-    released = true;
-    var elapsed = performance.now() - (window.__cmHomePwaLaunchStart || performance.now());
-    // Only the installed mobile app ICON launch has this brief intro.
+  var stroke=document.querySelector('.cm-home-pwa-c-stroke');
+  var ready=document.readyState!=='loading', drawn=false, released=false;
+  function reveal(){
+    if (!ready || !drawn || released) return;
+    released=true;
+    root.classList.add('cm-home-pwa-dismissing');
     window.setTimeout(function(){
-      root.classList.remove('cm-home-pwa-launch');
-      root.classList.add('cm-home-pwa-dismissing');
-      window.setTimeout(function(){ root.classList.remove('cm-home-pwa-dismissing'); }, 210);
-    }, Math.max(0, 780 - elapsed));
+      root.classList.remove('cm-home-pwa-launch','cm-home-pwa-dismissing');
+    },140);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', finish, {once:true});
-  else requestAnimationFrame(finish);
-  window.setTimeout(finish, 1200);
+  if (stroke) stroke.addEventListener('animationend',function(event){
+    if (event.animationName==='cm-home-draw-c') {drawn=true;reveal();}
+  },{once:true});
+  if (!ready) document.addEventListener('DOMContentLoaded',function(){ready=true;reveal();},{once:true});
+  // Fallback only if animationend is unavailable or animation was cancelled.
+  window.setTimeout(function(){drawn=true;reveal();},690);
 })();
 </script>
 </body>

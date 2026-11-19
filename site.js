@@ -453,7 +453,7 @@
       if (!link) link = createSearchLink(true);
       // Search is the final desktop navigation action, immediately before the
       // separate country/currency control in the header.
-      nav.appendChild(link);
+      if (link !== nav.lastElementChild) nav.appendChild(link);
     });
 
     document.querySelectorAll('.mobile-nav-panel, .mobile-nav-links').forEach(function (panel) {
@@ -478,7 +478,7 @@
       link.dataset.cmAskLink='';
       link.classList.add('site-ask-link');
       link.setAttribute('aria-label','Ask Carrowmont');
-      link.innerHTML='<span class="site-ask-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.5h14v9.5H10l-5 4v-13.5z"></path><path d="M8.5 9h7M8.5 12h4.5"></path></svg></span><span>Ask</span>';
+      if (!link.querySelector('.site-ask-link-icon')) link.innerHTML='<span class="site-ask-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.5h14v9.5H10l-5 4v-13.5z"></path><path d="M8.5 9h7M8.5 12h4.5"></path></svg></span><span>Ask</span>';
       if (window.location.pathname==='/ask-carrowmont.html') link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
       var tools=nav.querySelector('a[href="/tools.html"]');
       if (tools && tools.nextSibling) nav.insertBefore(link,tools.nextSibling); else if (tools) nav.appendChild(link); else nav.appendChild(link);
@@ -500,11 +500,8 @@
 
   /* TRAFFIC1A-NAV-FIT: the extra Research item must not make the shared desktop header overflow at 1440px. */
   function ensureResearchNavFit() {
-    if (document.getElementById('traffic1aResearchNavFit')) return;
-    var style = document.createElement('style');
-    style.id = 'traffic1aResearchNavFit';
-    style.textContent = '@media (min-width:981px) and (max-width:1560px){.header-inner{gap:18px}.header-inner .brand-tagline,.header-inner .brand-rule{display:none}.desktop-nav{gap:22px}.desktop-nav a{font-size:14px}.desktop-nav .site-search-link{padding:8px 10px}}';
-    document.head.appendChild(style);
+    // PERF1: the identical rule now loads with carrowmont.css, before first paint.
+    // Do not inject late styles that make the header jump.
   }
 
   function addResearchLinks() {
@@ -592,10 +589,13 @@
       if (!mobile && about) about.remove();
       var order = ['/','/my-carrowmont.html','/tools.html','/ask-carrowmont.html','/learn.html','/research.html','/search.html'];
       if (mobile) order = ['/','/my-carrowmont.html','/ask-carrowmont.html','/tools.html','/learn.html','/research.html','/methodology.html','/about.html','/search.html','/contact.html'];
-      order.forEach(function (href) {
-        var node = nav.querySelector('a[href="' + href + '"]');
-        if (node) nav.appendChild(node);
-      });
+      // Only reorder an outdated/legacy header. Canonical pre-rendered
+      // headers must NOT move their nodes after first paint.
+      var ordered = order.map(function(href){return nav.querySelector('a[href="' + href + '"]');}).filter(Boolean);
+      var currentOrder = Array.from(nav.children).filter(function(node){return ordered.indexOf(node)!==-1;});
+      if (ordered.some(function(node,i){return currentOrder[i]!==node;})) {
+        ordered.forEach(function(node){nav.appendChild(node);});
+      }
       // One active destination. Never leave Ask permanently highlighted.
       var activeHref = null;
       if (path === '/' || path === '/index.html') activeHref = '/';
@@ -606,10 +606,12 @@
       else if (path === '/learn.html' || document.body.hasAttribute('data-cm-learn-article')) activeHref = '/learn.html';
       else if (path === '/tools.html' || /^\/(sip-calculator|retirement-calculator|goal-planner|financial-independence|inflation-calculator|budget-cash-flow-planner|mortgage-payoff-calculator|compound-interest-calculator|loan-calculator)\//.test(path)) activeHref = '/tools.html';
       else if (mobile && (path === '/about.html' || path === '/methodology.html' || path === '/contact.html')) activeHref = path;
-      nav.querySelectorAll('a[aria-current="page"]').forEach(function (link) { link.removeAttribute('aria-current'); });
+      nav.querySelectorAll('a[aria-current="page"]').forEach(function(link){
+        if (link.getAttribute('href') !== activeHref) link.removeAttribute('aria-current');
+      });
       if (activeHref) {
         var activeLink = nav.querySelector('a[href="' + activeHref + '"]');
-        if (activeLink) activeLink.setAttribute('aria-current', 'page');
+        if (activeLink && activeLink.getAttribute('aria-current') !== 'page') activeLink.setAttribute('aria-current','page');
       }
     }
 

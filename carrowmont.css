@@ -536,7 +536,39 @@ body[data-cm-page="home"] .hero-lede{margin-bottom:0;max-width:620px;font-size:1
 
 /* Carrowmont navigation stability: no forced delays or transitions inside installed apps. */
 html{scrollbar-gutter:stable}
-@media (display-mode:browser) and (prefers-reduced-motion:no-preference){
-  @view-transition{navigation:auto}
-  ::view-transition-old(root),::view-transition-new(root){animation-duration:120ms;animation-timing-function:ease-out}
+/* PERF1: normal site/app navigation must render immediately. The former
+   cross-document root view transition produced a perceived whole-page jolt. */
+/* No @view-transition navigation opt-in here; keep only the stable scrollbar. */
+
+/* PERF1: the canonical desktop header must start at its FINAL geometry.
+   Previously this breakpoint was added by site.js after the page had painted. */
+@media (min-width:981px) and (max-width:1560px){
+  .header-inner{gap:18px}
+  .header-inner .brand-tagline,.header-inner .brand-rule{display:none}
+  .desktop-nav{gap:22px}
+  .desktop-nav a{font-size:14px}
+  .desktop-nav .site-search-link{padding:8px 10px}
+}
+/* PERF1: provide the final compact mobile header on first paint for the
+   canonical pages. The shared JS still supplies bottom nav and More dialog. */
+@media(max-width:700px){
+  .header-inner[data-cm-static-mobile-header]{min-height:64px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 96px auto;align-items:center;gap:8px!important;flex-wrap:nowrap!important}
+  .header-inner[data-cm-static-mobile-header] .mobile-nav{display:none!important}
+  .header-inner[data-cm-static-mobile-header] .brand{grid-column:1;grid-row:1;min-width:0;gap:0;overflow:hidden;justify-self:start;align-self:center}
+  .header-inner[data-cm-static-mobile-header] .brand-name{font-size:19px!important;letter-spacing:1.1px!important;overflow:hidden;text-overflow:ellipsis}
+  .header-inner[data-cm-static-mobile-header] .brand-rule,.header-inner[data-cm-static-mobile-header] .brand-tagline{display:none!important}
+  .header-inner[data-cm-static-mobile-header] .locale-menu{grid-column:3;grid-row:1;margin-left:0!important;flex:0 0 auto;justify-self:end;align-self:center}
+  .header-inner[data-cm-static-mobile-header] .locale-summary{min-height:40px;padding:7px 9px!important;gap:5px!important}
+  .header-inner[data-cm-static-mobile-header] .locale-summary #localeCountryLabel,.header-inner[data-cm-static-mobile-header] .locale-summary #localeCountryLabel+span{display:none!important}
+  .header-inner[data-cm-static-mobile-header] .locale-summary #localeCurrencyLabel{font-size:12px}
+  .header-inner[data-cm-static-mobile-header] .locale-summary .chevron{display:none!important}
+  .header-inner[data-cm-static-mobile-header] .locale-panel{top:70px!important}
+  .header-inner[data-cm-static-mobile-header] .mobile1-header-search{grid-column:2;grid-row:1;display:inline-flex;width:96px;height:40px;align-items:center;justify-content:center;gap:6px;border:1px solid #bfd4de;border-radius:999px;background:#f8fbfc;color:#163a5b;padding:0 12px;font-size:12px;font-weight:850;line-height:1;text-decoration:none;white-space:nowrap;justify-self:center}
+  .header-inner[data-cm-static-mobile-header] .mobile1-header-search svg{width:18px;height:18px;flex:0 0 auto}
+  .header-inner[data-cm-static-mobile-header] .mobile1-header-search[aria-current="page"]{border-color:#0e827a;background:#e8f7f5;color:#0b6f69}
+}
+@media(max-width:360px){
+  .header-inner[data-cm-static-mobile-header]{grid-template-columns:minmax(0,1fr) 92px auto;gap:6px!important}
+  .header-inner[data-cm-static-mobile-header] .mobile1-header-search{width:92px;height:38px;padding:0 9px;font-size:11.5px}
+  .header-inner[data-cm-static-mobile-header] .brand-name{font-size:17.5px!important;letter-spacing:.8px!important}
 }
