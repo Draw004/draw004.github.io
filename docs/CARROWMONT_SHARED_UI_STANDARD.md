@@ -1,3 +1,5 @@
+> **Current-source notice (19 Nov 2026):** Approved canonical UI rules remain authoritative. The November 2026 standards gate in `carrowmont-qa/scripts/development-standards-gate.mjs` enforces new/changed work, and `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` inventories historical exceptions for correction on their next edit. Older tool inventory and Snapshot 43 commits in this file are historical, not the newest baseline.
+
 # Carrowmont Shared UI Standard
 
 **Document:** `CARROWMONT_SHARED_UI_STANDARD.md`  
@@ -773,3 +775,8 @@ Carrowmont should be recognizable before a user reads the calculator name.
 The header, country/currency selector, navigation, footer, typography, interaction language, and responsive behavior form the common product shell. New tools should inherit that shell; they should not recreate it.
 
 **One Carrowmont ecosystem. Tool-specific functionality. Shared UI standards.**
+
+
+## November 2026 standards enforcement amendment
+
+From the next reviewed development release onward, changed tool HTML must pass the central `development-standards-gate.mjs` preflight before full browser testing. The canonical country/currency closed pill includes the outlined globe, country and ISO currency code, outlined chevron and accessible label. The gate tracks four historical exceptions; no new or modified page may perpetuate them. Browser tests remain mandatory for geometry, first-click deep links, return navigation, mobile and print behaviour. The `CARROWMONT_STANDARDS_INDEX.md` points to all canonical rulebooks and `CARROWMONT_CURRENT_PROJECT_STATUS.md` controls the dated baseline; do not update the historical Snapshot 43 section as though it were the current source.

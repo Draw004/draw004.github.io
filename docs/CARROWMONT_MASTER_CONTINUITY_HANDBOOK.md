@@ -1,15 +1,18 @@
 # Carrowmont Master Continuity & Recovery Handbook
 
-**Version:** 2026-11-06  
+**Version:** 2026-11-19 (continuity modernization)  
 **Permanent repository path:** `docs/CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md`  
 **Project:** Carrowmont - Money in Real Life  
 **Live site:** carrowmont.com  
 **GitHub owner:** Draw004  
-**Authoritative baseline snapshot:** `carrowmont-source-snapshot - 2026-11-06T001111.170.zip`  
-**Snapshot SHA-256:** `cb3318be3972671fb13027d5300b9512691d398ad8190b2fc784ba68c802029a`  
-**Verified source contract:** **723 PASS / 0 FAIL**
+**Authoritative baseline snapshot:** `carrowmont-source-snapshot - 2026-11-19T222256.081.zip`  
+**Snapshot SHA-256:** `eaf991e357122629b8ac333d475cf8914ea155f4c6f24d7f410c1ed8a91b6203`  
+**Verified source contract:** **1,351 PASS / 0 FAIL**
 
 > **Purpose:** Make Carrowmont portable across ChatGPT accounts, future developers, and future chats. A new ChatGPT account does not inherit the old account's conversation history, so the durable source of truth must be files: this handbook plus the newest all-green Source Snapshot.
+
+
+> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. The current batch is **12B**, and original **Batch 13** is reserved for optional connected financial data. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges.
 
 ## 1. Best way to move Carrowmont to another ChatGPT account
 
@@ -24,36 +27,11 @@ A handbook alone is not enough for exact code work, because code changes after t
 
 ### New-chat bootstrap prompt
 
-```text
-CARROWMONT NEW-CHAT START PROMPT
-
-I am continuing an existing project called Carrowmont (carrowmont.com). I have attached:
-1) `docs/CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md` from the newest Source Snapshot (or this Markdown file attached separately)
-2) carrowmont-source-snapshot - 2026-11-06T001111.170.zip, or a newer Carrowmont Source Snapshot if available.
-
-Treat the newest Source Snapshot as the code/source baseline and the handbook as the operating-policy baseline. Do not rely on assumptions from older Carrowmont conversations or older handover documents when they conflict with the newest snapshot/source-contract.
-
-Before changing anything:
-- inspect SNAPSHOT-MANIFEST.txt and the relevant source files;
-- summarize the current repository baseline and the non-negotiable product/release rules;
-- preserve country-aware terminology, calculator math, report standards, responsive behavior and existing QA contracts unless the requested change explicitly changes a contract;
-- use the safe flow: fresh snapshot -> reviewed release bundle -> disposable staging branch -> Carrowmont Batch PR Publisher -> staged QA -> generated PRs -> human merge -> live QA/Guard -> fresh snapshot;
-- use CREATE_PRS for Batch PR Publisher; RELEASE is only for formal tag/release creation;
-- never merge the disposable staging branch itself;
-- never ask me to paste GitHub tokens or secrets into chat;
-- do not bypass a red Publisher/QA run; inspect its artifact and fix the root cause;
-- for changes, prefer one complete Publisher-ready ZIP over local scripts or many manual edits;
-- do not silently change calculator formulas during copy, UI, SEO or layout work;
-- do not claim all-green unless the exact packaged release has passed the applicable validation.
-
-Current baseline in the attached 2026-11-06 snapshot: source-contract 723 PASS / 0 FAIL. Snapshot SHA-256: cb3318be3972671fb13027d5300b9512691d398ad8190b2fc784ba68c802029a.
-
-If I provide a newer all-green Source Snapshot, that newer snapshot supersedes this baseline. Update the handbook/version notes after a meaningful architecture or workflow change.
-```
+Use `docs/CARROWMONT_NEW_CHAT_START_HERE.txt` verbatim. Its content, rather than a copied prompt in this historical handbook, is the one authoritative version. Attach the **latest green Source Snapshot ZIP** (or a portable handover pack containing it). No account-specific memory, connector, permission or token should be assumed.
 
 ## 2. Current baseline - do not guess past it
 
-The 2026-11-06 source snapshot is the current all-green baseline for this handbook. It contains **11 repositories** and the shared QA system. The source-contract run against the extracted snapshot produced **723 PASS / 0 FAIL**.
+The 2026-11-19 22:22 IST source snapshot is the latest green baseline known to this handbook. It contains **11 repositories** and the shared QA system. The source-contract run against the extracted snapshot produced **1,351 PASS / 0 FAIL**.
 
 Older architecture/handover files inside the repository contain useful history, but some counts and roadmap statements predate newer calculators and later UX changes. When they conflict, use this priority order:
 
@@ -132,8 +110,8 @@ Bottom navigation remains:
 ## 6. Current content/discovery baseline
 
 The current QA contract protects:
-- **132 public pages** in the reviewed site inventory;
-- **90 Learn guides**;
+- the current source-index inventory (review the index files for an authoritative count);
+- existing Learn guides and the seven added in Batch 12A;
 - **3 formal Research studies** currently covered by newsletter/Research contracts;
 - stable sitemap/search ownership and truthful freshness;
 - distinct search intent between calculators, research studies and evergreen Learn content.
@@ -239,7 +217,7 @@ Secret names that may appear in workflow source:
 
 ## 13. QA rules
 
-Current extracted-snapshot source-contract result: **723 PASS / 0 FAIL**.
+Current extracted-snapshot source-contract result: **1,351 PASS / 0 FAIL**.
 
 QA is a product contract, not an afterthought. When an approved product rule changes, update both the implementation and the relevant QA contract in the same release.
 
