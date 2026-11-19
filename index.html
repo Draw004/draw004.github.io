@@ -9,6 +9,15 @@
   <link rel="canonical" href="https://carrowmont.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/carrowmont.webmanifest">
+  <script>
+  // Retain the one-shot native PWA install prompt until the shared site script loads.
+  window.addEventListener('beforeinstallprompt', function(event) {
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+    if (standalone) return;
+    event.preventDefault();
+    window.__cmPwaEarlyInstallPrompt = event;
+  });
+  </script>
   <link rel="apple-touch-icon" href="/assets/pwa/carrowmont-192.png">
   <link rel="preload" as="image" href="/carrowmont-hero-mobile.webp?v=20261113-hero4" media="(max-width: 980px)">
   <link rel="preload" as="image" href="/carrowmont-hero-laptop.webp?v=20261113-hero4" media="(min-width: 981px) and (max-width: 1649px)">
@@ -24,7 +33,7 @@
   <meta name="twitter:description" content="Carrowmont helps you plan retirement, goals, debt, cash flow and other financial decisions, keep meaningful plans in My Carrowmont and track progress over time.">
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Carrowmont | Financial Planning, Tools &amp; Learning</title>
-  <link rel="stylesheet" href="carrowmont.css?v=20261119-app-behavior-v5">
+  <link rel="stylesheet" href="carrowmont.css?v=20261119-nav-stable-v6b">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://carrowmont.com/#website","name":"Carrowmont","alternateName":"carrowmont.com","url":"https://carrowmont.com/","description":"Financial planning tools and educational resources for budgeting, cash flow, investing, retirement, inflation and major life goals.","publisher":{"@id":"https://carrowmont.com/#organization"},"inLanguage":"en"},{"@type":"Organization","@id":"https://carrowmont.com/#organization","name":"Carrowmont","url":"https://carrowmont.com/","description":"Carrowmont publishes educational financial planning calculators, scenario tools, independent research and learning resources.","email":"contact@carrowmont.com","sameAs":["https://www.linkedin.com/company/carrowmont/","https://www.facebook.com/carrowmont","https://www.instagram.com/carrowmont.finance/","https://www.youtube.com/@carrowmontfinance"]}]}</script>
 
@@ -95,7 +104,7 @@
     }
   </style>
 
-  <link rel="stylesheet" href="/assets/pwa/carrowmont-launch.css?v=20261119-v5">
+  <link rel="stylesheet" href="/assets/pwa/carrowmont-launch.css?v=20261119-v6b">
   <script>
   (function(){
     try {
@@ -505,7 +514,7 @@
 </footer>
 
   <script src="locale.js?v=20261010-tools-hub1"></script>
-  <script src="site.js?v=20261119-app-behavior-v5"></script>
+  <script src="site.js?v=20261119-pwa-install-v6"></script>
 
 
 <script>
@@ -525,7 +534,7 @@
       root.classList.remove('cm-home-pwa-launch');
       root.classList.add('cm-home-pwa-dismissing');
       window.setTimeout(function(){ root.classList.remove('cm-home-pwa-dismissing'); }, 210);
-    }, Math.max(0, 875 - elapsed));
+    }, Math.max(0, 780 - elapsed));
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', finish, {once:true});
   else requestAnimationFrame(finish);

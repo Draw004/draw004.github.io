@@ -33,8 +33,8 @@
 window.addEventListener('beforeinstallprompt', function(event){
   event.preventDefault(); window.__cmPwaEarlyInstallPrompt = event;
 });</script>
-  <link rel="stylesheet" href="/carrowmont.css?v=20261119-app-behavior-v5">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261119-drawc2">
+  <link rel="stylesheet" href="/carrowmont.css?v=20261119-nav-stable-v6b">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261119-panel-v6b">
 </head>
 <body data-cm-page="my-carrowmont">
 <!-- Browser/Android system splash is static; this brand animation begins after the document starts painting. -->
@@ -207,7 +207,7 @@ window.addEventListener('beforeinstallprompt', function(event){
 
       <section class="mycm-app-access" id="cmPwaInstallCard" data-cm-pwa-card aria-labelledby="mycmAppAccessTitle" hidden>
         <div><span class="mycm-kicker">Use as an app</span><h2 id="mycmAppAccessTitle">Keep My Carrowmont one tap away</h2><p>Install Carrowmont in this browser for quicker access to saved plans. Installing it does not change what is saved in your account.</p></div>
-        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>How to install</button><small id="cmPwaInstallHint">Already installed? Open Carrowmont from your apps, Start menu or taskbar instead.</small></div>
+        <div class="mycm-app-access-actions"><button class="mycm-button mycm-button-primary" id="cmPwaInstallButton" type="button" hidden>How to install</button><small id="cmPwaInstallHint" role="status">Already installed? Open Carrowmont from your apps, Start menu or taskbar instead.</small></div>
       </section>
     </div>
   </section>
@@ -265,6 +265,6 @@ window.addEventListener('beforeinstallprompt', function(event){
   else requestAnimationFrame(revealPage);
   window.setTimeout(revealPage, 1350);
 })();</script>
-<script src="/site.js?v=20261119-app-behavior-v5"></script>
+<script src="/site.js?v=20261119-pwa-install-v6"></script>
 </body>
 </html>
