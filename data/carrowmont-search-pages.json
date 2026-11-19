@@ -309,7 +309,7 @@
     {
       "url": "/budget-cash-flow-planner/credit-card-payoff-calculator.html",
       "title": "Credit Card Payoff Calculator | Minimum vs Higher Payment",
-      "description": "Compare a fixed minimum-payment credit-card payoff path with a higher monthly payment, estimate modeled interest and time saved, and solve for a target payoff period.",
+      "description": "Compare fixed credit-card repayments and balance-transfer offers, including fees, promotional APR, monthly payments and post-offer costs.",
       "type": "tool",
       "category": "Debt & Credit",
       "keywords": [
@@ -318,12 +318,17 @@
         "pay off credit card",
         "minimum payment",
         "higher monthly payment",
-        "target payoff"
+        "target payoff",
+        "balance transfer calculator",
+        "balance transfer comparison tool",
+        "balance transfer cost calculator"
       ],
       "aliases": [
         "card payoff calculator",
         "credit card repayment calculator",
-        "credit card interest payoff"
+        "credit card interest payoff",
+        "calculate balance transfer savings",
+        "compare balance transfer offer"
       ],
       "priority": 60,
       "topics": [
@@ -331,8 +336,9 @@
         "debt"
       ],
       "intents": [
-        "payoff",
         "calculate",
+        "compare",
+        "payoff",
         "plan"
       ]
     },
@@ -2003,12 +2009,13 @@
       "aliases": [
         "mortgage refinance calculator",
         "remortgage calculator",
-        "balance transfer calculator",
         "refinance break even"
       ],
       "locale_aliases": {
         "IN": [
-          "balance transfer"
+          "home loan balance transfer",
+          "home loan balance transfer calculator",
+          "mortgage balance transfer calculator"
         ],
         "US": [
           "refinance"

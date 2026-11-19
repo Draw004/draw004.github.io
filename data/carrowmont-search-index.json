@@ -656,10 +656,13 @@
     {
       "url": "/budget-cash-flow-planner/credit-card-payoff-calculator.html",
       "title": "Credit Card Payoff Calculator | Minimum vs Higher Payment",
-      "description": "Compare a fixed minimum-payment credit-card payoff path with a higher monthly payment, estimate modeled interest and time saved, and solve for a target payoff period.",
+      "description": "Compare fixed credit-card repayments and balance-transfer offers, including fees, promotional APR, monthly payments and post-offer costs.",
       "type": "tool",
       "category": "Debt & Credit",
       "keywords": [
+        "balance transfer calculator",
+        "balance transfer comparison tool",
+        "balance transfer cost calculator",
         "credit card interest",
         "credit card payoff calculator",
         "higher monthly payment",
@@ -668,7 +671,9 @@
         "target payoff"
       ],
       "aliases": [
+        "calculate balance transfer savings",
         "card payoff calculator",
+        "compare balance transfer offer",
         "credit card interest payoff",
         "credit card repayment calculator"
       ],
@@ -679,6 +684,7 @@
       ],
       "intents": [
         "calculate",
+        "compare",
         "payoff",
         "plan"
       ],
@@ -694,11 +700,19 @@
         {
           "id": "car",
           "strength": 5
+        },
+        {
+          "id": "loans",
+          "strength": 1
         }
       ],
       "semantic_intents": [
         {
           "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
           "strength": 6
         },
         {
@@ -708,10 +722,6 @@
         {
           "id": "plan",
           "strength": 6
-        },
-        {
-          "id": "compare",
-          "strength": 5
         }
       ]
     },
@@ -4065,7 +4075,6 @@
         "When does refinancing actually break even?"
       ],
       "aliases": [
-        "balance transfer calculator",
         "mortgage refinance calculator",
         "refinance break even",
         "remortgage calculator"
@@ -4085,7 +4094,9 @@
           "remortgage"
         ],
         "IN": [
-          "balance transfer"
+          "home loan balance transfer",
+          "home loan balance transfer calculator",
+          "mortgage balance transfer calculator"
         ],
         "NZ": [
           "refinance"
