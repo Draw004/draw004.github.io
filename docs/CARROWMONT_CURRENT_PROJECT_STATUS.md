@@ -1,16 +1,16 @@
 # Carrowmont - current project status
 
-**Status date:** 19 November 2026. **Scope:** snapshot-verified record, not a claim about future deployments.
-**Current approved baseline snapshot:** `carrowmont-source-snapshot - 2026-11-19T222256.081.zip`
-**Snapshot SHA-256:** `eaf991e357122629b8ac333d475cf8914ea155f4c6f24d7f410c1ed8a91b6203`
-**Source contract against this exact extracted snapshot:** **1,351 PASS / 0 FAIL** (verified locally).
+**Status date:** 20 November 2026. **Scope:** snapshot-verified record, not a claim about future deployments.
+**Current approved baseline snapshot:** `carrowmont-source-snapshot - 2026-11-20T004453.791.zip`
+**Snapshot SHA-256:** `9f9e15fcfb451063b91be3a2912527212ce110c8b5a77f3a2acc7ad118f71a20`
+**Source contract against this exact extracted snapshot:** **1,357 PASS / 0 FAIL** (verified locally).
 **Integration/release status:** user reported all green on the preceding credit-card balance-transfer release; the snapshot is a source capture. Full browser suite has not been rerun by this continuity release. New documents/checks are not live until Publisher and human merge.
 
 ## Repository baseline - read SNAPSHOT-MANIFEST.txt if anything differs
 
 | Repository | Exact commit (snapshot manifest) |
 |---|---|
-| draw004.github.io | `3b026932018733f143458807da6b319cd763642a` |
+| draw004.github.io | `eddbf4428716edb350a544bcaa562750920eef0b` |
 | sip-calculator | `0e718f0c5935948d11c1c4eee1a3059ba0209662` |
 | goal-planner | `cfd03c8c66bf85b2f25ee916cde78e51bacfc8b0` |
 | financial-independence | `1dfb029e4c4215d69b8982723a7b5dd67289d32c` |
@@ -20,7 +20,7 @@
 | mortgage-payoff-calculator | `58a0e63cc792634e94974efb069e741838f7ce0d` |
 | compound-interest-calculator | `bd85864abbff231bf54e1cc3864cb699a106fbcb` |
 | loan-calculator | `7410d13df9b0014ce9ccf402af839876e7eb8fa3` |
-| carrowmont-qa | `62d436cb4e18af048c7c382bebfab66abb44b1ed` |
+| carrowmont-qa | `d26a53f7161fe7140776c296abb5c8d93ccd2de2` |
 
 ## Product phase and exact next work
 
@@ -32,15 +32,15 @@
 
 ## Immediate work order
 
-**This release:** continuity, standardized entry point, documented historical exceptions and automated pre-Publisher standards enforcement. No UI redesign or financial formula change is part of this foundation release.
+**This proposed release:** Batch 12B-1 Credit Card Decisions UX consolidation, with no financial formula, saved-plan ownership, public URL or app-behaviour changes. The Standards Gate established in the preceding release is now mandatory.
 
-**Next feature release, after this foundation is green:** focused Batch 12B-1 Credit Card UX Consolidation against a **newest post-foundation green snapshot**, and correction of its known legacy country selector. The original indexed credit-card URL stays unchanged.
+**After this release is fully green:** proceed to Batch 12B-2 Short-Term Savings Comparison. Do not treat an unmerged Publisher ZIP as completed product work.
 
 ## Known issues intentionally not silently rewritten
 
-1. `budget-cash-flow-planner/credit-card-payoff-calculator.html` uses a noncanonical locale-summary control. Correct on next UX change.
+1. `budget-cash-flow-planner/credit-card-payoff-calculator.html` locale summary and double-stacked comparison are corrected **in the proposed UX release**, pending Publisher/browser/merge acceptance.
 2. `retirement-calculator/faq.html`, `how-it-works.html`, and `methodology.html` have older country-selector markup. Audit and correct on their next modification.
-3. Credit-card user journey (balance-transfer anchor, compact workspace, multiple-debts return navigation) needs actual browser acceptance tests and correction.
+3. Credit-card first-click anchor, compact workspace and multiple-debts return are implemented **in the proposed UX release**; browser acceptance and human review remain pending.
 4. Installed PWA's native splash is controlled by Android/browser; approved web-side Draw the C and tagline must remain unchanged unless explicitly approved.
 
 Known exceptions are tracked in `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` and do **not** justify introducing the same differences into new work.
@@ -50,3 +50,7 @@ Known exceptions are tracked in `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` and do **
 This document is an **as-of snapshot record**. If a newer all-green snapshot is provided, that snapshot's `SNAPSHOT-MANIFEST.txt` supersedes the SHAs here. Before any release, reconcile this status file with the newer snapshot and update it in the same controlled change where practical. Never promise that a previous AI account's memory or connected apps are available to another account.
 
 **Security:** no credentials, authorization tokens, private Google account information or saved user data in public docs, snapshots, or handover packages.
+
+## Proposed change in review - source is not yet live
+
+Batch 12B-1 consolidation implementation and tests are documented in `CARROWMONT_FRE12B1_UX_ACCEPTANCE.md`. The hash/commit table above refers to the **pre-release all-green snapshot**, not a claim that this feature release has been merged. After green merge, update this status file and take a fresh snapshot.
