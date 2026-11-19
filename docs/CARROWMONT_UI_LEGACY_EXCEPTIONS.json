@@ -1,18 +1,8 @@
 {
   "schema_version": 1,
-  "baseline_snapshot": "carrowmont-source-snapshot - 2026-11-19T222256.081.zip",
+  "baseline_snapshot": "carrowmont-source-snapshot - 2026-11-20T004453.791.zip",
   "policy": "Documentation of known pre-existing differences, not permission to recreate them. Gate fails if an excepted HTML page changes without correcting the difference.",
   "exceptions": [
-    {
-      "repository": "budget-cash-flow-planner",
-      "path": "credit-card-payoff-calculator.html",
-      "violations": [
-        "locale_globe",
-        "locale_chevron",
-        "locale_accessible_label"
-      ],
-      "reason": "Legacy credit-card header is missing the canonical locale icons and accessible label. Correct in Batch 12B-1 UX consolidation."
-    },
     {
       "repository": "retirement-calculator",
       "path": "faq.html",
