@@ -33,7 +33,7 @@
 window.addEventListener('beforeinstallprompt', function(event){
   event.preventDefault(); window.__cmPwaEarlyInstallPrompt = event;
 });</script>
-  <link rel="stylesheet" href="/carrowmont.css?v=20261119-nav-stable-v6b">
+  <link rel="stylesheet" href="/carrowmont.css?v=20261119-startup-nav-perf1">
   <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261119-panel-v6b">
 </head>
 <body data-cm-page="my-carrowmont">
@@ -56,9 +56,9 @@ window.addEventListener('beforeinstallprompt', function(event){
   <p class="cm-pwa-boot-tagline">Plan today. Build tomorrow.</p>
 </div>
 <header class="site-header">
-  <div class="shell header-inner">
+  <div class="shell header-inner" data-cm-static-mobile-header>
     <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule"></span><span class="brand-tagline">Plan today. <strong>Build a brighter tomorrow.</strong></span></a>
-    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a></nav>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/my-carrowmont.html" aria-current="page">My Carrowmont</a><a href="/tools.html">Tools</a><a href="/ask-carrowmont.html" class="site-ask-link" data-cm-ask-link aria-label="Ask Carrowmont"><span class="site-ask-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.5h14v9.5H10l-5 4v-13.5z"></path><path d="M8.5 9h7M8.5 12h4.5"></path></svg></span><span>Ask</span></a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/search.html" class="site-search-link" data-cm-search-link><span class="site-search-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg></span>Search</a></nav>
     <details class="locale-menu" id="localeMenu">
       <summary class="locale-summary" aria-label="Choose country and currency">
         <span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span>
@@ -74,6 +74,7 @@ window.addEventListener('beforeinstallprompt', function(event){
         <button type="button" class="small-button" id="localeDoneBtn">Done</button>
       </div>
     </details>
+    <a class="mobile1-header-search" data-mobile1-header-search href="/search.html" aria-label="Search Carrowmont"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><span>Search</span></a>
     <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="/">Home</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div></details>
   </div>
 </header>
@@ -223,23 +224,23 @@ window.addEventListener('beforeinstallprompt', function(event){
 
 <footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div><div class="footer-col"><strong>Tools</strong><a href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/tools.html">All tools</a></div><div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/editorial-policy.html">Editorial policy</a><a href="/contact.html">Contact</a></div><div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><div class="shell footer-bottom"><span>&copy; 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div></footer>
 
-<script src="/locale.js?v=20260920-cleanup1"></script>
-<script src="/budget-cash-flow-planner/core.js"></script>
-<script src="/emergency-fund-runway-core.js"></script>
-<script src="/debt-to-income-borrowing-health-core.js"></script>
-<script src="/goal-planner/core.js"></script>
-<script src="/financial-independence/core.js"></script>
-<script src="/assets/fre/priority-framework.js"></script>
-<script src="/assets/fre/money-priorities.js"></script>
-<script src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
-<script src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
-<script src="/assets/account/carrowmont-account.js?v=20261115-fre8k"></script>
-<script src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
-<script src="/assets/report/carrowmont-pdf-export.js?v=20261116-fre9b"></script>
-<script src="/assets/account/carrowmont-financial-plan.js?v=20261118-fre12"></script>
-<script src="/assets/account/carrowmont-plan-report.js?v=20261116-fre9b"></script>
-<script src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
-<script src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
+<script defer src="/locale.js?v=20260920-cleanup1"></script>
+<script defer src="/budget-cash-flow-planner/core.js"></script>
+<script defer src="/emergency-fund-runway-core.js"></script>
+<script defer src="/debt-to-income-borrowing-health-core.js"></script>
+<script defer src="/goal-planner/core.js"></script>
+<script defer src="/financial-independence/core.js"></script>
+<script defer src="/assets/fre/priority-framework.js"></script>
+<script defer src="/assets/fre/money-priorities.js"></script>
+<script defer src="/assets/fre/dashboard-store.js?v=20261110-fre6"></script>
+<script defer src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
+<script defer src="/assets/account/carrowmont-account.js?v=20261115-fre8k"></script>
+<script defer src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
+<script defer src="/assets/report/carrowmont-pdf-export.js?v=20261116-fre9b"></script>
+<script defer src="/assets/account/carrowmont-financial-plan.js?v=20261118-fre12"></script>
+<script defer src="/assets/account/carrowmont-plan-report.js?v=20261116-fre9b"></script>
+<script defer src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
+<script defer src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
 <script>(function(){
   var root = document.documentElement;
   // Desktop starts showing the actual page immediately, with only a tiny non-blocking brand fade.
@@ -265,6 +266,6 @@ window.addEventListener('beforeinstallprompt', function(event){
   else requestAnimationFrame(revealPage);
   window.setTimeout(revealPage, 1350);
 })();</script>
-<script src="/site.js?v=20261119-pwa-install-v6"></script>
+<script defer src="/site.js?v=20261119-startup-nav-perf1"></script>
 </body>
 </html>

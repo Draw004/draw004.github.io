@@ -2,21 +2,20 @@
 .cm-home-pwa-boot{display:none}
 html.cm-home-pwa-launch .cm-home-pwa-boot{
   position:fixed;z-index:10000;inset:0;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;gap:18px;background:#fff;
+  justify-content:center;align-items:center;gap:18px;background:#f8fbfc;
   pointer-events:none;opacity:1;
 }
 .cm-home-pwa-boot-mark{width:112px;height:112px;filter:drop-shadow(0 8px 18px rgba(12,63,68,.12))}
 .cm-home-pwa-boot-mark svg{display:block;width:100%;height:100%;border-radius:21px}
-html.cm-home-pwa-launch .cm-home-pwa-c-stroke{stroke-dasharray:1;stroke-dashoffset:1;animation:cm-home-draw-c .68s cubic-bezier(.26,.08,.22,1) forwards}
-html.cm-home-pwa-launch .cm-home-pwa-c-finish{opacity:0;animation:cm-home-complete-c .68s linear forwards}
-html.cm-home-pwa-launch .cm-home-pwa-tagline{opacity:0;animation:cm-home-tagline .68s ease-out forwards}
+html.cm-home-pwa-launch .cm-home-pwa-c-stroke{stroke-dasharray:1;stroke-dashoffset:1;animation:cm-home-draw-c .56s cubic-bezier(.26,.08,.22,1) forwards}
+html.cm-home-pwa-launch .cm-home-pwa-c-finish{opacity:0;animation:cm-home-complete-c .56s linear forwards}
+html.cm-home-pwa-launch .cm-home-pwa-tagline{opacity:0;animation:cm-home-tagline .56s ease-out forwards}
 .cm-home-pwa-tagline{margin:0;color:#32495b;font-size:13px;font-weight:750;letter-spacing:.01em;text-align:center}
 @keyframes cm-home-draw-c{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes cm-home-complete-c{0%,94%{opacity:0}100%{opacity:1}}
 @keyframes cm-home-tagline{0%,49%{opacity:0;transform:translateY(3px)}70%,100%{opacity:1;transform:translateY(0)}}
-html.cm-home-pwa-dismissing .cm-home-pwa-boot{display:flex;position:fixed;inset:0;z-index:10000;justify-content:center;align-items:center;flex-direction:column;gap:18px;background:#fff;pointer-events:none;opacity:0;transition:opacity .18s ease-out}
-html.cm-home-pwa-desktop .site-header .brand-name{animation:cm-home-desktop-brand .28s ease-out both}
-@keyframes cm-home-desktop-brand{from{opacity:.72;transform:scale(.986)}to{opacity:1;transform:scale(1)}}
+html.cm-home-pwa-dismissing .cm-home-pwa-boot{display:flex;position:fixed;inset:0;z-index:10000;justify-content:center;align-items:center;flex-direction:column;gap:18px;background:#f8fbfc;pointer-events:none;opacity:0;transition:opacity .12s ease-out}
+/* Desktop app launch and all ordinary navigation show the page immediately. */
 @media(prefers-reduced-motion:reduce){
   .cm-home-pwa-c-stroke,.cm-home-pwa-c-finish,.cm-home-pwa-tagline{animation:none!important}
   html.cm-home-pwa-launch .cm-home-pwa-c-stroke{stroke-dashoffset:0}
