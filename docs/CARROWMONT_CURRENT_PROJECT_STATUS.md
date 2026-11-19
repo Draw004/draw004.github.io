@@ -54,3 +54,7 @@ This document is an **as-of snapshot record**. If a newer all-green snapshot is 
 ## Proposed change in review - source is not yet live
 
 Batch 12B-1 consolidation implementation and tests are documented in `CARROWMONT_FRE12B1_UX_ACCEPTANCE.md`. The hash/commit table above refers to the **pre-release all-green snapshot**, not a claim that this feature release has been merged. After green merge, update this status file and take a fresh snapshot.
+
+## Pending global header standards release
+
+The Credit Card Decisions UX release is the baseline for this **proposed** follow-up; its live Main/QA merge state must be verified from a fresh snapshot. The proposed global header migration replaces the local Calculator/Methodology/All tools/Home toolbar with the main-site destinations, moves Methodology into a contextual link, and records 27 other legacy tool headers. Do not mark this as deployed until Publisher, Chrome/Edge/Mobile, Guard and a new snapshot are green.

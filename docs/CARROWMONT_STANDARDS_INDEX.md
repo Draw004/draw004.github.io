@@ -1,13 +1,13 @@
 # Carrowmont standards index - one entry, existing authorities
 
-**Version 1.0 | reviewed 19 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
+**Version 1.1 | reviewed 20 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
 
 | Topic | Canonical source | Enforced through |
 |---|---|---|
 | Start procedure and account portability | `CARROWMONT_DEVELOPMENT_START_HERE.md` + `CARROWMONT_NEW_CHAT_START_HERE.txt` | Handover/source contract and latest snapshot manifest |
 | Current progress, roadmap status and known debt | `CARROWMONT_CURRENT_PROJECT_STATUS.md` + original Financial Resolution Engine Master Roadmap | Snapshot verification, acceptance ledger, peer review |
 | Architecture, deterministic engines, privacy boundaries | `CARROWMONT_ARCHITECTURE.md` + current Batch 0-12B implementation/ledger documents | Existing core source contracts and browser fixtures |
-| Header, locale pill, button geometry, mobile responsiveness | `CARROWMONT_SHARED_UI_STANDARD.md` | `carrowmont-qa/scripts/development-standards-gate.mjs` + browser QA |
+| Header, locale pill, button geometry, mobile responsiveness | `CARROWMONT_SHARED_UI_STANDARD.md` (global header amendment v1.2) + `CARROWMONT_GLOBAL_HEADER_AUDIT.md` | `carrowmont-qa/scripts/development-standards-gate.mjs` + browser QA |
 | Installed-app vs normal browser, initial route, install journey | `CARROWMONT_APP_WEBSITE_BEHAVIOR_STANDARD.md` | App/startup/install contracts and browser QA |
 | Saved-plan transparency, trust and assumptions | `CARROWMONT_TRUST_STANDARD.md` | Trust/plan/report source contracts and browser QA |
 | Reports and PDF | `CARROWMONT_REPORT_STANDARD_IMPLEMENTATION.md` | PDF/source regression checks |
@@ -20,7 +20,7 @@
 1. Read the latest green source and source-controlled standards. Keep the existing tested calculation engines as numeric authority.
 2. For any component being added or changed, find its current canonical implementation in an established tool. **Copying old ad hoc markup is not acceptable.**
 3. Distinguish applicable shared controls from deliberately different content types: e.g. country-agnostic macro Learn articles need not invent a currency picker.
-4. Validate HTML structure with the standards gate before running expensive browser tests. It checks canonical locale controls and modified-page heading/anchor/metadata/id hygiene. Browser tests must still cover focus/scroll, return journeys, layout at 360/390/412px, desktop, tablet and print as applicable.
+4. Validate HTML structure with the standards gate before running expensive browser tests. It checks the full seven-destination primary navigation, one active destination per responsive nav, shared shell assets, canonical locale controls and modified-page heading/anchor/metadata/id hygiene. Browser tests must still cover focus/scroll, return journeys, layout at 360/390/412px, desktop, tablet and print as applicable.
 5. The gate is intentionally forward-safe: existing known markup deviations remain recorded as debt, but if an excepted HTML file is changed then the deviation must be corrected (or separately approved by a new explicit decision with source and QA updates).
 6. A release that edits HTML must declare standards review (`standards_review` keys in `release-manifest.json`). Declarations are not a substitute for actual checks.
 

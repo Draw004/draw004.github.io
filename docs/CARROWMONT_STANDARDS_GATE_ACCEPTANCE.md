@@ -35,3 +35,7 @@ Fix the actual markup, remove the corresponding registry entry in the **same rel
 ## For a new ChatGPT account
 
 Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, verify the newest snapshot manifest and run the gate without a release manifest first. Only after that build the next Publisher bundle. If local browser dependencies are absent, report the specific gate that was not executed; do not label it passed.
+
+## Global header extension (20 November 2026)
+
+Tool-specific legacy headers are now inventoried separately under `global_header_exceptions`. The changed-page gate requires `.cm-global-header` with Home, My Carrowmont, Tools, Ask, Learn, Research, Search in order, exactly one Tools current state in desktop and mobile navigations, and approved shared assets. An untouched legacy page may warn; changing it without correcting the header fails. Browser QA validates full navigation, mobile bottom bar, currency and stable geometry. See `CARROWMONT_GLOBAL_HEADER_AUDIT.md`.
