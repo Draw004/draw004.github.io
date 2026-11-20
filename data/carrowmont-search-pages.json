@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-11-18",
+  "reviewed_at": "2026-11-20",
   "entries": [
     {
       "url": "/",
@@ -836,7 +836,7 @@
     {
       "url": "/emergency-fund-runway-calculator.html",
       "title": "Emergency Fund & Financial Runway Calculator | Carrowmont",
-      "description": "Calculate how many months your emergency savings may cover, set your own runway target, estimate the funding gap and stress-test a one-time shock or partial income loss.",
+      "description": "Calculate emergency-fund runway and compare where near-term savings could sit using your own rates, access needs and maturity dates.",
       "type": "tool",
       "category": "Budgeting & Saving",
       "keywords": [
@@ -848,7 +848,15 @@
         "job loss",
         "cash buffer",
         "emergency fund target",
-        "how long will my savings last"
+        "how long will my savings last",
+        "short term savings comparison",
+        "where to keep short term savings",
+        "short term savings",
+        "term deposit comparison",
+        "fixed deposit comparison",
+        "cd comparison",
+        "money market comparison",
+        "treasury bill comparison"
       ],
       "aliases": [
         "emergency fund calculator",
@@ -856,15 +864,22 @@
         "cash runway",
         "emergency savings calculator",
         "how many months can my savings last",
-        "how much emergency fund do I need"
+        "how much emergency fund do I need",
+        "compare short term savings options",
+        "best place for short term money",
+        "safe place for savings",
+        "near term savings comparison"
       ],
       "priority": 92,
       "topics": [
-        "emergency-savings"
+        "emergency-savings",
+        "budgeting",
+        "saving-goals"
       ],
       "intents": [
         "calculate",
-        "plan"
+        "plan",
+        "compare"
       ]
     },
     {

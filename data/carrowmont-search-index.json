@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-18",
+  "generated_at": "2026-11-20",
   "entries": [
     {
       "url": "/",
@@ -1678,39 +1678,62 @@
     {
       "url": "/emergency-fund-runway-calculator.html",
       "title": "Emergency Fund & Financial Runway Calculator | Carrowmont",
-      "description": "Calculate how many months your emergency savings may cover, set your own runway target, estimate the funding gap and stress-test a one-time shock or partial income loss.",
+      "description": "Calculate emergency-fund runway and compare where near-term savings could sit using your own rates, access needs and maturity dates.",
       "type": "tool",
       "category": "Budgeting & Saving",
       "keywords": [
         "cash buffer",
+        "cd comparison",
         "emergency fund calculator",
         "emergency fund target",
         "emergency savings",
         "financial runway calculator",
+        "fixed deposit comparison",
         "how long will my savings last",
         "income loss",
         "job loss",
-        "months of expenses"
+        "money market comparison",
+        "months of expenses",
+        "short term savings",
+        "short term savings comparison",
+        "term deposit comparison",
+        "treasury bill comparison",
+        "where to keep short term savings"
       ],
       "aliases": [
+        "best place for short term money",
         "cash runway",
+        "compare short term savings options",
         "emergency fund calculator",
         "emergency savings calculator",
         "how many months can my savings last",
         "how much emergency fund do I need",
-        "runway calculator"
+        "near term savings comparison",
+        "runway calculator",
+        "safe place for savings"
       ],
       "priority": 92,
       "topics": [
-        "emergency-savings"
+        "budgeting",
+        "emergency-savings",
+        "saving-goals"
       ],
       "intents": [
         "calculate",
+        "compare",
         "plan"
       ],
       "semantic_topics": [
         {
+          "id": "budgeting",
+          "strength": 6
+        },
+        {
           "id": "emergency-savings",
+          "strength": 6
+        },
+        {
+          "id": "saving-goals",
           "strength": 6
         },
         {
@@ -1718,17 +1741,21 @@
           "strength": 5
         },
         {
-          "id": "budgeting",
-          "strength": 3
+          "id": "bonds",
+          "strength": 4
         },
         {
-          "id": "stocks",
-          "strength": 1
+          "id": "markets-macro",
+          "strength": 4
         }
       ],
       "semantic_intents": [
         {
           "id": "calculate",
+          "strength": 6
+        },
+        {
+          "id": "compare",
           "strength": 6
         },
         {
@@ -1738,6 +1765,10 @@
         {
           "id": "timing",
           "strength": 4
+        },
+        {
+          "id": "research",
+          "strength": 1
         }
       ]
     },
