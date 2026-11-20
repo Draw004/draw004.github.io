@@ -225,6 +225,8 @@
   function writeSearchHandoff(text){
     try{ sessionStorage.setItem(SEARCH_HANDOFF_KEY,JSON.stringify({query:text,createdAt:Date.now(),source:'ask'})); return true; }catch(_err){ return false; }
   }
+  function normalizeOwnershipText(value){return String(value==null?'':value).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[-_/]+/g,' ').replace(/[^a-zA-Z0-9\s]+/g,' ').toLowerCase().replace(/\s+/g,' ').trim();}
+  function ownsSpecificQuery(entry,query){const normalized=normalizeOwnershipText(query);if(!entry||!normalized)return false;const stop=new Set(['a','an','and','are','can','do','does','for','from','how','i','in','is','it','me','my','of','on','or','should','the','to','what','when','where','which','why','with','would']);const meaningful=normalized.split(' ').filter(token=>token&&!stop.has(token));if(meaningful.length<2)return false;const fields=[entry.title,...(Array.isArray(entry.aliases)?entry.aliases:[]),...(Array.isArray(entry.keywords)?entry.keywords:[])];return fields.some(value=>{const field=normalizeOwnershipText(value);return field&&(field===normalized||field.includes(normalized));});}
   function renderRouteMatches(text,results){
     const box=$('askUnsupported'); if(!box) return;
     const title=$('askUnsupportedTitle'); const detail=$('askUnsupportedText'); const wrap=$('askUnsupportedMatches');
@@ -232,12 +234,34 @@
     if(detail) detail.textContent=results.length?`These are the strongest Carrowmont matches for “${text}”, based on the topic and what you appear to be trying to do.`:`Carrowmont did not find a close direct match for “${text}”. Try the wider search or browse Learn and Tools.`;
     if(wrap){
       wrap.innerHTML='';
-      results.slice(0,3).forEach(entry=>{
-        const a=document.createElement('a'); a.className='ask-route-result'; a.href=entry.url;
-        const meta=document.createElement('span'); meta.className='ask-route-type'; meta.textContent=resultType(entry);
-        const strong=document.createElement('strong'); strong.textContent=entry.title;
-        const small=document.createElement('small'); small.textContent=entry.description||entry.category||'';
-        a.append(meta,strong,small); wrap.appendChild(a);
+      const visible=results.slice(0,3);
+      const grouped={
+        tool:{key:'tool',label:'Tools',entries:visible.filter(entry=>entry.type==='tool')},
+        guide:{key:'guide',label:'Learn & Guides',entries:visible.filter(entry=>entry.type==='guide')},
+        other:{key:'other',label:'Other matches',entries:visible.filter(entry=>entry.type!=='tool'&&entry.type!=='guide')}
+      };
+      // Relevance remains authoritative. Tool-first is used only when the best Tool
+      // is broadly comparable with the leading result, never over a decisive direct match.
+      const first=visible[0]||null;
+      const bestTool=grouped.tool.entries[0]||null;
+      const DIRECT_MATCH_LEAD=200;
+      const leadingKey=first?.type==='guide'?'guide':first?.type==='tool'?'tool':'other';
+      const decisiveNonTool=Boolean(first&&leadingKey!=='tool'&&(!bestTool||ownsSpecificQuery(first,text)||((Number(first.score)||0)-(Number(bestTool.score)||0)>=DIRECT_MATCH_LEAD)));
+      const order=decisiveNonTool?[leadingKey,'tool',leadingKey==='guide'?'other':'guide']:['tool','guide','other'];
+      const groups=order.map(key=>grouped[key]);
+      groups.forEach(group=>{
+        if(!group.entries.length)return;
+        const section=document.createElement('section');section.className=`ask-route-group ask-route-group-${group.key}`;section.dataset.askRouteGroup=group.key;
+        const heading=document.createElement('h3');heading.className='ask-route-group-heading';heading.textContent=group.label;section.appendChild(heading);
+        group.entries.forEach(entry=>{
+          const a=document.createElement('a'); a.className='ask-route-result'; if(entry.type==='tool')a.classList.add('ask-route-result-tool');else if(entry.type==='guide')a.classList.add('ask-route-result-learn');else a.classList.add('ask-route-result-other'); a.href=entry.url;
+          const meta=document.createElement('span'); meta.className='ask-route-type'; meta.textContent=resultType(entry);
+          const strong=document.createElement('strong'); strong.textContent=entry.title;
+          const small=document.createElement('small'); small.textContent=entry.description||entry.category||'';
+          const action=document.createElement('span');action.className='ask-route-action';action.textContent=entry.type==='tool'?'Open tool →':entry.type==='guide'?'Read article →':'View result →';
+          a.append(meta,strong,small,action); section.appendChild(a);
+        });
+        wrap.appendChild(section);
       });
     }
     const all=$('askSearchAll');

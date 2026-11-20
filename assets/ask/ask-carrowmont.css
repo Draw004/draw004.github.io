@@ -77,3 +77,14 @@
 
 /* FRE Batch 12 - predictive assistance for imperfect spelling and partial questions. */
 .ask-predictive{display:grid;gap:4px;margin:8px 0 0;padding:8px;border:1px solid #d3e1e5;border-radius:13px;background:#fff;box-shadow:0 10px 24px rgba(15,39,67,.09)}.ask-predictive[hidden]{display:none}.ask-predictive-label{padding:2px 7px 5px;color:#738695;font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}.ask-predictive-option{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;width:100%;padding:9px 10px;border:0;border-radius:10px;background:transparent;color:#173b5d;text-align:left;font:inherit;cursor:pointer}.ask-predictive-option span{font-size:13px;font-weight:800}.ask-predictive-option small{align-self:center;color:#718596;font-size:10px}.ask-predictive-option:hover,.ask-predictive-option:focus-visible{background:#eef8f6;outline:none}.ask-predictive-option:focus-visible{box-shadow:0 0 0 3px rgba(14,130,122,.14)}
+
+
+/* FRE 12 UX follow-up: grouped Ask fallback results with action-first Tools. */
+.ask-route-results{gap:13px}
+.ask-route-group{display:grid;gap:8px}
+.ask-route-group+.ask-route-group{padding-top:11px;border-top:1px solid #e2e9e8}
+.ask-route-group-heading{margin:0 0 1px;color:#536d78;font-size:.73rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.ask-route-result-tool{border-color:#b4d9d4;background:linear-gradient(180deg,#f6fcfb 0%,#fff 78%);box-shadow:0 5px 15px rgba(14,130,122,.05)}
+.ask-route-result-tool .ask-route-type{display:inline-flex;width:max-content;padding:3px 7px;border-radius:999px;background:#0e827a;color:#fff}
+.ask-route-result-learn .ask-route-type{display:inline-flex;width:max-content;padding:3px 7px;border-radius:999px;background:#edf6f5;color:#0b736c}
+.ask-route-action{margin-top:5px;color:#0b736c;font-size:.74rem;font-weight:900}

@@ -53,6 +53,26 @@
     while (node && node.firstChild) node.removeChild(node.firstChild);
   }
 
+  function normalizeOwnershipText(value) {
+    return String(value == null ? '' : value)
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/&/g, ' and ').replace(/[-_/]+/g, ' ')
+      .replace(/[^a-zA-Z0-9\s]+/g, ' ').toLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
+  function ownsSpecificQuery(entry, query) {
+    var normalized = normalizeOwnershipText(query);
+    if (!entry || !normalized) return false;
+    var stop = new Set(['a','an','and','are','can','do','does','for','from','how','i','in','is','it','me','my','of','on','or','should','the','to','what','when','where','which','why','with','would']);
+    var meaningful = normalized.split(' ').filter(function (token) { return token && !stop.has(token); });
+    if (meaningful.length < 2) return false;
+    var fields = [entry.title].concat(Array.isArray(entry.aliases) ? entry.aliases : [], Array.isArray(entry.keywords) ? entry.keywords : []);
+    return fields.some(function (value) {
+      var field = normalizeOwnershipText(value);
+      return field && (field === normalized || field.includes(normalized));
+    });
+  }
+
   function resultTypeLabel(entry) {
     if (entry && String(entry.category || '').toLowerCase() === 'research') return 'Research';
     if (entry && entry.type === 'tool') return 'Tool';
@@ -63,6 +83,9 @@
   function resultCard(entry) {
     var article = document.createElement('article');
     article.className = 'cm-search-result-card';
+    if (entry.type === 'tool') article.classList.add('cm-search-result-card-tool');
+    else if (entry.type === 'guide') article.classList.add('cm-search-result-card-learn');
+    else article.classList.add('cm-search-result-card-other');
     article.dataset.searchResult = '';
     article.dataset.resultType = entry.type;
 
@@ -81,6 +104,8 @@
     article.appendChild(meta);
     article.appendChild(heading);
     article.appendChild(textElement('p', '', entry.description));
+    var action = entry.type === 'tool' ? 'Open tool →' : entry.type === 'guide' ? 'Read article →' : 'View result →';
+    article.appendChild(textElement('span', 'cm-search-result-action', action));
     return article;
   }
 
@@ -167,9 +192,36 @@
       note.appendChild(button); note.appendChild(document.createTextNode('.'));
       widget.results.appendChild(note);
     }
-    var fragment = document.createDocumentFragment();
-    results.forEach(function (entry) { fragment.appendChild(resultCard(entry)); });
-    widget.results.appendChild(fragment);
+    var grouped = {
+      tool: { key: 'tool', label: 'Tools', entries: results.filter(function (entry) { return entry.type === 'tool'; }) },
+      guide: { key: 'guide', label: 'Learn & Guides', entries: results.filter(function (entry) { return entry.type === 'guide'; }) },
+      other: { key: 'other', label: 'Research & Other', entries: results.filter(function (entry) { return entry.type !== 'tool' && entry.type !== 'guide'; }) }
+    };
+    // Preserve a decisive direct/intention match. Tool-first is a tie-breaker for
+    // broadly comparable results, not an override of exact Learn/Research ownership.
+    var first = results[0] || null;
+    var bestTool = grouped.tool.entries[0] || null;
+    var DIRECT_MATCH_LEAD = 200;
+    var leadingKey = first && first.type === 'guide' ? 'guide' : (first && first.type === 'tool' ? 'tool' : 'other');
+    var decisiveNonTool = first && leadingKey !== 'tool' && (!bestTool || ownsSpecificQuery(first, shownQuery) || ((Number(first.score) || 0) - (Number(bestTool.score) || 0) >= DIRECT_MATCH_LEAD));
+    var order = decisiveNonTool ? [leadingKey, 'tool', leadingKey === 'guide' ? 'other' : 'guide'] : ['tool', 'guide', 'other'];
+    var groups = order.map(function (key) { return grouped[key]; });
+    groups.forEach(function (group) {
+      if (!group.entries.length) return;
+      var section = document.createElement('section');
+      section.className = 'cm-search-result-group cm-search-result-group-' + group.key;
+      section.dataset.searchResultGroup = group.key;
+      var groupHeading = document.createElement('div');
+      groupHeading.className = 'cm-search-result-group-heading';
+      groupHeading.appendChild(textElement('h2', '', group.label));
+      groupHeading.appendChild(textElement('span', '', group.entries.length === 1 ? '1 result' : group.entries.length + ' results'));
+      section.appendChild(groupHeading);
+      var grid = document.createElement('div');
+      grid.className = 'cm-search-result-group-grid';
+      group.entries.forEach(function (entry) { grid.appendChild(resultCard(entry)); });
+      section.appendChild(grid);
+      widget.results.appendChild(section);
+    });
     setStatus(widget, results.length === 1 ? '1 result found.' : results.length + ' results found.');
     showSuggestions(widget, false);
     hideTypeahead(widget);

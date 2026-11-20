@@ -90,3 +90,22 @@
   body[data-cm-page="tools-directory"] .cm-search-submit{min-height:46px}
   body[data-cm-page="tools-directory"] .cm-search-status{margin-top:9px;min-height:18px}
 }
+
+
+/* FRE 12 UX follow-up: action-first grouped Search results. */
+.cm-search-result-group{grid-column:1/-1;display:grid;gap:10px;min-width:0;margin-top:3px}
+.cm-search-result-group+.cm-search-result-group{margin-top:12px;padding-top:15px;border-top:1px solid #e1eaed}
+.cm-search-result-group-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:0 2px}
+.cm-search-result-group-heading h2{margin:0;color:#153d5c;font-size:15px;line-height:1.3;letter-spacing:.01em}
+.cm-search-result-group-heading span{color:#728696;font-size:11px;font-weight:800}
+.cm-search-result-group-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;min-width:0}
+.cm-search-result-card-tool{border-color:#b9dcd7;background:linear-gradient(180deg,#f8fdfc 0%,#fff 72%);box-shadow:0 7px 18px rgba(14,130,122,.055)}
+.cm-search-result-card-tool:hover{border-color:#65aea6;box-shadow:0 10px 23px rgba(14,130,122,.1)}
+.cm-search-result-card-tool .cm-search-result-type{background:#0e827a;color:#fff}
+.cm-search-result-card-learn .cm-search-result-type{background:#edf6f5;color:#0b6f69}
+.cm-search-result-action{display:inline-flex;align-items:center;margin-top:11px;color:#0b736c;font-size:12px;font-weight:900;letter-spacing:.01em}
+.cm-search-result-card-tool .cm-search-result-action{color:#086d67}
+@media(max-width:760px){
+  .cm-search-result-group-grid{grid-template-columns:1fr}
+  .cm-search-result-group-heading{align-items:center}
+}
