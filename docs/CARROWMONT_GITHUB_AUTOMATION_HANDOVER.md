@@ -1195,3 +1195,9 @@ This file should remain the canonical GitHub automation handover under:
 ```text
 docs/CARROWMONT_GITHUB_AUTOMATION_HANDOVER.md
 ```
+
+---
+
+## 2026-11-20 amendment - Credential Expiry Guard (pending Publisher merge)
+
+For current credential-expiry monitoring, read `CARROWMONT_CREDENTIAL_EXPIRY_GUARD.md` and `../ops/credential-expiry-registry.json`. The proposed independent workflow is `.github/workflows/carrowmont-credential-expiry-guard.yml`. It records the owner-reviewed **22 September 2027** release-token expiry, uses `GITHUB_TOKEN` to open GitHub issues, probes the existing PAT only for controller repository access, and never stores any credential value. Reverify the workflow is installed and running on `main` after merge; this historical handover cannot by itself establish deployment. GitHub schedules can be disabled in inactive public repositories, so an independent calendar backup is required.
