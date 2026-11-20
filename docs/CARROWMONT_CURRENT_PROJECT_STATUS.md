@@ -1,18 +1,18 @@
 # Carrowmont - current project status
 
-**Status verified:** 20 November 2026, after GH1 closure.  
-**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-20T144537.083.zip`  
-**Snapshot SHA-256:** `3187e4db5a14445c7f1223df172b9316fb4f32c8c91c449d72989594a9f325f8`  
-**Source/standards QA against this snapshot:** 1,373 PASS / 0 FAIL (reported and source-verified in prior closeout).  
-**Release status:** GH1 global header and Mobile Chromium QA correction completed; user reported Publisher, desktop/mobile QA and Multi-Repo Guard green. This document does not claim the proposed Credential Expiry Guard is deployed.
+**Status verified:** 20 November 2026, after Search/Ask Result Hierarchy UX1.2 closeout.  
+**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-20T221343.443.zip`  
+**Snapshot SHA-256:** `de1e57044d1407e1767ef31b75922f946e8bd7561024c4f3921a86ed6acc25a9`  
+**Source/standards QA at this baseline:** 1,407 PASS / 0 FAIL before the current 12B-2 review release.  
+**Release status:** Credential Expiry Guard v1 and Search/Ask Result Hierarchy UX1.2 are deployed and captured in this all-green snapshot. Batch 12B-2 is implemented only in the current review release until Publisher, merge, deployed QA, Guard and a fresh snapshot complete.
 
 ## Exact repository baseline
 
-These are the verified commits inside `SNAPSHOT-MANIFEST.txt`; that manifest supersedes this file if a newer green snapshot is issued.
+These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that manifest supersedes this file if a newer green snapshot is issued.
 
 | Repository | Commit |
 |---|---|
-| `draw004.github.io` | `894f3fbef249661312cd3b85edab8fd5d08ac7f0` |
+| `draw004.github.io` | `bf5eedc8b46039b1736af95391eba390ab126817` |
 | `sip-calculator` | `0e718f0c5935948d11c1c4eee1a3059ba0209662` |
 | `goal-planner` | `cfd03c8c66bf85b2f25ee916cde78e51bacfc8b0` |
 | `financial-independence` | `1dfb029e4c4215d69b8982723a7b5dd67289d32c` |
@@ -22,32 +22,34 @@ These are the verified commits inside `SNAPSHOT-MANIFEST.txt`; that manifest sup
 | `mortgage-payoff-calculator` | `58a0e63cc792634e94974efb069e741838f7ce0d` |
 | `compound-interest-calculator` | `bd85864abbff231bf54e1cc3864cb699a106fbcb` |
 | `loan-calculator` | `7410d13df9b0014ce9ccf402af839876e7eb8fa3` |
-| `carrowmont-qa` | `7fb0107fa4738a9ed550f3109a8eb9e3c440e407` |
+| `carrowmont-qa` | `955593aa6bc160e0da806c6b552f3a518b323711` |
 
 ## Product state and next controlled work
 
 - **Batches 0-11:** accepted as completed per existing acceptance ledgers, including 9B/10/10B.
-- **Batch 12 Learn/Search/UX:** completed; seven new Learn guides and one upgraded guide; user confirmed all eight URLs indexed.
-- **Batch 12B-1:** balance-transfer calculations, merged Credit Card Decisions UX (Payoff/Balance Transfer modes, first-click deep links, standard currency control, print and return routes), and **GH1 canonical global navigation** are complete at this snapshot. Mobile header assertions were corrected and the latest QA/Guard are green.
-- **Remaining Batch 12B:** 12B-2 Short-Term Savings Comparison; mortgage recast vs refinance/prepayment, lump-sum/goal trade-offs, early-retirement scenarios and explainable opportunities. Do not mark these unbuilt features complete.
-- **Batch 13:** Optional Connected Financial Data (later). **Batch 14:** native app decision gate (conditional). Maintain the original master-roadmap numbering.
+- **Batch 12 Learn/Search/UX:** completed. Search and Ask now separate **Tools** from **Learn & Guides**, visually distinguish actionable tools and preserve direct-intent relevance before using Tool type as a tie-breaker.
+- **Batch 12B-1:** balance-transfer comparison and merged Credit Card Decisions UX are complete.
+- **Credential Expiry Guard v1:** deployed. Manual health check was green on 20 November 2026 with registered expiry 22 September 2027; temporary PAT Workflows write permission was removed again after deployment.
+- **Batch 12B-2 Short-Term Savings Comparison:** implemented in this review release at the existing Emergency Fund & Financial Runway URL; **not yet deployed**. Public inventory remains 23 tool cards and 145 Search URLs. See `CARROWMONT_FRE12B2_SHORT_TERM_SAVINGS_COMPARISON.md`.
+- **Remaining Batch 12B after 12B-2:** mortgage recast vs refinance/prepayment; lump-sum/goal trade-offs; early-retirement scenarios; explainable opportunities. Do not mark these unbuilt features complete.
+- **Batch 13:** Optional Connected Financial Data remains deferred. **Batch 14:** native app decision gate remains conditional. Preserve original master-roadmap numbering.
 
 ## Immediate approved next sequence
 
-1. **Credential Expiry Guard v1** (this is the **proposed** security/governance release; not live until Publisher, human merge, QA, Guard and fresh snapshot). Registered release PAT expiry: **22 September 2027**; do not store its value. It must use independent `GITHUB_TOKEN` for GitHub issue alerts, warning stages 90/60/30/14/7 days and explicit renewal guidance; see `CARROWMONT_CREDENTIAL_EXPIRY_GUARD.md`.
-2. **Responsive QA Preflight** (planned): require newly written Playwright tests to check browser-specific visible controls in Chrome Desktop, Edge Desktop and Mobile Chromium before long suites; don't repeat desktop-only selectors on mobile.
-3. **Batch 12B-2 Short-Term Savings Comparison** after this foundation's all-green closeout.
-4. **Legacy global-header migrations** remain tracked separately; 27 older tool pages use the previous header pattern. New or modified tool pages must use canonical shared components.
+1. Complete the **Batch 12B-2** controlled release: Publisher -> human review -> merge -> deployed browser QA -> Multi-Repo Guard -> fresh all-green Source Snapshot.
+2. Continue the remaining 12B decision-support work in roadmap order.
+3. Keep Batch 13 connected data deferred until the remaining 12B scope is closed.
+4. Legacy global-header migrations remain tracked separately; new or modified tool pages must use canonical shared components.
 
 ## Required guardrails
 
 - Reuse canonical UI and locale components and tested deterministic financial engines. Never silently change current financial formulas or saved plans.
 - Keep guest-first tools, optional account, manual explicit save/update, trust/source traceability, Learn/Search SEO and app startup/navigation unchanged unless explicitly approved.
-- Existing QA and automated standards must run **before Publisher**; Publisher creates PRs, never merges automatically.
-- After approved merge, run deployed Chrome Desktop, Edge Desktop and Mobile Chromium QA, Multi-Repo Guard, and latest green Source Snapshot.
-- **No tokens, account credentials, private financial data or recovery codes** in public GitHub docs/issues, portable handovers or PR bundles.
-- This status file is always a dated record; the newest all-green `SNAPSHOT-MANIFEST.txt` takes precedence. Update status and handover at each controlled milestone.
+- Existing QA and automated standards run before Publisher; Publisher creates PRs and never merges automatically.
+- After approved merge, run deployed Chrome Desktop, Edge Desktop and Mobile Chromium QA, Multi-Repo Guard, and a fresh Source Snapshot.
+- No tokens, account credentials, private financial data or recovery codes in public GitHub docs/issues, portable handovers or PR bundles.
+- This status file is a dated record; the newest all-green `SNAPSHOT-MANIFEST.txt` takes precedence.
 
 ## Snapshot and documentation policy
 
-Never treat a proposed Publisher release as deployed. The Credential Expiry Guard workflow and its expiry registry become active only after the Main PR is merged. Verify a manual workflow run and issue permissions after deployment; add an independent 24 June 2027 calendar reminder because scheduled Actions may stop in inactive public repos.
+Never treat a proposed Publisher release as deployed. Update this status file only with clearly labelled baseline facts and review-release state. A feature becomes part of the authoritative baseline only after merge, deployed validation and a fresh all-green snapshot.

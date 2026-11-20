@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <link rel="stylesheet" href="/carrowmont.css?v=20261119-startup-nav-perf1">
   <link rel="stylesheet" href="/emergency-fund-runway-calculator.css?v=20261107-fre2a1">
+  <link rel="stylesheet" href="/short-term-savings-comparison.css?v=20261120-fre12b2">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -34,7 +35,7 @@
         "operatingSystem":"Any",
         "isAccessibleForFree":true,
         "description":"Calculate emergency-fund coverage, a user-chosen target gap and a simple financial-runway stress scenario.",
-        "dateModified":"2026-11-07",
+        "dateModified":"2026-11-20",
         "publisher":{"@type":"Organization","name":"Carrowmont","url":"https://carrowmont.com/"}
       },
       {
@@ -70,6 +71,7 @@
         <h1>How long could your essential spending keep going if income changed suddenly?</h1>
         <p>Measure your emergency-fund runway, choose your own planning target and see the gap. Then test what happens after a one-time shock or when some income continues during a disruption.</p>
         <div class="ef-badges" aria-label="Calculator characteristics"><span>No login</span><span>Runs locally</span><span>No bank connection</span><span>Your target, not a universal rule</span></div>
+        <p class="sts-entry-link"><a href="#short-term-savings-comparison">Compare where to keep short-term savings <span aria-hidden="true">&rarr;</span></a></p>
       </div>
       <aside class="ef-hero-note"><strong>Runway, not a score</strong><p>Carrowmont starts with the essential costs you need to keep paying and the emergency-ready cash you choose to count. It does not treat investments, credit limits or a generic six-month rule as guaranteed protection.</p></aside>
     </div>
@@ -144,10 +146,62 @@
           <button type="button" id="downloadCsvBtn">Download CSV</button>
           <button type="button" id="generateReportBtn" class="primary">Generate Runway Report</button>
           <a href="/emergency-fund-how-much.html">Learn how to choose a target</a>
+          <a href="#short-term-savings-comparison">Compare where to keep short-term savings</a>
         </div>
         <p class="ef-action-message" id="actionMessage" aria-live="polite"></p>
       </section>
     </div>
+  </section>
+
+
+  <section class="sts-section" id="short-term-savings-comparison" aria-labelledby="stsHeading">
+    <div class="shell">
+      <div class="sts-section-head">
+        <div><p class="eyebrow">SHORT-TERM SAVINGS COMPARISON</p><h2 id="stsHeading">Where should near-term money sit?</h2><p>Keep the amount you may need quickly accessible, then compare what the rest could do in common short-term options using the rates and maturity dates you enter.</p></div>
+        <aside><strong>Use your own rates</strong><p>Carrowmont does not fetch current bank, fund or government-security rates and does not recommend a provider.</p></aside>
+      </div>
+    </div>
+    <div class="sts-workspace">
+      <div class="shell sts-layout">
+        <aside class="sts-input-card" aria-labelledby="stsInputsTitle">
+          <p class="sts-card-kicker">YOUR SHORT-TERM PLAN</p>
+          <h2 id="stsInputsTitle">Set the deadline, liquidity need and rates</h2>
+          <p class="sts-card-intro">Leave an option blank if you do not want to model it. Missing market assumptions are never invented.</p>
+          <div class="sts-group"><h3>1. Money and deadline</h3><div class="sts-grid">
+            <label class="sts-field" for="stsAmountNow"><span>Savings amount to compare</span><input id="stsAmountNow" type="number" min="0" step="100" inputmode="decimal" placeholder="0"><small>Your current short-term savings balance.</small></label>
+            <label class="sts-field" for="stsGoalAmount"><span>Amount needed at the deadline <em>optional</em></span><input id="stsGoalAmount" type="number" min="0" step="100" inputmode="decimal" placeholder="0"><small>Enter the future amount you expect to need. Inflation is not added automatically.</small></label>
+            <label class="sts-field" for="stsHorizonMonths"><span>When might you need the money?</span><input id="stsHorizonMonths" type="number" min="1" max="60" step="1" value="12"><small>1 to 60 months.</small></label>
+            <label class="sts-field" for="stsGoalFlexibility"><span>Can the date move?</span><select id="stsGoalFlexibility"><option value="fixed">No — the date is fixed</option><option value="flexible">Yes — the date is flexible</option></select><small>A fixed date makes maturity alignment more important.</small></label>
+            <label class="sts-field" for="stsInstantAccessAmount"><span>Keep instantly accessible</span><input id="stsInstantAccessAmount" type="number" min="0" step="100" inputmode="decimal" value="0"><small>Money you do not want locked away before the deadline.</small></label>
+            <label class="sts-field" for="stsMonthlyContribution"><span>Monthly amount you expect to add <em>optional</em></span><input id="stsMonthlyContribution" type="number" min="0" step="100" inputmode="decimal" value="0"><small>New monthly savings stay in the accessible savings account in this model.</small></label>
+          </div></div>
+          <div class="sts-group"><h3>2. Compare your rates and maturities</h3><p class="sts-group-note">Annual rates are held constant only for this illustration.</p><div class="sts-grid">
+            <label class="sts-field sts-field-wide" for="stsSavingsRatePct"><span id="stsSavingsRateLabel">Accessible savings account rate (% p.a.)</span><input id="stsSavingsRatePct" type="number" min="-99" max="100" step="0.01" inputmode="decimal" placeholder="Enter your rate"><small>This rate also applies to the instant-access reserve, monthly additions and proceeds after an earlier maturity.</small></label>
+            <label class="sts-field" for="stsTermRatePct"><span id="stsTermRateLabel">Term deposit rate (% p.a.)</span><input id="stsTermRatePct" type="number" min="-99" max="100" step="0.01" inputmode="decimal" placeholder="Optional"><small>Use the annual rate for the fixed-term option you are comparing.</small></label>
+            <label class="sts-field" for="stsTermMonths"><span id="stsTermMonthsLabel">Term deposit maturity (months)</span><input id="stsTermMonths" type="number" min="1" max="60" step="1" inputmode="numeric" placeholder="Optional"><small>Money is treated as locked until this maturity.</small></label>
+            <label class="sts-field sts-field-wide" for="stsFundYieldPct"><span id="stsFundRateLabel">Money market / cash fund yield assumption (% p.a.)</span><input id="stsFundYieldPct" type="number" min="-99" max="100" step="0.01" inputmode="decimal" placeholder="Optional"><small>This is an investment-fund scenario, not the same as a protected bank deposit.</small></label>
+            <label class="sts-field" for="stsGovernmentYieldPct"><span id="stsGovernmentRateLabel">Short government bill yield (% p.a.)</span><input id="stsGovernmentYieldPct" type="number" min="-99" max="100" step="0.01" inputmode="decimal" placeholder="Optional"><small>Use the annualized yield you are comparing.</small></label>
+            <label class="sts-field" for="stsGovernmentTermMonths"><span id="stsGovernmentMonthsLabel">Government bill maturity (months)</span><input id="stsGovernmentTermMonths" type="number" min="1" max="60" step="1" inputmode="numeric" placeholder="Optional"><small>Holding to maturity avoids relying on an early sale price.</small></label>
+          </div></div>
+          <button class="sts-calc-btn" id="stsCalculateBtn" type="button">Compare my short-term options</button>
+        </aside>
+        <section class="sts-result-card" aria-live="polite">
+          <div class="sts-status" id="stsStatusCard" data-tone=""><span class="sts-status-label" id="stsStatusLabel">START WITH LIQUIDITY</span><h2 id="stsStatusHeadline">Enter the savings amount you want to compare</h2><p id="stsStatusText">Carrowmont will separate the amount you want instantly accessible before comparing the remainder.</p></div>
+          <div class="sts-metrics"><div class="sts-metric"><span>Instant-access reserve</span><strong id="stsAccessReserveValue">-</strong><small>Your chosen amount kept liquid.</small></div><div class="sts-metric"><span>Amount available to compare</span><strong id="stsLockableValue">-</strong><small>The current balance remaining after the access reserve.</small></div><div class="sts-metric"><span>Planned monthly additions</span><strong id="stsContributionValue">-</strong><small>Modeled in accessible savings.</small></div></div>
+          <div class="sts-option-grid">
+            <article class="sts-option" data-option="savings"><div class="sts-option-head"><h3 id="stsSavingsTitle">Accessible savings account</h3><span class="sts-pill" id="stsSavingsStatus">Needs inputs</span></div><strong class="sts-option-value" id="stsSavingsValue">-</strong><p class="sts-option-growth" id="stsSavingsGrowth">Enter your savings rate to project the ending balance.</p><p class="sts-option-fit" id="stsSavingsFit">Designed for access; the rate may change.</p></article>
+            <article class="sts-option" data-option="term-deposit"><div class="sts-option-head"><h3 id="stsTermTitle">Term deposit</h3><span class="sts-pill" id="stsTermStatus">Needs inputs</span></div><strong class="sts-option-value" id="stsTermValue">-</strong><p class="sts-option-growth" id="stsTermGrowth">Enter a rate and maturity to compare.</p><p class="sts-option-fit" id="stsTermFit">A maturity after your deadline is treated as a mismatch.</p></article>
+            <article class="sts-option" data-option="money-market-fund"><div class="sts-option-head"><h3 id="stsFundTitle">Money market / cash fund</h3><span class="sts-pill" id="stsFundStatus">Needs inputs</span></div><strong class="sts-option-value" id="stsFundValue">-</strong><p class="sts-option-growth" id="stsFundGrowth">Enter a yield assumption to compare.</p><p class="sts-option-fit" id="stsFundFit">Investment-fund risk and access rules differ from bank deposits.</p></article>
+            <article class="sts-option" data-option="government-bill"><div class="sts-option-head"><h3 id="stsGovernmentTitle">Short government bill</h3><span class="sts-pill" id="stsGovernmentStatus">Needs inputs</span></div><strong class="sts-option-value" id="stsGovernmentValue">-</strong><p class="sts-option-growth" id="stsGovernmentGrowth">Enter a yield and maturity to compare.</p><p class="sts-option-fit" id="stsGovernmentFit">Best compared against a deadline you can hold through to maturity.</p></article>
+          </div>
+          <div class="sts-decision"><h3>What the comparison says</h3><p id="stsDecisionText">Add your figures to compare liquidity, maturity and projected ending values.</p><p class="sts-decision-note" id="stsGoalText"></p></div>
+          <div class="sts-warnings" id="stsWarnings"></div>
+          <div class="sts-actions"><button type="button" id="stsCopySummaryBtn">Copy Summary</button><button type="button" id="stsDownloadCsvBtn">Download CSV</button><button type="button" class="primary" id="stsPrintBtn">Print / Save PDF</button><a href="/where-to-keep-short-term-savings.html">Read the short-term savings guide</a></div>
+          <p class="sts-action-message" id="stsActionMessage" aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+    <div class="shell sts-method-inline"><h3>How the comparison works</h3><p>Carrowmont first keeps your instant-access reserve outside the locked or market-based options. Any fixed product that matures before your deadline is then rolled into the accessible savings rate for the remaining months. A product that matures after the deadline is not counted as available by the goal date.</p><p><strong>Not modeled:</strong> live rates, taxes, fees, deposit-protection limits, provider eligibility, early-withdrawal penalties or product recommendations. Verify actual terms with the provider and local regulator.</p></div>
   </section>
 
   <section class="ef-method" id="how-it-works">
@@ -168,6 +222,8 @@
 <script src="/emergency-fund-runway-pdf-renderer.js?v=20261107-fre2a1"></script>
 <script src="/assets/account/carrowmont-plan-save.js?v=20261115-fre8k"></script>
 <script src="/emergency-fund-runway-calculator.js?v=20261112-b8b2"></script>
+<script src="/short-term-savings-comparison-core.js?v=20261120-fre12b2"></script>
+<script src="/short-term-savings-comparison.js?v=20261120-fre12b2"></script>
 <script src="/assets/trust/carrowmont-trust.js?v=20261116-fre9" data-cm-trust-auto></script>
 <script src="/assets/trust/carrowmont-trust.js?v=20261117-fre10b" data-cm-country-context-auto></script>
 </body>
