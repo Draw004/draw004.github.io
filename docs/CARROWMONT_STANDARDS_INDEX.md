@@ -1,6 +1,6 @@
 # Carrowmont standards index - one entry, existing authorities
 
-**Version 1.1 | reviewed 20 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
+**Version 1.2 | reviewed 20 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
 
 | Topic | Canonical source | Enforced through |
 |---|---|---|
@@ -13,6 +13,7 @@
 | Reports and PDF | `CARROWMONT_REPORT_STANDARD_IMPLEMENTATION.md` | PDF/source regression checks |
 | Learn educational depth, search intent, links | `draw004.github.io/.github/LEARN-ARTICLE-STANDARD.md` (from main repo root `.github/`) | Learn/Search/SEO contracts and URL checks |
 | Publisher, Guard, PRs and source snapshots | `CARROWMONT_GITHUB_AUTOMATION_HANDOVER.md` + live `.github/workflows/` files | Staged Publisher source/browser validation, Guard |
+| Release-credential expiry and security handover | `CARROWMONT_CREDENTIAL_EXPIRY_GUARD.md` + `../ops/credential-expiry-registry.json` | Scheduled independent-token issue alerts and central QA date/issue-policy contracts |
 | Historical UI exceptions | `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` | Standards gate (known debt cannot be reintroduced) |
 
 ## Implementation priority

@@ -48,3 +48,7 @@ Never merge the disposable Publisher staging branch; merge only the generated re
 ## Self-check before continuing
 
 A new assistant should be able to state: the 11 repo names and exact snapshot SHAs; what the product does; the agreed Batch 12B vs 13 sequencing; current open issues; the canonical locale/header pattern; how to inspect/edit safely; who approves merges; and which green checks are still required. If it cannot, it is **not ready to change the project**.
+
+## Credential-expiry protection (v1 security release)
+
+Before changing GitHub workflow files or rotating the release PAT, read `CARROWMONT_CREDENTIAL_EXPIRY_GUARD.md`. The public registry contains only the manually reviewed expiration date; the secret must remain in GitHub Actions. Use the built-in `GITHUB_TOKEN` for alert issues, not the release PAT. A new ChatGPT account must never assume the guard is live from documentation alone: confirm the workflow exists on `main`, its manual run is green, notifications are configured and the backup calendar reminder exists. Temporarily grant the fine-grained PAT Workflows: read/write **only** when a release actually changes `.github/workflows/`, and remove it after that release.
