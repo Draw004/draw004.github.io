@@ -1,6 +1,6 @@
 # Carrowmont Financial Resolution Engine - authoritative roadmap status crosswalk
 
-Reviewed against the user-approved post-Batch-9 Master Roadmap and the 21 November 2026 all-green source snapshot. This document preserves the original feature numbering and is a **status crosswalk**, not a rewrite of the full historical master plan.
+Reviewed against the user-approved post-Batch-9 Master Roadmap and the 22 November 2026 all-green source snapshot. This document preserves the original feature numbering and is a **status crosswalk**, not a rewrite of the full historical master plan.
 
 | Original roadmap stage | Source/acceptance position |
 |---|---|
@@ -12,11 +12,11 @@ Reviewed against the user-approved post-Batch-9 Master Roadmap and the 21 Novemb
 | 10B | Account-Aware Ask Carrowmont. Completed within controlled supported journeys. |
 | 11 | Homepage & Product Transformation. Completed with compact Ask entry and Tools access. |
 | 12A | Batch 12 UX/Search/Learn expansion; seven new guides and one upgraded guide. Completed. Search/Ask result grouping is also deployed. |
-| 12B | Wider Resolution Library & Opportunity Engine. **Open.** 12B-1 balance-transfer calculation, 12B-2 short-term-savings comparison and 12B-4 lump-sum/goal trade-offs are shipped. 12B-3 mortgage recast/refinance/prepayment is the current review release after being explicitly reopened by the owner. Early-retirement scenarios and explainable opportunities remain open. |
+| 12B | Wider Resolution Library & Opportunity Engine. **Open.** 12B-1 balance-transfer calculation, 12B-2 short-term-savings comparison, 12B-3 mortgage recast/refinance/prepayment and 12B-4 lump-sum/goal trade-offs are shipped. Early-retirement scenarios is the current review release; explainable opportunities remains open. |
 | 13 | **Later:** optional connected financial data, consent and data minimization. Do not start simply to match competitors. |
 | 14 | **Later/conditional:** native iOS/Android decision gate based on usage, cost and privacy. |
 
-**Approved sequence:** Finish the reopened 12B-3 mortgage comparison first, then early-retirement scenarios and explainable opportunities with source-informed QA. Do not relabel these features as a new Batch 13. Repository branch-backlog cleanup is deferred maintenance and must not block the approved product sequence.
+**Approved sequence:** Complete early-retirement scenarios, then explainable opportunities with source-informed QA. Do not relabel these features as a new Batch 13. Repository branch-backlog cleanup is deferred maintenance and must not block the approved product sequence.
 
 **Roadmap non-negotiables:** AI reasons; tested Carrowmont engines calculate. Guest-first; account save/update only by explicit decision. Manual planning remains first-class. Localized wording without invented country financial rules. No promise that Premium or connected data is present today. Every major requirement has an acceptance check; green means the intended release passed its actual gates.
 

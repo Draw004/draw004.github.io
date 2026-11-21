@@ -1,10 +1,10 @@
 # Carrowmont - current project status
 
-**Status verified:** 21 November 2026, after Batch 12B-4 closeout and before the current Batch 12B-3 review release.  
-**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-21T215344.139.zip`  
-**Snapshot SHA-256:** `ae5b9bd7bd8a6e6fe6ac4756bb2f853daf1f090aef1e81ef0a2ec19c45484603`  
-**Source/standards QA at this baseline:** 1,447 PASS / 0 FAIL.  
-**Release status:** Credential Expiry Guard v1, Search/Ask Result Hierarchy UX1.2, Batch 12B-2 Short-Term Savings Comparison and Batch 12B-4 Lump-sum vs Goal Trade-offs are deployed and captured in this all-green snapshot. Batch 12B-3 Mortgage Recast vs Refinance/Prepayment is reopened by the owner and implemented only in the current review release until Publisher, merge, deployed QA, Guard and a fresh snapshot complete.
+**Status verified:** 22 November 2026, after Batch 12B-3 closeout and before the current Early-retirement Scenarios review release.  
+**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-22T003922.100.zip`  
+**Snapshot SHA-256:** `19866b678716de6ad1d53db5a03dde04f002864c025d1eebec709bdae33eb7c2`  
+**Source/standards QA at this baseline:** 1,467 PASS / 0 FAIL.  
+**Release status:** Credential Expiry Guard v1, Search/Ask Result Hierarchy UX1.2, Batch 12B-2 Short-Term Savings Comparison, Batch 12B-3 Mortgage Recast vs Refinance/Prepayment and Batch 12B-4 Lump-sum vs Goal Trade-offs are deployed and captured in this all-green snapshot. Early-retirement Scenarios is implemented only in the current review release until Publisher, merge, deployed QA, Guard and a fresh snapshot complete.
 
 ## Exact repository baseline
 
@@ -12,17 +12,17 @@ These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that ma
 
 | Repository | Commit |
 |---|---|
-| `draw004.github.io` | `c7f65ac58c43a2be1ccb67b42ef543c73da27c6f` |
+| `draw004.github.io` | `329109e33579208c9a47fe21aec84cb7ad9f2d29` |
 | `sip-calculator` | `0e718f0c5935948d11c1c4eee1a3059ba0209662` |
 | `goal-planner` | `cfd03c8c66bf85b2f25ee916cde78e51bacfc8b0` |
 | `financial-independence` | `1dfb029e4c4215d69b8982723a7b5dd67289d32c` |
 | `inflation-calculator` | `89ae312ebf444e932d7545ddf67d8e1d9fd459b9` |
 | `retirement-calculator` | `28afb6e3bdf438d304dac3eef95abb80baa3590e` |
 | `budget-cash-flow-planner` | `81524657dd9d24353ba2ee8f761be3b6c5629db7` |
-| `mortgage-payoff-calculator` | `58a0e63cc792634e94974efb069e741838f7ce0d` |
+| `mortgage-payoff-calculator` | `8b6650487a6c47b79f6ec6729795c00759b929df` |
 | `compound-interest-calculator` | `bd85864abbff231bf54e1cc3864cb699a106fbcb` |
 | `loan-calculator` | `7410d13df9b0014ce9ccf402af839876e7eb8fa3` |
-| `carrowmont-qa` | `55d2e3befe67e20af5323f6e4e24673a424447c4` |
+| `carrowmont-qa` | `84e17a9b41230939993bc06268682cd9c0d187c3` |
 
 ## Product state and next controlled work
 
@@ -32,15 +32,16 @@ These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that ma
 - **Credential Expiry Guard v1:** deployed. Manual health check was green on 20 November 2026 with registered expiry 22 September 2027; temporary PAT Workflows write permission was removed again after deployment.
 - **Batch 12B-2 Short-Term Savings Comparison:** deployed at the existing Emergency Fund & Financial Runway URL.
 - **Batch 12B-4 Lump-sum vs Goal Trade-offs:** deployed as the seventh controlled Ask Carrowmont journey. It adds no public tool or indexed URL.
-- **Batch 12B-3 Mortgage Recast vs Refinance/Prepayment:** current review release. It adds a three-path decision comparison inside the existing Mortgage Decision Centre, reusing the existing Mortgage Payoff and Refinance Break-Even engines. No new public URL or core-tool card is added. Do not mark complete before the full release gate finishes.
-- **Remaining Batch 12B after this review:** early-retirement scenarios; explainable opportunities/decision prompts. Do not mark unbuilt features complete.
+- **Batch 12B-3 Mortgage Recast vs Refinance/Prepayment:** deployed and captured in the current all-green snapshot. The three-path decision comparison reuses the existing Mortgage Payoff and Refinance Break-Even engines and adds no public URL or core-tool card.
+- **Early-retirement Scenarios:** current review release. It extends the existing Financial Independence planner with earlier/current/one-more-year/user-adjusted comparisons using the same deterministic FI engine. No new public URL or tool card is added. Do not mark complete before the full release gate finishes.
+- **Remaining Batch 12B after this review:** explainable opportunities/decision prompts. Do not mark unbuilt features complete.
 - **Batch 13:** Optional Connected Financial Data remains deferred. **Batch 14:** native app decision gate remains conditional. Preserve original master-roadmap numbering.
 - **Repository branch cleanup:** deferred by owner until remaining product batch work is finished. Automatic post-merge branch deletion may remain enabled, but branch backlog cleanup is not part of this release.
 
 ## Immediate approved next sequence
 
-1. Complete the **Batch 12B-3** controlled release: Publisher -> human review -> merge mortgage repo -> merge Main -> merge QA -> deployed browser QA -> Multi-Repo Guard -> fresh all-green Source Snapshot.
-2. Continue remaining Batch 12B decision-support work with early-retirement scenarios and explainable opportunities/decision prompts.
+1. Complete the **Early-retirement Scenarios** controlled release: Publisher -> human review -> merge Financial Independence repo -> merge Main -> merge QA -> deployed browser QA -> Multi-Repo Guard -> fresh all-green Source Snapshot.
+2. Continue the remaining Batch 12B decision-support work with explainable opportunities/decision prompts.
 3. Keep Batch 13 connected data deferred until the remaining 12B scope is closed.
 4. Legacy global-header migrations and branch-backlog cleanup remain separate maintenance work; do not let them block the approved product sequence.
 
