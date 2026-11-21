@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261118-fre12';
-  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261118-fre12';
+  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261122-fre12b5';
+  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261122-fre12b5';
   var MIN_QUERY_LENGTH = 3;
   var MIN_SUGGEST_LENGTH = 2;
   var DEFAULT_LIMIT = 12;
