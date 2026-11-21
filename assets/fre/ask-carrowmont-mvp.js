@@ -13,7 +13,8 @@
     MORTGAGE_PREPAY_VS_INVEST:'mortgage-prepay-vs-invest',
     EMERGENCY_RUNWAY:'emergency-runway',
     CASH_FLOW_SHORTFALL:'cash-flow-shortfall',
-    MONEY_PRIORITIES:'money-priorities'
+    MONEY_PRIORITIES:'money-priorities',
+    LUMP_SUM_GOAL_TRADEOFFS:'lump-sum-goal-tradeoffs'
   });
 
   const QUESTION_SETS = Object.freeze({
@@ -67,6 +68,21 @@
       { key:'goalCurrentSavings', label:'Savings already set aside for that goal' },
       { key:'goalYearsAway', label:'Years until that goal' },
       { key:'goalMonthlyContribution', label:'Monthly contribution toward that goal' }
+    ]),
+    [INTENTS.LUMP_SUM_GOAL_TRADEOFFS]: Object.freeze([
+      { key:'lumpSumAmount', label:'Lump sum available now' },
+      { key:'essentialExpenses', label:'Essential monthly expenses' },
+      { key:'emergencySavings', label:'Emergency savings available now' },
+      { key:'emergencyTargetMonths', label:'Emergency-fund target in months' },
+      { key:'debtBalance', label:'Debt balance you would consider paying down (enter 0 if none)' },
+      { key:'debtAprPct', label:'Annual interest rate on that debt' },
+      { key:'debtMonthlyPayment', label:'Required monthly payment on that debt' },
+      { key:'goalTargetAmount', label:'Goal target amount (enter 0 if none)' },
+      { key:'goalCurrentSavings', label:'Savings already set aside for that goal' },
+      { key:'goalYearsAway', label:'Whole years until that goal' },
+      { key:'goalMonthlyContribution', label:'Monthly contribution toward that goal' },
+      { key:'assumedLongTermReturnPct', label:'Illustrative long-term investment return' },
+      { key:'investmentHorizonYears', label:'Whole years for the long-term investment illustration' }
     ])
   });
 
@@ -76,7 +92,8 @@
     Object.freeze({ intent:INTENTS.MORTGAGE_PREPAY_VS_INVEST, label:'Mortgage prepay or invest' }),
     Object.freeze({ intent:INTENTS.EMERGENCY_RUNWAY, label:'Emergency fund adequacy' }),
     Object.freeze({ intent:INTENTS.CASH_FLOW_SHORTFALL, label:'Running short before payday' }),
-    Object.freeze({ intent:INTENTS.MONEY_PRIORITIES, label:'Money priorities' })
+    Object.freeze({ intent:INTENTS.MONEY_PRIORITIES, label:'Money priorities' }),
+    Object.freeze({ intent:INTENTS.LUMP_SUM_GOAL_TRADEOFFS, label:'Use a lump sum across priorities' })
   ]);
 
   const finite = value => Number.isFinite(Number(value));
@@ -87,6 +104,9 @@
 
   function classify(text, router) {
     const value = typeof text === 'string' ? text.trim() : '';
+    if (/\b(?:what\s+should\s+i\s+do\s+with|where\s+should\s+i\s+(?:put|use)|how\s+should\s+i\s+(?:use|allocate|split))\b.{0,45}\b(?:lump\s+sum|bonus|inheritance|windfall|extra\s+cash)\b|\b(?:bonus|inheritance|windfall|lump\s+sum|extra\s+cash)\b.{0,55}\b(?:what\s+should\s+i\s+do|pay\s+(?:down|off)\s+debt|emergency|goal|invest|allocate|split)\b/i.test(value)) {
+      return freeze({ intent:INTENTS.LUMP_SUM_GOAL_TRADEOFFS, matchedRule:'lump-sum-goal-tradeoffs' });
+    }
     if (/\b(money|financial)\s+priorit(?:y|ies)\b|\bwhat\s+should\s+i\s+(?:do|focus\s+on|prioriti[sz]e)\s+first\b|\bmy\s+next\s+(?:financial|money)\s+move\b|\bwhere\s+should\s+i\s+put\s+my\s+money\b/i.test(value)) {
       return freeze({ intent:INTENTS.MONEY_PRIORITIES, matchedRule:'money-priorities' });
     }
@@ -98,8 +118,22 @@
     return freeze({ intent:null, matchedRule:null });
   }
 
-  function missingQuestions(intent, facts = {}, maxQuestions = 3) {
+  function questionsFor(intent, facts = {}) {
     const questions = QUESTION_SETS[intent] || [];
+    if (intent !== INTENTS.LUMP_SUM_GOAL_TRADEOFFS) return freeze(questions.map(q => freeze({ ...q })));
+    const debtKnown = present(facts.debtBalance);
+    const includeDebtDetails = debtKnown && Number(facts.debtBalance) > 0;
+    const goalKnown = present(facts.goalTargetAmount);
+    const includeGoalDetails = goalKnown && Number(facts.goalTargetAmount) > 0;
+    return freeze(questions.filter(q => {
+      if (['debtAprPct','debtMonthlyPayment'].includes(q.key)) return includeDebtDetails;
+      if (['goalCurrentSavings','goalYearsAway','goalMonthlyContribution'].includes(q.key)) return includeGoalDetails;
+      return true;
+    }).map(q => freeze({ ...q })));
+  }
+
+  function missingQuestions(intent, facts = {}, maxQuestions = 3) {
+    const questions = questionsFor(intent, facts);
     return freeze(questions.filter(q => !present(facts[q.key])).slice(0, Math.max(1, maxQuestions)).map(q => freeze({ ...q })));
   }
 
@@ -115,6 +149,7 @@
       compound: overrides.compound || root.CarrowmontCompoundCore,
       mortgagePrepay: overrides.mortgagePrepay || root.CarrowmontMdc1aCore,
       moneyPriorities: overrides.moneyPriorities || root.CarrowmontMoneyPriorities,
+      lumpSumTradeoffs: overrides.lumpSumTradeoffs || root.CarrowmontLumpSumGoalTradeoffs,
       priorityFramework: overrides.priorityFramework || root.CarrowmontFrePriorityFramework,
       goal: overrides.goal || root.CarrowmontGoalCore
     };
@@ -347,6 +382,12 @@
     return priorities.evaluate(facts, { currency });
   }
 
+  function lumpSumGoalTradeoffsJourney(facts, deps, currency) {
+    if (!deps.lumpSumTradeoffs?.create) throw new Error('Lump-sum trade-off deterministic engine is unavailable.');
+    const engine = deps.lumpSumTradeoffs.create({ emergency:deps.emergency, debtPayoff:deps.debtPayoff, goal:deps.goal, compound:deps.compound });
+    return engine.evaluate(facts, { currency });
+  }
+
   function create(overrides = {}) {
     const deps = resolveDependencies(overrides);
     function resolve(input = {}) {
@@ -363,11 +404,12 @@
       else if (intent === INTENTS.CAR_AFFORDABILITY) result = carJourney(facts, deps, input.currency);
       else if (intent === INTENTS.MORTGAGE_PREPAY_VS_INVEST) result = mortgageJourney(facts, deps, input.currency, input.country, input.startDate);
       else if (intent === INTENTS.MONEY_PRIORITIES) result = moneyPrioritiesJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.LUMP_SUM_GOAL_TRADEOFFS) result = lumpSumGoalTradeoffsJourney(facts, deps, input.currency);
       else result = debtVsSavingsJourney(facts, deps, input.currency);
       return freeze({ version:VERSION, status:'RESOLVED', intent, ...result });
     }
-    return freeze({ VERSION, INTENTS, SUPPORTED, QUESTION_SETS, classify:text => classify(text, deps.router), missingQuestions, resolve });
+    return freeze({ VERSION, INTENTS, SUPPORTED, QUESTION_SETS, questionsFor, classify:text => classify(text, deps.router), missingQuestions, resolve });
   }
 
-  return freeze({ VERSION, INTENTS, SUPPORTED, QUESTION_SETS, create, classify, missingQuestions });
+  return freeze({ VERSION, INTENTS, SUPPORTED, QUESTION_SETS, questionsFor, create, classify, missingQuestions });
 });

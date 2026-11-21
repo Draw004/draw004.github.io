@@ -31,7 +31,10 @@
     goalTargetAmount:'Enter one current financial goal target. Use 0 if you do not want to assess a goal in this screen.',
     goalCurrentSavings:'Enter savings already set aside specifically for that goal. Enter 0 if none.',
     goalYearsAway:'Enter the number of years until the goal. Use 0 when no goal is being assessed.',
-    goalMonthlyContribution:'Enter the monthly amount currently directed to the goal. Enter 0 if none.'
+    goalMonthlyContribution:'Enter the monthly amount currently directed to the goal. Enter 0 if none.',
+    lumpSumAmount:'Enter the one-off amount available now. This amount stays in this Ask session unless a separate save flow explicitly supports the scenario.',
+    debtMonthlyPayment:'Enter the required monthly payment for the specific debt you are comparing.',
+    investmentHorizonYears:'Enter a whole-number long-term horizon for the investment illustration.'
   };
   const FIELD_META={
     essentialExpenses:{why:'This sets the unavoidable monthly cost Carrowmont uses to measure emergency runway and cash resilience.'},
@@ -63,7 +66,10 @@
     goalTargetAmount:{why:'A defined target lets Carrowmont decide whether a near- or medium-term goal should appear ahead of long-term growth.'},
     goalCurrentSavings:{why:'Savings already earmarked for the goal reduce the amount that still needs to be funded.'},
     goalYearsAway:{why:'The time remaining affects how strongly a goal should compete for current cash flow.'},
-    goalMonthlyContribution:{why:'The current contribution lets the Goal Planner project whether the entered goal is on track under the stated assumption.'}
+    goalMonthlyContribution:{why:'The current contribution lets the Goal Planner project whether the entered goal is on track under the stated assumption.'},
+    lumpSumAmount:{why:'Carrowmont compares the same one-off amount across emergency savings, debt, a defined goal and long-term investing.'},
+    debtMonthlyPayment:{why:'The required payment lets the existing Debt Payoff engine model how a one-off balance reduction may change payoff time and interest.'},
+    investmentHorizonYears:{why:'Long-term investment growth depends on how long the money can remain invested. Carrowmont will not invent this horizon for you.'}
   };
   const INTENT_COPY={
     'debt-vs-savings':'Pay debt or invest?',
@@ -71,7 +77,8 @@
     'mortgage-prepay-vs-invest':'Mortgage prepay or invest',
     'emergency-runway':'Emergency fund adequacy',
     'cash-flow-shortfall':'Monthly cash-flow shortfall',
-    'money-priorities':'Money priorities'
+    'money-priorities':'Money priorities',
+    'lump-sum-goal-tradeoffs':'Lump-sum priorities'
   };
   const DETAIL_LINKS={
     'debt-vs-savings':['Explore the detailed Debt Payoff tools','/budget-cash-flow-planner/#debt-payoff'],
@@ -79,7 +86,8 @@
     'mortgage-prepay-vs-invest':['Open Mortgage Prepay vs Investing','/mortgage-payoff-calculator/prepayment-vs-investing.html'],
     'emergency-runway':['Open the Emergency Fund & Runway tool','/emergency-fund-runway-calculator.html'],
     'cash-flow-shortfall':['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/'],
-    'money-priorities':['Explore the detailed Carrowmont tools','/tools.html']
+    'money-priorities':['Explore the detailed Carrowmont tools','/tools.html'],
+    'lump-sum-goal-tradeoffs':['Read the lump-sum decision guide','/what-to-do-with-a-lump-sum.html']
   };
   const CAR_AFFORDABILITY_HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
   const SEARCH_HANDOFF_KEY='carrowmont_search_handoff_v1';
@@ -298,7 +306,7 @@
     stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
   }
   function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
-  function fieldStep(key){ return /termMonths|remainingYears/i.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
+  function fieldStep(key){ return /termMonths|remainingYears|goalYearsAway|investmentHorizonYears/i.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
   async function startIntent(intent,text=''){
     hideUnsupported();
     if(!api?.SUPPORTED?.some(x=>x.intent===intent)){ showUnsupported(text); return; }
@@ -343,7 +351,7 @@
     startIntent(classified.intent,understood);
   }
   function updateProgress(){
-    const all=api?.QUESTION_SETS?.[state.intent]||[];
+    const all=api?.questionsFor?.(state.intent,state.facts)||api?.QUESTION_SETS?.[state.intent]||[];
     const answered=all.filter(q=>Object.prototype.hasOwnProperty.call(state.facts,q.key)).length;
     const total=Math.max(1,all.length);
     const step=Math.min(Math.floor(answered/3)+1,Math.ceil(total/3));
@@ -375,7 +383,7 @@
     for(const q of questions){
       const group=document.createElement('div'); group.className='ask-field';
       const label=document.createElement('label'); label.htmlFor=`ask-field-${q.key}`; label.textContent=q.label;
-      const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min=q.key==='emergencyTargetMonths'?'1':'0'; input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
+      const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min=/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears)$/.test(q.key)?'1':'0'; input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
       if(PCT_KEY.test(q.key)) input.placeholder='e.g. 7.5'; else if(/termMonths/i.test(q.key)) input.placeholder='e.g. 60'; else input.placeholder=`Enter ${q.label.toLowerCase()}`;
       const described=[];
       group.append(label,input);
@@ -449,6 +457,12 @@
         $('askQuestionMessage').textContent=`Enter a valid non-negative number for ${label.toLowerCase()}. Use 0 only when the amount is genuinely zero.`;
         field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true');
         const desc=(input.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean); if(!desc.includes('askQuestionMessage')) desc.push('askQuestionMessage'); input.setAttribute('aria-describedby',desc.join(' '));
+        reveal(field,input); return;
+      }
+      if(/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears)$/.test(input.name)&&(value<1||!Number.isInteger(value))){
+        const field=input.closest('.ask-field'); const label=field?.querySelector('label')?.textContent||'this field';
+        $('askQuestionMessage').textContent=`Enter a whole number of at least 1 for ${label.toLowerCase()}.`;
+        field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true');
         reveal(field,input); return;
       }
       pending[input.name]=value;
@@ -528,7 +542,8 @@
         alternatives.appendChild(card);
       });
     }else{
-      for(const alt of altItems.slice(0,4)){
+      const altLimit=state.intent==='lump-sum-goal-tradeoffs'?5:4;
+      for(const alt of altItems.slice(0,altLimit)){
         const card=document.createElement('div'); card.className='ask-alternative';
         const title=document.createElement('h4'); title.textContent=alt.label||labelize(alt.id||'Option'); card.appendChild(title);
         for(const [key,value] of Object.entries(alt)){

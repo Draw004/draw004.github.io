@@ -137,6 +137,16 @@
       goalYearsAway:'goal.yearsAway',
       goalMonthlyContribution:'goal.monthlyContribution'
     }),
+    'lump-sum-goal-tradeoffs':Object.freeze({
+      essentialExpenses:'cashFlow.essentialExpenses',
+      emergencySavings:'resilience.emergencySavings',
+      emergencyTargetMonths:'resilience.targetMonths',
+      assumedLongTermReturnPct:'assumptions.longTermReturnPct',
+      goalTargetAmount:'goal.targetAmount',
+      goalCurrentSavings:'goal.currentSavings',
+      goalYearsAway:'goal.yearsAway',
+      goalMonthlyContribution:'goal.monthlyContribution'
+    }),
     'cash-flow-shortfall':Object.freeze({
       monthlyIncome:'cashFlow.takeHomeIncome',essentialExpenses:'cashFlow.essentialExpenses',flexibleExpenses:'cashFlow.flexibleExpenses'
     }),
