@@ -1,10 +1,10 @@
 # Carrowmont - current project status
 
-**Status verified:** 20 November 2026, after Search/Ask Result Hierarchy UX1.2 closeout.  
-**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-20T221343.443.zip`  
-**Snapshot SHA-256:** `de1e57044d1407e1767ef31b75922f946e8bd7561024c4f3921a86ed6acc25a9`  
-**Source/standards QA at this baseline:** 1,407 PASS / 0 FAIL before the current 12B-2 review release.  
-**Release status:** Credential Expiry Guard v1 and Search/Ask Result Hierarchy UX1.2 are deployed and captured in this all-green snapshot. Batch 12B-2 is implemented only in the current review release until Publisher, merge, deployed QA, Guard and a fresh snapshot complete.
+**Status verified:** 21 November 2026, after Batch 12B-2 closeout and before the current Batch 12B-4 review release.  
+**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-21T015030.732.zip`  
+**Snapshot SHA-256:** `49cc09549c707bcf77d34909118db8544b845718994973cdc53a4cd54be519cc`  
+**Source/standards QA at this baseline:** 1,427 PASS / 0 FAIL.  
+**Release status:** Credential Expiry Guard v1, Search/Ask Result Hierarchy UX1.2 and Batch 12B-2 Short-Term Savings Comparison are deployed and captured in this all-green snapshot. Batch 12B-3 mortgage comparison is parked/open. Batch 12B-4 Lump-sum vs Goal Trade-offs is implemented only in the current review release until Publisher, merge, deployed QA, Guard and a fresh snapshot complete.
 
 ## Exact repository baseline
 
@@ -12,7 +12,7 @@ These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that ma
 
 | Repository | Commit |
 |---|---|
-| `draw004.github.io` | `bf5eedc8b46039b1736af95391eba390ab126817` |
+| `draw004.github.io` | `da875604cfa0fb580a55260e93cedf0ea231a71e` |
 | `sip-calculator` | `0e718f0c5935948d11c1c4eee1a3059ba0209662` |
 | `goal-planner` | `cfd03c8c66bf85b2f25ee916cde78e51bacfc8b0` |
 | `financial-independence` | `1dfb029e4c4215d69b8982723a7b5dd67289d32c` |
@@ -22,24 +22,27 @@ These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that ma
 | `mortgage-payoff-calculator` | `58a0e63cc792634e94974efb069e741838f7ce0d` |
 | `compound-interest-calculator` | `bd85864abbff231bf54e1cc3864cb699a106fbcb` |
 | `loan-calculator` | `7410d13df9b0014ce9ccf402af839876e7eb8fa3` |
-| `carrowmont-qa` | `955593aa6bc160e0da806c6b552f3a518b323711` |
+| `carrowmont-qa` | `c97903eb3954ce192b9eda834eb168b1607cec6e` |
 
 ## Product state and next controlled work
 
 - **Batches 0-11:** accepted as completed per existing acceptance ledgers, including 9B/10/10B.
-- **Batch 12 Learn/Search/UX:** completed. Search and Ask now separate **Tools** from **Learn & Guides**, visually distinguish actionable tools and preserve direct-intent relevance before using Tool type as a tie-breaker.
+- **Batch 12 Learn/Search/UX:** completed. Search and Ask separate **Tools** from **Learn & Guides**, visually distinguish actionable tools and preserve direct-intent relevance before using Tool type as a tie-breaker.
 - **Batch 12B-1:** balance-transfer comparison and merged Credit Card Decisions UX are complete.
 - **Credential Expiry Guard v1:** deployed. Manual health check was green on 20 November 2026 with registered expiry 22 September 2027; temporary PAT Workflows write permission was removed again after deployment.
-- **Batch 12B-2 Short-Term Savings Comparison:** implemented in this review release at the existing Emergency Fund & Financial Runway URL; **not yet deployed**. Public inventory remains 23 tool cards and 145 Search URLs. See `CARROWMONT_FRE12B2_SHORT_TERM_SAVINGS_COMPARISON.md`.
-- **Remaining Batch 12B after 12B-2:** mortgage recast vs refinance/prepayment; lump-sum/goal trade-offs; early-retirement scenarios; explainable opportunities. Do not mark these unbuilt features complete.
+- **Batch 12B-2 Short-Term Savings Comparison:** deployed and captured in the authoritative green snapshot at the existing Emergency Fund & Financial Runway URL. Public inventory remains 23 tool cards and 145 Search URLs. See `CARROWMONT_FRE12B2_SHORT_TERM_SAVINGS_COMPARISON.md`.
+- **Batch 12B-3 Mortgage Recast vs Refinance/Prepayment:** still open and deliberately parked at the owner's direction; do not mark complete.
+- **Batch 12B-4 Lump-sum vs Goal Trade-offs:** implemented in the current review release as a seventh controlled Ask Carrowmont journey using existing deterministic engines. It does not add a public tool or indexed URL. See `CARROWMONT_FRE12B4_LUMP_SUM_GOAL_TRADEOFFS.md`.
+- **Remaining Batch 12B after this review:** parked 12B-3; early-retirement scenarios; explainable opportunities/decision prompts. Do not mark unbuilt features complete.
 - **Batch 13:** Optional Connected Financial Data remains deferred. **Batch 14:** native app decision gate remains conditional. Preserve original master-roadmap numbering.
+- **Repository branch cleanup:** deferred by owner until remaining product batch work is finished. Automatic post-merge branch deletion may remain enabled, but branch backlog cleanup is not part of this release.
 
 ## Immediate approved next sequence
 
-1. Complete the **Batch 12B-2** controlled release: Publisher -> human review -> merge -> deployed browser QA -> Multi-Repo Guard -> fresh all-green Source Snapshot.
-2. Continue the remaining 12B decision-support work in roadmap order.
+1. Complete the **Batch 12B-4** controlled release: Publisher -> human review -> merge -> deployed browser QA -> Multi-Repo Guard -> fresh all-green Source Snapshot.
+2. Continue remaining Batch 12B decision-support work while keeping 12B-3 parked unless the owner reopens it.
 3. Keep Batch 13 connected data deferred until the remaining 12B scope is closed.
-4. Legacy global-header migrations remain tracked separately; new or modified tool pages must use canonical shared components.
+4. Legacy global-header migrations and branch-backlog cleanup remain separate maintenance work; do not let them block the approved product sequence.
 
 ## Required guardrails
 
