@@ -12,11 +12,11 @@ Reviewed against the user-approved post-Batch-9 Master Roadmap and the 22 Novemb
 | 10B | Account-Aware Ask Carrowmont. Completed within controlled supported journeys. |
 | 11 | Homepage & Product Transformation. Completed with compact Ask entry and Tools access. |
 | 12A | Batch 12 UX/Search/Learn expansion; seven new guides and one upgraded guide. Completed. Search/Ask result grouping is also deployed. |
-| 12B | Wider Resolution Library & Opportunity Engine. **Open.** 12B-1 balance-transfer calculation, 12B-2 short-term-savings comparison, 12B-3 mortgage recast/refinance/prepayment, 12B-4 lump-sum/goal trade-offs and 12B-5 early-retirement scenarios are shipped. Explainable opportunities / decision prompts is the current review release. |
+| 12B | Wider Resolution Library & Opportunity Engine. **Completed.** 12B-1 balance-transfer calculation, 12B-2 short-term-savings comparison, 12B-3 mortgage recast/refinance/prepayment, 12B-4 lump-sum/goal trade-offs, 12B-5 early-retirement scenarios and 12B-6 explainable opportunities / decision prompts are shipped. |
 | 13 | **Later:** optional connected financial data, consent and data minimization. Do not start simply to match competitors. |
 | 14 | **Later/conditional:** native iOS/Android decision gate based on usage, cost and privacy. |
 
-**Approved sequence:** Complete explainable opportunities with source-informed QA, then perform Batch 12 closeout and the consolidated SEO/indexing review. Do not relabel this feature as a new Batch 13. Repository branch-backlog cleanup is deferred maintenance and must not block the approved product sequence.
+**Approved sequence:** Batch 12 product work is complete. Finish the consolidated SEO/indexing closeout against the 22 November 2026 all-green baseline, then take a fresh snapshot before considering any later Batch 13 work. Repository branch-backlog cleanup remains deferred maintenance and must not block the approved product sequence.
 
 **Roadmap non-negotiables:** AI reasons; tested Carrowmont engines calculate. Guest-first; account save/update only by explicit decision. Manual planning remains first-class. Localized wording without invented country financial rules. No promise that Premium or connected data is present today. Every major requirement has an acceptance check; green means the intended release passed its actual gates.
 
