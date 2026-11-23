@@ -1,18 +1,18 @@
 # Carrowmont Master Continuity & Recovery Handbook
 
-**Version:** 2026-11-24 (continuity + hardening roadmap refresh)  
+**Version:** 2026-11-24 (Quality Hardening 1 deployed closeout)  
 **Permanent repository path:** `docs/CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md`  
 **Project:** Carrowmont - Money in Real Life  
 **Live site:** carrowmont.com  
 **GitHub owner:** Draw004  
-**Authoritative baseline snapshot:** `carrowmont-source-snapshot - 2026-11-23T224718.530.zip`  
-**Snapshot SHA-256:** `69f846cfcfc749b5e10d83d1150d85e6e2b8bf63fdce528eee3ff644064c84c5`  
-**Verified source contract:** **1,547 PASS / 0 FAIL**
+**Authoritative baseline snapshot:** `carrowmont-source-snapshot - 2026-11-24T023324.666.zip`  
+**Snapshot SHA-256:** `f7beeb6e9fa125e801ee8f6311867b91c381fa2ac3be79bfc452527c07521b72`  
+**Verified source contract:** **1,553 PASS / 0 FAIL**
 
 > **Purpose:** Make Carrowmont portable across ChatGPT accounts, future developers, and future chats. A new ChatGPT account does not inherit the old account's conversation history, so the durable source of truth must be files: this handbook plus the newest all-green Source Snapshot.
 
 
-> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. Batches 0-12B and **13A** are complete. **Batch 13B is ON HOLD** until the owner explicitly reopens it; **Batch 14 is traffic/usage-gated and deferred**. The active product path is Quality Audit & Hardening -> Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> measurement. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges or that a future ChatGPT account has prior-chat memory.
+> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. Batches 0-12B and **13A** are complete. **Batch 13B is ON HOLD** until the owner explicitly reopens it; **Batch 14 is traffic/usage-gated and deferred**. Quality Audit & Hardening Release 1 is complete. The active product path is Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> measurement. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges or that a future ChatGPT account has prior-chat memory.
 
 ## 1. Best way to move Carrowmont to another ChatGPT account
 
@@ -31,7 +31,7 @@ Use `docs/CARROWMONT_NEW_CHAT_START_HERE.txt` verbatim. Its content, rather than
 
 ## 2. Current baseline - do not guess past it
 
-The 2026-11-23 22:47 IST source snapshot is the latest green baseline known to this handbook. It contains **11 repositories** and the shared QA system. The source-contract run against the extracted snapshot produced **1,547 PASS / 0 FAIL**. Search + Ask Results UX2 is captured in this baseline. Quality Audit & Hardening Release 1 is the next review release and is not authoritative until it completes Publisher, merge, deployed QA, Guard and a fresh snapshot.
+The 2026-11-24 02:33 IST source snapshot is the latest green baseline known to this handbook. It contains **11 repositories** and the shared QA system. The source-contract run against the extracted snapshot produced **1,553 PASS / 0 FAIL**. Search + Ask Results UX2 and Quality Audit & Hardening Release 1 are captured in this baseline. The next controlled product release is Ask Carrowmont Expansion Wave 1.
 
 Older architecture/handover files inside the repository contain useful history, but some counts and roadmap statements predate newer calculators and later UX changes. When they conflict, use this priority order:
 
@@ -45,7 +45,7 @@ Older architecture/handover files inside the repository contain useful history, 
 
 | Repository | Commit | Current role |
 |---|---|---|
-| `draw004.github.io` | `bd26963f1e054b36133083f38dd97e4edb302d5c` | Main site, public content, Research, shared runtime, controller workflows |
+| `draw004.github.io` | `534349dd2201ea0fd6b9b8d67180c960c8b38b4a` | Main site, public content, Research, shared runtime, controller workflows |
 | `sip-calculator` | `0e718f0c5935948d11c1c4eee1a3059ba0209662` | SIP / recurring investment calculator |
 | `goal-planner` | `cfd03c8c66bf85b2f25ee916cde78e51bacfc8b0` | Financial goal planner |
 | `financial-independence` | `95b2c40f6396c80290abef514f6b98b241eff333` | Financial independence planner |
@@ -55,7 +55,7 @@ Older architecture/handover files inside the repository contain useful history, 
 | `mortgage-payoff-calculator` | `8b6650487a6c47b79f6ec6729795c00759b929df` | Mortgage / home-loan payoff and decision-centre tools |
 | `compound-interest-calculator` | `bd85864abbff231bf54e1cc3864cb699a106fbcb` | Compound interest calculator |
 | `loan-calculator` | `7410d13df9b0014ce9ccf402af839876e7eb8fa3` | Loan / EMI calculator |
-| `carrowmont-qa` | `07255b2deba3df6dffbe982ed269bf55b3978103` | Shared source-contract, browser, PDF and regression QA |
+| `carrowmont-qa` | `29dbcae5d78d16d5f189b5a4efdf70a1894b02f3` | Shared source-contract, browser, PDF and regression QA |
 
 
 The controller repository is `Draw004/draw004.github.io`. The central QA repository is `Draw004/carrowmont-qa`.

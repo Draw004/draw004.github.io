@@ -138,3 +138,20 @@ Repair:
 - keep the independent `overflow-y:auto`, `direction:ltr`, real scrollability, CTA, Best Match, mobile-tab and no-horizontal-overflow assertions unchanged.
 
 This is a **QA robustness repair, not a Search UX relaxation**. A replacement Publisher bundle must pass the staged browser suite before merge.
+
+## Deployment closeout - 24 November 2026
+
+Quality Audit & Hardening Release 1 completed the full controlled release path and is now part of the authoritative baseline.
+
+- all-green source snapshot: `carrowmont-source-snapshot - 2026-11-24T023324.666.zip`
+- snapshot SHA-256: `f7beeb6e9fa125e801ee8f6311867b91c381fa2ac3be79bfc452527c07521b72`
+- `draw004.github.io`: `534349dd2201ea0fd6b9b8d67180c960c8b38b4a`
+- `carrowmont-qa`: `29dbcae5d78d16d5f189b5a4efdf70a1894b02f3`
+- exact extracted-snapshot source contract: **1,553 PASS / 0 FAIL**
+- Publisher replacement run after the Search UX2 QA robustness repair: **all green**
+- fresh Source Snapshot captured after merge/Guard closeout
+
+The next controlled product release is **Ask Carrowmont Expansion Wave 1**. Learn Hub 2.0 and Evergreen Learn Expansion remain subsequent phases. Batch 13B remains ON HOLD; Batch 14 remains traffic/usage-gated.
+
+The normal least-privilege state for the release PAT is **without Workflows write permission**. Quality Hardening 1 temporarily required Workflows: read/write because workflow YAML files changed; that permission should be removed again after this green closeout.
+
