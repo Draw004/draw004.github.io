@@ -168,6 +168,8 @@ Fresh Source Snapshot
   -> Carrowmont Automated QA
   -> Multi-Repo Guard
   -> fresh Source Snapshot
+  -> independent live interaction / visual verification of changed behavior
+  -> close the release only after that verification
 ```
 
 Important rules:
@@ -177,6 +179,7 @@ Important rules:
 - `RELEASE` belongs to the separate formal GitHub tag/release workflow.
 - If Publisher is red, do not bypass it by making manual PRs just to get the change through.
 - After an all-green release, run a new Source Snapshot and treat it as the next authoritative baseline.
+- **Post-snapshot live verification is mandatory for changed interactive UX.** After the owner reports all green and supplies the fresh snapshot, independently exercise the changed Carrowmont.com behavior before marking the item CLOSED. Click new/changed cards, CTAs, links and controls; check pointer/keyboard behavior, desktop/mobile layout, scrolling/overflow, empty/error states, locale behavior where relevant and obvious calculation paths. Publisher/browser QA is necessary but does not replace this post-deployment check. If the environment cannot truthfully exercise a live interaction, state that limitation instead of claiming it was tested.
 
 ## 11. Release-bundle contract
 
