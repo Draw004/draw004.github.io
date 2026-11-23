@@ -12,7 +12,7 @@
 > **Purpose:** Make Carrowmont portable across ChatGPT accounts, future developers, and future chats. A new ChatGPT account does not inherit the old account's conversation history, so the durable source of truth must be files: this handbook plus the newest all-green Source Snapshot.
 
 
-> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. The current batch is **12B**, and original **Batch 13** is reserved for optional connected financial data. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges.
+> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. Batch 12 is complete. Original **Batch 13** is now active in phases: **13A** sandbox/readiness first, with any live-provider **13B** pilot separately gated. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges.
 
 ## 1. Best way to move Carrowmont to another ChatGPT account
 

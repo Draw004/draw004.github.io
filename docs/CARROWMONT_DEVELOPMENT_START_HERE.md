@@ -1,7 +1,7 @@
 # Carrowmont - development start here
 
 **Status:** mandatory first-read entry point for all developers, AI assistants and new ChatGPT accounts.
-**Last reviewed:** 20 November 2026.
+**Last reviewed:** 23 November 2026.
 **Project:** https://carrowmont.com | **GitHub owner:** Draw004.
 
 ## First five minutes in a new account
@@ -15,7 +15,7 @@
 ## Authority and conflicts
 
 - **Live code authority:** newest verified green snapshot + checked source files and current QA, with newer repository commits explicitly verified if they exist.
-- **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data; unfinished decision engines remain **Batch 12B**.
+- **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data. Batch 12B is complete; Batch 13A is the sandbox/readiness foundation and any live-provider Batch 13B pilot remains separately gated.
 - **Technical control authority:** deterministic engines, source-contract, automated standards gate, Publisher and Multi-Repo Guard; no assistant can override them by assertion.
 - **Historical documents:** informative, not necessarily current. When an old architecture/handbook passage conflicts with current source or a later approved amendment, identify the conflict and use the latest confirmed rule. Ask about genuine unresolved product decisions rather than inventing an answer.
 
@@ -28,6 +28,7 @@
 - Reuse the approved global seven-link header and one-current-tab rule from `CARROWMONT_SHARED_UI_STANDARD.md` v1.2. Tool-specific Calculator/Methodology links belong in the page, not in place of the main navigation. Use `/assets/ui/carrowmont-global-header.css` and its paired JS for migrated tool pages. Preserve the approved locale control, footer, mobile navigation and accessibility.
 - Every changed calculator page must pass the new UI standards gate. Known older exceptions, including 27 unmigrated tool headers, are inventoried and must be corrected if that page is modified.
 - Never publish credentials, actual account finance data, API keys or tokens in public GitHub or handover packages.
+- Batch 13A connected-data work must be provider-neutral, read-only, data-minimized and explicit-review-first. Production live connectivity stays disabled until a separately approved provider/jurisdiction release.
 - A source-test pass does **not** equal a green Publisher/browser suite or live-device acceptance.
 
 ## Release procedure
