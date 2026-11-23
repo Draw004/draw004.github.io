@@ -1,6 +1,6 @@
 # Carrowmont Search + Ask Results UX2
 
-**Status:** review release built from the 23 November 2026 post-Batch-13A all-green snapshot.
+**Status:** deployed and captured in `carrowmont-source-snapshot - 2026-11-23T224718.530.zip`. Source/pipeline validation is complete; any future Search/Ask UI change must repeat the live CTA/card/mobile-scroll acceptance checks before its own closeout.
 
 ## Locked product behavior
 

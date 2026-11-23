@@ -208,6 +208,8 @@ The controller repository currently exposes these important workflows in GitHub 
 
 The three **Update ... Reference** workflows are protected data-maintenance automations. They check official sources, create human-review PRs only when validated data changes, and never auto-merge to `main`. The Country Financial References workflow checks eight monetary-policy jurisdictions on weekdays: RBI, Federal Reserve, Bank of England, Bank of Canada, RBA, Bank of Japan, Bank of Korea and ECB. France and Italy share the same ECB observation and are updated together. The workflow updates the canonical JSON plus its embedded runtime copy together. Its review summary uses explicit signed **percentage-point** movement (`+` increase / `-` decrease) and blocks stale, future-dated or unusually large automated moves. China is not part of the automated country-reference layer in this release.
 
+**Schedule-resilience hardening (24 November 2026 review release):** GitHub documents that scheduled Actions can be delayed or, under sufficiently high load, dropped. The data validation and protected-PR rules remain unchanged, but weekly jobs now have a second independently timed trigger: US Debt Monday 06:23 UTC + Tuesday 08:47 UTC fallback; Gold Monday 14:25 UTC + Tuesday 15:43 UTC fallback. Country References keeps weekday 22:35 UTC checks and adds a Saturday 07:53 UTC catch-up for a missed Friday run. Existing open-automation-PR and no-material-change guards make these fallback runs idempotent. `workflow_dispatch` remains the manual recovery path.
+
 The next sections explain the core controller workflows.
 
 ---
