@@ -80,33 +80,79 @@
     return 'Carrowmont';
   }
 
-  function resultCard(entry) {
-    var article = document.createElement('article');
-    article.className = 'cm-search-result-card';
-    if (entry.type === 'tool') article.classList.add('cm-search-result-card-tool');
-    else if (entry.type === 'guide') article.classList.add('cm-search-result-card-learn');
-    else article.classList.add('cm-search-result-card-other');
-    article.dataset.searchResult = '';
-    article.dataset.resultType = entry.type;
+  function resultCard(entry, options) {
+    var opts = options || {};
+    var actionText = entry.type === 'tool' ? 'Open tool →' : entry.type === 'guide' ? 'Read article →' : 'View result →';
+    var link = document.createElement('a');
+    link.className = 'cm-search-result-card';
+    if (entry.type === 'tool') link.classList.add('cm-search-result-card-tool');
+    else if (entry.type === 'guide') link.classList.add('cm-search-result-card-learn');
+    else link.classList.add('cm-search-result-card-other');
+    link.href = entry.url;
+    link.dataset.searchResult = '';
+    link.dataset.resultType = entry.type;
+    link.dataset.searchResultLink = '';
+    link.setAttribute('aria-label', actionText.replace(' →', '') + ': ' + entry.title);
 
     var meta = document.createElement('div');
     meta.className = 'cm-search-result-meta';
     meta.appendChild(textElement('span', 'cm-search-result-type', resultTypeLabel(entry)));
     meta.appendChild(textElement('span', 'cm-search-result-category', entry.category));
+    if (opts.bestMatch) meta.appendChild(textElement('span', 'cm-search-result-best-match', 'Best match'));
 
-    var heading = document.createElement('h3');
-    var link = document.createElement('a');
-    link.href = entry.url;
-    link.textContent = entry.title;
-    link.dataset.searchResultLink = '';
-    heading.appendChild(link);
+    link.appendChild(meta);
+    link.appendChild(textElement('h3', '', entry.title));
+    link.appendChild(textElement('p', '', entry.description));
+    var action = textElement('span', 'cm-search-result-action', actionText);
+    action.dataset.searchResultAction = '';
+    link.appendChild(action);
+    return link;
+  }
 
-    article.appendChild(meta);
-    article.appendChild(heading);
-    article.appendChild(textElement('p', '', entry.description));
-    var action = entry.type === 'tool' ? 'Open tool →' : entry.type === 'guide' ? 'Read article →' : 'View result →';
-    article.appendChild(textElement('span', 'cm-search-result-action', action));
-    return article;
+  function resultGroupSection(group, bestEntry) {
+    var section = document.createElement('section');
+    section.className = 'cm-search-result-group cm-search-result-group-' + group.key;
+    section.dataset.searchResultGroup = group.key;
+    var groupHeading = document.createElement('div');
+    groupHeading.className = 'cm-search-result-group-heading';
+    groupHeading.appendChild(textElement('h2', '', group.label));
+    groupHeading.appendChild(textElement('span', '', group.entries.length === 1 ? '1 result' : group.entries.length + ' results'));
+    section.appendChild(groupHeading);
+    var grid = document.createElement('div');
+    grid.className = 'cm-search-result-group-grid';
+    group.entries.forEach(function (entry) { grid.appendChild(resultCard(entry, { bestMatch: entry === bestEntry })); });
+    section.appendChild(grid);
+    return section;
+  }
+
+  function bindResultTabs(tabList, primary, groups, activeKey) {
+    var buttons = [];
+    groups.forEach(function (group) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'cm-search-result-tab';
+      button.dataset.searchResultTab = group.key;
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-selected', group.key === activeKey ? 'true' : 'false');
+      button.appendChild(textElement('span', '', group.label));
+      button.appendChild(textElement('strong', '', String(group.entries.length)));
+      button.addEventListener('click', function () {
+        primary.dataset.mobileActive = group.key;
+        buttons.forEach(function (item) { item.setAttribute('aria-selected', item === button ? 'true' : 'false'); });
+      });
+      buttons.push(button);
+      tabList.appendChild(button);
+    });
+    tabList.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      var current = buttons.indexOf(document.activeElement);
+      if (current < 0) return;
+      event.preventDefault();
+      var delta = event.key === 'ArrowRight' ? 1 : -1;
+      var next = (current + delta + buttons.length) % buttons.length;
+      buttons[next].click();
+      buttons[next].focus();
+    });
   }
 
   function setStatus(widget, message) {
@@ -197,31 +243,38 @@
       guide: { key: 'guide', label: 'Learn & Guides', entries: results.filter(function (entry) { return entry.type === 'guide'; }) },
       other: { key: 'other', label: 'Research & Other', entries: results.filter(function (entry) { return entry.type !== 'tool' && entry.type !== 'guide'; }) }
     };
-    // Preserve a decisive direct/intention match. Tool-first is a tie-breaker for
-    // broadly comparable results, not an override of exact Learn/Research ownership.
+    // Preserve a decisive direct/intention match in DOM order and Best Match state.
+    // On desktop, CSS always places Tools left and Learn & Guides right; type never
+    // overrides a decisive exact match in the ranking model.
     var first = results[0] || null;
     var bestTool = grouped.tool.entries[0] || null;
     var DIRECT_MATCH_LEAD = 200;
     var leadingKey = first && first.type === 'guide' ? 'guide' : (first && first.type === 'tool' ? 'tool' : 'other');
     var decisiveNonTool = first && leadingKey !== 'tool' && (!bestTool || ownsSpecificQuery(first, shownQuery) || ((Number(first.score) || 0) - (Number(bestTool.score) || 0) >= DIRECT_MATCH_LEAD));
     var order = decisiveNonTool ? [leadingKey, 'tool', leadingKey === 'guide' ? 'other' : 'guide'] : ['tool', 'guide', 'other'];
-    var groups = order.map(function (key) { return grouped[key]; });
-    groups.forEach(function (group) {
-      if (!group.entries.length) return;
-      var section = document.createElement('section');
-      section.className = 'cm-search-result-group cm-search-result-group-' + group.key;
-      section.dataset.searchResultGroup = group.key;
-      var groupHeading = document.createElement('div');
-      groupHeading.className = 'cm-search-result-group-heading';
-      groupHeading.appendChild(textElement('h2', '', group.label));
-      groupHeading.appendChild(textElement('span', '', group.entries.length === 1 ? '1 result' : group.entries.length + ' results'));
-      section.appendChild(groupHeading);
-      var grid = document.createElement('div');
-      grid.className = 'cm-search-result-group-grid';
-      group.entries.forEach(function (entry) { grid.appendChild(resultCard(entry)); });
-      section.appendChild(grid);
-      widget.results.appendChild(section);
+
+    var primaryGroups = order.map(function (key) { return grouped[key]; }).filter(function (group) {
+      return (group.key === 'tool' || group.key === 'guide') && group.entries.length;
     });
+    if (primaryGroups.length) {
+      if (primaryGroups.length === 2) {
+        var tabs = document.createElement('div');
+        tabs.className = 'cm-search-result-tabs';
+        tabs.setAttribute('role', 'tablist');
+        tabs.setAttribute('aria-label', 'Search result types');
+        widget.results.appendChild(tabs);
+      }
+      var primary = document.createElement('div');
+      primary.className = 'cm-search-primary-groups ' + (primaryGroups.length === 2 ? 'cm-search-primary-groups-dual' : 'cm-search-primary-groups-single');
+      primary.dataset.mobileActive = primaryGroups[0].key;
+      primaryGroups.forEach(function (group) { primary.appendChild(resultGroupSection(group, first)); });
+      if (primaryGroups.length === 2) {
+        var tabGroups = [grouped.tool, grouped.guide].filter(function (group) { return group.entries.length; });
+        bindResultTabs(widget.results.querySelector('.cm-search-result-tabs:last-of-type'), primary, tabGroups, primaryGroups[0].key);
+      }
+      widget.results.appendChild(primary);
+    }
+    if (grouped.other.entries.length) widget.results.appendChild(resultGroupSection(grouped.other, first));
     setStatus(widget, results.length === 1 ? '1 result found.' : results.length + ' results found.');
     showSuggestions(widget, false);
     hideTypeahead(widget);
@@ -393,7 +446,7 @@
   }
 
   window.CarrowmontSearch = Object.freeze({
-    version: '1.2.0',
+    version: '1.3.0',
     search: publicSearch,
     suggest: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.suggest(data.index.entries, data.aliases, query, { region: opts.region || regionCode(), limit: opts.limit || 6 }); }); },
     correct: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.correctQuery(data.index.entries, data.aliases, query, { region: opts.region || regionCode() }); }); },

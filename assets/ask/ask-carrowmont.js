@@ -260,14 +260,20 @@
       groups.forEach(group=>{
         if(!group.entries.length)return;
         const section=document.createElement('section');section.className=`ask-route-group ask-route-group-${group.key}`;section.dataset.askRouteGroup=group.key;
-        const heading=document.createElement('h3');heading.className='ask-route-group-heading';heading.textContent=group.label;section.appendChild(heading);
+        const headingRow=document.createElement('div');headingRow.className='ask-route-group-heading-row';
+        const heading=document.createElement('h3');heading.className='ask-route-group-heading';heading.textContent=group.label;
+        const count=document.createElement('span');count.className='ask-route-group-count';count.textContent=group.entries.length===1?'1 result':`${group.entries.length} results`;
+        headingRow.append(heading,count);section.appendChild(headingRow);
         group.entries.forEach(entry=>{
-          const a=document.createElement('a'); a.className='ask-route-result'; if(entry.type==='tool')a.classList.add('ask-route-result-tool');else if(entry.type==='guide')a.classList.add('ask-route-result-learn');else a.classList.add('ask-route-result-other'); a.href=entry.url;
-          const meta=document.createElement('span'); meta.className='ask-route-type'; meta.textContent=resultType(entry);
+          const actionText=entry.type==='tool'?'Open tool →':entry.type==='guide'?'Read article →':'View result →';
+          const a=document.createElement('a'); a.className='ask-route-result'; if(entry.type==='tool')a.classList.add('ask-route-result-tool');else if(entry.type==='guide')a.classList.add('ask-route-result-learn');else a.classList.add('ask-route-result-other'); a.href=entry.url;a.dataset.askRouteResultLink='';a.setAttribute('aria-label',`${actionText.replace(' →','')}: ${entry.title}`);
+          const metaRow=document.createElement('span');metaRow.className='ask-route-meta';
+          const meta=document.createElement('span'); meta.className='ask-route-type'; meta.textContent=resultType(entry);metaRow.appendChild(meta);
+          if(entry===visible[0]){const best=document.createElement('span');best.className='ask-route-best-match';best.textContent='Best match';metaRow.appendChild(best);}
           const strong=document.createElement('strong'); strong.textContent=entry.title;
           const small=document.createElement('small'); small.textContent=entry.description||entry.category||'';
-          const action=document.createElement('span');action.className='ask-route-action';action.textContent=entry.type==='tool'?'Open tool →':entry.type==='guide'?'Read article →':'View result →';
-          a.append(meta,strong,small,action); section.appendChild(a);
+          const action=document.createElement('span');action.className='ask-route-action';action.dataset.askRouteAction='';action.textContent=actionText;
+          a.append(metaRow,strong,small,action); section.appendChild(a);
         });
         wrap.appendChild(section);
       });

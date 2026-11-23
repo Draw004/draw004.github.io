@@ -88,3 +88,13 @@
 .ask-route-result-tool .ask-route-type{display:inline-flex;width:max-content;padding:3px 7px;border-radius:999px;background:#0e827a;color:#fff}
 .ask-route-result-learn .ask-route-type{display:inline-flex;width:max-content;padding:3px 7px;border-radius:999px;background:#edf6f5;color:#0b736c}
 .ask-route-action{margin-top:5px;color:#0b736c;font-size:.74rem;font-weight:900}
+
+
+/* SEARCH UX2 — Ask shares the same clear Tool/Learn card language without desktop dual panes. */
+.ask-route-group-heading-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.ask-route-group-count{color:#7a8b91;font-size:.68rem;font-weight:800}
+.ask-route-result{cursor:pointer}
+.ask-route-meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.ask-route-best-match{display:inline-flex;width:max-content;padding:3px 7px;border-radius:999px;background:#fff4d7;color:#7a5b16;font-size:.66rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.ask-route-action{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.ask-route-result:hover .ask-route-action,.ask-route-result:focus-visible .ask-route-action{color:#075f59}
