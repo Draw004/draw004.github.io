@@ -15,7 +15,7 @@
 ## Authority and conflicts
 
 - **Live code authority:** newest verified green snapshot + checked source files and current QA, with newer repository commits explicitly verified if they exist.
-- **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data. Batch 12B and Batch 13A are complete. **Batch 13B is ON HOLD pending an explicit future owner decision**; production live-provider work must not start automatically. Batch 14 native-app work is traffic/usage-gated and deferred. The active path is Quality Audit & Hardening -> Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> measurement.
+- **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data. Batch 12B, Batch 13A and **Quality Audit & Hardening Release 1** are complete. **Batch 13B is ON HOLD pending an explicit future owner decision**; production live-provider work must not start automatically. Batch 14 native-app work is traffic/usage-gated and deferred. The active path is Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> measurement.
 - **Technical control authority:** deterministic engines, source-contract, automated standards gate, Publisher and Multi-Repo Guard; no assistant can override them by assertion.
 - **Historical documents:** informative, not necessarily current. When an old architecture/handbook passage conflicts with current source or a later approved amendment, identify the conflict and use the latest confirmed rule. Ask about genuine unresolved product decisions rather than inventing an answer.
 
@@ -50,7 +50,7 @@ Never merge the disposable Publisher staging branch; merge only the generated re
 
 ## Self-check before continuing
 
-A new assistant should be able to state: the 11 repo names and exact snapshot SHAs; what the product does; the completed Batch 12B/13A state, Batch 13B ON HOLD decision and traffic-gated Batch 14 state; current open issues; the canonical locale/header pattern; how to inspect/edit safely; who approves merges; and which green checks are still required. If it cannot, it is **not ready to change the project**.
+A new assistant should be able to state: the 11 repo names and exact snapshot SHAs; what the product does; the completed Batch 12B/13A/Quality-Hardening-1 state, Batch 13B ON HOLD decision and traffic-gated Batch 14 state; current open issues; the canonical locale/header pattern; how to inspect/edit safely; who approves merges; and which green checks are still required. If it cannot, it is **not ready to change the project**.
 
 ## Credential-expiry protection (v1 security release)
 

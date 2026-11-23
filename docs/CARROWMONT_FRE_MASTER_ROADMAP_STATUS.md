@@ -1,6 +1,6 @@
 # Carrowmont Financial Resolution Engine - authoritative roadmap status crosswalk
 
-Reviewed against the user-approved post-Batch-9 Master Roadmap and the 23 November 2026 Search + Ask Results UX2 all-green source snapshot. This document preserves original feature numbering and is a **status crosswalk**, not a rewrite of the historical master plan.
+Reviewed against the user-approved post-Batch-9 Master Roadmap and the 24 November 2026 Quality Audit & Hardening Release 1 all-green source snapshot. This document preserves original feature numbering and is a **status crosswalk**, not a rewrite of the historical master plan.
 
 | Original roadmap stage | Source/acceptance position |
 |---|---|
@@ -19,9 +19,9 @@ Reviewed against the user-approved post-Batch-9 Master Roadmap and the 23 Novemb
 
 ## Current approved sequence
 
-Search + Ask Results UX2 has been deployed and captured in the all-green 23 November snapshot. The active product path is now:
+Search + Ask Results UX2 and Quality Audit & Hardening Release 1 are deployed and captured in the all-green 24 November snapshot. The active product path is now:
 
-**Quality Audit & Hardening -> Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> Measurement / next-priority review.**
+**Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> Measurement / next-priority review.**
 
 Before 13B can ever resume, the owner must explicitly reopen it and the provider/jurisdiction, privacy/legal, security, deletion/consent and cost review must still be completed. Batch 14 is not a default next build; it remains conditional on real traffic, repeat usage and capability gaps.
 
