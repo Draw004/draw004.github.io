@@ -1,13 +1,12 @@
 # Carrowmont Master Continuity & Recovery Handbook
 
-**Version:** 2026-11-24 (Quality Hardening 1 deployed closeout)  
+**Version:** 2026-11-24 (snapshot-authority continuity fix after Quality Hardening 1)  
 **Permanent repository path:** `docs/CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md`  
 **Project:** Carrowmont - Money in Real Life  
 **Live site:** carrowmont.com  
 **GitHub owner:** Draw004  
-**Authoritative baseline snapshot:** `carrowmont-source-snapshot - 2026-11-24T023324.666.zip`  
-**Snapshot SHA-256:** `f7beeb6e9fa125e801ee8f6311867b91c381fa2ac3be79bfc452527c07521b72`  
-**Verified source contract:** **1,553 PASS / 0 FAIL**
+**Current code authority:** the newest completed all-green Carrowmont Source Snapshot ZIP supplied with the project; read its root `SNAPSHOT-MANIFEST.txt` for the exact 11 repository SHAs. This handbook intentionally does not pin a current snapshot filename/hash.  
+**Historical Quality Hardening 1 source-QA evidence:** **1,553 PASS / 0 FAIL**
 
 > **Purpose:** Make Carrowmont portable across ChatGPT accounts, future developers, and future chats. A new ChatGPT account does not inherit the old account's conversation history, so the durable source of truth must be files: this handbook plus the newest all-green Source Snapshot.
 
@@ -29,9 +28,11 @@ A handbook alone is not enough for exact code work, because code changes after t
 
 Use `docs/CARROWMONT_NEW_CHAT_START_HERE.txt` verbatim. Its content, rather than a copied prompt in this historical handbook, is the one authoritative version. Attach the **latest green Source Snapshot ZIP** (or a portable handover pack containing it). No account-specific memory, connector, permission or token should be assumed.
 
-## 2. Current baseline - do not guess past it
+## 2. Current baseline - derive it from the supplied snapshot, do not guess past it
 
-The 2026-11-24 02:33 IST source snapshot is the latest green baseline known to this handbook. It contains **11 repositories** and the shared QA system. The source-contract run against the extracted snapshot produced **1,553 PASS / 0 FAIL**. Search + Ask Results UX2 and Quality Audit & Hardening Release 1 are captured in this baseline. The next controlled product release is Ask Carrowmont Expansion Wave 1.
+The newest completed all-green Source Snapshot ZIP supplied by the owner is the current code baseline. Open its root `SNAPSHOT-MANIFEST.txt` and read the exact SHAs for all **11 repositories**. Do **not** expect this handbook or the current-status page to mirror the newest snapshot filename/hash; doing so would create a self-referential loop because the documentation update itself changes repository state.
+
+Quality Audit & Hardening Release 1 is complete, Search + Ask Results UX2 is retained, and the next controlled product release is Ask Carrowmont Expansion Wave 1. The **1,553 PASS / 0 FAIL** figure in this handbook is historical Hardening 1 closeout evidence, not a substitute for rerunning the current source contract from the newest snapshot.
 
 Older architecture/handover files inside the repository contain useful history, but some counts and roadmap statements predate newer calculators and later UX changes. When they conflict, use this priority order:
 
@@ -178,7 +179,7 @@ Important rules:
 - `CREATE_PRS` is the Publisher confirmation word.
 - `RELEASE` belongs to the separate formal GitHub tag/release workflow.
 - If Publisher is red, do not bypass it by making manual PRs just to get the change through.
-- After an all-green release, run a new Source Snapshot and treat it as the next authoritative baseline.
+- After an all-green release, run a new Source Snapshot and treat its `SNAPSHOT-MANIFEST.txt` as the next code/commit baseline. **Do not open another PR solely to copy that new snapshot filename/hash into status documents**; update product/release state and QA evidence only when there is substantive state to record.
 - **Post-snapshot live verification is mandatory for changed interactive UX.** After the owner reports all green and supplies the fresh snapshot, independently exercise the changed Carrowmont.com behavior before marking the item CLOSED. Click new/changed cards, CTAs, links and controls; check pointer/keyboard behavior, desktop/mobile layout, scrolling/overflow, empty/error states, locale behavior where relevant and obvious calculation paths. Publisher/browser QA is necessary but does not replace this post-deployment check. If the environment cannot truthfully exercise a live interaction, state that limitation instead of claiming it was tested.
 
 ## 11. Release-bundle contract
@@ -187,7 +188,7 @@ A safe release bundle should:
 - contain `release-manifest.json` with schema/version expected by Publisher;
 - list allowed target repositories/files only;
 - include reviewed base SHA-256 and new SHA-256 hashes;
-- be built from the newest authoritative snapshot;
+- be built from the newest verified all-green Source Snapshot supplied for the release;
 - contain no unapproved workflow files;
 - avoid unrelated file churn;
 - pass JavaScript syntax checks where relevant;

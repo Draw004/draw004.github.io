@@ -1,6 +1,6 @@
 # Carrowmont Quality Audit & Hardening Release 1
 
-**Release state:** review release; not authoritative until Publisher -> human review/merge -> deployed QA -> Multi-Repo Guard -> fresh all-green Source Snapshot.  
+**Release state:** **complete and deployed.** The review-release wording below is historical process evidence; current code/commit truth is always derived from the newest supplied all-green Source Snapshot manifest.  
 **Reviewed baseline:** `carrowmont-source-snapshot - 2026-11-23T224718.530.zip`  
 **Baseline SHA-256:** `69f846cfcfc749b5e10d83d1150d85e6e2b8bf63fdce528eee3ff644064c84c5`  
 **Baseline source contract:** 1,547 PASS / 0 FAIL.
@@ -141,7 +141,7 @@ This is a **QA robustness repair, not a Search UX relaxation**. A replacement Pu
 
 ## Deployment closeout - 24 November 2026
 
-Quality Audit & Hardening Release 1 completed the full controlled release path and is now part of the authoritative baseline.
+Quality Audit & Hardening Release 1 completed the full controlled release path. The closeout snapshot recorded below is a **historical release milestone**, not a permanently pinned current baseline; newer all-green snapshot manifests supersede it for code/commit truth.
 
 - all-green source snapshot: `carrowmont-source-snapshot - 2026-11-24T023324.666.zip`
 - snapshot SHA-256: `f7beeb6e9fa125e801ee8f6311867b91c381fa2ac3be79bfc452527c07521b72`
@@ -154,4 +154,28 @@ Quality Audit & Hardening Release 1 completed the full controlled release path a
 The next controlled product release is **Ask Carrowmont Expansion Wave 1**. Learn Hub 2.0 and Evergreen Learn Expansion remain subsequent phases. Batch 13B remains ON HOLD; Batch 14 remains traffic/usage-gated.
 
 The normal least-privilege state for the release PAT is **without Workflows write permission**. Quality Hardening 1 temporarily required Workflows: read/write because workflow YAML files changed; that permission should be removed again after this green closeout.
+
+## Snapshot-authority continuity follow-up - 24 November 2026
+
+A post-release audit of the later all-green snapshot `carrowmont-source-snapshot - 2026-11-24T034617.397.zip` (SHA-256 `35c53dd77890143856f7c957e1b9bea409bc6f855bae7dc595095e64f5439c01`) exposed a documentation-design flaw: status/handbook files still named the immediately previous snapshot as the "authoritative" current baseline. Updating that filename through another PR would itself create a newer repository state and therefore a newer snapshot, creating an endless self-referential loop.
+
+The durable rule is now:
+
+- the newest completed all-green Source Snapshot ZIP supplied by the owner is authoritative for current code/commit truth;
+- its root `SNAPSHOT-MANIFEST.txt` provides the exact 11 repository SHAs;
+- current-status, roadmap and handover documents record product state, decisions, QA evidence and next steps but **do not pin a current snapshot filename/hash**;
+- release implementation records may keep specific snapshot filenames/hashes as historical evidence;
+- no release should be created solely to update a status document to the newest snapshot filename/hash.
+
+This follow-up changes continuity documentation and QA contracts only. It does not change public product behavior, formulas, Search/Ask behavior, Learn content, data references or GitHub workflow schedules.
+### Continuity follow-up local pre-Publisher validation
+
+Using `carrowmont-source-snapshot - 2026-11-24T034617.397.zip` as the immutable release-input baseline:
+
+- full deterministic source contract after this continuity-only change: **1,554 PASS / 0 FAIL**;
+- modified QA scripts pass Node syntax checks;
+- the new QA assertion rejects reintroduction of a hard-coded current snapshot filename/hash in the current-status or master-handbook authority fields;
+- no public HTML, calculator formula, Search/Ask code, Learn content, reference-data JSON or GitHub workflow file is changed.
+
+Publisher staged QA, human review/merge, deployed QA, Multi-Repo Guard and a fresh Source Snapshot remain required before this follow-up is considered released. The fresh snapshot should become the next code baseline through its manifest; it should **not** trigger another documentation-only PR just to copy its filename/hash into these files.
 

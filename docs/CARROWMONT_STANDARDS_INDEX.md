@@ -1,10 +1,10 @@
 # Carrowmont standards index - one entry, existing authorities
 
-**Version 1.4 | reviewed 24 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
+**Version 1.5 | reviewed 24 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
 
 | Topic | Canonical source | Enforced through |
 |---|---|---|
-| Start procedure and account portability | `CARROWMONT_DEVELOPMENT_START_HERE.md` + `CARROWMONT_NEW_CHAT_START_HERE.txt` | Handover/source contract and latest snapshot manifest |
+| Start procedure, snapshot authority and account portability | `CARROWMONT_DEVELOPMENT_START_HERE.md` + `CARROWMONT_NEW_CHAT_START_HERE.txt` + `CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md` | Handover/source contract and newest supplied all-green snapshot `SNAPSHOT-MANIFEST.txt` |
 | Current progress, roadmap status and known debt | `CARROWMONT_CURRENT_PROJECT_STATUS.md` + `CARROWMONT_FRE_MASTER_ROADMAP_STATUS.md` + original Financial Resolution Engine Master Roadmap | Snapshot verification, acceptance ledger, peer review |
 | Architecture, deterministic engines, privacy boundaries | `CARROWMONT_ARCHITECTURE.md` + current Batch 0-13A implementation/ledger documents | Existing core source contracts and browser fixtures |
 | Header, locale pill, button geometry, mobile responsiveness | `CARROWMONT_SHARED_UI_STANDARD.md` (global header amendment v1.2) + `CARROWMONT_GLOBAL_HEADER_AUDIT.md` | `carrowmont-qa/scripts/development-standards-gate.mjs` + browser QA |
@@ -36,5 +36,5 @@ The automated gate cannot verify every user journey by reading HTML. **Do not cl
 ## Conflict rules
 
 - A newer specific approved standard supersedes an older generic passage on the same feature. Record the change, including its justification and tests.
-- The latest source snapshot and current tests establish what currently runs, not what ought to be product policy. Where there is a genuine discrepancy, surface it and open a targeted correction rather than silently treating the bug as intended.
+- The newest completed all-green Source Snapshot supplied by the owner and its `SNAPSHOT-MANIFEST.txt` establish what currently runs, not what ought to be product policy. Status/handbook documents intentionally do not pin the newest snapshot filename/hash. Where there is a genuine discrepancy, surface it and open a targeted correction rather than silently treating the bug as intended.
 - The original master roadmap reserves **Batch 13 for optional connected financial data** and **Batch 14 for a conditional native-app decision**. Batch 12B and Batch 13A are complete. Batch 13B live-provider work is ON HOLD until the owner explicitly reopens it; Batch 14 remains traffic/usage-gated and deferred.

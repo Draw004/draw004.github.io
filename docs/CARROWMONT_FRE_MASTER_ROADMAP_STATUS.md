@@ -1,6 +1,6 @@
 # Carrowmont Financial Resolution Engine - authoritative roadmap status crosswalk
 
-Reviewed against the user-approved post-Batch-9 Master Roadmap and the 24 November 2026 Quality Audit & Hardening Release 1 all-green source snapshot. This document preserves original feature numbering and is a **status crosswalk**, not a rewrite of the historical master plan.
+Reviewed against the user-approved post-Batch-9 Master Roadmap and the 24 November 2026 Quality Audit & Hardening Release 1 closeout state. This document preserves original feature numbering and is a **status crosswalk**, not a rewrite of the historical master plan. Exact current repository commits are always taken from `SNAPSHOT-MANIFEST.txt` inside the newest completed all-green Source Snapshot supplied by the owner; this roadmap intentionally does not pin a current snapshot filename/hash.
 
 | Original roadmap stage | Source/acceptance position |
 |---|---|
@@ -19,7 +19,7 @@ Reviewed against the user-approved post-Batch-9 Master Roadmap and the 24 Novemb
 
 ## Current approved sequence
 
-Search + Ask Results UX2 and Quality Audit & Hardening Release 1 are deployed and captured in the all-green 24 November snapshot. The active product path is now:
+Search + Ask Results UX2 and Quality Audit & Hardening Release 1 are deployed. The active product path is now:
 
 **Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> Measurement / next-priority review.**
 
