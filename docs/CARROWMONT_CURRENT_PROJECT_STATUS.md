@@ -1,28 +1,22 @@
 # Carrowmont - current project status
 
-**Status verified:** 24 November 2026, after Quality Audit & Hardening Release 1 completed the full green release path and was captured in a fresh Source Snapshot.  
-**Authoritative green source snapshot:** `carrowmont-source-snapshot - 2026-11-24T023324.666.zip`  
-**Snapshot SHA-256:** `f7beeb6e9fa125e801ee8f6311867b91c381fa2ac3be79bfc452527c07521b72`  
-**Source/standards QA at this baseline:** 1,553 PASS / 0 FAIL.  
-**Release status:** **Quality Audit & Hardening Release 1 is complete and captured in the authoritative green snapshot.** The next controlled product release is **Ask Carrowmont Expansion Wave 1**. Batch 13B is **ON HOLD** pending a future owner decision; Batch 14 is deferred until real traffic/usage justifies reconsidering native apps.
+**Status verified:** 24 November 2026, after Quality Audit & Hardening Release 1 completed the full green release path.  
+**Snapshot authority rule:** the newest completed **all-green Carrowmont Source Snapshot ZIP supplied with the project** is authoritative for current code and repository-commit truth. Read its root `SNAPSHOT-MANIFEST.txt`; do not use a snapshot filename or SHA copied into a status document as proof that it is still current.  
+**Documentation role:** this file records product/release state, decisions, QA evidence and next work. It intentionally does **not** pin a "current authoritative snapshot" filename/hash, because every documentation commit would otherwise create a newer repository state and an endless snapshot-reference loop.  
+**Last documented source-QA milestone:** Quality Audit & Hardening Release 1 closed at **1,553 PASS / 0 FAIL**. Re-run the current contracts from the newest supplied snapshot before changing source.  
+**Release status:** **Quality Audit & Hardening Release 1 is complete and deployed.** The next controlled product release is **Ask Carrowmont Expansion Wave 1**. Batch 13B is **ON HOLD** pending a future owner decision; Batch 14 is deferred until real traffic/usage justifies reconsidering native apps.
 
-## Exact repository baseline
+## How to establish the exact repository baseline
 
-These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that manifest supersedes this file if a newer green snapshot is issued.
+Do not derive current commits from this status page. For any new chat, developer handover, release or incident:
 
-| Repository | Commit |
-|---|---|
-| `draw004.github.io` | `534349dd2201ea0fd6b9b8d67180c960c8b38b4a` |
-| `sip-calculator` | `0e718f0c5935948d11c1c4eee1a3059ba0209662` |
-| `goal-planner` | `cfd03c8c66bf85b2f25ee916cde78e51bacfc8b0` |
-| `financial-independence` | `95b2c40f6396c80290abef514f6b98b241eff333` |
-| `inflation-calculator` | `89ae312ebf444e932d7545ddf67d8e1d9fd459b9` |
-| `retirement-calculator` | `28afb6e3bdf438d304dac3eef95abb80baa3590e` |
-| `budget-cash-flow-planner` | `81524657dd9d24353ba2ee8f761be3b6c5629db7` |
-| `mortgage-payoff-calculator` | `8b6650487a6c47b79f6ec6729795c00759b929df` |
-| `compound-interest-calculator` | `bd85864abbff231bf54e1cc3864cb699a106fbcb` |
-| `loan-calculator` | `7410d13df9b0014ce9ccf402af839876e7eb8fa3` |
-| `carrowmont-qa` | `29dbcae5d78d16d5f189b5a4efdf70a1894b02f3` |
+1. obtain the newest completed all-green Source Snapshot ZIP supplied by the owner;
+2. read the root `SNAPSHOT-MANIFEST.txt`;
+3. use the 11 repository SHAs recorded there as the exact code baseline;
+4. if newer repository commits are known to exist, verify them explicitly before treating them as current;
+5. treat snapshot names/hashes preserved in implementation records as **historical release evidence only**.
+
+The 11-repository set is: `draw004.github.io`, `sip-calculator`, `goal-planner`, `financial-independence`, `inflation-calculator`, `retirement-calculator`, `budget-cash-flow-planner`, `mortgage-payoff-calculator`, `compound-interest-calculator`, `loan-calculator`, and `carrowmont-qa`.
 
 ## Product state
 
@@ -32,6 +26,7 @@ These commits are recorded in the authoritative `SNAPSHOT-MANIFEST.txt`; that ma
 - **Batch 13A Connected Financial Data Readiness:** completed. The provider-neutral sandbox/readiness architecture is deployed; the production feature flag OFF boundary remains in force and no real bank/provider is connected.
 - **Search + Ask Results UX2:** deployed and retained. Desktop Search shows Tools and Learn & Guides side-by-side with independent panes, with the scrollbar on the right edge of each pane; mobile uses counted Tools/Learn tabs with normal page scrolling; result cards and their visible CTAs share the same real link destination. Ask keeps the compact fallback presentation and working route cards.
 - **Quality Audit & Hardening Release 1:** **completed and deployed.** Verified Learn-link gaps were repaired, protected reference updaters gained safe fallback schedules, site-integrity regression coverage was added, handover/roadmap records were strengthened, and the Search UX2 browser assertion exposed by Publisher was repaired without changing product behavior.
+- **Snapshot-authority continuity rule:** the newest supplied all-green Source Snapshot manifest is the exact code/commit authority. Status/handbook files deliberately do not pin a current snapshot filename/hash; release-specific snapshot references are historical evidence only.
 - **Batch 13B live provider pilot:** **ON HOLD; not approved yet.** Do not start provider selection, bank connectivity or production financial-data activation until the owner explicitly reopens it. A future restart still requires provider/jurisdiction, privacy/legal, security, deletion/consent and cost review.
 - **Batch 14 native iOS/Android:** **DEFERRED / TRAFFIC-GATED.** Do not build native apps until website/PWA traffic, repeat usage and capability gaps justify the cost and maintenance.
 - **Discovery/Search Growth Agent:** remains a separate future track and must not displace the active product-quality roadmap.
@@ -49,9 +44,9 @@ Quality Audit & Hardening Release 1 is complete. The owner has explicitly redire
 
 ## Quality Audit & Hardening Release 1 - deployed closeout
 
-This release is part of the authoritative baseline above. The full release path completed: Publisher staged QA -> reviewed merge -> deployed checks / Multi-Repo Guard -> fresh all-green Source Snapshot.
+This release completed the full controlled path: Publisher staged QA -> reviewed merge -> deployed checks / Multi-Repo Guard -> fresh all-green Source Snapshot. Its closeout snapshot references are historical evidence; the newest supplied all-green snapshot manifest always determines current code/commit truth.
 
-Closeout evidence preserved in this snapshot:
+Hardening 1 closeout evidence recorded in repository history:
 
 - source contract: **1,553 PASS / 0 FAIL**;
 - static local internal-destination audit: **0 broken local href/src targets**;
@@ -80,4 +75,4 @@ Carrowmont must not depend on a particular ChatGPT account or chat history. A ne
 
 ## Snapshot and documentation policy
 
-Never treat a proposed Publisher release as deployed. The newest green `SNAPSHOT-MANIFEST.txt` is authoritative for code/commit truth. Update this status file after merge/deployed validation/fresh snapshot, and clearly label any pre-merge release state as review/proposed work.
+Never treat a proposed Publisher release as deployed. The `SNAPSHOT-MANIFEST.txt` inside the newest completed all-green Source Snapshot supplied by the owner is authoritative for code/commit truth. This status document must record release state, QA evidence, decisions and the next safe step, but it must **not** chase the newest snapshot filename/hash after every documentation commit. Release-specific implementation records may preserve snapshot names and hashes as historical evidence. Clearly label any pre-merge release state as review/proposed work.

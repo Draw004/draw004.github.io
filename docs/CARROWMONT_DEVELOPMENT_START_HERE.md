@@ -7,14 +7,14 @@
 ## First five minutes in a new account
 
 1. Obtain the **latest completed all-green Source Snapshot ZIP**. Extract it without modifying files. Inspect `SNAPSHOT-MANIFEST.txt` for all 11 repositories and their precise commit hashes. A ZIP from an earlier chat is not automatically current.
-2. Read `docs/CARROWMONT_CURRENT_PROJECT_STATUS.md` and `docs/CARROWMONT_STANDARDS_INDEX.md` in the extracted `draw004.github.io` repository. Confirm the status file's baseline matches the supplied snapshot; if not, reconcile differences before editing anything.
+2. Read `docs/CARROWMONT_CURRENT_PROJECT_STATUS.md` and `docs/CARROWMONT_STANDARDS_INDEX.md` in the extracted `draw004.github.io` repository. The status file intentionally does not pin the newest snapshot filename/hash. Use `SNAPSHOT-MANIFEST.txt` for exact current commits, and reconcile only genuine product/release-state conflicts before editing anything.
 3. Read the relevant canonical standards referenced in the index, plus existing implementation code and acceptance ledgers for the feature being changed. Do **not** recreate a header, locale picker, navigator, calculator, report, or save routine without checking its current approved implementation.
 4. Summarize the repository baseline, product stage, unfinished requirements, proposed file changes, risk/QA matrix and expected review PRs to the user **before** coding. Do not infer work completed merely from a previous release title.
 5. Implement against the latest source, run local standards/source/browser checks, package a manifest-hashed release for Batch PR Publisher, and require its staged QA and human approval before merging.
 
 ## Authority and conflicts
 
-- **Live code authority:** newest verified green snapshot + checked source files and current QA, with newer repository commits explicitly verified if they exist.
+- **Live code authority:** newest completed verified all-green Source Snapshot supplied by the owner + its root `SNAPSHOT-MANIFEST.txt` + checked source/current QA, with newer repository commits explicitly verified if they exist. Status/handbook files must not be used as a substitute for the manifest or forced to mirror its filename/hash.
 - **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data. Batch 12B, Batch 13A and **Quality Audit & Hardening Release 1** are complete. **Batch 13B is ON HOLD pending an explicit future owner decision**; production live-provider work must not start automatically. Batch 14 native-app work is traffic/usage-gated and deferred. The active path is Ask Carrowmont Expansion -> Learn Hub 2.0 -> Evergreen Learn Expansion -> measurement.
 - **Technical control authority:** deterministic engines, source-contract, automated standards gate, Publisher and Multi-Repo Guard; no assistant can override them by assertion.
 - **Historical documents:** informative, not necessarily current. When an old architecture/handbook passage conflicts with current source or a later approved amendment, identify the conflict and use the latest confirmed rule. Ask about genuine unresolved product decisions rather than inventing an answer.
@@ -35,7 +35,7 @@
 
 ## Release procedure
 
-Latest green snapshot -> requirements ledger + change-impact matrix -> coding -> automated development standards gate -> deterministic source QA -> responsive browser/PDF/SEO/privacy QA as applicable -> reviewed Publisher ZIP (`release-manifest.json` with SHA256) -> **CREATE_PRS** -> staged Publisher QA green -> human review/merge -> deployed QA Chrome/Edge/Mobile -> Multi-Repo Guard -> newest green snapshot -> update current status/handover.
+Latest green snapshot -> requirements ledger + change-impact matrix -> coding -> automated development standards gate -> deterministic source QA -> responsive browser/PDF/SEO/privacy QA as applicable -> reviewed Publisher ZIP (`release-manifest.json` with SHA256) -> **CREATE_PRS** -> staged Publisher QA green -> human review/merge -> deployed QA Chrome/Edge/Mobile -> Multi-Repo Guard -> newest green snapshot -> update current status/handover **for substantive release state/evidence, without pinning the new snapshot filename/hash as current authority**.
 
 Never merge the disposable Publisher staging branch; merge only the generated reviewed PRs. If any gate is red, inspect its exact artifact and fix the root cause. Do not weaken a valid assertion or silently edit formulas to make a test green.
 
