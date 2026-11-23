@@ -2,7 +2,8 @@ name: Update Country Financial References
 
 on:
   schedule:
-    - cron: "35 22 * * 1-5"
+    - cron: "35 22 * * 1-5" # Weekday primary checks
+    - cron: "53 7 * * 6" # Saturday catch-up for a missed/dropped Friday schedule
   workflow_dispatch:
 
 permissions:

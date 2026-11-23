@@ -2,7 +2,8 @@ name: Update Gold Macro Reference
 
 on:
   schedule:
-    - cron: "25 14 * * 1"
+    - cron: "25 14 * * 1" # Monday primary
+    - cron: "43 15 * * 2" # Tuesday fallback if GitHub drops or heavily delays Monday schedule
   workflow_dispatch:
 
 permissions:

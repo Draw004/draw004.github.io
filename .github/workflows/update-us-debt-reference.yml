@@ -2,7 +2,8 @@ name: Update US Debt Reference
 
 on:
   schedule:
-    - cron: "23 6 * * 1"
+    - cron: "23 6 * * 1" # Monday primary
+    - cron: "47 8 * * 2" # Tuesday fallback if GitHub drops or heavily delays Monday schedule
   workflow_dispatch:
 
 permissions:
