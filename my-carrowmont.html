@@ -35,6 +35,7 @@ window.addEventListener('beforeinstallprompt', function(event){
 });</script>
   <link rel="stylesheet" href="/carrowmont.css?v=20261119-startup-nav-perf1">
   <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261122-fre12b6">
+  <link rel="stylesheet" href="/assets/connected/connected-data.css?v=20261123-fre13a">
 </head>
 <body data-cm-page="my-carrowmont">
 <!-- Browser/Android system splash is static; this brand animation begins after the document starts painting. -->
@@ -124,6 +125,7 @@ window.addEventListener('beforeinstallprompt', function(event){
           <div class="mycm-visual-head"><div><span class="mycm-kicker">Your money at a glance</span><h2 id="mycmVisualOverviewTitle">See the shape of your money in seconds</h2><p>These visuals use only the planning values you chose to save. Colour shows progress only when you have a real target.</p></div></div>
           <div class="mycm-visual-grid" id="mycmVisualGrid" aria-live="polite"></div>
         </section>
+        <section class="mycm-connected-data" id="mycmConnectedData" aria-labelledby="mycmConnectedDataTitle" hidden></section>
         <nav class="mycm-mobile-quick" aria-label="My Carrowmont quick access">
           <a href="#mycmFinancialPlan">Plan summary</a><a href="#mycmCashFlowCard">Monthly money</a><a href="#mycmEmergencyCard">Emergency savings</a><a href="#mycmDebtCard">Debt &amp; loans</a><a href="#mycmSavedPlansSection">Saved plans</a>
         </nav>
@@ -240,6 +242,10 @@ window.addEventListener('beforeinstallprompt', function(event){
 <script defer src="/assets/account/carrowmont-financial-plan.js?v=20261122-fre12b6"></script>
 <script defer src="/assets/account/carrowmont-plan-report.js?v=20261116-fre9b"></script>
 <script defer src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
+<script defer src="/assets/connected/connected-data-config.js?v=20261123-fre13a"></script>
+<script defer src="/assets/connected/connected-data-core.js?v=20261123-fre13a"></script>
+<script defer src="/assets/connected/connected-data-sandbox.js?v=20261123-fre13a"></script>
+<script defer src="/assets/connected/connected-data-ui.js?v=20261123-fre13a"></script>
 <script defer src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
 <script>(function(){
   var root = document.documentElement;

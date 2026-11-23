@@ -1,5 +1,5 @@
 CARROWMONT - NEW CHAT / NEW ACCOUNT START
-Version: 2026-11-19 (portable, account-independent)
+Version: 2026-11-23 (portable, account-independent)
 
 I am continuing Carrowmont (carrowmont.com), an existing global, guest-first financial planning website. I have attached the latest all-green Carrowmont Source Snapshot ZIP and/or its portable handover pack. This ChatGPT account may have no Carrowmont memory.
 
@@ -7,7 +7,7 @@ BEFORE CHANGING ANYTHING:
 1. Open the attached ZIP. Read SNAPSHOT-MANIFEST.txt for all 11 repositories and their exact commits.
 2. Read draw004.github.io/docs/CARROWMONT_DEVELOPMENT_START_HERE.md, CARROWMONT_CURRENT_PROJECT_STATUS.md, and CARROWMONT_STANDARDS_INDEX.md within that source. Read their referenced canonical standards and relevant acceptance ledgers.
 3. Verify whether the status document and attached snapshot agree; the newest verified green snapshot wins for code/commit truth. Never take historical counts or old snapshot SHAs as current.
-4. State what is complete, what remains, the baseline commits and the precise planned changes before implementing. The original roadmap has unfinished Batch 12B opportunity/decision work; Batch 13 is optional connected data much later, not an alternative name for 12B.
+4. State what is complete, what remains, the baseline commits and the precise planned changes before implementing. Batch 12 is complete. Batch 13A is the sandbox/readiness phase for optional connected financial data; production live-provider activation remains a separate Batch 13B gate.
 5. Reuse existing tested calculation engines and UI components. New or modified calculator HTML must meet the approved country/currency header, first-click navigation, back links, mobile layout, print and privacy standards.
 6. Run the automated Development Standards Gate, source contracts, search fixtures, relevant browser tests (Chrome, Edge, mobile) and combined multi-repo checks. Do not call a source pass a full browser/device pass.
 7. Prepare a manifest-hashed, Publisher-compatible ZIP. Use the existing CREATE_PRS workflow and human review. Do not merge the staging branch; do not publish or auto-merge without approval. After merge, run live QA, Multi-Repo Guard and a fresh Source Snapshot, then update the current-status/handover records.

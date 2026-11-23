@@ -1,15 +1,16 @@
 # Carrowmont standards index - one entry, existing authorities
 
-**Version 1.2 | reviewed 20 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
+**Version 1.3 | reviewed 23 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
 
 | Topic | Canonical source | Enforced through |
 |---|---|---|
 | Start procedure and account portability | `CARROWMONT_DEVELOPMENT_START_HERE.md` + `CARROWMONT_NEW_CHAT_START_HERE.txt` | Handover/source contract and latest snapshot manifest |
 | Current progress, roadmap status and known debt | `CARROWMONT_CURRENT_PROJECT_STATUS.md` + original Financial Resolution Engine Master Roadmap | Snapshot verification, acceptance ledger, peer review |
-| Architecture, deterministic engines, privacy boundaries | `CARROWMONT_ARCHITECTURE.md` + current Batch 0-12B implementation/ledger documents | Existing core source contracts and browser fixtures |
+| Architecture, deterministic engines, privacy boundaries | `CARROWMONT_ARCHITECTURE.md` + current Batch 0-13A implementation/ledger documents | Existing core source contracts and browser fixtures |
 | Header, locale pill, button geometry, mobile responsiveness | `CARROWMONT_SHARED_UI_STANDARD.md` (global header amendment v1.2) + `CARROWMONT_GLOBAL_HEADER_AUDIT.md` | `carrowmont-qa/scripts/development-standards-gate.mjs` + browser QA |
 | Installed-app vs normal browser, initial route, install journey | `CARROWMONT_APP_WEBSITE_BEHAVIOR_STANDARD.md` | App/startup/install contracts and browser QA |
 | Saved-plan transparency, trust and assumptions | `CARROWMONT_TRUST_STANDARD.md` | Trust/plan/report source contracts and browser QA |
+| Connected financial data readiness | `CARROWMONT_FRE_BATCH13A_CONNECTED_DATA_READINESS.md` + `CARROWMONT_FRE_BATCH13A_ACCEPTANCE_LEDGER.md` | Batch 13A source contract + signed-in sandbox browser QA; production feature flag remains off |
 | Reports and PDF | `CARROWMONT_REPORT_STANDARD_IMPLEMENTATION.md` | PDF/source regression checks |
 | Learn educational depth, search intent, links | `draw004.github.io/.github/LEARN-ARTICLE-STANDARD.md` (from main repo root `.github/`) | Learn/Search/SEO contracts and URL checks |
 | Publisher, Guard, PRs and source snapshots | `CARROWMONT_GITHUB_AUTOMATION_HANDOVER.md` + live `.github/workflows/` files | Staged Publisher source/browser validation, Guard |
@@ -35,4 +36,4 @@ The automated gate cannot verify every user journey by reading HTML. **Do not cl
 
 - A newer specific approved standard supersedes an older generic passage on the same feature. Record the change, including its justification and tests.
 - The latest source snapshot and current tests establish what currently runs, not what ought to be product policy. Where there is a genuine discrepancy, surface it and open a targeted correction rather than silently treating the bug as intended.
-- The original master roadmap reserves **Batch 13 for optional connected financial data** and **Batch 14 for a conditional native-app decision**. Expanded opportunity comparisons are unfinished **Batch 12B**.
+- The original master roadmap reserves **Batch 13 for optional connected financial data** and **Batch 14 for a conditional native-app decision**. Batch 12B is complete. Batch 13A may establish sandbox/readiness architecture only; live provider activation remains a separate approved gate.
