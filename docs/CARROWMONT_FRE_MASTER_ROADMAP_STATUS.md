@@ -2,7 +2,7 @@
 
 Reviewed against the user-approved post-Batch-9 Master Roadmap and the 24 November 2026 Quality Audit & Hardening Release 1 closeout state. This document preserves original feature numbering and is a **status crosswalk**, not a rewrite of the historical master plan. Exact current repository commits are always taken from `SNAPSHOT-MANIFEST.txt` inside the newest completed all-green Source Snapshot supplied by the owner; this roadmap intentionally does not pin a current snapshot filename/hash.
 
-**Current product-quality phase:** Ask Carrowmont Expansion Wave 1 implementation is present in the review source and adds six tested-engine journeys (Borrowing Health, Home Affordability, Debt Payoff, Credit Card Payoff, Retirement Readiness, Goal Funding), bringing the controlled total to 13. It becomes complete/deployed only when present in the newest completed all-green post-merge Source Snapshot. Learn Hub 2.0 follows that green close.
+**Current product-quality phase:** Ask Carrowmont Expansion Wave 1 is complete/deployed with 13 controlled deterministic journeys. **Learn Hub 2.0 is the active controlled review release**, upgrading Learn into guide-focused discovery while preserving crawlable static content and a separate full Search route. Evergreen Learn Expansion follows only after Learn Hub 2.0 completes the full green release cycle.
 
 | Original roadmap stage | Source/acceptance position |
 |---|---|
@@ -23,7 +23,7 @@ Reviewed against the user-approved post-Batch-9 Master Roadmap and the 24 Novemb
 
 Search + Ask Results UX2 and Quality Audit & Hardening Release 1 are deployed. The active product path is now:
 
-**Ask Carrowmont Expansion Wave 1 (active release: 7 -> 13 controlled journeys) -> Learn Hub 2.0 -> Evergreen Learn Expansion -> Measurement / next-priority review.**
+**Ask Carrowmont Expansion Wave 1 (COMPLETE: 7 -> 13 controlled journeys) -> Learn Hub 2.0 (ACTIVE REVIEW) -> Evergreen Learn Expansion -> Measurement / next-priority review.**
 
 Before 13B can ever resume, the owner must explicitly reopen it and the provider/jurisdiction, privacy/legal, security, deletion/consent and cost review must still be completed. Batch 14 is not a default next build; it remains conditional on real traffic, repeat usage and capability gaps.
 
