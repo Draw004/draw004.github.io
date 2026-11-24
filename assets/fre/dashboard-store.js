@@ -6,7 +6,7 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
 
-  const VERSION='dashboard-store-v1.0';
+  const VERSION='dashboard-store-v1.1';
   const SCHEMA_VERSION=1;
   const SESSION_KEY='carrowmont_guest_dashboard_session_v1';
   const LOCAL_KEY='carrowmont_guest_dashboard_local_v1';
@@ -162,6 +162,24 @@
     }),
     'mortgage-prepay-vs-invest':Object.freeze({
       mortgageBalance:'debt.mortgageBalance',mortgageRatePct:'debt.mortgageRatePct',assumedInvestmentReturnPct:'assumptions.longTermReturnPct'
+    }),
+    'borrowing-health':Object.freeze({
+      grossMonthlyIncome:'cashFlow.grossIncome',takeHomeMonthlyIncome:'cashFlow.takeHomeIncome',essentialNonDebtExpenses:'cashFlow.essentialExpenses',existingMonthlyDebtPayments:'debt.monthlyPayments'
+    }),
+    'home-affordability':Object.freeze({
+      takeHomeMonthlyIncome:'cashFlow.takeHomeIncome',essentialMonthlyExpenses:'cashFlow.essentialExpenses',existingMonthlyDebtPayments:'debt.monthlyPayments'
+    }),
+    'debt-payoff':Object.freeze({
+      debtBalance:'debt.balance',debtAprPct:'debt.highestAprPct',debtMinimumPayment:'debt.monthlyPayments'
+    }),
+    'credit-card-payoff':Object.freeze({
+      cardMinimumPayment:'debt.creditCardMinimums'
+    }),
+    'retirement-readiness':Object.freeze({
+      retirementCurrentSavings:'retirement.currentSavings',retirementMonthlyContribution:'retirement.monthlyContribution',retirementPreReturnPct:'assumptions.longTermReturnPct'
+    }),
+    'goal-funding':Object.freeze({
+      goalTargetAmount:'goal.targetAmount',goalCurrentSavings:'goal.currentSavings',goalYearsAway:'goal.yearsAway',goalMonthlyContribution:'goal.monthlyContribution',goalReturnPct:'assumptions.longTermReturnPct'
     })
   });
 

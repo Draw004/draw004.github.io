@@ -15,6 +15,7 @@
 | Learn educational depth, search intent, links | `draw004.github.io/.github/LEARN-ARTICLE-STANDARD.md` (from main repo root `.github/`) | Learn/Search/SEO contracts and URL checks |
 | Publisher, Guard, PRs and source snapshots | `CARROWMONT_GITHUB_AUTOMATION_HANDOVER.md` + live `.github/workflows/` files | Staged Publisher source/browser validation, Guard |
 | Quality hardening and site-integrity regression protection | `CARROWMONT_QUALITY_HARDENING1_IMPLEMENTATION.md` | `carrowmont-qa/scripts/quality-hardening1-contract.mjs` + central source contract |
+| Ask Carrowmont controlled decision expansion | `CARROWMONT_ASK_EXPANSION_WAVE1_IMPLEMENTATION.md` + `CARROWMONT_ASK_EXPANSION_WAVE1_ACCEPTANCE_LEDGER.md` | Wave 1 source/browser/account contracts + central source contract; deterministic engines remain numeric authority |
 | Release-credential expiry and security handover | `CARROWMONT_CREDENTIAL_EXPIRY_GUARD.md` + `../ops/credential-expiry-registry.json` | Scheduled independent-token issue alerts and central QA date/issue-policy contracts |
 | Historical UI exceptions | `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` | Standards gate (known debt cannot be reintroduced) |
 

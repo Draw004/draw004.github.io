@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (root) {
   'use strict';
 
-  const VERSION = 'ask-carrowmont-mvp-v1.2';
+  const VERSION = 'ask-carrowmont-mvp-v1.3';
   const INTENTS = Object.freeze({
     DEBT_VS_SAVINGS:'debt-vs-savings',
     CAR_AFFORDABILITY:'car-affordability',
@@ -14,7 +14,13 @@
     EMERGENCY_RUNWAY:'emergency-runway',
     CASH_FLOW_SHORTFALL:'cash-flow-shortfall',
     MONEY_PRIORITIES:'money-priorities',
-    LUMP_SUM_GOAL_TRADEOFFS:'lump-sum-goal-tradeoffs'
+    LUMP_SUM_GOAL_TRADEOFFS:'lump-sum-goal-tradeoffs',
+    BORROWING_HEALTH:'borrowing-health',
+    HOME_AFFORDABILITY:'home-affordability',
+    DEBT_PAYOFF:'debt-payoff',
+    CREDIT_CARD_PAYOFF:'credit-card-payoff',
+    RETIREMENT_READINESS:'retirement-readiness',
+    GOAL_FUNDING:'goal-funding'
   });
 
   const QUESTION_SETS = Object.freeze({
@@ -83,6 +89,59 @@
       { key:'goalMonthlyContribution', label:'Monthly contribution toward that goal' },
       { key:'assumedLongTermReturnPct', label:'Illustrative long-term investment return' },
       { key:'investmentHorizonYears', label:'Whole years for the long-term investment illustration' }
+    ]),
+    [INTENTS.BORROWING_HEALTH]: Object.freeze([
+      { key:'grossMonthlyIncome', label:'Gross monthly household income' },
+      { key:'takeHomeMonthlyIncome', label:'Monthly take-home household income' },
+      { key:'essentialNonDebtExpenses', label:'Essential monthly costs excluding debt payments' },
+      { key:'existingMonthlyDebtPayments', label:'Current required monthly debt payments' },
+      { key:'proposedNewDebtPayment', label:'Proposed new monthly debt payment (enter 0 for current position only)' },
+      { key:'incomeDropPct', label:'Income-drop stress test percentage' }
+    ]),
+    [INTENTS.HOME_AFFORDABILITY]: Object.freeze([
+      { key:'takeHomeMonthlyIncome', label:'Monthly take-home household income' },
+      { key:'essentialMonthlyExpenses', label:'Essential monthly household costs' },
+      { key:'existingMonthlyDebtPayments', label:'Existing required monthly debt payments' },
+      { key:'protectedMonthlySavings', label:'Monthly saving or investing you want to protect' },
+      { key:'freeMonthlyBuffer', label:'Cash you want left free each month after housing' },
+      { key:'homeDeposit', label:'Deposit or down payment available' },
+      { key:'homeLoanRatePct', label:'Expected home-loan or mortgage interest rate' },
+      { key:'homeLoanTermYears', label:'Expected loan term in whole years' },
+      { key:'monthlyOwnershipCosts', label:'Other monthly homeownership costs' }
+    ]),
+    [INTENTS.DEBT_PAYOFF]: Object.freeze([
+      { key:'debtBalance', label:'Debt balance' },
+      { key:'debtAprPct', label:'Debt annual interest rate' },
+      { key:'debtMinimumPayment', label:'Required monthly payment' },
+      { key:'extraDebtPayment', label:'Extra monthly amount you could add' }
+    ]),
+    [INTENTS.CREDIT_CARD_PAYOFF]: Object.freeze([
+      { key:'cardBalance', label:'Credit-card balance' },
+      { key:'cardAprPct', label:'Credit-card annual interest rate' },
+      { key:'cardMinimumPayment', label:'Current minimum monthly payment' },
+      { key:'cardPlannedPayment', label:'Monthly payment you are considering' },
+      { key:'cardTargetMonths', label:'Target payoff time in months (enter 0 if you do not have one)' }
+    ]),
+    [INTENTS.RETIREMENT_READINESS]: Object.freeze([
+      { key:'retirementCurrentAge', label:'Current age' },
+      { key:'retirementTargetAge', label:'Target retirement age' },
+      { key:'retirementPlanningAge', label:'Age you want the plan to cover through' },
+      { key:'retirementCurrentSavings', label:'Retirement savings already built' },
+      { key:'retirementMonthlyContribution', label:'Current monthly retirement contribution' },
+      { key:'retirementMonthlyExpense', label:'Current monthly household spending' },
+      { key:'retirementSpendingPct', label:'Retirement spending as a percentage of today’s spending' },
+      { key:'retirementInflationPct', label:'Annual inflation assumption' },
+      { key:'retirementPreReturnPct', label:'Annual return assumption before retirement' },
+      { key:'retirementPostReturnPct', label:'Annual return assumption during retirement' },
+      { key:'retirementBufferPct', label:'Safety buffer percentage' }
+    ]),
+    [INTENTS.GOAL_FUNDING]: Object.freeze([
+      { key:'goalTargetAmount', label:'Goal amount in today’s money' },
+      { key:'goalYearsAway', label:'Whole years until the goal' },
+      { key:'goalCurrentSavings', label:'Savings already set aside for the goal' },
+      { key:'goalMonthlyContribution', label:'Current monthly contribution toward the goal' },
+      { key:'goalReturnPct', label:'Annual return assumption for the goal' },
+      { key:'goalInflationPct', label:'Annual inflation assumption for the goal cost' }
     ])
   });
 
@@ -93,7 +152,13 @@
     Object.freeze({ intent:INTENTS.EMERGENCY_RUNWAY, label:'Emergency fund adequacy' }),
     Object.freeze({ intent:INTENTS.CASH_FLOW_SHORTFALL, label:'Running short before payday' }),
     Object.freeze({ intent:INTENTS.MONEY_PRIORITIES, label:'Money priorities' }),
-    Object.freeze({ intent:INTENTS.LUMP_SUM_GOAL_TRADEOFFS, label:'Use a lump sum across priorities' })
+    Object.freeze({ intent:INTENTS.LUMP_SUM_GOAL_TRADEOFFS, label:'Use a lump sum across priorities' }),
+    Object.freeze({ intent:INTENTS.BORROWING_HEALTH, label:'Can I take on another payment?' }),
+    Object.freeze({ intent:INTENTS.HOME_AFFORDABILITY, label:'How much home can I afford?' }),
+    Object.freeze({ intent:INTENTS.DEBT_PAYOFF, label:'How fast can I pay off this debt?' }),
+    Object.freeze({ intent:INTENTS.CREDIT_CARD_PAYOFF, label:'How can I pay off this credit card?' }),
+    Object.freeze({ intent:INTENTS.RETIREMENT_READINESS, label:'Am I on track for retirement?' }),
+    Object.freeze({ intent:INTENTS.GOAL_FUNDING, label:'How much should I save for a goal?' })
   ]);
 
   const finite = value => Number.isFinite(Number(value));
@@ -151,7 +216,10 @@
       moneyPriorities: overrides.moneyPriorities || root.CarrowmontMoneyPriorities,
       lumpSumTradeoffs: overrides.lumpSumTradeoffs || root.CarrowmontLumpSumGoalTradeoffs,
       priorityFramework: overrides.priorityFramework || root.CarrowmontFrePriorityFramework,
-      goal: overrides.goal || root.CarrowmontGoalCore
+      goal: overrides.goal || root.CarrowmontGoalCore,
+      homeAffordability: overrides.homeAffordability || root.CarrowmontHomeAffordabilityCore,
+      creditCard: overrides.creditCard || root.CarrowmontCreditCardPayoffCore,
+      retirement: overrides.retirement || root.CarrowmontRetirementCore
     };
   }
 
@@ -376,6 +444,255 @@
     });
   }
 
+  function borrowingHealthJourney(facts, deps, currency) {
+    if (!deps.borrowing?.calculate) throw new Error('Borrowing Health deterministic engine is unavailable.');
+    const input = {
+      grossMonthlyIncome:nonNegative(facts.grossMonthlyIncome),
+      takeHomeMonthlyIncome:nonNegative(facts.takeHomeMonthlyIncome),
+      essentialNonDebtExpenses:nonNegative(facts.essentialNonDebtExpenses),
+      housingDebtPayment:0,
+      otherLoanPayments:nonNegative(facts.existingMonthlyDebtPayments),
+      creditCardMinimums:0,
+      otherDebtPayments:0,
+      proposedNewDebtPayment:nonNegative(facts.proposedNewDebtPayment),
+      incomeDropPct:nonNegative(facts.incomeDropPct)
+    };
+    const raw = deps.borrowing.calculate(input);
+    if (!raw.ok) return freeze({
+      situation:'Borrowing health',
+      diagnosis:'Carrowmont needs a positive gross monthly income before it can calculate debt-to-income ratios.',
+      recommendation:freeze({ headline:'Add your gross monthly income before judging another payment.', action:'Use the income before tax and deductions, then rerun the borrowing check.', rationale:'Debt-to-income cannot be calculated without gross income.' }),
+      confidence:freeze({ level:'LOW', basis:'The required income input is missing or invalid.' }),
+      whatCouldChangeAnswer:freeze(['A corrected gross monthly income.', 'A different set of required monthly debt payments.', 'A different proposed new monthly payment.']),
+      importantNumbers:freeze({}), alternatives:freeze([]), nextSteps:freeze(raw.warnings || []), assumptions:freeze([]), trace:freeze([engineTrace('debt-to-income-borrowing-health', input, raw)])
+    });
+    const classification=raw.classification;
+    let diagnosis='Carrowmont calculated your current debt load and monthly cash room from the values entered.';
+    let recommendation=freeze({ headline:'Your current borrowing picture is measurable, but lender approval is not.', action:'Use the ratios and cash-room figures as a planning check, then compare any new payment against your real monthly buffer.', rationale:'The deterministic engine measures debt burden and cash room; it does not reproduce a lender’s underwriting rules.' });
+    if (classification==='CURRENT_DEFICIT') {
+      diagnosis='Your current required debt payments and essential non-debt costs are already higher than the take-home income entered.';
+      recommendation=freeze({ headline:'Fix the current monthly shortfall before adding another payment.', action:'Protect essentials and required payments first, then reduce the recurring shortfall before taking on new debt.', rationale:'The borrowing-health engine shows negative current monthly cash room.' });
+    } else if (classification==='PROPOSED_DEFICIT') {
+      diagnosis='Your current month has some room, but the proposed new payment pushes the modeled monthly cash room below zero.';
+      recommendation=freeze({ headline:'The proposed payment does not fit the modeled monthly cash room.', action:'Reduce the payment, reduce other commitments, or improve recurring cash room before proceeding.', rationale:'The new payment makes modeled take-home cash room negative.' });
+    } else if (classification==='PROPOSED_TIGHTENING') {
+      diagnosis='The proposed payment remains inside the modeled month, but it increases debt-to-income and reduces the cash left after essentials and required debt payments.';
+      recommendation=freeze({ headline:'The proposed payment fits the modeled month, but it tightens your financial room.', action:'Check whether the remaining cash room and stressed debt ratio still leave enough flexibility for irregular costs and income changes.', rationale:'The engine remains cash-flow positive but shows a higher debt burden after the proposed payment.' });
+    }
+    const alternatives=[freeze({ id:'current', label:'Current position', monthlyDebtPayments:raw.currentDebtPayments, grossDtiPct:raw.currentGrossDtiPct, cashRoom:raw.currentCashRoom })];
+    if (raw.proposedNewDebtPayment>0) alternatives.push(freeze({ id:'proposed', label:'With proposed payment', monthlyDebtPayments:raw.proposedDebtPayments, grossDtiPct:raw.proposedGrossDtiPct, cashRoom:raw.proposedCashRoom, stressedGrossDtiPct:raw.stressedGrossDtiPct }));
+    return freeze({
+      situation:'Borrowing health', diagnosis, recommendation,
+      confidence:freeze({ level:'MEDIUM_HIGH', basis:'Debt ratios and entered cash-flow figures are deterministic. Lender approval, credit scoring, taxes and irregular spending are outside this model.' }),
+      whatCouldChangeAnswer:freeze(['A different gross or take-home income.', 'Changes in required debt payments or essential monthly costs.', 'A different proposed payment or income-drop stress assumption.']),
+      importantNumbers:freeze({ currency, currentDebtPayments:raw.currentDebtPayments, proposedDebtPayments:raw.proposedDebtPayments, currentGrossDtiPct:raw.currentGrossDtiPct, proposedGrossDtiPct:raw.proposedGrossDtiPct, stressedGrossDtiPct:raw.stressedGrossDtiPct, currentCashRoom:raw.currentCashRoom, proposedCashRoom:raw.proposedCashRoom }),
+      alternatives:freeze(alternatives),
+      nextSteps:freeze(['Look at both debt-to-income and actual take-home cash room; neither one alone tells the whole story.', 'Do not treat this result as lender approval or a credit decision.', 'Use the detailed Borrowing Health tool if you want to separate housing, loans and credit-card payments.']),
+      assumptions:freeze([{ id:'incomeDropPct', value:input.incomeDropPct, note:'Illustrative stress test applied to gross income; this is not a forecast.' }]),
+      trace:freeze([engineTrace('debt-to-income-borrowing-health', input, raw)])
+    });
+  }
+
+  function homeAffordabilityJourney(facts, deps, currency) {
+    if (!deps.homeAffordability?.calculate) throw new Error('Home Affordability deterministic engine is unavailable.');
+    const enteredRate=nonNegative(facts.homeLoanRatePct);
+    const stressRate=Math.min(40, enteredRate + 2);
+    const input={
+      mode:'budget',
+      takeHomeIncome:nonNegative(facts.takeHomeMonthlyIncome),
+      essentialSpending:nonNegative(facts.essentialMonthlyExpenses),
+      existingDebt:nonNegative(facts.existingMonthlyDebtPayments),
+      protectedSavings:nonNegative(facts.protectedMonthlySavings),
+      freeBuffer:nonNegative(facts.freeMonthlyBuffer),
+      deposit:nonNegative(facts.homeDeposit),
+      annualRate:enteredRate,
+      termYears:Math.max(1,Math.round(number(facts.homeLoanTermYears))),
+      ownershipCosts:nonNegative(facts.monthlyOwnershipCosts),
+      higherRateEnabled:true,
+      higherRate:stressRate,
+      grossAnnualIncome:0
+    };
+    const raw=deps.homeAffordability.calculate(input);
+    if (!raw.ok) return freeze({
+      situation:'Home affordability', diagnosis:'Carrowmont needs corrected home-affordability inputs before it can calculate a budget ceiling.',
+      recommendation:freeze({ headline:'Review the home-affordability inputs.', action:'Correct the highlighted amount, rate or term in the detailed tool before relying on the result.', rationale:'The deterministic Home Affordability engine rejected one or more inputs.' }),
+      confidence:freeze({ level:'LOW', basis:'The deterministic engine could not complete with the entered inputs.' }),
+      whatCouldChangeAnswer:freeze(['Corrected income, spending or debt figures.', 'A valid mortgage rate and term.', 'A different deposit or monthly buffer.']),
+      importantNumbers:freeze({}), alternatives:freeze([]), nextSteps:freeze((raw.errors||[]).map(x=>x.message||String(x))), assumptions:freeze([]), trace:freeze([engineTrace('home-affordability', input, raw)])
+    });
+    const base=raw.base;const higher=raw.higherRate;
+    const noRoom=base.paymentBudget<=0||base.loanAmount<=0;
+    const diagnosis=noRoom
+      ? 'After the essential costs, existing debt, protected saving, ownership costs and free-cash buffer entered, the model leaves no room for a principal-and-interest home-loan payment.'
+      : 'Carrowmont calculated a home-price budget ceiling from the monthly cash room you chose to preserve, then tested how that ceiling changes if the loan rate is two percentage points higher.';
+    const recommendation=noRoom
+      ? freeze({ headline:'Your current monthly plan does not leave room for a home-loan payment under the buffer you chose.', action:'Improve monthly cash room, reduce the target commitments, or build the deposit before setting a home-price budget.', rationale:'The Home Affordability engine has no payment budget left after the entered monthly commitments and chosen buffer.' })
+      : freeze({ headline:'Use the modeled home price as a planning ceiling, not a lender approval amount.', action:'Keep purchase costs and emergency cash outside the deposit, and compare the base-rate ceiling with the higher-rate stress ceiling before setting a search budget.', rationale:'The calculation preserves the monthly savings and free-cash buffer you entered instead of maximizing borrowing from income alone.' });
+    const alternatives=[freeze({ id:'base-rate', label:'Entered rate', annualRatePct:base.annualRate, homePrice:base.homePrice, loanAmount:base.loanAmount, monthlyPayment:base.payment, monthlyLeftover:base.monthlyLeftover })];
+    if (higher) alternatives.push(freeze({ id:'higher-rate', label:'Rate + 2 percentage points', annualRatePct:higher.annualRate, homePrice:higher.homePrice, loanAmount:higher.loanAmount, monthlyPayment:higher.payment, monthlyLeftover:higher.monthlyLeftover }));
+    return freeze({
+      situation:'Home affordability', diagnosis, recommendation,
+      confidence:freeze({ level:'MEDIUM_HIGH', basis:'Loan-payment and household-cash-flow math are deterministic. Property taxes, insurance, maintenance, buying costs and lender underwriting vary by household and location.' }),
+      whatCouldChangeAnswer:freeze(['A different deposit or interest rate.', 'Changes in essential spending, existing debt, protected saving or the monthly buffer you want to keep.', 'Actual ownership costs, purchase costs or lender underwriting rules.']),
+      importantNumbers:freeze({ currency, affordableHomePrice:base.homePrice, loanAmount:base.loanAmount, monthlyPayment:base.payment, allInHousingCost:base.allInHousingCost, monthlyLeftover:base.monthlyLeftover, chosenMonthlyBuffer:raw.cashFlow.chosenBuffer, higherRateHomePrice:higher?.homePrice??null }),
+      alternatives:freeze(alternatives),
+      nextSteps:freeze(['Treat the result as a household-budget ceiling, not a borrowing approval.', 'Keep emergency savings and expected buying costs separate from the deposit amount entered.', 'Use the detailed Home Affordability tool to test a specific property price and location-specific ownership costs.']),
+      assumptions:freeze([{ id:'homeLoanRatePct', value:enteredRate, note:'User-entered loan-rate assumption.' }, { id:'higherRateStressPct', value:stressRate, note:'Carrowmont shows a +2 percentage-point rate stress check for planning sensitivity; it is not a forecast.' }, { id:'homeLoanTermYears', value:input.termYears, note:'User-entered loan term.' }]),
+      trace:freeze([engineTrace('home-affordability', input, raw)])
+    });
+  }
+
+  function debtPayoffJourney(facts, deps, currency) {
+    if (!deps.debtPayoff?.comparePlans) throw new Error('Debt Payoff deterministic engine is unavailable.');
+    const debt={ id:'focus-debt', label:'Debt', balance:nonNegative(facts.debtBalance), annualRatePct:nonNegative(facts.debtAprPct), minimumPayment:nonNegative(facts.debtMinimumPayment) };
+    const extra=nonNegative(facts.extraDebtPayment);
+    const raw=deps.debtPayoff.comparePlans([debt],extra);
+    const base=raw.zeroExtra.avalanche;const faster=raw.avalanche;
+    const basePaid=base.status==='paid_off';const fasterPaid=faster.status==='paid_off';
+    const monthsSaved=basePaid&&fasterPaid?Math.max(0,base.months-faster.months):null;
+    const interestSaved=basePaid&&fasterPaid?Math.max(0,base.totalInterest-faster.totalInterest):null;
+    let diagnosis='Carrowmont compared the required payment with the same debt plus the extra monthly amount entered.';
+    let recommendation;
+    if (!fasterPaid) {
+      diagnosis='Even with the entered extra payment, the model does not clear this debt within the 600-month calculation horizon.';
+      recommendation=freeze({ headline:'The entered payment plan is not resolving the debt fast enough in the model.', action:'Increase the monthly payment or use the detailed Debt Payoff tool to review the rate and payment assumptions.', rationale:'The payoff engine remains unresolved within its 600-month guardrail.' });
+    } else if (!basePaid && fasterPaid) {
+      recommendation=freeze({ headline:'The extra payment changes this debt from unresolved to paid off within the model horizon.', action:'If the extra amount is sustainable, use the accelerated path as the working payoff plan and keep an emergency buffer alongside it.', rationale:'The required-payment-only path does not clear the balance inside the guardrail, while the accelerated path does.' });
+    } else if (extra<=0) {
+      recommendation=freeze({ headline:'This is your modeled payoff path at the required monthly payment.', action:'Add an extra monthly amount if you want Carrowmont to show the time and interest effect of accelerating repayment.', rationale:'No extra payment was entered, so the result reflects the required-payment path only.' });
+    } else {
+      recommendation=freeze({ headline:'The extra monthly payment shortens the modeled payoff and reduces interest.', action:'Use the accelerated payment only if it fits your recurring cash flow without draining the emergency buffer you need.', rationale:'Both paths use the same balance and rate; the difference comes only from the extra monthly payment entered.' });
+    }
+    return freeze({
+      situation:'Debt payoff', diagnosis, recommendation,
+      confidence:freeze({ level:'HIGH', basis:'The payoff schedule is deterministic from the entered balance, APR and payments. Fees, rate changes, missed payments and new borrowing are not modeled.' }),
+      whatCouldChangeAnswer:freeze(['A different interest rate or minimum payment.', 'A different sustainable extra monthly payment.', 'New charges, fees, missed payments or variable-rate changes.']),
+      importantNumbers:freeze({ currency, debtBalance:debt.balance, debtAprPct:debt.annualRatePct, requiredMonthlyPayment:debt.minimumPayment, acceleratedMonthlyPayment:debt.minimumPayment+extra, payoffMonthsAtMinimum:basePaid?base.months:null, payoffMonthsWithExtra:fasterPaid?faster.months:null, monthsSaved, modeledInterestSaved:interestSaved }),
+      alternatives:freeze([
+        freeze({ id:'minimum', label:'Required payment only', monthlyPayment:debt.minimumPayment, payoffMonths:basePaid?base.months:null, totalInterest:base.totalInterest, status:base.status }),
+        freeze({ id:'accelerated', label:'Required + extra payment', monthlyPayment:debt.minimumPayment+extra, payoffMonths:fasterPaid?faster.months:null, totalInterest:faster.totalInterest, status:faster.status })
+      ]),
+      nextSteps:freeze(['Confirm the extra payment is sustainable in your monthly budget.', 'Keep enough accessible emergency savings so debt acceleration does not create a new cash-flow problem.', 'Use the detailed Debt Payoff Calculator when you have multiple debts and want avalanche versus snowball ordering.']),
+      assumptions:freeze([]),
+      trace:freeze([engineTrace('debt-payoff',{debts:[debt],extraMonthlyPayment:extra},raw)])
+    });
+  }
+
+  function creditCardPayoffJourney(facts, deps, currency) {
+    if (!deps.creditCard?.calculate) throw new Error('Credit Card Payoff deterministic engine is unavailable.');
+    const input={ balance:nonNegative(facts.cardBalance), annualRatePct:nonNegative(facts.cardAprPct), minimumPayment:nonNegative(facts.cardMinimumPayment), plannedPayment:nonNegative(facts.cardPlannedPayment), targetMonths:Math.max(0,Math.round(number(facts.cardTargetMonths))) };
+    const raw=deps.creditCard.calculate(input);
+    if (raw.status!=='ok') return freeze({
+      situation:'Credit-card payoff', diagnosis:'Carrowmont needs a positive card balance and minimum payment before it can model payoff paths.',
+      recommendation:freeze({ headline:'Review the credit-card inputs.', action:'Enter the current balance, APR and required minimum payment, then rerun the payoff comparison.', rationale:'The deterministic credit-card payoff engine rejected one or more base inputs.' }),
+      confidence:freeze({ level:'LOW', basis:'The payoff engine could not complete with the entered inputs.' }),
+      whatCouldChangeAnswer:freeze(['A corrected balance.', 'A corrected annual interest rate.', 'A positive minimum monthly payment.']),
+      importantNumbers:freeze({}), alternatives:freeze([]), nextSteps:freeze(raw.errors||[]), assumptions:freeze([]), trace:freeze([engineTrace('credit-card-payoff-comparison',input,raw)])
+    });
+    const minPaid=raw.minimum.status==='paid_off';const plannedPaid=raw.planned.status==='paid_off';
+    const targetActive=input.targetMonths>0&&Number.isFinite(raw.targetPayment);
+    let recommendation;
+    if (raw.warning && !plannedPaid) recommendation=freeze({ headline:'The entered payment may not be high enough to make reliable payoff progress.', action:'Increase the planned payment and review the detailed payoff schedule before relying on the timeline.', rationale:raw.warning });
+    else if (targetActive && raw.chosenPayment+0.01<raw.targetPayment) recommendation=freeze({ headline:'Your planned payment is below the modeled payment needed for the payoff target.', action:'Compare the planned payment with the target-payment figure and choose a timeline that fits your cash flow.', rationale:'The target solver requires a higher monthly payment than the amount entered for the selected number of months.' });
+    else if (plannedPaid && raw.chosenPayment>input.minimumPayment) recommendation=freeze({ headline:'The higher monthly payment reduces both modeled payoff time and interest.', action:'Use the higher payment only if it remains sustainable alongside essentials and emergency savings.', rationale:'The comparison holds the card balance and APR constant and changes only the monthly payment.' });
+    else recommendation=freeze({ headline:'This is the modeled payoff path at your current payment.', action:'Increase the planned payment or add a payoff target if you want to compare a faster path.', rationale:'The planned payment does not materially exceed the minimum payment entered.' });
+    const alternatives=[
+      freeze({ id:'minimum', label:'Minimum payment path', monthlyPayment:input.minimumPayment, payoffMonths:minPaid?raw.minimum.months:null, totalInterest:raw.minimum.totalInterest, status:raw.minimum.status }),
+      freeze({ id:'planned', label:'Planned payment path', monthlyPayment:raw.chosenPayment, payoffMonths:plannedPaid?raw.planned.months:null, totalInterest:raw.planned.totalInterest, status:raw.planned.status })
+    ];
+    if(targetActive) alternatives.push(freeze({ id:'target', label:`Target: ${input.targetMonths} months`, monthlyPayment:raw.targetPayment, payoffMonths:raw.target?.months??null, totalInterest:raw.target?.totalInterest??null, status:raw.target?.status??null }));
+    return freeze({
+      situation:'Credit-card payoff', diagnosis:'Carrowmont compared the minimum-payment path with the monthly payment you are considering and, when supplied, the payment needed for your target payoff time.', recommendation,
+      confidence:freeze({ level:'HIGH', basis:'The payoff schedule is deterministic from the entered balance, APR and payments. Promotional rates, fees, new purchases and variable-rate changes are not modeled.' }),
+      whatCouldChangeAnswer:freeze(['New card purchases or fees.', 'A promotional or variable interest-rate change.', 'A different monthly payment or payoff target.']),
+      importantNumbers:freeze({ currency, cardBalance:input.balance, cardAprPct:input.annualRatePct, minimumMonthlyPayment:input.minimumPayment, plannedMonthlyPayment:raw.chosenPayment, minimumPayoffMonths:minPaid?raw.minimum.months:null, plannedPayoffMonths:plannedPaid?raw.planned.months:null, monthsSaved:raw.comparison.monthsSaved, modeledInterestSaved:raw.comparison.interestSaved, targetMonthlyPayment:targetActive?raw.targetPayment:null }),
+      alternatives:freeze(alternatives),
+      nextSteps:freeze(['Stop adding new balance to the modeled card if you want the payoff timeline to remain meaningful.', 'Choose a payment you can sustain every month rather than relying on an occasional large payment.', 'Use the full Credit Card Payoff tool for the detailed schedule and balance-transfer comparison path.']),
+      assumptions:freeze(input.targetMonths>0?[{ id:'cardTargetMonths', value:input.targetMonths, note:'User-entered payoff target; the solver estimates the monthly payment needed to meet it.' }]:[]),
+      trace:freeze([engineTrace('credit-card-payoff-comparison',input,raw)])
+    });
+  }
+
+  function retirementReadinessJourney(facts, deps, currency) {
+    if (!deps.retirement?.calculatePlan) throw new Error('Retirement Planner deterministic engine is unavailable.');
+    const state={
+      mode:'quick',
+      currentAge:Math.round(number(facts.retirementCurrentAge)), retirementAge:Math.round(number(facts.retirementTargetAge)), planningAge:Math.round(number(facts.retirementPlanningAge)),
+      currentSavings:nonNegative(facts.retirementCurrentSavings), currentMonthlyInvestment:nonNegative(facts.retirementMonthlyContribution),
+      payFrequency:'monthly', contributionFrequency:'monthly', sameAsPayCycle:true,
+      preReturn:nonNegative(facts.retirementPreReturnPct), postReturn:nonNegative(facts.retirementPostReturnPct), bufferRate:nonNegative(facts.retirementBufferPct),
+      quickMonthlyExpense:nonNegative(facts.retirementMonthlyExpense), quickRetirementPct:nonNegative(facts.retirementSpendingPct), quickInflation:nonNegative(facts.retirementInflationPct),
+      generalInflation:nonNegative(facts.retirementInflationPct), healthInflation:nonNegative(facts.retirementInflationPct), lifestyleInflation:nonNegative(facts.retirementInflationPct), educationInflation:nonNegative(facts.retirementInflationPct),
+      phase1Pct:100, phase2Pct:100, phase3Pct:100, expenses:[], incomes:[], goals:[]
+    };
+    const raw=deps.retirement.calculatePlan(state);
+    if (raw.errors?.length) return freeze({
+      situation:'Retirement readiness', diagnosis:'Carrowmont needs corrected retirement ages or spending assumptions before it can model readiness.',
+      recommendation:freeze({ headline:'Review the retirement assumptions.', action:'Make sure current age, retirement age, planning age and monthly spending form a valid timeline.', rationale:'The deterministic Retirement Planner rejected one or more inputs.' }),
+      confidence:freeze({ level:'LOW', basis:'The retirement engine could not complete with the entered inputs.' }),
+      whatCouldChangeAnswer:freeze(['Corrected retirement ages.', 'A positive current monthly spending figure.', 'Different return, inflation or safety-buffer assumptions.']),
+      importantNumbers:freeze({}), alternatives:freeze([]), nextSteps:freeze(raw.errors), assumptions:freeze([]), trace:freeze([engineTrace('retirement',state,raw)])
+    });
+    const funded=raw.fundedPct||0;
+    let recommendation;
+    if(funded>=100) recommendation=freeze({ headline:'Your current plan reaches the modeled retirement target under the assumptions entered.', action:'Keep reviewing the plan as spending, contributions, returns and retirement timing change.', rationale:'Projected retirement assets meet or exceed the modeled corpus required through the selected planning age.' });
+    else if(funded>=80) recommendation=freeze({ headline:'Your current retirement plan is close to the modeled target, but a gap remains.', action:'Review the modelled extra monthly contribution and test whether a slightly later retirement age or higher sustainable contribution closes the gap.', rationale:'Projected assets cover most, but not all, of the modeled retirement target under the entered assumptions.' });
+    else recommendation=freeze({ headline:'The model shows a meaningful retirement funding gap under the assumptions entered.', action:'Use the required-contribution figure as a planning signal, then test contribution, retirement-age and spending scenarios in the full Retirement Planner.', rationale:'Projected retirement assets are materially below the modeled corpus required through the selected planning age.' });
+    const alternatives=[freeze({ id:'current-plan', label:'Current plan', fundedPct:raw.fundedPct, projectedCorpus:raw.projectedCorpus, requiredCorpus:raw.requiredCorpus, extraMonthlyNeeded:raw.extraMonthlyNeeded })];
+    if(state.retirementAge+5<state.planningAge){
+      const laterState={...state,retirementAge:state.retirementAge+5};const later=deps.retirement.calculatePlan(laterState);
+      if(!later.errors?.length) alternatives.push(freeze({ id:'retire-later', label:`Retire at ${laterState.retirementAge}`, fundedPct:later.fundedPct, projectedCorpus:later.projectedCorpus, requiredCorpus:later.requiredCorpus, extraMonthlyNeeded:later.extraMonthlyNeeded }));
+    }
+    return freeze({
+      situation:'Retirement readiness', diagnosis:'Carrowmont projected your current retirement savings and monthly contributions, then compared them with the modeled amount needed to fund the entered retirement spending through the planning age you selected.', recommendation,
+      confidence:freeze({ level:'MEDIUM', basis:'The retirement mathematics are deterministic, but long-term returns, inflation, retirement spending and longevity are assumptions rather than forecasts.' }),
+      whatCouldChangeAnswer:freeze(['A different retirement age or planning age.', 'Changes in monthly retirement spending or contributions.', 'Different investment-return, inflation or safety-buffer assumptions.']),
+      importantNumbers:freeze({ currency, requiredRetirementCorpus:raw.requiredCorpus, projectedRetirementCorpus:raw.projectedCorpus, retirementFundingPct:raw.fundedPct, retirementGap:raw.gap, modeledMonthlyContributionNeeded:raw.totalMonthlyNeeded, additionalMonthlyContribution:raw.extraMonthlyNeeded, projectedMonthlySpendingAtRetirement:raw.retirementLifestyleFuture, projectedDepletionAge:raw.projectedDepletionAge }),
+      alternatives:freeze(alternatives),
+      nextSteps:freeze(['Treat return and inflation figures as assumptions, not promises.', 'Use the full Retirement Planner to add retirement income, changing expense categories and one-off goals.', 'Review the plan after major life changes and periodically as actual savings and spending change.']),
+      assumptions:freeze([
+        { id:'retirementPlanningAge', value:state.planningAge, note:'User-selected age through which the plan is modeled.' },
+        { id:'retirementSpendingPct', value:state.quickRetirementPct, note:'Retirement spending is modeled as this percentage of today’s monthly household spending.' },
+        { id:'retirementInflationPct', value:state.quickInflation, note:'User-entered inflation assumption.' },
+        { id:'retirementPreReturnPct', value:state.preReturn, note:'User-entered annual return assumption before retirement.' },
+        { id:'retirementPostReturnPct', value:state.postReturn, note:'User-entered annual return assumption during retirement.' },
+        { id:'retirementBufferPct', value:state.bufferRate, note:'User-entered safety buffer added to the modeled corpus.' }
+      ]),
+      trace:freeze([engineTrace('retirement',state,raw)])
+    });
+  }
+
+  function goalFundingJourney(facts, deps, currency) {
+    if (!deps.goal?.calculate) throw new Error('Goal Planner deterministic engine is unavailable.');
+    const state={
+      today:nonNegative(facts.goalTargetAmount),
+      inflation:nonNegative(facts.goalInflationPct)/100,
+      years:Math.max(1,Math.round(number(facts.goalYearsAway))),
+      existing:nonNegative(facts.goalCurrentSavings),
+      ret:nonNegative(facts.goalReturnPct)/100,
+      monthly:nonNegative(facts.goalMonthlyContribution),
+      contributionFrequency:'monthly', futureLump:0, futureLumpYear:0
+    };
+    const raw=deps.goal.calculate(state);
+    const funded=raw.funding||0;
+    const recommendation=funded>=1
+      ? freeze({ headline:'Your current saving path reaches the modeled goal under the assumptions entered.', action:'Keep the contribution on track and review the goal if the target cost, timing or return assumption changes.', rationale:'Projected savings meet or exceed the inflation-adjusted future goal cost in the deterministic Goal Planner.' })
+      : freeze({ headline:'Your current saving path leaves a modeled gap.', action:'Compare the modelled monthly amount required with what your budget can sustainably support, or revisit the goal amount or timeline.', rationale:'Projected savings are below the inflation-adjusted future goal cost under the entered return and inflation assumptions.' });
+    return freeze({
+      situation:'Goal funding', diagnosis:'Carrowmont inflated the goal amount from today’s money to the target date, projected the savings already set aside and the monthly contributions, then measured the remaining gap.', recommendation,
+      confidence:freeze({ level:'MEDIUM_HIGH', basis:'The savings mathematics are deterministic. The investment return and future inflation rate are assumptions and actual outcomes can differ.' }),
+      whatCouldChangeAnswer:freeze(['A different goal amount or target date.', 'A different monthly contribution or amount already saved.', 'Different inflation or investment-return assumptions.']),
+      importantNumbers:freeze({ currency, goalAmountToday:state.today, futureGoalCost:raw.futureCost, projectedGoalSavings:raw.projected, goalGap:raw.gap, modeledMonthlyContributionRequired:raw.monthlyRequired, additionalMonthlyContribution:raw.additional, goalFundingPct:raw.funding*100 }),
+      alternatives:freeze([
+        freeze({ id:'current', label:'Current monthly contribution', monthlyContribution:state.monthly, projectedValue:raw.projected, fundingPct:raw.funding*100 }),
+        freeze({ id:'required', label:'Modeled contribution to reach goal', monthlyContribution:raw.monthlyRequired, projectedValue:raw.futureCost, fundingPct:100 })
+      ]),
+      nextSteps:freeze(['Confirm whether the goal amount is stated in today’s money; Carrowmont adjusts it using the inflation assumption entered.', 'Choose a monthly contribution your budget can sustain rather than relying on the modelled requirement alone.', 'Use the full Goal Planner to test a future lump sum or a different contribution frequency.']),
+      assumptions:freeze([{ id:'goalReturnPct', value:nonNegative(facts.goalReturnPct), note:'User-entered annual return assumption; not a forecast.' }, { id:'goalInflationPct', value:nonNegative(facts.goalInflationPct), note:'User-entered annual inflation assumption for the future goal cost.' }]),
+      trace:freeze([engineTrace('goal-planner',state,raw)])
+    });
+  }
+
   function moneyPrioritiesJourney(facts, deps, currency) {
     if (!deps.moneyPriorities?.create) throw new Error('Money Priorities deterministic rule engine is unavailable.');
     const priorities = deps.moneyPriorities.create({ budget:deps.budget, emergency:deps.emergency, goal:deps.goal, priority:deps.priorityFramework });
@@ -405,6 +722,12 @@
       else if (intent === INTENTS.MORTGAGE_PREPAY_VS_INVEST) result = mortgageJourney(facts, deps, input.currency, input.country, input.startDate);
       else if (intent === INTENTS.MONEY_PRIORITIES) result = moneyPrioritiesJourney(facts, deps, input.currency);
       else if (intent === INTENTS.LUMP_SUM_GOAL_TRADEOFFS) result = lumpSumGoalTradeoffsJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.BORROWING_HEALTH) result = borrowingHealthJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.HOME_AFFORDABILITY) result = homeAffordabilityJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.DEBT_PAYOFF) result = debtPayoffJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.CREDIT_CARD_PAYOFF) result = creditCardPayoffJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.RETIREMENT_READINESS) result = retirementReadinessJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.GOAL_FUNDING) result = goalFundingJourney(facts, deps, input.currency);
       else result = debtVsSavingsJourney(facts, deps, input.currency);
       return freeze({ version:VERSION, status:'RESOLVED', intent, ...result });
     }

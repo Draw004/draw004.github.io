@@ -34,7 +34,36 @@
     goalMonthlyContribution:'Enter the monthly amount currently directed to the goal. Enter 0 if none.',
     lumpSumAmount:'Enter the one-off amount available now. This amount stays in this Ask session unless a separate save flow explicitly supports the scenario.',
     debtMonthlyPayment:'Enter the required monthly payment for the specific debt you are comparing.',
-    investmentHorizonYears:'Enter a whole-number long-term horizon for the investment illustration.'
+    investmentHorizonYears:'Enter a whole-number long-term horizon for the investment illustration.',
+    grossMonthlyIncome:'Use gross household income before tax and deductions. Carrowmont uses this only for a debt-to-income planning view, not lender approval.',
+    essentialNonDebtExpenses:'Include essential monthly living costs but exclude debt payments so they are not counted twice.',
+    existingMonthlyDebtPayments:'Add required monthly payments across loans, cards and other debts.',
+    proposedNewDebtPayment:'Enter the monthly payment you are considering. Use 0 to review your current position only.',
+    incomeDropPct:'Choose a percentage for a simple income-drop stress test. It is an illustration, not a forecast.',
+    protectedMonthlySavings:'Enter saving or investing you want the housing budget to leave untouched each month.',
+    freeMonthlyBuffer:'Enter the cash cushion you want left after essentials, debt, protected savings and housing costs.',
+    homeDeposit:'Enter the deposit or down payment left after any cash you want to keep aside and expected buying costs.',
+    homeLoanRatePct:'Enter the annual mortgage or home-loan rate you want to model.',
+    homeLoanTermYears:'Enter the loan term in whole years.',
+    monthlyOwnershipCosts:'Estimate recurring ownership costs not included in the loan payment, such as property tax, insurance, service charges or maintenance.',
+    extraDebtPayment:'Enter the extra monthly amount you could add on top of the required payment.',
+    cardBalance:'Enter the current credit-card balance you want to model.',
+    cardAprPct:'Enter the annual percentage rate shown for the card balance.',
+    cardMinimumPayment:'Enter the current minimum monthly payment.',
+    cardPlannedPayment:'Enter the monthly amount you are considering paying.',
+    cardTargetMonths:'Enter a whole-number payoff target in months, or 0 if you do not have one.',
+    retirementCurrentAge:'Enter your current age in whole years.',
+    retirementTargetAge:'Enter the age when you would like retirement to start.',
+    retirementPlanningAge:'Enter the age through which you want the retirement plan to provide for spending.',
+    retirementCurrentSavings:'Enter savings and investments already set aside for retirement.',
+    retirementMonthlyExpense:'Enter your current monthly household spending as a starting point for retirement lifestyle needs.',
+    retirementSpendingPct:'Estimate retirement spending as a percentage of today’s spending, for example 80.',
+    retirementInflationPct:'Enter an annual inflation assumption. This is an assumption, not a forecast.',
+    retirementPreReturnPct:'Enter an annual return assumption before retirement. This is not a forecast.',
+    retirementPostReturnPct:'Enter an annual return assumption during retirement. This is not a forecast.',
+    retirementBufferPct:'Enter an extra safety buffer percentage you want added to the modeled retirement need.',
+    goalReturnPct:'Enter an annual return assumption for the goal. This is not a forecast.',
+    goalInflationPct:'Enter an annual inflation assumption for how the goal cost may change.'
   };
   const FIELD_META={
     essentialExpenses:{why:'This sets the unavoidable monthly cost Carrowmont uses to measure emergency runway and cash resilience.'},
@@ -69,7 +98,36 @@
     goalMonthlyContribution:{why:'The current contribution lets the Goal Planner project whether the entered goal is on track under the stated assumption.'},
     lumpSumAmount:{why:'Carrowmont compares the same one-off amount across emergency savings, debt, a defined goal and long-term investing.'},
     debtMonthlyPayment:{why:'The required payment lets the existing Debt Payoff engine model how a one-off balance reduction may change payoff time and interest.'},
-    investmentHorizonYears:{why:'Long-term investment growth depends on how long the money can remain invested. Carrowmont will not invent this horizon for you.'}
+    investmentHorizonYears:{why:'Long-term investment growth depends on how long the money can remain invested. Carrowmont will not invent this horizon for you.'},
+    grossMonthlyIncome:{why:'Debt-to-income uses gross income to show how required debt payments compare with income before deductions. It is a planning measure, not a lender rule.'},
+    essentialNonDebtExpenses:{why:'Separating essential living costs from debt payments lets Carrowmont test whether a new payment fits the cash you actually have left.'},
+    existingMonthlyDebtPayments:{why:'Current required debt payments establish the starting debt load before a proposed new payment is added.'},
+    proposedNewDebtPayment:{why:'The proposed payment is added to your current debt commitments so Carrowmont can show both the before and after position.'},
+    incomeDropPct:{why:'A simple stress test shows how the debt-to-income picture would change if gross income were lower. It is not a prediction.'},
+    protectedMonthlySavings:{why:'A home budget should not quietly assume that every spare pound, dollar or rupee can be redirected away from saving and investing.'},
+    freeMonthlyBuffer:{why:'This is the monthly cash cushion you want the housing plan to preserve after the modeled costs are paid.'},
+    homeDeposit:{why:'The deposit changes the amount that needs to be borrowed. Carrowmont does not calculate one-off buying costs automatically.'},
+    homeLoanRatePct:{why:'The interest-rate assumption drives the modeled loan payment and affordability ceiling.'},
+    homeLoanTermYears:{why:'The loan term changes the monthly payment and total borrowing period.'},
+    monthlyOwnershipCosts:{why:'Housing affordability is wider than the mortgage payment alone, so recurring ownership costs are included in the monthly test.'},
+    extraDebtPayment:{why:'Carrowmont compares the required-payment path with the same debt receiving this additional amount each month.'},
+    cardBalance:{why:'The outstanding balance is the amount on which future card interest and payoff time are modeled.'},
+    cardAprPct:{why:'The card APR determines the contractual interest cost in the payoff model.'},
+    cardMinimumPayment:{why:'The minimum-payment path is the baseline against which a larger planned payment is compared.'},
+    cardPlannedPayment:{why:'This lets Carrowmont show how a payment above the minimum could change payoff time and modeled interest.'},
+    cardTargetMonths:{why:'A payoff target lets Carrowmont calculate the approximate monthly payment needed to reach that timeline. Use 0 if you only want to compare payments.'},
+    retirementCurrentAge:{why:'Your current age establishes how many years are available to build retirement savings.'},
+    retirementTargetAge:{why:'The target retirement age determines the accumulation period and when withdrawals begin in the model.'},
+    retirementPlanningAge:{why:'The planning age sets how long the modeled retirement spending needs to last.'},
+    retirementCurrentSavings:{why:'Existing retirement assets are part of the starting point for the projection.'},
+    retirementMonthlyExpense:{why:'Current household spending provides a plain starting point for estimating a retirement lifestyle instead of inventing a universal target.'},
+    retirementSpendingPct:{why:'Retirement spending may differ from today. This explicit percentage lets you control that assumption.'},
+    retirementInflationPct:{why:'Inflation changes the future cost of the lifestyle being modeled. This is an assumption, not a forecast.'},
+    retirementPreReturnPct:{why:'The pre-retirement return assumption affects how current savings and future contributions may grow. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
+    retirementPostReturnPct:{why:'The retirement-period return assumption affects how long the modeled portfolio may last. It is not a forecast.',unknownDefault:4,unknownLabel:'I don’t know — use a 4% illustration'},
+    retirementBufferPct:{why:'A safety buffer increases the modeled retirement need rather than assuming the central estimate will be exact.'},
+    goalReturnPct:{why:'The return assumption affects how current savings and monthly contributions may grow. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
+    goalInflationPct:{why:'Inflation changes what a goal stated in today’s money may cost in the future. It is an assumption, not a forecast.'}
   };
   const INTENT_COPY={
     'debt-vs-savings':'Pay debt or invest?',
@@ -78,7 +136,13 @@
     'emergency-runway':'Emergency fund adequacy',
     'cash-flow-shortfall':'Monthly cash-flow shortfall',
     'money-priorities':'Money priorities',
-    'lump-sum-goal-tradeoffs':'Lump-sum priorities'
+    'lump-sum-goal-tradeoffs':'Lump-sum priorities',
+    'borrowing-health':'Borrowing health',
+    'home-affordability':'Home affordability',
+    'debt-payoff':'Debt payoff',
+    'credit-card-payoff':'Credit-card payoff',
+    'retirement-readiness':'Retirement readiness',
+    'goal-funding':'Goal funding'
   };
   const DETAIL_LINKS={
     'debt-vs-savings':['Explore the detailed Debt Payoff tools','/budget-cash-flow-planner/#debt-payoff'],
@@ -87,17 +151,24 @@
     'emergency-runway':['Open the Emergency Fund & Runway tool','/emergency-fund-runway-calculator.html'],
     'cash-flow-shortfall':['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/'],
     'money-priorities':['Explore the detailed Carrowmont tools','/tools.html'],
-    'lump-sum-goal-tradeoffs':['Read the lump-sum decision guide','/what-to-do-with-a-lump-sum.html']
+    'lump-sum-goal-tradeoffs':['Read the lump-sum decision guide','/what-to-do-with-a-lump-sum.html'],
+    'borrowing-health':['Open Borrowing Health','/debt-to-income-borrowing-health-calculator.html'],
+    'home-affordability':['Open Home Affordability','/home-affordability-calculator.html'],
+    'debt-payoff':['Open the Debt Payoff planner','/budget-cash-flow-planner/debt-payoff-calculator.html'],
+    'credit-card-payoff':['Open Credit Card Payoff','/budget-cash-flow-planner/credit-card-payoff-calculator.html'],
+    'retirement-readiness':['Open the Retirement Planner','/retirement-calculator/'],
+    'goal-funding':['Open the Goal Planner','/goal-planner/']
   };
   const CAR_AFFORDABILITY_HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
   const SEARCH_HANDOFF_KEY='carrowmont_search_handoff_v1';
   const HOME_ASK_HANDOFF_KEY='carrowmont_home_ask_handoff_v1';
   const HOME_ASK_HANDOFF_MAX_AGE_MS=15*60*1000;
   const CAR_AFFORDABILITY_HANDOFF_MAX_AGE_MS=15*60*1000;
-  const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth/i;
+  const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth|contribution|deposit|buffer|surplus/i;
   const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn/i;
   const MONTH_KEY=/months|runway/i;
   const YEAR_KEY=/years/i;
+  const AGE_KEY=/Age$/i;
 
   let api=null;
   let lastResult=null;
@@ -311,8 +382,57 @@
     $('askQuestion').value=''; hideAskPredictive(); $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();renderAccountContext();
     stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
   }
-  function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
-  function fieldStep(key){ return /termMonths|remainingYears|goalYearsAway|investmentHorizonYears/i.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
+  function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||AGE_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
+  function fieldStep(key){ return /termMonths|remainingYears|goalYearsAway|investmentHorizonYears|homeLoanTermYears|cardTargetMonths/i.test(key)||AGE_KEY.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
+  function fieldMinimum(key){
+    if(/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears|homeLoanTermYears)$/.test(key))return 1;
+    if(/^retirementCurrentAge$/.test(key))return 18;
+    if(/^(?:retirementTargetAge|retirementPlanningAge)$/.test(key))return 19;
+    return 0;
+  }
+  function questionHint(key){
+    if(state.intent==='goal-funding'&&key==='goalTargetAmount') return 'Enter the goal cost in today’s money. Ask Carrowmont will model inflation separately rather than asking you to guess a future price.';
+    if(state.intent==='goal-funding'&&key==='goalYearsAway') return 'Enter the whole number of years until you expect to need the money. Use at least 1 year.';
+    return QUESTION_HINTS[key]||'';
+  }
+  function journeyValidationIssue(facts){
+    const value=key=>Number(facts?.[key]);
+    const known=key=>Number.isFinite(value(key));
+    const positive=(key,message)=>known(key)&&value(key)<=0?{key,message}:null;
+    let issue=null;
+    switch(state.intent){
+      case 'borrowing-health':
+        issue=positive('grossMonthlyIncome','Enter gross monthly household income greater than 0 so Carrowmont can calculate debt-to-income health.')
+          ||positive('takeHomeMonthlyIncome','Enter monthly take-home household income greater than 0 so Carrowmont can test cash room.');
+        break;
+      case 'home-affordability':
+        issue=positive('takeHomeMonthlyIncome','Enter monthly take-home household income greater than 0 so Carrowmont can calculate a meaningful housing budget.');
+        break;
+      case 'debt-payoff':
+        issue=positive('debtBalance','Enter a debt balance greater than 0 for the debt-payoff journey.')
+          ||positive('debtMinimumPayment','Enter the required monthly payment greater than 0 so Carrowmont can model a payoff schedule.');
+        break;
+      case 'credit-card-payoff':
+        issue=positive('cardBalance','Enter a credit-card balance greater than 0 for the payoff journey.')
+          ||positive('cardMinimumPayment','Enter the current minimum payment greater than 0 so Carrowmont can model the baseline payoff.')
+          ||positive('cardPlannedPayment','Enter a planned monthly payment greater than 0 so Carrowmont can compare a payoff path.');
+        break;
+      case 'retirement-readiness':
+        if(known('retirementCurrentAge')&&value('retirementCurrentAge')<18) issue={key:'retirementCurrentAge',message:'Enter a current age of at least 18.'};
+        else if(known('retirementTargetAge')&&known('retirementCurrentAge')&&value('retirementTargetAge')<=value('retirementCurrentAge')) issue={key:'retirementTargetAge',message:'Target retirement age must be greater than current age.'};
+        else if(known('retirementPlanningAge')&&known('retirementTargetAge')&&value('retirementPlanningAge')<=value('retirementTargetAge')) issue={key:'retirementPlanningAge',message:'The plan-through age must be greater than the target retirement age.'};
+        else if(known('retirementPlanningAge')&&value('retirementPlanningAge')>110) issue={key:'retirementPlanningAge',message:'Enter a plan-through age of 110 or less, matching the Retirement Planner range.'};
+        else issue=positive('retirementMonthlyExpense','Enter current monthly household spending greater than 0 so Carrowmont can model retirement needs.')
+          ||positive('retirementSpendingPct','Enter retirement spending greater than 0% of today’s spending.');
+        break;
+      case 'goal-funding':
+        issue=positive('goalTargetAmount','Enter a goal amount greater than 0 for the Goal Funding journey.');
+        break;
+      default:
+        break;
+    }
+    return issue;
+  }
   async function startIntent(intent,text=''){
     hideUnsupported();
     if(!api?.SUPPORTED?.some(x=>x.intent===intent)){ showUnsupported(text); return; }
@@ -389,11 +509,11 @@
     for(const q of questions){
       const group=document.createElement('div'); group.className='ask-field';
       const label=document.createElement('label'); label.htmlFor=`ask-field-${q.key}`; label.textContent=q.label;
-      const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min=/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears)$/.test(q.key)?'1':'0'; input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
-      if(PCT_KEY.test(q.key)) input.placeholder='e.g. 7.5'; else if(/termMonths/i.test(q.key)) input.placeholder='e.g. 60'; else input.placeholder=`Enter ${q.label.toLowerCase()}`;
+      const input=document.createElement('input'); input.id=`ask-field-${q.key}`; input.name=q.key; input.type=requiredInputType(q.key); input.step=fieldStep(q.key); input.min=String(fieldMinimum(q.key)); input.inputMode='decimal'; input.autocomplete='off'; input.required=true;
+      if(PCT_KEY.test(q.key)) input.placeholder='e.g. 7.5'; else if(/termMonths|cardTargetMonths/i.test(q.key)) input.placeholder='e.g. 60'; else if(AGE_KEY.test(q.key)) input.placeholder='e.g. 40'; else input.placeholder=`Enter ${q.label.toLowerCase()}`;
       const described=[];
       group.append(label,input);
-      const hint=QUESTION_HINTS[q.key]; if(hint){ const small=document.createElement('span'); small.className='ask-field-hint'; small.id=`ask-hint-${q.key}`; small.textContent=hint; described.push(small.id); group.appendChild(small); }
+      const hint=questionHint(q.key); if(hint){ const small=document.createElement('span'); small.className='ask-field-hint'; small.id=`ask-hint-${q.key}`; small.textContent=hint; described.push(small.id); group.appendChild(small); }
       const meta=FIELD_META[q.key]||{};
       if(meta.why){
         const why=document.createElement('details'); why.className='ask-why';
@@ -465,13 +585,37 @@
         const desc=(input.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean); if(!desc.includes('askQuestionMessage')) desc.push('askQuestionMessage'); input.setAttribute('aria-describedby',desc.join(' '));
         reveal(field,input); return;
       }
-      if(/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears)$/.test(input.name)&&(value<1||!Number.isInteger(value))){
+      if(/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears|homeLoanTermYears)$/.test(input.name)&&(value<1||!Number.isInteger(value))){
         const field=input.closest('.ask-field'); const label=field?.querySelector('label')?.textContent||'this field';
         $('askQuestionMessage').textContent=`Enter a whole number of at least 1 for ${label.toLowerCase()}.`;
         field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true');
         reveal(field,input); return;
       }
+      if(/^cardTargetMonths$/.test(input.name)&&!Number.isInteger(value)){
+        const field=input.closest('.ask-field');
+        $('askQuestionMessage').textContent='Enter a whole number of months for the payoff target, or 0 if you do not have one.';
+        field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true'); reveal(field,input); return;
+      }
+      if(AGE_KEY.test(input.name)&&!Number.isInteger(value)){
+        const field=input.closest('.ask-field');
+        $('askQuestionMessage').textContent='Enter age in whole years.';
+        field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true'); reveal(field,input); return;
+      }
       pending[input.name]=value;
+    }
+    const validationIssue=journeyValidationIssue({...state.facts,...pending});
+    if(validationIssue){
+      const input=inputs.find(item=>item.name===validationIssue.key)||null;
+      const field=input?.closest('.ask-field')||null;
+      $('askQuestionMessage').textContent=validationIssue.message;
+      if(input){
+        field?.classList.add('ask-field-invalid'); input.setAttribute('aria-invalid','true');
+        const desc=(input.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean); if(!desc.includes('askQuestionMessage')) desc.push('askQuestionMessage'); input.setAttribute('aria-describedby',desc.join(' '));
+        reveal(field,input);
+      }else{
+        reveal($('askQuestionsStage'),$('askQuestionFields').querySelector('input'));
+      }
+      return;
     }
     state.history.push({facts:{...state.facts},estimatedFacts:{...state.estimatedFacts},factMeta:JSON.parse(JSON.stringify(state.factMeta||{}))});
     for(const input of inputs){
