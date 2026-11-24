@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Ask Carrowmont a real-life money question about debt, savings, car affordability, mortgage prepayment, emergency funds, monthly cash flow, lump sums or overall money priorities. Carrowmont uses its tested calculators to work through the numbers.">
+  <meta name="description" content="Ask Carrowmont a real-life money question about cash flow, emergency savings, borrowing, debt payoff, credit cards, cars, homes, goals, retirement or financial trade-offs. Carrowmont uses its tested calculators to work through the numbers.">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#0e827a">
   <link rel="canonical" href="https://carrowmont.com/ask-carrowmont.html">
@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <title>Ask Carrowmont | Work Through a Money Decision</title>
   <link rel="stylesheet" href="/carrowmont.css?v=20261119-startup-nav-perf1">
-  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261123-searchux2">
+  <link rel="stylesheet" href="/assets/ask/ask-carrowmont.css?v=20261124-askwave1">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://carrowmont.com/ask-carrowmont.html#webpage","url":"https://carrowmont.com/ask-carrowmont.html","name":"Ask Carrowmont","description":"A guided financial decision experience that asks for the minimum details needed and uses Carrowmont's deterministic calculators to explain controlled household-money questions.","isPartOf":{"@id":"https://carrowmont.com/#website"},"breadcrumb":{"@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/ask-carrowmont.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Ask Carrowmont","item":"https://carrowmont.com/ask-carrowmont.html"}]}]}</script>
 </head>
 <body data-cm-page="ask-carrowmont">
@@ -87,14 +87,40 @@
             <button class="button button-primary" type="button" id="askStartBtn">Work through this <span class="button-arrow">&rarr;</span></button>
           </div>
           <div class="ask-or"><span>Or choose a guided money decision</span></div>
-          <div class="ask-suggestions" aria-label="Suggested questions">
-            <button type="button" data-ask-intent="debt-vs-savings">Pay debt or invest?</button>
-            <button type="button" data-ask-intent="car-affordability">Can I afford this car?</button>
-            <button type="button" data-ask-intent="mortgage-prepay-vs-invest">Prepay mortgage or invest?</button>
-            <button type="button" data-ask-intent="emergency-runway">Is my emergency fund enough?</button>
-            <button type="button" data-ask-intent="cash-flow-shortfall">Why do I run short before payday?</button>
-            <button type="button" data-ask-intent="money-priorities">What should I focus on first?</button>
-            <button type="button" data-ask-intent="lump-sum-goal-tradeoffs">How should I use a lump sum?</button>
+          <div class="ask-suggestions" aria-label="Guided money decisions">
+            <section class="ask-decision-group" aria-labelledby="ask-group-stability">
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">1</span><div><h3 id="ask-group-stability">Everyday stability</h3><p>Start with cash flow, resilience and whether another payment fits.</p></div></div>
+              <div class="ask-decision-group-options">
+                <button type="button" data-ask-intent="cash-flow-shortfall">Why do I run short before payday?</button>
+                <button type="button" data-ask-intent="emergency-runway">Is my emergency fund enough?</button>
+                <button type="button" data-ask-intent="borrowing-health">Can I take on another payment?</button>
+              </div>
+            </section>
+            <section class="ask-decision-group" aria-labelledby="ask-group-debt">
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">2</span><div><h3 id="ask-group-debt">Debt decisions</h3><p>Compare payoff speed, card payments and debt-versus-investing trade-offs.</p></div></div>
+              <div class="ask-decision-group-options">
+                <button type="button" data-ask-intent="debt-payoff">How fast can I pay off this debt?</button>
+                <button type="button" data-ask-intent="credit-card-payoff">How should I pay off this credit card?</button>
+                <button type="button" data-ask-intent="debt-vs-savings">Pay debt or invest?</button>
+              </div>
+            </section>
+            <section class="ask-decision-group" aria-labelledby="ask-group-goals">
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">3</span><div><h3 id="ask-group-goals">Big goals</h3><p>Check affordability and whether your current path can fund a major goal.</p></div></div>
+              <div class="ask-decision-group-options">
+                <button type="button" data-ask-intent="car-affordability">Can I afford this car?</button>
+                <button type="button" data-ask-intent="home-affordability">How much home can I afford?</button>
+                <button type="button" data-ask-intent="goal-funding">Am I on track for this goal?</button>
+                <button type="button" data-ask-intent="retirement-readiness">Am I on track for retirement?</button>
+              </div>
+            </section>
+            <section class="ask-decision-group" aria-labelledby="ask-group-tradeoffs">
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">4</span><div><h3 id="ask-group-tradeoffs">Trade-offs</h3><p>Prioritize competing uses of the same money.</p></div></div>
+              <div class="ask-decision-group-options">
+                <button type="button" data-ask-intent="money-priorities">What should I focus on first?</button>
+                <button type="button" data-ask-intent="lump-sum-goal-tradeoffs">How should I use a lump sum?</button>
+                <button type="button" data-ask-intent="mortgage-prepay-vs-invest">Prepay mortgage or invest?</button>
+              </div>
+            </section>
           </div>
           <div class="ask-message" id="askStartMessage" role="status" aria-live="polite"></div>
           <div class="ask-unsupported" id="askUnsupported" role="status" aria-live="polite" hidden>
@@ -191,8 +217,11 @@
 <script defer src="/debt-to-income-borrowing-health-core.js"></script>
 <script defer src="/car-affordability-auto-decision-core.js"></script>
 <script defer src="/budget-cash-flow-planner/debt-payoff-core.js"></script>
+<script defer src="/budget-cash-flow-planner/credit-card-payoff-core.js"></script>
 <script defer src="/compound-interest-calculator/core.js"></script>
 <script defer src="/goal-planner/core.js"></script>
+<script defer src="/retirement-calculator/core.js"></script>
+<script defer src="/home-affordability-calculator-core.js"></script>
 <script defer src="/mortgage-payoff-calculator/core.js"></script>
 <script defer src="/mortgage-payoff-calculator/prepayment-vs-investing-core.js"></script>
 <script defer src="/assets/fre/engine-catalog.js"></script>
@@ -200,14 +229,14 @@
 <script defer src="/assets/fre/intent-router.js"></script>
 <script defer src="/assets/fre/money-priorities.js"></script>
 <script defer src="/assets/fre/lump-sum-goal-tradeoffs.js?v=20261121-fre12b4"></script>
-<script defer src="/assets/fre/ask-carrowmont-mvp.js?v=20261121-fre12b4"></script>
-<script defer src="/assets/fre/dashboard-store.js?v=20261121-fre12b4"></script>
+<script defer src="/assets/fre/ask-carrowmont-mvp.js?v=20261124-askwave1"></script>
+<script defer src="/assets/fre/dashboard-store.js?v=20261124-askwave1"></script>
 <script defer src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script defer src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
-<script defer src="/assets/account/carrowmont-ask-context.js?v=20261121-fre12b4"></script>
+<script defer src="/assets/account/carrowmont-ask-context.js?v=20261124-askwave1"></script>
 <script defer src="/search-core.js?v=20261118-fre12"></script>
   <script defer src="/search.js?v=20261123-searchux2"></script>
-  <script defer src="/assets/ask/ask-carrowmont.js?v=20261123-searchux2"></script>
+  <script defer src="/assets/ask/ask-carrowmont.js?v=20261124-askwave1"></script>
 <script defer src="/site.js?v=20261119-startup-nav-perf1"></script>
 </body>
 </html>
