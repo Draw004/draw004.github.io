@@ -1,6 +1,6 @@
 # Carrowmont standards index - one entry, existing authorities
 
-**Version 1.5 | reviewed 24 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
+**Version 1.6 | reviewed 24 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
 
 | Topic | Canonical source | Enforced through |
 |---|---|---|
@@ -13,6 +13,7 @@
 | Connected financial data readiness | `CARROWMONT_FRE_BATCH13A_CONNECTED_DATA_READINESS.md` + `CARROWMONT_FRE_BATCH13A_ACCEPTANCE_LEDGER.md` | Batch 13A source contract + signed-in sandbox browser QA; production feature flag remains off and Batch 13B is ON HOLD |
 | Reports and PDF | `CARROWMONT_REPORT_STANDARD_IMPLEMENTATION.md` | PDF/source regression checks |
 | Learn educational depth, search intent, links | `draw004.github.io/.github/LEARN-ARTICLE-STANDARD.md` (from main repo root `.github/`) | Learn/Search/SEO contracts and URL checks |
+| Learn Hub discovery UX and Search/Learn boundary | `CARROWMONT_LEARN_HUB2_IMPLEMENTATION.md` + `CARROWMONT_LEARN_HUB2_ACCEPTANCE_LEDGER.md` | `learn-hub2-contract.mjs`, targeted Learn Hub browser QA and central source contract; static library remains crawlable/no-JS fallback |
 | Publisher, Guard, PRs and source snapshots | `CARROWMONT_GITHUB_AUTOMATION_HANDOVER.md` + live `.github/workflows/` files | Staged Publisher source/browser validation, Guard |
 | Quality hardening and site-integrity regression protection | `CARROWMONT_QUALITY_HARDENING1_IMPLEMENTATION.md` | `carrowmont-qa/scripts/quality-hardening1-contract.mjs` + central source contract |
 | Ask Carrowmont controlled decision expansion | `CARROWMONT_ASK_EXPANSION_WAVE1_IMPLEMENTATION.md` + `CARROWMONT_ASK_EXPANSION_WAVE1_ACCEPTANCE_LEDGER.md` | Wave 1 source/browser/account contracts + central source contract; deterministic engines remain numeric authority |
