@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
   "methodologyVersion": "gold-macro-stress-v1.0",
-  "snapshotDate": "2026-11-16",
-  "generatedAt": "2026-11-16T23:29:12.069Z",
+  "snapshotDate": "2026-11-23",
+  "generatedAt": "2026-11-24T01:48:36.554Z",
   "status": "validated-reference-snapshot",
   "drivers": {
     "realYields": {
-      "value": 2.826,
+      "value": 2.842,
       "unit": "% 10Y real yield, 5-business-day average",
-      "asOf": "2026-11-16",
+      "asOf": "2026-11-23",
       "source": "U.S. Department of the Treasury — Daily Treasury Par Real Yield Curve Rates",
       "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_real_yield_curve",
-      "fiveYearPercentile": 98.9,
-      "trend13WeekPp": 0.408,
+      "fiveYearPercentile": 98.7,
+      "trend13WeekPp": 0.464,
       "referenceScore": -2
     },
     "dollar": {
-      "value": 122.1701,
+      "value": 123.1464,
       "unit": "Broad Dollar Index, 5-business-day average",
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-20",
       "source": "Federal Reserve H.10 — Nominal Broad U.S. Dollar Index",
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/summary/",
-      "fiveYearPercentile": 70.6,
-      "trend13WeekPct": 2.58,
-      "referenceScore": -1
+      "fiveYearPercentile": 79.6,
+      "trend13WeekPct": 3.93,
+      "referenceScore": -2
     },
     "inflation": {
       "value": 3.74,
@@ -64,17 +64,17 @@
       "rationale": "The reviewed CBO baseline shows debt held by the public and net interest at historically elevated levels with a rising longer-run path; this is classified as very elevated fiscal stress, not as a default prediction."
     },
     "stress": {
-      "gprFourWeekAverage": 149.97,
+      "gprFourWeekAverage": 145.03,
       "gprUnit": "index, approximately 4-week/30-day average",
-      "gprPercentile": 68.8,
-      "gprAsOf": "2026-11-16",
+      "gprPercentile": 63.6,
+      "gprAsOf": "2026-11-23",
       "gprSource": "Caldara-Iacoviello Geopolitical Risk Index — Recent Daily GPR",
       "gprSourceUrl": "https://www.matteoiacoviello.com/gpr.htm",
       "gprPreliminary": true,
-      "ofrFourWeekAverage": -1.702,
+      "ofrFourWeekAverage": -1.608,
       "ofrUnit": "OFR FSI, approximately 4-week average",
-      "ofrPercentile": 41.6,
-      "ofrAsOf": "2026-11-12",
+      "ofrPercentile": 45.1,
+      "ofrAsOf": "2026-11-19",
       "ofrSource": "Office of Financial Research — Financial Stress Index",
       "ofrSourceUrl": "https://www.financialresearch.gov/financial-stress-index/",
       "referenceScore": 0
