@@ -1,17 +1,17 @@
 # Carrowmont Master Continuity & Recovery Handbook
 
-**Version:** 2026-11-25 (Evergreen Learn Wave 1 continuity update)  
+**Version:** 2026-11-25 (Ask Intent Alignment Wave 2 continuity update)  
 **Permanent repository path:** `docs/CARROWMONT_MASTER_CONTINUITY_HANDBOOK.md`  
 **Project:** Carrowmont - Money in Real Life  
 **Live site:** carrowmont.com  
 **GitHub owner:** Draw004  
 **Current code authority:** the newest completed all-green Carrowmont Source Snapshot ZIP supplied with the project; read its root `SNAPSHOT-MANIFEST.txt` for the exact 11 repository SHAs. This handbook intentionally does not pin a current snapshot filename/hash.  
-**Latest deployed source-QA evidence:** Learn Hub 2.0 **1,603 PASS / 0 FAIL**
+**Latest deployed source-QA evidence:** Evergreen Learn Expansion Wave 1 + Automation Fallback Hardening 2 **1,618 PASS / 0 FAIL**
 
 > **Purpose:** Make Carrowmont portable across ChatGPT accounts, future developers, and future chats. A new ChatGPT account does not inherit the old account's conversation history, so the durable source of truth must be files: this handbook plus the newest all-green Source Snapshot.
 
 
-> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. Batches 0-12B and **13A** are complete. **Batch 13B is ON HOLD** until the owner explicitly reopens it; **Batch 14 is traffic/usage-gated and deferred**. Quality Audit & Hardening Release 1, Ask Carrowmont Expansion Wave 1 and Learn Hub 2.0 are complete/deployed; Ask has 13 controlled journeys and Learn has guide-only discovery over the crawlable source library. **Evergreen Learn Expansion Wave 1 + Automation Fallback Hardening 2 is the active controlled review release.** After its green close, the path is measurement / next-priority review. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges or that a future ChatGPT account has prior-chat memory.
+> **MANDATORY NEW START POINT (November 2026):** Read `CARROWMONT_DEVELOPMENT_START_HERE.md`, `CARROWMONT_CURRENT_PROJECT_STATUS.md` and `CARROWMONT_STANDARDS_INDEX.md` before following any historical subsection below. This handbook contains long-lived product principles and history; later implementation records may supersede older counts or UI conventions. Batches 0-12B and **13A** are complete. **Batch 13B is ON HOLD** until the owner explicitly reopens it; **Batch 14 is traffic/usage-gated and deferred**. Quality Audit & Hardening Release 1, Ask Carrowmont Expansion Wave 1, Learn Hub 2.0, Evergreen Learn Expansion Wave 1 and Automation Fallback Hardening 2 are complete/deployed. Learn has guide-only discovery over 108 crawlable guide destinations. **Ask Carrowmont Intent Alignment & Coverage Wave 2 is the active controlled review release**, expanding Ask from 13 to 17 controlled journeys while aligning Ask/Search ownership and real click destinations. After its green close, the path is measurement / next-priority review. The standards gate and Publisher are mandatory. Do not assume that this documentation file automatically updates after merges or that a future ChatGPT account has prior-chat memory.
 
 ## 1. Best way to move Carrowmont to another ChatGPT account
 
@@ -32,7 +32,7 @@ Use `docs/CARROWMONT_NEW_CHAT_START_HERE.txt` verbatim. Its content, rather than
 
 The newest completed all-green Source Snapshot ZIP supplied by the owner is the current code baseline. Open its root `SNAPSHOT-MANIFEST.txt` and read the exact SHAs for all **11 repositories**. Do **not** expect this handbook or the current-status page to mirror the newest snapshot filename/hash; doing so would create a self-referential loop because the documentation update itself changes repository state.
 
-Quality Audit & Hardening Release 1, Search + Ask Results UX2, Ask Carrowmont Expansion Wave 1 and Learn Hub 2.0 are complete/deployed. Ask has 13 controlled deterministic journeys. Learn Hub 2.0 provides guide-only discovery, situation-first entry, topic counts, learning-style filters and progressive enhancement while keeping the crawlable/no-JS Learn library and a separate full-site Search route. **Evergreen Learn Expansion Wave 1 + Automation Fallback Hardening 2 is the active controlled review release**; its review-source QA does not substitute for Publisher/deployed QA.
+Quality Audit & Hardening Release 1, Search + Ask Results UX2, Ask Carrowmont Expansion Wave 1 and Learn Hub 2.0 are complete/deployed. Ask Wave 1 established 13 controlled deterministic journeys; Wave 2 review expands that set to 17 while preserving deterministic engines. Learn Hub 2.0 provides guide-only discovery, situation-first entry, topic counts, learning-style filters and progressive enhancement while keeping the crawlable/no-JS Learn library and a separate full-site Search route. **Evergreen Learn Expansion Wave 1 + Automation Fallback Hardening 2 is complete/deployed. Ask Intent Alignment & Coverage Wave 2 is the active controlled review release; its source QA does not substitute for Publisher/deployed click-through QA.**
 
 Older architecture/handover files inside the repository contain useful history, but some counts and roadmap statements predate newer calculators and later UX changes. When they conflict, use this priority order:
 

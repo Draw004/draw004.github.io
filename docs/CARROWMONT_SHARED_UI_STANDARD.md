@@ -72,6 +72,12 @@ Carrowmont uses **no terminal full stop on display headings** (`h1`–`h6`, larg
 
 Normal sentences in introductions, descriptions, Learn paragraphs, warnings, informational status messages, citations, SEO descriptions, legal text and brand/tagline microcopy retain ordinary punctuation. Ellipses such as `Calculating...`, abbreviations and decimal numbers are not decorative full stops and must be preserved. Apply the rule to headings created by JavaScript as well as static HTML, including across the tool repositories. Check it in source QA before publishing.
 
+### Plain-language financial abbreviation rule — 25 November 2026
+
+Carrowmont must not assume that a user already knows financial abbreviations or specialist shorthand. At the **first meaningful user-facing use in a context**, expand the term or provide an immediately obvious plain-language meaning through the visible label, helper text, tooltip, “Why we ask” disclosure, or adjacent explanation. Repetition after the term has been clearly established is not required.
+
+Examples include **APR (Annual Percentage Rate)**, **DTI (Debt-to-Income ratio)**, **SIP (Systematic Investment Plan)**, **SWP (Systematic Withdrawal Plan)**, **EMI (Equated Monthly Instalment)**, **FI (Financial Independence)**, **FIRE (Financial Independence, Retire Early)** and **CAGR (Compound Annual Growth Rate)**. New or changed Ask journeys, Search result copy, forms, tool labels, result cards and Learn content must follow this rule. Central QA should protect the rule for modified surfaces rather than relying on editorial memory.
+
 ## 3. Non-negotiable UI principles
 
 1. **One ecosystem, one shell.** Shared header, country/currency controls, footer, and navigation patterns should be visually and behaviorally consistent.

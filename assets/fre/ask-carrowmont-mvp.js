@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (root) {
   'use strict';
 
-  const VERSION = 'ask-carrowmont-mvp-v1.3';
+  const VERSION = 'ask-carrowmont-mvp-v2.0';
   const INTENTS = Object.freeze({
     DEBT_VS_SAVINGS:'debt-vs-savings',
     CAR_AFFORDABILITY:'car-affordability',
@@ -20,7 +20,11 @@
     DEBT_PAYOFF:'debt-payoff',
     CREDIT_CARD_PAYOFF:'credit-card-payoff',
     RETIREMENT_READINESS:'retirement-readiness',
-    GOAL_FUNDING:'goal-funding'
+    RETIREMENT_WITHDRAWAL:'retirement-withdrawal',
+    GOAL_FUNDING:'goal-funding',
+    LOAN_COST:'loan-cost',
+    INFLATION_IMPACT:'inflation-impact',
+    RECURRING_INVESTMENT:'recurring-investment'
   });
 
   const QUESTION_SETS = Object.freeze({
@@ -135,6 +139,29 @@
       { key:'retirementPostReturnPct', label:'Annual return assumption during retirement' },
       { key:'retirementBufferPct', label:'Safety buffer percentage' }
     ]),
+    [INTENTS.RETIREMENT_WITHDRAWAL]: Object.freeze([
+      { key:'retirementWithdrawalBalance', label:'Retirement balance to test' },
+      { key:'retirementWithdrawalMonthly', label:'Starting monthly withdrawal' },
+      { key:'retirementWithdrawalReturnPct', label:'Annual return assumption during retirement' },
+      { key:'retirementWithdrawalGrowthPct', label:'Annual withdrawal increase for inflation' },
+      { key:'retirementWithdrawalStartAge', label:'Age when withdrawals start' }
+    ]),
+    [INTENTS.LOAN_COST]: Object.freeze([
+      { key:'loanPrincipal', label:'Loan amount' },
+      { key:'loanRatePct', label:'Annual loan interest rate' },
+      { key:'loanTermMonths', label:'Loan term in months' }
+    ]),
+    [INTENTS.INFLATION_IMPACT]: Object.freeze([
+      { key:'inflationAmount', label:'Amount to test in today’s money' },
+      { key:'inflationYears', label:'Number of years' },
+      { key:'inflationRatePct', label:'Annual inflation assumption' }
+    ]),
+    [INTENTS.RECURRING_INVESTMENT]: Object.freeze([
+      { key:'recurringCurrentSavings', label:'Current amount already invested' },
+      { key:'recurringContribution', label:'Monthly investment amount' },
+      { key:'recurringYears', label:'Investment period in years' },
+      { key:'recurringReturnPct', label:'Annual return assumption' }
+    ]),
     [INTENTS.GOAL_FUNDING]: Object.freeze([
       { key:'goalTargetAmount', label:'Goal amount in today’s money' },
       { key:'goalYearsAway', label:'Whole years until the goal' },
@@ -158,7 +185,11 @@
     Object.freeze({ intent:INTENTS.DEBT_PAYOFF, label:'How fast can I pay off this debt?' }),
     Object.freeze({ intent:INTENTS.CREDIT_CARD_PAYOFF, label:'How can I pay off this credit card?' }),
     Object.freeze({ intent:INTENTS.RETIREMENT_READINESS, label:'Am I on track for retirement?' }),
-    Object.freeze({ intent:INTENTS.GOAL_FUNDING, label:'How much should I save for a goal?' })
+    Object.freeze({ intent:INTENTS.RETIREMENT_WITHDRAWAL, label:'How long could my retirement savings last?' }),
+    Object.freeze({ intent:INTENTS.GOAL_FUNDING, label:'How much should I save for a goal?' }),
+    Object.freeze({ intent:INTENTS.LOAN_COST, label:'What will this loan or EMI cost?' }),
+    Object.freeze({ intent:INTENTS.INFLATION_IMPACT, label:'What will inflation do to this amount?' }),
+    Object.freeze({ intent:INTENTS.RECURRING_INVESTMENT, label:'How could a monthly investment grow?' })
   ]);
 
   const finite = value => Number.isFinite(Number(value));
@@ -185,6 +216,16 @@
 
   function questionsFor(intent, facts = {}) {
     const questions = QUESTION_SETS[intent] || [];
+    if (intent === INTENTS.RETIREMENT_WITHDRAWAL && facts.retirementWithdrawalMode === 'support') {
+      return freeze([
+        { key:'retirementWithdrawalBalance', label:'Retirement balance to test' },
+        { key:'retirementWithdrawalTargetYears', label:'Years the balance should support withdrawals' },
+        { key:'retirementWithdrawalReturnPct', label:'Annual return assumption during retirement' },
+        { key:'retirementWithdrawalGrowthPct', label:'Annual withdrawal increase for inflation' },
+        { key:'retirementWithdrawalTargetEndingBalance', label:'Target balance to leave at the end' },
+        { key:'retirementWithdrawalStartAge', label:'Age when withdrawals start' }
+      ].map(q => freeze({ ...q })));
+    }
     if (intent !== INTENTS.LUMP_SUM_GOAL_TRADEOFFS) return freeze(questions.map(q => freeze({ ...q })));
     const debtKnown = present(facts.debtBalance);
     const includeDebtDetails = debtKnown && Number(facts.debtBalance) > 0;
@@ -219,7 +260,10 @@
       goal: overrides.goal || root.CarrowmontGoalCore,
       homeAffordability: overrides.homeAffordability || root.CarrowmontHomeAffordabilityCore,
       creditCard: overrides.creditCard || root.CarrowmontCreditCardPayoffCore,
-      retirement: overrides.retirement || root.CarrowmontRetirementCore
+      retirement: overrides.retirement || root.CarrowmontRetirementCore,
+      withdrawal: overrides.withdrawal || root.CarrowmontWithdrawalCore,
+      inflation: overrides.inflation || root.CarrowmontInflationCore,
+      recurringInvestment: overrides.recurringInvestment || root.CarrowmontSIPCore
     };
   }
 
@@ -662,6 +706,108 @@
     });
   }
 
+  function retirementWithdrawalJourney(facts, deps, currency) {
+    if (!deps.withdrawal?.calculate) throw new Error('Retirement Withdrawal deterministic engine is unavailable.');
+    const supportMode=facts.retirementWithdrawalMode==='support';
+    const input={
+      mode:supportMode?'support':'runway',
+      startingBalance:nonNegative(facts.retirementWithdrawalBalance),
+      startingWithdrawal:supportMode?0:nonNegative(facts.retirementWithdrawalMonthly),
+      annualReturn:number(facts.retirementWithdrawalReturnPct),
+      inflationLinked:true,
+      withdrawalGrowth:number(facts.retirementWithdrawalGrowthPct),
+      timing:'beginning',
+      maxMonths:1200,
+      startAge:present(facts.retirementWithdrawalStartAge)?number(facts.retirementWithdrawalStartAge):null,
+      useAge:false,
+      targetMonths:supportMode?Math.max(12,Math.round(number(facts.retirementWithdrawalTargetYears,30)*12)):0,
+      targetEndingBalance:supportMode?nonNegative(facts.retirementWithdrawalTargetEndingBalance):0
+    };
+    const raw=deps.withdrawal.calculate(input);
+    if(!raw.ok) return freeze({
+      situation:'Retirement withdrawal and drawdown', diagnosis:'Carrowmont needs corrected withdrawal assumptions before it can model the retirement balance.',
+      recommendation:freeze({ headline:'Review the retirement-withdrawal assumptions.', action:'Check the starting balance, withdrawal or target horizon, and return assumptions, then rerun the model.', rationale:'The deterministic withdrawal engine rejected one or more inputs.' }),
+      confidence:freeze({ level:'LOW', basis:'The retirement-withdrawal engine could not complete with the entered inputs.' }),
+      whatCouldChangeAnswer:freeze(['A corrected retirement balance.', 'A different withdrawal or target duration.', 'Different return or inflation assumptions.']),
+      importantNumbers:freeze({}), alternatives:freeze([]), nextSteps:freeze(raw.errors||[]), assumptions:freeze([]), trace:freeze([engineTrace('retirement-withdrawal',input,raw)])
+    });
+    const r=raw.result;
+    if(supportMode){
+      return freeze({
+        situation:'Retirement withdrawal and drawdown', diagnosis:'Carrowmont solved for the modeled starting monthly withdrawal that can support the entered retirement balance for the selected horizon and target ending balance.',
+        recommendation:freeze({ headline:'This is the modeled starting withdrawal under the assumptions entered.', action:'Use it as a scenario, not a guaranteed sustainable withdrawal, and stress-test lower returns or higher inflation in the full Drawdown calculator.', rationale:'The deterministic solver finds a starting withdrawal that reaches the selected horizon while aiming for the target ending balance.' }),
+        confidence:freeze({ level:'MEDIUM', basis:'The withdrawal mathematics are deterministic, while future investment returns and inflation remain assumptions rather than forecasts.' }),
+        whatCouldChangeAnswer:freeze(['A different retirement horizon.', 'A different return or inflation assumption.', 'A different target ending balance or withdrawal timing.']),
+        importantNumbers:freeze({ currency, retirementBalance:input.startingBalance, modeledStartingMonthlyWithdrawal:raw.startingWithdrawal, firstYearWithdrawalRate:raw.firstYearWithdrawalRate, targetYears:input.targetMonths/12, targetEndingBalance:input.targetEndingBalance, modeledEndingBalance:r.endingBalance }),
+        alternatives:freeze((raw.sensitivity||[]).map(item=>freeze({ id:`return-${item.delta}`, label:`Return ${item.annualReturn.toFixed(1)}%`, startingMonthlyWithdrawal:item.startingWithdrawal, endingBalance:item.result?.endingBalance??null }))),
+        nextSteps:freeze(['Review a lower-return sensitivity before relying on the central illustration.', 'Use the full SWP (Systematic Withdrawal Plan) / Drawdown calculator to change withdrawal timing, horizon and target ending balance.', 'Revisit the plan as actual spending, inflation and portfolio values change.']),
+        assumptions:freeze([{id:'retirementWithdrawalReturnPct',value:input.annualReturn,note:'User-entered annual return assumption; not a forecast.'},{id:'retirementWithdrawalGrowthPct',value:input.withdrawalGrowth,note:'Annual withdrawal increase used as an inflation-linked spending assumption.'}]),
+        trace:freeze([engineTrace('retirement-withdrawal',input,raw)])
+      });
+    }
+    const months=r.depleted?r.depletionMonth:r.horizonMonths;
+    const depletionAge=Number.isFinite(Number(input.startAge))?input.startAge+months/12:null;
+    return freeze({
+      situation:'Retirement withdrawal and drawdown', diagnosis:r.depleted?'Under the entered withdrawal, return and inflation assumptions, the modeled retirement balance eventually reaches zero.':'The modeled retirement balance remains above zero through the 100-year maximum test horizon under the assumptions entered.',
+      recommendation:r.depleted
+        ? freeze({ headline:'The model gives you a retirement-savings runway, not a guarantee.', action:'Compare the runway with the retirement years you want to cover and test lower-return or higher-inflation scenarios before relying on it.', rationale:'The deterministic drawdown engine applies the entered withdrawal and annual withdrawal increase month by month until depletion.' })
+        : freeze({ headline:'The balance survives the model horizon under the assumptions entered.', action:'Still stress-test lower returns, higher inflation and larger withdrawals rather than treating survival through the horizon as “forever”.', rationale:'The deterministic model did not deplete the balance within its 100-year maximum horizon.' }),
+      confidence:freeze({ level:'MEDIUM', basis:'The withdrawal path is deterministic from the entered assumptions. Actual market returns, inflation, taxes, fees and spending can differ.' }),
+      whatCouldChangeAnswer:freeze(['A different starting monthly withdrawal.', 'A different return or inflation assumption.', 'Taxes, fees, irregular withdrawals or changes in retirement spending.']),
+      importantNumbers:freeze({ currency, retirementBalance:input.startingBalance, startingMonthlyWithdrawal:input.startingWithdrawal, modeledRunwayMonths:months, modeledDepletionAge:depletionAge, firstYearWithdrawalRate:r.firstYearWithdrawalRate, totalModeledWithdrawals:r.totalWithdrawals, modeledEndingBalance:r.endingBalance }),
+      alternatives:freeze((raw.sensitivity||[]).map(item=>freeze({ id:`return-${item.delta}`, label:`Return ${item.annualReturn.toFixed(1)}%`, runwayMonths:item.result?.depleted?item.result.depletionMonth:item.result?.horizonMonths??null, endingBalance:item.result?.endingBalance??null }))),
+      nextSteps:freeze(['Compare the modeled runway with the retirement period you need to cover.', 'Use the full SWP (Systematic Withdrawal Plan) / Drawdown calculator for target-duration and withdrawal-support scenarios.', 'Revisit the assumptions periodically as actual spending and investment returns change.']),
+      assumptions:freeze([{id:'retirementWithdrawalReturnPct',value:input.annualReturn,note:'User-entered annual return assumption; not a forecast.'},{id:'retirementWithdrawalGrowthPct',value:input.withdrawalGrowth,note:'Annual withdrawal increase used as an inflation-linked spending assumption.'}]),
+      trace:freeze([engineTrace('retirement-withdrawal',input,raw)])
+    });
+  }
+
+  function loanCostJourney(facts, deps, currency) {
+    if (!deps.loan?.calculate) throw new Error('Loan deterministic engine is unavailable.');
+    const months=Math.max(1,Math.round(number(facts.loanTermMonths)));
+    const input={ mode:'payment', principal:nonNegative(facts.loanPrincipal), annualRate:nonNegative(facts.loanRatePct), termYears:Math.floor(months/12), termMonths:months%12, firstPaymentDate:'', fixedFee:0, percentageFee:0, extraMonthly:0, oneTimeExtra:0, oneTimeMonth:1 };
+    const raw=deps.loan.calculate(input);
+    if(!raw.ok) return freeze({ situation:'Loan / EMI (Equated Monthly Instalment) cost', diagnosis:'Carrowmont needs corrected loan amount, rate or term before it can model the repayment.', recommendation:freeze({headline:'Review the loan inputs.',action:'Enter a positive loan amount, a valid annual interest rate and a loan term between 1 and 600 months.',rationale:'The deterministic loan engine rejected one or more inputs.'}), confidence:freeze({level:'LOW',basis:'The loan engine could not complete with the entered inputs.'}), whatCouldChangeAnswer:freeze(['A corrected loan amount.','A corrected annual interest rate.','A different loan term.']), importantNumbers:freeze({}), alternatives:freeze([]), nextSteps:freeze(raw.errors||[]), assumptions:freeze([]), trace:freeze([engineTrace('loan',input,raw)]) });
+    return freeze({
+      situation:'Loan / EMI (Equated Monthly Instalment) cost', diagnosis:'Carrowmont amortized the entered loan amount across the selected term at the entered annual interest rate.',
+      recommendation:freeze({headline:'Use the monthly payment together with total interest—not the payment alone—to judge the borrowing cost.',action:'Compare a shorter or longer term in the full Loan / EMI calculator if you want to trade monthly affordability against total interest.',rationale:'A longer term can reduce the monthly payment while increasing the number of interest-bearing months.'}),
+      confidence:freeze({level:'HIGH',basis:'The amortization schedule is deterministic from the entered loan amount, interest rate and term. Fees, changing rates and lender-specific rules are not included unless modeled separately.'}),
+      whatCouldChangeAnswer:freeze(['A different interest rate.','A shorter or longer loan term.','Fees, insurance or lender-specific charges not included in this Ask journey.']),
+      importantNumbers:freeze({currency,loanAmount:raw.principal,monthlyPayment:raw.scheduledPayment,totalInterest:raw.totalInterest,totalRepayment:raw.totalRepayment,interestSharePct:raw.interestShare*100,payoffMonths:raw.payoffMonths}),
+      alternatives:freeze([]), nextSteps:freeze(['Compare at least one shorter-term scenario if the monthly payment remains manageable.','Use the full Loan / EMI (Equated Monthly Instalment) calculator for fees, extra payments and a detailed amortization schedule.']), assumptions:freeze([]), trace:freeze([engineTrace('loan',input,raw)])
+    });
+  }
+
+  function inflationImpactJourney(facts, deps, currency) {
+    if (!deps.inflation?.calculate) throw new Error('Inflation deterministic engine is unavailable.');
+    const input={ amount:nonNegative(facts.inflationAmount), years:Math.max(1,number(facts.inflationYears)), rate:nonNegative(facts.inflationRatePct) };
+    const raw=deps.inflation.calculate(input);
+    return freeze({
+      situation:'Inflation impact', diagnosis:'Carrowmont compounded the entered inflation assumption over the selected period to show both future cost and purchasing-power loss.',
+      recommendation:freeze({headline:'Inflation means the same nominal amount may buy less in the future.',action:'Use the future-cost figure when planning a goal stated in today’s money, and treat the inflation rate as an assumption rather than a forecast.',rationale:'The deterministic calculation applies the entered annual inflation rate consistently over the selected number of years.'}),
+      confidence:freeze({level:'HIGH',basis:'The mathematics are deterministic. The future inflation rate itself is an assumption and actual inflation can vary year by year.'}),
+      whatCouldChangeAnswer:freeze(['A different inflation assumption.','A different time horizon.','A different amount or expense being tested.']),
+      importantNumbers:freeze({currency,amountToday:input.amount,futureCost:raw.future,presentEquivalentOfSameNominalAmount:raw.sameNominalToday,cumulativeInflationPct:raw.increase,purchasingPowerRemainingPct:raw.remaining,purchasingPowerLossPct:raw.loss}),
+      alternatives:freeze([{id:'lower',label:`Inflation ${raw.lowRate.toFixed(1)}%`,futureCost:raw.lowFuture},{id:'higher',label:`Inflation ${raw.highRate.toFixed(1)}%`,futureCost:raw.highFuture}]),
+      nextSteps:freeze(['Use the full Inflation calculator to test alternative rates and purchasing-power scenarios.','For a specific goal, feed the inflation-adjusted cost into the Goal Planner rather than treating today’s price as fixed.']), assumptions:freeze([{id:'inflationRatePct',value:input.rate,note:'User-entered annual inflation assumption; not a forecast.'}]), trace:freeze([engineTrace('inflation',input,raw)])
+    });
+  }
+
+  function recurringInvestmentJourney(facts, deps, currency) {
+    if (!deps.recurringInvestment?.result) throw new Error('Recurring Investment deterministic engine is unavailable.');
+    const input={ mode:'growth', years:Math.max(1,number(facts.recurringYears)), currentSavings:nonNegative(facts.recurringCurrentSavings), monthlySIP:nonNegative(facts.recurringContribution), contributionFrequency:'monthly', annualReturn:nonNegative(facts.recurringReturnPct), annualStepUp:0, goalToday:0, goalBasis:'today', goalFuture:0, targetAmount:0, inflation:0 };
+    const raw=deps.recurringInvestment.result(input);
+    const p=raw.projection;
+    return freeze({
+      situation:'Recurring investment / SIP (Systematic Investment Plan) growth', diagnosis:'Carrowmont projected the current amount and monthly contributions over the selected period using the entered annual return assumption.',
+      recommendation:freeze({headline:'This is a growth illustration, not a return forecast.',action:'Use it to understand how contribution size and time affect the projection, then test a goal-based scenario if you have a specific target.',rationale:'The deterministic recurring-investment engine compounds the entered contribution schedule under one user-chosen return assumption.'}),
+      confidence:freeze({level:'MEDIUM_HIGH',basis:'The contribution mathematics are deterministic. Investment returns are uncertain and can be negative in real markets.'}),
+      whatCouldChangeAnswer:freeze(['A different monthly contribution.','A different investment period.','A different return assumption or contribution frequency.']),
+      importantNumbers:freeze({currency,currentAmount:input.currentSavings,monthlyInvestment:input.monthlySIP,investmentYears:input.years,projectedValue:p.portfolio,totalInvested:p.totalInvested,projectedGrowth:p.growth}),
+      alternatives:freeze([]), nextSteps:freeze(['Treat the return assumption as an illustration, not a promise.','Use the full SIP (Systematic Investment Plan) / Recurring Investment calculator for contribution-frequency, step-up and goal-based scenarios.']), assumptions:freeze([{id:'recurringReturnPct',value:input.annualReturn,note:'User-entered annual return assumption; not a forecast.'}]), trace:freeze([engineTrace('recurring-investment',input,raw)])
+    });
+  }
+
   function goalFundingJourney(facts, deps, currency) {
     if (!deps.goal?.calculate) throw new Error('Goal Planner deterministic engine is unavailable.');
     const state={
@@ -727,7 +873,11 @@
       else if (intent === INTENTS.DEBT_PAYOFF) result = debtPayoffJourney(facts, deps, input.currency);
       else if (intent === INTENTS.CREDIT_CARD_PAYOFF) result = creditCardPayoffJourney(facts, deps, input.currency);
       else if (intent === INTENTS.RETIREMENT_READINESS) result = retirementReadinessJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.RETIREMENT_WITHDRAWAL) result = retirementWithdrawalJourney(facts, deps, input.currency);
       else if (intent === INTENTS.GOAL_FUNDING) result = goalFundingJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.LOAN_COST) result = loanCostJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.INFLATION_IMPACT) result = inflationImpactJourney(facts, deps, input.currency);
+      else if (intent === INTENTS.RECURRING_INVESTMENT) result = recurringInvestmentJourney(facts, deps, input.currency);
       else result = debtVsSavingsJourney(facts, deps, input.currency);
       return freeze({ version:VERSION, status:'RESOLVED', intent, ...result });
     }
