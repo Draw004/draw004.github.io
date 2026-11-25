@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261122-fre12b5';
-  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261122-fre12b5';
+  var INDEX_URL = '/data/carrowmont-search-index.json?v=20261125-askwave2';
+  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261125-askwave2';
   var MIN_QUERY_LENGTH = 3;
   var MIN_SUGGEST_LENGTH = 2;
   var DEFAULT_LIMIT = 12;
@@ -26,7 +26,7 @@
         var index = parts[0];
         var aliases = parts[1];
         if (!index || index.schema_version !== 1 || !Array.isArray(index.entries)) throw new Error('Unsupported search index');
-        if (!aliases || aliases.schema_version !== 1 || !Array.isArray(aliases.groups)) throw new Error('Unsupported search aliases');
+        if (!aliases || ![1,2].includes(aliases.schema_version) || !Array.isArray(aliases.groups)) throw new Error('Unsupported search aliases');
         return { index: index, aliases: aliases };
       });
     }
@@ -446,10 +446,11 @@
   }
 
   window.CarrowmontSearch = Object.freeze({
-    version: '1.3.0',
+    version: '1.4.0',
     search: publicSearch,
     suggest: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.suggest(data.index.entries, data.aliases, query, { region: opts.region || regionCode(), limit: opts.limit || 6 }); }); },
     correct: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.correctQuery(data.index.entries, data.aliases, query, { region: opts.region || regionCode() }); }); },
+    ownership: function (query, options) { var opts = options || {}; return loadData().then(function (data) { return window.CarrowmontSearchCore.resolveOwnership ? window.CarrowmontSearchCore.resolveOwnership(data.aliases, query, { region: opts.region || regionCode() }) : null; }); },
     ready: loadData,
     indexUrl: INDEX_URL,
     aliasesUrl: ALIASES_URL

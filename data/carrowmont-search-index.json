@@ -1112,7 +1112,7 @@
       "semantic_intents": [
         {
           "id": "explain",
-          "strength": 1
+          "strength": 4
         }
       ]
     },
@@ -2689,6 +2689,10 @@
         {
           "id": "afford",
           "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
         }
       ]
     },
@@ -3030,7 +3034,7 @@
       "semantic_intents": [
         {
           "id": "explain",
-          "strength": 1
+          "strength": 5
         }
       ]
     },
@@ -3157,6 +3161,10 @@
         {
           "id": "plan",
           "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
         }
       ]
     },
@@ -3746,7 +3754,7 @@
         },
         {
           "id": "explain",
-          "strength": 1
+          "strength": 4
         }
       ]
     },
@@ -3828,6 +3836,10 @@
         {
           "id": "compare",
           "strength": 5
+        },
+        {
+          "id": "explain",
+          "strength": 4
         }
       ]
     },

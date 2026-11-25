@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (catalog) {
   'use strict';
 
-  const VERSION = 1;
+  const VERSION = 2;
   const INTENTS = Object.freeze({
     EMERGENCY_RUNWAY:'emergency-runway',
     BORROWING_HEALTH:'borrowing-health',
@@ -17,6 +17,7 @@
     DEBT_PAYOFF:'debt-payoff',
     CREDIT_CARD_PAYOFF:'credit-card-payoff',
     RETIREMENT_READINESS:'retirement-readiness',
+    RETIREMENT_WITHDRAWAL:'retirement-withdrawal',
     GOAL_FUNDING:'goal-funding',
     LOAN_COST:'loan-cost',
     INFLATION_IMPACT:'inflation-impact',
@@ -73,6 +74,11 @@
       { path:'retirement.currentAssets', label:'Current retirement savings' },
       { path:'retirement.monthlyContribution', label:'Current retirement contribution' }
     ]}),
+    [INTENTS.RETIREMENT_WITHDRAWAL]: Object.freeze({ priorityStage:'optimize', engineIds:['retirement-withdrawal'], requirements:[
+      { path:'retirement.withdrawalBalance', label:'Retirement balance to test' },
+      { path:'retirement.monthlyWithdrawal', label:'Starting monthly withdrawal', allowEstimate:true },
+      { path:'retirement.postReturn', label:'Annual return assumption during retirement', allowEstimate:true }
+    ]}),
     [INTENTS.GOAL_FUNDING]: Object.freeze({ priorityStage:'build', engineIds:['goal-planner','recurring-investment'], requirements:[
       { path:'goal.targetAmount', label:'Goal amount' },
       { path:'goal.yearsAway', label:'Years until the goal' },
@@ -96,19 +102,20 @@
   });
 
   const RULES = Object.freeze([
+    [INTENTS.MORTGAGE_PREPAY_VS_INVEST, /\b(mortgage|home loan|housing loan).{0,50}\b(prepay|prepayment|overpay|overpayment|part payment|foreclos|extra payment).{0,50}\b(invest|sip|mutual fund)|\b(invest|sip|mutual fund).{0,50}\b(mortgage|home loan|housing loan).{0,50}\b(prepay|overpay|part payment|foreclos)/i],
+    [INTENTS.RETIREMENT_WITHDRAWAL, /\b(swp|systematic withdrawal plan|drawdown|retirement withdrawal)\b|\b(retirement|corpus|retirement fund|retirement savings).{0,45}\b(last|run out|deplet|withdraw|drawdown)\b/i],
     [INTENTS.DEBT_VS_SAVINGS, /\b(debt|loan|credit card).{0,40}\b(save|saving|invest)|\b(save|saving|invest).{0,40}\b(debt|loan|credit card)/i],
-    [INTENTS.EMERGENCY_RUNWAY, /\b(emergency fund|runway|months? of expenses|without income|lose my job|job loss)\b/i],
-    [INTENTS.BORROWING_HEALTH, /\b(debt[- ]?to[- ]?income|dti|borrowing health|debt burden)\b|\b(afford|take on|add).{0,24}\b(another|new).{0,10}\b(loan|debt|payment)\b/i],
+    [INTENTS.EMERGENCY_RUNWAY, /\b(emergency fund|emergency savings|runway|months? of expenses|without income|no income|lose my job|job loss|salary stops)\b/i],
+    [INTENTS.BORROWING_HEALTH, /\b(debt[- ]?to[- ]?income|dti|borrowing health|debt burden)\b|\b(can i|could i|afford|take on|add).{0,28}\b(another|new|more).{0,14}\b(loan|debt|payment|emi)\b/i],
     [INTENTS.CAR_AFFORDABILITY, /\b(afford|buy|finance).{0,24}\b(car|vehicle|auto)\b|\b(car|vehicle|auto).{0,24}\bafford/i],
     [INTENTS.HOME_AFFORDABILITY, /\b(afford|buy).{0,24}\b(home|house|property)\b|\b(home|house|property).{0,24}\bafford/i],
-    [INTENTS.MORTGAGE_PREPAY_VS_INVEST, /\b(mortgage|home loan).{0,40}\b(prepay|overpay|extra payment).{0,40}\binvest|\binvest.{0,40}\b(mortgage|home loan).{0,40}\b(prepay|overpay)/i],
-    [INTENTS.RETIREMENT_READINESS, /\b(retire|retirement|retiring)\b/i],
-    [INTENTS.CREDIT_CARD_PAYOFF, /\b(credit card|card).{0,35}\b(pay off|payoff|repay|minimum payment|interest)\b|\b(pay off|payoff|repay).{0,35}\b(credit card|card)\b/i],
-    [INTENTS.DEBT_PAYOFF, /\b(pay off|payoff|clear|repay).{0,30}\b(debt|loan|credit card)\b/i],
-    [INTENTS.GOAL_FUNDING, /\b(goal|target).{0,30}\b(save|saving|fund|invest)|\bhow much.{0,20}\bsave.{0,20}\bfor\b/i],
-    [INTENTS.INFLATION_IMPACT, /\b(inflation|purchasing power|future cost)\b/i],
-    [INTENTS.LOAN_COST, /\b(loan|emi).{0,30}\b(cost|payment|interest|repay)/i],
-    [INTENTS.RECURRING_INVESTMENT, /\b(sip|recurring investment|monthly investment|regular investment)\b/i]
+    [INTENTS.CREDIT_CARD_PAYOFF, /\b(credit card|card balance|card debt|card).{0,35}\b(pay off|payoff|repay|minimum payment|interest|months|clear)\b|\b(pay off|payoff|repay|clear).{0,35}\b(credit card|card)\b/i],
+    [INTENTS.DEBT_PAYOFF, /\b(pay off|payoff|clear|repay|finish).{0,30}\b(debt|loan)\b|\b(debt|loan).{0,30}\b(extra payment|pay off|payoff|finish sooner|how long)\b/i],
+    [INTENTS.GOAL_FUNDING, /\b(goal|target).{0,30}\b(save|saving|fund|invest|monthly)|\bhow much.{0,20}\bsave.{0,20}\bfor\b/i],
+    [INTENTS.INFLATION_IMPACT, /\b(inflation|purchasing power|future cost|value of money)\b/i],
+    [INTENTS.LOAN_COST, /\b(loan|emi|monthly instalment|monthly installment).{0,30}\b(cost|payment|interest|repay|monthly|total)|\b(calculate|how much).{0,25}\b(emi|loan payment)\b/i],
+    [INTENTS.RECURRING_INVESTMENT, /\b(sip|systematic investment plan|recurring investment|monthly investment|regular investment)\b/i],
+    [INTENTS.RETIREMENT_READINESS, /\b(retire|retirement|retiring)\b/i]
   ]);
 
   function classifyText(text) {

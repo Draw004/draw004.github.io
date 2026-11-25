@@ -1,7 +1,7 @@
 # Carrowmont - development start here
 
 **Status:** mandatory first-read entry point for all developers, AI assistants and new ChatGPT accounts.
-**Last reviewed:** 24 November 2026.
+**Last reviewed:** 25 November 2026.
 **Project:** https://carrowmont.com | **GitHub owner:** Draw004.
 
 ## First five minutes in a new account
@@ -15,7 +15,7 @@
 ## Authority and conflicts
 
 - **Live code authority:** newest completed verified all-green Source Snapshot supplied by the owner + its root `SNAPSHOT-MANIFEST.txt` + checked source/current QA, with newer repository commits explicitly verified if they exist. Status/handbook files must not be used as a substitute for the manifest or forced to mirror its filename/hash.
-- **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data. Batch 12B, Batch 13A and **Quality Audit & Hardening Release 1** are complete. **Batch 13B is ON HOLD pending an explicit future owner decision**; production live-provider work must not start automatically. Batch 14 native-app work is traffic/usage-gated and deferred. Ask Carrowmont Expansion Wave 1 and Learn Hub 2.0 are complete/deployed. The active path is **Evergreen Learn Expansion Wave 1 + Automation Fallback Hardening 2 (controlled review) -> measurement / next-priority review**. Treat the six new guide URLs and catch-up-only workflow semantics as deployed only if their implementation/QA records are present in the newest completed all-green post-merge Source Snapshot; otherwise continue the Publisher/QA/Guard/snapshot cycle.
+- **Product intent authority:** current status + original master roadmap + approved, specific standards/acceptance ledgers. The original roadmap reserves **Batch 13** for optional connected financial data. Batch 12B, Batch 13A and **Quality Audit & Hardening Release 1** are complete. **Batch 13B is ON HOLD pending an explicit future owner decision**; production live-provider work must not start automatically. Batch 14 native-app work is traffic/usage-gated and deferred. Ask Carrowmont Expansion Wave 1, Learn Hub 2.0, Evergreen Learn Expansion Wave 1 and Automation Fallback Hardening 2 are complete/deployed. The active path is **Ask Carrowmont Intent Alignment & Coverage Wave 2 (controlled review) -> measurement / next-priority review**. Treat Wave 2 as deployed only if its shared-ownership implementation, click-through QA and handoff tests are present in the newest completed all-green post-merge Source Snapshot; otherwise continue the Publisher/QA/Guard/snapshot cycle.
 - **Technical control authority:** deterministic engines, source-contract, automated standards gate, Publisher and Multi-Repo Guard; no assistant can override them by assertion.
 - **Historical documents:** informative, not necessarily current. When an old architecture/handbook passage conflicts with current source or a later approved amendment, identify the conflict and use the latest confirmed rule. Ask about genuine unresolved product decisions rather than inventing an answer.
 

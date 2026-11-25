@@ -187,6 +187,83 @@
     return { normalized: normalized, tokens: tokens, topics: topics, intents: intents };
   }
 
+  function ownerDefinitions(aliasLibrary) {
+    var defs = aliasLibrary && Array.isArray(aliasLibrary.owners) ? aliasLibrary.owners : [];
+    return defs.filter(function (def) { return def && typeof def.id === 'string' && def.id.trim() && Array.isArray(def.patterns); });
+  }
+
+  function resolveActionMode(aliasLibrary, query, options) {
+    var analysis = analyzeQuery(aliasLibrary, query, options || {});
+    var normalized = analysis.normalized;
+    if (normalized === 'how much emergency fund') return 'explain';
+    var ids = new Set(analysis.intents.map(function (item) { return item.id; }));
+    var explicitPersonalCalculate = /^(?:what is|whats|check|calculate) my\b/.test(normalized) || /^what is (?:the )?(?:monthly payment|loan payment|repayment amount)\b/.test(normalized) || /\b(?:calculate|check) my\b/.test(normalized);
+    var explicitPersonalProblem = /^(?:why do i (?:run|keep running|have no|end up|go broke)|why am i (?:short|broke|out)|why does my (?:salary|money|cash)|why is my (?:salary|money|cash))\b/.test(normalized) || /\b(?:salary|money|cash|paycheck|paycheque)\b.{0,40}\b(?:finish|finishes|finished|ends|gone|run out|runs out|short|last|does not last|doesnt last)\b/.test(normalized) || /\b(?:run out|runs out|running out|short)\b.{0,35}\b(?:payday|salary|paycheck|paycheque|month end|end of month)\b/.test(normalized) || /\brunning out\b.{0,20}\b(?:money|cash)\b.{0,25}\b(?:month|monthly|every month)\b/.test(normalized) || /\bexpenses\b.{0,25}\b(?:more|higher)\b.{0,20}\bincome\b/.test(normalized) || /\bliving (?:paycheck to paycheck|paycheque to paycheque)\b/.test(normalized);
+    var explicitExplain = !explicitPersonalCalculate && !explicitPersonalProblem && (/^(?:what is|what are|what does|why\b|how does|how do|explain\b|define\b|meaning\b)/.test(normalized) || /\b(?:meaning|definition|explained|understand)\b/.test(normalized));
+    var explicitResearch = ids.has('research') || /\b(?:research|report|study|monitor|data report|research report)\b/.test(normalized);
+    var explicitCompare = ids.has('compare') || /\b(?:vs|versus|which is better|which first|compare)\b/.test(normalized) || /\bshould i\b.{0,35}\bor\b/.test(normalized) || /\bor\b.{0,35}\b(?:invest|investing|sip|mutual fund|save|savings)\b/.test(normalized);
+    var explicitCalculate = explicitPersonalCalculate || ids.has('calculate') || ids.has('payoff') || ids.has('afford') || /\b(?:calculate|calculator|how much|how long|how fast|when will|can i afford|total interest|monthly instalment|monthly installment|future value)\b/.test(normalized) || /\b(?:pay off|payoff|repay|clear|finish)\b.{0,45}\b(?:debt|loan|card|balance)\b/.test(normalized) || /\b(?:debt|loan|card|balance)\b.{0,45}\b(?:faster|sooner|months)\b/.test(normalized) || /\b(?:enough|cover)\b.{0,45}\b(?:emergency fund|emergency savings|rainy day fund|cash buffer|no income)\b/.test(normalized) || /\b(?:emergency fund|emergency savings|rainy day fund|cash buffer)\b.{0,35}\b(?:enough|cover|months)\b/.test(normalized) || /\b(?:one more|another|new)\b.{0,20}\b(?:emi|loan payment|debt payment)\b/.test(normalized) || /\b(?:invest|investment|save)\b.{0,25}\b(?:every month|monthly)\b.{0,35}\b(?:years|grow|worth|become)\b/.test(normalized) || /\bwhat will\b.{0,30}\b(?:worth|cost)\b/.test(normalized);
+    var explicitPlan = ids.has('plan') || explicitPersonalProblem || /\b(?:what should i|how should i|should i|on track|need to save|need for retirement|monthly contribution|target|prioriti[sz]e|where do i start|which money goal|financial priorities|money priorities|fund a .{0,25} goal|saving needed for .{0,25} goal)\b/.test(normalized) || /\b(?:lump sum|bonus|inheritance|windfall|extra cash|one time money|unexpected cash)\b.{0,55}\b(?:use|allocate|split|what to do|where to put|debt|emergency|goal|invest)\b/.test(normalized) || /\b(?:what to do with|how to split|split|allocate|how to use)\b.{0,35}\b(?:lump sum|bonus|inheritance|windfall|extra cash|one time money|unexpected cash)\b/.test(normalized);
+    if (explicitResearch) return 'research';
+    if (explicitExplain) return 'explain';
+    if (explicitCompare) return 'compare';
+    if (explicitCalculate) return 'calculate';
+    if (explicitPlan) return 'plan';
+    if (!explicitPersonalProblem && (explicitExplain || ids.has('explain'))) return 'explain';
+    return 'general';
+  }
+
+  function resolveOwnership(aliasLibrary, query, options) {
+    var opts = options || {};
+    var region = opts.region || 'OTHER';
+    var normalized = normalize(query);
+    if (!normalized) return null;
+    var best = null;
+    ownerDefinitions(aliasLibrary).forEach(function (owner) {
+      var matched = 0;
+      var firstPattern = null;
+      list(owner.patterns).forEach(function (source) {
+        try {
+          var pattern = new RegExp(source, 'i');
+          if (pattern.test(normalized)) { matched += 1; if (!firstPattern) firstPattern = source; }
+        } catch (_) {}
+      });
+      var localePatterns = owner.locale_patterns && typeof owner.locale_patterns === 'object'
+        ? list(owner.locale_patterns[region]).concat(region === 'OTHER' ? [] : list(owner.locale_patterns.OTHER))
+        : [];
+      localePatterns.forEach(function (source) {
+        try { if (new RegExp(source, 'i').test(normalized)) { matched += 1; if (!firstPattern) firstPattern = source; } } catch (_) {}
+      });
+      if (!matched) return;
+      var score = (Number(owner.priority) || 0) * 100 + matched;
+      if (!best || score > best.score) best = { owner: owner, score: score, matchedRule: firstPattern };
+    });
+    if (!best) return null;
+    var rawMode = resolveActionMode(aliasLibrary, query, { region: region });
+    var modeSource = rawMode === 'general' ? 'default' : 'explicit';
+    var mode = rawMode === 'general' ? (best.owner.default_mode || 'general') : rawMode;
+    var resolvedOwner = Object.assign({}, best.owner, { score: best.score, matchedRule: best.matchedRule, mode: mode, modeSource: modeSource, normalized: normalized });
+    if (best.owner.id === 'retirement-readiness' && normalized === 'starting retirement planning' && mode !== 'explain') {
+      resolvedOwner.search_guided_url = '/retirement-calculator/planner.html';
+      resolvedOwner.tool_url = '/retirement-calculator/planner.html';
+    }
+    return resolvedOwner;
+  }
+
+  function ownershipScoreBoost(entry, ownership) {
+    if (!entry || !ownership) return 0;
+    var url = String(entry.url || '');
+    var mode = ownership.mode || ownership.default_mode || 'general';
+    if (mode === 'research') return 0;
+    if (mode === 'compare' && !['mortgage-prepay-vs-invest','debt-vs-savings'].includes(ownership.id)) return 0;
+    var preferred = mode === 'explain' ? (ownership.search_explain_url || ownership.guide_url || ownership.tool_url) : (ownership.search_guided_url || ownership.tool_url || ownership.guide_url);
+    var preferredBoost = ownership.modeSource === 'default' ? 450 : 10000;
+    if (preferred && url === preferred) return preferredBoost;
+    if (ownership.tool_url && url === ownership.tool_url) return mode === 'explain' ? 250 : 1000;
+    if (ownership.guide_url && url === ownership.guide_url) return mode === 'explain' ? 1500 : 500;
+    return 0;
+  }
+
   function inferEntrySignals(entry, aliasLibrary, options) {
     var opts = options || {};
     var region = opts.region || 'OTHER';
@@ -424,6 +501,12 @@
     }
     var correction = correctQuery(entries, aliasLibrary, query, { region: region });
     if (correction.corrected) add(correction.query, 'correction', '', 2000);
+    var owner = resolveOwnership(aliasLibrary, correction.corrected ? correction.query : query, { region: region });
+    if (owner) {
+      var preferredUrl = owner.mode === 'explain' ? (owner.search_explain_url || owner.guide_url || owner.tool_url) : (owner.search_guided_url || owner.tool_url || owner.guide_url);
+      var preferredEntry = list(entries).find(function (entry) { return preferredUrl && entry.url === preferredUrl; });
+      if (preferredEntry) add(preferredEntry.title, 'page', preferredEntry.url, 1900);
+    }
     list(entries).forEach(function (entry) {
       var title = String(entry.title || '').trim(); var titleNorm = normalize(title);
       var priority = Math.max(0, Math.min(100, Number(entry.priority) || 0));
@@ -443,10 +526,13 @@
     var limit = Math.max(1, Math.min(30, Number(opts.limit) || 12));
     var region = opts.region || 'OTHER';
     var queryAnalysis = analyzeQuery(aliasLibrary, query, { region: region });
+    var ownership = resolveOwnership(aliasLibrary, query, { region: region });
     var expandedPhrases = matchingAliasExpansions(aliasLibrary, queryAnalysis.normalized, region);
     return list(entries)
       .map(function (entry) {
-        return { entry: entry, score: scoreEntry(entry, aliasLibrary, query, { region: region, queryAnalysis: queryAnalysis, expandedPhrases: expandedPhrases }) };
+        var baseScore = scoreEntry(entry, aliasLibrary, query, { region: region, queryAnalysis: queryAnalysis, expandedPhrases: expandedPhrases });
+        var ownerBoost = ownershipScoreBoost(entry, ownership);
+        return { entry: entry, score: baseScore + ownerBoost };
       })
       .filter(function (item) { return item.score > 0; })
       .sort(function (a, b) {
@@ -524,7 +610,7 @@
   }
 
   return Object.freeze({
-    version: '1.2.0',
+    version: '1.3.0',
     normalize: normalize,
     tokenize: tokenize,
     editDistance: editDistance,
@@ -532,6 +618,8 @@
     suggest: suggest,
     analyzeQuery: analyzeQuery,
     inferEntrySignals: inferEntrySignals,
+    resolveActionMode: resolveActionMode,
+    resolveOwnership: resolveOwnership,
     scoreEntry: scoreEntry,
     search: search,
     searchForAsk: searchForAsk

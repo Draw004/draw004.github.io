@@ -63,7 +63,24 @@
     retirementPostReturnPct:'Enter an annual return assumption during retirement. This is not a forecast.',
     retirementBufferPct:'Enter an extra safety buffer percentage you want added to the modeled retirement need.',
     goalReturnPct:'Enter an annual return assumption for the goal. This is not a forecast.',
-    goalInflationPct:'Enter an annual inflation assumption for how the goal cost may change.'
+    goalInflationPct:'Enter an annual inflation assumption for how the goal cost may change.',
+    retirementWithdrawalBalance:'Enter the retirement savings or portfolio balance you want to test.',
+    retirementWithdrawalMonthly:'Enter the starting monthly amount you expect to withdraw.',
+    retirementWithdrawalReturnPct:'Enter an annual return assumption during retirement. This is an illustration, not a forecast.',
+    retirementWithdrawalGrowthPct:'Enter the annual percentage increase in withdrawals you want to model for inflation or spending growth.',
+    retirementWithdrawalStartAge:'Enter the age when withdrawals would start. This is used only to show a modeled depletion age.',
+    retirementWithdrawalTargetYears:'Enter how many years you want the retirement balance to support withdrawals.',
+    retirementWithdrawalTargetEndingBalance:'Enter the amount you would like to leave at the end of the selected period. Use 0 if no ending balance is required.',
+    loanPrincipal:'Enter the amount you plan to borrow.',
+    loanRatePct:'Enter the annual loan interest rate. If a lender quotes APR, APR means Annual Percentage Rate and may also include certain fees.',
+    loanTermMonths:'Enter the full repayment term in months, for example 60 for five years.',
+    inflationAmount:'Enter the amount or expense stated in today’s money.',
+    inflationYears:'Enter how many years into the future you want to test.',
+    inflationRatePct:'Enter an annual inflation assumption. This is an illustration, not a forecast.',
+    recurringCurrentSavings:'Enter any amount already invested for this projection. Use 0 if you are starting from zero.',
+    recurringContribution:'Enter the amount you plan to invest each month.',
+    recurringYears:'Enter how many years you plan to keep contributing.',
+    recurringReturnPct:'Enter an annual investment-return assumption. This is an illustration, not a forecast.'
   };
   const FIELD_META={
     essentialExpenses:{why:'This sets the unavoidable monthly cost Carrowmont uses to measure emergency runway and cash resilience.'},
@@ -127,7 +144,24 @@
     retirementPostReturnPct:{why:'The retirement-period return assumption affects how long the modeled portfolio may last. It is not a forecast.',unknownDefault:4,unknownLabel:'I don’t know — use a 4% illustration'},
     retirementBufferPct:{why:'A safety buffer increases the modeled retirement need rather than assuming the central estimate will be exact.'},
     goalReturnPct:{why:'The return assumption affects how current savings and monthly contributions may grow. It is not a forecast.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'},
-    goalInflationPct:{why:'Inflation changes what a goal stated in today’s money may cost in the future. It is an assumption, not a forecast.'}
+    goalInflationPct:{why:'Inflation changes what a goal stated in today’s money may cost in the future. It is an assumption, not a forecast.'},
+    retirementWithdrawalBalance:{why:'The starting retirement balance is the pool from which the drawdown model funds withdrawals.'},
+    retirementWithdrawalMonthly:{why:'The starting monthly withdrawal determines how quickly the retirement balance is drawn down.'},
+    retirementWithdrawalReturnPct:{why:'The return assumption affects how the remaining balance may grow during retirement. It is not a forecast.',unknownDefault:4,unknownLabel:'I don’t know — use a 4% illustration'},
+    retirementWithdrawalGrowthPct:{why:'Increasing withdrawals over time can model inflation-linked spending. It is an assumption, not a forecast.',unknownDefault:3,unknownLabel:'I don’t know — use a 3% illustration'},
+    retirementWithdrawalStartAge:{why:'The starting age lets Carrowmont translate a modeled runway into an approximate depletion age.'},
+    retirementWithdrawalTargetYears:{why:'This is the period you want the retirement balance to support withdrawals in the target-duration scenario.'},
+    retirementWithdrawalTargetEndingBalance:{why:'A target ending balance lets you model leaving money at the end rather than spending the portfolio down to zero.'},
+    loanPrincipal:{why:'The amount borrowed determines the balance on which the repayment schedule is calculated.'},
+    loanRatePct:{why:'The annual interest rate drives the modeled monthly payment and total interest. APR means Annual Percentage Rate and can differ from a simple interest rate when fees are included.'},
+    loanTermMonths:{why:'The repayment term changes both the monthly payment and the total number of interest-bearing months.'},
+    inflationAmount:{why:'This is the present-day amount Carrowmont projects forward under the inflation assumption.'},
+    inflationYears:{why:'The time horizon determines how many years inflation compounds in the illustration.'},
+    inflationRatePct:{why:'The annual inflation assumption determines the modeled future cost and purchasing-power change. It is not a forecast.'},
+    recurringCurrentSavings:{why:'Starting savings are included so the projection can show growth of both existing money and future monthly contributions.'},
+    recurringContribution:{why:'The monthly contribution is the recurring amount Carrowmont adds to the investment projection.'},
+    recurringYears:{why:'The investment period determines how long contributions and modeled compounding continue.'},
+    recurringReturnPct:{why:'The return assumption is used only for the growth illustration. It is not a forecast or guaranteed return.',unknownDefault:5,unknownLabel:'I don’t know — use a 5% illustration'}
   };
   const INTENT_COPY={
     'debt-vs-savings':'Pay debt or invest?',
@@ -137,28 +171,18 @@
     'cash-flow-shortfall':'Monthly cash-flow shortfall',
     'money-priorities':'Money priorities',
     'lump-sum-goal-tradeoffs':'Lump-sum priorities',
-    'borrowing-health':'Borrowing health',
+    'borrowing-health':'Borrowing health / DTI (Debt-to-Income ratio)',
     'home-affordability':'Home affordability',
     'debt-payoff':'Debt payoff',
     'credit-card-payoff':'Credit-card payoff',
     'retirement-readiness':'Retirement readiness',
-    'goal-funding':'Goal funding'
+    'retirement-withdrawal':'Retirement withdrawal / SWP (Systematic Withdrawal Plan) and drawdown',
+    'goal-funding':'Goal funding',
+    'loan-cost':'Loan / EMI (Equated Monthly Instalment) cost',
+    'inflation-impact':'Inflation impact',
+    'recurring-investment':'Recurring investment / SIP (Systematic Investment Plan) growth'
   };
-  const DETAIL_LINKS={
-    'debt-vs-savings':['Explore the detailed Debt Payoff tools','/budget-cash-flow-planner/#debt-payoff'],
-    'car-affordability':['Open the full Car Affordability tool','/car-affordability-auto-decision-calculator.html'],
-    'mortgage-prepay-vs-invest':['Open Mortgage Prepay vs Investing','/mortgage-payoff-calculator/prepayment-vs-investing.html'],
-    'emergency-runway':['Open the Emergency Fund & Runway tool','/emergency-fund-runway-calculator.html'],
-    'cash-flow-shortfall':['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/'],
-    'money-priorities':['Explore the detailed Carrowmont tools','/tools.html'],
-    'lump-sum-goal-tradeoffs':['Read the lump-sum decision guide','/what-to-do-with-a-lump-sum.html'],
-    'borrowing-health':['Open Borrowing Health','/debt-to-income-borrowing-health-calculator.html'],
-    'home-affordability':['Open Home Affordability','/home-affordability-calculator.html'],
-    'debt-payoff':['Open the Debt Payoff planner','/budget-cash-flow-planner/debt-payoff-calculator.html'],
-    'credit-card-payoff':['Open Credit Card Payoff','/budget-cash-flow-planner/credit-card-payoff-calculator.html'],
-    'retirement-readiness':['Open the Retirement Planner','/retirement-calculator/'],
-    'goal-funding':['Open the Goal Planner','/goal-planner/']
-  };
+  const RETIREMENT_WITHDRAWAL_HANDOFF_KEY='carrowmont_retirement_withdrawal_handoff_v1';
   const CAR_AFFORDABILITY_HANDOFF_KEY='carrowmont_handoff_car_affordability_v1';
   const SEARCH_HANDOFF_KEY='carrowmont_search_handoff_v1';
   const HOME_ASK_HANDOFF_KEY='carrowmont_home_ask_handoff_v1';
@@ -169,6 +193,25 @@
   const MONTH_KEY=/months|runway/i;
   const YEAR_KEY=/years/i;
   const AGE_KEY=/Age$/i;
+  const DISPLAY_LABELS=Object.freeze({
+    debtAprPct:'Debt APR (Annual Percentage Rate)',
+    highestDebtAprPct:'Highest debt APR (Annual Percentage Rate)',
+    cardAprPct:'Credit-card APR (Annual Percentage Rate)',
+    currentGrossDtiPct:'Current gross DTI (Debt-to-Income ratio)',
+    proposedGrossDtiPct:'Proposed gross DTI (Debt-to-Income ratio)',
+    stressedGrossDtiPct:'Stressed gross DTI (Debt-to-Income ratio)',
+    loanRatePct:'Annual loan interest rate',
+    retirementWithdrawalReturnPct:'Retirement annual return assumption',
+    retirementWithdrawalGrowthPct:'Annual withdrawal increase',
+    modeledRunwayMonths:'Modeled retirement-savings runway',
+    modeledDepletionAge:'Modeled depletion age',
+    firstYearWithdrawalRate:'First-year withdrawal rate',
+    modeledStartingMonthlyWithdrawal:'Modeled starting monthly withdrawal',
+    recurringContribution:'Monthly recurring investment',
+    recurringReturnPct:'Annual investment-return assumption',
+    interestSharePct:'Interest share of total repayment'
+  });
+  const DASHBOARD_SAVE_INTENTS=new Set(['debt-vs-savings','car-affordability','mortgage-prepay-vs-invest','emergency-runway','cash-flow-shortfall','money-priorities','lump-sum-goal-tradeoffs','borrowing-health','home-affordability','debt-payoff','credit-card-payoff','retirement-readiness','goal-funding']);
 
   let api=null;
   let lastResult=null;
@@ -189,7 +232,7 @@
     const n=Number(value); if(!Number.isFinite(n)) return '—';
     return new Intl.NumberFormat(window.CarrowmontLocale?.getLocale?.()||'en-US',{maximumFractionDigits:digits}).format(n);
   }
-  function labelize(key){ return String(key).replace(/([a-z])([A-Z])/g,'$1 $2').replace(/[_-]/g,' ').replace(/^./,c=>c.toUpperCase()); }
+  function labelize(key){ return DISPLAY_LABELS[key]||String(key).replace(/([a-z])([A-Z])/g,'$1 $2').replace(/[_-]/g,' ').replace(/^./,c=>c.toUpperCase()); }
   function formatValue(key,value){
     if(value===null||value===undefined||value==='') return '—';
     if(typeof value==='boolean') return value?'Yes':'No';
@@ -362,9 +405,18 @@
     box.hidden=false; requestAnimationFrame(()=>box.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'nearest'}));
   }
   let askPredictTimer=null;
+  let askActionSeq=0;
+  async function updateStartAction(query){
+    const button=$('askStartBtn');if(!button)return;
+    const text=String(query||'').trim();const seq=++askActionSeq;
+    if(text.length<2){button.innerHTML='Work through this <span class="button-arrow">&rarr;</span>';return;}
+    const owner=await ownershipFor(text);if(seq!==askActionSeq)return;
+    const label=owner?.mode==='explain'?'Find an explanation':owner?.ask_intent&&api?.SUPPORTED?.some(item=>item.intent===owner.ask_intent)?'Work through this':owner?'Open best match':'Work through this';
+    button.innerHTML=`${label} <span class="button-arrow">&rarr;</span>`;
+  }
   function hideAskPredictive(){const box=$('askPredictive');if(!box)return;box.hidden=true;box.innerHTML='';$('askQuestion')?.setAttribute('aria-expanded','false');}
-  function renderAskPredictive(items){const box=$('askPredictive');if(!box)return;box.innerHTML='';if(!items?.length){hideAskPredictive();return;}const label=document.createElement('span');label.className='ask-predictive-label';label.textContent='Suggestions';box.appendChild(label);items.slice(0,5).forEach(item=>{const button=document.createElement('button');button.type='button';button.className='ask-predictive-option';button.setAttribute('role','option');const text=document.createElement('span');text.textContent=item.text;button.appendChild(text);if(item.type==='correction'){const small=document.createElement('small');small.textContent='Spelling suggestion';button.appendChild(small);}button.addEventListener('click',()=>{$('askQuestion').value=item.text;hideAskPredictive();$('askQuestion').focus();});box.appendChild(button);});box.hidden=false;$('askQuestion')?.setAttribute('aria-expanded','true');}
-  function updateAskPredictive(){const input=$('askQuestion');const query=String(input?.value||'').trim();window.clearTimeout(askPredictTimer);if(query.length<2||!window.CarrowmontSearch?.suggest){hideAskPredictive();return;}askPredictTimer=window.setTimeout(()=>{window.CarrowmontSearch.suggest(query,{limit:5}).then(items=>{if(String(input.value||'').trim()===query)renderAskPredictive(items||[]);}).catch(()=>hideAskPredictive());},150);}
+  function renderAskPredictive(items){const box=$('askPredictive');if(!box)return;box.innerHTML='';if(!items?.length){hideAskPredictive();return;}const label=document.createElement('span');label.className='ask-predictive-label';label.textContent='Suggestions';box.appendChild(label);items.slice(0,5).forEach(item=>{const button=document.createElement('button');button.type='button';button.className='ask-predictive-option';button.setAttribute('role','option');const text=document.createElement('span');text.textContent=item.text;button.appendChild(text);if(item.type==='correction'){const small=document.createElement('small');small.textContent='Spelling suggestion';button.appendChild(small);}button.addEventListener('click',()=>{$('askQuestion').value=item.text;hideAskPredictive();$('askQuestion').focus();updateStartAction(item.text);});box.appendChild(button);});box.hidden=false;$('askQuestion')?.setAttribute('aria-expanded','true');}
+  function updateAskPredictive(){const input=$('askQuestion');const query=String(input?.value||'').trim();updateStartAction(query);window.clearTimeout(askPredictTimer);if(query.length<2||!window.CarrowmontSearch?.suggest){hideAskPredictive();return;}askPredictTimer=window.setTimeout(()=>{window.CarrowmontSearch.suggest(query,{limit:5}).then(items=>{if(String(input.value||'').trim()===query)renderAskPredictive(items||[]);}).catch(()=>hideAskPredictive());},150);}
   function showUnsupported(text){
     $('askStartMessage').textContent='';
     const query=String(text||'').trim();
@@ -379,13 +431,13 @@
     const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=true;
     const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
     state=newState();
-    $('askQuestion').value=''; hideAskPredictive(); $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();renderAccountContext();
+    $('askQuestion').value=''; updateStartAction(''); hideAskPredictive(); $('askStartMessage').textContent=''; $('askQuestionMessage').textContent=''; hideUnsupported();renderAccountContext();
     stage('start'); updateBackControls(); reveal($('askStart'),$('askQuestion'));
   }
   function requiredInputType(key){ return PCT_KEY.test(key)||MONEY_KEY.test(key)||MONTH_KEY.test(key)||YEAR_KEY.test(key)||AGE_KEY.test(key)||/termMonths/i.test(key)?'number':'text'; }
-  function fieldStep(key){ return /termMonths|remainingYears|goalYearsAway|investmentHorizonYears|homeLoanTermYears|cardTargetMonths/i.test(key)||AGE_KEY.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
+  function fieldStep(key){ return /termMonths|loanTermMonths|remainingYears|goalYearsAway|investmentHorizonYears|homeLoanTermYears|cardTargetMonths|retirementWithdrawalTargetYears|inflationYears|recurringYears/i.test(key)||AGE_KEY.test(key)?'1':PCT_KEY.test(key)?'0.01':'0.01'; }
   function fieldMinimum(key){
-    if(/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears|homeLoanTermYears)$/.test(key))return 1;
+    if(/^(?:emergencyTargetMonths|goalYearsAway|investmentHorizonYears|homeLoanTermYears|retirementWithdrawalTargetYears|inflationYears|recurringYears|loanTermMonths)$/.test(key))return 1;
     if(/^retirementCurrentAge$/.test(key))return 18;
     if(/^(?:retirementTargetAge|retirementPlanningAge)$/.test(key))return 19;
     return 0;
@@ -425,6 +477,22 @@
         else issue=positive('retirementMonthlyExpense','Enter current monthly household spending greater than 0 so Carrowmont can model retirement needs.')
           ||positive('retirementSpendingPct','Enter retirement spending greater than 0% of today’s spending.');
         break;
+      case 'retirement-withdrawal':
+        issue=positive('retirementWithdrawalBalance','Enter a retirement balance greater than 0 for the withdrawal journey.');
+        if(!issue&&facts.retirementWithdrawalMode==='support') issue=positive('retirementWithdrawalTargetYears','Enter a target period greater than 0 years.');
+        if(!issue&&facts.retirementWithdrawalMode!=='support') issue=positive('retirementWithdrawalMonthly','Enter a starting monthly withdrawal greater than 0.');
+        if(!issue&&known('retirementWithdrawalStartAge')&&(value('retirementWithdrawalStartAge')<18||value('retirementWithdrawalStartAge')>100)) issue={key:'retirementWithdrawalStartAge',message:'Enter a withdrawal starting age between 18 and 100.'};
+        break;
+      case 'loan-cost':
+        issue=positive('loanPrincipal','Enter a loan amount greater than 0.')||positive('loanTermMonths','Enter a loan term greater than 0 months.');
+        if(!issue&&known('loanTermMonths')&&value('loanTermMonths')>600) issue={key:'loanTermMonths',message:'Enter a loan term of 600 months or less.'};
+        break;
+      case 'inflation-impact':
+        issue=positive('inflationAmount','Enter an amount greater than 0 for the inflation illustration.')||positive('inflationYears','Enter a time horizon greater than 0 years.');
+        break;
+      case 'recurring-investment':
+        issue=positive('recurringContribution','Enter a monthly investment amount greater than 0.')||positive('recurringYears','Enter an investment period greater than 0 years.');
+        break;
       case 'goal-funding':
         issue=positive('goalTargetAmount','Enter a goal amount greater than 0 for the Goal Funding journey.');
         break;
@@ -433,10 +501,10 @@
     }
     return issue;
   }
-  async function startIntent(intent,text=''){
+  async function startIntent(intent,text='',seedFacts={}){
     hideUnsupported();
     if(!api?.SUPPORTED?.some(x=>x.intent===intent)){ showUnsupported(text); return; }
-    state=newState(intent,text);renderAccountContext();
+    state=newState(intent,text);Object.assign(state.facts,seedFacts||{});renderAccountContext();
     const contextApi=window.CarrowmontAskContext;
     if(contextApi?.hasPersistedAuthSession?.())$('askStartMessage').textContent='Checking My Carrowmont for relevant saved details…';
     await loadAccountContext();
@@ -464,16 +532,40 @@
       return null;
     }
   }
+  function retirementWithdrawalSeed(query){
+    const normalized=normalizeOwnershipText(query);
+    const support=/\b(?:how much|what amount|what monthly|monthly income|can i withdraw|could i withdraw|support|sustainable withdrawal|safe withdrawal)\b/.test(normalized);
+    return {retirementWithdrawalMode:support?'support':'runway'};
+  }
+  async function ownershipFor(text){
+    if(!window.CarrowmontSearch?.ownership)return null;
+    try{return await window.CarrowmontSearch.ownership(text,{mode:'ask'});}catch(_err){return null;}
+  }
   async function startFromText(){
     const input=$('askQuestion');const text=input.value.trim();
     hideUnsupported();hideAskPredictive();
     if(!text){ $('askStartMessage').textContent='Tell Carrowmont what you are trying to solve, or choose one of the suggested questions.'; return; }
     $('askStartMessage').textContent='';
-    let understood=text;let classified=api.classify(understood);
-    if(!classified?.intent&&window.CarrowmontSearch?.correct){
-      try{const correction=await window.CarrowmontSearch.correct(text);if(correction?.corrected&&correction.query){understood=correction.query;classified=api.classify(understood);if(classified?.intent){input.value=understood;$('askStartMessage').textContent=`I understood that as “${understood}”.`;}}}catch(_err){}
+    let understood=text;
+    let ownership=await ownershipFor(understood);
+    if(!ownership&&window.CarrowmontSearch?.correct){
+      try{
+        const correction=await window.CarrowmontSearch.correct(text);
+        if(correction?.corrected&&correction.query){
+          understood=correction.query;ownership=await ownershipFor(understood);input.value=understood;$('askStartMessage').textContent=`I understood that as “${understood}”.`;
+        }
+      }catch(_err){}
     }
-    if(!classified?.intent){ showUnsupported(understood); return; }
+    if(ownership){
+      if(ownership.mode==='explain'||ownership.mode==='research'){showUnsupported(understood);return;}
+      if(ownership.ask_intent&&api?.SUPPORTED?.some(item=>item.intent===ownership.ask_intent)){
+        const seed=ownership.ask_intent==='retirement-withdrawal'?retirementWithdrawalSeed(understood):{};
+        startIntent(ownership.ask_intent,understood,seed);return;
+      }
+      showUnsupported(understood);return;
+    }
+    const classified=api.classify(understood);
+    if(!classified?.intent){showUnsupported(understood);return;}
     startIntent(classified.intent,understood);
   }
   function updateProgress(){
@@ -648,6 +740,53 @@
     try{ sessionStorage.setItem(CAR_AFFORDABILITY_HANDOFF_KEY,JSON.stringify(payload)); return true; }catch(_err){ return false; }
   }
 
+  function writeRetirementWithdrawalHandoff(result){
+    try{
+      const nums=result?.importantNumbers||{};const locale=getLocale();
+      const payload={version:1,projectedCorpus:Number(nums.projectedRetirementCorpus)||0,requiredCorpus:Number(nums.requiredRetirementCorpus)||0,monthlyNeed:Number(nums.projectedMonthlySpendingAtRetirement)||0,retirementAge:Number(state.facts.retirementTargetAge)||0,postReturn:Number(state.facts.retirementPostReturnPct)||0,inflation:Number(state.facts.retirementInflationPct)||0,region:locale.country,currency:locale.currency,regionLabel:locale.country,createdAt:Date.now()};
+      sessionStorage.setItem(RETIREMENT_WITHDRAWAL_HANDOFF_KEY,JSON.stringify(payload));return true;
+    }catch(_err){return false;}
+  }
+  function practicalLinkForStage(stage){
+    const map={stabilize:['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/'],protect:['Open the Emergency Fund & Runway tool','/emergency-fund-runway-calculator.html'],reduce:['Open the Debt Payoff planner','/budget-cash-flow-planner/debt-payoff-calculator.html'],build:['Open the Goal Planner','/goal-planner/'],grow:['Open the SIP / Recurring Investment calculator','/sip-calculator/'],optimize:['Browse Carrowmont tools','/tools.html']};
+    return map[String(stage||'').toLowerCase()]||map.optimize;
+  }
+  function detailLinksFor(result){
+    const nums=result?.importantNumbers||{};const links=[];
+    switch(result.intent){
+      case 'debt-vs-savings':{
+        const runway=Number(nums.emergencyRunwayMonths);const diff=Number(nums.modeledPathDifference);
+        if(Number.isFinite(runway)&&runway<1)links.push(['Build emergency runway first','/emergency-fund-runway-calculator.html']);
+        else if(Number.isFinite(diff)&&diff>0)links.push(['Open the Debt Payoff planner','/budget-cash-flow-planner/debt-payoff-calculator.html']);
+        else if(Number.isFinite(diff)&&diff<0)links.push(['Open the SIP / Recurring Investment calculator','/sip-calculator/']);
+        else links.push(['Read Pay Off Debt or Invest?','/pay-off-debt-or-invest.html']);
+        break;
+      }
+      case 'car-affordability':links.push(['Open the full Car Affordability tool','/car-affordability-auto-decision-calculator.html']);break;
+      case 'mortgage-prepay-vs-invest':links.push(['Open Mortgage Prepay vs Investing','/mortgage-payoff-calculator/prepayment-vs-investing.html']);break;
+      case 'emergency-runway':links.push(['Open the Emergency Fund & Runway tool','/emergency-fund-runway-calculator.html']);break;
+      case 'cash-flow-shortfall':links.push(['Open the Budget & Cash Flow Planner','/budget-cash-flow-planner/']);break;
+      case 'money-priorities':{
+        const first=(result.priorityMoves||result.alternatives||[])[0];links.push(practicalLinkForStage(first?.stage));links.push(['Browse all Carrowmont tools','/tools.html']);break;
+      }
+      case 'lump-sum-goal-tradeoffs':{
+        const candidates=[['protect',Number(nums.priorityEmergencyAllocation)||0],['reduce',Number(nums.priorityDebtAllocation)||0],['build',Number(nums.priorityGoalAllocation)||0],['grow',Number(nums.priorityInvestmentAllocation)||0]].sort((a,b)=>b[1]-a[1]);
+        if(candidates[0][1]>0)links.push(practicalLinkForStage(candidates[0][0]));links.push(['Read the lump-sum decision guide','/what-to-do-with-a-lump-sum.html']);break;
+      }
+      case 'borrowing-health':links.push(['Open Borrowing Health','/debt-to-income-borrowing-health-calculator.html']);break;
+      case 'home-affordability':links.push(['Open Home Affordability','/home-affordability-calculator.html'],['Read home-buying costs beyond the deposit','/home-buying-upfront-costs.html']);break;
+      case 'debt-payoff':links.push(['Open the Debt Payoff planner','/budget-cash-flow-planner/debt-payoff-calculator.html']);break;
+      case 'credit-card-payoff':links.push(['Open Credit Card Payoff','/budget-cash-flow-planner/credit-card-payoff-calculator.html']);break;
+      case 'retirement-readiness':links.push(['Open the Retirement Planner','/retirement-calculator/'],['Test how long this retirement balance may last','/retirement-calculator/withdrawal-calculator.html','retirement-handoff']);break;
+      case 'retirement-withdrawal':links.push(['Open the SWP (Systematic Withdrawal Plan) / Drawdown Calculator','/retirement-calculator/withdrawal-calculator.html']);break;
+      case 'goal-funding':links.push(['Open the Goal Planner','/goal-planner/']);break;
+      case 'loan-cost':links.push(['Open the Loan / EMI (Equated Monthly Instalment) Calculator','/loan-calculator/']);break;
+      case 'inflation-impact':links.push(['Open the Inflation Calculator','/inflation-calculator/']);break;
+      case 'recurring-investment':links.push(['Open the SIP (Systematic Investment Plan) / Recurring Investment Calculator','/sip-calculator/']);break;
+      default:break;
+    }
+    return links;
+  }
   function renderResult(result){
     lastResult=result;
     stage('result');renderAccountContext();
@@ -736,16 +875,14 @@
       if(!Object.prototype.hasOwnProperty.call(state.facts,key)) continue;
       const li=document.createElement('li'); li.className='ask-estimated-assumption'; li.textContent=`${item.label}: ${formatValue(key,item.value)} — Illustrative default used because you selected “I don’t know”.`; assumptions.appendChild(li); $('askAssumptionsWrap').hidden=false;
     }
-    const wrap=$('askDetailLinkWrap'); wrap.innerHTML=''; const link=DETAIL_LINKS[result.intent];
-    if(link){
-      const a=document.createElement('a'); a.href=link[1]; a.textContent=`${link[0]} →`;
-      if(result.intent==='car-affordability'){
-        a.dataset.askCarAffordabilityHandoff='1';
-        a.addEventListener('click',()=>writeCarAffordabilityHandoff(result));
-      }
+    const wrap=$('askDetailLinkWrap'); wrap.innerHTML='';
+    detailLinksFor(result).forEach((link,index)=>{
+      const a=document.createElement('a');a.href=link[1];a.textContent=`${link[0]} →`;a.dataset.askDetailLink=String(index+1);
+      if(result.intent==='car-affordability'&&index===0){a.dataset.askCarAffordabilityHandoff='1';a.addEventListener('click',()=>writeCarAffordabilityHandoff(result));}
+      if(link[2]==='retirement-handoff'){a.dataset.askRetirementWithdrawalHandoff='1';a.addEventListener('click',()=>writeRetirementWithdrawalHandoff(result));}
       wrap.appendChild(a);
-    }
-    const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=false;
+    });
+    const dashWrap=$('askDashboardSaveWrap'); if(dashWrap) dashWrap.hidden=!DASHBOARD_SAVE_INTENTS.has(result.intent);
     const dashStatus=$('askDashboardSaveStatus'); if(dashStatus) dashStatus.textContent='';
     updateBackControls(); reveal($('askResultStage'),$('askResultSituation'));
   }

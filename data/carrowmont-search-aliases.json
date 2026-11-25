@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "reviewed_at": "2026-11-14",
+  "schema_version": 2,
+  "reviewed_at": "2026-11-25",
   "groups": [
     {
       "id": "regular-investing",
@@ -890,7 +890,13 @@
         "explained",
         "explain",
         "understand",
-        "guide"
+        "guide",
+        "how does",
+        "how do",
+        "how works",
+        "how does it work",
+        "what does",
+        "definition"
       ]
     },
     {
@@ -951,6 +957,309 @@
         "trends",
         "recent data"
       ]
+    }
+  ],
+  "owners": [
+    {
+      "id": "retirement-withdrawal",
+      "ask_intent": "retirement-withdrawal",
+      "priority": 120,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:swp|systematic withdrawal plan|drawdown|retirement withdrawal|portfolio withdrawal)\\b",
+        "\\b(?:retirement|pension|corpus)\\b.{0,55}\\b(?:last|run out|deplet|withdraw|drawdown|income)\\b",
+        "\\b(?:how long|how much)\\b.{0,45}\\b(?:retirement savings|retirement fund|retirement corpus|corpus)\\b",
+        "\\b(?:withdraw|withdrawal|drawdown|income)\\b.{0,45}\\b(?:retirement savings|retirement fund|retirement corpus|pension|corpus)\\b",
+        "\\b(?:retirement savings|retirement fund|retirement corpus|corpus)\\b.{0,45}\\b(?:support|provide|pay me|monthly withdrawal|monthly income)\\b",
+        "\\b(?:support|provide|withdraw|withdrawal)\\b.{0,45}\\bretirement\\b",
+        "\\bretirement\\b.{0,45}\\b(?:support|provide|withdrawal amount|monthly amount)\\b"
+      ],
+      "tool_url": "/retirement-calculator/withdrawal-calculator.html",
+      "guide_url": "/what-is-swp-systematic-withdrawal-plan.html",
+      "search_guided_url": "/retirement-calculator/withdrawal-calculator.html",
+      "search_explain_url": "/what-is-swp-systematic-withdrawal-plan.html"
+    },
+    {
+      "id": "mortgage-prepay-vs-invest",
+      "ask_intent": "mortgage-prepay-vs-invest",
+      "priority": 119,
+      "default_mode": "compare",
+      "patterns": [
+        "\\b(?:mortgage|home loan|housing loan)\\b.{0,55}\\b(?:prepay|prepayment|overpay|overpayment|extra payment|part payment|foreclos|early repay)\\b.{0,55}\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b",
+        "\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b.{0,55}\\b(?:mortgage|home loan|housing loan)\\b.{0,55}\\b(?:prepay|overpay|part payment|foreclos|early repay)\\b",
+        "\\b(?:prepay|prepayment|overpay|overpayment|part payment|foreclos|early repay)\\b.{0,35}\\b(?:mortgage|home loan|housing loan)\\b.{0,45}\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b",
+        "\\b(?:prepay|overpay|part payment|foreclos|early repay)\\b.{0,45}\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b.{0,35}\\b(?:mortgage|home loan|housing loan)\\b",
+        "\\b(?:mortgage|home loan|housing loan)\\b.{0,35}\\b(?:or|vs|versus)\\b.{0,20}\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b",
+        "\\b(?:mortgage|home loan|housing loan)\\b.{0,35}\\b(?:extra payment|extra payments|overpayment|overpay)\\b.{0,45}\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b",
+        "\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?)\\b.{0,45}\\b(?:mortgage|home loan|housing loan)\\b.{0,35}\\b(?:prepayment|overpayment|prepay|overpay)\\b"
+      ],
+      "tool_url": "/mortgage-payoff-calculator/prepayment-vs-investing.html",
+      "guide_url": "/mortgage-prepayment-vs-investing.html",
+      "search_guided_url": "/mortgage-payoff-calculator/prepayment-vs-investing.html",
+      "search_explain_url": "/mortgage-prepayment-vs-investing.html"
+    },
+    {
+      "id": "credit-card-payoff",
+      "ask_intent": "credit-card-payoff",
+      "priority": 115,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:credit card|card balance|card debt)\\b.{0,50}\\b(?:minimum payment|pay off|payoff|repay|clear|months|interest cost|how long)\\b",
+        "\\b(?:minimum payment|pay off|payoff|repay|clear)\\b.{0,40}\\b(?:credit card|card balance|card debt)\\b",
+        "\\b(?:credit card|card balance|card debt|credit card interest)\\b",
+        "\\b(?:credit card|card)\\b.{0,35}\\b(?:apr|interest rate|interest work|interest charge)\\b",
+        "\\b(?:pay|payment|clear|repay)\\b.{0,45}\\b(?:my )?(?:credit )?card\\b"
+      ],
+      "tool_url": "/budget-cash-flow-planner/credit-card-payoff-calculator.html",
+      "guide_url": "/how-credit-card-interest-works.html",
+      "search_guided_url": "/budget-cash-flow-planner/credit-card-payoff-calculator.html",
+      "search_explain_url": "/how-credit-card-interest-works.html"
+    },
+    {
+      "id": "emergency-runway",
+      "ask_intent": "emergency-runway",
+      "priority": 114,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:emergency fund|emergency savings|rainy day fund|financial runway)\\b",
+        "\\b(?:lose my job|job loss|without income|no income|salary stops|income stops)\\b.{0,55}\\b(?:last|survive|cover|savings|months)\\b",
+        "\\bhow long\\b.{0,40}\\b(?:emergency savings|emergency fund|savings)\\b",
+        "\\b(?:emergency cash|cash buffer|emergency reserve)\\b",
+        "\\b(?:enough|need)\\b.{0,25}\\b(?:emergency cash|emergency savings|emergency fund|cash buffer)\\b"
+      ],
+      "tool_url": "/emergency-fund-runway-calculator.html",
+      "guide_url": "/emergency-fund-how-much.html",
+      "search_guided_url": "/emergency-fund-runway-calculator.html",
+      "search_explain_url": "/emergency-fund-how-much.html"
+    },
+    {
+      "id": "home-affordability",
+      "ask_intent": "home-affordability",
+      "priority": 113,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:how much|what price|can i afford|afford)\\b.{0,45}\\b(?:home|house|property|mortgage|home loan)\\b",
+        "\\b(?:home|house|property)\\b.{0,40}\\bafford",
+        "\\b(?:home loan|mortgage|house|home|property)\\b.{0,45}\\b(?:fits|fit|support|budget|income|expensive|price)\\b",
+        "\\bhow expensive\\b.{0,20}\\b(?:home|house|property)\\b",
+        "\\b(?:mortgage|home|house|property)\\s+affordability\\b"
+      ],
+      "tool_url": "/home-affordability-calculator.html",
+      "guide_url": "/how-much-home-can-i-afford.html",
+      "search_guided_url": "/home-affordability-calculator.html",
+      "search_explain_url": "/how-much-home-can-i-afford.html"
+    },
+    {
+      "id": "car-affordability",
+      "ask_intent": "car-affordability",
+      "priority": 112,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:can i afford|afford|buy|finance)\\b.{0,35}\\b(?:car|vehicle|auto)\\b",
+        "\\b(?:car|vehicle|auto)\\b.{0,35}\\bafford",
+        "\\b(?:car|vehicle|auto)\\b.{0,40}\\b(?:budget|support|expensive|price|salary|income|too expensive)\\b"
+      ],
+      "tool_url": "/car-affordability-auto-decision-calculator.html",
+      "guide_url": null,
+      "search_guided_url": "/car-affordability-auto-decision-calculator.html",
+      "search_explain_url": "/car-affordability-auto-decision-calculator.html"
+    },
+    {
+      "id": "borrowing-health",
+      "ask_intent": "borrowing-health",
+      "priority": 111,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:dti|debt to income|debt burden|borrowing health)\\b",
+        "\\b(?:another|new|more)\\b.{0,25}\\b(?:emi|loan|payment|debt)\\b.{0,25}\\b(?:afford|take|handle|manage)\\b",
+        "\\b(?:can i|could i)\\b.{0,25}\\b(?:take|afford|handle)\\b.{0,25}\\b(?:another|new|more)\\b.{0,15}\\b(?:emi|loan|payment|debt)\\b",
+        "\\b(?:another|new|more)\\b.{0,35}\\b(?:emi|loan|payment|debt)\\b",
+        "\\b(?:existing emi|existing emis|existing loans|monthly debt payments)\\b",
+        "\\b(?:have|already have|existing)\\b.{0,25}\\b(?:loan|loans|emi|emis|debt)\\b.{0,30}\\b(?:borrow|take|afford|more|another)\\b",
+        "\\b(?:borrow|borrowing)\\b.{0,20}\\b(?:more|another|new)\\b"
+      ],
+      "tool_url": "/debt-to-income-borrowing-health-calculator.html",
+      "guide_url": null,
+      "search_guided_url": "/debt-to-income-borrowing-health-calculator.html",
+      "search_explain_url": "/debt-to-income-borrowing-health-calculator.html"
+    },
+    {
+      "id": "debt-vs-savings",
+      "ask_intent": "debt-vs-savings",
+      "priority": 116,
+      "default_mode": "compare",
+      "patterns": [
+        "\\b(?:debt|loan|credit card)\\b.{0,50}\\b(?:invest(?:ing|ment|ments)?|savings|save money|saving money)\\b",
+        "\\b(?:invest(?:ing|ment|ments)?|savings|save money|saving money)\\b.{0,50}\\b(?:debt|loan|credit card)\\b",
+        "\\b(?:debt|loan|credit card)\\b.{0,30}\\b(?:or|vs|versus|before)\\b.{0,30}\\b(?:invest(?:ing|ment|ments)?|sip|mutual fund(?:s)?|savings)\\b",
+        "\\b(?:extra money|extra cash)\\b.{0,35}\\b(?:debt|loan)\\b.{0,25}\\b(?:invest(?:ing|ment|ments)?|mutual fund(?:s)?|sip)\\b",
+        "\\b(?:debt|loan)\\b.{0,25}\\b(?:sip|mutual fund(?:s)?)\\b.{0,25}\\b(?:first|which)\\b",
+        "\\b(?:save|saving)\\b.{0,25}\\b(?:or|vs|versus|before)\\b.{0,25}\\b(?:pay down|pay off|repay|clear)\\b.{0,15}\\b(?:debt|loan)\\b"
+      ],
+      "tool_url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
+      "guide_url": "/pay-off-debt-or-invest.html",
+      "search_guided_url": "/pay-off-debt-or-invest.html",
+      "search_explain_url": "/pay-off-debt-or-invest.html"
+    },
+    {
+      "id": "debt-payoff",
+      "ask_intent": "debt-payoff",
+      "priority": 110,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:debt|loan)\\b.{0,45}\\b(?:pay off|payoff|repay|clear|finish|faster|extra payment|months|how long)\\b",
+        "\\b(?:pay off|payoff|repay|clear|finish)\\b.{0,35}\\b(?:debt|loan)\\b",
+        "\\b(?:debt payoff|debt repayment|paying off debt)\\b",
+        "\\b(?:debt|loan)\\b.{0,45}\\b(?:paid off|paid down|repayment|repay early|early repayment)\\b",
+        "\\b(?:extra debt payment|extra debt payments|extra loan payment|extra loan payments)\\b.{0,35}\\b(?:interest|save|payoff|faster)\\b"
+      ],
+      "tool_url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
+      "guide_url": "/debt-snowball-vs-avalanche.html",
+      "search_guided_url": "/budget-cash-flow-planner/debt-payoff-calculator.html",
+      "search_explain_url": "/debt-snowball-vs-avalanche.html"
+    },
+    {
+      "id": "loan-cost",
+      "ask_intent": "loan-cost",
+      "priority": 111,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:loan|emi|monthly instalment|monthly installment)\\b.{0,45}\\b(?:cost|payment|repayment|interest|monthly|total|calculate|how much)\\b",
+        "\\b(?:calculate|how much|what)\\b.{0,35}\\b(?:emi|loan payment|loan repayment)\\b",
+        "\\b(?:emi|equated monthly instalment|equated monthly installment|loan payment|loan repayment|loan cost)\\b",
+        "\\b(?:interest cost|total interest)\\b.{0,35}\\bloan\\b",
+        "\\b(?:monthly instalment|monthly installment)\\b.{0,30}\\bloan\\b",
+        "\\b(?:repay|repayment)\\b.{0,20}\\btotal\\b.{0,20}\\bloan\\b",
+        "\\b(?:monthly payment|monthly instalment|monthly installment)\\b.{0,35}\\b(?:loan|borrowing)\\b"
+      ],
+      "tool_url": "/loan-calculator/",
+      "guide_url": "/how-is-loan-emi-calculated.html",
+      "search_guided_url": "/loan-calculator/",
+      "search_explain_url": "/how-is-loan-emi-calculated.html"
+    },
+    {
+      "id": "inflation-impact",
+      "ask_intent": "inflation-impact",
+      "priority": 108,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:inflation|purchasing power|future cost|value of money)\\b",
+        "\\bwhat will\\b.{0,30}\\b(?:worth|cost)\\b.{0,30}\\b(?:years|future)\\b"
+      ],
+      "tool_url": "/inflation-calculator/",
+      "guide_url": "/inflation-value-of-money-over-time.html",
+      "search_guided_url": "/inflation-calculator/",
+      "search_explain_url": "/inflation-value-of-money-over-time.html"
+    },
+    {
+      "id": "recurring-investment",
+      "ask_intent": "recurring-investment",
+      "priority": 107,
+      "default_mode": "calculate",
+      "patterns": [
+        "\\b(?:sip|systematic investment plan|recurring investment|monthly investment|regular investment)\\b",
+        "\\b(?:invest|investment)\\b.{0,25}\\b(?:monthly|every month)\\b.{0,35}\\b(?:grow|become|worth|years|target)\\b",
+        "\\b(?:monthly|every month)\\b.{0,25}\\b(?:invest|investment|sip)\\b",
+        "\\b(?:monthly investing|monthly investment|monthly contribution)\\b.{0,35}\\b(?:grow|growth|projection|future|years)\\b"
+      ],
+      "tool_url": "/sip-calculator/",
+      "guide_url": "/how-much-should-i-invest-each-month.html",
+      "search_guided_url": "/sip-calculator/",
+      "search_explain_url": "/how-much-should-i-invest-each-month.html"
+    },
+    {
+      "id": "goal-funding",
+      "ask_intent": "goal-funding",
+      "priority": 106,
+      "default_mode": "plan",
+      "patterns": [
+        "\\b(?:goal|target)\\b.{0,45}\\b(?:save|saving|fund|monthly|reach|on track)\\b",
+        "\\bhow much\\b.{0,25}\\b(?:save|invest)\\b.{0,25}\\bfor\\b.{0,25}\\b(?:goal|wedding|education|college|house deposit|down payment|vacation|holiday)\\b",
+        "\\b(?:wedding|education|college|vacation|holiday|house deposit|down payment)\\b.{0,40}\\b(?:save|saving|fund|monthly|reach|target)\\b",
+        "\\b(?:on track|reach|fund)\\b.{0,35}\\b(?:goal|target)\\b",
+        "\\b(?:monthly saving|save monthly|monthly contribution)\\b.{0,35}\\b(?:goal|target|college|education|wedding|deposit|down payment)\\b",
+        "\\b(?:goal funding|funding a goal|goal based saving)\\b",
+        "\\b(?:down payment|house deposit)\\b.{0,25}\\bgoal\\b",
+        "\\bhow much\\b.{0,25}\\b(?:down payment|house deposit)\\b.{0,15}\\b(?:goal|target)\\b"
+      ],
+      "tool_url": "/goal-planner/",
+      "guide_url": "/savings-goal-planning.html",
+      "search_guided_url": "/goal-planner/",
+      "search_explain_url": "/savings-goal-planning.html"
+    },
+    {
+      "id": "retirement-readiness",
+      "ask_intent": "retirement-readiness",
+      "priority": 105,
+      "default_mode": "plan",
+      "patterns": [
+        "\\b(?:retire|retirement|retiring)\\b.{0,55}\\b(?:on track|enough|need|save|saving|corpus|required|target|age|ready)\\b",
+        "\\bhow much\\b.{0,35}\\b(?:need|save)\\b.{0,25}\\bretire",
+        "\\b(?:retirement planning|retirement readiness|retirement plan)\\b",
+        "\\b(?:retirement|retire|retiring)\\b",
+        "\\b(?:retirement money|retirement corpus|retirement savings)\\b.{0,35}\\b(?:need|enough|required|by age|at age)\\b"
+      ],
+      "tool_url": "/retirement-calculator/",
+      "guide_url": "/how-much-money-do-i-need-to-retire.html",
+      "search_guided_url": "/retirement-calculator/",
+      "search_explain_url": "/how-much-money-do-i-need-to-retire.html"
+    },
+    {
+      "id": "cash-flow-shortfall",
+      "ask_intent": "cash-flow-shortfall",
+      "priority": 104,
+      "default_mode": "plan",
+      "patterns": [
+        "\\b(?:run|running|ran)\\s+(?:out|short)\\b.{0,35}\\b(?:money|cash)\\b",
+        "\\b(?:before|until)\\s+(?:payday|pay day|salary|paycheck)\\b",
+        "\\b(?:salary|money|cash)\\b.{0,35}\\b(?:finish|finished|ends|gone)\\b.{0,25}\\b(?:month|payday)\\b",
+        "\\b(?:living paycheck to paycheck|living paycheque to paycheque)\\b",
+        "\\bexpenses\\b.{0,25}\\b(?:more|higher)\\b.{0,20}\\bincome\\b",
+        "\\b(?:money|cash|salary|paycheck|paycheque)\\b.{0,35}\\b(?:run out|runs out|running out|short|finish|finishes|finished|ends|gone)\\b",
+        "\\b(?:run out|runs out|running out|short)\\b.{0,30}\\b(?:before|until)\\b.{0,15}\\b(?:payday|pay day|salary|paycheck|paycheque|month end|end of month)\\b",
+        "\\b(?:month end|end of month)\\b.{0,30}\\b(?:short|money|cash|salary)\\b",
+        "\\b(?:salary|paycheck|paycheque)\\b.{0,40}\\b(?:last|does not last|doesnt last)\\b.{0,25}\\b(?:month|month end|payday)\\b",
+        "\\b(?:cash flow shortfall|monthly cash flow)\\b"
+      ],
+      "tool_url": "/budget-cash-flow-planner/",
+      "guide_url": "/cash-flow-vs-income.html",
+      "search_guided_url": "/budget-cash-flow-planner/",
+      "search_explain_url": "/cash-flow-vs-income.html"
+    },
+    {
+      "id": "money-priorities",
+      "ask_intent": "money-priorities",
+      "priority": 117,
+      "default_mode": "plan",
+      "patterns": [
+        "\\b(?:money|financial)\\s+priorit(?:y|ies)\\b",
+        "\\bwhat should i\\b.{0,25}\\b(?:do|focus on|prioriti[sz]e)\\b.{0,15}\\bfirst\\b",
+        "\\bmy next\\b.{0,15}\\b(?:financial|money)\\b.{0,10}\\bmove\\b",
+        "\\bwhere should i put my money\\b",
+        "\\b(?:prioritize|prioritise|prioritizing|prioritising)\\b.{0,40}\\b(?:money|finances|financial|saving|debt|investing|goals)\\b",
+        "\\b(?:many|multiple)\\b.{0,20}\\b(?:money|financial)\\b.{0,20}\\b(?:goals|priorities)\\b.{0,25}\\b(?:start|first|where)\\b",
+        "\\b(?:tackle|focus on)\\b.{0,20}\\bfirst\\b",
+        "\\bwhich\\b.{0,20}\\b(?:money|financial)\\b.{0,15}\\b(?:goal|priority)\\b.{0,20}\\b(?:first|come first)\\b"
+      ],
+      "tool_url": "/tools.html",
+      "guide_url": "/planning-life-goals.html",
+      "search_guided_url": "/ask-carrowmont.html",
+      "search_explain_url": "/planning-life-goals.html"
+    },
+    {
+      "id": "lump-sum-goal-tradeoffs",
+      "ask_intent": "lump-sum-goal-tradeoffs",
+      "priority": 118,
+      "default_mode": "plan",
+      "patterns": [
+        "\\b(?:lump sum|bonus|inheritance|windfall|financial windfall|extra cash|unexpected cash|one time money|one off money)\\b.{0,55}\\b(?:what should i do|what to do|allocate|allocation|split|debt|emergency|goal|invest)\\b",
+        "\\b(?:what should i do with|what to do with|how should i use|how to use|where should i put)\\b.{0,35}\\b(?:lump sum|bonus|inheritance|windfall|financial windfall|extra cash|unexpected cash|one time money|one off money)\\b",
+        "\\b(?:split|allocate|allocation)\\b.{0,30}\\b(?:lump sum|windfall|financial windfall|bonus|inheritance|unexpected cash|one time money|one off money)\\b"
+      ],
+      "tool_url": "/tools.html",
+      "guide_url": "/what-to-do-with-a-lump-sum.html",
+      "search_guided_url": "/what-to-do-with-a-lump-sum.html",
+      "search_explain_url": "/what-to-do-with-a-lump-sum.html"
     }
   ]
 }
