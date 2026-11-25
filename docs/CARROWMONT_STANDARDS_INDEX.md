@@ -1,6 +1,6 @@
 # Carrowmont standards index - one entry, existing authorities
 
-**Version 1.6 | reviewed 24 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
+**Version 1.7 | reviewed 25 November 2026.** This is a directory and precedence guide; it does NOT duplicate or replace the approved detailed standards below.
 
 | Topic | Canonical source | Enforced through |
 |---|---|---|
@@ -8,6 +8,7 @@
 | Current progress, roadmap status and known debt | `CARROWMONT_CURRENT_PROJECT_STATUS.md` + `CARROWMONT_FRE_MASTER_ROADMAP_STATUS.md` + original Financial Resolution Engine Master Roadmap | Snapshot verification, acceptance ledger, peer review |
 | Architecture, deterministic engines, privacy boundaries | `CARROWMONT_ARCHITECTURE.md` + current Batch 0-13A implementation/ledger documents | Existing core source contracts and browser fixtures |
 | Header, locale pill, button geometry, mobile responsiveness | `CARROWMONT_SHARED_UI_STANDARD.md` (global header amendment v1.2) + `CARROWMONT_GLOBAL_HEADER_AUDIT.md` | `carrowmont-qa/scripts/development-standards-gate.mjs` + browser QA |
+| Plain-language financial abbreviations and first-use jargon expansion | `CARROWMONT_SHARED_UI_STANDARD.md` | Modified-surface source/browser QA; expand APR, DTI, SIP, SWP, EMI and similar terms at first meaningful use or provide obvious helper text |
 | Installed-app vs normal browser, initial route, install journey | `CARROWMONT_APP_WEBSITE_BEHAVIOR_STANDARD.md` | App/startup/install contracts and browser QA |
 | Saved-plan transparency, trust and assumptions | `CARROWMONT_TRUST_STANDARD.md` | Trust/plan/report source contracts and browser QA |
 | Connected financial data readiness | `CARROWMONT_FRE_BATCH13A_CONNECTED_DATA_READINESS.md` + `CARROWMONT_FRE_BATCH13A_ACCEPTANCE_LEDGER.md` | Batch 13A source contract + signed-in sandbox browser QA; production feature flag remains off and Batch 13B is ON HOLD |
@@ -19,6 +20,7 @@
 | Publisher, Guard, PRs and source snapshots | `CARROWMONT_GITHUB_AUTOMATION_HANDOVER.md` + live `.github/workflows/` files | Staged Publisher source/browser validation, Guard |
 | Quality hardening and site-integrity regression protection | `CARROWMONT_QUALITY_HARDENING1_IMPLEMENTATION.md` | `carrowmont-qa/scripts/quality-hardening1-contract.mjs` + central source contract |
 | Ask Carrowmont controlled decision expansion | `CARROWMONT_ASK_EXPANSION_WAVE1_IMPLEMENTATION.md` + `CARROWMONT_ASK_EXPANSION_WAVE1_ACCEPTANCE_LEDGER.md` | Wave 1 source/browser/account contracts + central source contract; deterministic engines remain numeric authority |
+| Ask/Search shared intent ownership, click-through consistency and contextual handoffs | `CARROWMONT_ASK_INTENT_ALIGNMENT_WAVE2_IMPLEMENTATION.md` + `CARROWMONT_ASK_INTENT_E2E_AUDIT_2026-11-25.md` | `ask-intent-alignment-wave2-contract.mjs`, 204-query corpus, targeted browser click/handoff QA and central source contract |
 | Release-credential expiry and security handover | `CARROWMONT_CREDENTIAL_EXPIRY_GUARD.md` + `../ops/credential-expiry-registry.json` | Scheduled independent-token issue alerts and central QA date/issue-policy contracts |
 | Historical UI exceptions | `CARROWMONT_UI_LEGACY_EXCEPTIONS.json` | Standards gate (known debt cannot be reintroduced) |
 

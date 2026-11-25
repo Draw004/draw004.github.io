@@ -85,7 +85,7 @@ function sourceFileForPublicUrl(publicUrl) {
 const source = readJson(sourcePath);
 const aliases = readJson(aliasesPath);
 if (source.schema_version !== 1 || !Array.isArray(source.entries)) fail('page inventory must use schema_version 1 with an entries array');
-if (aliases.schema_version !== 1 || !Array.isArray(aliases.groups)) fail('alias library must use schema_version 1 with a groups array');
+if (![1, 2].includes(aliases.schema_version) || !Array.isArray(aliases.groups)) fail('alias library must use supported schema_version 1 or 2 with a groups array');
 
 const semanticIds = {};
 for (const key of ['topics', 'intents']) {
@@ -113,6 +113,35 @@ vm.createContext(sandbox);
 vm.runInContext(searchCoreSource, sandbox, { filename: 'search-core.js' });
 const searchCore = sandbox.CarrowmontSearchCore;
 if (!searchCore || typeof searchCore.inferEntrySignals !== 'function') fail('search-core must expose inferEntrySignals for taxonomy validation');
+
+if (aliases.schema_version === 2) {
+  if (!Array.isArray(aliases.owners) || !aliases.owners.length) fail('alias schema_version 2 must define a non-empty owners array');
+  const ownerIds = new Set();
+  const ownerModes = new Set(['explain', 'calculate', 'plan', 'compare', 'research', 'general']);
+  for (const owner of aliases.owners) {
+    const id = cleanText(owner.id, 'id', 'intent owner');
+    if (ownerIds.has(id)) fail(`duplicate intent owner id: ${id}`);
+    ownerIds.add(id);
+    cleanText(owner.ask_intent, 'ask_intent', `intent owner ${id}`);
+    const priority = Number(owner.priority);
+    if (!Number.isFinite(priority)) fail(`intent owner ${id}: priority must be numeric`);
+    const mode = cleanText(owner.default_mode, 'default_mode', `intent owner ${id}`);
+    if (!ownerModes.has(mode)) fail(`intent owner ${id}: unsupported default_mode ${mode}`);
+    const patterns = cleanStringArray(owner.patterns, 'patterns', `intent owner ${id}`);
+    if (!patterns.length) fail(`intent owner ${id}: must contain at least one reviewed pattern`);
+    for (const pattern of patterns) {
+      try { new RegExp(pattern, 'i'); } catch (error) { fail(`intent owner ${id}: invalid pattern ${pattern} (${error.message})`); }
+    }
+    for (const key of ['tool_url', 'search_guided_url', 'search_explain_url']) {
+      const url = cleanText(owner[key], key, `intent owner ${id}`);
+      if (!/^\/(?:[^?#]*)$/.test(url)) fail(`intent owner ${id}: ${key} must be a same-origin path without query or fragment`);
+    }
+    if (owner.guide_url != null) {
+      const guideUrl = cleanText(owner.guide_url, 'guide_url', `intent owner ${id}`);
+      if (!/^\/(?:[^?#]*)$/.test(guideUrl)) fail(`intent owner ${id}: guide_url must be a same-origin path without query or fragment`);
+    }
+  }
+}
 
 const aliasIds = new Set();
 for (const group of aliases.groups) {

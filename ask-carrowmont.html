@@ -97,11 +97,12 @@
               </div>
             </section>
             <section class="ask-decision-group" aria-labelledby="ask-group-debt">
-              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">2</span><div><h3 id="ask-group-debt">Debt decisions</h3><p>Compare payoff speed, card payments and debt-versus-investing trade-offs.</p></div></div>
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">2</span><div><h3 id="ask-group-debt">Debt decisions</h3><p>Compare payoff speed, card payments and the real cost of borrowing.</p></div></div>
               <div class="ask-decision-group-options">
                 <button type="button" data-ask-intent="debt-payoff">How fast can I pay off this debt?</button>
                 <button type="button" data-ask-intent="credit-card-payoff">How should I pay off this credit card?</button>
                 <button type="button" data-ask-intent="debt-vs-savings">Pay debt or invest?</button>
+                <button type="button" data-ask-intent="loan-cost">What will this loan or EMI (Equated Monthly Instalment) cost?</button>
               </div>
             </section>
             <section class="ask-decision-group" aria-labelledby="ask-group-goals">
@@ -110,11 +111,19 @@
                 <button type="button" data-ask-intent="car-affordability">Can I afford this car?</button>
                 <button type="button" data-ask-intent="home-affordability">How much home can I afford?</button>
                 <button type="button" data-ask-intent="goal-funding">Am I on track for this goal?</button>
+              </div>
+            </section>
+            <section class="ask-decision-group" aria-labelledby="ask-group-growth">
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">4</span><div><h3 id="ask-group-growth">Growth &amp; retirement</h3><p>Model long-term saving, retirement income and the effect of inflation.</p></div></div>
+              <div class="ask-decision-group-options">
                 <button type="button" data-ask-intent="retirement-readiness">Am I on track for retirement?</button>
+                <button type="button" data-ask-intent="retirement-withdrawal">How long could my retirement savings last?</button>
+                <button type="button" data-ask-intent="recurring-investment">How could a monthly investment grow?</button>
+                <button type="button" data-ask-intent="inflation-impact">What will inflation do to this amount?</button>
               </div>
             </section>
             <section class="ask-decision-group" aria-labelledby="ask-group-tradeoffs">
-              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">4</span><div><h3 id="ask-group-tradeoffs">Trade-offs</h3><p>Prioritize competing uses of the same money.</p></div></div>
+              <div class="ask-decision-group-heading"><span class="ask-decision-group-step">5</span><div><h3 id="ask-group-tradeoffs">Trade-offs</h3><p>Prioritize competing uses of the same money.</p></div></div>
               <div class="ask-decision-group-options">
                 <button type="button" data-ask-intent="money-priorities">What should I focus on first?</button>
                 <button type="button" data-ask-intent="lump-sum-goal-tradeoffs">How should I use a lump sum?</button>
@@ -221,6 +230,9 @@
 <script defer src="/compound-interest-calculator/core.js"></script>
 <script defer src="/goal-planner/core.js"></script>
 <script defer src="/retirement-calculator/core.js"></script>
+<script defer src="/retirement-calculator/withdrawal-core.js"></script>
+<script defer src="/inflation-calculator/core.js"></script>
+<script defer src="/sip-calculator/core.js"></script>
 <script defer src="/home-affordability-calculator-core.js"></script>
 <script defer src="/mortgage-payoff-calculator/core.js"></script>
 <script defer src="/mortgage-payoff-calculator/prepayment-vs-investing-core.js"></script>
@@ -229,14 +241,14 @@
 <script defer src="/assets/fre/intent-router.js"></script>
 <script defer src="/assets/fre/money-priorities.js"></script>
 <script defer src="/assets/fre/lump-sum-goal-tradeoffs.js?v=20261121-fre12b4"></script>
-<script defer src="/assets/fre/ask-carrowmont-mvp.js?v=20261124-askwave1"></script>
-<script defer src="/assets/fre/dashboard-store.js?v=20261124-askwave1"></script>
+<script defer src="/assets/fre/ask-carrowmont-mvp.js?v=20261125-askwave2"></script>
+<script defer src="/assets/fre/dashboard-store.js?v=20261125-askwave2"></script>
 <script defer src="/assets/account/supabase-config.js?v=20261111-fre7b"></script>
 <script defer src="/assets/account/carrowmont-account.js?v=20261111-fre7b"></script>
-<script defer src="/assets/account/carrowmont-ask-context.js?v=20261124-askwave1"></script>
-<script defer src="/search-core.js?v=20261118-fre12"></script>
-  <script defer src="/search.js?v=20261123-searchux2"></script>
-  <script defer src="/assets/ask/ask-carrowmont.js?v=20261124-askwave1"></script>
+<script defer src="/assets/account/carrowmont-ask-context.js?v=20261125-askwave2"></script>
+<script defer src="/search-core.js?v=20261125-askwave2"></script>
+  <script defer src="/search.js?v=20261125-askwave2"></script>
+  <script defer src="/assets/ask/ask-carrowmont.js?v=20261125-askwave2"></script>
 <script defer src="/site.js?v=20261119-startup-nav-perf1"></script>
 </body>
 </html>
