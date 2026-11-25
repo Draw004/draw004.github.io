@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-11-20",
+  "reviewed_at": "2026-11-25",
   "entries": [
     {
       "url": "/",
@@ -3545,6 +3545,197 @@
         "zero sum budget"
       ],
       "priority": 65
+    },
+    {
+      "url": "/emergency-fund-vs-paying-off-debt.html",
+      "title": "Emergency Fund vs Paying Off Debt: What Comes First?",
+      "description": "Compare emergency savings with debt repayment using cash-shock risk, interest cost, debt type, liquidity and a practical starter-buffer framework.",
+      "type": "guide",
+      "category": "Financial Planning",
+      "keywords": [
+        "emergency fund vs debt",
+        "pay debt or save",
+        "emergency savings",
+        "debt repayment priority",
+        "starter emergency fund",
+        "cash buffer",
+        "high interest debt"
+      ],
+      "aliases": [
+        "should i save or pay off debt first",
+        "emergency fund or debt first",
+        "pay debt vs build emergency fund",
+        "debt versus savings"
+      ],
+      "priority": 88,
+      "topics": [
+        "financial-planning",
+        "emergency-savings",
+        "debt"
+      ],
+      "intents": [
+        "compare",
+        "plan",
+        "start"
+      ]
+    },
+    {
+      "url": "/risk-tolerance-vs-risk-capacity.html",
+      "title": "Risk Tolerance vs Risk Capacity",
+      "description": "Separate how much investment risk you feel comfortable taking from how much loss your finances can absorb, then connect both to time horizon and goals.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "risk tolerance",
+        "risk capacity",
+        "capacity for loss",
+        "investment risk profile",
+        "time horizon",
+        "ability to take risk",
+        "willingness to take risk"
+      ],
+      "aliases": [
+        "risk tolerance vs capacity",
+        "how much investment risk can i take",
+        "capacity for loss",
+        "investment risk appetite"
+      ],
+      "priority": 84,
+      "topics": [
+        "investing",
+        "financial-planning"
+      ],
+      "intents": [
+        "explain",
+        "plan"
+      ]
+    },
+    {
+      "url": "/portfolio-rebalancing-explained.html",
+      "title": "Portfolio Rebalancing Explained",
+      "description": "Learn why investment portfolios drift, how rebalancing restores a target allocation, and how calendar, threshold, contribution and tax considerations change the decision.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "portfolio rebalancing",
+        "rebalance portfolio",
+        "asset allocation drift",
+        "calendar rebalancing",
+        "threshold rebalancing",
+        "portfolio maintenance"
+      ],
+      "aliases": [
+        "when should i rebalance",
+        "how to rebalance investments",
+        "rebalancing investments",
+        "portfolio drift"
+      ],
+      "priority": 83,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "plan"
+      ]
+    },
+    {
+      "url": "/investment-fees-and-expense-ratios.html",
+      "title": "Investment Fees and Expense Ratios Explained",
+      "description": "Understand transaction fees, ongoing fund costs, expense ratios and advisory charges, and see how small annual costs can compound into a large long-term return gap.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "investment fees",
+        "expense ratio",
+        "fund fees",
+        "ETF fees",
+        "mutual fund fees",
+        "advisory fees",
+        "platform fees",
+        "investment costs"
+      ],
+      "aliases": [
+        "what is expense ratio",
+        "how fees affect returns",
+        "investment charges",
+        "fund expense ratio"
+      ],
+      "priority": 85,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "compare"
+      ]
+    },
+    {
+      "url": "/market-timing-vs-staying-invested.html",
+      "title": "Market Timing vs Staying Invested",
+      "description": "Understand the difference between changing a plan because your goals changed and trying to predict short-term market moves, including cash needs, volatility and regular investing.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "market timing",
+        "stay invested",
+        "market fall",
+        "market volatility",
+        "time in market",
+        "dollar cost averaging",
+        "invest during market crash",
+        "selling in a downturn"
+      ],
+      "aliases": [
+        "should i sell when market falls",
+        "should i stop investing during market crash",
+        "timing the market",
+        "stay invested during volatility"
+      ],
+      "priority": 84,
+      "topics": [
+        "investing",
+        "recurring-investing"
+      ],
+      "intents": [
+        "explain",
+        "compare",
+        "timing"
+      ]
+    },
+    {
+      "url": "/home-buying-upfront-costs.html",
+      "title": "Home Buying Upfront Costs Beyond the Deposit",
+      "description": "Plan for a home purchase beyond the deposit by separating closing or registration costs, lender fees, inspections, moving, repairs, reserves and ongoing ownership costs.",
+      "type": "guide",
+      "category": "Home & Mortgage",
+      "keywords": [
+        "home buying costs",
+        "closing costs",
+        "stamp duty",
+        "registration fees",
+        "home deposit",
+        "down payment",
+        "mortgage fees",
+        "buying a house costs",
+        "cash to buy home"
+      ],
+      "aliases": [
+        "how much cash do i need to buy a home",
+        "costs beyond down payment",
+        "costs beyond deposit",
+        "home purchase fees"
+      ],
+      "priority": 86,
+      "topics": [
+        "home-mortgage",
+        "saving-goals"
+      ],
+      "intents": [
+        "plan",
+        "explain",
+        "afford"
+      ]
     }
   ]
 }

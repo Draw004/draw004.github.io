@@ -248,3 +248,10 @@ Repair 2 therefore keeps the product assertion intact but separates the two conc
 
 The exact Publisher artifact for the Repair 1 rerun reported **895 passed / 1 failed**; deterministic source QA remained **1,603 PASS / 0 FAIL** and the Development Standards Gate remained **PASS**. After the Repair 2 QA-contract correction, the full deterministic source suite remains **1,603 PASS / 0 FAIL** and the manifest-aware Development Standards Gate remains **PASS** with 39 pre-existing tracked legacy issues and no new standards debt. Repair 2 must rerun Publisher Playwright green before merge.
 
+
+
+## Deployment closeout - 25 November 2026
+
+The newest owner-supplied all-green post-merge Source Snapshot contains the Learn Hub 2.0 implementation, Repair 2 QA contract and browser-compatible deep-link/mobile fixes. Independent post-merge source verification reached **1,603 PASS / 0 FAIL**. Under the repository snapshot-authority rule, **Learn Hub 2.0 is complete/deployed**.
+
+The 102-guide count in the implementation narrative is the deployed pre-Evergreen baseline. The next controlled release, Evergreen Learn Expansion Wave 1, proposes six new public Learn URLs and therefore must update the crawlable-source count to 108 only if that release completes Publisher -> merge -> QA -> Guard -> fresh all-green Source Snapshot.

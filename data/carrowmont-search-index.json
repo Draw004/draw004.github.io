@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-20",
+  "generated_at": "2026-11-25",
   "entries": [
     {
       "url": "/",
@@ -1547,12 +1547,12 @@
       "aliases": [
         "can i retire earlier",
         "early retirement costs",
-        "planning to retire early",
-        "retirement age scenario",
-        "what changes if i retire early",
+        "early retirement risks",
         "healthcare before pension age",
         "one more year syndrome retirement",
-        "early retirement risks"
+        "planning to retire early",
+        "retirement age scenario",
+        "what changes if i retire early"
       ],
       "priority": 84,
       "topics": [
@@ -1776,6 +1776,75 @@
       ]
     },
     {
+      "url": "/emergency-fund-vs-paying-off-debt.html",
+      "title": "Emergency Fund vs Paying Off Debt: What Comes First?",
+      "description": "Compare emergency savings with debt repayment using cash-shock risk, interest cost, debt type, liquidity and a practical starter-buffer framework.",
+      "type": "guide",
+      "category": "Financial Planning",
+      "keywords": [
+        "cash buffer",
+        "debt repayment priority",
+        "emergency fund vs debt",
+        "emergency savings",
+        "high interest debt",
+        "pay debt or save",
+        "starter emergency fund"
+      ],
+      "aliases": [
+        "debt versus savings",
+        "emergency fund or debt first",
+        "pay debt vs build emergency fund",
+        "should i save or pay off debt first"
+      ],
+      "priority": 88,
+      "topics": [
+        "debt",
+        "emergency-savings",
+        "financial-planning"
+      ],
+      "intents": [
+        "compare",
+        "plan",
+        "start"
+      ],
+      "semantic_topics": [
+        {
+          "id": "debt",
+          "strength": 6
+        },
+        {
+          "id": "emergency-savings",
+          "strength": 6
+        },
+        {
+          "id": "financial-planning",
+          "strength": 6
+        },
+        {
+          "id": "stocks",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 6
+        },
+        {
+          "id": "payoff",
+          "strength": 5
+        }
+      ]
+    },
+    {
       "url": "/emergency-savings.html",
       "title": "Emergency Savings and Liquidity",
       "description": "Learn why emergency savings should be stable and accessible, how layered liquidity works, when to use it and how to rebuild it.",
@@ -1975,17 +2044,17 @@
         "See how spending and saving may shape your path to financial independence."
       ],
       "aliases": [
+        "barista fire calculator",
+        "can i retire at 45",
+        "can i retire at 50",
+        "early retirement calculator",
         "fi planner",
         "financial freedom calculator",
         "financial independence calculator",
         "fire calculator",
-        "can i retire at 50",
-        "can i retire at 45",
-        "when can i retire early",
-        "early retirement calculator",
         "one more year retirement",
         "part time income retirement",
-        "barista fire calculator"
+        "when can i retire early"
       ],
       "priority": 100,
       "topics": [
@@ -2000,6 +2069,10 @@
         {
           "id": "financial-independence",
           "strength": 6
+        },
+        {
+          "id": "retirement",
+          "strength": 5
         },
         {
           "id": "stocks",
@@ -2028,11 +2101,11 @@
           "strength": 6
         },
         {
-          "id": "compare",
-          "strength": 1
+          "id": "timing",
+          "strength": 5
         },
         {
-          "id": "timing",
+          "id": "compare",
           "strength": 1
         }
       ]
@@ -2443,6 +2516,72 @@
         {
           "id": "plan",
           "strength": 6
+        }
+      ]
+    },
+    {
+      "url": "/home-buying-upfront-costs.html",
+      "title": "Home Buying Upfront Costs Beyond the Deposit",
+      "description": "Plan for a home purchase beyond the deposit by separating closing or registration costs, lender fees, inspections, moving, repairs, reserves and ongoing ownership costs.",
+      "type": "guide",
+      "category": "Home & Mortgage",
+      "keywords": [
+        "buying a house costs",
+        "cash to buy home",
+        "closing costs",
+        "down payment",
+        "home buying costs",
+        "home deposit",
+        "mortgage fees",
+        "registration fees",
+        "stamp duty"
+      ],
+      "aliases": [
+        "costs beyond deposit",
+        "costs beyond down payment",
+        "home purchase fees",
+        "how much cash do i need to buy a home"
+      ],
+      "priority": 86,
+      "topics": [
+        "home-mortgage",
+        "saving-goals"
+      ],
+      "intents": [
+        "afford",
+        "explain",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "home-mortgage",
+          "strength": 6
+        },
+        {
+          "id": "saving-goals",
+          "strength": 6
+        },
+        {
+          "id": "property",
+          "strength": 5
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "afford",
+          "strength": 6
+        },
+        {
+          "id": "explain",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "calculate",
+          "strength": 5
         }
       ]
     },
@@ -3297,6 +3436,57 @@
       ]
     },
     {
+      "url": "/investment-fees-and-expense-ratios.html",
+      "title": "Investment Fees and Expense Ratios Explained",
+      "description": "Understand transaction fees, ongoing fund costs, expense ratios and advisory charges, and see how small annual costs can compound into a large long-term return gap.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "advisory fees",
+        "ETF fees",
+        "expense ratio",
+        "fund fees",
+        "investment costs",
+        "investment fees",
+        "mutual fund fees",
+        "platform fees"
+      ],
+      "aliases": [
+        "fund expense ratio",
+        "how fees affect returns",
+        "investment charges",
+        "what is expense ratio"
+      ],
+      "priority": 85,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "compare",
+        "explain"
+      ],
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 6
+        },
+        {
+          "id": "compound-growth",
+          "strength": 1
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 6
+        },
+        {
+          "id": "explain",
+          "strength": 6
+        }
+      ]
+    },
+    {
       "url": "/investment-time-to-target.html",
       "title": "How Long to Reach an Investment Target",
       "description": "See how target size, current savings, monthly contributions and return assumptions change the modeled time to an investment goal.",
@@ -3702,6 +3892,75 @@
         {
           "id": "timing",
           "strength": 5
+        }
+      ]
+    },
+    {
+      "url": "/market-timing-vs-staying-invested.html",
+      "title": "Market Timing vs Staying Invested",
+      "description": "Understand the difference between changing a plan because your goals changed and trying to predict short-term market moves, including cash needs, volatility and regular investing.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "dollar cost averaging",
+        "invest during market crash",
+        "market fall",
+        "market timing",
+        "market volatility",
+        "selling in a downturn",
+        "stay invested",
+        "time in market"
+      ],
+      "aliases": [
+        "should i sell when market falls",
+        "should i stop investing during market crash",
+        "stay invested during volatility",
+        "timing the market"
+      ],
+      "priority": 84,
+      "topics": [
+        "investing",
+        "recurring-investing"
+      ],
+      "intents": [
+        "compare",
+        "explain",
+        "timing"
+      ],
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 6
+        },
+        {
+          "id": "recurring-investing",
+          "strength": 6
+        },
+        {
+          "id": "markets-macro",
+          "strength": 5
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "compare",
+          "strength": 6
+        },
+        {
+          "id": "explain",
+          "strength": 6
+        },
+        {
+          "id": "timing",
+          "strength": 6
+        },
+        {
+          "id": "start",
+          "strength": 5
+        },
+        {
+          "id": "plan",
+          "strength": 1
         }
       ]
     },
@@ -4818,6 +5077,55 @@
       ]
     },
     {
+      "url": "/portfolio-rebalancing-explained.html",
+      "title": "Portfolio Rebalancing Explained",
+      "description": "Learn why investment portfolios drift, how rebalancing restores a target allocation, and how calendar, threshold, contribution and tax considerations change the decision.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "asset allocation drift",
+        "calendar rebalancing",
+        "portfolio maintenance",
+        "portfolio rebalancing",
+        "rebalance portfolio",
+        "threshold rebalancing"
+      ],
+      "aliases": [
+        "how to rebalance investments",
+        "portfolio drift",
+        "rebalancing investments",
+        "when should i rebalance"
+      ],
+      "priority": 83,
+      "topics": [
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "investing",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "timing",
+          "strength": 5
+        }
+      ]
+    },
+    {
       "url": "/privacy.html",
       "title": "Privacy Policy",
       "description": "Learn how Carrowmont handles calculator information, local browser storage, country and currency preferences, email communications and future services.",
@@ -5763,6 +6071,65 @@
         {
           "id": "explain",
           "strength": 1
+        }
+      ]
+    },
+    {
+      "url": "/risk-tolerance-vs-risk-capacity.html",
+      "title": "Risk Tolerance vs Risk Capacity",
+      "description": "Separate how much investment risk you feel comfortable taking from how much loss your finances can absorb, then connect both to time horizon and goals.",
+      "type": "guide",
+      "category": "Investing",
+      "keywords": [
+        "ability to take risk",
+        "capacity for loss",
+        "investment risk profile",
+        "risk capacity",
+        "risk tolerance",
+        "time horizon",
+        "willingness to take risk"
+      ],
+      "aliases": [
+        "capacity for loss",
+        "how much investment risk can i take",
+        "investment risk appetite",
+        "risk tolerance vs capacity"
+      ],
+      "priority": 84,
+      "topics": [
+        "financial-planning",
+        "investing"
+      ],
+      "intents": [
+        "explain",
+        "plan"
+      ],
+      "semantic_topics": [
+        {
+          "id": "financial-planning",
+          "strength": 6
+        },
+        {
+          "id": "investing",
+          "strength": 6
+        }
+      ],
+      "semantic_intents": [
+        {
+          "id": "explain",
+          "strength": 6
+        },
+        {
+          "id": "plan",
+          "strength": 6
+        },
+        {
+          "id": "calculate",
+          "strength": 5
+        },
+        {
+          "id": "compare",
+          "strength": 5
         }
       ]
     },
