@@ -34,7 +34,7 @@ window.addEventListener('beforeinstallprompt', function(event){
   event.preventDefault(); window.__cmPwaEarlyInstallPrompt = event;
 });</script>
   <link rel="stylesheet" href="/carrowmont.css?v=20261119-startup-nav-perf1">
-  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261122-fre12b6">
+  <link rel="stylesheet" href="/assets/dashboard/my-carrowmont.css?v=20261122-fre12b6&amp;b=20261127-mycm-attention1">
   <link rel="stylesheet" href="/assets/connected/connected-data.css?v=20261123-fre13a">
 </head>
 <body data-cm-page="my-carrowmont">
@@ -195,7 +195,7 @@ window.addEventListener('beforeinstallprompt', function(event){
         <section class="mycm-progress" id="mycmProgressSection" hidden>
           <div class="mycm-progress-section-head">
             <div><span class="mycm-kicker">Your progress</span><h2>See what changed in your saved plans</h2><p>Progress uses plans you chose to keep and stays separate from unsaved what-if calculations.</p></div>
-            <strong class="mycm-progress-summary" id="mycmProgressSummary">Your saved plans are ready to review.</strong>
+            <div class="mycm-progress-status-panel"><strong class="mycm-progress-summary" id="mycmProgressSummary">Your saved plans are ready to review.</strong><div id="mycmProgressTargets" class="mycm-progress-targets" aria-label="Saved plans needing attention or review" hidden></div></div>
           </div>
           <div class="mycm-progress-list" id="mycmProgressList"></div>
         </section>
@@ -239,14 +239,14 @@ window.addEventListener('beforeinstallprompt', function(event){
 <script defer src="/assets/account/carrowmont-account.js?v=20261115-fre8k"></script>
 <script defer src="/assets/account/carrowmont-progress.js?v=20261113-fre8d"></script>
 <script defer src="/assets/report/carrowmont-pdf-export.js?v=20261116-fre9b"></script>
-<script defer src="/assets/account/carrowmont-financial-plan.js?v=20261122-fre12b6"></script>
+<script defer src="/assets/account/carrowmont-financial-plan.js?v=20261122-fre12b6&amp;b=20261127-mycm-attention1"></script>
 <script defer src="/assets/account/carrowmont-plan-report.js?v=20261116-fre9b"></script>
 <script defer src="/assets/dashboard/my-carrowmont.js?v=20261116-fre9b"></script>
 <script defer src="/assets/connected/connected-data-config.js?v=20261123-fre13a"></script>
 <script defer src="/assets/connected/connected-data-core.js?v=20261123-fre13a"></script>
 <script defer src="/assets/connected/connected-data-sandbox.js?v=20261123-fre13a"></script>
 <script defer src="/assets/connected/connected-data-ui.js?v=20261123-fre13a"></script>
-<script defer src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b"></script>
+<script defer src="/assets/account/my-carrowmont-account.js?v=20261116-fre9b&amp;b=20261127-mycm-attention1"></script>
 <script>(function(){
   var root = document.documentElement;
   // Desktop starts showing the actual page immediately, with only a tiny non-blocking brand fade.
