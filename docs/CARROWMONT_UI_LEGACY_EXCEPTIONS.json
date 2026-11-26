@@ -164,11 +164,6 @@
       "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
     },
     {
-      "repository": "retirement-calculator",
-      "path": "withdrawal-calculator.html",
-      "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
-    },
-    {
       "repository": "sip-calculator",
       "path": "index.html",
       "reason": "Legacy tool-specific top navigation; migrate to canonical global shell when this page is modified."
