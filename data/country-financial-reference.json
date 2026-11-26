@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-11-17",
-  "reviewedAt": "2026-11-17",
+  "version": "2026-11-26",
+  "reviewedAt": "2026-11-26",
   "scope": "Verified official monetary-policy reference points for selected Carrowmont markets. Country profiles may share a monetary-policy jurisdiction (for example France and Italy use the ECB/Euro Area reference). These references never replace user-entered calculator assumptions or lender/product-specific rates.",
   "markets": {
     "IN": {
@@ -139,9 +139,9 @@
       "monetaryPolicyJurisdiction": "KR",
       "policyRate": {
         "label": "Bank of Korea Base Rate",
-        "display": "3.00%",
-        "valuePct": 3.0,
-        "asOf": "2026-08-27",
+        "display": "3.25%",
+        "valuePct": 3.25,
+        "asOf": "2026-11-26",
         "sourceTitle": "Bank of Korea - Base Rate history",
         "sourceUrl": "https://www.bok.or.kr/portal/singl/baseRate/list.do?menuNo=200656"
       },
