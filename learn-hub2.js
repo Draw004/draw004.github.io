@@ -155,7 +155,12 @@
     var legacy={
       'home-loans':'home',
       'loans-and-debt':'loans',
-      'market-mechanics':'macro'
+      'market-mechanics':'macro',
+      // Older indexed editorial/homepage links must still select a useful Learn topic.
+      'assets-investing':'assets',
+      'financial-goals':'goals',
+      'retirement-expenses':'retirement',
+      'compounding':'foundation'
     };
     if(legacy[raw])raw=legacy[raw];
     else if(raw.indexOf('topic-')===0)raw=raw.slice(6);
