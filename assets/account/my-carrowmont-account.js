@@ -21,6 +21,7 @@
   const progressSection=$('mycmProgressSection');
   const progressSummary=$('mycmProgressSummary');
   const progressList=$('mycmProgressList');
+  const progressTargets=$('mycmProgressTargets');
   let cloudProfile=null;
   let currentUser=null;
   let saveTimer=null;
@@ -67,11 +68,23 @@
     const change=item.correction||'Changing a saved input, assumption, target or review date can change this status. Open the plan to test a new scenario.';
     return `<details class="mycm-progress-trust"><summary>Carrowmont Trust Check</summary><div class="mycm-progress-trust-body"><div class="mycm-progress-trust-row"><strong>Why am I seeing this?</strong>${esc(item.headline)}${item.target?` ${esc(item.target)}`:''}</div><div class="mycm-progress-trust-row"><strong>Values you entered / numbers used</strong>${esc(enteredText)}</div><div class="mycm-progress-trust-row"><strong>Assumptions</strong>${esc(assumptionText)}</div><div class="mycm-progress-trust-row"><strong>Freshness</strong>${esc(item.freshness?.label||'Review date is not available.')}</div><div class="mycm-progress-trust-row"><strong>What could change this?</strong>${esc(change)}</div><div class="mycm-progress-trust-row"><strong>Save boundary</strong>This insight uses the saved plan only. An unsaved calculator what-if does not change My Carrowmont until you explicitly save or update it.</div></div></details>`;
   }
+  function progressCardId(journey){return `mycm-progress-${String(journey||'').replace(/[^a-z0-9-]/gi,'-')}`;}
+  function focusProgressCard(journey){
+    const card=document.getElementById(progressCardId(journey));
+    if(!card||!progressList?.contains(card))return;
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    card.focus({preventScroll:true});
+    card.classList.remove('mycm-progress-card-focus');void card.offsetWidth;
+    card.classList.add('mycm-progress-card-focus');
+    window.setTimeout(()=>card.classList.remove('mycm-progress-card-focus'),reduce?700:1800);
+  }
   function renderProgress(rows){
     if(!progressSection||!progressList||!progressSummary||!currentUser||!Progress){if(progressSection)progressSection.hidden=true;return;}
     const currency=window.CarrowmontLocale?.getCurrency?.()||cloudProfile?.profile?.locale?.currency||'USD';
     const items=Progress.evaluateAll?Progress.evaluateAll(rows,currency):Progress.analyze(rows,currency);
     progressList.innerHTML='';
+    if(progressTargets){progressTargets.replaceChildren();progressTargets.hidden=true;}
     if(!items.length){progressSection.hidden=true;return;}
     progressSection.hidden=false;
     const attention=items.filter(item=>item.tone==='bad').length;
@@ -85,10 +98,30 @@
       const showTrendStatus=trend?.status&&trend.status!==item.status;
       const row=(rows||[]).find(candidate=>candidate?.journey===item.journey);
       const card=document.createElement('article');card.className='mycm-progress-card';
+      card.id=progressCardId(item.journey);card.tabIndex=-1;card.dataset.progressTone=progressTone(item.tone);
       card.innerHTML=`<div class="mycm-progress-head"><strong>${esc(item.label)}</strong><span class="mycm-progress-status" data-tone="${progressTone(item.tone)}">${esc(item.status)}</span></div><div class="mycm-progress-meta"><span>${esc(item.freshness?.label||'')}</span>${item.target?`<span>${esc(item.target)}</span>`:''}</div><h3>${esc(item.headline)}</h3><div class="mycm-progress-change"><div><strong>Since last save</strong>${showTrendStatus?`<span class="mycm-progress-trend" data-tone="${progressTone(trend.tone)}">${esc(trend.status)}</span>`:''}</div><p>${esc(trend.headline||'')}</p><small>${esc(trend.detail||'')}</small></div>${item.correction?`<div class="mycm-progress-next"><strong>What could help</strong><span>${esc(item.correction)}</span></div>`:''}${progressTrustHtml(row,item)}<div class="mycm-progress-actions"><button type="button" class="mycm-button" data-progress-open="${esc(item.journey)}">Open plan</button></div>`;
       card.querySelector('[data-progress-open]').addEventListener('click',()=>{if(row&&Account.stageOpenPlan(row))location.href=planRoute(row);});
       progressList.appendChild(card);
     });
+    if(progressTargets){
+      const flagged=items.filter(item=>item.tone==='bad'||item.tone==='warn');
+      if(flagged.length){
+        const label=document.createElement('span');label.className='mycm-progress-targets-label';label.textContent='Jump to a plan that needs attention or review';
+        progressTargets.appendChild(label);
+        flagged.forEach(item=>{
+          const button=document.createElement('button');button.type='button';button.className='mycm-progress-target';
+          button.dataset.tone=progressTone(item.tone);
+          button.setAttribute('aria-label',`Review ${item.label}: ${item.status}`);
+          const name=document.createElement('strong');name.textContent=item.label;
+          const status=document.createElement('small');status.textContent=`${item.status} — open plan`;
+          const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent='↓';
+          button.append(name,status,arrow);
+          button.addEventListener('click',()=>focusProgressCard(item.journey));
+          progressTargets.appendChild(button);
+        });
+        progressTargets.hidden=false;
+      }
+    }
   }
   function planRoute(row){const path=row?.scenario?.toolPath;return typeof path==='string'&&path.startsWith('/')?path:'/my-carrowmont.html';}
   async function renderSavedPlans(){
