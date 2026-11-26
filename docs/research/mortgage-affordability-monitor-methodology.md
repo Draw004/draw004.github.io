@@ -46,3 +46,12 @@ The PMMS line chart uses one weekly survey observation per month for a compact 1
 ## Reproducibility
 
 Carrowmont publishes the normalized JSON and calculation CSV used by the page. Values are rounded for display only; calculations use full precision before display rounding.
+
+
+## Official-source status review — 26 November 2026
+
+This method document and the existing downloadable CSV, charts, and payment-sensitivity tables preserve the original October 2026 study dataset (Freddie Mac 7.32% from 22 October and Census August 2026 median price $393,700). Those historical calculations have **not** been silently recalculated.
+
+A separate on-page official-source update records Freddie Mac's 25 November 2026 30-year fixed rate of 7.21% and the U.S. Census/HUD October 2026 median new-home price of $391,300, released 25 November 2026. Primary references: https://www.freddiemac.com/pmms and https://www.census.gov/construction/nrs/current/index.html.
+
+The reader-facing source-status notice is due for review by 2 December 2026. When that date arrives, client-side code displays an explicit *review due* message, without fetching external data or claiming that the historical tables were updated. A future fully updated study must regenerate its calculations, all three chart PNGs, CSV/JSON, page prose and QA expectations together.

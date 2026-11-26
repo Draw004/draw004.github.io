@@ -226,5 +226,20 @@
     "Major expenditure-group relative importance values sum to 100.001% because BLS publishes rounded weights.",
     "The personal-basket estimate is a weighted illustration using current 12-month major-group changes; it is not an official personal CPI and does not reproduce the full BLS index methodology.",
     "Selected pressure-point categories overlap major groups and are shown for context only; they should not be added together."
-  ]
+  ],
+  "official_source_status": {
+    "checked_on": "2026-11-26",
+    "next_review_due": "2026-12-10",
+    "dataset_is_archived_snapshot": true,
+    "archive_data_unchanged": true,
+    "latest_official_cpi": {
+      "source": "BLS CPI-U",
+      "period": "2026-10",
+      "released": "2026-11-10",
+      "month_on_month_seasonally_adjusted_pct": 0.4,
+      "url": "https://www.bls.gov/news.release/archives/cpi_11102026.htm",
+      "next_scheduled_release": "2026-12-10",
+      "caution": "No October year-over-year headline CPI is cited here; October 2025 data were unavailable in the BLS release."
+    }
+  }
 }

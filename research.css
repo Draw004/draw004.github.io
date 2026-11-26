@@ -59,3 +59,12 @@
 
 /* FRE Batch 8F: research market scope is explicit without dominating the library. */
 .research-study-card>.research-kicker{display:inline-flex;margin-bottom:10px;padding:5px 9px;border:1px solid #cfe4e1;border-radius:999px;background:#f2faf8;color:#0b746d;font-size:10px;letter-spacing:.09em}
+
+/* RESEARCH-FRESHNESS1: stamped official updates beside an explicitly archival research dataset. */
+.research-freshness{margin-bottom:24px;padding:20px 22px;border:1px solid #bcdcd7;border-left:5px solid #0e827a;border-radius:18px;background:#f3faf8;color:#173b55}
+.research-freshness-tag{display:block;text-transform:uppercase;letter-spacing:.085em;font-size:12px;font-weight:850;color:#0a756f}
+.research-freshness p{margin:10px 0 0;font-size:16px;line-height:1.6}
+.research-freshness a{color:#066c71;font-weight:750;text-decoration:underline;text-underline-offset:2px}
+.research-snapshot-note{padding-top:11px;border-top:1px solid #cfe7e3}
+.research-freshness .research-review-alert:not([hidden]){margin-top:13px;padding:10px 12px;border-radius:11px;background:#fff4da;border:1px solid #eccf8d;color:#6b4810}
+@media(max-width:520px){.research-freshness{padding:16px 15px;border-radius:14px}.research-freshness p{font-size:15px}}
