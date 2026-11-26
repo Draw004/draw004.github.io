@@ -967,6 +967,8 @@
       "default_mode": "calculate",
       "patterns": [
         "\\b(?:swp|systematic withdrawal plan|drawdown|retirement withdrawal|portfolio withdrawal)\\b",
+        "^(?!.*\\b(?:emergency|rainy day|job loss|without income|no income)\\b).*\\b(?:i have|have|got|saved|with)\\s+(?:rs\\s*)?\\d+(?:\\s+\\d+)?\\s*(?:crores?|cr|lakhs?|lacs?)\\b.{0,70}\\b(?:how long|last|run out|withdraw|drawdown)\\b",
+        "^(?!.*\\b(?:emergency|rainy day|job loss|without income|no income)\\b).*\\bhow long\\b.{0,50}\\b\\d+(?:\\s+\\d+)?\\s*(?:crores?|cr|lakhs?|lacs?)\\b.{0,50}\\blast\\b",
         "\\b(?:retirement|pension|corpus)\\b.{0,55}\\b(?:last|run out|deplet|withdraw|drawdown|income)\\b",
         "\\b(?:how long|how much)\\b.{0,45}\\b(?:retirement savings|retirement fund|retirement corpus|corpus)\\b",
         "\\b(?:withdraw|withdrawal|drawdown|income)\\b.{0,45}\\b(?:retirement savings|retirement fund|retirement corpus|pension|corpus)\\b",

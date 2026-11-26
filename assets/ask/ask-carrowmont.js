@@ -188,8 +188,10 @@
   const HOME_ASK_HANDOFF_KEY='carrowmont_home_ask_handoff_v1';
   const HOME_ASK_HANDOFF_MAX_AGE_MS=15*60*1000;
   const CAR_AFFORDABILITY_HANDOFF_MAX_AGE_MS=15*60*1000;
-  const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth|contribution|deposit|buffer|surplus/i;
-  const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn/i;
+  const RETIREMENT_ASK_HANDOFF_MAX_AGE_MS=15*60*1000;
+  const RETIREMENT_WITHDRAWAL_TOOL='/retirement-calculator/withdrawal-calculator.html';
+  const MONEY_KEY=/amount|balance|income|expense|saving|reserve|price|payment|cost|value|interestSaved|targetGap|goalGap|monthlyNeed|cashRoom|loanAmount|endingValue|growth|remaining|outgo|weeklyRoom|dailyRoom|projectedValue|projectedGrowth|contribution|deposit|buffer|surplus|startingMonthlyWithdrawal|modeledStartingMonthlyWithdrawal|totalModeledWithdrawals/i;
+  const PCT_KEY=/Pct$|RatePct$|AprPct$|annualRate|assumedReturn|firstYearWithdrawalRate/i;
   const MONTH_KEY=/months|runway/i;
   const YEAR_KEY=/years/i;
   const AGE_KEY=/Age$/i;
@@ -233,6 +235,25 @@
     return new Intl.NumberFormat(window.CarrowmontLocale?.getLocale?.()||'en-US',{maximumFractionDigits:digits}).format(n);
   }
   function labelize(key){ return DISPLAY_LABELS[key]||String(key).replace(/([a-z])([A-Z])/g,'$1 $2').replace(/[_-]/g,' ').replace(/^./,c=>c.toUpperCase()); }
+  function describeRunwayMonths(months){
+    const m=Math.max(0,Math.round(Number(months)||0));
+    const y=Math.floor(m/12),remaining=m%12;
+    return [y?`${y} ${y===1?'year':'years'}`:'',remaining?`${remaining} ${remaining===1?'month':'months'}`:''].filter(Boolean).join(' ')||'0 months';
+  }
+  function makeRunwayStat(label,value,detail){
+    const card=document.createElement('div');card.className='ask-runway-stat';
+    const heading=document.createElement('span');heading.textContent=label;
+    const strong=document.createElement('strong');strong.textContent=value;
+    const hint=document.createElement('small');hint.textContent=detail;
+    card.append(heading,strong,hint);return card;
+  }
+  function appendResultMetric(container,key,value){
+    const item=document.createElement('div');item.className='ask-metric';
+    const label=document.createElement('span');label.textContent=labelize(key);
+    const strong=document.createElement('strong');strong.textContent=formatValue(key,value);
+    item.append(label,strong);container.appendChild(item);
+  }
+
   function formatValue(key,value){
     if(value===null||value===undefined||value==='') return '—';
     if(typeof value==='boolean') return value?'Yes':'No';
@@ -404,6 +425,33 @@
     }
     box.hidden=false; requestAnimationFrame(()=>box.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'nearest'}));
   }
+  // Only an explicitly stated Indian-denominated retirement amount may be staged.
+  // No financial numbers travel in URLs, and the calculator requires user review.
+  function statedRetirementBalance(query){
+    if(getLocale().currency!=='INR')return null;
+    const matches=[...String(query||'').replace(/,/g,'').matchAll(/\b(\d+(?:\.\d+)?)\s*(crores?|cr|lakhs?|lacs?)\b/gi)];
+    if(matches.length!==1)return null;
+    const unit=matches[0][2].toLowerCase();
+    const multiplier=/^(?:cr|crore|crores)$/.test(unit)?10000000:100000;
+    const balance=Number(matches[0][1])*multiplier;
+    return Number.isFinite(balance)&&balance>0&&balance<=10000000000?balance:null;
+  }
+  function openRetirementWithdrawalCalculator(query){
+    // A new direct request must never consume a stale Retirement Planner handoff.
+    try{
+      sessionStorage.removeItem(RETIREMENT_WITHDRAWAL_HANDOFF_KEY);
+      const balance=statedRetirementBalance(query);
+      if(balance!==null){
+        const locale=getLocale();const now=Date.now();
+        sessionStorage.setItem(RETIREMENT_WITHDRAWAL_HANDOFF_KEY,JSON.stringify({
+          version:1,source:'ask',projectedCorpus:balance,requiredCorpus:0,monthlyNeed:0,
+          region:locale.country,currency:locale.currency,regionLabel:'Ask Carrowmont',
+          createdAt:now,expiresAt:now+RETIREMENT_ASK_HANDOFF_MAX_AGE_MS
+        }));
+      }
+    }catch(_err){ /* Never block the actual calculator when storage is disabled. */ }
+    window.location.assign(RETIREMENT_WITHDRAWAL_TOOL);
+  }
   let askPredictTimer=null;
   let askActionSeq=0;
   async function updateStartAction(query){
@@ -411,11 +459,11 @@
     const text=String(query||'').trim();const seq=++askActionSeq;
     if(text.length<2){button.innerHTML='Work through this <span class="button-arrow">&rarr;</span>';return;}
     const owner=await ownershipFor(text);if(seq!==askActionSeq)return;
-    const label=owner?.mode==='explain'?'Find an explanation':owner?.ask_intent&&api?.SUPPORTED?.some(item=>item.intent===owner.ask_intent)?'Work through this':owner?'Open best match':'Work through this';
+    const label=owner?.mode==='explain'?'Find an explanation':owner?.ask_intent==='retirement-withdrawal'?'Open Drawdown Calculator':owner?.ask_intent&&api?.SUPPORTED?.some(item=>item.intent===owner.ask_intent)?'Work through this':owner?'Open best match':'Work through this';
     button.innerHTML=`${label} <span class="button-arrow">&rarr;</span>`;
   }
   function hideAskPredictive(){const box=$('askPredictive');if(!box)return;box.hidden=true;box.innerHTML='';$('askQuestion')?.setAttribute('aria-expanded','false');}
-  function renderAskPredictive(items){const box=$('askPredictive');if(!box)return;box.innerHTML='';if(!items?.length){hideAskPredictive();return;}const label=document.createElement('span');label.className='ask-predictive-label';label.textContent='Suggestions';box.appendChild(label);items.slice(0,5).forEach(item=>{const button=document.createElement('button');button.type='button';button.className='ask-predictive-option';button.setAttribute('role','option');const text=document.createElement('span');text.textContent=item.text;button.appendChild(text);if(item.type==='correction'){const small=document.createElement('small');small.textContent='Spelling suggestion';button.appendChild(small);}button.addEventListener('click',()=>{$('askQuestion').value=item.text;hideAskPredictive();$('askQuestion').focus();updateStartAction(item.text);});box.appendChild(button);});box.hidden=false;$('askQuestion')?.setAttribute('aria-expanded','true');}
+  function renderAskPredictive(items){const box=$('askPredictive');if(!box)return;box.innerHTML='';if(!items?.length){hideAskPredictive();return;}const label=document.createElement('span');label.className='ask-predictive-label';label.textContent='Suggestions';box.appendChild(label);items.slice(0,5).forEach(item=>{const button=document.createElement('button');button.type='button';button.className='ask-predictive-option';button.setAttribute('role','option');const text=document.createElement('span');text.textContent=item.text;button.appendChild(text);if(item.type==='correction'){const small=document.createElement('small');small.textContent='Spelling suggestion';button.appendChild(small);}else if(item.url===RETIREMENT_WITHDRAWAL_TOOL){const small=document.createElement('small');small.textContent='Open calculator directly';button.appendChild(small);}button.addEventListener('click',()=>{if(item.url===RETIREMENT_WITHDRAWAL_TOOL && item.type!=='correction'){openRetirementWithdrawalCalculator($('askQuestion').value.trim());return;} $('askQuestion').value=item.text;hideAskPredictive();$('askQuestion').focus();updateStartAction(item.text);});box.appendChild(button);});box.hidden=false;$('askQuestion')?.setAttribute('aria-expanded','true');}
   function updateAskPredictive(){const input=$('askQuestion');const query=String(input?.value||'').trim();updateStartAction(query);window.clearTimeout(askPredictTimer);if(query.length<2||!window.CarrowmontSearch?.suggest){hideAskPredictive();return;}askPredictTimer=window.setTimeout(()=>{window.CarrowmontSearch.suggest(query,{limit:5}).then(items=>{if(String(input.value||'').trim()===query)renderAskPredictive(items||[]);}).catch(()=>hideAskPredictive());},150);}
   function showUnsupported(text){
     $('askStartMessage').textContent='';
@@ -558,14 +606,17 @@
     }
     if(ownership){
       if(ownership.mode==='explain'||ownership.mode==='research'){showUnsupported(understood);return;}
+      if(ownership.ask_intent==='retirement-withdrawal'){
+        openRetirementWithdrawalCalculator(understood);return;
+      }
       if(ownership.ask_intent&&api?.SUPPORTED?.some(item=>item.intent===ownership.ask_intent)){
-        const seed=ownership.ask_intent==='retirement-withdrawal'?retirementWithdrawalSeed(understood):{};
-        startIntent(ownership.ask_intent,understood,seed);return;
+        startIntent(ownership.ask_intent,understood);return;
       }
       showUnsupported(understood);return;
     }
     const classified=api.classify(understood);
     if(!classified?.intent){showUnsupported(understood);return;}
+    if(classified.intent==='retirement-withdrawal'){openRetirementWithdrawalCalculator(understood);return;}
     startIntent(classified.intent,understood);
   }
   function updateProgress(){
@@ -790,27 +841,64 @@
   function renderResult(result){
     lastResult=result;
     stage('result');renderAccountContext();
+    const nums=result.importantNumbers||{};
+    const isRunway=result.intent==='retirement-withdrawal'&&typeof nums.modeledRunwayMonths==='number'&&Number.isFinite(nums.modeledRunwayMonths);
+    const withdrawalTrace=(result.trace||[]).find(item=>item?.engineId==='retirement-withdrawal');
+    const depleted=isRunway&&withdrawalTrace?.output?.result?.depleted===true;
+    const runwayMonths=isRunway?Math.max(0,Math.round(nums.modeledRunwayMonths)):0;
+    const duration=describeRunwayMonths(runwayMonths);
+    const resolvedAge=typeof nums.modeledDepletionAge==='number'&&Number.isFinite(nums.modeledDepletionAge)&&nums.modeledDepletionAge>=18?nums.modeledDepletionAge:null;
+    $('askResultStage').classList.toggle('ask-runway-result',isRunway);
+    $('askResultStage').classList.toggle('ask-retirement-result',result.intent==='retirement-withdrawal');
     $('askResultSituation').textContent=result.situation||INTENT_COPY[result.intent]||'Your result';
     const rec=result.recommendation||{};
-    $('askRecommendationHeadline').textContent=rec.headline||'Review the modeled result below.';
+    $('askResolutionKicker').textContent=isRunway?'Your retirement-savings runway':'Carrowmont’s view';
+    $('askRecommendationHeadline').textContent=isRunway
+      ? depleted?`Your retirement savings could last about ${duration}.`:`Your retirement savings do not run out within this ${number(runwayMonths/12,1)}-year model horizon.`
+      : rec.headline||'Review the modeled result below.';
     $('askRecommendationAction').textContent=rec.action||'';
     $('askRecommendationRationale').textContent=rec.rationale?`Why: ${rec.rationale}`:'';
+    const summary=$('askRunwaySummary');summary.innerHTML='';summary.hidden=!isRunway;
+    if(isRunway){
+      const timeText=depleted?duration:`At least ${duration}`;
+      summary.appendChild(makeRunwayStat('How long it may last',timeText,`${number(runwayMonths,0)} months in the model`));
+      summary.appendChild(makeRunwayStat(depleted?'Age when it may run out':'Age at model horizon',
+        resolvedAge===null?'Not provided':`About ${number(resolvedAge,0)}`,
+        resolvedAge===null?'Enter a starting age to show an age estimate.':`Modeled age ${number(resolvedAge,1)}; this is not a prediction.`));
+      summary.appendChild(makeRunwayStat('Equivalent duration',`About ${number(runwayMonths/12,1)} years`,
+        depleted?'Based on the selected withdrawal and return assumptions.':'Not depleted within the 100-year maximum model horizon.'));
+    }
     const confidence=result.confidence||{};
     $('askConfidence').textContent=confidence.level?`Confidence: ${String(confidence.level).replace('_',' ').toLowerCase()} — ${confidence.basis||''}`:'';
     $('askDiagnosis').textContent=result.diagnosis||'';
-    const metrics=$('askMetrics'); metrics.innerHTML='';
-    for(const [key,value] of Object.entries(result.importantNumbers||{})){
-      if(key==='currency'||value===null||typeof value==='object') continue;
-      const item=document.createElement('div'); item.className='ask-metric';
-      const label=document.createElement('span'); label.textContent=labelize(key);
-      const strong=document.createElement('strong'); strong.textContent=formatValue(key,value);
-      item.append(label,strong); metrics.appendChild(item);
+    $('askDiagnosisSection').hidden=isRunway;
+    $('askMetricsHeading').textContent=isRunway?'Inputs and supporting numbers':'Important numbers';
+    const metrics=$('askMetrics');metrics.innerHTML='';
+    const more=$('askRunwayMore'),moreMetrics=$('askRunwayMoreMetrics');moreMetrics.innerHTML='';more.hidden=true;more.open=false;
+    const metricsNote=$('askMetricsNote');metricsNote.hidden=!isRunway;
+    const keys=isRunway?['retirementBalance','startingMonthlyWithdrawal','firstYearWithdrawalRate','totalModeledWithdrawals']:Object.keys(nums);
+    for(const key of keys){
+      const value=nums[key];if(key==='currency'||value===null||value===undefined||typeof value==='object')continue;
+      appendResultMetric(metrics,key,value);
+    }
+    if(isRunway){
+      if(typeof nums.modeledEndingBalance==='number'){
+        appendResultMetric(moreMetrics,'modeledEndingBalance',nums.modeledEndingBalance);more.hidden=false;
+      }
+      const rate=Number(state.facts.retirementWithdrawalReturnPct),growth=Number(state.facts.retirementWithdrawalGrowthPct);
+      const assumptions=[];
+      if(Number.isFinite(rate)) assumptions.push(`${number(rate,1)}% assumed annual return`);
+      if(Number.isFinite(growth)) assumptions.push(`${number(growth,1)}% annual withdrawal increase`);
+      metricsNote.textContent=assumptions.length?`Based on ${assumptions.join(' and ')}. These are assumptions, not guaranteed future returns or inflation.`:'Results depend on the entered return and withdrawal assumptions.';
     }
     const alternatives=$('askAlternatives'); alternatives.innerHTML='';
     const priorityMoves=Array.isArray(result.priorityMoves)?result.priorityMoves:[];
     const altItems=Array.isArray(result.alternatives)?result.alternatives:[];
     const altHeading=$('askAlternativesHeading');
-    if(altHeading) altHeading.textContent=priorityMoves.length?'Your next three moves':'Paths compared';
+    if(altHeading) altHeading.textContent=priorityMoves.length?'Your next three moves':result.intent==='retirement-withdrawal'?'Selected return and alternative paths':'Paths compared';
+    const scenarioIntro=$('askScenarioIntro');
+    scenarioIntro.hidden=result.intent!=='retirement-withdrawal'||priorityMoves.length>0||!altItems.length;
+    if(!scenarioIntro.hidden) scenarioIntro.textContent='The highlighted scenario uses your selected annual return. The others change only that return assumption; they are illustrations, not forecasts.';
     $('askAlternativesSection').hidden=priorityMoves.length===0&&altItems.length===0;
     if(priorityMoves.length){
       priorityMoves.slice(0,3).forEach((move,index)=>{
@@ -834,13 +922,42 @@
       const altLimit=state.intent==='lump-sum-goal-tradeoffs'?5:4;
       for(const alt of altItems.slice(0,altLimit)){
         const card=document.createElement('div'); card.className='ask-alternative';
-        const title=document.createElement('h4'); title.textContent=alt.label||labelize(alt.id||'Option'); card.appendChild(title);
-        for(const [key,value] of Object.entries(alt)){
-          if(['id','label'].includes(key)||value===null||typeof value==='object') continue;
-          const row=document.createElement('div'); row.className='ask-alt-row';
-          const name=document.createElement('span'); name.textContent=labelize(key);
-          const val=document.createElement('strong'); val.textContent=formatValue(key,value);
-          row.append(name,val); card.appendChild(row);
+        if(result.intent==='retirement-withdrawal'){
+          const selected=String(alt.id)==='return-0';
+          card.classList.add('ask-rate-scenario');card.classList.toggle('is-selected',selected);
+          if(selected)card.setAttribute('aria-label','Your selected annual return scenario');
+          const tag=document.createElement('span');tag.className='ask-scenario-badge';tag.textContent=selected?'Your selected return':'Alternative path';
+          const title=document.createElement('h4');title.textContent=(alt.label||'Return scenario').replace(/^Return\s+/,'')+' annual return';
+          card.append(tag,title);
+          const value=document.createElement('strong');value.className='ask-scenario-number';
+          const detail=document.createElement('p');detail.className='ask-scenario-detail';
+          if(typeof alt.runwayMonths==='number'){
+            const horizon=withdrawalTrace?.output?.sensitivity?.find(item=>`return-${item.delta}`===alt.id);
+            const altDepleted=horizon?.result?.depleted===true;
+            const months=Math.max(0,Math.round(alt.runwayMonths));
+            value.textContent=altDepleted?describeRunwayMonths(months):`At least ${describeRunwayMonths(months)}`;
+            detail.textContent=altDepleted?'Modeled time until the balance runs out.':'Not depleted within the tested horizon.';
+            if(selected)detail.textContent+=' This is the return you entered.';
+            if(!selected&&depleted&&altDepleted){
+              const gap=months-runwayMonths;
+              if(gap!==0)detail.textContent+=` ${Math.abs(gap)} month${Math.abs(gap)===1?'':'s'} ${gap>0?'longer':'shorter'} than your selected scenario.`;
+            }
+          }else if(typeof alt.startingMonthlyWithdrawal==='number'){
+            value.textContent=money(alt.startingMonthlyWithdrawal);
+            detail.textContent='Modeled starting monthly withdrawal at this annual return.';
+          }else{
+            value.textContent='—';detail.textContent='Scenario result unavailable.';
+          }
+          card.append(value,detail);
+        }else{
+          const title=document.createElement('h4'); title.textContent=alt.label||labelize(alt.id||'Option'); card.appendChild(title);
+          for(const [key,value] of Object.entries(alt)){
+            if(['id','label'].includes(key)||value===null||typeof value==='object') continue;
+            const row=document.createElement('div'); row.className='ask-alt-row';
+            const name=document.createElement('span'); name.textContent=labelize(key);
+            const val=document.createElement('strong'); val.textContent=formatValue(key,value);
+            row.append(name,val); card.appendChild(row);
+          }
         }
         alternatives.appendChild(card);
       }
@@ -876,6 +993,14 @@
       const li=document.createElement('li'); li.className='ask-estimated-assumption'; li.textContent=`${item.label}: ${formatValue(key,item.value)} — Illustrative default used because you selected “I don’t know”.`; assumptions.appendChild(li); $('askAssumptionsWrap').hidden=false;
     }
     const wrap=$('askDetailLinkWrap'); wrap.innerHTML='';
+    const feature=result.intent==='retirement-withdrawal';wrap.classList.toggle('ask-detail-featured',feature);
+    if(feature){
+      const copy=document.createElement('div');copy.className='ask-detail-copy';
+      const kicker=document.createElement('span');kicker.className='ask-detail-kicker';kicker.textContent='Continue with the full tool';
+      const title=document.createElement('strong');title.textContent='Test your retirement withdrawal plan';
+      const description=document.createElement('p');description.textContent='Explore withdrawal amounts, target durations and different return assumptions in the full calculator.';
+      copy.append(kicker,title,description);wrap.appendChild(copy);
+    }
     detailLinksFor(result).forEach((link,index)=>{
       const a=document.createElement('a');a.href=link[1];a.textContent=`${link[0]} →`;a.dataset.askDetailLink=String(index+1);
       if(result.intent==='car-affordability'&&index===0){a.dataset.askCarAffordabilityHandoff='1';a.addEventListener('click',()=>writeCarAffordabilityHandoff(result));}

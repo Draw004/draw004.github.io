@@ -103,7 +103,7 @@
 
   const RULES = Object.freeze([
     [INTENTS.MORTGAGE_PREPAY_VS_INVEST, /\b(mortgage|home loan|housing loan).{0,50}\b(prepay|prepayment|overpay|overpayment|part payment|foreclos|extra payment).{0,50}\b(invest|sip|mutual fund)|\b(invest|sip|mutual fund).{0,50}\b(mortgage|home loan|housing loan).{0,50}\b(prepay|overpay|part payment|foreclos)/i],
-    [INTENTS.RETIREMENT_WITHDRAWAL, /\b(swp|systematic withdrawal plan|drawdown|retirement withdrawal)\b|\b(retirement|corpus|retirement fund|retirement savings).{0,45}\b(last|run out|deplet|withdraw|drawdown)\b/i],
+    [INTENTS.RETIREMENT_WITHDRAWAL, /\b(swp|systematic withdrawal plan|drawdown|retirement withdrawal)\b|\b(retirement|corpus|retirement fund|retirement savings).{0,45}\b(last|run out|deplet|withdraw|drawdown)\b|^(?!.*\b(?:emergency|rainy day|job loss|without income|no income)\b).*\b(?:i have|have|got|saved|with)\s+\d+(?:[.\s]\d+)?\s*(?:crores?|cr|lakhs?|lacs?)\b.{0,70}\b(?:how long|last|run out|withdraw|drawdown)\b/i],
     [INTENTS.DEBT_VS_SAVINGS, /\b(debt|loan|credit card).{0,40}\b(save|saving|invest)|\b(save|saving|invest).{0,40}\b(debt|loan|credit card)/i],
     [INTENTS.EMERGENCY_RUNWAY, /\b(emergency fund|emergency savings|runway|months? of expenses|without income|no income|lose my job|job loss|salary stops)\b/i],
     [INTENTS.BORROWING_HEALTH, /\b(debt[- ]?to[- ]?income|dti|borrowing health|debt burden)\b|\b(can i|could i|afford|take on|add).{0,28}\b(another|new|more).{0,14}\b(loan|debt|payment|emi)\b/i],

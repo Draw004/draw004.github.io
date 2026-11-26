@@ -2,7 +2,7 @@
   'use strict';
 
   var INDEX_URL = '/data/carrowmont-search-index.json?v=20261125-askwave2&live=20261126-cachefix2';
-  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261125-askwave2&live=20261126-cachefix2';
+  var ALIASES_URL = '/data/carrowmont-search-aliases.json?v=20261125-askwave2&live=20261126-cachefix2&route=20261126-drawdown';
   var MIN_QUERY_LENGTH = 3;
   var MIN_SUGGEST_LENGTH = 2;
   var DEFAULT_LIMIT = 12;

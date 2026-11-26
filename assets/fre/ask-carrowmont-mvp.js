@@ -746,7 +746,7 @@
       });
     }
     const months=r.depleted?r.depletionMonth:r.horizonMonths;
-    const depletionAge=Number.isFinite(Number(input.startAge))?input.startAge+months/12:null;
+    const depletionAge=Number.isFinite(input.startAge)?input.startAge+months/12:null;
     return freeze({
       situation:'Retirement withdrawal and drawdown', diagnosis:r.depleted?'Under the entered withdrawal, return and inflation assumptions, the modeled retirement balance eventually reaches zero.':'The modeled retirement balance remains above zero through the 100-year maximum test horizon under the assumptions entered.',
       recommendation:r.depleted
