@@ -249,5 +249,24 @@
       "rate_pct": 8.32,
       "monthly_pi_usd": 5671.45
     }
-  ]
+  ],
+  "official_source_status": {
+    "checked_on": "2026-11-26",
+    "next_review_due": "2026-12-02",
+    "dataset_is_archived_snapshot": true,
+    "archive_data_unchanged": true,
+    "latest_official_mortgage_rate": {
+      "source": "Freddie Mac PMMS",
+      "as_of": "2026-11-25",
+      "rate_30yr_pct": 7.21,
+      "url": "https://www.freddiemac.com/pmms"
+    },
+    "latest_official_new_home_price": {
+      "source": "U.S. Census/HUD new residential sales",
+      "period": "2026-10",
+      "released": "2026-11-25",
+      "median_usd": 391300,
+      "url": "https://www.census.gov/construction/nrs/current/index.html"
+    }
+  }
 }

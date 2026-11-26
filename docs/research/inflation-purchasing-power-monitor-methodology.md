@@ -72,3 +72,10 @@ The research page is static. The personal-basket calculation runs entirely in th
 The monitor is designed for substantive monthly updates after a new BLS CPI release. A monthly update should refresh the official metrics, major-group changes, selected pressure points, latest index, purchasing-power anchors where necessary, charts, dataset files, page analysis, `dateModified` and sitemap `lastmod`.
 
 Do not manufacture freshness between releases. The page should retain a stable canonical URL rather than creating thin monthly pages.
+
+
+## Official-source status review — 26 November 2026
+
+The published tables, spending-group comparison, household basket, PNGs and CSV/JSON calculation fields remain a **September 2026 historical study**. The separate source-status note points to the 10 November 2026 official BLS release of October CPI-U, including a +0.4% seasonally adjusted monthly change, and the scheduled 10 December 2026 November CPI release. Primary references: https://www.bls.gov/news.release/archives/cpi_11102026.htm and https://www.bls.gov/schedule/news_release/cpi.htm.
+
+The new October release is **not** directly substituted for September annual comparison data or spending weights, and no October annual headline estimate is invented. In the October release, data for October 2025 were unavailable. A browser-local notice marks the source review as due on 10 December 2026; it does not fetch data or alter saved finances. For a new dataset edition, refresh every historic index anchor, basket inputs, charts, CSV/JSON, article narrative and QA fixture as a coherent release.
