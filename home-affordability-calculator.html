@@ -23,6 +23,7 @@
   <meta name="twitter:image" content="https://carrowmont.com/carrowmont-hero.webp">
   <link rel="stylesheet" href="carrowmont.css?v=20261019-home1">
   <link rel="stylesheet" href="home-affordability-calculator.css?v=20261019-home1">
+  <link rel="stylesheet" href="/assets/ui/carrowmont-secondary-page-nav.css?v=20261127-navfit1&amp;fit=20261127-navfit2">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -54,14 +55,20 @@
 <header class="site-header">
   <div class="shell header-inner">
     <a class="brand" href="/" aria-label="Carrowmont home"><span class="brand-name">CARROWMONT</span><span class="brand-rule" aria-hidden="true"></span><span class="brand-tagline"><span>Plan today.</span><strong>Build a brighter tomorrow.</strong></span></a>
-    <nav class="desktop-nav" aria-label="Primary navigation"><a href="#calculator">Calculator</a><a href="#how-it-works">How it works</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/">Home</a></nav>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/my-carrowmont.html">My Carrowmont</a><a href="/tools.html">Tools</a><a href="/ask-carrowmont.html" class="site-ask-link" data-cm-ask-link aria-label="Ask Carrowmont"><span class="site-ask-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.5h14v9.5H10l-5 4v-13.5z"></path><path d="M8.5 9h7M8.5 12h4.5"></path></svg></span><span>Ask</span></a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/search.html" class="site-search-link" data-cm-search-link><span class="site-search-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg></span>Search</a></nav>
     <details class="locale-menu" id="localeMenu">
       <summary class="locale-summary" aria-label="Choose country and currency"><span class="locale-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"></path></svg></span><span id="localeCountryLabel">India</span><span>·</span><span id="localeCurrencyLabel">INR</span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"></path></svg></span></summary>
       <div class="locale-panel"><strong>Country &amp; currency</strong><p>Choose the context that makes the numbers easiest to understand.</p><label for="regionSelect">Country / region</label><select id="regionSelect"></select><label for="currencySelect">Currency</label><select id="currencySelect"></select><p class="locale-note"><strong>Important:</strong> changing currency changes the unit and number format. It does not convert entered amounts using an exchange rate.</p><button type="button" class="small-button" id="localeDoneBtn">Done</button></div>
     </details>
-    <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="#calculator">Calculator</a><a href="#how-it-works">How it works</a><a href="/tools.html">Tools</a><a href="/learn.html">Learn</a><a href="/methodology.html">Methodology</a><a href="/">Home</a></div></details>
+    <details class="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><a href="/">Home</a><a href="/my-carrowmont.html">My Carrowmont</a><a href="/tools.html">Tools</a><a href="/ask-carrowmont.html">Ask</a><a href="/learn.html">Learn</a><a href="/research.html">Research</a><a href="/search.html">Search</a><a href="/methodology.html">Methodology</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div></details>
   </div>
 </header>
+<nav class="cm-secondary-nav" aria-label="Explore this page">
+  <div class="shell cm-secondary-nav-inner">
+    <span class="cm-secondary-nav-label">On this page</span>
+    <div class="cm-secondary-nav-links"><a href="#calculator">Calculator</a><a href="#how-it-works">How it works</a></div>
+  </div>
+</nav>
 
 <main>
   <section class="home1-hero">
@@ -196,7 +203,7 @@
 <footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><strong>CARROWMONT</strong><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div><div class="footer-col"><strong>Tools</strong><a href="/tools.html">All financial tools</a><a href="/sip-calculator/">SIP Calculator</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/mortgage-payoff-calculator/">Mortgage / Home Loan Payoff</a><a href="/budget-cash-flow-planner/">Budget &amp; Cash Flow Planner</a></div><div class="footer-col"><strong>Carrowmont</strong><a href="/learn.html">Learn</a><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/contact.html">Contact</a></div><div class="footer-col"><strong>Legal</strong><a href="/disclaimer.html">Disclaimer</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><div class="shell footer-bottom"><span>© 2026 Carrowmont. Financial planning tools and educational information.</span><span>Illustrative estimates, not financial advice.</span></div></footer>
 
 <script src="locale.js?v=20261019-home1"></script>
-<script src="site.js?v=20261105-mobile2"></script>
+<script src="site.js?v=20261119-startup-nav-perf1"></script>
 <script src="home-affordability-calculator-core.js?v=20261019-home1"></script>
 <script src="home-affordability-calculator-pdf-export.js?v=20261019-home1"></script>
 <script src="home-affordability-calculator-pdf-renderer.js?v=20261019-home1"></script>
