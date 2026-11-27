@@ -1,0 +1,50 @@
+/* NAVFIT1: contextual navigation for seven standalone calculators/explorers.
+   The global header has exactly seven main destinations; page-local anchors live here. */
+.cm-secondary-nav{position:relative;z-index:2;background:#f6fafb;border-bottom:1px solid #d7e3ea}
+.cm-secondary-nav-inner{min-width:0;display:flex;align-items:center;gap:14px;padding:10px 0}
+.cm-secondary-nav-label{flex:0 0 auto;color:#5c7790;font-size:12px;font-weight:850;letter-spacing:.035em;white-space:nowrap}
+.cm-secondary-nav-links{min-width:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cm-secondary-nav-links a{display:inline-flex;align-items:center;min-height:34px;padding:6px 11px;border:1px solid #d2e2e7;background:#fff;border-radius:999px;color:#164d63;font-size:13px;line-height:1.25;font-weight:750;text-decoration:none;max-width:100%}
+.cm-secondary-nav-links a:hover{border-color:#7ec7c0;background:#ebf8f6;color:#08766e}
+.cm-secondary-nav-links a:focus-visible{outline:3px solid #64b8ac;outline-offset:2px}
+@media(max-width:700px){
+  .cm-secondary-nav-inner{align-items:flex-start;gap:8px;flex-direction:column;padding:10px 0}
+  .cm-secondary-nav-links{gap:7px}
+  .cm-secondary-nav-links a{font-size:12px;min-height:32px;padding:5px 9px}
+}
+/* At tablet widths the contextual callouts must not create a second page-wide scrollbar. */
+@media(min-width:981px) and (max-width:1100px){
+  body[data-cm-page="four-percent-rule-stress-test"] .stress-sequence-note{min-width:0}
+  body[data-cm-page="four-percent-rule-stress-test"] .stress-sequence-note .text-link{display:inline-block;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  body[data-cm-page="silver-supply-demand-macro-stress-explorer"] .smse-fixed-context,
+  body[data-cm-page="market-chain-reaction-explorer"] .mcr-fixed-context{max-width:100%;min-width:0;white-space:normal}
+}
+
+/* Once the local shortcuts leave the primary header, the FI page can use
+   the same seven-link desktop header as the rest of Carrowmont at 1024px. */
+@media (min-width:1020px) and (max-width:1180px){
+  body[data-cm-page="fi-number-by-spending"] .desktop-nav{display:flex}
+  body[data-cm-page="fi-number-by-spending"] .mobile-nav{display:none}
+}
+
+/* NAVFIT1 hardening: a long country name must not push Search or the
+   locale selector outside the tablet viewport. Only these seven pages
+   load this stylesheet. Keep both controls visible and keyboard usable. */
+@media (min-width:981px) and (max-width:1180px){
+  .site-header .header-inner{gap:10px}
+  .site-header .brand{gap:7px}
+  .site-header .brand-name{font-size:21px;letter-spacing:1px}
+  .site-header .desktop-nav{gap:10px;font-size:12.5px}
+  .site-header .desktop-nav>a{font-size:12.5px}
+  .site-header .desktop-nav .site-ask-link{gap:3px}
+  .site-header .desktop-nav .site-search-link{gap:3px;padding:7px 8px}
+  .site-header .locale-summary{gap:4px;padding:9px;font-size:12px}
+  .site-header .locale-icon,.site-header .locale-icon svg{width:16px;height:16px}
+  .site-header .chevron,.site-header .chevron svg{width:13px;height:13px;margin-left:0}
+}
+
+/* Keep the explanatory source link inside the 4% Rule sequence card at
+   intermediate desktop widths too; do not mask the page with overflow hidden. */
+body[data-cm-page="four-percent-rule-stress-test"] .stress-sequence-note .text-link{
+  display:inline-block;max-width:100%;white-space:normal;overflow-wrap:anywhere
+}

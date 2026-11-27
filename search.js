@@ -354,11 +354,13 @@
 
   function debounce(fn, delay) {
     var timer = null;
-    return function () {
+    function debounced() {
       var args = arguments;
       window.clearTimeout(timer);
-      timer = window.setTimeout(function () { fn.apply(null, args); }, delay);
-    };
+      timer = window.setTimeout(function () { timer = null; fn.apply(null, args); }, delay);
+    }
+    debounced.cancel = function () { window.clearTimeout(timer); timer = null; };
+    return debounced;
   }
 
   function bindWidget(root, index) {
@@ -389,6 +391,9 @@
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
+      // A queued input debounce must not re-render (and replace) focusable
+      // result links after the explicit Search submission completes.
+      runDebounced.cancel();
       runWidgetSearch(widget, input.value, { reveal: true });
     });
     input.addEventListener('input', runDebounced);
@@ -405,6 +410,7 @@
       suggestions.querySelectorAll('[data-search-suggestion]').forEach(function (button) {
         button.addEventListener('click', function () {
           var suggestion = button.getAttribute('data-search-suggestion') || button.textContent || '';
+          runDebounced.cancel();
           input.value = suggestion.trim();
           input.focus();
           runWidgetSearch(widget, input.value, { reveal: true });
