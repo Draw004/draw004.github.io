@@ -1,0 +1,27 @@
+# SECOPS1: Do not accidentally stage or commit local secrets in this public repo.
+# Gitignore does not protect already tracked files or history: QA scans both.
+.env
+.env.*
+!.env.example
+!.env.sample
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.sqlite
+*.sqlite3
+*.db
+id_rsa
+id_ed25519
+*service-account*.json
+*service_role*.json
+*.private-key
+*.secret-key
+# Do not add broad rules for all .json/.sql files: public reference
+# data, SQL schema, and IndexedNow verification can be intentional.
